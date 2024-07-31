@@ -20,7 +20,7 @@
     display: none;
   }
   .footer{
-    margin-top: 30px;
+    margin-top: 50px;
   }
   .r-nav{
     display: flex;
@@ -150,8 +150,6 @@
     width: 95%;
     margin-left: 30px;
     height: auto;
-    border: none;
-    background-color: var(--c-brand);
     box-shadow: inset 
   }
   .produck-title{
