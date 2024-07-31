@@ -1,0 +1,15 @@
+/* Navbar */
+
+.nav-link {
+    font-weight: normal;
+    color: #000;
+  }
+  .nav-link:hover {
+    color: #faa907;
+  }
+  
+  .active {
+    color: #faa907 !important;
+    font-weight: 600;
+  }
+  /* End Navbar */

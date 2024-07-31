@@ -1,0 +1,197 @@
+:root {
+  --c-dark: #383131;
+  --c-brand: #faa907;
+  --c-brand-rgb: rgb(250, 169, 7);
+  --c-brand-dark: #407c95;
+  --c-brand-light: #2b9ccc;
+  --c-brand-footer: #80deff;
+  --c-brand-contact: #c2efff;
+  --c-brand-rgb: 0, 163, 255;
+  --c-body: #ffffff;
+  --c-gradient: linear-gradient(to top left, #7bdcff 15%, #fff 85%);
+  --font-base: "Poppins", sans-serif;
+  --box-shadow-card: 0px 0px 15px #00a3ff;
+  --box-shadow-card-light: 0px 0px 5px #00a3ff;
+  --transition: all 0.5s ease;
+}
+
+body {
+  font-family: var(--font-base) !important;
+  line-height: 1.7;
+  height: 100vh;
+}
+
+span {
+  color: var(--c-brand);
+}
+
+a {
+  text-decoration: none !important;
+}
+
+/* NAVBAR */
+.nav-link img{
+  width: 10%;
+}
+
+/* CONTENT */
+.top {
+  padding-top: 65px;
+}
+
+.custom-container {
+  max-width: 1220px; /* Example: Custom width */
+  margin: 0 auto; /* Center the container */
+  padding: 0; /* Add some padding */
+}
+
+#content h3 {
+  font-weight: 600 !important;
+  font-size: 30px !important;
+}
+
+#content img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.border-bottom{
+    border-bottom: 2px solid white !important;
+    width: 100% !important;
+  }
+
+
+  .btn-video{
+    background-color: var(--c-brand-contact) !important;
+    border: none !important;
+    color: #3D5963 !important;
+    font-size: 17px;
+    width: 261px;
+    height: 50px;
+    border-radius: 20px !important;
+    align-items: center;
+   }
+
+   .btn-video:hover{
+    background-color: var(--c-brand-contact);
+    color: #3D5963;
+   }
+
+   .btn-video{
+    background-color: var(--c-brand-contact);
+    color: #383131;
+    width: 80%;
+   }
+
+   .btn-video img{
+    width: auto;
+    height: 70%;
+    margin: auto 0;
+   }
+   
+   .play{
+    width: auto;
+    height: 100%;
+    margin: auto 0;
+   }
+
+   .btn-play{
+    width: 100px;
+    height: 40px;
+    border-radius: 10px !important;
+    background-color: var(--c-brand) !important;
+    border: none !important;
+   }
+
+   .form-check-input{
+    padding: 10px;
+    border-radius: 50% !important;
+    border: 1px solid black;
+   }
+
+   .costum-card{
+    background-color: var(--c-brand) !important;
+    border: none !important;
+    height: 460px !important;
+    overflow-y: auto;
+    border-radius: 20px;
+   }
+
+   .costum-card::-webkit-scrollbar{
+    display: none;
+   }
+
+   .check{
+    height: 25px;
+    width: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.462);
+   }
+   
+   .accordion{
+    width: 100% !important;
+   }
+
+   .accordion button{
+    background-color: #FFEFCE;
+   }
+
+   .accordion button:focus, .accordion button:valid{
+    background-color: #FFEFCE;
+   }
+
+   .accordion-button:not(.collapsed) {
+    background-color: #FFEFCE;
+   }
+
+   .accordion-body button{
+    background-color: #FFF47B !important;
+   }
+
+   iframe{
+    border-radius: 10px;
+   }
+
+   .profile-mentor img{
+    width: 10%;
+    height: 10%;
+   }
+
+   .course-option{
+    background-color: #E1E1E1;
+    border-radius: 20px;
+    width: 60%;
+   }
+   
+   .btn-download{
+    padding: 15px;
+    width: 100%;
+   }
+
+   .btn-download img{
+    width: 25%;
+   }
+   
+
+   @media only screen and (max-width:1200px) {
+    .costum-card{
+      height: 410px !important;
+    }
+  }
+    @media only screen and (max-width:992px) {
+      .costum-card{
+        height: 304px !important;
+      }
+    }
+
+    @media only screen and (max-width:768px) {
+      .costum-card{
+        margin-bottom: 20px;
+      }
+
+   }
+
+   @media only screen and (max-width: 576px) {
+    .logo{
+      display: none;
+    }
+  }

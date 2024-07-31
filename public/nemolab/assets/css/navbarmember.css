@@ -1,0 +1,96 @@
+:root {
+  --c-dark: #383131;
+  --c-brand: #FAA907;
+  --c-brand-dark: #a56e00;
+  --c-brand-rgb: 0, 163, 255;
+  --font-base: "Poppins", sans-serif;
+  --transition: all 0.5s ease;
+  --box-shadow-card: 0px 0px 1px 0px black;
+  --box-shadow-card-hover: 0px 0px 3px 0px #FAA907;
+  --transition-card: all 0.5s linear;
+}
+
+.r-nav{
+    display: flex;
+  }
+
+  .img-s{
+    margin-right: 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40PX;
+    height: 40px;
+    border: 1px solid gray;
+  }
+  
+  /* NAVBAR */
+  .navbar-brand img{
+    width: auto;
+    height: 40px;
+  }
+
+  .navbar-nav{
+    gap: 2rem;
+  }
+
+  .nav-link{
+    font-weight: normal;
+    color: var(--c-dark);
+  }
+
+  .active{
+    color: var(--c-brand) !important;
+    font-weight: bold;
+  }
+
+  .btn-login{
+    font-weight: 600;
+    color: var(--c-dark);
+    width: 87px;
+    border-radius: 10px;
+  }
+
+  .btn-login:hover{
+    color: var(--c-brand);
+    transition: var(--transition);
+    border: 1px solid var(--c-brand);
+  }
+  .form-check{
+    margin-top: 10px;
+  }
+  .form-check-input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+  }
+  .form-check-input:checked{
+    background-color: var(--c-dark);
+  }
+
+  .btn-signup{
+    background-color: var(--c-brand);
+    font-weight: 600;
+    border-radius: 10px;
+  }
+
+  .btn-signup:hover{
+    background-color: var(--c-brand);
+  }
+  .col-lg-3{
+    background-color: var(--c-brand);
+    border-radius: 10px;
+  }
+  .btn-search{
+    background-color: var(--c-brand);
+    color: white;
+    border-radius: 10px;
+    border: none;
+  }
+  .btn-search:active{
+    background-color: var(--c-brand-dark) ;
+  }

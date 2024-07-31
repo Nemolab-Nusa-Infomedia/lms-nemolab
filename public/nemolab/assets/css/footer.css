@@ -1,0 +1,23 @@
+/* FOOTER */
+.footer {
+    background-color: white;
+    padding: 20px 0;
+  }
+  .footer .logo img {
+    max-height: 40px;
+  }
+  .footer .social-icons {
+    text-align: right;
+  }
+  .footer .social-icons a {
+    margin: 0 3px;
+  }
+  .footer .social-icons img {
+    max-height: 35px; /* Ensure icons have a consistent size */
+  }
+
+@media screen and (max-width: 768px) {
+    .footer .social-icons img {
+      max-height: 23px; /* Ensure icons have a consistent size */
+    }
+  }
