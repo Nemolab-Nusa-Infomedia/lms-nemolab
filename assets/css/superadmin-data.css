@@ -19,61 +19,11 @@ body {
     background-color: var(--c-brand-dark);
 }
 
-
-/* NAVBAR */
-.navbar-brand img {
-    height: 40px;
-}
-.img-profile{
-    margin-right: 5px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40PX;
-    height: 40px;
-}
-.login p{
-    font-weight: bold;
-}
-.login img{
-    border-radius: 100%;
-}
-/* END NAVBAR */
-
-/* SIDEBAR */
-.sidebar {
-    background-color: var(--c-brand);
-    color: white;
-    border-radius: 10px;
-    height: 600px;
-}
-
-.sidebar a {
-    color: white;
-    display: block;
-    margin: 10px 0;
+a{
     text-decoration: none;
 }
-.sidebar-img{
-    width: 25px;
-    height: 25px;
-}
-.sidebar-a{
-    border-radius: 5px;
-}
-.aktif{
-    background-color: white;
-    justify-content: center;
-}
-.aktif p{
-    color: var(--c-brand);
-}
-.sidebar-a p{
-    font-size: 1rem;
 
-}
-/* END SIDEBAR */
+
 
 /* TABLE DATA */
 .judul-table{
@@ -138,14 +88,3 @@ table {
     border-radius: 10px;
 }
 /* END TABLE DATA */
-
-/* FOOTER */
-.footer {
-    text-align: center;
-}
-
-.footer img {
-    height: 40px;
-    margin: 0 10px;
-}
-/* END FOOTER */

@@ -1,0 +1,38 @@
+/* Sidebar */
+.col-3 {
+    height: max-content;
+}
+
+#mentor .col-3 {
+    height: 530px;
+}
+
+.tittle-list-sidebar {
+    font-weight: bold;
+}
+
+.list-sidebar {
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.active {
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #fff;
+    color: #faa907;
+    padding: 8px 10px;
+    border-radius: 9px;
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    font-weight: 600;
+}
+/* End Sidebar */
