@@ -1,0 +1,151 @@
+:root {
+    --c-dark: #383131;
+    --c-brand: #FAA907;
+    --c-brand-dark: #a56e00;
+    --font-base: "Poppins", sans-serif;
+}
+body {
+    font-family: var(--font-base);
+}
+.konten{
+    height: 900px;
+}
+.btn-primary {
+    background-color: var(--c-brand);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--c-brand-dark);
+}
+
+
+/* NAVBAR */
+.navbar-brand img {
+    height: 40px;
+}
+.img-profile{
+    margin-right: 5px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40PX;
+    height: 40px;
+}
+.login p{
+    font-weight: bold;
+}
+.login img{
+    border-radius: 100%;
+}
+/* END NAVBAR */
+
+/* SIDEBAR */
+.sidebar {
+    background-color: var(--c-brand);
+    color: white;
+    border-radius: 10px;
+    height: 600px;
+}
+
+.sidebar a {
+    color: white;
+    display: block;
+    margin: 10px 0;
+    text-decoration: none;
+}
+.sidebar-img{
+    width: 25px;
+    height: 25px;
+}
+.sidebar-a{
+    border-radius: 5px;
+}
+.aktif{
+    background-color: white;
+    justify-content: center;
+}
+.aktif p{
+    color: var(--c-brand);
+}
+.sidebar-a p{
+    font-size: 1rem;
+
+}
+/* END SIDEBAR */
+
+/* TABLE DATA */
+.judul-table{
+    color: var(--c-brand);
+    font-size: 1.7rem;
+}
+.table-responsive{
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px 1px gray;
+}
+.table th,
+.table td {
+    vertical-align: middle;
+}
+.edit-data{
+    text-decoration: none;
+    color: white;
+    background-color: var(--c-brand);
+    border-radius: 5px;
+    transition: all 0.3s linear;
+}
+.edit-data:hover{
+    background-color: var(--c-brand-dark);
+}
+.pagination{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: #383131;
+}
+.table-img{
+    border-radius: 10px;
+}
+.pagination:hover{
+    background-color: rgba(0, 0, 0, 0);
+    color: black;
+}
+.tambah-data{
+    width: 100px;
+    background-color: var(--c-brand);
+    border-radius: 10px;
+    color: white;
+    border: none;
+    transition: all 0.3s linear;
+}
+.tambah-data:hover{
+    background-color: var(--c-brand-dark);
+    color: white;
+}
+thead, tbody, th, td, tr {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    height: 50px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.form-select{
+    width: 70px;
+    border-radius: 10px;
+}
+/* END TABLE DATA */
+
+/* FOOTER */
+.footer {
+    text-align: center;
+}
+
+.footer img {
+    height: 40px;
+    margin: 0 10px;
+}
+/* END FOOTER */
