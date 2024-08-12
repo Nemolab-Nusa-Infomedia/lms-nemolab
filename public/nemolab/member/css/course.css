@@ -19,60 +19,10 @@ body {
 body::-webkit-scrollbar {
     display: none;
 }
-.col-lg-3 {
-    background-color: var(--c-brand);
-    border-radius: 10px;
-}
-.btn-alert {
-    background-color: var(--c-brand);
-    color: white;
-    border-radius: 5px;
-    border: none;
-    padding: 5px 10px;
-    transition: var(--transition);
-    cursor: pointer;
-    max-width: 150px;
-}
-.bi:hover {
-    color: var(--c-brand);
-}
-.bi:active {
-    color: var(--c-brand);
-}
-.bi {
-    color: var(--c-dark);
-    transition: var(--transition);
-    cursor: pointer;
-    border-radius: 50%;
-}
-.text-decoratiom-none {
-    text-decoration: none !important;
-    margin: 0;
-}
-.text {
-    height: auto;
-}
-
-
-/* alert */
-.disini {
-    border: 1px solid var(--c-dark);
-    margin-top: 20px;
-    border-radius: 100px;
-}
-.alert {
-    width: 95%;
-    margin-left: 30px;
-    height: auto;
-    box-shadow: inset;
-}
-.alert-notify {
-    width: 100%;
-}
-
-/* end alert */
-
 /* sidebar */
+.sidebar {
+    background-color: var(--c-brand);
+}
 .form-check-input {
     padding: 10px;
     border: none;
@@ -94,19 +44,8 @@ body::-webkit-scrollbar {
     display: none;
 }
 /* end sidebar */
-
-/* course */
-.img-card {
-    width: 100%;
-    padding: 7px;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    height: 180px;
-}
 .card-course {
     border: none;
-    height: 350px;
-    width: 100%;
     border-radius: 10px;
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.345);
     padding: 0;
@@ -118,27 +57,129 @@ body::-webkit-scrollbar {
 .card-category {
     color: white;
 }
+.img-card {
+    width: 100%;
+    padding: 7px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    height: 180px;
+}
 .scroll {
     overflow-y: auto;
     height: 740px !important;
+}
+.btn-alert {
+    background-color: var(--c-brand);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px;
+    transition: var(--transition);
+    cursor: pointer;
+    max-width: 150px;
+}
+.disini {
+    border: 1px solid var(--c-dark);
+    margin-top: 20px;
+    border-radius: 100px;
+}
+.kurung {
+    width: 70%;
+}
+.profile-mentor {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+.alert {
+    width: 95%;
+    margin-left: 30px;
+    height: auto;
+    box-shadow: inset;
 }
 .produck-title {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.name {
+    width: 110px;
+    max-height: 53px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.alert-notify {
+    width: 100%;
+}
+
+.img-a {
+    width: 15%;
+}
+
+.profile-mentor {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.text {
+    height: auto;
+}
+.text-a {
+    margin-left: 15px;
+}
+
+.card-img-profile {
+    height: 40px;
+    width: 40px;
+}
+.dropdown {
+    display: none;
+}
+.dropdown-toggle{
+    background-color: var(--c-brand);
+    
+}
+.bi {
+    color: var(--c-dark);
+    transition: var(--transition);
+    cursor: pointer;
+    border-radius: 50%;
+}
+.bi:hover {
+    color: var(--c-brand);
+}
+.bi:active {
+    color: var(--c-brand);
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    align-items: start;
+}
+.text-decoratiom-none {
+    text-decoration: none !important;
+    margin: 0;
+}
 .left {
     height: 15px;
     padding-left: 0px;
     margin-top: 15px;
-    width: 80%;
+    width: 82%;
     margin-bottom: 10px;
 }
 .left p {
     margin-left: 0px;
     font-size: 12px;
     height: 100%;
-    width: 29%;
+    width: 30%;
     font-weight: normal;
 }
 .right {
@@ -155,93 +196,16 @@ body::-webkit-scrollbar {
     width: 100%;
     font-weight: normal;
 }
-.status {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    align-items: start;
-}
-.profile-mentor {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.border-bottom {
     width: 100%;
-}
-.profile-mentor {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.kurung {
-    width: 70%;
-}
-.card-img-profile {
-    width: 100%;
-}
-.text-a {
-    margin-left: 15px;
-}
-.img-a {
-    width: 15%;
-}
-/* end course */
-
-/* footer */
-.footer {
-    margin-top: 50px;
 }
 .media img {
     height: 30px;
 }
-/* end footer */
-@media only screen and (max-width: 1400px) {
-    .card-course {
-        width: 100%;
-        height: 380px;
-    }
-
-    .img-a {
-        width: 20%;
-    }
-
-    .text-a {
-        margin-left: 6px;
-    }
-    .status p {
-        font-size: 12px;
-        white-space: nowrap;
-    }
-    .dropdown {
-        display: none;
-    }
+.alert-container {
+    z-index: 999;
 }
-@media only screen and (max-width: 1200px) {
-    .card-course {
-        width: 270px;
-        height: 350px;
-    }
 
-    .img-a {
-        width: 15%;
-    }
-
-    .text-a {
-        margin-left: 6px;
-    }
-    .status p {
-        font-size: 12px;
-        white-space: nowrap;
-    }
-    .dropdown {
-        display: none;
-    }
-    .footer img {
-        height: 40px;
-    }
-}
 @media only screen and (min-width: 991.5px) {
     .login-tab {
         display: none;
@@ -251,24 +215,6 @@ body::-webkit-scrollbar {
     }
 }
 @media only screen and (max-width: 991.5px) {
-    .img-a {
-        width: 9%;
-    }
-    .login {
-        display: none;
-    }
-    .login-tab {
-        display: flex;
-    }
-
-    .btn-signup {
-        margin-left: 10px;
-    }
-    .img-s {
-        width: 100px;
-        border-radius: 100px;
-    }
-
     .profile-card {
         margin-top: 0px !important;
     }
@@ -282,117 +228,46 @@ body::-webkit-scrollbar {
     .footer {
         margin-top: 90px !important;
     }
-    .card-course {
-        height: 345px;
-    }
     .first-card {
         margin-bottom: 20px;
     }
-    .r-nav {
-        display: block;
+    .sidebar{
+        display: none;
+    }
+    .dropdown {
+        display: flex;
     }
 }
 
 @media only screen and (max-width: 767.5px) {
-    .card-course {
-        width: 300px;
-        margin: auto;
-    }
-    .img-m {
-        scale: 0.9;
-    }
-    .rspv-margin {
-        margin-top: 20px !important;
-    }
-
-    .card-category {
-        height: 250px;
-        width: 95%;
-        margin: 0 auto;
-    }
-
     .first-card {
         margin-top: 16px !important;
     }
-
-    .scroll {
-        margin-top: 20px !important;
-        height: auto;
-        margin-bottom: 30px;
-    }
-
-    .col-sm-12 {
-        padding: 0px !important;
-    }
-    .text-a {
-        margin-top: 4px;
-        margin-left: 10px;
-    }
-
-    .status {
-        margin-top: 20px;
-    }
-
-    .col-lg-3 {
-        display: none;
-    }
-
     .scroll {
         height: max-content;
         width: 85%;
     }
 
-    .dropdown {
+    
+    .card-category{
         display: none;
-    }
-
-    .profile-card {
-        margin-top: 40px !important;
-    }
-    .dropdown {
-        display: flex;
-    }
-    .footer {
-        width: 100%;
-        margin-top: 0px;
-    }
-    .media {
-        margin-top: 20px;
-    }
-    .card-course {
-        height: 390px;
     }
     .alert {
         width: 80%;
+        z-index: 9999;
     }
 }
-@media only screen and (max-width: 400px) {
-    .card-course {
-        width: 255px;
-    }
-}
-@media only screen and (max-width: 320px) {
-    .logo {
-        display: none;
-    }
-
-    .profile-card {
-        margin-top: 0px !important;
-    }
-
-    .status {
-        margin-top: 13px;
-        margin-bottom: 10px;
-    }
-
-    .m-mobile {
-        margin-top: 10px !important;
-    }
+@media only screen and (max-width: 576px) {
     .dropdown {
         display: flex;
     }
-    .card-course {
-        height: 380px;
-        width: 220px;
+    
+}
+@media only screen and (max-width: 575px) {
+    .left {
+        width: 85%;
+    }
+    .left p{
+        width: 40%;
     }
 }

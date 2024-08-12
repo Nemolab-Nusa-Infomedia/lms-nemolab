@@ -39,12 +39,12 @@
         <div class="container-sm pt-3 pb-3" style="height: auto; margin-top: 120px;">
             <div class="content2 row top justify-content-between mx-auto mt-1" style="width: 95%;">
                 <div class="dropdown">
-                    <a class="dropdown-toggle text-black fs-5" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="dropdown-toggle text-black fs-5 rounded text-decoration-none p-2" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Category
                     </a>
 
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu background-dark">
                         <li><a class="dropdown-item" href="#">ALL</a></li>
                         <li><a class="dropdown-item" href="#">Design Grafis</a></li>
                         <li><a class="dropdown-item" href="#">UI/UX Design</a></li>
@@ -53,7 +53,7 @@
                     </ul>
                 </div>
 
-                <div class="col-lg-3 col-md-4 col-sm-12">
+                <div class="col-lg-3 col-md-4 col-sm-12 sidebar rounded">
                     <div class="card-category d-flex flex-column full-width-border">
                         <p class="mx-auto text-center pt-2 pb-1 border-bottom mt-3 mb-4">Category</p>
                         <div class="checkbox ms-3">
@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-9 col-md-7 col-sm-12 row d-flex mx-auto overflow-y-scroll" id="course-container"
+                <div class="col-lg-9 col-md-12 col-sm-12 row d-flex mx-auto overflow-y-scroll" id="course-container"
                     style="height: auto;">
                 </div>
             </div>
@@ -122,7 +122,7 @@
                             courseData.course.forEach(course => {
                                 const courseElement = document.createElement('div');
                                 courseElement.className =
-                                    'col-xl-4 col-lg-6 col-md-12 col-sm-12 mb-lg-4 m-mobile first-card';
+                                    'col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-lg-4 m-mobile first-card mt-2';
                                 courseElement.innerHTML = `
                                 <a href="#" data-slug-course="${course.slug_course}" onclick="setCourseUrl(this)">
                                     <div class="card-course">
