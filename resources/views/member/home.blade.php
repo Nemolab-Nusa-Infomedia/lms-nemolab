@@ -337,7 +337,7 @@
                             <div class="profile d-flex">
                                 <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=faces&fit=crop&w=128&h=128" alt="Linda Martinez" style="border-radius: 50%">
                                 <div class="name ms-2">
-                                    <p class="text-white mb-0" style="font-size: 12px">Linda Martinez</p>
+                                    <p class="text-white mb-0" style="font-size: 12px">Linda Martines</p>
                                     <p class="text-white m-0" style="font-size: 10px">Full Stack Developer</p>
                                 </div>
                             </div>
