@@ -13,7 +13,7 @@
     <!-- Content -->
     <main role="main" class="col-lg-9 col-sm-12 ps-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
-            <h1 class="judul-table">Data Super Admin</h1>
+            <h1 class="judul-table">Super Admin Data</h1>
         </div>
 
         <div class="table-responsive px-3 py-3">
@@ -64,7 +64,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">No superadmins found.</td>
+                            <td colspan="4">There is no superadmin data yet</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -85,7 +85,11 @@
             </div>
         </div>
     </main>
-
+        <!-- Popup YouTube -->
+        {{-- <div id="youtube-popup" class="youtube-popup hidden">
+            <iframe id="youtube-iframe"src="" frameborder="0" allowfullscreen></iframe>
+            <img id="close-btn" class="close-btn" src="{{asset('nemolab/admin/img/close.png')}}" alt="">
+        </div> --}}
 
 @endsection
 

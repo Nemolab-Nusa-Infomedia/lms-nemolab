@@ -17,8 +17,8 @@
             <form class="col-12" action="{{ route('admin.chapter.create.store', $id_course) }}" method="post">
                 @csrf
                 <div class="entryarea">
-                    <input type="text" id="name" name="name" />
-                    <div class="labelline" for="name">Chapter</div>
+                    <input type="text" id="name" name="name" placeholder="" />
+                    <div class="labelline" for="name">Chapter<span class="required-field"></span></div>
                     @error('name')
                         <span style="color: red">{{ $message }}</span>
                     @enderror

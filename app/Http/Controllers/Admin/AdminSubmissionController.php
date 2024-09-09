@@ -98,7 +98,7 @@ class AdminSubmissionController extends Controller
             }
 
             // send mail
-            Mail::to($user->email)->send(new MailNotificationMentor($request->action));
+            // Mail::to($user->email)->send(new MailNotificationMentor($request->action));
 
             return redirect()->route('admin.submissions');   
         }

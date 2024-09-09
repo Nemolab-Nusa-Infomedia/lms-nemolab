@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Env;
 
 use App\Models\Category;
 use App\Models\Course;
@@ -39,7 +40,6 @@ class MemberCourseController extends Controller
     public function join($slug)
     {
         $course = Course::where('slug', $slug)->first();
-        $user = auth()->user();
 
         if ($course) {
             $chapters = Chapter::with('lessons')->where('course_id', $course->id)->get();
@@ -50,18 +50,17 @@ class MemberCourseController extends Controller
                 $lesson = null;
             }
 
-            $transaction = Transaction::where('user_id', $user->id)
-                ->where('course_id', $course->id)
-                ->orderBy('created_at', 'desc')
-                ->first();
-
-            $transactionForEbook = null;
-            if ($course->ebook) {
-                $transactionForEbook = Transaction::where('user_id', $user->id)
-                    ->where('ebook_id', $course->ebook->id)
+            if(Auth::user()){
+                $transaction = Transaction::where('user_id', Auth::user()->id)
+                    ->where('course_id', $course->id)
                     ->orderBy('created_at', 'desc')
                     ->first();
             }
+            else {
+                $transaction = null;
+            }
+
+            $transactionForEbook = null;
         } else {
             $chapters = collect();
             $lesson = null;

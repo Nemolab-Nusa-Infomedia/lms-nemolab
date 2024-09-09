@@ -8,7 +8,7 @@
 
 @section('content')
     <main class="col-md-12 ml-sm-auto col-lg-9 ps-4">
-        <h2 class="fw-semibold mb-4" style="color: #faa907;">Tools</h2>
+        <h1 class="judul-table mb-3">Tools</h1>
         <div class="table-responsive p-3">
             <div class="btn-group mr-2 w-100 d-flex justify-content-between align-items-center mb-3">
                 <div class="d-flex align-items-center ms-3 mt-2">
@@ -34,14 +34,14 @@
                         <th>Title</th>
                         <th>Link</th>
                         <th>Images</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($tools as $item)
                         <tr>
                             <td>{{ $item->name_tools }}</td>
-                            <td><a href="{{ $item->link }}">Lihat</a></td>
+                            <td><a href="{{ $item->link }}">Show</a></td>
                             <td>
                                 <img src="{{ asset('storage/images/logoTools/' . $item->logo_tools) }}" alt=""
                                     width="50" height="50" class="rounded-2 object-fit-cover">
@@ -59,7 +59,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">Data Belum Ada</td>
+                            <td colspan="5">There is no tools data yet</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -78,6 +78,11 @@
             </div>
         </div>
     </main>
+        <!-- Popup YouTube -->
+        {{-- <div id="youtube-popup" class="youtube-popup hidden">
+            <iframe id="youtube-iframe"src="" frameborder="0" allowfullscreen></iframe>
+            <img id="close-btn" class="close-btn" src="{{asset('nemolab/admin/img/close.png')}}" alt="">
+        </div> --}}
 @endsection
 
 

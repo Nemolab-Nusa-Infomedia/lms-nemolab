@@ -2,7 +2,7 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg fixed-top bg-white px-5 z-5">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('home') }}">
                 <img src="{{ asset('nemolab/admin/img/Logo Nemolab.png') }}" alt="Logo" width="100"
                     class="d-inline-block align-text-top">
             </a>
@@ -17,10 +17,13 @@
                         <a class="nav-link" aria-current="page" href="{{ route('home') }}#home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#course">Course</a>
+                        <a class="nav-link" href="{{ route('member.course') }}#course">Course</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#aboutus">About Us</a>
+                        <a class="nav-link" href="{{ route('home') }}#testimonial">Testimonial</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('home') }}#aboutus">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}#contactus">Contact Us</a>

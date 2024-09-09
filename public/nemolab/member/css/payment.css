@@ -15,7 +15,7 @@
   border-radius: 10px;
   padding: 35px;
   width: 550px;
-  height: 577px;
+  height: max-content;
   box-shadow: 0px 0px 5px 3px var(--c-brand);
 }
 

@@ -13,7 +13,7 @@
 
 *::-webkit-scrollbar {
     display: none;
-  }
+}
 
 .list-sidebar {
     text-decoration: none;
@@ -26,30 +26,29 @@
 }
 
 .active {
+    width: 100%;
     cursor: pointer;
-    text-decoration: none;
+    display: flex;
+    justify-content: center;
     background-color: #fff;
     color: #faa907;
     padding: 8px 10px;
     border-radius: 9px;
     margin-bottom: 0px !important;
     margin-top: 0px !important;
-    display: inline-flex;
-    gap: 10px;
-    align-items: center;
     font-weight: 600;
 }
 
-a{
+a {
     text-decoration: none !important;
 }
 
-.scroll-sidebar{
+.scroll-sidebar {
     overflow-y: scroll;
     height: 600px;
 }
 
-.scroll-sidebar::-webkit-scrollbar{
+.scroll-sidebar::-webkit-scrollbar {
     display: none;
 }
 

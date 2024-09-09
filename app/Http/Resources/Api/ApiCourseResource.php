@@ -15,9 +15,15 @@ class ApiCourseResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $imagesMentor = "nemolab/admin/img/avatar.png";
+
+        if ($this->avatar != "default.png") {
+            $imagesMentor = url(Storage::url("images/avatars/" . $this->avatar));
+        }
+
         return [
             'name_mentor' => $this->name,
-            'avatars_mentor' => url(Storage::url('images/avatars/' . $this->avatar)),
+            'avatars_mentor' => $imagesMentor,
             'course' => $this->courses->map(function ($course) {
                 return [
                     'slug_course' => $course->slug,

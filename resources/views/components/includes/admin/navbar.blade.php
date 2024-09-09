@@ -5,17 +5,17 @@
 <nav class="navbar fixed-top bg-white px-5" id="navbar-id">
     <div class="container-fluid py-2">
         <div class="d-flex align-items-center gap-4">
-            <img src="{{ asset('nemolab/admin/img/Logo Nemolab.png') }}" alt="Logo" width="110" />
+            <a href="{{ route('home') }}"><img src="{{ asset('nemolab/admin/img/Logo Nemolab.png') }}" alt="Logo" width="110" /></a>
         </div>
 
         <div class="user-login d-flex align-items-center gap-3">
             <p class="fw-semibold m-0">{{ Auth::user()->name }}</p>
             @if (Auth::user()->avatar != 'default.png')
             <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}" alt="" width="40" height="40"
-                class="d-md-block d-lg-none border border-2 rounded-circle" id="myProfile" style="cursor: pointer"/>
+                class="d-md-block  border border-2 rounded-circle" id="myProfile" style="cursor: pointer"/>
             @else
             <img src="{{ asset('nemolab/admin/img/avatar.png') }}" alt="" width="40" height="40"
-                class="d-md-block d-lg-none border border-2 rounded-circle" id="myProfile"/>
+                class="d-md-block border border-2 rounded-circle" id="myProfile"/>
             @endif
             <!-- Profile Menu -->
             <div class="profile-user border border-2 rounded-2 overflow-hidden" id="profileMenu">

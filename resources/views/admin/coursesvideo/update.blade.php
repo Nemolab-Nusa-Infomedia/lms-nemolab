@@ -39,7 +39,7 @@
                         <div class="entryarea">
                             <input type="text" id="name" name="name" placeholder=""
                                 value="{{ $course->name }}" />
-                            <div class="labelline" for="name">Title</div>
+                            <div class="labelline" for="name">Title<span class="required-field"></span></div>
                             @error('name')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
@@ -48,7 +48,7 @@
                     <div class="col-12">
                         <div class="entryarea">
                             <textarea id="description" name="description" placeholder="" style="height: 173px">{{ $course->description }}</textarea>
-                            <div class="labelline-textarea" for="desc">Description</div>
+                            <div class="labelline-textarea" for="desc">Description<span class="required-field"></span></div>
                             @error('description')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
@@ -77,18 +77,18 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-6 {{ $course->type == 'free' ? 'd-none' : 'd-block' }}" id="price">
+                    <div class="col-6 mt-4 {{ $course->type == 'free' ? 'd-none' : 'd-block' }}" id="price">
                         <div class="entryarea">
-                            <input type="text" name="price" placeholder=" " value="{{ $course->price }}">
-                            <div class="labelline" for="link">Price</div>
+                            <input type="text" id="name" name="price" placeholder="" value="{{ $course->price }}" />
+                            <div class="labelline" for="link">price</span></div>
                             @error('price')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
-                    <div class="col-6">
-                        <input type="file" id="imageUpload" name="cover" accept="image/*" class="custom-file-input" />
-                        <label for="imageUpload" class="custom-file-label">Choose File</label>
+                    <div class="col-6 mb-3">
+                        <p class="m-0">Cover</p>
+                        <input type="file" id="imageUpload" name="cover" accept="image/*" class="" />
                         @error('cover')
                             <span style="color: red">{{ $message }}</span>
                         @enderror
@@ -112,7 +112,7 @@
                     @enderror
                     <div class="col-6 mt-2">
                         <div class="entryarea">
-                            <input type="text" name="resources" value = "{{ $course->resources != 'null' ? $course->resources : '' }}">
+                            <input type="text" id="name" value = "{{ $course->resources != 'null' ? $course->resources : '' }}" name="resources" placeholder="" />
                             <div class="labelline" for="link">Resources</div>
                             @error('resources')
                                 <span style="color: red">{{ $message }}</span>
@@ -124,8 +124,8 @@
                     @enderror
                     <div class="col-6 mt-2">
                         <div class="entryarea">
-                            <input type="text" name="link_grub" value="{{ $course->link_grub }}">
-                            <div class="labelline" for="link">Link Grub Course</div>
+                            <input type="text" id="name" name="link_grub" value="{{ $course->link_grub }}" placeholder="" />
+                            <div class="labelline" for="link">Link Grup Course<span class="required-field"></span></div>
                             @error('link_grub')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror

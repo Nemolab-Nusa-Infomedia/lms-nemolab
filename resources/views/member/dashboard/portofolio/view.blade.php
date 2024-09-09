@@ -108,7 +108,7 @@
                             <p class="mb-0 me-2 text-center mx-2">entries</p>
                         </div>
                         <a href="{{ route('member.portofolio.create') }}"
-                            class="tambah-data py-2 fw-semibold text-center"
+                            class="tambah-data py-2 px-4 fw-semibold text-center"
                             style="width: max=content; !important">Tambah</a>
                     </div>
 
@@ -117,7 +117,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
-                                <th>Link portofolio</th>
+                                <th>Link Portofolio</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>

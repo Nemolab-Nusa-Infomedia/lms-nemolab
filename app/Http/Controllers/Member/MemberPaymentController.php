@@ -10,24 +10,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
+use Illuminate\Support\Env;
 
 class MemberPaymentController extends Controller
 {
     public function index(Request $request)
     {
         $courseId = $request->query('course_id');
-        $ebookId = $request->query('ebook_id');
-
         $course = Course::find($courseId);
-        $ebook = Ebook::find($ebookId);
-
-        if (!$course && !$ebook) {
-            abort(404, 'Course or eBook not found');
-        }
 
         return view('member.payment', [
             'course' => $course,
-            'ebook' => $ebook
         ]);
     }
 
@@ -50,22 +43,13 @@ class MemberPaymentController extends Controller
         $status = 'pending';
         $course = Course::where('id', $courseId)->first();
 
-        if ($courseId && $ebookId) {
-            $ebook = Ebook::find($ebookId);
-            $name = 'Paket Bundle' . $course->name;
-            $price = $course->price + $ebook->price;
-        } elseif ($courseId) {
+        if ($courseId) {
             $name = $course->name . ' (video)';
             $price = $course->price;
-        } elseif ($ebookId) {
-            $ebook = Ebook::find($ebookId);
-            $name = $ebook->name . ' (eBook)';
-            $price = $ebook->price;
         }
 
         if ($course->price == 0) {
             $status = 'success';
-            
         }
 
         // Save transaction
@@ -79,7 +63,7 @@ class MemberPaymentController extends Controller
             'status' => $status,
         ]);
 
-        if($status == 'success') {
+        if ($status == 'success') {
             Alert::success('success', 'Kelas Berhasil Di Beli');
             return redirect()->route('member.course.join', $course->slug);
         }
@@ -87,8 +71,8 @@ class MemberPaymentController extends Controller
         // Jangan Hapus
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
+        // Set to Production Environment (accept real transaction)
+        \Midtrans\Config::$isProduction = env('MIDTRANS_PRODUCTION');
         // Set sanitization on (default)
         \Midtrans\Config::$isSanitized = true;
         // Set 3DS transaction for credit card to true
@@ -108,5 +92,39 @@ class MemberPaymentController extends Controller
         $createdTransactionMidtrans = \Midtrans\Snap::createTransaction($params);
         $midtransRedirectUrl = $createdTransactionMidtrans->redirect_url;
         return redirect($midtransRedirectUrl);
+    }
+
+
+    public function checkout()
+    {
+        \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
+        \Midtrans\Config::$isProduction =  env('MIDTRANS_PRODUCTION');
+        $notif = new \Midtrans\Notification();
+
+        $transactionStatus = $notif->transaction_status;
+        $type = $notif->payment_type;
+        $transaction_code = $notif->order_id;
+        $fraudStatus = $notif->fraud_status;
+
+        if ($transactionStatus == 'capture') {
+            if ($fraudStatus == 'accept') {
+                $status = 'success';
+            }
+        } else if ($transactionStatus == 'settlement') {
+            $status = 'success';
+        } else if (
+            $transactionStatus == 'cancel' ||
+            $transactionStatus == 'deny' ||
+            $transactionStatus == 'expire'
+        ) {
+            $status = 'failed';
+        } else if ($transactionStatus == 'pending') {
+            $status = 'pending';
+        }
+
+        $transaction = Transaction::where('transaction_code', $transaction_code)->first();
+        $transaction->update(['status' => $status]);
+
+        return redirect()->route('member.course');
     }
 }

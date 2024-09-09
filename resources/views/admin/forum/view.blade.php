@@ -8,7 +8,7 @@
 
 @section('content')
     <main role="main" class="col-md-12 ml-sm-auto col-lg-9 ps-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-1">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  pb-2 mb-1">
             <h1 class="judul-table">Forums</h1>
         </div>
 
@@ -33,7 +33,7 @@
                     <tr>
                         <th>Cover</th>
                         <th>Name</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,18 +41,18 @@
                         <tr>
                             <td>
                                 <img src="{{ asset('storage/images/covers/' . $forum->course->cover) }}" alt=""
-                                    width="60" height="50">
+                                    width="150" height="100" class="object-fit-cover rounded-3">
                             </td>
                             <td>{{ $forum->tittle }}</td>
                             <td>
-                                <a href="{{ route('member.forum', ['slug' => $forum->course->slug]) }}" class="me-2">
+                                <a href="{{ route('member.forum', ['slug' => $forum->course->slug]) }}" class="me-2 btn btn-primary">
                                     View
                                 </a>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="3">No Forums Available</td>
+                            <td colspan="3">There is no forum data yet</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -70,6 +70,11 @@
             </div>
         </div>
     </main>
+        <!-- Popup YouTube -->
+        {{-- <div id="youtube-popup" class="youtube-popup hidden">
+            <iframe id="youtube-iframe"src="" frameborder="0" allowfullscreen></iframe>
+            <img id="close-btn" class="close-btn" src="{{asset('nemolab/admin/img/close.png')}}" alt="">
+        </div> --}}
     @push('addon-script')
     <script>
         document.getElementById('prev-button').addEventListener('click', function() {

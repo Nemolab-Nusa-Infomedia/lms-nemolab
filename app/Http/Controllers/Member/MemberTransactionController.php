@@ -25,11 +25,7 @@ class MemberTransactionController extends Controller
 
     public function cancel($id)
     {
-        $transaction = Transaction::findOrFail($id);
-
-        if ($transaction->user_id !== Auth::id()) {
-            abort(403, 'Unauthorized action.');
-        }
+        $transaction = Transaction::where('id', $id);
 
         $transaction->delete();
         Alert::success('Success', 'Transaction Berhasil Di Cancel');

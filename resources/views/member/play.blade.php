@@ -57,8 +57,13 @@
                         <p>Materi bagian: {{ $play->name }}</p>
                     </div>
                     <div class="profile-mentor d-flex align-items-center">
-                        <img src="{{ asset('storage/images/avatars/' . $user->avatar) }}" alt=""
-                            style="border-radius:100%; width: 50px; height: 50px;">
+                        @if ($user->avatar != 'default.png')
+                            <img src="{{ asset('storage/images/avatars/' . $user->avatar) }}" alt=""
+                                style="border-radius:100%; width: 50px; height: 50px;">
+                        @else
+                            <img src="{{ asset('nemolab/admin/img/avatar.png') }}" alt=""
+                                style="border-radius:100%; width: 50px; height: 50px;">
+                        @endif
                         <p class="m-0 ms-2 fs-5">{{ $user->name }}</p>
                     </div>
                     <div class="resource">

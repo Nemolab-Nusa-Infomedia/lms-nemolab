@@ -198,6 +198,11 @@ textarea:not(:placeholder-shown) + .labelline-textarea {
     width: 100%;
 }
 
+.required-field::before {
+    content: "*";
+    color: red;
+  }
+
 @media (min-width: 576px) {
     .card-custom-width {
         width: 50% !important;

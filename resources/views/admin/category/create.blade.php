@@ -17,7 +17,7 @@
             <form class="col-12" action="{{ route('admin.category.create.store') }}" method="post">
                 @csrf
                 <div class="entryarea">
-                    <input type="text" id="name" name="name" />
+                    <input type="text" id="name" name="name" placeholder="" />
                     <div class="labelline" for="name">Kategori</div>
                     @error('name')
                         <span style="color: red">{{ $message }}</span>

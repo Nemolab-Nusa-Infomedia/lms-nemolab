@@ -38,12 +38,12 @@
                 </div>
                 <div class="col-12">
                     <div class="entryarea">
-                        <textarea name="description" id="" cols="30" rows="10">description
-                        </textarea>
+                        <textarea id="description" name="description" placeholder="" style="height: 173px"></textarea>
+                        <div class="labelline-textarea" for="desc">Description</div>
+                        @error('description')
+                            <span style="color: red">{{ $message }}</span>
+                        @enderror
                     </div>
-                    @error('description')
-                        <span style="color: red">{{ $message }}</span>
-                    @enderror
                 </div>
                 <div class="col-12">
                     <button type="submit"

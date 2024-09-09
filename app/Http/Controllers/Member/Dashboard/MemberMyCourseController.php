@@ -36,7 +36,7 @@ class MemberMyCourseController extends Controller
             ]);
         }
 
-        Alert::success('success', 'Pengajuan Berhasil Di Kirim, Mohon Tunggu Konfirmasi. Cek Email Untuk Melihat Hasil Pengajuan');
+        Alert::success('success', 'Pengajuan Berhasil Di Kirim, Tunggu Sampai Admin Konfirmasi');
         return redirect()->route('member.dashboard');
     }
 }

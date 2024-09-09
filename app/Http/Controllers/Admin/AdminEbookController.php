@@ -4,14 +4,22 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Ebook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminEbookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $ebooks = Ebook::where('mentor_id', auth()->id())->get();
+        $user = Auth::user();
+        $perPage = $request->input('per_page', 10);
+        if ($user->role === 'superadmin') {
+            $ebooks = Ebook::paginate($perPage);
+        } else {
+            $ebooks = Ebook::where('mentor_id', $user->id)->paginate($perPage);
+        }
         return view('admin.coursesebook.view', compact('ebooks'));
     }
+    
 
     public function create()
     {

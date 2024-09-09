@@ -8,7 +8,7 @@
 
 @section('content')
     <main class="col-md-12 ml-sm-auto col-lg-9 ps-4">
-        <h2 class="fw-semibold mb-4" style="color: #faa907;">Category</h2>
+        <h1 class="judul-table mb-3">Category</h1>
         <div class="table-responsive p-3">
             <div class="btn-group mr-2 w-100 d-flex justify-content-between align-items-center mb-3">
                 <div class="d-flex align-items-center ms-3 mt-2">
@@ -24,7 +24,7 @@
                     </form>
                     <p class="mb-0 ms-2">entries</p>
                 </div>
-                <a href="{{ route('admin.category.create') }}" class="tambah-data pt-2 pb-2 px-4 fw-semibold"
+                <a href="{{ route('admin.category.create') }}" class="tambah-data pt-2 pb-2 px-4 text-center fw-semibold"
                     style="width: max=content; !important">Tambah</a>
             </div>
 
@@ -52,7 +52,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="2">Data Belum Ada</td>
+                            <td colspan="2">There is no category data yet</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -71,7 +71,11 @@
             </div>
         </div>
     </main>
-
+        {{-- <!-- Popup YouTube -->
+        <div id="youtube-popup" class="youtube-popup hidden">
+            <iframe id="youtube-iframe"src="" frameborder="0" allowfullscreen></iframe>
+            <img id="close-btn" class="close-btn" src="{{asset('nemolab/admin/img/close.png')}}" alt="">
+        </div> --}}
 @endsection
 
 @push('addon-script')

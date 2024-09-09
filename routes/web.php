@@ -80,14 +80,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [AdminCourseController::class, 'delete'])->name('admin.course.delete');
 
         // routes for Ebook
-        // Route::prefix('ebook')->group(function () {
-        //     Route::get('/', [AdminEbookController::class, 'index'])->name('admin.ebook');
-        //     Route::get('/create', [AdminEbookController::class, 'create'])->name('admin.ebook.create');
-        //     Route::post('/store', [AdminEbookController::class, 'store'])->name('admin.ebook.create.store');
-        //     Route::get('/edit/{ebook}', [AdminEbookController::class, 'edit'])->name('admin.ebook.edit');
-        //     Route::put('/update/{ebook}', [AdminEbookController::class, 'update'])->name('admin.ebook.edit.update');
-        //     Route::get('/delete/{ebook}', [AdminEbookController::class, 'destroy'])->name('admin.ebook.delete');
-        // });
+        Route::prefix('ebook')->group(function () {
+            Route::get('/', [AdminEbookController::class, 'index'])->name('admin.ebook');
+            Route::get('/create', [AdminEbookController::class, 'create'])->name('admin.ebook.create');
+            Route::post('/store', [AdminEbookController::class, 'store'])->name('admin.ebook.create.store');
+            Route::get('/edit/{ebook}', [AdminEbookController::class, 'edit'])->name('admin.ebook.edit');
+            Route::put('/update/{ebook}', [AdminEbookController::class, 'update'])->name('admin.ebook.edit.update');
+            Route::get('/delete/{ebook}', [AdminEbookController::class, 'destroy'])->name('admin.ebook.delete');
+        });
 
         // Routes for chapters
         Route::get('{slug}/chapter', [AdminChapterController::class, 'index'])->name('admin.chapter');
@@ -195,13 +195,14 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+Route::get('/course', [MemberCourseController::class, 'index'])->name('member.course');
+Route::get('/course/join/{slug}', [MemberCourseController::class, 'join'])->name('member.course.join');
 
 Route::prefix('member')->middleware('student')->group(function () {
+    
     // pengajuan member
     Route::post('/request/mentor/{id}', [MemberMyCourseController::class, 'reqMentor'])->name('member.pengajuan');
-    
-    Route::get('/course', [MemberCourseController::class, 'index'])->name('member.course');
-    Route::get('/course/join/{slug}', [MemberCourseController::class, 'join'])->name('member.course.join');
+
     Route::get('/course/{slug}/play/episode/{episode}', [MemberCourseController::class, 'play'])->name('member.course.play');
     Route::get('/course/forum/{slug}', [MemberCommentController::class, 'index'])->name('member.forum');
     Route::get('/course/forum/{slug}/search', [MemberCommentController::class, 'search'])->name('member.forum.search');
@@ -243,7 +244,20 @@ Route::prefix('member')->middleware('student')->group(function () {
         Route::get('/', [MemberTransactionController::class, 'index'])->name('member.transaction');
         Route::delete('/cancel/{id}', [MemberTransactionController::class, 'cancel'])->name('member.transaction.cancel');
     });
+
+    Route::get('/paymentsuccess', function () {
+        return view('member.payment-succes'); // Nama view yang ingin ditampilkan
+    });
+
+    Route::get('/detailpayment', function () {
+        return view('member.dashboard.transaction.detail-payment'); // Nama view yang ingin ditampilkan
+    });
     
     Route::get('course/payment', [MemberPaymentController::class, 'index'])->name('member.payment');
     Route::post('course/payment/store', [MemberPaymentController::class, 'store'])->name('member.transaction.store');
+
+    
+});
+Route::get('/eror', function () {
+    return view('error.page404'); // Nama view yang ingin ditampilkan
 });

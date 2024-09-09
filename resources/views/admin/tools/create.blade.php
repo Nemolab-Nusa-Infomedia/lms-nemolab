@@ -19,7 +19,7 @@
                 @csrf
                 <div class="col-12">
                     <div class="entryarea">
-                        <input type="text" id="name" name="name_tools" />
+                        <input type="text" id="name" name="name_tools" placeholder="" />
                         <div class="labelline" for="name">Nama Tools</div>
                         @error('name_tools')
                             <span style="color: red">{{ $message }}</span>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-12 mt-4 pt-1">
                     <div class="entryarea">
-                        <input type="text" id="name" name="link" />
+                        <input type="text" id="name" name="link" placeholder="" />
                         <div class="labelline" for="name">Link</div>
                         @error('link')
                             <span style="color: red">{{ $message }}</span>

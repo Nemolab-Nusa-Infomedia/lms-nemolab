@@ -178,7 +178,7 @@
                             Kelas</button>
                     </a> --}}
                     </div>
-                    @if (
+                    {{-- @if (
                         $course->ebook &&
                             (!isset($transactionForEbook) || ($transactionForEbook && $transactionForEbook->status == 'failed')))
                         <div class="col-custom col-12 border border-2 rounded-4 p-4 ms-lg-2 mt-4 shadow-sm">
@@ -226,7 +226,7 @@
                                     Paket</button>
                             </a>
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
         @endif

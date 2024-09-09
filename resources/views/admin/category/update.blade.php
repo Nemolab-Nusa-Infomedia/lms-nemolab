@@ -18,7 +18,7 @@
                 @csrf
                 @method('put')
                 <div class="entryarea">
-                    <input type="text" id="name" name="name" value="{{ $category->name }}" />
+                    <input type="text" id="name" name="name" value="{{ $category->name }}" placeholder="" />
                     <div class="labelline" for="name">Kategori</div>
                     @error('name')
                         <span style="color: red">{{ $message }}</span>

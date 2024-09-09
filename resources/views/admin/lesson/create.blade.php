@@ -18,15 +18,15 @@
             <form class="col-12" action="{{ route('admin.lesson.create.store', $id_chapter) }}" method="post">
                 @csrf
                 <div class="entryarea">
-                    <input type="text" id="name" name="name" />
-                    <div class="labelline" for="name">Title Video</div>
+                    <input type="text" id="name" name="name" placeholder="" />
+                    <div class="labelline" for="name">Title Video<span class="required-field"></span></div>
                     @error('name')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="entryarea mt-2">
-                    <input type="text" id="name" name="video" />
-                    <div class="labelline" for="name">Link Video</div>
+                    <input type="text" id="name" name="video" placeholder=""/>
+                    <div class="labelline" for="name">Link Video<span class="required-field"></span> <i class="bi bi-question-circle" id=""></i></div>
                     @error('video')
                         <span style="color: red">{{ $message }}</span>
                     @enderror

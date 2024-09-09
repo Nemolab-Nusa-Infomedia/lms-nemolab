@@ -13,7 +13,7 @@
     <!-- Content -->
     <main role="main" class="col-lg-9 col-sm-12 ps-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
-            <h1 class="judul-table">Pengajuan Portofolio</h1>
+            <h1 class="judul-table">Portofolio Submission</h1>
         </div>
 
         <div class="table-responsive px-3 py-3">
@@ -37,12 +37,12 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>Name Member</th>
-                        <th>Name Course</th>
+                        <th>Member Name</th>
+                        <th>Course Name</th>
                         <th>Link Project</th>
                         {{-- <th>Date</th> --}}
                         <th>Status</th>
-                        <th>Action</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,7 +55,7 @@
                             </td>
                             <td>{{ $porto->status }}</td>
                             @if ($porto->status == 'check')
-                                <td>
+                                {{-- <td>
                                     <form action="{{ route('admin.portofolio.edit.update', $porto->id) }}" method="post">
                                         @csrf
                                         @method('put')
@@ -66,24 +66,120 @@
                                             Reject Portofolio
                                         </button>
                                     </form>
+                                </td> --}}
+                                <td>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        Detail
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Portofolio
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-start">
+                                                    <p>Name Member : {{ $porto->name_user }}</p>
+                                                    <p>Name Course : {{ $porto->name }}</p>
+                                                    <p>Link Project : <a
+                                                            href="{{ $porto->link }}">{{ $porto->link }}</a></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form action="{{ route('admin.portofolio.edit.update', $porto->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('put')
+                                                        <button type="submit" name="action" value="accepted"
+                                                            class="btn btn-success me-2">
+                                                            Accept
+                                                        </button>
+                                                        <button type="submit" name="action" value="deaccepted"
+                                                            class="btn btn-danger">
+                                                            Reject
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             @elseif ($porto->status == 'accepted')
                                 <td>
-                                    <p class="btn btn-success me-2 disabled m-0">
-                                        Accepted
-                                    </p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        Detail
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Portofolio
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-start">
+                                                    <p>Name Member : {{ $porto->name_user }}</p>
+                                                    <p>Name Course : {{ $porto->name }}</p>
+                                                    <p>Link Project : <a
+                                                            href="{{ $porto->link }}">{{ $porto->link }}</a></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <p class="btn btn-success me-2 disabled m-0">
+                                                        Accepted
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             @else
                                 <td>
-                                    <p class="btn btn-danger disabled m-0">
-                                        Rejected
-                                    </p>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                        Detail
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Portofolio
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-start">
+                                                    <p>Name Member : {{ $porto->name_user }}</p>
+                                                    <p>Name Course : {{ $porto->name }}</p>
+                                                    <p>Link Project : <a
+                                                            href="{{ $porto->link }}">{{ $porto->link }}</a></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <p class="btn btn-danger disabled m-0">
+                                                        Rejected
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             @endif
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">Data Belum Ada</td>
+                            <td colspan="4">There is no submission data yet</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -104,7 +200,11 @@
                 </div>
             </div> --}}
     </main>
-
+    <!-- Popup YouTube -->
+    {{-- <div id="youtube-popup" class="youtube-popup hidden">
+        <iframe id="youtube-iframe"src="" frameborder="0" allowfullscreen></iframe>
+        <img id="close-btn" class="close-btn" src="{{asset('nemolab/admin/img/close.png')}}" alt="">
+    </div> --}}
     <script>
         document.getElementById('prev-button').addEventListener('click', function() {
             if (!this.classList.contains('disabled')) {

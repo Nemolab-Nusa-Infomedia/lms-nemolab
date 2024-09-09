@@ -27,10 +27,11 @@ class AdminCourseController extends Controller
         $user = Auth::user();
         $perPage = $request->input('per_page', 10);
         if ($user->role === 'superadmin') {
-            $courses = Course::paginate($perPage);
+            $courses = Course::with('users')->paginate($perPage);
         } else {
             $courses = Course::where('mentor_id', $user->id)->paginate($perPage);
         }
+
         return view('admin.coursesvideo.view', compact('courses'));
     }
 
