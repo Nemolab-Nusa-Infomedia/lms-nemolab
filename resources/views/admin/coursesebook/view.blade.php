@@ -3,9 +3,7 @@
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/admin/css/tabel-content.css') }}">
 @endpush
-
 @section('title', 'View eBooks')
-
 @section('content')
     <main role="main" class="col-md-12 ml-sm-auto col-lg-9 ps-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
@@ -50,7 +48,7 @@
                             <th>Type</th>
                             <th>Status</th>
                             <th>Price</th>
-                            <th>Link</th>
+                            <th>Preview</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -63,7 +61,7 @@
                             <td>{{ $ebook->type }}</td>
                             <td>{{ $ebook->status }}</td>
                             <td>{{ $ebook->price }}</td>
-                            <td><a href="{{ $ebook->link }}" target="_blank">lihat</a></td>
+                            <td><a href="">lihat</a></td>
                             <td>
                                 <a href="{{ route('admin.ebook.edit', $ebook->id) }}" class="me-2">
                                     <img src="{{ asset('nemolab/admin/img/edit.png') }}" alt="Edit" width="30" height="30">

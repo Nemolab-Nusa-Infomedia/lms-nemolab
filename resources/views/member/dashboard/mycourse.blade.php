@@ -54,77 +54,109 @@
                 </div>
             </div>
 
-            {{-- SIDEBAR RESPONSIVE --}}
-            <div class="container-sm pt-3 pb-3 d-block d-lg-none" style="height: auto;">
-                <div class="content2 row top justify-content-between mx-auto mt-1">
-                    <div class="dropdown d-block d-lg-none">
-                        <a class="dropdown-toggle text-black fs-5" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Sidebar
-                        </a>
-
-                        <ul class="dropdown-menu" id="dropdown">
-                            @if (Auth::user()->avatar != 'default.png')
-                                <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}"
-                                    style="border-radius: 100%;" alt="" width="70" height="70"
-                                    class="d-flex mx-auto mt-3" />
-                            @else
-                                <img src="{{ asset('nemolab/admin/img/avatar.png') }}" style="border-radius: 100%;"
-                                    alt="" width="70" height="70" class="d-flex mx-auto mt-3" />
-                            @endif
-                            <h4 class="text-center mt-3 fw-semibold px-3">{{ Auth::user()->name }}</h4>
-                            <p class="m-0 fw-light text-center">Status {{ Auth::user()->role }}</p>
-                            <div class="ms-3 me-3">
-                                <a href="#"
-                                    class="list-sidebar active-sidebar-responsive text-black ms-3 mt-4 text-decoration-none text-black {{ request()->is('admin/user/member') ? 'active' : '' }}">
-                                    <img src="{{ asset('nemolab/member/img/course active.png') }}" alt=""
-                                        width="30" />
-                                    <p class="m-0">My Courses</p>
-                                </a>
-                                <a href="{{ route('member.portofolio') }}"
-                                    class="list-sidebar ms-3 text-decoration-none text-black {{ request()->is('admin/user/mentor') ? 'active' : '' }}">
-                                    <img src="{{ asset(request()->is('admin/user/mentor') ? 'nemolab/admin/img/datamember-active.png' : 'nemolab/admin/img/datamember-active.png') }}"
-                                        alt="" width="30" />
-                                    <p class="m-0">My Portofolio</p>
-                                </a>
-                                <a href="{{ route('member.transaction') }}"
-                                    class="list-sidebar ms-3 text-decoration-none text-black {{ request()->is('admin/course/transaction') ? 'active' : '' }}">
-                                    <img src="{{ asset(request()->is('admin/course/transaction') ? 'nemolab/admin/img/datacourses-active.png' : 'nemolab/admin/img/datacourses-active.png') }}"
-                                        alt="" width="30" />
-                                    <p class="m-0">Transaction</p>
-                                </a>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
             <!-- End Sidebar -->
 
             <!-- Content -->
             <div class="col-lg-9 col-md-12 ps-5">
-                <h3 class="fw-bold tittle">My Courses</h3>
+                {{-- Sidebar Mobile --}}
+                <div class="d-block d-lg-none">
+                    <div id="profile" class="fw-medium">
+                        <button class="profile-btn btn fw-medium text-white">My Profile</button>
+                    </div>
+                    <div class="sidebar-mobile p-5 d-none border border-2">
+                        <div class="d-flex gap-3 align-items-center">
+                            <div>
+                                @if (Auth::user()->avatar != 'default.png')
+                                <img
+                                    src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}"
+                                    alt=""
+                                    width="60" height="60" class="rounded-circle"
+                                />
+                                @else
+                                <img
+                                    src="{{ asset('nemolab/member/img/avatar.png') }}"
+                                    alt=""
+                                    width="60" height="60"
+                                />
+                                @endif
+                            </div>
+                            <div class="text-dark">
+                                <h5 class="mb-0">{{ Auth::user()->name }}</h5>
+                                <p class="m-0 fw-light">Status {{ Auth::user()->role }}</p>
+                            </div>
+                        </div>
+                        <div class="nav mt-4 d-flex flex-column gap-3 fw-medium text-secondary">
+                            <a href="#" class="nav-item active">
+                                <img
+                                    src="{{ asset('nemolab/member/img/course active.png') }}"
+                                    alt=""
+                                    width="30"
+                                    class="me-2"
+                                />My Course
+                            </a>
+                            <a href="{{ route('member.portofolio') }}" class="nav-item">
+                                <img
+                                    src="{{ asset('nemolab/member/img/portofolio active.png') }}"
+                                    alt=""
+                                    width="30"
+                                    class="me-2"
+                                />My Portofolio
+                            </a>
+                            <a href="{{ route('member.transaction') }}" class="nav-item">
+                                <img
+                                    src="{{ asset('nemolab/member/img/transaksi active.png') }}"
+                                    alt=""
+                                    width="30"
+                                    class="me-2"
+                                />My Transactions
+                            </a>
+                        </div>
+                        <div class="mt-4">
+                            <button id="tutup"
+                                class="profile-btn btn rounded-5 w-100 fw-medium text-white"
+                                type="button"
+                            >
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="fw-bold tittle mt-3">My Courses</h3>
                 <div class="course row row-course mt-3 w-100">
                     @foreach ($courses as $course)
                         @if ($course->transactions->isNotEmpty())
                             <div class="col-lg-4 col-md-6 col-lg-4 col-course mt-1 mb-2">
                                 <a href="{{ route('member.course.join', $course->slug) }}" class="text-black">
-                                    <div class="card-course h-100 d-flex flex-row flex-md-column">
+                                    <div class="card-course h-100 d-flex flex-row flex-md-column position-relative">
+                                        <div class="position-absolute d-block d-md-none" style="bottom: 5px; right: 10px;">
+                                            @if (Auth::user()->avatar != 'default.png')
+                                                <img
+                                                    src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
+                                                    alt="" width="16" height="16"
+                                                    style="border-radius: 100%" />
+                                            @else
+                                                <img
+                                                    src="{{ asset('nemolab/admin/img/avatar.png') }}"
+                                                    alt="" width="16" height="16"
+                                                    style="border-radius: 100%" />
+                                            @endif
+                                        </div>
                                         <div class="img-card">
                                             <img src="{{ asset('storage/images/covers/' . $course->cover) }}"
                                                 alt="">
                                         </div>
-                                        <div class="deskripsi px-3">
+                                        <div class="deskripsi px-2 px-md-3">
                                             <div class="category my-2 d-none d-md-block">
                                                 <p class="m-0">{{ $course->category }}</p>
                                             </div>
-                                            <div class="tittle-card fw-semibold mt-3 mt-md-0">
-                                                {{ $course->name }}
+                                            <div class="tittle-card fw-semibold mt-2 mt-md-0">
+                                                <p>{{ $course->name }}</p>
                                             </div>
-                                            <div class="category my-3 d-block d-md-none">
-                                                <p class="m-0">{{ $course->category }}</p>
+                                            <div class="category d-block d-md-none">
+                                                <p class="m-0 text-center">{{ $course->category }}</p>
                                             </div>
-                                            <div class="profile-card mt-2">
+                                            <div class="profile-card mt-2 d-none d-md-block">
                                                 <a href="" class="fw-medium">
                                                     @if (Auth::user()->avatar != 'default.png')
                                                         <img class="me-2"
@@ -140,13 +172,13 @@
                                                     {{ $course->users->name }}
                                                 </a>
                                             </div>
-                                            <div class="status d-flex justify-content-between my-2">
-                                                <div class="d-flex flex-direction-costum">
+                                            <div class="status d-flex justify-content-between mt-2 my-md-2">
+                                                <div class="d-flex">
                                                     <p class="txt-start" style="font-size: 15px">Sudah dibayar</p>
+                                                    <img class="ms-2 ms-md-3 me-0 "
+                                                        src="{{ asset('nemolab/member/img/check-mycourse.png') }}"
+                                                        alt="" width="20" height="20">
                                                 </div>
-                                                <img class="ms-0 ms-md-auto me-0 "
-                                                    src="{{ asset('nemolab/member/img/check-mycourse.png') }}"
-                                                    alt="" width="25" height="25">
                                             </div>
                                         </div>
                                     </div>
@@ -166,5 +198,12 @@
         for (let index = 1; index < message.length; index++) {
             message[index].remove();
         }
+
+        document.getElementById("profile").addEventListener("click", function(){
+        document.querySelector(".sidebar-mobile").classList.add("active");
+        })
+        document.getElementById("tutup").addEventListener("click", function(){
+        document.querySelector(".sidebar-mobile").classList.remove("active");
+        })
     </script>
 @endpush

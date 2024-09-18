@@ -75,4 +75,96 @@ a {
     display: none;
 }
 
+.sidebar {
+    height: calc(100vh - 75px); /* Mengurangi tinggi navbar */
+    width: 0;
+    position: fixed;
+    top: 75px; /* Geser ke bawah di bawah navbar */
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparan putih */
+    backdrop-filter: blur(10px); /* Efek blur */
+    overflow-y: auto; /* Mengizinkan scroll vertikal */
+    overflow-x: hidden;
+    transition: width 0.3s;
+    padding-top: 15px; /* Kurangi padding atas */
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+
+.toggle-btn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    z-index: 1000;
+}
+
+.toggle-btn img {
+    width: 30px;
+    height: 30px;
+    transition: opacity 0.3s ease;
+}
+
+#closeIcon {
+    display: none;
+}
+
+.sidebar-opened #openIcon {
+    display: none;
+}
+
+.sidebar-opened #closeIcon {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Icon styles */
+.icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.icon.hidden {
+    transform: rotate(90deg);
+    opacity: 0;
+}
+
+.icon.open {
+    transform: rotate(0deg);
+    opacity: 1;
+}
+
+.icon.close {
+    transform: rotate(-90deg);
+    opacity: 1;
+}
+
+/* Show/hide icons */
+#toggleBtn .hidden {
+    display: none;
+}
+
+
+@media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+}
+
 /* End Sidebar */

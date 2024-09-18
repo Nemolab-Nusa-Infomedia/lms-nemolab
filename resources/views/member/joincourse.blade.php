@@ -178,55 +178,7 @@
                             Kelas</button>
                     </a> --}}
                     </div>
-                    {{-- @if (
-                        $course->ebook &&
-                            (!isset($transactionForEbook) || ($transactionForEbook && $transactionForEbook->status == 'failed')))
-                        <div class="col-custom col-12 border border-2 rounded-4 p-4 ms-lg-2 mt-4 shadow-sm">
-                            <img src="{{ asset('nemolab/member/img/payment-img.png') }}" alt="" width="70" />
-                            <p class="mt-4 fw-light mb-1" style="font-size: 15px">eBook</p>
-                            <h5 class="fw-semibold">Rp {{ number_format($course->ebook->price, 0) }}</h5>
-                            <p>Raih Akses Premium Seumur Hidup dan Bangun Proyek Nyata Anda Sendiri</p>
-                            <hr class="mb-4 border-2" />
-                            <div>
-                                @foreach (['Akses Eksklusif Seumur Hidup', 'Raih Premium Istimewa', 'Konsultasi Karier Pribadi', 'Sertifikat Kelulusan Prestisius', 'Kesempatan Karier Bergengsi'] as $item)
-                                    <div class="profit">
-                                        <img src="{{ asset('nemolab/member/img/check.png') }}" alt=""
-                                            width="25" height="25" />
-                                        <p>{{ $item }}</p>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <a href="{{ route('member.payment', ['ebook_id' => $course->ebook->id]) }}"
-                                class="text-decoration-none">
-                                <button class="btn mx-auto d-flex px-5 py-2 mt-3 text-white fw-semibold rounded-3">Beli
-                                    eBook</button>
-                            </a>
-                        </div>
-                    @endif
-                    @if ($course->ebook && !isset($transaction) && !isset($transactionForEbook))
-                        <div class="col-custom col-12 border border-2 rounded-4 p-4 ms-lg-2 mt-4 shadow-sm">
-                            <img src="{{ asset('nemolab/member/img/payment-img.png') }}" alt=""
-                                width="70" />
-                            <p class="mt-4 fw-light mb-1" style="font-size: 15px">Video & eBook</p>
-                            <h5 class="fw-semibold">Rp {{ number_format($course->price + $course->ebook->price, 0) }}</h5>
-                            <p>Raih Akses Premium Seumur Hidup dan Bangun Proyek Nyata Anda Sendiri</p>
-                            <hr class="mb-4 border-2" />
-                            <div>
-                                @foreach (['Akses Eksklusif Seumur Hidup', 'Raih Premium Istimewa', 'Konsultasi Karier Pribadi', 'Sertifikat Kelulusan Prestisius', 'Kesempatan Karier Bergengsi'] as $item)
-                                    <div class="profit">
-                                        <img src="{{ asset('nemolab/member/img/check.png') }}" alt=""
-                                            width="25" height="25" />
-                                        <p>{{ $item }}</p>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <a href="{{ route('member.payment', ['course_id' => $course->id, 'ebook_id' => $course->ebook->id]) }}"
-                                class="text-decoration-none">
-                                <button class="btn mx-auto d-flex px-5 py-2 mt-3 text-white fw-semibold rounded-3">Beli
-                                    Paket</button>
-                            </a>
-                        </div>
-                    @endif --}}
+                    
                 </div>
             </div>
         @endif

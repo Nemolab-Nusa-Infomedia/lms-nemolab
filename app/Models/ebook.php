@@ -19,7 +19,7 @@ class Ebook extends Model
         'level',
         'price',
         'description',
-        'link',
+        'ebook',
         'mentor_id'
     ];
 

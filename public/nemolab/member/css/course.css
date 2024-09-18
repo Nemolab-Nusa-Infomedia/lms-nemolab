@@ -86,8 +86,10 @@ a {
 }
 .form-check {
     position: relative;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     margin-left: 15px;
+    padding-right: 10px;
+    max-width: 100%;
 }
 .form-check-input:checked + label:after {
     background-color: #faa907;
@@ -96,30 +98,54 @@ a {
     position: absolute;
     width: 10px;
     height: 10px;
-    top: 52%;
-    left: 5px;
+    top: 42%;
+    left: 5.3px;
     transform: translateY(-50%);
     border-radius: 50%;
 }
-.scroll-sidebar {
-    overflow-y: scroll;
-    height: 470px;
+.form-check-label {
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 100%;
+    text-overflow: ellipsis;
 }
-.scroll-sidebar::-webkit-scrollbar {
+.dropdown-menu.show {
+    overflow-y: scroll;
+    max-height: 465px;
+    width: 50% !important;
+    margin: 15px 0 0 1px !important;
+}
+.dropdown-menu.show::-webkit-scrollbar {
     display: none;
 }
 .card-category {
     color: white;
 }
+.dropdown-toggle {
+    margin-left: 8px;
+    background-color: #faa907 !important;
+    transition: 0.3s all;
+}
+.dropdown-toggle:hover,
+.dropdown-toggle:active {
+    background-color: #ff7700 !important;
+}
 /* end sidebar */
 
 /* course */
 #course-container {
-    /* height: 550px !important; */
+    height: 600px !important;
     overflow-y: scroll;
 }
 #course-container::-webkit-scrollbar {
     display: none;
+}
+.card-parent:nth-child(n + 4) {
+    margin-top: 16px;
+}
+.container-card {
+    max-width: 100%;
 }
 .card-course {
     border: none;
@@ -133,7 +159,7 @@ a {
 }
 .img-card {
     width: 100%;
-    height: 180px;
+    height: 150px;
     padding: 7px;
     object-fit: cover;
     border-top-left-radius: 12px;
@@ -144,85 +170,108 @@ a {
     height: 740px !important;
 }
 .card-img-profile {
-    width: 37px;
-    height: 37px;
+    width: 33px;
+    height: 33px;
 }
 .produck-title {
-    font-size: 16px;
-    white-space: nowrap;
+    height: 37px;
+    font-size: 14.5px;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
     overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 18px;
+    max-width: 100%;
 }
 .profile-mentor {
+    font-size: 14px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     width: 100%;
 }
-.profile-mentor {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.price {
+    font-size: 14px;
 }
-.video p {
-    margin-left: 0px;
+.status p {
     border-radius: 6px;
     display: block;
     padding: 0 5px;
     background: transparent;
     color: #faa907;
     border: 1px solid #faa907;
-    font-size: 13px;
-}
-.ebook p {
-    /* margin-left: 5px; */
     font-size: 12px;
-    height: 100%;
-    width: 100%;
-    font-weight: normal;
-}
-.price {
-    font-size: 15px;
-}
-.status {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    align-items: start;
 }
 
 /* end course */
-
-/* footer */
-.footer {
-    margin-top: 50px;
+@media (min-width: 776px) and (max-width: 992px) {
+    .card-parent:nth-child(n + 4) {
+        margin-top: 16px;
+    }
+    .form-check-input {
+        background-color: #faa907;
+    }
+    .form-check-input:checked,
+    .form-check-input:active {
+        background-color: #faa907;
+    }
+    .form-check-input:checked + label:after {
+        display: none;
+    }
 }
-.media img {
-    height: 30px;
-}
-/* end footer */
-
 @media (max-width: 576px) {
+    .dropdown-menu.show {
+        padding-top: 15px;
+    }
+    .form-check {
+        margin-top: 0px;
+    }
+    .form-check-input {
+        background-color: #faa907;
+    }
+    .form-check-input:checked,
+    .form-check-input:active {
+        background-color: #faa907;
+    }
+    .form-check-input:checked + label:after {
+        display: none;
+    }
+    #course-container {
+        height: max-content !important;
+    }
+    .card-parent:nth-child(n + 4) {
+        margin-top: 0;
+    }
     .container-card {
-        max-width: 50%;
+        max-width: 100%;
+        max-height: max-content !important;
+    }
+    .produck-title {
+        height: 30px;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+        line-height: 15px;
+        max-width: 100%;
+        font-size: 10px;
     }
     .img-card {
         width: 150px;
-        height: 160px;
+        height: 100px;
         border-radius: 12px;
-        padding-bottom: 0;
     }
     .card-img-profile {
-        width: 30px;
-        height: 30px;
+        bottom: 14px;
+        right: 13px;
+        width: 18px;
+        height: 18px;
     }
     .price {
-        font-size: 14px;
+        font-size: 11px;
     }
-    #course-container {
-        height: max-content;
+    .status p {
+        font-size: 9px;
     }
 }

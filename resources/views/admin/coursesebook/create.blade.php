@@ -13,7 +13,7 @@
             <a href="{{ route('admin.ebook') }}" class="btn btn-orange"> Back </a>
         </div>
         <div class="card-body pt-2">
-            <form class="col-12" action="{{ route('admin.ebook.create.store') }}" method="post">
+            <form class="col-12" action="{{ route('admin.ebook.create.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-6">
@@ -77,12 +77,19 @@
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
+                        <div class="entryarea">
+                            <p class="m-0">Cover</p>
+                            <input type="file" id="imageUpload" name="cover" accept="image/*" class="" />
+                            @error('cover')
+                                <span style="color: red">{{ $message }}</span>
+                            @enderror
+                        </div>
                     </div>
                     <div class="col-6">
                         <div class="entryarea">
-                            <input type="text" id="link" name="link" placeholder=" " />
-                            <div class="labelline" for="link">Link</div>
-                            @error('link')
+                            <label for="ebook">Upload eBook (PDF)</label>
+                            <input type="file" id="ebook" name="ebook" accept="application/pdf" />
+                            @error('ebook')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>

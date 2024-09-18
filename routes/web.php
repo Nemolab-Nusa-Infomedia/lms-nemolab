@@ -32,6 +32,7 @@ use App\Http\Controllers\Member\Dashboard\MemberPortofolioController;
 use App\Http\Controllers\Member\MemberEbookController;
 use App\Http\Controllers\Member\MemberCommentController;
 use App\Http\Controllers\Member\MemberWebhookTransactionsController;
+use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,12 @@ use App\Http\Controllers\Member\MemberWebhookTransactionsController;
 */
 
 Route::get('/', [LandingpageController::class, 'index'])->name('home');
+// buat test
+Route::get('/ebook/{id}', [MemberEbookController::class, 'index'])->name('member.ebook.index');
+Route::get('/ebook/read/{id}', [MemberEbookController::class, 'read'])->name('member.ebook.read');
+Route::get('/pdf-proxy', [MemberEbookController::class, 'pdfProxy'])->name('pdf.proxy');
+
+
 
 // login member
 Route::get('/login', [MemberLoginController::class, 'index'])->name('member.login');

@@ -1,6 +1,6 @@
 @extends('components.layouts.member.app')
 
-@section('title', 'Landing Pages')
+@section('title', 'Nemolab - Belajar Kursus Online Kapan Saja dan Dimana Saja')
 
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/member/css/home.css') }} ">
