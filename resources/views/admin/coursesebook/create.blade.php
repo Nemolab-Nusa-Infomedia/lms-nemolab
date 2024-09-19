@@ -77,13 +77,13 @@
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="entryarea">
+                        {{-- <div class="entryarea">
                             <p class="m-0">Cover</p>
                             <input type="file" id="imageUpload" name="cover" accept="image/*" class="" />
                             @error('cover')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="col-6">
                         <div class="entryarea">

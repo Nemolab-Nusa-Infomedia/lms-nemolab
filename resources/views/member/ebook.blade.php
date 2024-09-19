@@ -1,3 +1,5 @@
+<!-- resources/views/member/ebook.blade.php -->
+
 @extends('components.layouts.member.app')
 
 @section('title', 'eBook')
@@ -6,7 +8,6 @@
     <link rel="stylesheet" href="{{ asset('nemolab/member/css/ebook.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf_viewer.min.css">
 @endpush
-
 
 @section('content')
     <!-- Header -->
@@ -42,7 +43,7 @@
     </div>
 
     <!-- Content -->
-    <div class="container" id="ebook">
+    <div class="container" id="ebook" data-pdf="{{ $ebook->ebook }}">
         <div class="row">
             <div class="col-12 rounded-3 position-relative p-0 overflow-hidden shadow">
                 <!-- Ebook Tools -->
@@ -69,11 +70,6 @@
                         </span>
                     </div>
                     <div class="d-flex align-items-center">
-                        {{-- <div class="search rounded-1 px-2">
-                          <label for="search"><img src="{{ asset('nemolab/member/img/search-ebook.png') }}"
-                                  alt="" width="25" /></label>
-                          <input type="text" id="search" />
-                      </div> --}}
                         <div class="ms-5">
                             <img src="{{ asset('nemolab/member/img/fullscreen.png') }}" id="pdf-fullscreen" alt=""
                                 width="30" />
@@ -89,8 +85,6 @@
             </div>
         </div>
     </div>
-
-
 @endsection
 
 @push('prepend-script')

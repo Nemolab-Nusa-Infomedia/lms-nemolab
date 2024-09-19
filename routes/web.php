@@ -46,12 +46,9 @@ use Illuminate\Support\Facades\Http;
 */
 
 Route::get('/', [LandingpageController::class, 'index'])->name('home');
-// buat test
+// buat test ebook
 Route::get('/ebook/{id}', [MemberEbookController::class, 'index'])->name('member.ebook.index');
 Route::get('/ebook/read/{id}', [MemberEbookController::class, 'read'])->name('member.ebook.read');
-Route::get('/pdf-proxy', [MemberEbookController::class, 'pdfProxy'])->name('pdf.proxy');
-
-
 
 // login member
 Route::get('/login', [MemberLoginController::class, 'index'])->name('member.login');

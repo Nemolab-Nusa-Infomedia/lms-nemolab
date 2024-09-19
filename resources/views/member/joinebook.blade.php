@@ -1,9 +1,11 @@
+<!-- resources/views/member/joinebook.blade.php -->
+
 @extends('components.layouts.member.navback')
 
 @section('title', 'Join Kelas')
 
 @push('prepend-style')
-    <link rel="stylesheet" href="{{ asset('nemolab/member/css/joincourse.css') }} ">
+    <link rel="stylesheet" href="{{ asset('nemolab/member/css/joincourse.css') }}">
 @endpush
 
 @section('content')
@@ -52,9 +54,9 @@
                             <p class="ms-3 m-0">Bab 2 Mengenal MVC</p>
                         </div>
                     </div>
-                    <!-- Add more design sections as needed -->
+                    <!-- Tambahkan bab lainnya sesuai kebutuhan -->
                 </div>
-                <a href="/ebook/read/{{ $ebook->id }}">
+                <a href="{{ route('member.ebook.read', $ebook->id) }}">
                     <div class="button">Start Learning</div>
                 </a>
             </div>
@@ -70,8 +72,9 @@
             </div>
         </div>
 
-        <!-- Payment -->
-        {{-- <div class="row my-5">
+        <!-- Payment (Opsional) -->
+        {{-- 
+        <div class="row my-5">
             <div class="col-12">
                 <h4 class="fw-semibold">Payment</h4>
             </div>
@@ -87,6 +90,7 @@
                     </a>
                 </div>
             </div>
-        </div> --}}
+        </div>
+        --}}
     </div>
 @endsection

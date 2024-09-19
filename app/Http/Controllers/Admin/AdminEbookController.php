@@ -36,7 +36,7 @@ class AdminEbookController extends Controller
             'status' => 'required|in:draft,published',
             'price' => 'nullable|integer',
             'description' => 'required|string',
-            'ebook' => 'required|file|mimes:pdf|max:50240', // Validasi file PDF
+            'ebook' => 'required|file|mimes:pdf|max:25240', // Validasi file PDF
         ]);
         // Set price to 0 if the type is free
         if ($validatedData['type'] === 'free') {
@@ -68,7 +68,7 @@ class AdminEbookController extends Controller
             'status' => 'required|in:draft,published',
             'price' => 'nullable|integer',
             'description' => 'required|string',
-            'ebook' => 'nullable|file|mimes:pdf|max:50240', // Validasi file PDF
+            'ebook' => 'nullable|file|mimes:pdf|max:25240',
         ]);
         // Set price to 0 if the type is free
         if ($validatedData['type'] === 'free') {
