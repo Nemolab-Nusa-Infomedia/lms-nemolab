@@ -87,10 +87,10 @@ class MemberCourseController extends Controller
 
         if($checkTrx) {
             return view('member.play', compact('play', 'chapters', 'slug', 'course', 'user', 'checkReview'));
-        } 
+        }
         else {
             Alert::error('error', 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!');
             return redirect()->route('member.course.join', $slug);
         }
-    }    
+    }
 }

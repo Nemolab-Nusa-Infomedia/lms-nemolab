@@ -36,7 +36,7 @@ class AdminEbookController extends Controller
             'status' => 'required|in:draft,published',
             'price' => 'nullable|integer',
             'description' => 'required|string',
-            'ebook' => 'required|file|mimes:pdf|max:25240', // Validasi file PDF
+            'ebook' => 'required|file|mimes:pdf|max:25240',
         ]);
         // Set price to 0 if the type is free
         if ($validatedData['type'] === 'free') {
@@ -86,7 +86,7 @@ class AdminEbookController extends Controller
         }
         // Update data eBook
         $ebook->update($validatedData);
-        return redirect()->route('admin.ebook.index')->with('success', 'eBook updated successfully.');
+        return redirect()->route('admin.ebook')->with('success', 'eBook updated successfully.');
     }
 
     public function destroy(Ebook $ebook)
@@ -96,6 +96,6 @@ class AdminEbookController extends Controller
             Storage::delete('public/pdfs/' . $ebook->ebook);
         }
         $ebook->delete();
-        return redirect()->route('admin.ebook.index')->with('success', 'eBook deleted successfully.');
+        return redirect()->route('admin.ebook')->with('success', 'eBook deleted successfully.');
     }
 }

@@ -7,77 +7,70 @@
         <div class="sidebar" id="sidebar">
             <div class="ms-3 me-3">
                 @if (Auth::user()->role == 'superadmin')
-                    <p class="tittle-list-sidebar my-3">View Data</p>
+                    <p class="tittle-list-sidebar my-3">Lihat Data</p>
                     <a href="{{ route('admin.member') }}" style="background-color: transparent"
                         class="list-sidebar d-flex ms-3 text-decoration-none text-black {{ request()->is('admin/user/member') ? 'active' : '' }}">
                         <img src="{{ asset(request()->is('admin/user/member') ? 'nemolab/admin/img/datamember-active.png' : 'nemolab/admin/img/datamember-active.png') }}"
                             alt="" width="30" />
-                        <p class="m-0">Member Data</p>
+                        <p class="m-0">Data Anggota</p>
                     </a>
                     <a href="{{ route('admin.mentor') }}" style="background-color: transparent"
                         class="list-sidebar d-flex ms-3 text-decoration-none text-black {{ request()->is('admin/user/mentor') ? 'active' : '' }}">
                         <img src="{{ asset(request()->is('admin/user/mentor') ? 'nemolab/admin/img/datamember-active.png' : 'nemolab/admin/img/datamember-active.png') }}"
                             alt="" width="30" />
-                        <p class="m-0">Mentor Data</p>
+                        <p class="m-0">Data Mentor</p>
                     </a>
                     <a href="{{ route('admin.superadmin') }}" style="background-color: transparent"
                         class="list-sidebar d-flex ms-3 text-decoration-none text-black {{ request()->is('admin/user/superadmin') ? 'active' : '' }}">
                         <img src="{{ asset(request()->is('admin/user/superadmin') ? 'nemolab/admin/img/datamember-active.png' : 'nemolab/admin/img/datamember-active.png') }}"
                             alt="" width="30" />
-                        <p class="m-0">Super Admin Data</p>
+                        <p class="m-0">Data Super Admin</p>
                     </a>
                     <a href="{{ route('admin.submissions') }}" style="background-color: transparent"
                         class="list-sidebar d-flex ms-3 text-decoration-none text-black {{ request()->is('admin/submission') ? 'active' : '' }}">
                         <img src="{{ asset(request()->is('admin/submission') ? 'nemolab/admin/img/datamember-active.png' : 'nemolab/admin/img/datamember-active.png') }}"
                             alt="" width="30" />
-                        <p class="m-0">Mentor Submission</p>
+                        <p class="m-0">Pengajuan Mentor</p>
                     </a>
                 @endif
-                <p class="tittle-list-sidebar mt-3">Course</p>
+                <p class="tittle-list-sidebar mt-3">Kursus</p>
                 <a href="{{ route('admin.course') }}" style="background-color: transparent"
                     class="list-sidebar d-flex ms-3 text-decoration-none text-black {{ request()->is('admin') ? 'active' : '' }}">
                     <img src="{{ asset(request()->is('admin') ? 'nemolab/admin/img/datacourses-active.png' : 'nemolab/admin/img/datacourses-active.png') }}"
                         alt="" width="30" />
-                    <p class="m-0">Video Courses</p>
-                </a>
-
-                <a href="{{ route('admin.ebook') }}" style="background-color: transparent"
-                class="list-sidebar d-flex ms-3 text-decoration-none text-black {{ request()->is('admin/course/ebook') ? 'active' : '' }}">
-                <img src="{{ asset(request()->is('admin/course/ebook') ? 'nemolab/admin/img/datacourses-active.png' : 'nemolab/admin/img/datacourses-active.png') }}"
-                    alt="" width="30" />
-                <p class="m-0">Ebook Course</p>
+                    <p class="m-0">Kursus Video</p>
                 </a>
 
                 <a href="{{ route('admin.category') }}" style="background-color: transparent"
                     class="list-sidebar d-flex ms-3 text-decoration-none text-black {{ request()->is('admin/category') ? 'active' : '' }}">
                     <img src="{{ asset(request()->is('admin/category') ? 'nemolab/admin/img/datacourses-active.png' : 'nemolab/admin/img/datacourses-active.png') }}"
                         alt="" width="30" />
-                    <p class="m-0">Category</p>
+                    <p class="m-0">Kategori</p>
                 </a>
                 <a href="{{ route('admin.transaction') }}" style="background-color: transparent"
                     class="list-sidebar d-flex ms-3 text-decoration-none text-black {{ request()->is('admin/course/transaction') ? 'active' : '' }}">
                     <img src="{{ asset(request()->is('admin/course/transaction') ? 'nemolab/admin/img/datacourses-active.png' : 'nemolab/admin/img/datacourses-active.png') }}"
                         alt="" width="30" />
-                    <p class="m-0">Transactions</p>
+                    <p class="m-0">Transaksi</p>
                 </a>
                 <a href="{{ route('admin.tools') }}" style="background-color: transparent"
                     class="list-sidebar d-flex ms-3 text-decoration-none text-black {{ request()->is('admin/tools') ? 'active' : '' }}">
                     <img src="{{ asset(request()->is('admin/tools') ? 'nemolab/admin/img/datacourses-active.png' : 'nemolab/admin/img/datacourses-active.png') }}"
                         alt="" width="30" />
-                    <p class="m-0">Tools</p>
+                    <p class="m-0">Alat</p>
                 </a>
                 <a href="{{ route('admin.forum') }}" style="background-color: transparent"
                 class="list-sidebar d-flex ms-3 text-decoration-none text-black {{ request()->is('admin/course/forum') ? 'active' : '' }}">
                 <img src="{{ asset(request()->is('admin/course/forum') ? 'nemolab/admin/img/datacourses-active.png' : 'nemolab/admin/img/datacourses-active.png') }}"
                     alt="" width="30" />
-                <p class="m-0">Forums</p>
+                <p class="m-0">Forum</p>
                 </a>
-                <p class="tittle-list-sidebar mt-3">View Data</p>
+                <p class="tittle-list-sidebar mt-3">Lihat Data</p>
                 <a href="{{ route('admin.portofolio') }}" style="background-color: transparent"
                     class="list-sidebar d-flex ms-3 text-decoration-none text-black {{ request()->is('admin/portofolio') ? 'active' : '' }}">
                     <img src="{{ asset(request()->is('admin/portofolio') ? 'nemolab/admin/img/datamember-active.png' : 'nemolab/admin/img/datamember-active.png') }}"
                         alt="" width="30" />
-                    <p class="m-0">Portofolio Data</p>
+                    <p class="m-0">Data Portofolio</p>
                 </a>
             </div>
         </div>
@@ -106,7 +99,7 @@
                 </a> --}}
                 <a href="{{ route('admin.logout') }}"
                     class="bg-white px-3 py-2 d-flex align-items-center text-decoration-none text-black-50 item fw-semibold m-0 w-100 fw-bold">
-                    Logout
+                    Keluar
                 </a>
             </div>
         </div>

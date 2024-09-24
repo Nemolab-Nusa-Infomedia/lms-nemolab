@@ -17,10 +17,10 @@
             <div class="d-flex gap-3" style="position: absolute; right: 20px; bottom: 30px;">
                 <button class="pagination mx-1 {{ $ebooks->onFirstPage() ? 'disabled' : '' }}" id="prev-button"
                     {{ $ebooks->onFirstPage() ? 'disabled' : '' }}
-                    data-url="{{ $ebooks->previousPageUrl() }}">Previous</button>
+                    data-url="{{ $ebooks->previousPageUrl() }}">Sebelumnya</button>
                 <button class="pagination mx-1 {{ $ebooks->hasMorePages() ? '' : 'disabled' }}" id="next-button"
                     {{ $ebooks->hasMorePages() ? '' : 'disabled' }}
-                    data-url="{{ $ebooks->nextPageUrl() }}">Next</button>
+                    data-url="{{ $ebooks->nextPageUrl() }}">Selanjutnya</button>
             </div>
             <div class="table-responsive px-3 py-3">
                 <div class="btn-group mr-2 w-100 d-flex justify-content-between align-items-center mb-3">
@@ -42,14 +42,14 @@
                 <table class="table table-sm">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th>Course</th>
-                            <th>Description</th>
-                            <th>Type</th>
+                            <th>Judul</th>
+                            <th>Kursus</th>
+                            <th>Deskripsi</th>
+                            <th>Tipe</th>
                             <th>Status</th>
-                            <th>Price</th>
-                            <th>Preview</th>
-                            <th>Action</th>
+                            <th>Harga</th>
+                            <th>Tampilan</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,13 +73,13 @@
                         </tr>
                         @empty
                             <tr>
-                                <td colspan="8">There are no eBooks yet.</td>
+                                <td colspan="8">Belum Ada Buku Ditambahkan</td>
                             </tr>
                         @endforelse
                     </tbody>  
                 </table>
                 <div class="d-flex justify-content-between p-1">
-                    <p class="show">Showing {{ $ebooks->count() }} of {{ $ebooks->total() }}</p>
+                    <p class="show">Menampilkan {{ $ebooks->count() }} of {{ $ebooks->total() }}</p>
                 </div>
             </div>
         </div>

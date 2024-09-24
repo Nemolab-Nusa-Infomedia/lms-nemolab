@@ -1,8 +1,6 @@
-<!-- resources/views/member/ebook.blade.php -->
-
-@extends('components.layouts.member.app')
-
-@section('title', 'eBook')
+{{-- @extends('components.layouts.member.app') --}}
+@extends('components.layouts.member.navback')
+@section('title', $ebook->name)
 
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/member/css/ebook.css') }}">
@@ -15,7 +13,6 @@
         <div class="row">
             <div class="col-12 text-center justify-content-center">
                 <h4 class="fw-semibold">{{ $ebook->name }}</h4>
-                <p class="fw-light mt-3" style="font-size: 15px">Learn how to design Management from scratch</p>
                 <!-- Ini -->
                 <div class="d-flex align-items-center justify-content-center flex-md-row flex-column"
                     style="margin-top: -6px; font-size: 15px">
@@ -26,16 +23,9 @@
                     </div>
                     <div class="rating d-flex ms-1 my-1 my-0 align-items-center">
                         <p class="m-0 ms-0 ms-md-5 me-2 fw-medium" style="font-size: 14px">4.9</p>
-                        <img src="{{ asset('nemolab/member/img/star.png') }}" alt="" width="19"
-                            height="19" />
-                        <img src="{{ asset('nemolab/member/img/star.png') }}" alt="" width="19"
-                            height="19" />
-                        <img src="{{ asset('nemolab/member/img/star.png') }}" alt="" width="19"
-                            height="19" />
-                        <img src="{{ asset('nemolab/member/img/star.png') }}" alt="" width="19"
-                            height="19" />
-                        <img src="{{ asset('nemolab/member/img/star.png') }}" alt="" width="19"
-                            height="19" />
+                        @for ($i = 0; $i < 5; $i++)
+                        <img src="{{ asset('nemolab/member/img/star.png') }}" alt="" width="19" height="19" />
+                        @endfor
                     </div>
                 </div>
             </div>

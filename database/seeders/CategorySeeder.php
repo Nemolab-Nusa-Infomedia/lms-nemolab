@@ -14,8 +14,16 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create([
-            'name' => 'Frontend Developer',
-        ]);
+        $Category = [
+            ['name' => 'Frontend Developer'],
+            ['name' => 'Backend Developer' ],
+            ['name' => 'FullStack Developer'],
+            ['name' => 'UI UX Designer'],
+            ['name' => 'Mobile Developer'],
+        ];
+
+        for ($i = 0; $i < count($Category); $i++) {
+            Category::create($Category[$i]);
+        }
     }
 }

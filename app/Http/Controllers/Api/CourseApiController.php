@@ -20,7 +20,8 @@ class CourseApiController extends Controller
         
         $course = User::with(['courses' => function ($query) use ($q) {
             $query->where('name', 'LIKE', '%' . $q . '%');
-            $query->where('status', 'published');
+            $query->where('status', 'published')
+            ->OrderBy('id', 'DESC');
         }])->get();
 
         // filter course, jika mentor tidak ada course yang di buat maka akan di hapus
@@ -49,12 +50,14 @@ class CourseApiController extends Controller
         if($q != "all") {
             $course = User::with(['courses' => function ($query) use ($q) {
                 $query->where('category', $q);
-                $query->where('status', 'published');
+                $query->where('status', 'published')
+                ->OrderBy('id', 'DESC');
             }])->get();
         }
         else {
             $course = User::with(['courses' => function ($query) use ($q) {
-                $query->where('status', 'published');
+                $query->where('status', 'published')
+                ->OrderBy('id', 'DESC');
             }])->get();
         }
 

@@ -3,9 +3,7 @@
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/admin/css/create-update.css') }}">
 @endpush
-
 @section('title', 'Edit eBook')
-
 @section('content')
     <div class="card w-75 mt-5 mb-5" style="border: none !important;">
         <div class="card-header d-flex justify-content-between bg-transparent pb-0" style="border: none !important;">
@@ -13,7 +11,7 @@
             <a href="{{ route('admin.ebook') }}" class="btn btn-orange"> Back </a>
         </div>
         <div class="card-body pt-2">
-            <form class="col-12" action="{{ route('admin.ebook.edit.update', $ebook->id) }}" method="POST">
+            <form class="col-12" action="{{ route('admin.ebook.edit.update', $ebook->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -83,9 +81,9 @@
                     </div>
                     <div class="col-6">
                         <div class="entryarea">
-                            <input type="text" id="link" name="link" placeholder=" " value="{{ old('link', $ebook->link) }}" />
-                            <div class="labelline" for="link">Link</div>
-                            @error('link')
+                            <label for="ebook">Perbarui eBook (PDF)</label>
+                            <input type="file" id="ebook" name="ebook" accept="application/pdf" />
+                            @error('ebook')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>

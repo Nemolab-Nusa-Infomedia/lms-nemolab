@@ -14,9 +14,26 @@ class ToolsSeeder extends Seeder
      */
     public function run(): void
     {
-        Tools::create([
-            'name_tools' => 'Alok Bhijer',
-            'logo_tools' => 'vsgedang.png'
-        ]);
+        $Tools = [
+            [
+                'name_tools' => 'Visual Studio Code',
+                'link' => 'https://code.visualstudio.com/download',
+                'logo_tools' => 'vscode.png'
+            ],
+            [
+                'name_tools' => 'Mysql',
+                'link' => 'https://www.mysql.com/downloads',
+                'logo_tools' => 'mysql.png'
+            ],
+            [
+                'name_tools' => 'Figma',
+                'link' => 'https://www.figma.com/downloads',
+                'logo_tools' => 'figma.png'
+            ]
+        ];
+
+        for ($i = 0; $i < count($Tools); $i++) {
+            Tools::create($Tools[$i]);
+        }
     }
 }

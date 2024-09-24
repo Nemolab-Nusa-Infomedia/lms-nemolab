@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -44,5 +45,15 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    function render($request, Throwable $exception)
+    {
+        if ($this->isHttpException($exception)) {
+            if ($exception instanceof HttpException && $exception->getStatusCode() == 404) {
+                return redirect()->route('pages.error');
+            }
+        }
+        return parent::render($request, $exception);
     }
 }

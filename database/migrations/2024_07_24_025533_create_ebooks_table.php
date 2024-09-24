@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tbl_ebooks', function (Blueprint $table) {
             $table->id();
+            $table->string('slug')->unique();
             $table->unsignedBigInteger('course_id')->nullable(true);
             $table->string('name', 255)->nullable('false');
             $table->enum('type', ['free', 'premium']);

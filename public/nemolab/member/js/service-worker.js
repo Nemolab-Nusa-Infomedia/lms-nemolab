@@ -1,5 +1,5 @@
 
-//BUAT CACHE
+//BUAT CACHE FILE STATIS
 
 const CACHE_NAME = 'ebook-cache-v1';
 // const MAX_CACHE_FILES = 50;
@@ -54,23 +54,17 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
     const requestUrl = new URL(event.request.url);
 
-    // Tangani permintaan ke /storage/pdfs/{filename}
     if (requestUrl.pathname.startsWith('/storage/pdfs/')) {
         event.respondWith(
             caches.open(CACHE_NAME).then((cache) => {
                 return cache.match(event.request).then((cachedResponse) => {
                     if (cachedResponse) {
-                        // console.log('[Service Worker] Cache hit for PDF:', event.request.url);
                         return cachedResponse;
                     }
-
-                    // console.log('[Service Worker] Cache miss for PDF:', event.request.url);
                     return fetch(event.request).then((networkResponse) => {
-                        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-                            return networkResponse;
+                        if (networkResponse && networkResponse.status === 200) {
+                            cache.put(event.request, networkResponse.clone());
                         }
-
-                        cache.put(event.request, networkResponse.clone());
                         return networkResponse;
                     });
                 });

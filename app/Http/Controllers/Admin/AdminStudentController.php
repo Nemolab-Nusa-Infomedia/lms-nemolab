@@ -59,7 +59,7 @@ class AdminStudentController extends Controller
             'password' => 'nullable|string|min:8',
         ]);
 
-        $student = User::findOrFail($id);
+        $student = User::where('id', $id)->first();
         $student->name = $request->name;
         $student->username = $request->name;
         $student->email = $request->email;
@@ -75,7 +75,7 @@ class AdminStudentController extends Controller
 
     public function destroy($id)
     {
-        $student = User::findOrFail($id);
+        $student = User::where('id', $id)->first();
     
         if ($student->avatar) {
             $avatarPath = 'public/images/avatars/' . $student->avatar;

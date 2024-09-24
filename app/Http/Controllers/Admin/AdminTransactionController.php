@@ -16,12 +16,15 @@ class AdminTransactionController extends Controller
         $perPage = $request->input('per_page', 10);
         $userId = Auth::id();
 
-        $transactions = Transaction::with('course')
-            ->whereHas('course', function($query) use ($userId) {
-                $query->where('mentor_id', $userId);
-            })
-            ->orderBy('created_at', 'desc')
-            ->paginate($perPage);
+        if (Auth::user()->role == 'superadmin') {
+            // Jika user adalah superadmin, tampilkan semua transaksi
+            $transactions = Transaction::with('course')
+                ->orderBy('created_at', 'desc')
+                ->paginate($perPage);
+        } else {
+            // Jika user bukan superadmin, tampilkan transaksi berdasarkan mentor_id
+            $transactions = Transaction::with('course')->where('user_id', $userId)->orderBy('created_at', 'desc')->paginate($perPage);//
+        }
 
         return view('admin.transaction.view', compact('transactions'));
     }

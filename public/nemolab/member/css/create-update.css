@@ -13,6 +13,9 @@ body {
     justify-content: center;
     align-items: center;
 }
+body::-webkit-scrollbar{
+    display: none !important;
+}
 .container {
     background-color: #fff;
     border-radius: 10px;
@@ -33,6 +36,7 @@ h2 {
 
 input,
 textarea {
+    resize: none !important;
     position: relative;
     width: 100%;
     padding: 13px 20px;
@@ -85,7 +89,14 @@ input::-webkit-inner-spin-button {
 .btn-batal:hover {
     background-color: rgb(60, 57, 57);
 }
-
+.btn-primary {
+    background-color: #faa907 !important;
+    border: none !important;
+    transform: 0.2s ease;
+}
+.btn-primary:hover {
+    background-color: #ff7700 !important;
+}
 .entryarea::after {
     content: "";
     position: absolute;

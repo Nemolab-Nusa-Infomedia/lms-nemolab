@@ -8,11 +8,11 @@
 
 @section('content')
     <main class="col-md-12 ml-sm-auto col-lg-9 ps-4">
-        <h1 class="judul-table mb-3">Category</h1>
+        <h1 class="judul-table mb-3">Kategori</h1>
         <div class="table-responsive p-3">
             <div class="btn-group mr-2 w-100 d-flex justify-content-between align-items-center mb-3">
                 <div class="d-flex align-items-center ms-3 mt-2">
-                    <p class="mb-0 me-2">Show</p>
+                    <p class="mb-0 me-2">Menunjukkan</p>
                     <form method="GET" action="{{ route('admin.category') }}" id="entries-form">
                         <select id="entries" name="per_page" class="form-select form-select-sm rounded-3"
                             onchange="document.getElementById('entries-form').submit();">
@@ -22,7 +22,7 @@
                             <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100</option>
                         </select>
                     </form>
-                    <p class="mb-0 ms-2">entries</p>
+                    <p class="mb-0 ms-2">entri</p>
                 </div>
                 <a href="{{ route('admin.category.create') }}" class="tambah-data pt-2 pb-2 px-4 text-center fw-semibold"
                     style="width: max=content; !important">Tambah</a>
@@ -31,8 +31,8 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Action</th>
+                        <th>Judul</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,21 +52,21 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="2">There is no category data yet</td>
+                            <td colspan="2">Belum ada data kategori</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
 
             <div class="d-flex justify-content-between p-1">
-                <p class="show">Showing {{ $categories->count() }} of {{ $categories->total() }}</p>
+                <p class="show">Menampilkan {{ $categories->count() }} dari {{ $categories->total() }}</p>
                 <div class="d-flex gap-3">
                     <button class="pagination mx-1 {{ $categories->onFirstPage() ? 'disabled' : '' }}" id="prev-button"
                         {{ $categories->onFirstPage() ? 'disabled' : '' }}
-                        data-url="{{ $categories->previousPageUrl() }}">Previous</button>
+                        data-url="{{ $categories->previousPageUrl() }}">Sebelumnya</button>
                     <button class="pagination mx-1 {{ $categories->hasMorePages() ? '' : 'disabled' }}" id="next-button"
                         {{ $categories->hasMorePages() ? '' : 'disabled' }}
-                        data-url="{{ $categories->nextPageUrl() }}">Next</button>
+                        data-url="{{ $categories->nextPageUrl() }}">Berikutnya</button>
                 </div>
             </div>
         </div>

@@ -65,15 +65,15 @@
                 <div class="mt-5">
                     <a href="{{ route('member.dashboard') }}" class="list-sidebar">
                         <img src="{{ asset('nemolab/member/img/course.png') }}" alt="" width="30" />
-                        <p class="m-0">My Courses</p>
+                        <p class="m-0">Kursus Saya</p>
                     </a>
                     <a href="#" class="list-sidebar active">
                         <img src="{{ asset('nemolab/member/img/portofolio active.png') }}" alt="" width="30" />
-                        <p class="m-0">My Portofolio</p>
+                        <p class="m-0">Portofolio Saya</p>
                     </a>
                     <a href="{{ route('member.transaction') }}" class="list-sidebar">
                         <img src="{{ asset('nemolab/member/img/transaksi.png') }}" alt="" width="30" />
-                        <p class="m-0">Transactions</p>
+                        <p class="m-0">Transaksi Saya</p>
                     </a>
                 </div>
             </div>
@@ -83,7 +83,7 @@
             <div class="col-lg-9 col-md-9 col-12 mx-auto mx-lg-0 ps-lg-5 ps-3">
                 <div class="d-block d-lg-none">
                     <div id="profile" class="fw-medium">
-                        <button class="profile-btn btn fw-medium text-white">My Profile</button>
+                        <button class="profile-btn btn fw-medium text-white">Profil Saya</button>
                     </div>
                     <div class="sidebar-mobile p-5 d-none border border-2">
                         <div class="d-flex gap-3 align-items-center">
@@ -114,7 +114,7 @@
                                     alt=""
                                     width="30"
                                     class="me-2"
-                                />My Course
+                                /> Kursus Saya
                             </a>
                             <a href="#" class="nav-item active">
                                 <img
@@ -122,7 +122,7 @@
                                     alt=""
                                     width="30"
                                     class="me-2"
-                                />My Portofolio
+                                />Portofolio Saya
                             </a>
                             <a href="{{ route('member.transaction') }}" class="nav-item">
                                 <img
@@ -130,7 +130,7 @@
                                     alt=""
                                     width="30"
                                     class="me-2"
-                                />My Transactions
+                                />Transaksi Saya
                             </a>
                         </div>
                         <div class="mt-4">
@@ -144,13 +144,13 @@
                     </div>
                 </div>
                 <div class="my-4">
-                    <h3 class="fw-semibold" style="color: #faa907">My Portofolio</h3>
+                    <h3 class="fw-semibold" style="color: #faa907">Portofolio Saya</h3>
                 </div>
 
                 <div class="table-responsive p-3 border border-2">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <div class="d-flex align-items-center">
-                            <p class="mb-0 me-2 text-center">Show</p>
+                            <p class="mb-0 me-2 text-center">Menampilkan</p>
                             <form method="GET" action="{{ route('admin.member') }}" id="entries-form">
                                 <select id="entries" name="entries" class="form-select form-select-sm"
                                     onchange="this.form.submit()">
@@ -160,7 +160,7 @@
                                     <option value="100" {{ request('entries') == 100 ? 'selected' : '' }}>100</option>
                                 </select>
                             </form>
-                            <p class="mb-0 me-2 text-center mx-2">entries</p>
+                            <p class="mb-0 me-2 text-center mx-2">entri</p>
                         </div>
                         <a href="{{ route('member.portofolio.create') }}"
                             class="tambah-data py-2 px-4 fw-semibold text-center"
@@ -170,11 +170,11 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Description</th>
+                                <th>Nama</th>
+                                <th>Deskripsi</th>
                                 <th>Link Portofolio</th>
                                 <th>Status</th>
-                                <th>Action</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -231,16 +231,16 @@
                     </table>
 
                     <div class="d-flex justify-content-between p-1">
-                        <p class="show">Showing {{ $portofolio->firstItem() }} to {{ $portofolio->lastItem() }} of
+                        <p class="show">Menampilkan {{ $portofolio->firstItem() }} hingga {{ $portofolio->lastItem() }} dari
                             {{ $portofolio->total() }}</p>
                         <div class="d-flex gap-3">
                             <!-- Custom Pagination -->
                             <button class="pagination mx-1 {{ $portofolio->onFirstPage() ? 'disabled' : '' }}"
                                 id="prev-button" {{ $portofolio->onFirstPage() ? 'disabled' : '' }}
-                                data-url="{{ $portofolio->previousPageUrl() }}">Previous</button>
+                                data-url="{{ $portofolio->previousPageUrl() }}">Sebelumnya</button>
                             <button class="pagination mx-1 {{ $portofolio->hasMorePages() ? '' : 'disabled' }}"
                                 id="next-button" {{ $portofolio->hasMorePages() ? '' : 'disabled' }}
-                                data-url="{{ $portofolio->nextPageUrl() }}">Next</button>
+                                data-url="{{ $portofolio->nextPageUrl() }}">Berikutnya</button>
                         </div>
                     </div>
                 </div>

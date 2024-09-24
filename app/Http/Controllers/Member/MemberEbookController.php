@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
@@ -8,15 +7,17 @@ use App\Models\Ebook;
 
 class MemberEbookController extends Controller
 {
-    public function index($id)
+    public function index($slug)
     {
-        $ebook = Ebook::findOrFail($id);
+        // Cari ebook berdasarkan slug
+        $ebook = Ebook::where('slug', $slug)->firstOrFail();
         return view('member.joinebook', compact('ebook'));
     }
 
-    public function read($id)
+    public function read($slug)
     {
-        $ebook = Ebook::findOrFail($id);
+        // Cari ebook berdasarkan slug
+        $ebook = Ebook::where('slug', $slug)->firstOrFail();
         return view('member.ebook', compact('ebook'));
     }
 }

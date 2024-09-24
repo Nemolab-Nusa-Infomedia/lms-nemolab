@@ -380,12 +380,12 @@
         <div class="container">
             <h1 class="text-center fw-bold mb-5">Mulailah Karier Impian Anda Bersama <br class="d-none d-xl-block"> <span
                     class="text-gradient">NEMOLAB</span></h1>
-            <h5 class="fw-normal">Bergabunglah dengan kami di <span class="text-gradient">NEMOLAB</span> dan temukan
+            <h5 class="fw-normal text-center">Bergabunglah dengan kami di <span class="text-gradient">NEMOLAB</span> dan temukan
                 keajaiban
                 pendidikan. Mari kita
                 memulai untuk me perjalanan pengetahuan, kreativitas, dan kemungkinan tak terbatas bersama.</h5>
             <br>
-            <h5 class="fw-normal">Selamat datang di <span class="text-gradient">NEMOLAB</span>, tempat di mana perjalanan
+            <h5 class="fw-normal text-center">Selamat datang di <span class="text-gradient">NEMOLAB</span>, tempat di mana perjalanan
                 menuju karier impian Anda
                 dimulai. Kami menawarkan pendidikan terbaik dalam UI/UX Design, Web Development, dan keterampilan
                 Freelancer,

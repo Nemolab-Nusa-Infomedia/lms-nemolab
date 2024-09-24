@@ -48,9 +48,9 @@
           </div>
           <div class="px-5">
             <h1 class="m-0" style="font-size: 75px">OOPS ..</h1>
-            <h3 class="fw-normal">Page not found</h3>
-            <p class="m-0 fw-light" style="font-size: 17px; color: #bbbbbb">The page you are looking for doesn’t exist or any other error occurred, go back to home page.</p>
-            <a href="{{ route('home') }}" class="btn mt-3 fw-medium text-white">Back To Home</a>
+            <h3 class="fw-normal">Halaman Tidak ditemukan</h3>
+            <p class="m-0 fw-light" style="font-size: 17px; color: #bbbbbb">Halaman yang Anda cari tidak ada atau terjadi kesalahan lainnya, kembali ke halaman beranda.</p>
+            <a href="{{ route('home') }}" class="btn mt-3 fw-medium text-white">Kembali ke Beranda</a>
           </div>
         </div>
         <div class="col-7">
@@ -66,7 +66,7 @@
           <div>
             <img src="{{ asset('nemolab/member/img/404-mobile.png') }}" alt="" height="200" />
             <h1 class="m-0 mt-3" style="font-size: 50px">OOPS ..</h1>
-            <h4 class="fw-normal">Page not found !!</h4>
+            <h4 class="fw-normal">Halaman Tidak ditemukan !!</h4>
           </div>
         </div>
       </div>

@@ -10,21 +10,22 @@
 @section('content')
 
     <div class="container" style="margin-top: 5rem;">
-        @if (!$submission && $total_course > 5)
-            <div class="alert alert-warning alert-dismissible fade show text-black position-fixed fixed-top d-flex justify-center align-items-center"
-                role="alert">
-                Ingin jadi Mentor? klik
-                <form action="{{ route('member.pengajuan', Auth::user()->id) }}" method="post">
-                    @csrf
-                    <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                        class="disini text-black ps-1 btn p-0 m-0 shadow-none"
-                        style="text-decoration: underline !important">Disini
-                    </button>
-                </form>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        @if (Auth::user()->role == 'students')
+            @if (!$submission && $total_course >= 5)
+                <div class="alert alert-warning alert-dismissible fade show text-black position-fixed fixed-top d-flex justify-center align-items-center"
+                    role="alert">
+                    Ingin jadi Mentor? klik
+                    <form action="{{ route('member.pengajuan', Auth::user()->id) }}" method="post">
+                        @csrf
+                        <button type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            class="disini text-black ps-1 btn p-0 m-0 shadow-none"
+                            style="text-decoration: underline !important">Disini
+                        </button>
+                    </form>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
         @endif
-
         <div class="row">
             <!-- Sidebar -->
             <div class="col-3 d-none d-lg-block p-4 pb-5 rounded-4 text-white px-5 flex-wrap"
@@ -41,15 +42,15 @@
                 <div class="mt-5">
                     <a href="#" class="list-sidebar active">
                         <img src="{{ asset('nemolab/member/img/course active.png') }}" alt="" width="30" />
-                        <p class="m-0">My Courses</p>
+                        <p class="m-0">Kursus Saya</p>
                     </a>
                     <a href="{{ route('member.portofolio') }}" class="list-sidebar">
                         <img src="{{ asset('nemolab/member/img/portofolio.png') }}" alt="" width="30" />
-                        <p class="m-0">My Portofolio</p>
+                        <p class="m-0">Portofolio Saya</p>
                     </a>
                     <a href="{{ route('member.transaction') }}" class="list-sidebar">
                         <img src="{{ asset('nemolab/member/img/transaksi.png') }}" alt="" width="30" />
-                        <p class="m-0">Transactions</p>
+                        <p class="m-0">Transaksi Saya</p>
                     </a>
                 </div>
             </div>
@@ -61,7 +62,7 @@
                 {{-- Sidebar Mobile --}}
                 <div class="d-block d-lg-none">
                     <div id="profile" class="fw-medium">
-                        <button class="profile-btn btn fw-medium text-white">My Profile</button>
+                        <button class="profile-btn btn fw-medium text-white">Profil Saya</button>
                     </div>
                     <div class="sidebar-mobile p-5 d-none border border-2">
                         <div class="d-flex gap-3 align-items-center">
@@ -92,7 +93,7 @@
                                     alt=""
                                     width="30"
                                     class="me-2"
-                                />My Course
+                                />Kursus Saya
                             </a>
                             <a href="{{ route('member.portofolio') }}" class="nav-item">
                                 <img
@@ -100,7 +101,7 @@
                                     alt=""
                                     width="30"
                                     class="me-2"
-                                />My Portofolio
+                                />Profil Saya
                             </a>
                             <a href="{{ route('member.transaction') }}" class="nav-item">
                                 <img
@@ -108,7 +109,7 @@
                                     alt=""
                                     width="30"
                                     class="me-2"
-                                />My Transactions
+                                />Transaksi Saya
                             </a>
                         </div>
                         <div class="mt-4">
@@ -122,7 +123,7 @@
                     </div>
                 </div>
 
-                <h3 class="fw-bold tittle mt-3">My Courses</h3>
+                <h3 class="fw-bold tittle mt-3">Kursus Saya</h3>
                 <div class="course row row-course mt-3 w-100">
                     @foreach ($courses as $course)
                         @if ($course->transactions->isNotEmpty())
@@ -130,7 +131,7 @@
                                 <a href="{{ route('member.course.join', $course->slug) }}" class="text-black">
                                     <div class="card-course h-100 d-flex flex-row flex-md-column position-relative">
                                         <div class="position-absolute d-block d-md-none" style="bottom: 5px; right: 10px;">
-                                            @if (Auth::user()->avatar != 'default.png')
+                                            @if ($course->users->avatar != 'default.png')
                                                 <img
                                                     src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
                                                     alt="" width="16" height="16"
@@ -158,7 +159,7 @@
                                             </div>
                                             <div class="profile-card mt-2 d-none d-md-block">
                                                 <a href="" class="fw-medium">
-                                                    @if (Auth::user()->avatar != 'default.png')
+                                                    @if ($course->users->avatar != 'default.png')
                                                         <img class="me-2"
                                                             src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
                                                             alt="" width="35" height="35"

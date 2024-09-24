@@ -16,8 +16,8 @@
                     <h2 class="fw-semibold mb-4" style="color: #faa907">Tambah Data</h2>
                     <div class="col-12 mb-3">
                         <div class="entryarea">
-                            <input type="text" id="name" name="name" placeholder=""  />
-                            <div class="labelline" for="name">Name</div>
+                            <input type="text" id="name" name="name" placeholder=""  value="{{old('name')}}" />
+                            <div class="labelline" for="name">Nama<span class="required-field"></span></div>
                         </div>
                         @error('name')
                             <span class="text-danger">{{$message}}</span>
@@ -25,8 +25,8 @@
                     </div>
                     <div class="col-12 mb-3">
                         <div class="entryarea">
-                            <input type="text" id="email" name="email" placeholder=""  />
-                            <div class="labelline" for="email">Email</div>
+                            <input type="text" id="email" name="email" placeholder="" value="{{old('email')}}" />
+                            <div class="labelline" for="email">Email<span class="required-field"></span></div>
                         </div>
                         @error('email')
                         <span class="text-danger">{{$message}}</span>
@@ -34,8 +34,8 @@
                     </div>
                     <div class="col-12 mb-3">
                         <div class="entryarea">
-                            <input type="password" id="password" name="password" placeholder=""  />
-                            <div class="labelline" for="password">Password</div>
+                            <input type="password" id="password" name="password" placeholder="" />
+                            <div class="labelline" for="password">Password<span class="required-field"></span></div>
                         </div>
                         @error('password')
                         <span class="text-danger">{{$message}}</span>

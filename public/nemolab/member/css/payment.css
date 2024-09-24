@@ -1,198 +1,105 @@
 :root {
-  --c-dark: #383131;
-  --c-brand: #FAA907;
-  --c-brand-dark: #a56e00;
-  --c-brand-rgb: 0, 163, 255;
-  --font-base: "Poppins", sans-serif;
-  --transition: all 0.5s ease;
-  --box-shadow-card: 0px 0px 1px 0px black;
-  --box-shadow-card-hover: 0px 0px 3px 0px #FAA907;
-  --transition-card: all 0.5s linear;
+    --c-dark: #383131;
+    --c-brand: #faa907;
+    --c-brand-dark: #a56e00;
+    --c-brand-rgb: 0, 163, 255;
+    --font-base: "Poppins", sans-serif;
+    --transition: all 0.5s ease;
+    --box-shadow-card: 0px 0px 1px 0px black;
+    --box-shadow-card-hover: 0px 0px 3px 0px #faa907;
+    --transition-card: all 0.5s linear;
 }
-
 
 .payment-card {
-  border-radius: 10px;
-  padding: 35px;
-  width: 550px;
-  height: max-content;
-  box-shadow: 0px 0px 5px 3px var(--c-brand);
+    border-radius: 10px;
+    padding: 35px;
+    width: 500px;
+    height: max-content;
+    box-shadow: 0px 0px 5px 2px var(--c-brand);
 }
-
-.cek {
-  font-weight: bold;
-}
-
-.payment-card .card-header {
-  font-size: 1.9rem;
-}
-
 .payment-card .card-body {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .payment-card .card-body p {
-  margin: 0;
-  font-size: 1.3rem;
+    margin: 0;
+    font-size: 1.3rem;
 }
-
-.payment-card .card-body .total {
-  font-size: 1.5rem;
-  color: black;
-}
-
 .payment-card .btn-primary {
-  background-color: var(--c-brand);
-  color: white;
-  font-weight: bold;
-  border: none;
+    background-color: var(--c-brand);
+    color: white;
+    font-weight: bold;
+    border: none;
 }
-
-.payment-card .btn-primary:hover {
-  background-color: var(--c-brand-dark);
+.card-body span {
+    font-size: 17px;
 }
-
-.card-title {
-  font-size: 1.3rem;
-}
-
-.form-check-label {
-  font-size: 1.2rem;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
 .form-check {
-  display: flex;
-  align-items: center;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.price-update {
+    color: green;
+}
+.payment-card .btn-primary:hover {
+    background-color: var(--c-brand-dark);
+}
+.syarat {
+    text-decoration: none;
+    color: var(--c-brand);
+}
+.form-check-label {
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .form-cek {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 1px solid gray;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  outline: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.3s, border-color 0.3s;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid gray;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .form-cek:checked {
-  background-color: var(--c-brand);
-  color: var(--c-brand);
-  border: none;
+    background-color: var(--c-brand);
+    color: var(--c-brand);
+    border: none;
 }
 
 .form-cek:checked::after {
-  content: '';
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M20.285 6.128a1.5 1.5 0 0 0-2.121 0L10 14.293 5.536 9.828a1.5 1.5 0 1 0-2.122 2.122l5 5a1.5 1.5 0 0 0 2.122 0l9-9a1.5 1.5 0 0 0 0-2.122z"/></svg>');
-  background-size: cover;
-  margin-top: 3px;
-  border: none;
-}
-
-.desk {
-  font-size: 1.2rem;
-}
-
-.bi {
-  font-size: 1.5em;
-  text-align: center;
-  align-items: center;
-  transition: all 0.3s linear;
-}
-
-.bi:hover {
-  color: var(--c-brand-dark);
-}
-
-.login {
-  font-family: var(--font-base);
-}
-
-.name {
-  width: 110px;
-  max-height: 53px;
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.img-p {
-  margin-right: 5px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-}
-
-.r-nav {
-  height: 100%;
-}
-
-.img-l {
-  width: 35px;
-}
-
-.syarat {
-  text-decoration: none;
-  color: var(--c-brand);
-}
-
-.media img {
-  height: 30px;
-}
-
-.back-btn {
-  color: var(--c-brand);
-  text-decoration: none;
-  font-weight: bold;
-  font-family: var(--font-base);
-}
-
-.price-update {
-  color: green;
-}
-
-.back {
-  font-family: var(--font-base);
-  font-size: 1.2rem;
+    content: "";
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white"><path d="M20.285 6.128a1.5 1.5 0 0 0-2.121 0L10 14.293 5.536 9.828a1.5 1.5 0 1 0-2.122 2.122l5 5a1.5 1.5 0 0 0 2.122 0l9-9a1.5 1.5 0 0 0 0-2.122z"/></svg>');
+    background-size: cover;
+    margin-top: 3px;
+    border: none;
 }
 
 @media only screen and (max-width: 767.5px) {
-  .payment-card {
-    border-radius: 10px;
-    padding: 35px;
-    width: 350px;
-    height: 520px;
-    box-shadow: 0px 0px 5px 3px var(--c-brand);
-  }
-
-  .payment-card .card-body p {
-    margin: 0;
-    font-size: 1rem;
-  }
-
-  .payment-card .card-body .total {
-    font-size: 1.2rem;
-    color: black;
-  }
-
-  .form-check-label {
-    font-size: 0.8rem;
-  }
+    .payment-card {
+        width: 330px;
+    }
+    .card-body span {
+        font-size: 14px;
+    }
+    .form-check-label {
+        font-size: 12px;
+    }
+    .form-cek {
+        width: 17px;
+        height: 17px;
+    }
 }

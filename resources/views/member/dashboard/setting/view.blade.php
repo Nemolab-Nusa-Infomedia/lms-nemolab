@@ -24,15 +24,15 @@
                     <div class="mt-5">
                         <a href="{{ route('member.dashboard') }}" class="list-sidebar">
                             <img src="{{ asset('nemolab/member/img/course.png') }}" alt="" width="30" />
-                            <p class="m-0">My Courses</p>
+                            <p class="m-0">Kursus Saya</p>
                         </a>
                         <a href="{{ route('member.portofolio') }}" class="list-sidebar">
                             <img src="{{ asset('nemolab/member/img/portofolio.png') }}" alt="" width="30" />
-                            <p class="m-0">My Portofolio</p>
+                            <p class="m-0">Portofolio Saya</p>
                         </a>
                         <a href="{{ route('member.transaction') }}" class="list-sidebar">
                             <img src="{{ asset('nemolab/member/img/transaksi.png') }}" alt="" width="30" />
-                            <p class="m-0">Transactions</p>
+                            <p class="m-0">Transaksi Saya</p>
                         </a>
                     </div>
                 </div>
@@ -48,15 +48,15 @@
                                 width="90" />
                         </div> --}}
                         <div class="input">
-                            <label for="name">Full Name</label><br />
+                            <label for="name">Nama Lengkap</label><br />
                             <input type="text" id="name" value="{{ Auth::user()->name }}" readonly />
                         </div>
                         <div class="input">
-                            <label for="email">Email Address</label><br />
+                            <label for="email">Alamat Email</label><br />
                             <input type="email" id="email" value="{{ Auth::user()->email }}" readonly />
                         </div>
                         <div class="input">
-                            <label for="username">Username</label><br />
+                            <label for="username">Nama Pengguna</label><br />
                             <input type="text" id="username" value="{{ Auth::user()->username }}" readonly />
                         </div>
                         <div class="input d-flex gap-2">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="input mt-4">
-                            <a href="{{ route('member.edit-profile') }}" class="edit-pass">Edit My Profile</a>
+                            <a href="{{ route('member.edit-profile') }}" class="edit-pass">Edit Profil</a>
                         </div>
                     </form>
                 </div>

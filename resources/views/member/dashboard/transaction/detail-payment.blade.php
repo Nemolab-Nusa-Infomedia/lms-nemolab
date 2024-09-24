@@ -11,7 +11,7 @@
         <div class="payment d-flex flex-column mx-auto align-items-center justify-content-center">
             <img src="{{asset('nemolab/member/img/Success-Icon.png')}}" alt="" width="60" height="60">
             <img class="d-none" src="{{asset('nemolab/member/img/Failed-Icons.png')}}" alt="" width="60" height="60">
-            <p class="mt-3 mb-0" style="color: #474747">Payment Success!</p>
+            <p class="mt-3 mb-0" style="color: #474747">Pembayaran Berhasil!</p>
             <h4 class="mt-2">IDR 1,000,000</h4>
         </div>
         
@@ -46,7 +46,7 @@
         <div class="d-flex justify-content-center mt-4">
             <button class="btn btn-payment">
                 {{-- SUCCESS --}}
-                Click To Continue
+                Klik untuk melanjutkan
                 {{-- FAILED --}}
                 {{-- Back To Homepage --}}
             </button>

@@ -13,13 +13,13 @@
     <!-- Content -->
     <main role="main" class="col-lg-9 col-sm-12 ps-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
-            <h1 class="judul-table">Portofolio Submission</h1>
+            <h1 class="judul-table">Pengajuan Portofolio</h1>
         </div>
 
         <div class="table-responsive px-3 py-3">
             <div class="btn-group mr-2 w-100 d-flex justify-content-between align-items-center mb-3">
                 <div class="d-flex align-items-center">
-                    <p class="mb-0 me-2 text-center">Show</p>
+                    <p class="mb-0 me-2 text-center">Menampilkan</p>
                     <form method="GET" action="{{ route('admin.portofolio') }}" id="entries-form">
                         <select id="entries" name="entries" class="form-select form-select-sm"
                             onchange="document.getElementById('entries-form').submit()">
@@ -30,19 +30,19 @@
                         </select>
 
                     </form>
-                    <p class="mb-0 me-2 text-center mx-2">entries</p>
+                    <p class="mb-0 me-2 text-center mx-2">entri</p>
                 </div>
             </div>
 
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>Member Name</th>
-                        <th>Course Name</th>
+                        <th>Nama Anggota</th>
+                        <th>Nama Kursus</th>
                         <th>Link Project</th>
                         {{-- <th>Date</th> --}}
                         <th>Status</th>
-                        <th>Actions</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,7 +51,7 @@
                             <td>{{ $porto->name_user }}</td>
                             <td>{{ $porto->name }}</td>
                             <td>
-                                <a href="{{ $porto->link }}" class="btn btn-primary">View</a>
+                                <a href="{{ $porto->link }}" class="btn btn-primary">Lihat</a>
                             </td>
                             <td>{{ $porto->status }}</td>
                             @if ($porto->status == 'check')
@@ -69,12 +69,12 @@
                                 </td> --}}
                                 <td>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal">
+                                        data-bs-target="#exampleModalUser-{{$loop->iteration}}">
                                         Detail
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    <div class="modal fade" id="exampleModalUser-{{$loop->iteration}}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -85,8 +85,8 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body text-start">
-                                                    <p>Name Member : {{ $porto->name_user }}</p>
-                                                    <p>Name Course : {{ $porto->name }}</p>
+                                                    <p>Nama Anggota : {{ $porto->name_user }}</p>
+                                                    <p>Nama Kursus : {{ $porto->name }}</p>
                                                     <p>Link Project : <a
                                                             href="{{ $porto->link }}">{{ $porto->link }}</a></p>
                                                 </div>
@@ -97,11 +97,11 @@
                                                         @method('put')
                                                         <button type="submit" name="action" value="accepted"
                                                             class="btn btn-success me-2">
-                                                            Accept
+                                                            Terima
                                                         </button>
                                                         <button type="submit" name="action" value="deaccepted"
                                                             class="btn btn-danger">
-                                                            Reject
+                                                            Tolak
                                                         </button>
                                                     </form>
                                                 </div>
@@ -128,14 +128,14 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body text-start">
-                                                    <p>Name Member : {{ $porto->name_user }}</p>
-                                                    <p>Name Course : {{ $porto->name }}</p>
+                                                    <p>Nama Anggota : {{ $porto->name_user }}</p>
+                                                    <p>Nama Kursus : {{ $porto->name }}</p>
                                                     <p>Link Project : <a
                                                             href="{{ $porto->link }}">{{ $porto->link }}</a></p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <p class="btn btn-success me-2 disabled m-0">
-                                                        Accepted
+                                                        Diterima
                                                     </p>
                                                 </div>
                                             </div>
@@ -161,14 +161,14 @@
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body text-start">
-                                                    <p>Name Member : {{ $porto->name_user }}</p>
-                                                    <p>Name Course : {{ $porto->name }}</p>
+                                                    <p>Nama Anggota : {{ $porto->name_user }}</p>
+                                                    <p>Nama Kursus : {{ $porto->name }}</p>
                                                     <p>Link Project : <a
                                                             href="{{ $porto->link }}">{{ $porto->link }}</a></p>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <p class="btn btn-danger disabled m-0">
-                                                        Rejected
+                                                        Ditolak
                                                     </p>
                                                 </div>
                                             </div>
@@ -179,7 +179,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">There is no submission data yet</td>
+                            <td colspan="4">Belum ada data pengajuan</td>
                         </tr>
                     @endforelse
                 </tbody>

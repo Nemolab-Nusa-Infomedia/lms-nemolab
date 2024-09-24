@@ -19,7 +19,7 @@
         <div class="table-responsive px-3 py-3">
             <div class="btn-group mr-2 w-100 d-flex justify-content-between align-items-center mb-3">
                 <div class="d-flex align-items-center">
-                    <p class="mb-0 me-2 text-center">Show</p>
+                    <p class="mb-0 me-2 text-center">Menampilkan</p>
                     <form method="GET" action="{{ route('admin.submissions') }}" id="entries-form">
                         <select id="entries" name="entries" class="form-select form-select-sm"
                             onchange="document.getElementById('entries-form').submit()">
@@ -30,17 +30,17 @@
                         </select>
 
                     </form>
-                    <p class="mb-0 me-2 text-center mx-2">entries</p>
+                    <p class="mb-0 me-2 text-center mx-2">entri</p>
                 </div>
             </div>
 
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Total Course</th>
+                        <th>Nama</th>
+                        <th>Jumlah Kursus</th>
                         <th>Status</th>
-                        <th>Actions</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,12 +51,12 @@
                             <td class="text-capitalize">{{ $mentor->status }}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
+                                    data-bs-target="#exampleModalUser-{{$loop->iteration}}">
                                     Detail
                                 </button>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                <div class="modal fade" id="exampleModalUser-{{$loop->iteration}}" tabindex="-1" aria-labelledby="exampleModalLabel"
                                     aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -67,8 +67,8 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body text-start">
-                                                <p>Name : {{ $mentor->user->name }}</p>
-                                                <p>Total Course : {{ $total_course }}</p>
+                                                <p>Nama : {{ $mentor->user->name }}</p>
+                                                <p>Jumlah Kursus : {{ $total_course }}</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <form
@@ -79,19 +79,19 @@
                                                     @if ($mentor->status == 'pending')
                                                         <button type="submit" name="action" value="accept"
                                                             class="btn btn-success me-2">
-                                                            Accept
+                                                            Terima
                                                         </button>
                                                         <button type="submit" name="action" value="deaccept"
                                                             class="btn btn-danger">
-                                                            Reject
+                                                            Tolak
                                                         </button>
                                                     @elseif ($mentor->status == 'accept')
                                                         <button disabled class="btn btn-success me-2">
-                                                            Accepted
+                                                            Diterima
                                                         </button>
                                                     @elseif ($mentor->status == 'deaccept')
                                                         <button disabled class="btn btn-danger me-2">
-                                                            Rejected
+                                                            Ditolak
                                                         </button>
                                                     @endif
                                                 </form>
@@ -99,27 +99,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <form action="{{ route('admin.submissions.edit.update', $mentor->user->id) }}"
-                                    method="post">
-                                    @csrf
-                                    @method('put')
-                                    @if ($mentor->status == 'pending')
-                                        <button type="submit" name="action" value="accept" class="btn btn-success me-2">
-                                            Accept
-                                        </button>
-                                        <button type="submit" name="action" value="deaccept" class="btn btn-danger">
-                                            Reject
-                                        </button>
-                                    @elseif ($mentor->status == 'accept')
-                                        <button disabled class="btn btn-success me-2">
-                                            Accepted
-                                        </button>
-                                    @elseif ($mentor->status == 'deaccept')
-                                        <button disabled class="btn btn-danger me-2">
-                                            Rejected
-                                        </button>
-                                    @endif
-                                </form> --}}
                             </td>
                         </tr>
                     @empty

@@ -32,7 +32,6 @@ use App\Http\Controllers\Member\Dashboard\MemberPortofolioController;
 use App\Http\Controllers\Member\MemberEbookController;
 use App\Http\Controllers\Member\MemberCommentController;
 use App\Http\Controllers\Member\MemberWebhookTransactionsController;
-use Illuminate\Support\Facades\Http;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,10 +44,14 @@ use Illuminate\Support\Facades\Http;
 |
 */
 
+
+
+// tes
+Route::get('/ebook/{slug}', [MemberEbookController::class, 'index'])->name('member.ebook.index');
+Route::get('/ebook/read/{slug}', [MemberEbookController::class, 'read'])->name('member.ebook.read');
+
+
 Route::get('/', [LandingpageController::class, 'index'])->name('home');
-// buat test ebook
-Route::get('/ebook/{id}', [MemberEbookController::class, 'index'])->name('member.ebook.index');
-Route::get('/ebook/read/{id}', [MemberEbookController::class, 'read'])->name('member.ebook.read');
 
 // login member
 Route::get('/login', [MemberLoginController::class, 'index'])->name('member.login');
@@ -259,9 +262,11 @@ Route::prefix('member')->middleware('student')->group(function () {
     
     Route::get('course/payment', [MemberPaymentController::class, 'index'])->name('member.payment');
     Route::post('course/payment/store', [MemberPaymentController::class, 'store'])->name('member.transaction.store');
-
     
+    Route::get('/transaction/view/{id}', [MemberPaymentController::class, 'viewTransaction'])->name('member.transaction.view');
+    // Route::get('/transaction/callback', [MemberPaymentController::class, 'callback'])->name('member.transaction.callback.view');
 });
-Route::get('/eror', function () {
-    return view('error.page404'); // Nama view yang ingin ditampilkan
-});
+
+
+Route::view('/eror/pages', 'error.page404')->name('pages.error');
+// Route::get('/test', [MemberPaymentController::class, 'test']);

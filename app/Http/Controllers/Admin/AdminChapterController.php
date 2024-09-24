@@ -64,18 +64,16 @@ class AdminChapterController extends Controller
     }
 
     public function delete($id) {
-        $getID = Chapter::where('id', $id)->first(); 
-        $course = Course::where('id', $getID->course_id)->first();
-
-
-        $chapters = Chapter::where('course_id', $getID->course_id)->get();
-
-        foreach ($chapters as $chapter) {
+        $chapter = Chapter::find($id);
+        if ($chapter) {
             Lesson::where('chapter_id', $chapter->id)->delete();
             $chapter->delete();
+    
+            $course = Course::where('id', $chapter->course_id)->first();
+            Alert::success('Success', 'Chapter Berhasil Di Hapus');
+        } else {
+            Alert::error('Error', 'Chapter tidak ditemukan');
         }
-        
-        Alert::success('Success', 'Chapter Berhasil Di Hapus');
         return redirect()->route('admin.chapter', $course->slug);
-    }
+    }    
 }
