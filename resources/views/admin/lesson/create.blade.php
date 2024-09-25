@@ -12,21 +12,21 @@
         <div class="card-header d-flex justify-content-between bg-transparent pb-0" style="border: none !important;">
             <h2 class="fw-semibold fs-4 mb-4" style="color: #faa907">Tambah Data</h2>
             <a href="{{ route('admin.lesson', ['slug' => $slug, 'id_chapter' => $id_chapter]) }}" class="btn btn-orange">
-                Back </a>
+                Kembali </a>
         </div>
         <div class="card-body pt-2">
             <form class="col-12" action="{{ route('admin.lesson.create.store', $id_chapter) }}" method="post">
                 @csrf
                 <div class="entryarea">
                     <input type="text" id="name" name="name" placeholder="" />
-                    <div class="labelline" for="name">Title Video<span class="required-field"></span></div>
+                    <div class="labelline" for="name">Judul Video<span class="required-field"></span></div>
                     @error('name')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="entryarea mt-2">
                     <input type="text" id="name" name="video" placeholder=""/>
-                    <div class="labelline" for="name">Link Video<span class="required-field"></span> <i class="bi bi-question-circle" id=""></i></div>
+                    <div class="labelline" for="name">Link Video<span class="required-field"></span></div>
                     @error('video')
                         <span style="color: red">{{ $message }}</span>
                     @enderror

@@ -10,17 +10,19 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Course;
 use App\Models\Transaction;
 use App\Models\Submission;
+use App\Models\MyListCourse;
 
 class MemberMyCourseController extends Controller
 {
     public function index() {
-        $courses = Course::with(['users', 'transactions' => function ($query) {
-            $query->where('user_id', Auth::user()->id);
-            $query->where('status', 'success');
-        }])->get();
-        
-        $total_course = Transaction::where('user_id', Auth::user()->id)->count();
+        $lists = MyListCourse::where('user_id', Auth::user()->id)->get();
 
+        // Ambil semua course_id dari daftar
+        $courseIds = $lists->pluck('course_id');
+        // Ambil semua kursus yang cocok dengan course_id yang ada
+        $courses = Course::whereIn('id', $courseIds)->get();
+
+        $total_course = Transaction::where('user_id', Auth::user()->id)->count();
         $submission = Submission::where('user_id', Auth::user()->id)->first();
         return view('member.dashboard.mycourse', compact('courses', 'submission', 'total_course'));
     }
@@ -36,7 +38,7 @@ class MemberMyCourseController extends Controller
             ]);
         }
 
-        Alert::success('success', 'Pengajuan Berhasil Di Kirim, Tunggu Sampai Admin Konfirmasi');
+        Alert::success('success', 'Pengajuan Berhasil Di Kirim, Mohon Tunggu Sampai Admin Konfirmasi');
         return redirect()->route('member.dashboard');
     }
 }

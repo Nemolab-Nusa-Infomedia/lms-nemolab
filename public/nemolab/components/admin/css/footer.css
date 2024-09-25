@@ -2,6 +2,7 @@
 .footer {
     margin-top: 50px;
     background-color: white;
+    padding-bottom: 10px;
 }
 .footer .logo img {
     max-height: 40px;

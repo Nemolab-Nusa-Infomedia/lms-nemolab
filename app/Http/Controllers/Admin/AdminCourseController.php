@@ -16,6 +16,7 @@ use App\Models\Tools;
 use App\Models\Chapter;
 use App\Models\Lesson;
 use App\Models\Forum;
+use App\Models\Transaction;
 
 class AdminCourseController extends Controller
 {
@@ -27,9 +28,9 @@ class AdminCourseController extends Controller
         $user = Auth::user();
         $perPage = $request->input('per_page', 10);
         if ($user->role === 'superadmin') {
-            $courses = Course::with('users')->paginate($perPage);
+            $courses = Course::with('users')->OrderBy('id', 'DESC')->paginate($perPage);
         } else {
-            $courses = Course::where('mentor_id', $user->id)->paginate($perPage);
+            $courses = Course::where('mentor_id', $user->id)->OrderBy('id', 'DESC')->paginate($perPage);
         }
 
         return view('admin.coursesvideo.view', compact('courses'));
@@ -190,7 +191,8 @@ class AdminCourseController extends Controller
             Lesson::where('chapter_id', $chapter->id)->delete();
             $chapter->delete();
         }
-
+        
+        Transaction::where('course_id', $id)->delete();
         $course->delete();
         Alert::success('Success', 'Course Berhasil Di Delete');
         return redirect()->route('admin.course');

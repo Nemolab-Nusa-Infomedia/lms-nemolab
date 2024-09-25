@@ -17,17 +17,17 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id')->nullable();
             $table->unsignedBigInteger('ebook_id')->nullable();
             $table->string('transaction_code')->nullable(false);
+            $table->string('snap_token')->nullable(false);
             $table->string('name')->nullable(false);
             $table->integer('price')->nullable(false);
-            $table->enum('status', ['success', 'pending', 'failed'])->default('pending');
+            $table->enum('status', ['success', 'pending', 'failed', 'refund'])->default('pending');
             $table->timestamps();
-    
             $table->foreign('course_id')->references('id')->on('tbl_courses')->onDelete('set null');
             $table->foreign('ebook_id')->references('id')->on('tbl_ebooks')->onDelete('set null');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
-    
+
 
     /**
      * Reverse the migrations.

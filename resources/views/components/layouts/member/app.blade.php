@@ -13,6 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="icon" href="{{ asset('nemolab/member/img/nemolab.ico') }}" type="image/x-icon">
     @stack('addon-script')
@@ -83,39 +91,38 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-    // Get all sections with an ID attribute
-    const sections = document.querySelectorAll('section[id]');
-    // Get all nav links
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            // Get all sections with an ID attribute
+            const sections = document.querySelectorAll('section[id]');
+            // Get all nav links
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
 
-    function activateNavLink() {
-        let currentSection = '';
+            function activateNavLink() {
+                let currentSection = '';
 
-        // Loop through each section to find which one is in the viewport
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            if (window.scrollY >= sectionTop - sectionHeight / 3) {
-                currentSection = section.getAttribute('id');
+                // Loop through each section to find which one is in the viewport
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    if (window.scrollY >= sectionTop - sectionHeight / 3) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                // Remove active class from all nav links
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    // Add active class to the link corresponding to the current section
+                    if (link.getAttribute('href').includes(currentSection)) {
+                        link.classList.add('active');
+                    }
+                });
             }
+
+            // Initial call to set the correct nav link on load
+            activateNavLink();
+            // Add scroll event listener
+            window.addEventListener('scroll', activateNavLink);
         });
-
-        // Remove active class from all nav links
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            // Add active class to the link corresponding to the current section
-            if (link.getAttribute('href').includes(currentSection)) {
-                link.classList.add('active');
-            }
-        });
-    }
-
-    // Initial call to set the correct nav link on load
-    activateNavLink();
-    // Add scroll event listener
-    window.addEventListener('scroll', activateNavLink);
-});
-
     </script>
     @stack('addon-script')
 

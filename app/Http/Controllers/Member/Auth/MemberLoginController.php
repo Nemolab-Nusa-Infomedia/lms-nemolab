@@ -13,11 +13,14 @@ use App\Models\User;
 class MemberLoginController extends Controller
 {
     public function index() {
+        if (Auth::check()) {
+            return redirect()->route('home');
+        }
         return view('member.auth.login');
     }
 
     public function login(Request $requests) {
-        
+
         $requests->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -47,7 +50,7 @@ class MemberLoginController extends Controller
             return redirect()->back()->withErrors(['email' => 'Email tidak terdaftar.'])->withInput();
         }
     }
-    
+
     public function logout(Request $request)
     {
         Auth::logout();

@@ -104,6 +104,34 @@ body::-webkit-scrollbar {
 .btn:hover {
     background-color: #a56e00;
 }
+/* Ulasan */
+.carousel-item p {
+    font-size: 14px;
+    font-weight: 400;
+}
+.carousel-item .desc-ulasan {
+    height: 70px;
+    overflow: hidden;
+}
+.carousel-indicators .point {
+    width: 15px;
+    height: 15px;
+    background-color: #d9d9d9;
+    border-radius: 50%;
+    opacity: 1;
+}
+.carousel-indicators .active.point {
+    background-color: #ff7700;
+}
+.carousel-indicators [data-bs-target] {
+    opacity: 1;
+}
+.carousel-indicators img:hover,
+.carousel-indicators img:focus,
+.carousel-indicators img:active {
+    opacity: 0.5;
+    transition: 0.2s ease;
+}
 @media (min-width: 992px) {
     .col-custom {
         flex: 0 0 auto;
@@ -111,6 +139,17 @@ body::-webkit-scrollbar {
         flex-wrap: wrap;
     }
 }
+/* @media (min-width: 576px) and (max-width: 992px) {
+    .carousel-item p {
+        font-size: 13px !important;
+    }
+    .carousel-indicators .prev img {
+        left: 10rem !important;
+    }
+    .carousel-indicators .next img {
+        right: 10rem !important;
+    }
+} */
 @media (max-width: 576px) {
     .tools .d-flex {
         display: flex;
@@ -137,4 +176,10 @@ body::-webkit-scrollbar {
         margin-left: 0.7rem;
         /* margin-top: -40px; */
     }
+    /* .carousel-indicators .prev img {
+        left: 0 !important;
+    }
+    .carousel-indicators .next img {
+        right: 0 !important;
+    } */
 }

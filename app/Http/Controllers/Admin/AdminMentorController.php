@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
+
+use App\Models\User;
+use App\Models\Submission;
 
 class AdminMentorController extends Controller
 {
@@ -46,21 +48,28 @@ class AdminMentorController extends Controller
 
     public function edit($id)
     {
-        $mentor = User::findOrFail($id);
+        $mentor = User::where('id', $id)->first();
 
         return view('admin.mentor.edit', compact('mentor'));
     }
 
     public function update(Request $request, $id)
     {
-        $mentor = User::findOrFail($id);
+        $mentor = User::where('id', $id)->first();
 
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $mentor->id,
-            'password' => 'nullable|string|min:6|confirmed',
+            'password' => 'nullable|string|min:6',
             'role' => 'required'
         ]);
+
+        if($request->role == 'students') {
+            $submission = Submission::where('user_id', $id)->first();
+            if(isset($submission)) {
+                $submission->delete();
+            }
+        }
 
         $mentor->update([
             'name' => $request->name,
@@ -76,7 +85,7 @@ class AdminMentorController extends Controller
 
     public function destroy($id)
     {
-        $mentor = User::findOrFail($id);
+        $mentor = User::where('id', $id)->first();
 
         if ($mentor->avatar) {
             $avatarPath = 'public/images/avatars/' . $mentor->avatar;

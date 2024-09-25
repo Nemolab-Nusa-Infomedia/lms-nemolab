@@ -12,6 +12,12 @@ class AdminLoginController extends Controller
 {
     public function index()
     {
+        if (Auth::check()) {
+            if (Auth::user()->role != 'students') {
+                return redirect()->route('admin.course');
+            }
+            return redirect()->route('home');
+        }
         return view('admin.auth.login');
     }
 
@@ -29,11 +35,11 @@ class AdminLoginController extends Controller
 
         // Retrieve user by email
         $user = User::where('email', $request->email)->first();
-        
+
         if ($user) {
             if (Auth::attempt($request->only('email', 'password'))) {
                 $request->session()->regenerate();
-                
+
                 if ($user->role === 'students') {
                     return redirect()->route('home')->with('error', 'You do not have access.');
                 }
@@ -41,10 +47,16 @@ class AdminLoginController extends Controller
                 Alert::success('Success', 'Login successful.');
                 return redirect()->route('admin.course');
             } else {
-                return redirect()->back()->withErrors(['password' => 'Incorrect password.'])->withInput();
+                return redirect()
+                    ->back()
+                    ->withErrors(['password' => 'Incorrect password.'])
+                    ->withInput();
             }
         } else {
-            return redirect()->back()->withErrors(['email' => 'Email not registered.'])->withInput();
+            return redirect()
+                ->back()
+                ->withErrors(['email' => 'Email not registered.'])
+                ->withInput();
         }
     }
 

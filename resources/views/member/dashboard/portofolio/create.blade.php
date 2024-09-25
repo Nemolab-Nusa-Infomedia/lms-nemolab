@@ -10,7 +10,7 @@
     <div class="card w-75 mt-5 mb-5" style="border: none !important;">
         <div class="card-header d-flex justify-content-between bg-transparent pb-0" style="border: none !important;">
             <h2 class="fw-semibold fs-4 mb-4" style="color: #faa907">Tambah Data</h2>
-            <a href="{{ route('member.portofolio') }}" class="btn btn-orange"> Back </a>
+            <a href="{{ route('member.portofolio') }}" class="btn btn-orange"> Kembali </a>
         </div>
         <div class="card-body pt-2">
             <form class="col-12" action="{{ route('member.portofolio.create.store') }}" method="post"
@@ -39,7 +39,7 @@
                 <div class="col-12">
                     <div class="entryarea">
                         <textarea id="description" name="description" placeholder="" style="height: 173px"></textarea>
-                        <div class="labelline-textarea" for="desc">Description</div>
+                        <div class="labelline-textarea" for="desc">Deskripsi</div>
                         @error('description')
                             <span style="color: red">{{ $message }}</span>
                         @enderror

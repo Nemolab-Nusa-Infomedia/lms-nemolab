@@ -13,13 +13,13 @@
     <!-- Content -->
     <main role="main" class="col-md-12 ml-sm-auto col-lg-9 ps-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
-            <h1 class="judul-table">Mentor Data</h1>
+            <h1 class="judul-table">Data Mentor</h1>
         </div>
 
         <div class="table-responsive px-3 py-3">
             <div class="btn-group mr-2 w-100 d-flex justify-content-between align-items-center mb-3">
                 <div class="d-flex align-items-center">
-                    <p class="mb-0 me-2 text-center">Show</p>
+                    <p class="mb-0 me-2 text-center">Menampilkan</p>
                     <form method="GET" action="{{ route('admin.mentor') }}" id="entries-form">
                         <select id="entries" name="entries" class="form-select form-select-sm"
                             onchange="document.getElementById('entries-form').submit()">
@@ -30,7 +30,7 @@
                         </select>
 
                     </form>
-                    <p class="mb-0 me-2 text-center mx-2">entries</p>
+                    <p class="mb-0 me-2 text-center mx-2">entri</p>
                 </div>
                 <a href="{{ route('admin.mentor.create') }}" class="tambah-data pt-2 pb-2 px-4 fw-semibold"
                     style="width: max=content; !important">Tambah</a>
@@ -39,10 +39,10 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Nama</th>
                         <th>Email</th>
                         <th>Password</th>
-                        <th>Actions</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,23 +64,23 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">There is no mentor data yet</td>
+                            <td colspan="4">Belum ada data mentor</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
 
             <div class="d-flex justify-content-between px-1 py-1">
-                <p class="show">Showing {{ $mentors->firstItem() }} to {{ $mentors->lastItem() }} of
+                <p class="show">Menampilkan {{ $mentors->firstItem() }} hingga {{ $mentors->lastItem() }} dari
                     {{ $mentors->total() }}</p>
                 <div class="d-flex">
                     <!-- Custom Pagination -->
                     <button class="pagination mx-1 {{ $mentors->onFirstPage() ? 'disabled' : '' }}" id="prev-button"
                         {{ $mentors->onFirstPage() ? 'disabled' : '' }}
-                        data-url="{{ $mentors->previousPageUrl() }}">Previous</button>
+                        data-url="{{ $mentors->previousPageUrl() }}">Sebelumnya</button>
                     <button class="pagination mx-1 {{ $mentors->hasMorePages() ? '' : 'disabled' }}" id="next-button"
                         {{ $mentors->hasMorePages() ? '' : 'disabled' }}
-                        data-url="{{ $mentors->nextPageUrl() }}">Next</button>
+                        data-url="{{ $mentors->nextPageUrl() }}">berikutnya</button>
                 </div>
             </div>
         </div>

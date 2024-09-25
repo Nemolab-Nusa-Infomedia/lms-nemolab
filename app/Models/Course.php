@@ -29,6 +29,7 @@ class Course extends Model
         'description',
         'resources',
         'link_grub',
+        'rating',
         'mentor_id',
     ];
 
@@ -50,7 +51,7 @@ class Course extends Model
     {
         return $this->hasMany(Transaction::class);
     }
-    
+
     // public function ebook()
     // {
     //     return $this->hasOne(Ebook::class, 'course_id', 'id');

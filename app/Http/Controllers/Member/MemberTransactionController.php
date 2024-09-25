@@ -8,17 +8,13 @@ use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Transaction;
 
-
 class MemberTransactionController extends Controller
 {
     public function index(Request $request)
     {
         $perPage = $request->input('per_page', 10);
 
-        $transactions = Transaction::with('course')
-            ->where('user_id', Auth::id())
-            ->orderBy('created_at', 'desc')
-            ->paginate($perPage);
+        $transactions = Transaction::with('course')->where('user_id', Auth::id())->orderBy('created_at', 'desc')->paginate($perPage);
 
         return view('member.dashboard.transaction.view', compact('transactions'));
     }

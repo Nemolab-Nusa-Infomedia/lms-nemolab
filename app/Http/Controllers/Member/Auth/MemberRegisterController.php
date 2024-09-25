@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 
 class MemberRegisterController extends Controller
 {
     public function index() {
+        if (Auth::check()) {
+            return redirect()->route('home');
+        }
         return view('member.auth.register');
     }
 
@@ -26,7 +30,7 @@ class MemberRegisterController extends Controller
                 'string',
                 'min:8',
                 'regex:/[a-z]/',
-                'regex:/[0-9]/', 
+                'regex:/[0-9]/',
             ],
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg',
         ], [
@@ -43,7 +47,7 @@ class MemberRegisterController extends Controller
         // Cek apakah email sudah ada
         $cekEmail = User::where('email', $requests->email)->first();
         if (!$cekEmail) {
-            
+
             $user = User::create([
                 'name' => $requests->name,
                 'username' => $requests->name,

@@ -16,8 +16,8 @@
                     <h2 class="fw-semibold mb-4" style="color: #faa907">Tambah Data Mentor</h2>
                     <div class="row col-12 mb-3">
                         <div class="entryarea">
-                            <input type="text" id="name" name="name" placeholder="" required />
-                            <div class="labelline" for="name">Name</div>
+                            <input type="text" id="name" name="name" placeholder="" value="{{old('name')}}" />
+                            <div class="labelline" for="name">Nama<span class="required-field"></span></div>
                         </div>
                         @error('name')
                             <span class="text-danger">
@@ -28,8 +28,8 @@
 
                     <div class="row col-12 mb-3">
                         <div class="entryarea">
-                            <input type="email" id="email" name="email" placeholder="" required />
-                            <div class="labelline" for="email">Email</div>
+                            <input type="email" id="email" name="email" placeholder="" value="{{old('email')}}"/>
+                            <div class="labelline" for="email">Email<span class="required-field"></span></div>
                         </div>
                         @error('email')
                             <span class="text-danger">
@@ -40,12 +40,12 @@
 
                     <div class="row col-12 mb-3">
                         <div class="entryarea col-12">
-                            <input type="password" id="password" name="password" placeholder="" required />
-                            <div class="labelline" for="password">Password</div>
+                            <input type="password" id="password" name="password" placeholder="" />
+                            <div class="labelline" for="password">Password<span class="required-field"></span></div>
                         </div>
                         {{-- <div class="entryarea col-6">
                             <input type="password" id="password_confirmation" name="password_confirmation"
-                                placeholder="" required />
+                                placeholder="" />
                             <div class="labelline" for="password_confirmation">Confirm Password</div>
                         </div> --}}
                         @error('password')

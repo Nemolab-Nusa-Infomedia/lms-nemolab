@@ -8,11 +8,11 @@
 
 @section('content')
     <main class="col-md-12 ml-sm-auto col-lg-9 ps-4">
-        <h1 class="judul-table mb-3">Tools</h1>
+        <h1 class="judul-table mb-3">Alat</h1>
         <div class="table-responsive p-3">
             <div class="btn-group mr-2 w-100 d-flex justify-content-between align-items-center mb-3">
                 <div class="d-flex align-items-center ms-3 mt-2">
-                    <p class="mb-0 me-2">Show</p>
+                    <p class="mb-0 me-2">Menampilkan</p>
                     <form method="GET" action="{{ route('admin.tools') }}" id="entries-form">
                         <select id="entries" name="per_page" class="form-select form-select-sm rounded-3"
                             onchange="document.getElementById('entries-form').submit();">
@@ -22,7 +22,7 @@
                             <option value="100" {{ request('per_page') == 100 ? 'selected' : '' }}>100</option>
                         </select>
                     </form>
-                    <p class="mb-0 ms-2">entries</p>
+                    <p class="mb-0 ms-2">entri</p>
                 </div>
                 <a href="{{ route('admin.tools.create') }}" class="tambah-data pt-2 pb-2 px-4 fw-semibold"
                     style="width: max=content; !important">Tambah</a>
@@ -31,17 +31,17 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>Title</th>
+                        <th>Judul</th>
                         <th>Link</th>
-                        <th>Images</th>
-                        <th>Actions</th>
+                        <th>Gambar</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($tools as $item)
                         <tr>
                             <td>{{ $item->name_tools }}</td>
-                            <td><a href="{{ $item->link }}">Show</a></td>
+                            <td><a href="{{ $item->link }}">Menampilkan</a></td>
                             <td>
                                 <img src="{{ asset('storage/images/logoTools/' . $item->logo_tools) }}" alt=""
                                     width="50" height="50" class="rounded-2 object-fit-cover">
@@ -59,21 +59,21 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5">There is no tools data yet</td>
+                            <td colspan="5">Belum ada data alat</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
 
             <div class="d-flex justify-content-between p-1">
-                <p class="show">Showing {{ $tools->count() }} of {{ $tools->total() }}</p>
+                <p class="show">Menampilkan {{ $tools->count() }} dari {{ $tools->total() }}</p>
                 <div class="d-flex gap-3">
                     <button class="pagination mx-1 {{ $tools->onFirstPage() ? 'disabled' : '' }}" id="prev-button"
                         {{ $tools->onFirstPage() ? 'disabled' : '' }}
-                        data-url="{{ $tools->previousPageUrl() }}">Previous</button>
+                        data-url="{{ $tools->previousPageUrl() }}">Sebelumnya</button>
                     <button class="pagination mx-1 {{ $tools->hasMorePages() ? '' : 'disabled' }}" id="next-button"
                         {{ $tools->hasMorePages() ? '' : 'disabled' }}
-                        data-url="{{ $tools->nextPageUrl() }}">Next</button>
+                        data-url="{{ $tools->nextPageUrl() }}">Berikutnya</button>
                 </div>
             </div>
         </div>

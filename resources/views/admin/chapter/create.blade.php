@@ -11,14 +11,14 @@
     <div class="card card-custom-width" style="border: none !important;">
         <div class="card-header d-flex justify-content-between bg-transparent pb-0" style="border: none !important;">
             <h2 class="fw-semibold fs-4 mb-4" style="color: #faa907">Tambah Data</h2>
-            <a href="{{ route('admin.chapter', $slug) }}" class="btn btn-orange"> Back </a>
+            <a href="{{ route('admin.chapter', $slug) }}" class="btn btn-orange"> Kembali </a>
         </div>
         <div class="card-body pt-2">
             <form class="col-12" action="{{ route('admin.chapter.create.store', $id_course) }}" method="post">
                 @csrf
                 <div class="entryarea">
                     <input type="text" id="name" name="name" placeholder="" />
-                    <div class="labelline" for="name">Chapter<span class="required-field"></span></div>
+                    <div class="labelline" for="name">Bab<span class="required-field"></span></div>
                     @error('name')
                         <span style="color: red">{{ $message }}</span>
                     @enderror

@@ -13,13 +13,13 @@
     <!-- Content -->
     <main role="main" class="col-lg-9 col-sm-12 ps-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
-            <h1 class="judul-table">Super Admin Data</h1>
+            <h1 class="judul-table">Data Super Admin</h1>
         </div>
 
         <div class="table-responsive px-3 py-3">
             <div class="btn-group mr-2 w-100 d-flex justify-content-between align-items-center mb-3">
                 <div class="d-flex align-items-center">
-                    <p class="mb-0 me-2 text-center">Show</p>
+                    <p class="mb-0 me-2 text-center">Menampilkan</p>
                     <form method="GET" action="{{ route('admin.superadmin') }}" id="entries-form">
                         <select id="entries" name="entries" class="form-select form-select-sm"
                             onchange="document.getElementById('entries-form').submit()">
@@ -30,7 +30,7 @@
                         </select>
 
                     </form>
-                    <p class="mb-0 me-2 text-center mx-2">entries</p>
+                    <p class="mb-0 me-2 text-center mx-2">entri</p>
                 </div>
                 {{-- <a href="{{ route('admin.superadmin.create') }}" class="tambah-data pt-2 pb-2 px-4 fw-semibold"
                         style="width: max=content; !important">Tambah</a> --}}
@@ -39,7 +39,7 @@
             <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Nama</th>
                         <th>Email</th>
                         <th>Password</th>
                         {{-- <th>Actions</th> --}}
@@ -64,23 +64,23 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4">There is no superadmin data yet</td>
+                            <td colspan="4">Belum ada data superadmin</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
 
             <div class="d-flex justify-content-between px-1 py-1">
-                <p class="show">Showing {{ $superadmins->firstItem() }} to {{ $superadmins->lastItem() }} of
+                <p class="show">Menampilkan {{ $superadmins->firstItem() }} hingga {{ $superadmins->lastItem() }} dari
                     {{ $superadmins->total() }}</p>
                 <div class="d-flex">
                     <!-- Custom Pagination -->
                     <button class="pagination mx-1 {{ $superadmins->onFirstPage() ? 'disabled' : '' }}" id="prev-button"
                         {{ $superadmins->onFirstPage() ? 'disabled' : '' }}
-                        data-url="{{ $superadmins->previousPageUrl() }}">Previous</button>
+                        data-url="{{ $superadmins->previousPageUrl() }}">Sebelumnya</button>
                     <button class="pagination mx-1 {{ $superadmins->hasMorePages() ? '' : 'disabled' }}" id="next-button"
                         {{ $superadmins->hasMorePages() ? '' : 'disabled' }}
-                        data-url="{{ $superadmins->nextPageUrl() }}">Next</button>
+                        data-url="{{ $superadmins->nextPageUrl() }}">Berikutnya</button>
                 </div>
             </div>
         </div>

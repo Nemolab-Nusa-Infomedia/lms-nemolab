@@ -64,7 +64,7 @@ class AdminUserController extends Controller
             'role' => 'required|string|in:students,mentor,superadmin',
         ]);
     
-        $user = User::findOrFail($id);
+        $user = User::where('id', $id)->first();
     
         $avatarName = $user->avatar;
         if ($request->hasFile('avatar')) {
@@ -93,7 +93,7 @@ class AdminUserController extends Controller
     
 
     public function delete($id) {
-        $user = User::findOrFail($id);
+        $user = User::where('id', $id)->first();
     
         if ($user->avatar) {
             $avatarPath = 'public/images/avatars/' . $user->avatar;

@@ -17,6 +17,7 @@ class Transaction extends Model
         'transaction_code',
         'user_id',
         'ebook_id',
+        'snap_token',
         'name',
         'price',
     ];

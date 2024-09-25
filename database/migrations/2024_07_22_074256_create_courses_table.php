@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('tbl_courses', function (Blueprint $table) {
             $table->id();
+            // Foreign key constraint
+            $table->foreignId('mentor_id')->constrained('users')->onDelete('cascade');
             $table->string('category', 255);
             $table->string('name', 255);
             $table->string('slug', 255);
@@ -24,11 +26,10 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->text('resources')->nullable(true);
             $table->text('link_grub')->nullable(false);
+            $table->text('rating')->nullable(true);
             $table->timestamps();
-            
-            // Foreign key constraint
-            $table->foreignId('mentor_id')->constrained('users')->onDelete('cascade');
-            
+
+
         });
     }
 

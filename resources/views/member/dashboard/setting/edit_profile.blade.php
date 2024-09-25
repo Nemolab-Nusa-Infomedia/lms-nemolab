@@ -20,19 +20,19 @@
                         <label for="avatar">Format file jpg, jpeg, png.</label>
                     </div>
                     <div class="input">
-                        <label for="name">Full Name</label><br />
+                        <label for="name">Nama Lengkap</label><br />
                         <input type="text" id="name" name="name" class="inp" value="{{ Auth::user()->name }}" />
                     </div>
                     <div class="input my-3">
-                        <label for="email">Email Address</label><br />
+                        <label for="email">Alamat Email</label><br />
                         <input type="text" id="email" name="email" class="inp" value="{{ Auth::user()->email }}" />
                     </div>
                     <div class="input">
-                        <label for="username">Username</label><br />
+                        <label for="username">Nama Pengguna</label><br />
                         <input type="text" id="username" name="username" class="inp" value="{{ Auth::user()->username }}" />
                     </div>
                     <div class="input mt-4">
-                        <input type="submit" value="Save My Profile" class="inp button text-white fw-semibold rounded-5" />
+                        <input type="submit" value="Simpan Profil" class="inp button text-white fw-semibold rounded-5" />
                     </div>
                 </form>
             </div>

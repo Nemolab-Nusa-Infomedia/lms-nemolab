@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Env;
 
 use App\Models\Category;
 use App\Models\Course;
@@ -39,10 +40,11 @@ class MemberCourseController extends Controller
     public function join($slug)
     {
         $course = Course::where('slug', $slug)->first();
-        $user = auth()->user();
+        // $reviews = Review::where('course_id', $course->id)->get();
 
         if ($course) {
             $chapters = Chapter::with('lessons')->where('course_id', $course->id)->get();
+            $coursetools = Course::with('tools')->findOrFail($course->id);
 
             if ($chapters->isNotEmpty()) {
                 $lesson = Lesson::with('chapters')->where('chapter_id', $chapters->first()->id)->first();
@@ -50,28 +52,21 @@ class MemberCourseController extends Controller
                 $lesson = null;
             }
 
-            $transaction = Transaction::where('user_id', $user->id)
+            if(Auth::user()){
+                $transaction = Transaction::where('user_id', Auth::user()->id)
                 ->where('course_id', $course->id)
-                ->orderBy('created_at', 'desc')
                 ->first();
-
-            $transactionForEbook = null;
-            if ($course->ebook) {
-                $transactionForEbook = Transaction::where('user_id', $user->id)
-                    ->where('ebook_id', $course->ebook->id)
-                    ->orderBy('created_at', 'desc')
-                    ->first();
             }
-        } else {
-            $chapters = collect();
-            $lesson = null;
-            $transaction = null;
+            else {
+                $transaction = null;
+            }
+
             $transactionForEbook = null;
+            return view('member.joincourse', compact('chapters', 'course', 'lesson', 'transaction', 'transactionForEbook', 'coursetools'));
         }
-
-        $coursetools = Course::with('tools')->findOrFail($course->id);
-
-        return view('member.joincourse', compact('chapters', 'course', 'lesson', 'transaction', 'transactionForEbook', 'coursetools'));
+        else {
+            return view('error.page404');
+        }
     }
 
 
@@ -88,10 +83,10 @@ class MemberCourseController extends Controller
 
         if($checkTrx) {
             return view('member.play', compact('play', 'chapters', 'slug', 'course', 'user', 'checkReview'));
-        } 
+        }
         else {
             Alert::error('error', 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!');
             return redirect()->route('member.course.join', $slug);
         }
-    }    
+    }
 }

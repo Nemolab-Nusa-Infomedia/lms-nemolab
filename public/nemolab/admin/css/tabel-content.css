@@ -8,14 +8,14 @@
 body {
     font-family: "Poppins", sans-serif !important;
 }
-.btn-primary {
+/* .btn-primary {
     background-color: var(--c-brand);
     border: none;
 }
 
 .btn-primary:hover {
     background-color: var(--c-brand-dark);
-}
+} */
 
 a {
     text-decoration: none;
