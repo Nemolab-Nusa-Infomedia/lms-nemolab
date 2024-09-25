@@ -15,7 +15,7 @@ class StatusWebsiteCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(env('MAINTENANCE_MODE') === true) {
+        if(env('MAINTENANCE_MODE') === false) {
             return $next($request);
         }
         return redirect()->route('pages.maintenance');
