@@ -3,7 +3,9 @@
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/admin/css/create-update.css') }}">
 @endpush
+
 @section('title', 'Edit eBook')
+
 @section('content')
     <div class="card w-75 mt-5 mb-5" style="border: none !important;">
         <div class="card-header d-flex justify-content-between bg-transparent pb-0" style="border: none !important;">
@@ -17,8 +19,9 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="custom-entryarea">
+                            <label for="course_id">Course (Optional)</label>
                             <select id="course_id" name="course_id">
-                                <option value="">Select Course (Optional)</option>
+                                <option value="">Select Course</option>
                                 @foreach ($courses as $course)
                                     <option value="{{ $course->id }}" {{ old('course_id', $ebook->course_id) == $course->id ? 'selected' : '' }}>
                                         {{ $course->name }}
@@ -30,26 +33,46 @@
                             @enderror
                         </div>
                     </div>
+
+                    <div class="col-6">
+                        <div class="custom-entryarea">
+                            <label for="category">Category</label>
+                            <select id="category" name="category">
+                                @foreach ($category as $cat)
+                                    <option value="{{ $cat->name }}" {{ old('category', $ebook->category) == $cat->name ? 'selected' : '' }}>
+                                        {{ $cat->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('category')
+                                <span style="color: red">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+
                     <div class="col-6">
                         <div class="entryarea">
+                            <label for="name">Title</label>
                             <input type="text" id="name" name="name" placeholder=" " value="{{ old('name', $ebook->name) }}" />
-                            <div class="labelline" for="name">Title</div>
                             @error('name')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
+
                     <div class="col-12">
                         <div class="entryarea">
+                            <label for="description">Description</label>
                             <textarea id="description" name="description" placeholder=" " style="height: 173px">{{ old('description', $ebook->description) }}</textarea>
-                            <div class="labelline-textarea" for="description">Description</div>
                             @error('description')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
+
                     <div class="col-6">
                         <div class="custom-entryarea">
+                            <label for="status">Status</label>
                             <select id="status" name="status">
                                 <option value="draft" {{ old('status', $ebook->status) == 'draft' ? 'selected' : '' }}>Draft</option>
                                 <option value="published" {{ old('status', $ebook->status) == 'published' ? 'selected' : '' }}>Published</option>
@@ -59,8 +82,10 @@
                             @enderror
                         </div>
                     </div>
+
                     <div class="col-6">
                         <div class="custom-entryarea">
+                            <label for="type">Type</label>
                             <select id="type" name="type" onchange="handleTypeChange()">
                                 <option value="free" {{ old('type', $ebook->type) == 'free' ? 'selected' : '' }}>Free</option>
                                 <option value="premium" {{ old('type', $ebook->type) == 'premium' ? 'selected' : '' }}>Premium</option>
@@ -70,24 +95,27 @@
                             @enderror
                         </div>
                     </div>
+
                     <div class="col-6">
                         <div class="entryarea">
+                            <label for="price">Price</label>
                             <input type="number" id="price" name="price" placeholder=" " value="{{ old('price', $ebook->price) }}" />
-                            <div class="labelline" for="price">Price</div>
                             @error('price')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
+
                     <div class="col-6">
                         <div class="entryarea">
-                            <label for="ebook">Perbarui eBook (PDF)</label>
+                            <label for="ebook">Update eBook (PDF)</label>
                             <input type="file" id="ebook" name="ebook" accept="application/pdf" />
                             @error('ebook')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
+
                     <div class="col-12">
                         <button type="submit"
                             class="d-block w-100 text-center text-decoration-none py-2 rounded-3 text-white fw-semibold btn-kirim"

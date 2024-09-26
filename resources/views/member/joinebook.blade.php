@@ -19,9 +19,13 @@
             <div class="col-12 col-md-6 col-lg-9 ps-md-4 mt-4 mt-lg-0">
               <div>
                 <h3 class="fw-semibold">{{ $ebook->name }}</h3>
-                <p class="fw-light mt-4" style="font-size: 15px">Adventure</p>
+                <p class="fw-light mt-4" style="font-size: 15px">{{ $ebook->category }}</p>
                 <hr />
+                @if ($ebook->type == 'premium')
                 <p class="m-0 fw-semibold text-warning">{{ $ebook->type }}</p>
+                @else
+                <p class="m-0 fw-semibold text-success">{{ $ebook->type }}</p>
+                @endif
                 <hr />
                 <div class="d-flex flex-md-row flex-column" style="font-size: 15px">
                     <div class="d-flex align-items-center">
@@ -52,56 +56,15 @@
             </p>
             </div>
         </div>
-
-        <!-- Tools -->
-        {{-- <div class="row">
-            <div class="col-12">
-            <h4 class="fw-semibold mb-4">Tools</h4>
-            </div>
-            <div class="col-lg-3 col-md-6 my-2 my-sm-2">
-            <div class="tools p-4 border border-2 rounded-4 shadow-sm">
-                <div class="d-flex align-items-center d-md-block">
-                <div class="col-6 text-center text-md-start">
-                    <img src="img/xd.png" alt="" width="70" />
-                </div>
-                <div class="col-6 col-md-12">
-                    <p class="fw-semibold mt-0 mt-md-4">
-                    Adobe XD <br />
-                    Software Gratis
-                    </p>
-                    <button class="btn rounded-5 mt-md-4 px-3 py-2 text-white fw-semibold btn-text">Download Now</button>
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 my-2 my-sm-2">
-            <div class="tools p-4 border border-2 rounded-4 shadow-sm">
-                <div class="d-flex align-items-center d-md-block">
-                <div class="col-6 text-center text-md-start">
-                    <img src="img/adobe.png" alt="" width="70" />
-                </div>
-                <div class="col-6 col-md-12">
-                    <p class="fw-semibold mt-0 mt-md-4">
-                    Adobe Premier <br />
-                    Software Gratis
-                    </p>
-                    <button class="btn rounded-5 mt-md-4 px-3 py-2 text-white fw-semibold btn-text">Download Now</button>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div> --}}
-
         <!-- Payment -->
-        {{-- <div class="row">
+        <div class="row">
             <div class="col-12">
                 <h4 class="fw-semibold">Payment</h4>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="border border-2 rounded-4 p-4 mt-4 shadow-sm">
                     <img src="{{ asset('nemolab/member/img/payment-img.png') }}" alt="" width="70" />
-                    <p class="mt-4 fw-light mb-1" style="font-size: 15px">Video</p>
+                    <p class="mt-4 fw-light mb-1" style="font-size: 15px">Buku</p>
                     <h5 class="fw-semibold">Rp 300,000</h5>
                     <p>Raih Akses Premium Seumur Hidup dan Bangun Proyek Nyata Anda Sendiri</p>
                     <hr class="mb-4 border-2" />
@@ -130,7 +93,7 @@
                     <button class="btn mx-auto d-flex px-5 py-2 mt-3 text-white fw-semibold rounded-3">Beli Kelas</button>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
         <!-- Ulasan -->
         <div class="row my-5">

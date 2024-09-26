@@ -5,10 +5,8 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Set workerSrc ke path yang benar
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js';
 
-// Ambil nama PDF dari atribut data
 const ebookElement = document.getElementById('ebook');
 const pdfFilename = ebookElement.getAttribute('data-pdf');
 const url = `/storage/pdfs/${encodeURIComponent(pdfFilename)}`;
@@ -17,77 +15,96 @@ const ctx = canvas.getContext('2d');
 
 let pdfDoc = null;
 let pageNum = 1;
-let scale = 1.6;
-const minScale = 1; 
+let scale = window.innerWidth < 768 ? 0.7 : 1.6;
+const minScale = 0.5;
 const maxScale = 2.5;
 let totalPages = 0;
-
 let isRendering = false;
+
 const renderPage = (num) => {
     if (isRendering) return;
     isRendering = true;
+
     pdfDoc.getPage(num).then((page) => {
         const viewport = page.getViewport({ scale });
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-        return page.render({ canvasContext: ctx, viewport }).promise;
+        
+        // Mengatur resolusi kanvas berdasarkan devicePixelRatio
+        const outputScale = window.devicePixelRatio || 1;
+        // Mengatur dimensi kanvas sesuai viewport dan outputScale
+        canvas.width = Math.floor(viewport.width * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);
+        
+        canvas.style.width = `${viewport.width}px`;
+        canvas.style.height = `${viewport.height}px`;
+
+        const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
+
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport,
+            transform: transform,  // Transformasi untuk menyesuaikan resolusi
+        };
+        // Menggunakan requestAnimationFrame untuk mencegah flickering/blinking
+        return new Promise((resolve) => {
+            requestAnimationFrame(() => {
+                page.render(renderContext).promise.then(() => {
+                    resolve();
+                });
+            });
+        });
     }).then(() => {
         document.getElementById('page-input').value = num;
         document.getElementById('page-count').textContent = totalPages;
     }).catch(error => {
         console.error('Error rendering page:', error);
-        alert('Gagal memuat halaman. Silakan coba lagi.');
+        alert('Failed to load the page.');
     }).finally(() => {
         isRendering = false;
     });
 };
 
+
+
+// Mengambil dokumen PDF
 pdfjsLib.getDocument(url).promise.then(pdf => {
     pdfDoc = pdf;
     totalPages = pdf.numPages;
     renderPage(pageNum);
 }).catch(error => {
     console.error('Error loading PDF:', error);
-    alert('Gagal memuat PDF. Silakan coba lagi.');
+    alert('Failed to load PDF.');
 });
 
-// Event Listeners
+// Fungsi untuk memperbarui zoom
+const updateZoom = (factor) => {
+    if (factor === 0) {
+        let scale = window.innerWidth < 768 ? 0.7 : 1.6;
+    } else {
+        scale = Math.max(minScale, Math.min(maxScale, scale + factor));
+    }
+    renderPage(pageNum); // Render ulang halaman
+};
+
+// Event listeners untuk navigasi dan zoom
 document.getElementById('prev-page').addEventListener('click', () => {
     if (pageNum > 1) {
         pageNum--;
         renderPage(pageNum);
     }
 });
+
 document.getElementById('next-page').addEventListener('click', () => {
     if (pageNum < totalPages) {
         pageNum++;
         renderPage(pageNum);
     }
 });
-document.getElementById('zoom-in').addEventListener('click', () => {
-    if (scale < maxScale) {
-        scale += 0.1;
-        renderPage(pageNum);
-    }
-});
-document.getElementById('zoom-out').addEventListener('click', () => {
-    if (scale > minScale) {
-        scale -= 0.1;
-        renderPage(pageNum);
-    }
-});
-document.getElementById('reset-zoom').addEventListener('click', () => {
-    scale = 1.6;
-    renderPage(pageNum);
-});
-document.getElementById('pdf-fullscreen').addEventListener('click', () => {
-    const elem = document.getElementById('ebook');
-    if (!document.fullscreenElement) {
-        elem.requestFullscreen().catch(err => console.error(`Error attempting to enable full-screen mode: ${err.message}`));
-    } else {
-        document.exitFullscreen();
-    }
-});
+
+document.getElementById('zoom-in').addEventListener('click', () => updateZoom(0.1));
+document.getElementById('zoom-out').addEventListener('click', () => updateZoom(-0.1));
+document.getElementById('reset-zoom').addEventListener('click', () => updateZoom(0));
+
+// Event untuk input nomor halaman
 document.getElementById('page-input').addEventListener('change', (e) => {
     const pageNumber = parseInt(e.target.value);
     if (pageNumber >= 1 && pageNumber <= totalPages) {
@@ -96,43 +113,45 @@ document.getElementById('page-input').addEventListener('change', (e) => {
     }
 });
 
-// Zoom with scroll + Ctrl (Desktop)
-canvas.addEventListener('wheel', (e) => {
-    if (e.ctrlKey) {
-        e.preventDefault();
-        scale += e.deltaY < 0 ? 0.1 : -0.1;
-        scale = Math.max(minScale, Math.min(maxScale, scale));
-        
-        renderPage(pageNum);
+// Fungsi untuk fullscreen mode
+document.getElementById('pdf-fullscreen').addEventListener('click', () => {
+    const elem = document.getElementById('ebook');
+    if (!document.fullscreenElement) {
+        elem.requestFullscreen().catch(err => console.error(`Fullscreen mode error: ${err.message}`));
+    } else {
+        document.exitFullscreen();
     }
 });
 
+// // Pinch-to-zoom untuk perangkat mobile
+// let initialDistance = null;
 
-// Zoom with pinch (Mobile)
-let initialDistance = null;
+// const handleTouchStart = (e) => {
+//     if (e.touches.length === 2) {
+//         initialDistance = Math.hypot(
+//             e.touches[0].pageX - e.touches[1].pageX,
+//             e.touches[0].pageY - e.touches[1].pageY
+//         );
+//     }
+// };
 
-canvas.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 2) {
-        initialDistance = Math.hypot(
-            e.touches[0].pageX - e.touches[1].pageX,
-            e.touches[0].pageY - e.touches[1].pageY
-        );
-    }
-});
+// const handleTouchMove = (e) => {
+//     if (e.touches.length === 2 && initialDistance) {
+//         const newDistance = Math.hypot(
+//             e.touches[0].pageX - e.touches[1].pageX,
+//             e.touches[0].pageY - e.touches[1].pageY
+//         );
+//         const zoomFactor = newDistance > initialDistance ? 0.05 : -0.05; // Lebih smooth
+//         updateZoom(zoomFactor);
+//         initialDistance = newDistance;
+//     }
+// };
 
-canvas.addEventListener('touchmove', (e) => {
-    if (e.touches.length === 2 && initialDistance) {
-        const newDistance = Math.hypot(
-            e.touches[0].pageX - e.touches[1].pageX,
-            e.touches[0].pageY - e.touches[1].pageY
-        );
-        scale += newDistance > initialDistance ? 0.1 : -0.1;
-        scale = Math.max(0.5, scale);
-        renderPage(pageNum);
-        initialDistance = newDistance;
-    }
-});
+// const handleTouchEnd = () => {
+//     initialDistance = null;
+// };
 
-canvas.addEventListener('touchend', () => {
-    initialDistance = null;
-});
+// // Menambahkan event listeners untuk pinch-to-zoom pada canvas
+// canvas.addEventListener('touchstart', handleTouchStart);
+// canvas.addEventListener('touchmove', handleTouchMove);
+// canvas.addEventListener('touchend', handleTouchEnd);

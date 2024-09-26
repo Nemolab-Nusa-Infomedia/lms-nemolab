@@ -30,6 +30,20 @@
                         </div>
                     </div>
                     <div class="col-6">
+                        <div class="custom-entryarea">
+                            <select id="category" name="category">
+                                @forelse ($category as $item)
+                                    <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                @empty
+                                    <option value="">Tidak Ada Kategori</option>
+                                @endforelse
+                            </select>
+                            @error('category')
+                                <span style="color: red">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-6">
                         <div class="entryarea">
                             <input type="text" id="name" name="name" placeholder="" />
                             <div class="labelline" for="name">Title</div>
@@ -38,6 +52,15 @@
                             @enderror
                         </div>
                     </div>
+                    {{-- <div class="col-6">
+                        <div class="entryarea">
+                            <label for="ebook">Upload Cover</label>
+                            <input type="file" id="imageUpload" name="cover" accept="image/*" class="" />
+                            @error('cover')
+                                <span style="color: red">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div> --}}
                     <div class="col-12">
                         <div class="entryarea">
                             <textarea id="description" name="description" placeholder="" style="height: 173px"></textarea>
@@ -77,13 +100,6 @@
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
-                        {{-- <div class="entryarea">
-                            <p class="m-0">Cover</p>
-                            <input type="file" id="imageUpload" name="cover" accept="image/*" class="" />
-                            @error('cover')
-                                <span style="color: red">{{ $message }}</span>
-                            @enderror
-                        </div> --}}
                     </div>
                     <div class="col-6">
                         <div class="entryarea">

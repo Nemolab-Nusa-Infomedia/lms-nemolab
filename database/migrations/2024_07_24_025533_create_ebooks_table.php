@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id')->nullable(true);
             $table->string('name', 255)->nullable('false');
             $table->enum('type', ['free', 'premium']);
-            // $table->string('category', 255);
+            $table->string('category', 255);
             $table->enum('status', ['draft', 'published']);
             $table->integer('price')->nullable();
             $table->text('description', 255); 

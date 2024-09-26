@@ -7,6 +7,7 @@ use App\Models\Ebook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Category;
 
 class AdminEbookController extends Controller
 {
@@ -23,13 +24,15 @@ class AdminEbookController extends Controller
     }
     public function create()
     {
+        $category = Category::all();
         $courses = auth()->user()->courses;
-        return view('admin.coursesebook.create', compact('courses'));
+        return view('admin.coursesebook.create', compact('courses','category'));
     }
     // Method untuk menyimpan eBook baru
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'category' => 'required|string|max:255',
             'course_id' => 'nullable|exists:tbl_courses,id',
             'name' => 'required|string|max:255',
             'type' => 'required|in:free,premium',
@@ -55,13 +58,15 @@ class AdminEbookController extends Controller
     }
     public function edit(Ebook $ebook)
     {
+        $category = Category::all();
         $courses = auth()->user()->courses;
-        return view('admin.coursesebook.update', compact('ebook', 'courses'));
+        return view('admin.coursesebook.update', compact('ebook', 'courses','category'));
     }
     // Method untuk memperbarui eBook
     public function update(Request $request, Ebook $ebook)
     {
         $validatedData = $request->validate([
+            'category' => 'required|string|max:255',
             'course_id' => 'nullable|exists:tbl_courses,id',
             'name' => 'required|string|max:255',
             'type' => 'required|in:free,premium',

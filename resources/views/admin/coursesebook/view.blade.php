@@ -45,6 +45,7 @@
                             <th>Judul</th>
                             <th>Kursus</th>
                             <th>Deskripsi</th>
+                            <th>Kategori</th>
                             <th>Tipe</th>
                             <th>Status</th>
                             <th>Harga</th>
@@ -58,10 +59,11 @@
                             <td>{{ $ebook->name }}</td>
                             <td>{{ $ebook->course ? $ebook->course->name : 'Course Not Selected' }}</td>
                             <td>{{ $ebook->description }}</td>
+                            <td>{{ $ebook->category }}</td>
                             <td>{{ $ebook->type }}</td>
                             <td>{{ $ebook->status }}</td>
                             <td>{{ $ebook->price }}</td>
-                            <td><a href="">lihat</a></td>
+                            <td><a href="{{ route('member.ebook.read', $ebook->slug) }}">lihat</a></td>
                             <td>
                                 <a href="{{ route('admin.ebook.edit', $ebook->id) }}" class="me-2">
                                     <img src="{{ asset('nemolab/admin/img/edit.png') }}" alt="Edit" width="30" height="30">

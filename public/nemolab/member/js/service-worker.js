@@ -1,9 +1,4 @@
-
-//BUAT CACHE FILE STATIS
-
 const CACHE_NAME = 'ebook-cache-v1';
-// const MAX_CACHE_FILES = 50;
-// berisi file statis yang bisa dicache
 const STATIC_FILES_TO_CACHE = [
     '/nemolab/member/css/ebook.css',
     '/nemolab/member/js/ebook.js',
@@ -17,12 +12,9 @@ const STATIC_FILES_TO_CACHE = [
 
 // Install event
 self.addEventListener('install', (event) => {
-    // console.log('[Service Worker] Install event');
     event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => {
-            // console.log('[Service Worker] Caching static files');
-            return cache.addAll(STATIC_FILES_TO_CACHE);
-        }).catch((error) => {
+        caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_FILES_TO_CACHE))
+        .catch((error) => {
             console.error('[Service Worker] Failed to cache static files:', error);
         })
     );
@@ -31,20 +23,16 @@ self.addEventListener('install', (event) => {
 
 // Activate event
 self.addEventListener('activate', (event) => {
-    // console.log('[Service Worker] Activate event');
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
         caches.keys().then((cacheNames) => {
             return Promise.all(
                 cacheNames.map((cacheName) => {
                     if (!cacheWhitelist.includes(cacheName)) {
-                        // console.log('[Service Worker] Deleting old cache:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
             );
-        }).then(() => {
-            // console.log('[Service Worker] Activation complete');
         })
     );
     self.clients.claim();
@@ -52,35 +40,21 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event
 self.addEventListener('fetch', (event) => {
-    const requestUrl = new URL(event.request.url);
-
-    if (requestUrl.pathname.startsWith('/storage/pdfs/')) {
-        event.respondWith(
-            caches.open(CACHE_NAME).then((cache) => {
-                return cache.match(event.request).then((cachedResponse) => {
-                    if (cachedResponse) {
-                        return cachedResponse;
-                    }
-                    return fetch(event.request).then((networkResponse) => {
-                        if (networkResponse && networkResponse.status === 200) {
-                            cache.put(event.request, networkResponse.clone());
-                        }
+    event.respondWith(
+        caches.match(event.request).then((cachedResponse) => {
+            if (cachedResponse) {
+                return cachedResponse;
+            }
+            return fetch(event.request).then((networkResponse) => {
+                // Only cache static files, don't cache PDFs
+                if (STATIC_FILES_TO_CACHE.some(file => event.request.url.includes(file))) {
+                    return caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, networkResponse.clone());
                         return networkResponse;
                     });
-                });
-            }).catch((error) => {
-                console.error('[Service Worker] Fetch failed for PDF:', error);
-                return new Response('PDF tidak dapat dimuat.', {
-                    status: 500,
-                    statusText: 'Internal Server Error',
-                });
-            })
-        );
-    } else {
-        event.respondWith(
-            caches.match(event.request).then((cachedResponse) => {
-                return cachedResponse || fetch(event.request);
-            })
-        );
-    }
+                }
+                return networkResponse;
+            });
+        }).catch(() => new Response('Failed to load.'))
+    );
 });

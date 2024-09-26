@@ -9,7 +9,7 @@
 
 @section('content')
     <!-- Header -->
-    <div class="container mb-4" style="margin-top: 7rem">
+    <div class="container mb-4" style="margin-top: 5rem">
         <div class="row">
             <div class="col-12 text-center justify-content-center">
                 <h4 class="fw-semibold">{{ $ebook->name }}</h4>
@@ -35,7 +35,7 @@
     <!-- Content -->
     <div class="container" id="ebook" data-pdf="{{ $ebook->ebook }}">
         <div class="row">
-            <div class="col-12 rounded-3 position-relative p-0 overflow-hidden shadow">
+            <div class="col-12 rounded-3 position-relative p-0 overflow-hidden">
                 <!-- Ebook Tools -->
                 <div class="tools p-4 px-5 w-100 d-flex justify-content-between align-items-center"
                     style="background-color: #faa907">
@@ -53,8 +53,8 @@
                                 alt="" width="20">
                             <input type="number" id="page-input" min="1"
                                 style="width: 30px; border: none; background: none; color: white; text-align: center;" />
-                            <span>/</span>
-                            <span id="page-count" style="margin-left:20px;"></span>
+                            <span class="ms-2 m-sm-0">/</span>
+                            <span id="page-count" class="ms-3"></span>
                             <img class="ms-2" src="{{ asset('nemolab/member/img/chevron-right-white.png') }}"
                                 id="next-page" alt="" width="20">
                         </span>

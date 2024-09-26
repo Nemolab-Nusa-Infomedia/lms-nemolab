@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 @media print {
-    html, body {
-       display: none;  /* hide whole page */
+    html,
+    body {
+        display: none; /* hide whole page */
     }
 }
-
 
 * {
     margin: 0;
@@ -16,110 +16,107 @@ body {
     font-family: "Poppins", sans-serif;
     line-height: 1.7;
 }
+#pdf-render {
+    transition: transform 0.2s ease; /* Menambahkan transisi zoom */
+}
 
 body::-webkit-scrollbar {
     display: none;
 }
-.search {
-    display: flex;
-    background-color: rgba(255, 255, 255, 0.3);
-    padding: 6px 0;
-    width: 140px;
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-}
-.search input {
-    border: none;
-    outline: none;
-    display: block;
-    padding-left: 10px;
-    width: 100%;
-    background-color: transparent;
-    color: white;
-}
-.zoom img{
+.zoom img {
     cursor: pointer;
 }
-.page-info img{
+.page-info img {
     cursor: pointer;
 }
-.pdf-height{
-    height: 850px;
+.pdf-height {
+    height: 850px !important;
     background-color: #333;
     overflow-y: scroll;
 }
-.pdf-preview{
+.pdf-preview {
     overflow-y: hidden;
 }
-.pdf-preview::-webkit-scrollbar{
+.pdf-preview::-webkit-scrollbar {
     display: none;
 }
 
-#ebook{
-    width: 950px;
-}
-
-#pdf-fullscreen{
+#pdf-fullscreen {
     cursor: pointer;
 }
 
-#zoom-in, #zoom-out{
+#zoom-in,
+#zoom-out {
     cursor: pointer;
 }
-
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type="number"]:focus {
     outline: 2px solid #ffffff;
     border-radius: 3px;
-  }
+}
 
-#ebook .col-12{
-    height: 900px !important;
+#ebook .col-12 {
+    height: max-content !important;
 }
 
 @media only screen and (max-width: 576px) {
-    #ebook{
+    #ebook {
         width: 100%;
     }
 
-    #ebook .col-12{
+    #ebook .col-12 {
         border-radius: 0px !important;
-        height: 850px !important;
+        height: max-content !important;
     }
 
-
-    .pdf-preview{
+    .pdf-preview {
         height: max-content;
     }
 
-    .pdf-render{
+    /* .pdf-render {
         margin-left: 0px !important;
         width: 120%;
-    }
+    } */
 
-
-    .tools{
+    .tools {
         padding: 10px 25px !important;
     }
 
-
-    .zoom{
-        flex-direction: column;
+    .page-info span,
+    .page-info img,
+    .page-info input {
+        width: 15px !important;
+        height: 15px !important;
+        font-size: 12px !important;
     }
 
-    .zoom img{
+    .zoom {
+        align-items: center;
+        padding-bottom: 0.5rem !important;
+        gap: 0.5rem !important;
+        flex-direction: row;
+    }
+
+    .zoom img {
+        border: 2px solid black;
+        width: 25px;
+        height: 25px;
         margin-left: 0px !important;
         margin-top: 10px;
     }
-
-    canvas {
-        transform: scale(0.9); /* Scale down the canvas */
-        transform-origin: 0 0; /* Ensure scaling is from the top-left */
+    #pdf-fullscreen {
+        width: 25px;
     }
-
+    canvas {
+        transition: transform 0.2s ease;
+    }
+    .pdf-height {
+        height: max-content !important;
+    }
 }

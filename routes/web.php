@@ -47,8 +47,8 @@ use App\Http\Controllers\Member\MemberWebhookTransactionsController;
 
 
 // tes
-Route::get('/ebook/{slug}', [MemberEbookController::class, 'index'])->name('member.ebook.index');
-Route::get('/ebook/read/{slug}', [MemberEbookController::class, 'read'])->name('member.ebook.read');
+Route::get('/katalog/{slug}', [MemberEbookController::class, 'index'])->name('member.ebook.index');
+Route::get('/katalog/baca/{slug}', [MemberEbookController::class, 'read'])->name('member.ebook.read');
 
 
 Route::get('/', [LandingpageController::class, 'index'])->name('home');
