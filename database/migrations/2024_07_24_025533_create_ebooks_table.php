@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->unsignedBigInteger('course_id')->nullable(true);
+            $table->text('cover')->nullable();
             $table->string('name', 255)->nullable('false');
             $table->enum('type', ['free', 'premium']);
             $table->string('category', 255);

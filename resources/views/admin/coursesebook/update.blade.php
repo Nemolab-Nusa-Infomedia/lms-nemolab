@@ -59,7 +59,15 @@
                             @enderror
                         </div>
                     </div>
-
+                    <div class="col-6">
+                        <div class="entryarea">
+                            <label for="ebook">Perbarui Sampul</label>
+                            <input type="file" id="imageUpload" name="cover" accept="image/*" class="" />
+                            @error('cover')
+                                <span style="color: red">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
                     <div class="col-12">
                         <div class="entryarea">
                             <label for="description">Description</label>

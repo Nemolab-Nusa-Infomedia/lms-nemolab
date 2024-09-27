@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-12 col-md-6 col-lg-3 p-lg-0 pe-lg-2">
               <div>
-                <img src="{{ asset('nemolab/member/img/cover_image_6.jpg') }}" alt="" width="100%" class="cover rounded-4 shadow-sm" style="height: 27rem; object-fit: cover" />
+                <img src="{{ asset('storage/images/covers/ebook/' . $ebook->cover) }}" alt="" width="100%" class="cover rounded-4 shadow-sm" style="height: 27rem; object-fit: cover" />
               </div>
             </div>
             <div class="col-12 col-md-6 col-lg-9 ps-md-4 mt-4 mt-lg-0">
@@ -41,7 +41,11 @@
                     <img src="{{ asset('nemolab/member/img/star.png') }}" alt="" width="19" height="19" />
                     </div>
                 </div>
+                @if ($ebook->type == 'premium')
                 <a href="{{ route('member.ebook.read', ['slug' => $ebook->slug]) }}"><button class="btn px-5 py-2 mt-5 text-white fw-semibold rounded-3 text-decoration-none">Beli Buku</button></a>
+                @else
+                <a href="{{ route('member.ebook.read', ['slug' => $ebook->slug]) }}"><button class="btn px-5 py-2 mt-5 text-white fw-semibold rounded-3 text-decoration-none">Dapatkan Buku</button></a>
+                @endif
                 <!-- <button class="btn proses px-5 py-2 mt-5 text-white fw-semibold rounded-3">Pembayaran sedang diproses</button> -->
               </div>
             </div>

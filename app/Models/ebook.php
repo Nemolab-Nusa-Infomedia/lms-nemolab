@@ -14,6 +14,7 @@ class Ebook extends Model
 
     protected $fillable = [
         'course_id',
+        'cover',
         'name',
         'type',
         'status',

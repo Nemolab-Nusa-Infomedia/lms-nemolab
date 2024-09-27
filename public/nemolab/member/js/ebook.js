@@ -15,8 +15,8 @@ const ctx = canvas.getContext('2d');
 
 let pdfDoc = null;
 let pageNum = 1;
-let scale = window.innerWidth < 768 ? 0.7 : 1.6;
-const minScale = 0.5;
+let scale = window.innerWidth < 768 ? 0.8 : 1.6;
+const minScale = 0.8;
 const maxScale = 2.5;
 let totalPages = 0;
 let isRendering = false;
@@ -78,13 +78,14 @@ pdfjsLib.getDocument(url).promise.then(pdf => {
 // Fungsi untuk memperbarui zoom
 const updateZoom = (factor) => {
     if (factor === 0) {
-        let scale = window.innerWidth < 768 ? 0.7 : 1.6;
+      
+        scale = window.innerWidth < 768 ? 0.8 : 1.6;
     } else {
+        
         scale = Math.max(minScale, Math.min(maxScale, scale + factor));
     }
-    renderPage(pageNum); // Render ulang halaman
+    renderPage(pageNum);
 };
-
 // Event listeners untuk navigasi dan zoom
 document.getElementById('prev-page').addEventListener('click', () => {
     if (pageNum > 1) {
@@ -123,35 +124,35 @@ document.getElementById('pdf-fullscreen').addEventListener('click', () => {
     }
 });
 
-// // Pinch-to-zoom untuk perangkat mobile
-// let initialDistance = null;
+// Pinch-to-zoom untuk perangkat mobile
+let initialDistance = null;
 
-// const handleTouchStart = (e) => {
-//     if (e.touches.length === 2) {
-//         initialDistance = Math.hypot(
-//             e.touches[0].pageX - e.touches[1].pageX,
-//             e.touches[0].pageY - e.touches[1].pageY
-//         );
-//     }
-// };
+const handleTouchStart = (e) => {
+    if (e.touches.length === 2) {
+        initialDistance = Math.hypot(
+            e.touches[0].pageX - e.touches[1].pageX,
+            e.touches[0].pageY - e.touches[1].pageY
+        );
+    }
+};
 
-// const handleTouchMove = (e) => {
-//     if (e.touches.length === 2 && initialDistance) {
-//         const newDistance = Math.hypot(
-//             e.touches[0].pageX - e.touches[1].pageX,
-//             e.touches[0].pageY - e.touches[1].pageY
-//         );
-//         const zoomFactor = newDistance > initialDistance ? 0.05 : -0.05; // Lebih smooth
-//         updateZoom(zoomFactor);
-//         initialDistance = newDistance;
-//     }
-// };
+const handleTouchMove = (e) => {
+    if (e.touches.length === 2 && initialDistance) {
+        const newDistance = Math.hypot(
+            e.touches[0].pageX - e.touches[1].pageX,
+            e.touches[0].pageY - e.touches[1].pageY
+        );
+        const zoomFactor = newDistance > initialDistance ? 0.05 : -0.05;
+        updateZoom(zoomFactor);
+        initialDistance = newDistance;
+    }
+};
 
-// const handleTouchEnd = () => {
-//     initialDistance = null;
-// };
+const handleTouchEnd = () => {
+    initialDistance = null;
+};
 
-// // Menambahkan event listeners untuk pinch-to-zoom pada canvas
-// canvas.addEventListener('touchstart', handleTouchStart);
-// canvas.addEventListener('touchmove', handleTouchMove);
-// canvas.addEventListener('touchend', handleTouchEnd);
+// Menambahkan event listeners untuk pinch-to-zoom pada canvas
+canvas.addEventListener('touchstart', handleTouchStart);
+canvas.addEventListener('touchmove', handleTouchMove);
+canvas.addEventListener('touchend', handleTouchEnd);

@@ -42,28 +42,33 @@
                 <table class="table table-sm">
                     <thead>
                         <tr>
+                            <th>Sampul</th>
                             <th>Judul</th>
-                            <th>Kursus</th>
-                            <th>Deskripsi</th>
+                            <th>Bundle</th>
+                            {{-- <th>Deskripsi</th> --}}
                             <th>Kategori</th>
-                            <th>Tipe</th>
+                            {{-- <th>Tipe</th> --}}
                             <th>Status</th>
                             <th>Harga</th>
-                            <th>Tampilan</th>
+                            <th>Buku</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($ebooks as $ebook)
                         <tr>
+                            <td>
+                                <img src="{{ asset('storage/images/covers/ebook/' . $ebook->cover) }}" alt=""
+                                    width="80" height="100" class="object-fit-cover rounded-3">
+                            </td>
                             <td>{{ $ebook->name }}</td>
-                            <td>{{ $ebook->course ? $ebook->course->name : 'Course Not Selected' }}</td>
-                            <td>{{ $ebook->description }}</td>
+                            <td>{{ $ebook->course ? $ebook->course->name : 'Tidak Ada' }}</td>
+                            {{-- <td>{{ $ebook->description }}</td> --}}
                             <td>{{ $ebook->category }}</td>
-                            <td>{{ $ebook->type }}</td>
+                            {{-- <td>{{ $ebook->type }}</td> --}}
                             <td>{{ $ebook->status }}</td>
-                            <td>{{ $ebook->price }}</td>
-                            <td><a href="{{ route('member.ebook.read', $ebook->slug) }}">lihat</a></td>
+                            <td>{{ $ebook->price == 0 ? 'gratis' : $ebook->price }}</td>
+                            <td><a href="{{ route('member.ebook.index', $ebook->slug) }}">lihat</a></td>
                             <td>
                                 <a href="{{ route('admin.ebook.edit', $ebook->id) }}" class="me-2">
                                     <img src="{{ asset('nemolab/admin/img/edit.png') }}" alt="Edit" width="30" height="30">
@@ -81,7 +86,7 @@
                     </tbody>  
                 </table>
                 <div class="d-flex justify-content-between p-1">
-                    <p class="show">Menampilkan {{ $ebooks->count() }} of {{ $ebooks->total() }}</p>
+                    <p class="show">Menampilkan {{ $ebooks->count() }} dari {{ $ebooks->total() }} Buku</p>
                 </div>
             </div>
         </div>
