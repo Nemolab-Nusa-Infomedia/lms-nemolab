@@ -7,6 +7,7 @@ use App\Models\Ebook;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Course;
 
 class MemberEbookController extends Controller
 {
@@ -14,7 +15,11 @@ class MemberEbookController extends Controller
     {
         // Cari ebook berdasarkan slug
         $ebook = Ebook::where('slug', $slug)->firstOrFail();
-        return view('member.joinebook', compact('ebook'));
+        $course = Course::where('id', $ebook->course_id)->first();
+        $coursePrice = $course ? $course->price : 'N/A';
+
+    return view('member.joinebook', compact('ebook', 'coursePrice'));
+        return view('member.joinebook', compact('ebook','coursePrice'));
     }
 
     public function read($slug)
