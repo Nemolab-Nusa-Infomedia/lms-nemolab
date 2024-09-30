@@ -21,6 +21,7 @@
                             <label for="ebook">Buat Bundling</label>
                             <select id="course_id" name="course_id">
                             @forelse ($courses as $course)
+                                <option value="">Tidak Ada Kursus Dipilih</option>
                                 <option value="{{ $course->id }}">{{ $course->name }}</option>
                             @empty
                                 <option value="">Tidak Ada Kursus Dipilih</option>

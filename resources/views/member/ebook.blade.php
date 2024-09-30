@@ -69,6 +69,7 @@
                 <!-- PDF -->
                 <div class="pdf-height">
                     <div class="pdf-preview d-flex" id="pdf-scrollable-container">
+                        <img src="{{ asset('nemolab/member/img/loading.gif') }}" id="pdf-loading" class="loading mx-auto" alt="Loading" />
                         <canvas class="pdf-render mx-auto" id="pdf-render"></canvas>
                     </div>
                 </div>

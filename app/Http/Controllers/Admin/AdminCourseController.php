@@ -191,7 +191,7 @@ class AdminCourseController extends Controller
             Lesson::where('chapter_id', $chapter->id)->delete();
             $chapter->delete();
         }
-        
+        Forum::where('course_id', $id)->delete();
         Transaction::where('course_id', $id)->delete();
         $course->delete();
         Alert::success('Success', 'Course Berhasil Di Delete');

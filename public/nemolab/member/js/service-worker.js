@@ -8,6 +8,7 @@ const STATIC_FILES_TO_CACHE = [
     '/nemolab/member/img/fullscreen.png',
     '/nemolab/member/img/chevron-left-white.png',
     '/nemolab/member/img/chevron-right-white.png',
+    '/nemolab/member/img/loading.gif',
 ];
 
 // Install event

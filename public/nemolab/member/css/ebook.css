@@ -1,48 +1,77 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+:root {
+    --primary-color: #faa907;
+    --secondary-color: #333;
+    --text-color: #ffffff;
+    --hover-color: #ff9800;
+}
+
 @media print {
-    html,
-    body {
-        display: none; /* hide whole page */
+    html, body {
+        display: none; 
     }
 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-family: "Poppins", sans-serif;
     line-height: 1.7;
 }
+
 body::-webkit-scrollbar {
     display: none;
 }
-.zoom img {
-    cursor: pointer;
-}
+
+/* Hover efek untuk tombol zoom dan lainnya */
+.zoom img,
+#pdf-fullscreen,
 .page-info img {
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+.zoom img:hover,
+#pdf-fullscreen:hover,
+.page-info img:hover {
+    transform: scale(1.2);
+}
+
 .pdf-height {
     height: 850px !important;
-    background-color: #333;
+    background-color: var(--secondary-color);
     overflow-y: scroll;
 }
+
 .pdf-preview {
     overflow-y: hidden;
 }
+
 .pdf-preview::-webkit-scrollbar {
     display: none;
 }
 
-#pdf-fullscreen {
-    cursor: pointer;
+.loading {
+    position: absolute;
+    z-index: 9999;
+    max-width: 90px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-#zoom-in,
-#zoom-out {
-    cursor: pointer;
+.tools {
+    padding: 10px 25px;
+    width: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -52,7 +81,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 input[type="number"]:focus {
-    outline: 2px solid #ffffff;
+    outline: 2px solid var(--text-color);
     border-radius: 3px;
 }
 
@@ -73,13 +102,11 @@ input[type="number"]:focus {
     .pdf-preview {
         height: max-content;
     }
-    /* .pdf-render {
-        margin-left: 0px !important;
-        width: 120%;
-    } */
+
     .tools {
         padding: 10px 25px !important;
     }
+
     .page-info span,
     .page-info img,
     .page-info input {
@@ -87,28 +114,29 @@ input[type="number"]:focus {
         height: 20px !important;
         font-size: 12px !important;
     }
+
     .zoom {
+        border-radius: 50px;
         align-items: center;
         padding-bottom: 0.5rem !important;
         gap: 0.5rem !important;
         flex-direction: row;
     }
+
     .zoom img {
         width: 25px;
         height: 25px;
         margin-left: 0px !important;
         margin-top: 10px;
     }
+
     #pdf-fullscreen {
         width: 25px;
     }
-    canvas {
-        transition: transform 0.2s ease;
-    }
-    .pdf-height {
-    height: 90vh !important; 
-    background-color: #333;
-    overflow: auto;
-    }
 
+    .pdf-height {
+        height: 90vh !important; 
+        background-color: var(--secondary-color);
+        overflow: auto;
+    }
 }

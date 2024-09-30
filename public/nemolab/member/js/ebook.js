@@ -25,26 +25,25 @@ const renderPage = (num) => {
     if (isRendering) return;
     isRendering = true;
 
+    // Tampilkan loading
+    document.getElementById('pdf-loading').style.display = 'block';
+    canvas.style.display = 'none';
+
     pdfDoc.getPage(num).then((page) => {
         const viewport = page.getViewport({ scale });
-        
         // Mengatur resolusi kanvas berdasarkan devicePixelRatio
         const outputScale = window.devicePixelRatio || 1;
-        // Mengatur dimensi kanvas sesuai viewport dan outputScale
         canvas.width = Math.floor(viewport.width * outputScale);
         canvas.height = Math.floor(viewport.height * outputScale);
-        
         canvas.style.width = `${viewport.width}px`;
         canvas.style.height = `${viewport.height}px`;
-
         const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
-
         const renderContext = {
             canvasContext: ctx,
             viewport: viewport,
-            transform: transform,  // Transformasi untuk menyesuaikan resolusi
+            transform: transform,
         };
-        // Menggunakan requestAnimationFrame untuk mencegah flickering/blinking
+
         return new Promise((resolve) => {
             requestAnimationFrame(() => {
                 page.render(renderContext).promise.then(() => {
@@ -60,8 +59,12 @@ const renderPage = (num) => {
         alert('Failed to load the page.');
     }).finally(() => {
         isRendering = false;
+        // Sembunyikan loading dan tampilkan canvas setelah render selesai
+        document.getElementById('pdf-loading').style.display = 'none';
+        canvas.style.display = 'block';
     });
 };
+
 
 
 
