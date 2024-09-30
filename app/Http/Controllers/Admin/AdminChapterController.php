@@ -14,7 +14,7 @@ class AdminChapterController extends Controller
 {
     public function index($slug) {
         $id =  Course::where('slug', $slug)->first()->id;
-        
+
         $chapters = Chapter::where('course_id', $id)->get();
         return view('admin.chapter.view', compact('chapters', 'slug', 'id'));
     }
@@ -28,14 +28,14 @@ class AdminChapterController extends Controller
         $requests->validate([
             'name' => 'required',
         ]);
-        
+
         Chapter::create([
             'name' => $requests->name,
-            'course_id' => $id_chapter, 
+            'course_id' => $id_chapter,
         ]);
 
         $course = Course::where('id', $id_chapter)->first();
-        
+
         Alert::success('Success', 'Chapter Berhasil Di Buat');
         return redirect()->route('admin.chapter', $course->slug);
     }
@@ -50,31 +50,26 @@ class AdminChapterController extends Controller
             'name' => 'required',
         ]);
 
-        $chapter = Chapter::where('id', $id)->first(); 
-        
+        $chapter = Chapter::where('id', $id)->first();
+
         $chapter->update([
             'name' => $requests->name,
-        ]);     
+        ]);
 
 
         $course = Course::where('id', $chapter->course_id)->first();
-        
+
         Alert::success('Success', 'Chapter Berhasil Di Edit');
         return redirect()->route('admin.chapter', $course->slug);
     }
 
     public function delete($id) {
-        $getID = Chapter::where('id', $id)->first(); 
-        $course = Course::where('id', $getID->course_id)->first();
+        $chapter = Chapter::where('id', $id)->first();
+        $course = Course::where('id', $chapter->course_id)->first();
 
+        Lesson::where('chapter_id', $chapter->id)->delete();
+        $chapter->delete();
 
-        $chapters = Chapter::where('course_id', $getID->course_id)->get();
-
-        foreach ($chapters as $chapter) {
-            Lesson::where('chapter_id', $chapter->id)->delete();
-            $chapter->delete();
-        }
-        
         Alert::success('Success', 'Chapter Berhasil Di Hapus');
         return redirect()->route('admin.chapter', $course->slug);
     }

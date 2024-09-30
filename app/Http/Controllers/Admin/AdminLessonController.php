@@ -27,7 +27,7 @@ class AdminLessonController extends Controller
             'name' => 'required',
             'video' => 'required|',
         ]);
-        
+
         $chapter = Chapter::where('id', $id_chapter)->first();
         $course = Course::where('id', $chapter->course_id)->first();
 
@@ -37,8 +37,8 @@ class AdminLessonController extends Controller
             'video' => $requests->video,
             'chapter_id' => $id_chapter,
         ]);
-        
-        
+
+
         Alert::success('Success', 'Lesson Berhasil Di Buat');
         return redirect()->route('admin.lesson', ['slug' => $course->slug, 'id_chapter' => $id_chapter]);
     }
@@ -69,7 +69,7 @@ class AdminLessonController extends Controller
         else {
             $lesson->update([
                 'name' => $requests->name,
-            ]);   
+            ]);
         }
 
         Alert::success('Success', 'Lesson Berhasil Di Update');
@@ -77,11 +77,11 @@ class AdminLessonController extends Controller
     }
 
     public function delete($id_lesson) {
-        $lesson = Lesson::findOrFail($id_lesson); 
-        $chapter = Chapter::where('id', $lesson->first()->chapter_id)->first();
+        $lesson = Lesson::where('id', $id_lesson)->first();
+        $chapter = Chapter::where('id', $lesson->chapter_id)->first();
         $course = Course::where('id', $chapter->course_id)->first();
         $lesson->delete();
-        
+
         Alert::success('Success', 'Lesson Berhasil Di Hapus');
         return redirect()->route('admin.lesson', ['slug' => $course->slug, 'id_chapter' => $chapter->id]);
     }

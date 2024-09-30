@@ -99,6 +99,7 @@ class MemberPaymentController extends Controller
                     ],
                     'callbacks' => [
                         'finish' => route('member.transaction.detail.view', $transaction_code),
+                        'error' => route('member.transaction.detail.view', $transaction_code),
                     ],
                 ];
 
@@ -180,11 +181,15 @@ class MemberPaymentController extends Controller
     public function detailTransaction(Request $requests, $transaction_code)
     {
         $transaction = Transaction::where('transaction_code', $transaction_code)->first();
-        if ($transaction && $transaction->status != 'pending') {
-            return view('member.dashboard.transaction.detail-payment', compact('transaction'));
-        } else {
-            return view('error.page404');
+        if ($transaction) {
+            if ($transaction->status == 'success' || $transaction->status == 'failed') {
+                return view('member.dashboard.transaction.detail-payment', compact('transaction'));
+            } else {
+                return redirect()->route('member.transaction');
+            }
         }
+
+        return view('error.page404');
     }
 
     // public function callback() {

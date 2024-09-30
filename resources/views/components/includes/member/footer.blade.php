@@ -10,9 +10,9 @@
                 <img src="{{ asset('nemolab/admin/img/Logo Nemolab.png')}}" alt="Company Logo">
             </div>
             <div class="col-12 col-md-4 company-name text-md-center">
-                <p class="fw-semibold">Hak cipta<br class="d-none d-md-block d-lg-none"> © 2024 Nemolab</p>
+                <p class="fw-semibold m-0">Hak cipta<br class="d-none d-md-block d-lg-none"> © 2024 Nemolab</p>
             </div>
-            <div class="col-12 col-md-4 text-center text-md-end social-icons grid gap-lg-3 gap-md-0 d-none d-md-block">
+            <div class="col-12 col-md-4 social-icons d-none d-md-flex justify-content-end align-items-center">
                 <a href="#"><img src="{{ asset('nemolab/admin/img/facebook.png')}}" alt=""></a>
                 <a href="#"><img src="{{ asset('nemolab/admin/img/twitter.png')}}" alt=""></a>
                 <a href="#"><img src="{{ asset('nemolab/admin/img/linkedin.png')}}" alt=""></a>

@@ -71,7 +71,7 @@ class AdminCourseController extends Controller
         $images->storeAs('public/images/covers/' . $imagesGetNewName);
         $resources = 'null';
 
-        
+
         if ($request->resources) {
             $resources = $request->resources;
         }
@@ -191,9 +191,10 @@ class AdminCourseController extends Controller
             Lesson::where('chapter_id', $chapter->id)->delete();
             $chapter->delete();
         }
-        
+
         Transaction::where('course_id', $id)->delete();
         $course->delete();
+        Forum::where('course_id', $course->$id)->delete();
         Alert::success('Success', 'Course Berhasil Di Delete');
         return redirect()->route('admin.course');
     }

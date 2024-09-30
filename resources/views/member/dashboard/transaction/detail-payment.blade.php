@@ -68,16 +68,16 @@
     </div>
 
     <script>
-        // Menghapus query string dari URL
-        if (window.location.search.length > 0) {
-            const newUrl = window.location.origin + window.location.pathname;
-            window.history.replaceState({}, document.title, newUrl);
-        }
-
-        const transactionUrl = "{{ route('member.transaction') }}"; // Menggunakan blade syntax
         document.addEventListener('DOMContentLoaded', function() {
+            // Menghapus parameter query dari URL
+            if (window.location.search.length > 0) {
+                const newUrl = window.location.origin + window.location.pathname;
+                window.history.replaceState({}, document.title, newUrl);
+            }
+
+            const transactionUrl = "{{ route('member.transaction') }}"; // Menggunakan Blade syntax
             document.getElementById('backLink').onclick = function() {
-                window.location.href = transactionUrl; // Mengalihkan ke URL
+                window.location.href = transactionUrl; // Mengalihkan ke URL transaksi
             };
         });
     </script>

@@ -128,7 +128,7 @@
         getDataCourse();
 
         function getDataCourse() {
-            fetch('http://127.0.0.1:8000/api/v1/course/category?q=' + query)
+            fetch('https://testlms.nemolab.id/api/v1/course/category?q=' + query)
                 .then(response => response.json())
                 .then(data => {
                     const courses = data.data;

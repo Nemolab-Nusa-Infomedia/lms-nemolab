@@ -71,7 +71,8 @@
                         <div class="row">
                             @if ($course->resources != 'null')
                                 <div class="d-flex course-option download mt-3">
-                                    <a href="{{ $course->resources }}" class="btn btn-download d-flex align-item-center">
+                                    <a href="{{ $course->resources }}" target="_blank"
+                                        class="btn btn-download d-flex align-item-center">
                                         <img src="{{ asset('nemolab/member/img/download.png') }}" alt=""
                                             style="border-radius:100%;">
                                         <div class="text-download ms-3">
@@ -82,7 +83,8 @@
                                 </div>
                             @endif
                             <div class="d-flex course-option konsultasi ms-3 mt-3">
-                                <a href="{{ $course->link_grub }}" class="btn btn-download d-flex align-items-center">
+                                <a href="{{ $course->link_grub }}" target="_blank"
+                                    class="btn btn-download d-flex align-items-center">
                                     <img src="{{ asset('nemolab/member/img/konsultasi.png') }}" alt="Consultation Icon"
                                         style="border-radius:100%;">
                                     <p class="ms-3 my-auto text-left" style="padding-right: 25px">Join Grup Diskusi</p>
