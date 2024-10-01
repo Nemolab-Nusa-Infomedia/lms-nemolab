@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* variabel color */
+:root {
+    --dim-grey: #696969;
+    --charcoal-gray: #414142;
+}
+
+#footer .container-fluid .brand-nemolab-icon .title-navbar-brand p {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.2;
+}
+
+#footer .container-fluid .brand-nemolab-icon .title-navbar-brand p:first-child {
+    font-size: 20px;
+}
+
+#footer .container-fluid .brand-nemolab-icon .title-navbar-brand p:last-child {
+    font-size: 14px;
+}
+
+
+#footer .container-fluid .content {
+    background-color: var(--charcoal-gray);
+    padding: 30px 2.5rem;
+}
+
+#footer .container-fluid .copyright {
+    background-color: var(--dim-grey);
+}
