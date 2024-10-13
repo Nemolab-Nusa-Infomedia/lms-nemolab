@@ -39,6 +39,11 @@ html::-webkit-scrollbar {
     padding: 80px 2.5rem;
     height: 100vh;
 }
+#section-hero-img .row .col-md-5 img {
+    max-width: 100%;
+    height: auto; 
+    max-height: 350px;
+}
 
 #section-hero-img .row .col-md-7:first-child h1 {
     font-size: 34px;
@@ -148,9 +153,43 @@ html::-webkit-scrollbar {
 
 
 
-/* style section3 */
+/* style section-tentang-nemolab */
 #section-tentang-nemolab {
     padding: 60px 2.5rem;
+}
+
+#service {
+    border-radius: 15px;
+    background-color: var(--light-shade);
+    display: flex;
+    flex-direction: row;
+}
+
+#menu-service {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.card-service {
+    background-color: white;
+    padding: 14px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card-service h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: var(--color-grey);
+}
+
+.card-service .btn {
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
 }
 
 #section-tentang-nemolab .container-fluid .row .col-md-6:last-child h1 {
@@ -162,7 +201,7 @@ html::-webkit-scrollbar {
     color: var(--shade-gray);
 }
 
-#section-tentang-nemolab .container-fluid .row .col-md-6:last-child .link-href-group .btn-primary{
+#section-tentang-nemolab .container-fluid .row .col-md-6:last-child .link-href-group .btn-primary {
     color: white;
     background-color: var(--color-orange);
     border: none;
@@ -174,7 +213,8 @@ html::-webkit-scrollbar {
     border: none;
 }
 
-/* end style section3 */
+/* end style section-tentang-nemolab */
+
 
 
 

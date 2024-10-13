@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - Masuk ke akun anda untuk mengakses kelas</title>
+    <link rel="icon" href="assets/img/logo-nemolab.png" type="image/x-icon" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/auth.css">
+</head>
+
+<body>
+    <main class="login-section d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card login-card d-flex flex-row">
+                        <div class="img-container">
+                            <img src="assets/img/bismen.jpeg" alt="Team collaboration" class="img-fluid rounded-start">
+                        </div>
+                        <div class="card-body ps-4">
+                            <a href="#" class="btn-back mb-4">
+                                <img src="assets/img/icon/arrow.png" alt="Back" class="back-icon">
+                            </a>
+                            <div class="px-3 text-center">
+                                <h3 class="mb-4">Verifikasi Email Kamu</h3>
+                                <p class="fw-bold">Untuk memastikan akun email anda asli, mohon konfirmasi email anda dengan kode yang telah kami kirimkan ke email <span class="email-info fw-bold">user@example.com</span></p>
+                            </div>
+                            <form action="#" class="signin-form">
+                                <div class="input-otp my-5">
+                                    <input type="text" id="otp-number-input-1" class="otp-number-input" maxlength="1" onkeyup="myFunc()" />
+                                    <input type="text" id="otp-number-input-2" class="otp-number-input" maxlength="1" onkeyup="myFunc()" />
+                                    <input type="text" id="otp-number-input-3" class="otp-number-input" maxlength="1" onkeyup="myFunc()" />
+                                    <input type="text" id="otp-number-input-4" class="otp-number-input" maxlength="1" onkeyup="myFunc()" />
+                                </div>
+                                <input class="d-none" type="text" name="otp-number" id="otp-number" maxlength="4" readonly />
+                                <div class="mb-3">
+                                    <p class="text-center"><a href="">kirim ulang kode</a> <span class="otp-cd">(0:59)</span></p>
+                                    <button type="submit" class="btn btn-primary w-100 rounded-start fw-bold">Konfirmasi</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Function to move focus to next/previous input field
+        function myFunc() {
+            let otpInputs = document.querySelectorAll('.otp-number-input');
+            let otpHiddenInput = document.getElementById('otp-number');
+    
+            otpInputs.forEach((input, index) => {
+                input.addEventListener('keyup', (e) => {
+                    let key = e.keyCode || e.charCode;
+                    if (input.value.length === 1 && index < otpInputs.length - 1 && key !== 8) {
+                        otpInputs[index + 1].focus();
+                    }
+                    if (key === 8 && input.value.length === 0 && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                    // Collecting values from each input into hidden input
+                    otpHiddenInput.value = Array.from(otpInputs).map(i => i.value).join('');
+                });
+            });
+        }
+    </script>
+    
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Boxicons -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+</body>
+
+</html>

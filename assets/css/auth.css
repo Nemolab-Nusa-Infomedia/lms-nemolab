@@ -1,0 +1,155 @@
+/* font */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+    --card-bg:#fff;
+    --lavender: #FFF6F6;
+    --blue: #0774FA;
+    --color-orange: #FAA907;
+    --color-grey: #414142;
+    --dim-grey: #696969;
+    --charcoal-gray: #414142;
+    --light-shade: #FDF8F8;
+    --shade-gray: #8F8F8F;
+}
+/* General Styles */
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--color-orange);
+}
+
+.login-section {
+    height: 100vh;
+}
+
+.card.login-card {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    max-width: 1200px;
+    margin: auto; 
+    height: 600px; }
+
+.img-container {
+    flex: 1; 
+    height: 100%; 
+}
+
+.img-container img {
+    height: 100%;
+    object-fit: cover;
+    display: block; 
+}
+
+.card-body {
+    flex: 1; 
+    background-color: white;
+    padding: 3rem;
+}
+
+h3 {
+    text-align: center;
+    font-weight: 900;
+}
+
+p {
+    color: var(--dim-grey);
+    margin-bottom: 1px;
+}
+
+.form-control {
+    border: none;
+    background-color: var(--lavender);
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+}
+.form-control::placeholder {
+    color: var(--dim-grey); 
+    opacity: 1;
+}
+
+.btn-back {
+    background-color: var(--blue);
+    border-radius: 50%;
+    padding: 0.25rem;
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center; 
+    width: 40px; 
+    height: 40px; 
+}
+.btn-back:hover{
+    background-color: rgb(61, 61, 233);
+}
+
+.back-icon {
+    width: 20px;
+}
+
+.btn-primary {
+    background-color: var(--color-orange);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #f57c00;
+}
+
+a {
+    color: var(--color-orange);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.email-info{
+    color: var(--blue);
+}
+
+/* OTP Input */
+
+.input-otp {
+    display: flex;
+    justify-content: space-between;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.otp-number-input {
+    width: 40px;
+    height: 50px;
+    border: none;
+    border-bottom: 3px solid var(--dim-grey);
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--blue);
+    background-color: transparent;
+    caret-color: transparent;
+    outline: none;
+}
+
+.otp-number-input::placeholder {
+    color: var(--grey);
+    font-size: 24px;
+    text-align: center;
+}
+
+.otp-number-input:focus {
+    border-color: var(--color-orange);
+}
+
+@media (max-width: 768px) {
+    .img-container {
+        display: none; 
+    }
+    .card.login-card {
+        height: auto; 
+    }
+    .card-body {
+        padding: 1.5rem;
+    }
+}

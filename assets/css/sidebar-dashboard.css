@@ -1,0 +1,131 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700&display=swap');
+
+/* Variable for colors */
+:root {
+    --color-bg: white;
+    --color-active: #FAA907;
+    --color-icon: white;
+    --dim-grey:#B5B5B5;
+    --blck-grey: #414142;
+    --lavender:#FFF6F6;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+}
+
+/* Sidebar styling */
+.sidebar {
+    background-color: var(--color-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 83vh;
+    position: relative;
+    transition: top 0.7s ease-in-out;
+}
+
+/* Sidebar profile section */
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile h5 {
+    color: var(--blck-grey);
+    font-weight: 900;
+}
+
+.profile p {
+    margin: 1px 0;
+    font-size: 14px;
+}
+.name{
+    color: var(--blck-grey);
+}
+.posisi{
+    color: var(--dim-grey);
+}
+
+/* Sidebar menu */
+.menu {
+    padding-left: 0;
+}
+
+.menu ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.menu li {
+    display: flex;
+    align-items: center;
+    padding: 8px; 
+    margin-bottom: 5px; 
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    justify-content: flex-start;
+}
+
+.menu li img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    transition: filter 0.3s;
+}
+
+.menu li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: var(--dim-grey);
+    width: 100%;
+}
+
+.menu li:hover {
+    background-color:var(--lavender);
+}
+
+/* Active tab styling */
+.menu li.active {
+    background-color: var(--color-active);
+}
+
+.menu li.active img {
+    filter: brightness(0) invert(1); /* Change icon color to white */
+}
+
+.menu li.active a {
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .sidebar {
+        display: none;
+    }
+
+    #course-card {
+        width: 100%;
+    }
+
+    .card-container {
+        padding-left: 20px;
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .sidebar {
+        display: none;
+    }
+}

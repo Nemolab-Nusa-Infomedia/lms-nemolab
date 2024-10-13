@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nemolab - Pilih Kursus Yang Ingin Anda Pelajari</title>
+    <link rel="icon" href="assets/img/logo-nemolab.png" type="image/x-icon" />
+
+    <!-- boostrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- css navbar -->
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <!-- css sidebar -->
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+
+    <!-- css footer -->
+    <link rel="stylesheet" href="assets/css/footer.css">
+
+    <!-- css content -->
+    <link rel="stylesheet" href="assets/css/course.css">
+</head>
+
+<body>
+            <!-- navbar -->
+            <header class="ps-3 pe-3 pt-2 pb-2 w-100 fixed-top position-fixed bg-white shadow-sm">
+                <div class="container-fluid">
+                    <nav class="navbar navbar-expand-lg bg-transparent">
+                        <div class="container-fluid">
+                            <a href="#" style="text-decoration: none;">
+                                <div class="brand-nemolab-icon d-flex align-items-center">
+                                    <img src="assets/img/logo-nemolab.png" alt="Logo" width="40" height="40"
+                                        class="d-inline-block align-text-top">
+                                    <div class="title-navbar-brand ms-2">
+                                        <p class="m-0 p-0 fw-bold">Nemolab</p>
+                                        <p class="m-0 p-0 ">Kursus Online Terbaik</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                                <ul class="navbar-nav d-flex mx-auto">
+                                    <form class="d-flex" role="search">
+                                        <div class="search-group d-flex">
+                                            <input class="" type="search" placeholder="cari kelas disini" aria-label="Search" style="width: 750px;">
+                                            <button class="btn p-0 m-0" type="submit">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
+                                                        fill="#414142">
+        
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </ul>
+                                <ul class="navbar-nav d-flex align-items-center gap-4 ">
+                                    <div class="register-login d-flex align-items-center gap-2">
+                                        <a href="#" class="btn btn-primary px-3 pt-1 pb-1">Daftar</a>
+                                        <a href="#" class="btn btn-secondary px-3 pt-1 pb-1">Masuk</a>
+                                    </div>
+        
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+            <!-- end navbar -->
+    <section class="section-pilh-kelas" id="section-pilih-kelas">
+        <div class="container-fluid mt-5 pt-5">
+            <div class="row">
+            <!-- Sidebar -->
+                <div class="col-md-3 d-none d-md-block p-0">
+                    <div class="col-md-9 ms-5">
+                        <div class="sidebar">
+                            <div class="filter-paket">
+                                <div class="filter-header text-center">
+                                    <img src="assets/img/icon/ph_book-fill.png" class="filter-logo" alt="...">
+                                    <h5 class="fw-bold d-inline">Filter Paket</h5>
+                                </div>
+                                <hr>
+                                <ul>
+                                    <li>
+                                        <input id="filter-paket-semua" name="filter-paket" value="semua" checked="checked" type="radio">
+                                        <label for="filter-paket-semua">
+                                            <span></span>
+                                            Kursus + E-book
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input id="filter-paket-kursus" name="filter-paket" value="kursus" type="radio">
+                                        <label for="filter-paket-kursus">
+                                            <span></span>
+                                            Kursus
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input id="filter-paket-kursus-ebook" name="filter-paket" value="kursus_ebook" type="radio">
+                                        <label for="filter-paket-kursus-ebook">
+                                            <span></span>
+                                             E-book
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="filter-kelas">
+                                <div class="filter-header text-center">
+                                    <img src="assets/img/icon/hugeicons_nano-technology.png" class="filter-logo" alt="...">
+                                    <h5 class="fw-bold d-inline">Filter Kelas</h5>
+                                </div>
+                                <hr>
+                                <ul>
+                                    <li>
+                                        <input id="filter-kelas-semua" name="filter-kelas" value="semua" checked="checked" type="radio">
+                                        <label for="filter-kelas-semua">
+                                            <span></span>
+                                            Semua
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input id="filter-kelas-uiux" name="filter-kelas" value="uiux" type="radio">
+                                        <label for="filter-kelas-uiux">
+                                            <span></span>
+                                            UI/UX Designer
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input id="filter-kelas-frontend" name="filter-kelas" value="frontend" type="radio">
+                                        <label for="filter-kelas-frontend">
+                                            <span></span>
+                                            Frontend Developer
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input id="filter-kelas-backend" name="filter-kelas" value="backend" type="radio">
+                                        <label for="filter-kelas-backend">
+                                            <span></span>
+                                            Backend Developer
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input id="filter-kelas-wordpress" name="filter-kelas" value="wordpress" type="radio">
+                                        <label for="filter-kelas-wordpress">
+                                            <span></span>
+                                            Wordpress Developer
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <input id="filter-kelas-graphics" name="filter-kelas" value="graphics" type="radio">
+                                        <label for="filter-kelas-graphics">
+                                            <span></span>
+                                            Graphics Designer
+                                        </label>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cards -->
+                <div class="card-container col-md-9 pe-4" id="course-card">
+                    <div class="row">
+
+                        <!-- jika tidak ada kursus -->
+                        <!-- <div class="col-md-12 d-flex justify-content-center align-items-center">
+                            <div class="not-found text-center">
+                                <img src="assets/img/search-not-found.png" class="logo-not-found w-50 h-50" alt="Not Found">
+                                <p class="mt-3">Kelas Yang Kamu Cari Tidak Tersedia</p>
+                            </div>
+                        </div> -->
+                        <div class="col-md-4 d-flex justify-content-center pb-3">
+                            <div class="card">
+                                <img src="assets/img/image-perkenalan-ui-ux.png" class="card-img-top" alt="...">
+                                <div class="paket d-flex ms-2">
+                                    <p class="paket-item mt-2">Kursus</p>
+                                    <p class="paket-item mt-2">E-book</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="title-card">
+                                        <h5 class="fw-bold truncate-text">UI/UX Designer: Belajar UI/UX Designer untuk pemula</h5>
+                                    </div>
+                                    <div class="btn-group-harga d-flex justify-content-between align-items-center mt-3">
+                                        <div class="harga d-block">
+                                            <p class="p-0 m-0 fw-semibold">Harga</p>
+                                            <p class="p-0 m-0 fw-semibold">Gratis</p>
+                                        </div>
+                                        <button class="btn btn-primary">Mulai Belajar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer mt-5" id="footer">
+        <div class="container-fluid p-0 m-0">
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="brand-nemolab-icon d-flex align-items-center">
+                            <img src="assets/img/logo-nemolab.png" alt="Logo" width="40" height="40"
+                                class="d-inline-block align-text-top">
+                            <div class="title-navbar-brand ms-2">
+                                <p class="m-0 p-0 fw-bold">Nemolab</p>
+                                <p class="m-0 p-0 ">Kursus Online Terbaik</p>
+                            </div>
+                        </div>
+                        <p class="p-0 m-0 w-75 mt-3 text-white ">Belajar keahlian seputar teknologi kapanpun dan
+                            dimanapun</p>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Pilih Kelas</h5>
+                        <div class="content-kelas">
+                            <p class="m-0 p-0 text-white mb-2">
+                                UI/UX Designer
+                            </p>
+                            <p class="m-0 p-0 text-white mb-2">
+                                Wordpress Developer
+                            </p>
+                            <p class="m-0 p-0 text-white">
+                                Graphic Designer
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Paket Kelas</h5>
+                        <div class="content-paket-kelas">
+                            <p class="m-0 p-0 text-white mb-2">
+                                Kursus
+                            </p>
+                            <p class="m-0 p-0 text-white mb-2">
+                                Ebook
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Pusat Bantuan</h5>
+                        <div class="content-paket-kelas d-flex flex-column">
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Hubungi CS
+                            </a>
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Kirim Email
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Media Sosial</h5>
+                        <div class="content-paket-kelas d-flex flex-column">
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Instagram
+                            </a>
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Youtube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright d-flex justify-content-center align-items-center pt-4 pb-4">
+                <p class="m-0 p-0 text-white">© 2024 All Rights Reserved. Design by Vibrant Ecosystem</p>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+    <!-- boostrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gN8oMTAuBhrdN/vBdQ94MhT2Nz19Lw+8JYoThqClJxSUHb4Hj8C78cDTK+KEeS88" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function elementFollowScroll(object, sectionContainer, topMargin, stopOn = false, footer) {
+            $(window).on("scroll", function() {
+                if ($(window).width() > 962) { 
+                    let originalY = sectionContainer.offset().top;
+                    let scrollTop = $(window).scrollTop();
+                    let footerTop = footer.offset().top; 
+                    let sidebarHeight = object.outerHeight(true); 
+                    let stopPoint = footerTop - sidebarHeight - topMargin; 
+
+                    if (stopOn === false) {
+                        let newTop = scrollTop < originalY ? 0 : scrollTop - originalY + topMargin;
+                        if (scrollTop + sidebarHeight + topMargin >= footerTop) {
+                            object.stop(false, false).animate({ top: stopPoint - originalY }, 50);
+                        } else {
+                            object.stop(false, false).animate({ top: newTop }, 50);
+                        }
+                    } else {
+                        let newTop = scrollTop < originalY ? 0 : Math.min(sectionContainer.height() - object.height() - 52, scrollTop - originalY + topMargin);
+                        if (scrollTop + sidebarHeight + topMargin >= footerTop) {
+                            object.stop(true, true).animate({ top: stopPoint - originalY }, 50);
+                        } else {
+                            object.stop(true, true).animate({ top: newTop }, 50);
+                        }
+                    }
+                } else {
+                    object.stop(false, false).css({
+                        top: 0
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            // Inisialisasi sidebar sticky
+            const sidebar = $(".sidebar");
+            const sectionContainer = $(".col-md-3");
+            const topMargin = 90;
+            const footer = $("footer"); 
+            elementFollowScroll(sidebar, sectionContainer, topMargin, false, footer);
+        });
+
+
+    </script>
+</body>
+
+</html>

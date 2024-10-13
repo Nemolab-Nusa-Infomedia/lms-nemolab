@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+:root {
+    --orange: #FAA907;
+    --card-bg: #fff;
+    --light-grey:#8F8F8F;
+    --dark-grey:#414142;
+    --bg-color:#FFF6F6;
+    --blue-icon:#0774FA;
+    --btn-blue:#67ACFF;
+    --input-focus:#E8E8E8;
+}
+body {
+    background-color: var(--bg-color);
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: bold;
+    color: #000;
+}
+h5{
+    margin-bottom: 0px !important;
+}
+p{
+    color: var(--light-grey);
+}
+.card{
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-control{
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 5px;
+}
+
+.form-select{
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 5px;
+}
+.btn-secondary{
+    background-color: var(--dark-grey) !important;
+}
+
+.btn-back {
+    background-color: var(--blue-icon);
+    border-radius: 50%;
+    padding: 0.25rem;
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center; 
+    width: 40px; 
+    height: 40px; 
+}
+.btn-back:hover{
+    background-color: rgb(61, 61, 233);
+}
+.back-icon {
+    width: 20px;
+}
+/* OTP Input */
+
+.input-otp {
+    display: flex;
+    justify-content: space-between;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.otp-number-input {
+    width: 40px;
+    height: 50px;
+    border: none;
+    border-bottom: 3px solid var(--dark-grey);
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--blue);
+    background-color: transparent;
+    caret-color: transparent;
+    outline: none;
+}
+
+.otp-number-input::placeholder {
+    color: var(--light-grey);
+    font-size: 24px;
+    text-align: center;
+}
+
+.otp-number-input:focus {
+    border-color: var(--blue-icon);
+}

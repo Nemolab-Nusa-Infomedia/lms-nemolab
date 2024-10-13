@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nemolab - Belajar Kursus Online di mana pun dan kapan pun</title>
+    <link rel="icon" href="assets/img/logo-nemolab.png" type="image/x-icon" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/sidebar-dashboard.css">
+    <link rel="stylesheet" href="assets/css/transaction.css">
+        <!-- css footer -->
+        <link rel="stylesheet" href="assets/css/footer.css">
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <header class="ps-3 pe-3 pt-2 pb-2 w-100 fixed-top position-fixed bg-white shadow-sm">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg bg-transparent">
+                <div class="container-fluid">
+                    <a href="#" style="text-decoration: none;">
+                        <div class="brand-nemolab-icon d-flex align-items-center">
+                            <img src="assets/img/logo-nemolab.png" alt="Logo" width="40" height="40"
+                                class="d-inline-block align-text-top">
+                            <div class="title-navbar-brand ms-2">
+                                <p class="m-0 p-0 fw-bold">Nemolab</p>
+                                <p class="m-0 p-0 ">Kursus Online Terbaik</p>
+                            </div>
+                        </div>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <ul class="navbar-nav d-flex mx-auto">
+                            <form class="d-flex" role="search">
+                                <div class="search-group d-flex">
+                                    <input class="" type="search" placeholder="cari kelas disini" aria-label="Search">
+                                    <button class="btn p-0 m-0" type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
+                                                fill="#414142">
+
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </ul>
+                        <ul class="navbar-nav d-flex align-items-center gap-4 ">
+
+                            <div class="dropdown dropdown-pilih-kelas">
+                                <button class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Pilih Kelas
+                                    <box-icon name='chevron-down' color="#414142"></box-icon>
+                                </button>
+                                <ul class="dropdown-menu mt-3">
+                                    <div class="head-submenu d-flex justify-content-between align-items-center">
+                                        <p class="m-0 p-0 fw-bold">Pilihan Kelas</p>
+                                        <a href="#" class="m-0 p-0">Lihat Semua</a>
+                                    </div>
+                                    <div class="content-submenu mt-2 ">
+                                        <div class="row m-0 ">
+                                            <div class="col-md-6 ps-0 pl-1 mb-1">
+                                                <a href="#">UI UX Designer</a>
+                                            </div>
+                                            <div class="col-md-6 ps-0 pl-1 mb-1">
+                                                <a href="#">Frontend Developer</a>
+                                            </div>
+                                            <div class="col-md-6 ps-0 pl-1 mb-1">
+                                                <a href="#">Wordpress Developer</a>
+                                            </div>
+                                            <div class="col-md-6 ps-0 pl-1 mb-1">
+                                                <a href="#">Backend Developer</a>
+                                            </div>
+                                            <div class="col-md-6 ps-0 pl-1 mb-1">
+                                                <a href="#">Grapic Designer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+
+                            <div class="dropdown dropdown-pilih-paket-kelas">
+                                <button class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Paket Kelas
+                                    <box-icon name='chevron-down' color="#414142"></box-icon>
+                                </button>
+                                <ul class="dropdown-menu mt-3">
+                                    <div class="head-submenu d-flex justify-content-between align-items-center">
+                                        <p class="m-0 p-0 fw-bold">Pilihan Paket Kelas</p>
+                                        <a href="#" class="m-0 p-0">Lihat Semua</a>
+                                    </div>
+                                    <div class="content-submenu mt-2 ">
+                                        <div class="row m-0">
+                                            <div class="col-md-12 ps-0 pl-1 mb-1">
+                                                <a href="#">Course</a>
+                                            </div>
+                                            <div class="col-md-12 ps-0 pl-1 mb-1">
+                                                <a href="#">Ebook</a>
+                                            </div>
+                                            <div class="col-md-12 ps-0 pl-1 mb-1">
+                                                <a href="#">Paket Course Dan Ebook</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+
+                            <a href="#section-pusat-bantuan" class="text-decoration-none"></a>
+
+                            <div class="register-login d-flex align-items-center gap-2">
+                                <a href="#" class="btn btn-primary px-3 pt-1 pb-1">Daftar</a>
+                                <a href="#" class="btn btn-secondary px-3 pt-1 pb-1">Masuk</a>
+                            </div>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- end navbar -->
+
+    <section class="section-main mb-5" id="section-transaction">
+        <div class="container-fluid mt-5 pt-5">
+            <div class="row">
+                <div class="col-md-3 d-none d-md-block p-0">
+                    <div class="col-md-9 ms-5">
+                        <div class="sidebar" id="sidebar">
+                            <div class="profile">
+                                <h5 class="">DASHBOARD SAYA</h5>
+                                <img src="assets/img/2.jpeg" alt="avatar" width="100" height="100" class="avatar class mb-3" 
+                                style="border-radius: 50%; object-fit: cover" />
+                                <p class="name fs-5">Lorem ipsum dolor.</p>
+                                <p class="posisi mt-0">Pelajar Jangka Panjang</p>
+                            </div>
+                            <div class="menu">
+                                <ul class="side-tabs">
+                                    <li><a href="#"><img src="assets/img/icon/sidebar/Frame 8.png" alt="icon">Kelas Saya</a></li>
+                                    <li><a href="#"><img src="assets/img/icon/sidebar/Frame 9.png" alt="icon">Portofolio Saya</a></li>
+                                    <li class="active"><a href="#"><img src="assets/img/icon/sidebar/Frame 10.png" alt="icon">Transaksi Saya</a></li>
+                                    <li><a href="#"><img src="assets/img/icon/sidebar/Frame 11.png" alt="icon">Pengaturan</a></li>
+                                    <li class="mt-4"><a href="#"><img src="assets/img/icon/sidebar/Frame 12.png" alt="icon">Keluar</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-9">
+                    <!-- Navigation Tabs -->
+                    <div class="filter-transaction">
+                        <ul class="nav-tabs">
+                            <li><a href="#" class="active">Semua</a></li>
+                            <li><a href="#">Berhasil</a></li>
+                            <li><a href="#">Pending</a></li>
+                            <li><a href="#">Gagal</a></li>
+                        </ul>
+                    </div>
+    
+                    <!-- Transaction Cards -->
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <img alt="Course image" src="assets/img/image-design-ui-ux-chat-gpt.png" height="80" width="120" class="cover" />
+                            <div class="details">
+                                <p class="title">Belajar UI/UX Designer</p>
+                                <p class="Premium">Kelas Premium</p>
+                                <div class="info mt-3">
+                                    <p class="price">Harga : Rp. 70.000</p>
+                                    <p class="date">Tanggal : 7-Okt-2024</p>
+                                    <p class="status">Status : </p>
+                                    <p class="status-info" style="color: green;">Sukses</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-custom btn-blue">Cek Tagihan</button>
+                        </div>
+                    </div>
+    
+                    <!-- Transaction Example - Pending -->
+                    <div class="card">
+                        <div class="card-body">
+                            <img alt="Course image" src="assets/img/image-design-ui-ux-chat-gpt.png" height="80" width="120" />
+                            <div class="details">
+                                <p>Belajar UI/UX Designer</p>
+                                <p class="Premium">Kelas Premium</p>
+                                <div class="info mt-3">
+                                    <p class="price">Harga : Rp. 70.000</p>
+                                    <p class="date">Tanggal : 7-Okt-2024</p>
+                                    <p class="status">Status : </p>
+                                    <p class="status-info" style="color: orange;">Pending</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-custom btn-red me-2">Batalkan</button>
+                            <button class="btn btn-custom btn-blue">Bayar</button>
+                        </div>
+                    </div>
+    
+                    <!-- Transaction Example - Failed -->
+                    <div class="card">
+                        <div class="card-body">
+                            <img alt="Course image" src="assets/img/image-design-ui-ux-chat-gpt.png" height="80" width="120" />
+                            <div class="details">
+                                <p>Belajar UI/UX Designer</p>
+                                <p class="Premium">Kelas Premium</p>
+                                <div class="info mt-3">
+                                    <p class="price">Harga : Rp. 70.000</p>
+                                    <p class="date">Tanggal : 7-Okt-2024</p>
+                                    <p class="status">Status : </p>
+                                    <p class="status-info" style="color: red;">Gagal</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-custom btn-red">Transaksi Gagal</button>
+                        </div>
+                    </div>
+
+                                        <!-- Transaction Cards -->
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <img alt="Course image" src="assets/img/image-design-ui-ux-chat-gpt.png" height="80" width="120" class="cover" />
+                            <div class="details">
+                                <p class="title">Belajar UI/UX Designer</p>
+                                <p class="Premium">Kelas Premium</p>
+                                <div class="info mt-3">
+                                    <p class="price">Harga : Rp. 70.000</p>
+                                    <p class="date">Tanggal : 7-Okt-2024</p>
+                                    <p class="status">Status : </p>
+                                    <p class="status-info" style="color: green;">Sukses</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-custom btn-blue">Cek Tagihan</button>
+                        </div>
+                    </div>
+    
+                    <!-- Transaction Example - Pending -->
+                    <div class="card">
+                        <div class="card-body">
+                            <img alt="Course image" src="assets/img/image-design-ui-ux-chat-gpt.png" height="80" width="120" />
+                            <div class="details">
+                                <p>Belajar UI/UX Designer</p>
+                                <p class="Premium">Kelas Premium</p>
+                                <div class="info mt-3">
+                                    <p class="price">Harga : Rp. 70.000</p>
+                                    <p class="date">Tanggal : 7-Okt-2024</p>
+                                    <p class="status">Status : </p>
+                                    <p class="status-info" style="color: orange;">Pending</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-custom btn-red me-2">Batalkan</button>
+                            <button class="btn btn-custom btn-blue">Bayar</button>
+                        </div>
+                    </div>
+    
+                    <!-- Transaction Example - Failed -->
+                    <div class="card">
+                        <div class="card-body">
+                            <img alt="Course image" src="assets/img/image-design-ui-ux-chat-gpt.png" height="80" width="120" />
+                            <div class="details">
+                                <p>Belajar UI/UX Designer</p>
+                                <p class="Premium">Kelas Premium</p>
+                                <div class="info mt-3">
+                                    <p class="price">Harga : Rp. 70.000</p>
+                                    <p class="date">Tanggal : 7-Okt-2024</p>
+                                    <p class="status">Status : </p>
+                                    <p class="status-info" style="color: red;">Gagal</p>
+                                </div>
+                            </div>
+                            <button class="btn btn-custom btn-red">Transaksi Gagal</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-more">
+                    <a href="">Tampilkan lebih banyak</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer mt-5" id="footer">
+        <div class="container-fluid p-0 m-0">
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="brand-nemolab-icon d-flex align-items-center">
+                            <img src="assets/img/logo-nemolab.png" alt="Logo" width="40" height="40"
+                                class="d-inline-block align-text-top">
+                            <div class="title-navbar-brand ms-2">
+                                <p class="m-0 p-0 fw-bold">Nemolab</p>
+                                <p class="m-0 p-0 ">Kursus Online Terbaik</p>
+                            </div>
+                        </div>
+                        <p class="p-0 m-0 w-75 mt-3 text-white ">Belajar keahlian seputar teknologi kapanpun dan
+                            dimanapun</p>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Pilih Kelas</h5>
+                        <div class="content-kelas">
+                            <p class="m-0 p-0 text-white mb-2">
+                                UI/UX Designer
+                            </p>
+                            <p class="m-0 p-0 text-white mb-2">
+                                Wordpress Developer
+                            </p>
+                            <p class="m-0 p-0 text-white">
+                                Graphic Designer
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Paket Kelas</h5>
+                        <div class="content-paket-kelas">
+                            <p class="m-0 p-0 text-white mb-2">
+                                Kursus
+                            </p>
+                            <p class="m-0 p-0 text-white mb-2">
+                                Ebook
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Pusat Bantuan</h5>
+                        <div class="content-paket-kelas d-flex flex-column">
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Hubungi CS
+                            </a>
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Kirim Email
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Media Sosial</h5>
+                        <div class="content-paket-kelas d-flex flex-column">
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Instagram
+                            </a>
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Youtube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright d-flex justify-content-center align-items-center pt-4 pb-4">
+                <p class="m-0 p-0 text-white">© 2024 All Rights Reserved. Design by Vibrant Ecosystem</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- Box Icons -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    
+    <!-- Custom JS -->
+    <script>
+        function elementFollowScroll(object, sectionContainer, topMargin, stopOn = false, footer) {
+            $(window).on("scroll", function() {
+                if ($(window).width() > 962) {
+                    let originalY = sectionContainer.offset().top;
+                    let scrollTop = $(window).scrollTop();
+                    let footerTop = footer.offset().top;
+                    let sidebarHeight = object.outerHeight(true);
+                    let stopPoint = footerTop - sidebarHeight - topMargin;
+
+                    if (!stopOn) {
+                        let newTop = scrollTop < originalY ? 0 : scrollTop - originalY + topMargin;
+                        if (scrollTop + sidebarHeight + topMargin >= footerTop) {
+                            object.stop(false, false).animate({ top: stopPoint - originalY }, 50);
+                        } else {
+                            object.stop(false, false).animate({ top: newTop }, 50);
+                        }
+                    } else {
+                        let newTop = scrollTop < originalY ? 0 : Math.min(sectionContainer.height() - object.height() - 52, scrollTop - originalY + topMargin);
+                        if (scrollTop + sidebarHeight + topMargin >= footerTop) {
+                            object.stop(true, true).animate({ top: stopPoint - originalY }, 50);
+                        } else {
+                            object.stop(true, true).animate({ top: newTop }, 50);
+                        }
+                    }
+                } else {
+                    object.stop(false, false).css({ top: 0 });
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            // Initialize sticky sidebar
+            const sidebar = $(".sidebar");
+            const sectionContainer = $(".col-md-3");
+            const topMargin = 90;
+            const footer = $("footer");
+            elementFollowScroll(sidebar, sectionContainer, topMargin, false, footer);
+        });
+    </script>
+</body>
+
+</html>
