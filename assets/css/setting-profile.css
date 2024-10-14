@@ -91,3 +91,14 @@ p{
 .otp-number-input:focus {
     border-color: var(--blue-icon);
 }
+
+@media screen and (min-width:480px) and (max-width: 576px) {
+    .profile-saya-section {
+        padding: 50px 0 !important;
+    }
+
+    .card {
+        width: 90%;
+        margin: 0 auto;
+    }
+}

@@ -25,93 +25,107 @@
 </head>
 
 <body>
-    
-    <section class="section-pilih-kelas" id="section-pilih-kelas">
-        <div class="container-fluid mt-5 pt-5">
-            <div class="row">
-                <!-- Sidebar -->
-                <div class="col-md-3 d-none d-md-block p-0">
-                    <div class="col-md-9 ms-5">
-                        <div class="sidebar" id="sidebar">
-                            <div class="profile text-center">
-                                <h5 class="">DASHBOARD SAYA</h5>
-                                <img src="assets/img/2.jpeg" alt="avatar" width="100" height="100" class="avatar mb-3" style="border-radius: 50%; object-fit: cover;" />
-                                <p class="name fs-5">Naufal Haidar Azhar</p>
-                                <p class="posisi mt-0">Pelajar Jangka Panjang</p>
-                            </div>
-                            <div class="menu">
-                                <ul class="side-tabs">
-                                    <li><a href="#"><img src="assets/img/icon/sidebar/Frame 8.png" alt="icon">Kelas Saya</a></li>
-                                    <li><a href="#"><img src="assets/img/icon/sidebar/Frame 9.png" alt="icon">Portofolio Saya</a></li>
-                                    <li><a href="#"><img src="assets/img/icon/sidebar/Frame 10.png" alt="icon">Transaksi Saya</a></li>
-                                    <li class="active"><a href="#"><img src="assets/img/icon/sidebar/Frame 11.png" alt="icon">Pengaturan</a></li>
-                                    <li class="mt-4"><a href="#"><img src="assets/img/icon/sidebar/Frame 12.png" alt="icon">Keluar</a></li>
-                                </ul>
+    <main>
+        <section class="profile-saya-section" id="profile-saya-section">
+            <div class="container-fluid mt-5 pt-5">
+                <div class="row">
+                    <!-- Sidebar -->
+                    <div class="col-md-3 d-none d-md-block p-0">
+                        <div class="col-md-9 ms-5">
+                            <div class="sidebar" id="sidebar">
+                                <div class="profile text-center">
+                                    <h5 class="">DASHBOARD SAYA</h5>
+                                    <img src="assets/img/2.jpeg" alt="avatar" width="100" height="100"
+                                        class="avatar mb-3" style="border-radius: 50%; object-fit: cover;" />
+                                    <p class="name fs-5">Naufal Haidar Azhar</p>
+                                    <p class="posisi mt-0">Pelajar Jangka Panjang</p>
+                                </div>
+                                <div class="menu">
+                                    <ul class="side-tabs">
+                                        <li><a href="#"><img src="assets/img/icon/sidebar/Frame 8.png" alt="icon">Kelas
+                                                Saya</a></li>
+                                        <li><a href="#"><img src="assets/img/icon/sidebar/Frame 9.png"
+                                                    alt="icon">Portofolio Saya</a></li>
+                                        <li><a href="#"><img src="assets/img/icon/sidebar/Frame 10.png"
+                                                    alt="icon">Transaksi Saya</a></li>
+                                        <li class="active"><a href="#"><img src="assets/img/icon/sidebar/Frame 11.png"
+                                                    alt="icon">Pengaturan</a></li>
+                                        <li class="mt-4"><a href="#"><img src="assets/img/icon/sidebar/Frame 12.png"
+                                                    alt="icon">Keluar</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-    
-                <!-- Profile Form -->
-                <div class="col-md-9">
-                    <div class="card profile-card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <a href="#" class="btn-back">
-                                    <img src="assets/img/icon/arrow.png" alt="Back" class="back-icon">
-                                </a>
-                                <h5 class="title ps-3 fw-bold">Ubah profil anda</h5>
+
+                    <!-- Profile Form -->
+                    <div class="col-md-9">
+                        <div class="card profile-card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <a href="#" class="btn-back">
+                                        <img src="assets/img/icon/arrow.png" alt="Back" class="back-icon">
+                                    </a>
+                                    <h5 class="title ps-3 fw-bold">Ubah profil anda</h5>
+                                </div>
+                                <div class="mb-4">
+                                    <h6 class="fw-bold">Foto Profil</h6>
+                                    <p>Ukuran Foto Maksimal (1 MB)</p>
+                                    <img src="assets/img/icon/Group 7.png" alt="avatar" width="130" height="130"
+                                        class="avatar mb-3" style="border-radius: 50%; object-fit: cover;"
+                                        id="avatarPreview" />
+                                    <input type="file" id="fileUpload" class="d-none">
+                                    <label for="fileUpload" class="btn btn-secondary px-5">Pilih foto</label>
+                                </div>
+                                <form action="#" class="edit-form">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="name" class="form-label fw-bold">Nama Pengguna</label>
+                                            <input type="text" id="name" name="name" class="form-control fw-bold"
+                                                placeholder="Masukan nama disini" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="email" class="form-label fw-bold">Email</label>
+                                            <input type="email" id="email" name="email" class="form-control fw-bold"
+                                                value="user@gmail.com" readonly
+                                                style="cursor: pointer; background-color:#E8E8E8 ;">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="posisi" class="form-label fw-bold">Karir Impian</label>
+                                            <select name="posisi" id="posisi" class="form-select">
+                                                <option value="">Pelajar Jangka Panjang</option>
+                                                <option value="UI/UX Designer">UI/UX Designer</option>
+                                                <option value="Frontend Developer">Frontend Developer</option>
+                                                <option value="Backend Developer">Backend Developer</option>
+                                                <option value="Wordpress Developer">Wordpress Developer</option>
+                                                <option value="Graphic Designer">Graphic Designer</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <button type="submit"
+                                                class="btn btn-primary w-100 rounded-start fw-bold">Simpan
+                                                Perubahan</button>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
-                            <div class="mb-4">
-                                <h6 class="fw-bold">Foto Profil</h6>
-                                <p>Ukuran Foto Maksimal (1 MB)</p>
-                                <img src="assets/img/icon/Group 7.png" alt="avatar" width="130" height="130" 
-                                    class="avatar mb-3" style="border-radius: 50%; object-fit: cover;" id="avatarPreview" />
-                                <input type="file" id="fileUpload" class="d-none">
-                                <label for="fileUpload" class="btn btn-secondary px-5">Pilih foto</label>
-                            </div>
-                            <form action="#" class="edit-form">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="name" class="form-label fw-bold">Nama Pengguna</label>
-                                        <input type="text" id="name" name="name" class="form-control fw-bold" placeholder="Masukan nama disini" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="email" class="form-label fw-bold">Email</label>
-                                        <input type="email" id="email" name="email" class="form-control fw-bold" value="user@gmail.com" readonly style="cursor: pointer; background-color:#E8E8E8 ;">
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="posisi" class="form-label fw-bold">Karir Impian</label>
-                                        <select name="posisi" id="posisi" class="form-select">
-                                            <option value="">Pelajar Jangka Panjang</option>
-                                            <option value="UI/UX Designer">UI/UX Designer</option>
-                                            <option value="Frontend Developer">Frontend Developer</option>
-                                            <option value="Backend Developer">Backend Developer</option>
-                                            <option value="Wordpress Developer">Wordpress Developer</option>
-                                            <option value="Graphic Designer">Graphic Designer</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 mb-3">
-                                        <button type="submit" class="btn btn-primary w-100 rounded-start fw-bold">Simpan Perubahan</button>
-                                    </div>
-                                </div>
-                            </form>
-                            
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <footer class="footer mt-5" id="footer">
+        </section>
+    </main>
+    <!-- footer web -->
+    <footer class="footer" id="footer">
         <div class="container-fluid p-0 m-0">
             <div class="content">
-                <div class="row">
-                    <div class="col-md-4">
+                <div class="row ">
+                    <div class="col-12 mb-4 mt-md-0 col-md-4">
                         <div class="brand-nemolab-icon d-flex align-items-center">
                             <img src="assets/img/logo-nemolab.png" alt="Logo" width="40" height="40"
                                 class="d-inline-block align-text-top">
@@ -120,10 +134,11 @@
                                 <p class="m-0 p-0 ">Kursus Online Terbaik</p>
                             </div>
                         </div>
-                        <p class="p-0 m-0 w-75 mt-3 text-white ">Belajar keahlian seputar teknologi kapanpun dan
+                        <p class="p-0 m-0 w-100 w-sm-75 mt-3 text-white ">Belajar keahlian seputar teknologi kapanpun
+                            dan
                             dimanapun</p>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-3 col-md-2">
                         <h5 class="title text-white fw-bold mb-3">Pilih Kelas</h5>
                         <div class="content-kelas">
                             <p class="m-0 p-0 text-white mb-2">
@@ -137,7 +152,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-3 col-md-2">
                         <h5 class="title text-white fw-bold mb-3">Paket Kelas</h5>
                         <div class="content-paket-kelas">
                             <p class="m-0 p-0 text-white mb-2">
@@ -148,7 +163,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-3 col-md-2">
                         <h5 class="title text-white fw-bold mb-3">Pusat Bantuan</h5>
                         <div class="content-paket-kelas d-flex flex-column">
                             <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
@@ -159,7 +174,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-3 col-md-2">
                         <h5 class="title text-white fw-bold mb-3">Media Sosial</h5>
                         <div class="content-paket-kelas d-flex flex-column">
                             <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
@@ -172,7 +187,7 @@
                     </div>
                 </div>
             </div>
-            <div class="copyright d-flex justify-content-center align-items-center pt-4 pb-4">
+            <div class="copyright d-sm-flex justify-content-sm-center align-items-sm-center pt-sm-4 pb-sm-4">
                 <p class="m-0 p-0 text-white">© 2024 All Rights Reserved. Design by Vibrant Ecosystem</p>
             </div>
         </div>
@@ -181,17 +196,17 @@
     <!-- boostrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gN8oMTAuBhrdN/vBdQ94MhT2Nz19Lw+8JYoThqClJxSUHb4Hj8C78cDTK+KEeS88" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function elementFollowScroll(object, sectionContainer, topMargin, stopOn = false, footer) {
-            $(window).on("scroll", function() {
-                if ($(window).width() > 962) { 
+            $(window).on("scroll", function () {
+                if ($(window).width() > 962) {
                     let originalY = sectionContainer.offset().top;
                     let scrollTop = $(window).scrollTop();
-                    let footerTop = footer.offset().top; 
-                    let sidebarHeight = object.outerHeight(true); 
-                    let stopPoint = footerTop - sidebarHeight - topMargin; 
+                    let footerTop = footer.offset().top;
+                    let sidebarHeight = object.outerHeight(true);
+                    let stopPoint = footerTop - sidebarHeight - topMargin;
 
                     if (stopOn === false) {
                         let newTop = scrollTop < originalY ? 0 : scrollTop - originalY + topMargin;
@@ -216,12 +231,12 @@
             });
         }
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Inisialisasi sidebar sticky
             const sidebar = $(".sidebar");
             const sectionContainer = $(".col-md-3");
             const topMargin = 90;
-            const footer = $("footer"); 
+            const footer = $("footer");
             elementFollowScroll(sidebar, sectionContainer, topMargin, false, footer);
         });
 

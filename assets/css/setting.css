@@ -68,4 +68,14 @@ body {
         flex: 0 0 50%;
         max-width: 50%;
     }
+    
+}
+
+@media screen and (max-width: 576px) {
+    .section-pilih-kelas {
+        padding: 50px 0 !important;
+    }
+    .section-pilih-kelas .setting-item h3 {
+        font-size: 18px !important;
+    }
 }

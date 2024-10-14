@@ -35,10 +35,11 @@ body {
     color: var(--primary-color);
 }
 
-.filter-transaction .nav-tabs a:hover{
+.filter-transaction .nav-tabs a:hover {
     background-color: var(--hover-color);
     color: var(--primary-color);
 }
+
 .filter-transaction .nav-tabs a.active {
     background-color: var(--primary-color);
     color: var(--text-color);
@@ -107,4 +108,26 @@ body {
 .btn-outline-red:hover {
     background-color: var(--button-red);
     color: var(--text-color);
+}
+
+
+.btn-more button.btn-primary
+{
+background-color: white;
+border: 2px solid white;
+color: #414142;
+font-family: 'Nunito', sans-serif;
+font-weight: 600;
+transition: ease-in-out 0.3s;
+}
+
+
+.btn-more button.btn-primary:hover {
+    background-color: transparent !important;
+    border: 2px solid #414142;
+}
+
+.btn-more button.btn-primary:active {
+    color: #414142 !important;
+    transform: scale(0.9);
 }

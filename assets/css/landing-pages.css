@@ -39,25 +39,21 @@ html::-webkit-scrollbar {
     padding: 80px 2.5rem;
     height: 100vh;
 }
-#section-hero-img .row .col-md-5 img {
-    max-width: 100%;
-    height: auto; 
-    max-height: 350px;
-}
 
-#section-hero-img .row .col-md-7:first-child h1 {
+#section-hero-img .row .col-md-6:first-child h1 {
     font-size: 34px;
     color: var(--color-grey);
 }
 
-#section-hero-img .row .col-md-7:first-child p {
+#section-hero-img .row .col-md-6:first-child p {
     color: var(--shade-gray);
 }
 
-#section-hero-img .row .col-md-7:first-child a {
+#section-hero-img .row .col-md-6:first-child a {
     color: white;
     background-color: var(--color-orange);
     border: none;
+    width: max-content;
 }
 
 /* end style section 1 */
