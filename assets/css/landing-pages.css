@@ -10,6 +10,7 @@
     --light-shade: #FDF8F8;
     --shade-gray: #8F8F8F;
     --lavender-mist: #F0EAFF;
+    --hero-bg:#F7F4FF;
 }
 
 * {
@@ -53,7 +54,6 @@ html::-webkit-scrollbar {
     color: white;
     background-color: var(--color-orange);
     border: none;
-    width: max-content;
 }
 
 /* end style section 1 */
@@ -62,10 +62,9 @@ html::-webkit-scrollbar {
 
 
 
-/* style section 2 */
+/* General styling for section and card */
 #section-pilih-kelas {
     background-color: var(--color-orange);
-    height: max-content;
     padding: 0 2.5rem;
 }
 
@@ -94,20 +93,30 @@ html::-webkit-scrollbar {
     margin-top: 5rem;
 }
 
+/* Styling for card and its content */
 #section-pilih-kelas .container-fluid .content-kelas .row .col-md-3 {
-    height: 380px
+    height: auto;
+    margin-bottom: 2rem; /* Add spacing between cards on smaller screens */
 }
 
 #section-pilih-kelas .container-fluid .content-kelas .row .col-md-3 .card {
-    width: 18rem;
+    width: 100%; /* Make the card width responsive */
     border: none;
     border-radius: 14px;
     height: max-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#section-pilih-kelas .container-fluid .content-kelas .row .col-md-3 .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 #section-pilih-kelas .container-fluid .content-kelas .row .col-md-3 .card img {
     object-fit: cover;
     height: 200px;
+    width: 100%;
 }
 
 #section-pilih-kelas .container-fluid .content-kelas .row .col-md-3 .card .card-body .title-card h5 {
@@ -115,6 +124,7 @@ html::-webkit-scrollbar {
     color: var(--color-grey);
 }
 
+/* Responsive text truncation */
 .truncate-text {
     display: block;
     overflow: hidden;
@@ -124,13 +134,6 @@ html::-webkit-scrollbar {
     max-height: 3em;
     text-overflow: ellipsis;
 }
-
-.truncate-text.expanded {
-    white-space: normal;
-    -webkit-line-clamp: unset;
-    max-height: none;
-}
-
 
 #section-pilih-kelas .container-fluid .content-kelas .row .col-md-3 .card-body .btn-group-harga button.btn-primary {
     background-color: var(--color-orange);
@@ -144,9 +147,32 @@ html::-webkit-scrollbar {
     color: var(--color-grey);
 }
 
-/* end style section 2 */
+/* Responsive design with media queries */
+@media (max-width: 992px) {
 
+}
 
+/* For devices with width 768px and below */
+@media (max-width: 768px) {
+    #section-pilih-kelas .container-fluid .title-pilih-kelas {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #section-pilih-kelas .container-fluid .content-kelas .row .col-md-3 {
+        width: 100%; /* Full width for small devices */
+        margin-bottom: 1.5rem;
+    }
+    #section-pilih-kelas .container-fluid .title-pilih-kelas .title-group h1 {
+        font-size: 24px;
+    }
+    #section-pilih-kelas .container-fluid .title-pilih-kelas .title-group p {
+        font-size: 14px;
+    }
+    #section-pilih-kelas .container-fluid .title-pilih-kelas a {
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+}
 
 
 /* style section-tentang-nemolab */
@@ -156,7 +182,7 @@ html::-webkit-scrollbar {
 
 #service {
     border-radius: 15px;
-    background-color: var(--light-shade);
+    background-color: var(--hero-bg);
     display: flex;
     flex-direction: row;
 }
@@ -213,22 +239,54 @@ html::-webkit-scrollbar {
 
 
 
-
-
 #section-benefit-kelas {
-    padding: 40px 2.5rem;
+    padding: 10px 2rem;
 }
 
-#section-benefit-kelas .container-fluid .row .col-md-6:first-child h1{
+#section-benefit-kelas h1 {
     color: var(--color-grey);
     font-size: 34px;
 }
 
-#section-benefit-kelas .container-fluid .row .col-md-6:first-child .check-active-group .check-active p{
+.check-active-group {
+    text-align: left; /* Keep text left-aligned for check-active items */
+}
+
+.check-active-group .check-active p {
     color: var(--color-grey);
 }
 
+.benefit-images {
+    gap: 50px;
+}
 
+.grid-images {
+    display: flex; 
+    flex-wrap: wrap; 
+}
+
+.grid-images .grid-img {
+    width: 190px;
+    margin: 6px;
+    max-width: 100%; 
+    height: auto;
+}
+
+@media (max-width: 1024px) {
+    #section-benefit-kelas .col-md-6.text-center {
+        text-align: center;
+    }
+
+    #section-benefit-kelas .check-active-group {
+        display: flex;
+        flex-direction: column; 
+    }
+
+    .grid-images .grid-img {
+        width: calc(50% - 12px); 
+        margin: 6px;
+    }
+}
 
 
 /* style section 5 */
