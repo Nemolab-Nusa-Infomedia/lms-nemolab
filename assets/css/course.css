@@ -178,6 +178,7 @@ html::-ms-overflow-style {
     font-size: 9px;
   }
 }
+
 .search {
   width: 100%;
   position: relative;
@@ -185,7 +186,7 @@ html::-ms-overflow-style {
 }
 
 .searchTerm {
-  width: 100%;
+  width: 250px;
   border: none;
   border-right: none;
   padding: 5px;

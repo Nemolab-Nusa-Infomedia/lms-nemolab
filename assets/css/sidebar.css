@@ -118,10 +118,6 @@ input[type="radio"]:checked + label span {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .sidebar {
-        display: none;
-    }
-
     #course-card {
         width: 100%; 
     }
@@ -131,8 +127,23 @@ input[type="radio"]:checked + label span {
         padding-right: 0;
     }
 }
+/* Sidebar Mobile */
+/* Sidebar Mobile */
 @media (max-width: 767px) {
     .sidebar {
-        display: none;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        transform: translateX(-100%); /* Sidebar tersembunyi di luar layar */
+        height: 100vh;
+        width: 80%; /* Lebar sidebar pada mobile */
+        z-index: 999; /* Agar selalu berada di atas */
+        transition: transform 0.3s ease-in-out; /* Transisi ketika sidebar muncul */
+    }
+
+    /* Menampilkan sidebar ketika class 'show-sidebar' ditambahkan */
+    .sidebar.show-sidebar {
+        transform: translateX(0); /* Sidebar muncul di layar */
     }
 }
+
