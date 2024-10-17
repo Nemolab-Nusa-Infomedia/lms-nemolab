@@ -100,14 +100,14 @@ h2.text-rinci {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
+    width: 90%; /* Change width to 90% for smaller screens */
+    max-width: 600px; /* Keep the maximum width for larger screens */
     height: auto;
     background-color: #FFF;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     z-index: 100;
     transition: fadeIn 1ms;
-    
 }
 
 
