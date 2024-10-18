@@ -1,0 +1,123 @@
+/* font navbar */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* variabel color */
+:root {
+    --color-orange: #FAA907;
+    --color-grey: #414142;
+    --dim-grey: #696969;
+    --charcoal-gray: #414142;
+    --light-shade: #FDF8F8;
+    --shade-gray: #8F8F8F;
+    --lavender-mist: #F0EAFF;
+    --hero-bg: #F7F4FF;
+    --color-pink: #FFF6F6;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif !important;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+html::-ms-overflow-style {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    background-color: var(--color-pink);
+}
+
+
+/* style section 1 */
+#view-course-section {
+    margin-top: 50px;
+    padding: 80px 2.5rem;
+    height: max-content;
+}
+
+#view-course-section .container-fluid .row .col-8 {
+    background-color: white;
+    border-radius: 20px;
+    padding: 0px;
+    height: 600px;
+    width: 64%;
+}
+
+#view-course-section .container-fluid .row .col-8 iframe {
+    border-radius: 20px;
+}
+
+#view-course-section .container-fluid .row .col-8 h2 {
+    font-weight: 700;
+    color: var(--charcoal-gray);
+    font-size: 28px;
+    width: 90%;
+}
+
+#view-course-section .container-fluid .row .col-8 .link-group a.btn-primary {
+    background-color: var(--color-orange) !important;
+    outline: none;
+    border: none;
+}
+
+#view-course-section .container-fluid .row .col-8 .link-group a.btn-secondary {
+    background-color: var(--charcoal-gray) !important;
+    outline: none;
+    border: none;
+}
+
+#view-course-section .container-fluid .row .col-4 .card {
+    height: 600px;
+}
+
+#view-course-section .container-fluid .row .col-4 .card .card-body .content h5 {
+    color: var(--charcoal-gray);
+    font-size: 24 px;
+    font-weight: 700;
+}
+
+#view-course-section .container-fluid .row .col-4 .card .card-body .content .link-source .link {
+    background-color: var(--color-pink);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+#view-course-section .container-fluid .row .col-4 .card .card-body .content .link-source a {
+    text-decoration: none;
+    color: var(--shade-gray);
+}
+
+.text-wrap {
+    flex-grow: 1;
+    white-space: normal; /* Ensures the text will wrap normally */
+    word-wrap: break-word; /* Break long words if necessary */
+    overflow-wrap: break-word; /* Breaks text to avoid overflow */
+    max-width: calc(100% - 40px); /* Prevents overflow and leaves space for the image */
+}
+
+
+.link img {
+    margin-left: 10px;
+    width: 30px; /* Adjust image size if needed */
+}
+
+.active-course {
+    background-color: var(--charcoal-gray) !important;
+}
+
+.active-course > a{
+    color: white !important;
+}

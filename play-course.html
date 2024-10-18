@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nemolab - Belajar Kelasku</title>
+    <link rel="icon" href="assets/img/logo-nemolab.png" type="image/x-icon" />
+
+    <!-- boostrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <!-- css navbar -->
+    <link rel="stylesheet" href="assets/css/navbar.css">
+
+    <!-- css footer -->
+    <link rel="stylesheet" href="assets/css/footer.css">
+
+    <!-- css content -->
+    <link rel="stylesheet" href="assets/css/play-course.css">
+
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <header class="ps-3 pe-3 pt-2 pb-2 w-100 fixed-top position-fixed bg-white shadow-sm">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg bg-transparent">
+                <div class="container-fluid">
+                    <a href="#" style="text-decoration: none;">
+                        <div class="brand-nemolab-icon d-flex align-items-center">
+                            <img src="assets/img/logo-nemolab.png" alt="Logo" width="40" height="40"
+                                class="d-inline-block align-text-top">
+                            <div class="title-navbar-brand ms-2">
+                                <p class="m-0 p-0 fw-bold">Nemolab</p>
+                                <p class="m-0 p-0 ">Kursus Online Terbaik</p>
+                            </div>
+                        </div>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <ul class="navbar-nav d-flex mx-auto">
+                            <form class="d-lg-flex d-none" role="search">
+                                <div class="search-group d-flex">
+                                    <input class="" type="search" placeholder="cari kelas disini" aria-label="Search">
+                                    <button class="btn p-0 m-0" type="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
+                                                fill="#414142">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </ul>
+                        <ul class="navbar-nav d-lg-flex align-items-lg-center gap-lg-4 ps-5">
+                            <div class="dropdown dropdown-pilih-kelas">
+                                <button
+                                    class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pt-2 pt-lg-0 pb-2 pb-lg-0"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Pilih Kelas
+                                    <box-icon name='chevron-down' color="#414142"></box-icon>
+                                </button>
+                                <ul class="dropdown-menu mt-lg-3 mb-3">
+                                    <div class="head-submenu d-flex justify-content-between align-items-center">
+                                        <p class="m-0 p-0 fw-bold">Pilihan Kelas</p>
+                                        <a href="#" class="m-0 p-0">Lihat Semua</a>
+                                    </div>
+                                    <div class="content-submenu mt-2 ">
+                                        <div class="row m-0 ">
+                                            <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
+                                                <a href="#">UI UX Designer</a>
+                                            </div>
+                                            <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
+                                                <a href="#">Frontend Developer</a>
+                                            </div>
+                                            <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
+                                                <a href="#">Wordpress Developer</a>
+                                            </div>
+                                            <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
+                                                <a href="#">Backend Developer</a>
+                                            </div>
+                                            <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
+                                                <a href="#">Grapic Designer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+
+                            <div class="dropdown dropdown-pilih-paket-kelas">
+                                <button
+                                    class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pb-2 pb-lg-0"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Paket Kelas
+                                    <box-icon name='chevron-down' color="#414142"></box-icon>
+                                </button>
+                                <ul class="dropdown-menu mt-lg-3 mb-3">
+                                    <div class="head-submenu d-flex justify-content-between align-items-center">
+                                        <p class="m-0 p-0 fw-bold">Pilihan Paket Kelas</p>
+                                        <a href="#" class="m-0 p-0">Lihat Semua</a>
+                                    </div>
+                                    <div class="content-submenu mt-2 ">
+                                        <div class="row m-0">
+                                            <div class="col-sm-12 ps-0 pl-1 mb-1">
+                                                <a href="#">Course</a>
+                                            </div>
+                                            <div class="col-sm-12 ps-0 pl-1 mb-1">
+                                                <a href="#">Ebook</a>
+                                            </div>
+                                            <div class="col-sm-12 ps-0 pl-1 mb-1">
+                                                <a href="#">Paket Course Dan Ebook</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+
+                            <a href="#section-pusat-bantuan" class="text-decoration-none  pb-2 pb-lg-0">Pusat
+                                Bantuan</a>
+
+                            <div class="register-login d-flex align-items-center justify-content-end gap-2">
+                                <a href="register.html" class="btn btn-primary px-3 pt-1 pb-1">Daftar</a>
+                                <a href="login.html" class="btn btn-secondary px-3 pt-1 pb-1">Masuk</a>
+                            </div>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- end navbar -->
+
+    <main>
+
+        <!-- section 1 -->
+        <section class="view-course-section" id="view-course-section">
+            <div class="container-fluid">
+                <div class="row justify-content-between">
+                    <div class="col-8">
+                        <iframe width="100%" height="70%"
+                            src="https://www.youtube.com/embed/ANR4pkBChr0?si=TRD90dG3pY-CeBoa"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                        <h2 class="m-0 p-0 mt-3">
+                            Welcome to Figma : Mengenal navigasi yang ada di figma (Part 3)
+                        </h2>
+                        <div class="link-group d-block mt-4">
+                            <a href="#" class="btn btn-primary w-100">Belajar E-Book</a>
+                            <a href="#" class="btn btn-secondary w-100 mt-1">Detail Kelas</a>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card">
+                            <div class="card-body overflow-scroll">
+                                <div class="content mb-5">
+                                    <h5 class="m-0 p-0">Perkenalan</h5>
+                                    <div class="link-source mt-3">
+                                        <div class="link d-flex align-items-center mb-3">
+                                            <a href="#" class="text-wrap flex-grow-1 ">Welcome to Figma : Mengenal
+                                                software Figma
+                                                (Part 1) </a>
+                                            <img src="assets/img/check-course.png" alt="">
+                                        </div>
+                                        <div class="link d-flex align-items-center mb-3">
+                                            <a href="#" class="text-wrap flex-grow-1 ">Welcome to Figma : Mengenal tools
+                                                tools yang ada di figma (Part 2)</a>
+                                            <img src="assets/img/check-course.png" alt="">
+                                        </div>
+                                        <div class="link d-flex align-items-center mb-3 active-course">
+                                            <a href="#" class="text-wrap flex-grow-1 ">Welcome to Figma : Mengenal
+                                                navigasi yang ada di figma (Part 3)</a>
+                                            <img src="assets/img/check-course.png" alt="" class="d-none">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content mb-5">
+                                    <h5 class="m-0 p-0">Praktek</h5>
+                                    <div class="link-source mt-3">
+                                        <div class="link d-flex align-items-center mb-3">
+                                            <a href="#" class="text-wrap flex-grow-1 ">Implementasi Tools : Membuat
+                                                Tampilan Landing Page Sederhana (Part 1)</a>
+                                            <img src="assets/img/check-course.png" alt="" class="d-none">
+                                        </div>
+                                        <div class="link d-flex align-items-center mb-3">
+                                            <a href="#" class="text-wrap flex-grow-1 ">Implementasi Tools : Membuat
+                                                Tampilan Landing Page Sederhana (Part 2)</a>
+                                            <img src="assets/img/check-course.png" alt="" class="d-none">
+                                        </div>
+                                        <div class="link d-flex align-items-center mb-3">
+                                            <a href="#" class="text-wrap flex-grow-1 ">Implementasi Tools : Membuat
+                                                Tampilan Landing Page Sederhana (Part 3)</a>
+                                            <img src="assets/img/check-course.png" alt="" class="d-none">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- footer web -->
+    <footer class="footer" id="footer">
+        <div class="container-fluid p-0 m-0">
+            <div class="content">
+                <div class="row ">
+                    <div class="col-12 mb-4 mt-md-0 col-md-4">
+                        <div class="brand-nemolab-icon d-flex align-items-center">
+                            <img src="assets/img/logo-nemolab.png" alt="Logo" width="40" height="40"
+                                class="d-inline-block align-text-top">
+                            <div class="title-navbar-brand ms-2">
+                                <p class="m-0 p-0 fw-bold">Nemolab</p>
+                                <p class="m-0 p-0 ">Kursus Online Terbaik</p>
+                            </div>
+                        </div>
+                        <p class="p-0 m-0 w-100 w-sm-75 mt-3 text-white ">Belajar keahlian seputar teknologi kapanpun
+                            dan
+                            dimanapun</p>
+                    </div>
+                    <div class="col-3 col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Pilih Kelas</h5>
+                        <div class="content-kelas">
+                            <p class="m-0 p-0 text-white mb-2">
+                                UI/UX Designer
+                            </p>
+                            <p class="m-0 p-0 text-white mb-2">
+                                Wordpress Developer
+                            </p>
+                            <p class="m-0 p-0 text-white">
+                                Graphic Designer
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-3 col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Paket Kelas</h5>
+                        <div class="content-paket-kelas">
+                            <p class="m-0 p-0 text-white mb-2">
+                                Kursus
+                            </p>
+                            <p class="m-0 p-0 text-white mb-2">
+                                Ebook
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-3 col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Pusat Bantuan</h5>
+                        <div class="content-paket-kelas d-flex flex-column">
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Hubungi CS
+                            </a>
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Kirim Email
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-3 col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Media Sosial</h5>
+                        <div class="content-paket-kelas d-flex flex-column">
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Instagram
+                            </a>
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Youtube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright d-sm-flex justify-content-sm-center align-items-sm-center pt-sm-4 pb-sm-4">
+                <p class="m-0 p-0 text-white">© 2024 All Rights Reserved. Design by Vibrant Ecosystem</p>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+
+    <!-- boostrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- box icon -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="assets/js/landing-pages.js"></script>
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Inisialisasi AOS -->
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

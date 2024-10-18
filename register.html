@@ -45,7 +45,7 @@
                                     <input type="password" id="password" name="password" class="form-control fw-bold" placeholder="masukan kata sandi disini" required>
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary w-100 rounded-start fw-bold">Masuk</button>
+                                    <button class="btn btn-primary w-100 rounded-start fw-bold" id="btn-masuk">Masuk</button>
                                 </div>
                             </form>
                             <p class="text-center fw-bold">sudah memiliki akun? <a href="login.html">masuk disini</a></p>
@@ -61,6 +61,11 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Boxicons -->
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script>
+        document.getElementById('btn-masuk').addEventListener('click', ()=> {
+            window.location.href = 'course.html'
+        })
+    </script>
 </body>
 
 </html>

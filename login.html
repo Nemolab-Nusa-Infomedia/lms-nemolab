@@ -31,7 +31,7 @@
                                 <h3 class="mb-4">MASUK DENGAN AKUNMU!</h3>
                                 <p class="fw-bold">Masuk untuk mengakses akun anda, dengan mengisi email dan password dibawah ini</p>
                             </div>
-                            <form action="#" class="signin-form">
+                            <form action="#" class="signin-form" id="signin-form">
                                 <div class="mb-1">
                                     <label for="email" class="form-label fw-bold">Email</label>
                                     <input type="email" id="email" name="email" class="form-control fw-bold" placeholder="masukan email disini" required>
@@ -41,11 +41,11 @@
                                     <input type="password" id="password" name="password" class="form-control fw-bold" placeholder="masukan kata sandi disini" required>
                                 </div>
                                 <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary w-100 rounded-start fw-bold">Masuk</button>
+                                    <button class="btn btn-primary w-100 rounded-start fw-bold" id="btn-masuk">Masuk</button>
                                 </div>
                             </form>
                             <p class="text-center fw-bold">tidak memiliki akun? <a href="register.html">daftar disini</a></p>
-                            <p class="text-center fw-bold">lupa kata sandi? <a href="register.html">ganti sandi disini</a></p>
+                            <p class="text-center fw-bold">lupa kata sandi? <a href="forgot-pw.html">ganti sandi disini</a></p>
                         </div>
                     </div>
                 </div>
@@ -58,6 +58,11 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Boxicons -->
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script>
+        document.getElementById('btn-masuk').addEventListener('click', ()=> {
+            window.location.href = 'course.html'
+        })
+    </script>
 </body>
 
 </html>
