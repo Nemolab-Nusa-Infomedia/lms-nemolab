@@ -46,7 +46,7 @@ main #detail-course-section {
     padding: 120px 30px 100px 30px;
 }
 
-main #detail-course-section .container-fluid a {
+main #detail-course-section .container a {
     font-size: 24px;
     background-color: #0774FA;
     padding: 6px 9px;
@@ -55,24 +55,15 @@ main #detail-course-section .container-fluid a {
     text-decoration: none;
 }
 
-main #detail-course-section .container-fluid .content-detail .detail-title .col-8:first-child h4 {
+main #detail-course-section .container h4 {
     font-weight: 800;
     color: var(--charcoal-gray);
-    font-size: 28px;
-}
-
-main #detail-course-section .container-fluid .content-detail .detail-title .col-8:last-child {
-    width: 820px;
-    height: 410px;
-}
-
-main #detail-course-section .container-fluid .content-detail .detail-title .col-8:last-child img {
-    width: 100%;
-    height: 100%;
+    font-size: 34px;
 }
 
 
-main #detail-course-section .container-fluid .content-detail .group-kelas .row .col-4 a {
+
+main #detail-course-section .container .subcontent-images .row .col-4 a {
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -83,28 +74,191 @@ main #detail-course-section .container-fluid .content-detail .group-kelas .row .
     transition: 0.5s ease-in-out;
 }
 
-main #detail-course-section .container-fluid .content-detail .group-kelas .row .col-4 a:hover {
+
+main #detail-course-section .container .subcontent-images {
+    width: 900px;
+    margin: 0 auto;
+}
+
+main #detail-course-section .container .subcontent-images .row .col-4 a:hover {
     transform: translateY(-10px);
 }
 
-main #detail-course-section .container-fluid .content-detail .group-kelas .row .col-4 a img {
+main #detail-course-section .container .subcontent-images .row .col-4 a img {
     width: 40px;
     height: 40px;
 }
-
-main #detail-course-section .container-fluid .content-detail .group-kelas .row .col-4 a .group-title-subtitle p {
+main #detail-course-section .container .subcontent-images .row .col-4 a .group-title-subtitle p {
     font-size: 16px;
 }
-
-main #detail-course-section .container-fluid .content-detail .group-kelas .row .col-4 a .group-title-subtitle p:first-child {
+main #detail-course-section .container .subcontent-images .row .col-4 a .group-title-subtitle p:first-child {
     color: var(--charcoal-gray);
     font-weight: 700;
 }
-
-main #detail-course-section .container-fluid .content-detail .group-kelas .row .col-4 a .group-title-subtitle p:last-child {
+main #detail-course-section .container .subcontent-images .row .col-4 a .group-title-subtitle p:last-child {
     color: var(--color-silver);
     font-weight: 700;
     font-size: 14px;
 }
 
+
+
+main #detail-course-section .container .detail-courses {
+    width: 900px;
+    margin: 0 auto;
+}
+
+main #detail-course-section .container .detail-courses .card {
+    background-color: white;
+    padding: 20px;
+    border: none;
+}
+
+main #detail-course-section .container .detail-courses .card .card-header,
+main #detail-course-section .container .detail-courses .card .card-body {
+    background-color: transparent;
+    border: none;
+}
+
+
+main #detail-course-section .container .detail-courses .card .card-header h5 {
+    color: var(--charcoal-gray);
+    font-weight: 800;
+    font-size: 22px;
+}
+
+main #detail-course-section .container .detail-courses .card .card-header h5 {
+    color: var(--charcoal-gray);
+    font-weight: 800;
+    font-size: 22px;
+}
+
+main #detail-course-section .container .detail-courses .card .card-body p {
+    color: var(--color-silver);
+    font-size: 18px;
+}
+
+
+main #detail-course-section .container .description-courses {
+    width: 900px;
+    margin: 0 auto;
+}
+
+main #detail-course-section .container .description-courses .card {
+    background-color: white;
+    padding: 20px;
+    border: none;
+}
+
+main #detail-course-section .container .description-courses .card .card-header,
+main #detail-course-section .container .description-courses .card .card-body {
+    background-color: transparent;
+    border: none;
+}
+
+
+main #detail-course-section .container .description-courses .card .card-header h5 {
+    color: var(--charcoal-gray);
+    font-weight: 800;
+    font-size: 22px;
+}
+
+main #detail-course-section .container .description-courses .card .card-header h5 {
+    color: var(--charcoal-gray);
+    font-weight: 800;
+    font-size: 22px;
+}
+
+main #detail-course-section .container .description-courses .card .card-body p {
+    color: var(--color-silver);
+    font-size: 18px;
+}
+
+
+main #detail-course-section .container .tools-courses {
+    width: 900px;
+    margin: 0 auto;
+}
+
+main #detail-course-section .container .tools-courses .card {
+    background-color: white;
+    padding: 20px;
+    border: none;
+}
+
+main #detail-course-section .container .tools-courses .card .card-header,
+main #detail-course-section .container .tools-courses .card .card-body {
+    background-color: transparent;
+    border: none;
+}
+
+main #detail-course-section .container .tools-courses .card .card-body .tools-group {
+    background-color: #FDF8F8;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+
+main #detail-course-section .container .tools-courses .card .card-header h5 {
+    color: var(--charcoal-gray);
+    font-weight: 800;
+    font-size: 22px;
+}
+
+main #detail-course-section .container .tools-courses .card .card-header h5 {
+    color: var(--charcoal-gray);
+    font-weight: 800;
+    font-size: 22px;
+}
+
+main #detail-course-section .container .tools-courses .card .card-body .tools-group p {
+    color: var(--charcoal-gray);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+
+main #detail-course-section .container .testimoni {
+    width: 900px;
+    margin: 0 auto;
+}
+
+
+main #detail-course-section .container .testimoni h1 {
+    color: var(--charcoal-gray);
+    font-weight: 800;
+    font-size: 30px;
+}
+
+main #detail-course-section .container .testimoni .col-12 {
+    margin: 0 auto;
+}
+
+main #detail-course-section .container .testimoni .col-12 .row .col-6 .card {
+    height: 190px;
+}
+
+main #detail-course-section .container .testimoni .col-12 .row .col-6 .card .card-body .card-head .name .card-title {
+    font-size: 16px;
+    color: var(--color-grey);
+}
+
+main #detail-course-section .container .testimoni .col-12 .row .col-6 .card .card-body .card-head .name p,
+main #detail-course-section .container .testimoni .col-12 .row .col-6 .card .card-body p.card-text {
+    font-size: 14px;
+    color: var(--color-grey) !important;
+    font-weight: 600;
+}
+
+
+main #detail-course-section .container .testimoni .col-12 .row #additional-content {
+    display: none;
+}
+
+main #detail-course-section .container .testimoni .col-12 .navtabs-more-testimoni button.btn-primary {
+    background-color: var(--color-orange) !important;
+    color: white !important;
+    outline: none;
+    border: none;
+}
 
