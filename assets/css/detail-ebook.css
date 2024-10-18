@@ -1,0 +1,215 @@
+/* font navbar */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* variabel color */
+:root {
+    --color-orange: #FAA907;
+    --color-grey: #414142;
+    --dim-grey: #696969;
+    --charcoal-gray: #414142;
+    --light-shade: #FDF8F8;
+    --shade-gray: #8F8F8F;
+    --lavender-mist: #F0EAFF;
+    --color-silver: #9D9D9D;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif !important;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+html::-ms-overflow-style {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    background-color: #FFF6F6;
+}
+
+
+main #hero-images-section {
+    height: 100vh;
+    padding: 120px 30px 0 30px;
+}
+
+main #hero-images-section .container-fluid h1 {
+    color: var(--charcoal-gray);
+    font-size: 32px;
+    font-weight: 800;
+}
+
+main #hero-images-section .container-fluid .row .col-9 .card .card-body img:first-child {
+    width: 28%;
+    height: auto;
+}
+
+main #hero-images-section .container-fluid .row .col-9 .card .card-body img:last-child {
+    width: 30%;
+    height: auto;
+}
+
+main #hero-images-section .container-fluid .row .col-3 .card .card-body p.title-ebook {
+    color: var(--color-orange);
+    border: 2px solid var(--color-orange);
+    width: max-content;
+    padding: 4px 16px;
+    border-radius: 10px;
+}
+
+main #hero-images-section .container-fluid .row .col-3 .card .card-body h5 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--color-grey);
+}
+
+main #hero-images-section .container-fluid .row .col-3 .card .card-body p.subtitle-ebook {
+    color: var(--color-silver);
+    text-align: center;
+}
+
+main #hero-images-section .container-fluid .row .col-3 .card .card-body .benefit-join p {
+    color: var(--charcoal-gray)
+}
+main #hero-images-section .container-fluid .row .col-3 .card .card-body .benefit-join .benefit-group .row .col-12 p {
+    color: var(--color-silver)
+}
+
+main #hero-images-section .container-fluid .row .col-3 .card .card-body .price p {
+    color: var(--charcoal-gray);
+}
+
+main #hero-images-section .container-fluid .row .col-3 .card .card-footer {
+    background-color: var(--color-orange);
+    padding: 14px 0px;
+}
+
+main #hero-images-section .container-fluid .row .col-3 .card .card-footer a {
+    text-decoration: none;
+    font-weight: 800;
+    color: white;
+}
+
+main #detail-ebook-section {
+    padding: 120px 20px 40px 30px;
+    height: max-content;
+}
+
+
+main #detail-ebook-section .container-fluid .col-6 .card {
+    background-color: white;
+    padding: 20px;
+    border: none;
+}
+
+main #detail-ebook-section .container-fluid .col-6 .card .card-header,
+main #detail-ebook-section .container-fluid .col-6 .card .card-body {
+    background-color: transparent;
+    border: none;
+}
+
+
+main #detail-ebook-section .container-fluid .col-6 .card .card-header h5 {
+    color: var(--charcoal-gray);
+    font-weight: 800;
+    font-size: 22px;
+}
+
+main #detail-ebook-section .container-fluid .col-6 .card .card-body .text p,
+main #detail-ebook-section .container-fluid .col-6 .card .card-body .text-titik-koma p,
+main #detail-ebook-section .container-fluid .col-6 .card .card-body .text-content p {
+    color: var(--color-silver);
+    font-size: 18px;
+}
+
+
+main #description-ebook-section {
+    padding: 0px 30px 40px 30px;
+    height: max-content;
+}
+
+
+main #description-ebook-section .container-fluid .col-6 .card {
+    background-color: white;
+    padding: 20px;
+    border: none;
+}
+
+main #description-ebook-section .container-fluid .col-6 .card .card-header,
+main #description-ebook-section .container-fluid .col-6 .card .card-body {
+    background-color: transparent;
+    border: none;
+}
+
+
+main #description-ebook-section .container-fluid .col-6 .card .card-header h5 {
+    color: var(--charcoal-gray);
+    font-weight: 800;
+    font-size: 22px;
+}
+
+main #description-ebook-section .container-fluid .col-6 .card .card-header h5 {
+    color: var(--charcoal-gray);
+    font-weight: 800;
+    font-size: 22px;
+}
+
+main #description-ebook-section .container-fluid .col-6 .card .card-body p {
+    color: var(--color-silver);
+    font-size: 18px;
+}
+
+
+
+main #testimoni-ebook-section {
+    padding: 20px 20px 80px 30px;
+    height: max-content;
+}
+
+
+main #testimoni-ebook-section .container-fluid h1 {
+    color: var(--charcoal-gray);
+    font-weight: 800;
+    font-size: 30px;
+}
+
+main #testimoni-ebook-section .container-fluid .col-6 .row .col-6 .card {
+    height: 190px;
+}
+
+main #testimoni-ebook-section .container-fluid .col-6 .row .col-6 .card .card-body .card-head .name .card-title {
+    font-size: 16px;
+    color: var(--color-grey);
+}
+
+main #testimoni-ebook-section .container-fluid .col-6 .row .col-6 .card .card-body .card-head .name p,
+main #testimoni-ebook-section .container-fluid .col-6 .row .col-6 .card .card-body p.card-text {
+    font-size: 14px;
+    color: var(--color-grey) !important;
+    font-weight: 600;
+}
+
+
+
+main #testimoni-ebook-section .container-fluid .col-6 .row #additional-content {
+    display: none;
+}
+
+main #testimoni-ebook-section .container-fluid .col-6 .navtabs-more-testimoni button.btn-primary {
+    background-color: var(--color-orange) !important;
+    color: white !important;
+    outline: none;
+    border: none;
+}
