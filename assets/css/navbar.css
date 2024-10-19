@@ -62,6 +62,8 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 header .container-fluid .navbar-toggler {
    background-color: orange;
    border: none;
+   padding: 0px !important;
+   background-color: transparent !important;
 }
 
 
