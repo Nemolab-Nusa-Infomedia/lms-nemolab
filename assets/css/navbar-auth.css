@@ -1,0 +1,148 @@
+/* font navbar */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200..1000&display=swap');
+
+/* variabel color */
+:root {
+    --dark-grey: #414142;
+    --blue-link: #0774FA;
+    --light-lavender: #F0EAFF;
+    --color-pink: #FFF6F6;
+}
+
+/* Gaya untuk ikon dan judul navbar */
+header .container-fluid .navbar .brand-nemolab-icon .title-navbar-brand p {
+    color: var(--dark-grey);
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.2;
+}
+
+header .container-fluid .navbar .brand-nemolab-icon .title-navbar-brand p:first-child {
+    font-size: 20px;
+}
+
+header .container-fluid .navbar .brand-nemolab-icon .title-navbar-brand p:last-child {
+    font-size: 14px;
+}
+
+/* Gaya untuk grup pencarian */
+header .navbar-nav .search-group {
+    background-color: var(--color-pink);
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+}
+
+/* Gaya untuk input pencarian */
+header .navbar-nav .search-group input,
+header .navbar-nav .search-group input:focus {
+    outline: none;
+    border: none;
+    background: transparent;
+    font-family: 'Nunito', sans-serif;
+    color: var(--dark-grey);
+    font-size: 16px;
+    width: 260px;
+}
+
+/* Gaya untuk dropdown dan link di navbar */
+header .navbar-nav .dropdown button,
+header .navbar-nav a {
+    color: var(--dark-grey);
+    background: none;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px !important;
+}
+
+header .navbar-nav .dropdown button.dropdown-toggle::after {
+    display: none; /* Menghilangkan tanda panah dropdown */
+}
+
+header .navbar-nav .dropdown .dropdown-menu {
+    width: 380px; /* Lebar dropdown menu */
+    padding: 14px;
+}
+
+/* Gaya untuk header submenu */
+header .navbar-nav .dropdown .dropdown-menu .head-submenu p,
+header .navbar-nav .dropdown .dropdown-menu .head-submenu a {
+    font-size: 18px !important;
+    font-family: 'Nunito', sans-serif;
+    color: var(--dark-grey);
+}
+
+/* Gaya untuk tautan submenu */
+header .navbar-nav .dropdown .dropdown-menu .head-submenu a {
+    color: var(--blue-link);
+    text-decoration: none;
+}
+
+/* Gaya untuk tautan konten submenu */
+header .navbar-nav .dropdown .dropdown-menu .content-submenu a {
+    font-size: 16px !important;
+    font-family: 'Nunito', sans-serif;
+    color: var(--dark-grey);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+header .navbar-nav .dropdown .dropdown-menu .content-submenu a:hover {
+    color: var(--blue-link);
+}
+
+/* Gaya untuk tombol registrasi dan login */
+header .navbar-nav .register-login a {
+    font-size: 18px;
+    font-family: 'Nunito', sans-serif;
+}
+
+header .navbar-nav .register-login a.btn-secondary {
+    background-color: var(--light-lavender);
+    border: none;
+    color: black;
+}
+
+/* Media queries untuk responsif */
+@media screen and (min-width: 480px) and (max-width: 576px) {
+    header .navbar-nav .dropdown button,
+    header .navbar-nav a {
+        font-size: 16px !important;
+    }
+
+    header .navbar-nav .register-login a {
+        font-size: 16px !important;
+    }
+
+    header .navbar-nav .dropdown .dropdown-menu {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header .navbar-nav .dropdown button,
+    header .navbar-nav a {
+        font-size: 14px !important;
+    }
+
+    header .navbar-nav .register-login a {
+        font-size: 14px !important;
+    }
+
+    header .navbar-nav .dropdown .dropdown-menu {
+        width: 100%;
+    }
+
+    header .navbar-nav .dropdown .dropdown-menu .head-submenu p,
+    header .navbar-nav .dropdown .dropdown-menu .head-submenu a {
+        font-size: 16px !important;
+    }
+
+    header .navbar-nav .dropdown .dropdown-menu .content-submenu a {
+        font-size: 14px !important;
+    }
+
+    header .navbar-nav .dropdown .dropdown-menu .head-submenu a {
+        display: none !important;
+    }
+}

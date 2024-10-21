@@ -8,7 +8,9 @@
     --light-lavender: #F0EAFF;
     --color-pink: #FFF6F6;
 }
-
+header .register-mobile {
+    display: none;
+}
 
 header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p {
     color: var(--dark-grey);
@@ -54,10 +56,16 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
     font-family: 'Nunito', sans-serif;
     font-size: 18px !important;
 }
-
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button.dropdown-toggle::after {
     display: none;
 }
+header .container-fluid .navbar-toggler {
+   background-color: orange;
+   border: none;
+   padding: 0px !important;
+   background-color: transparent !important;
+}
+
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu {
     width: max-content;
@@ -135,6 +143,12 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 }
 
 @media screen and (max-width: 480px) {
+    header .register-mobile {
+        display: block;
+    }
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav {
+        padding-left: 0 !important;
+    }
 
     header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button,
     header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a {

@@ -1,0 +1,222 @@
+/* font navbar */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* variabel color */
+:root {
+    --color-orange: #FAA907;
+    --color-grey: #414142;
+    --dim-grey: #696969;
+    --charcoal-gray: #414142;
+    --light-shade: #FDF8F8;
+    --shade-gray: #8F8F8F;
+    --lavender-mist: #F0EAFF;
+    --color-silver: #9D9D9D;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html::-ms-overflow-style {
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+h1, h3, h5 {
+    color: var(--color-grey);
+    font-weight: 700;
+}
+
+body {
+    background-color: #FFF6F6;
+}
+
+p {
+    color: var(--shade-gray);
+}
+
+.card-preview img {
+    border-radius: 15px;
+    object-fit: cover;
+    width: 99%;
+    height: 400px;
+    background-image: white;
+}
+
+.card {
+    border: none;
+    border-radius: 15px; /* Sudut melingkar */
+    padding: 15px; /* Padding dalam card */
+    background-color: #ffffff; /* Warna latar belakang */
+}
+
+.card-body h5 {
+    margin-bottom: 15px; /* Margin bawah untuk judul */
+}
+
+.card-bonus {
+    padding: 15px;
+    background-color: white;
+    border-radius: 15px;
+}
+
+.card-bonus img {
+    max-width: 100px; /* Ukuran maksimal gambar */
+    margin-right: 15px; /* Margin kanan untuk jarak dengan detail bonus */
+}
+
+.detail {
+    border-collapse: collapse; /* Menghilangkan jarak antara sel */
+    width: 100%; /* Lebar penuh */
+}
+
+.detail td {
+    color: var(--shade-gray);
+    padding: 5px; /* Padding untuk sel */
+    vertical-align: top; /* Posisikan teks di atas sel */
+}
+
+.detail td:first-child {
+    color: var(--shade-gray);
+    font-weight: bold; /* Membuat teks judul lebih tebal */
+    width: 200px; /* Lebar tetap untuk kolom judul */
+}
+
+.card-tool {
+    background-color: var(--light-shade);
+    margin: 10px; /* Jarak antar card-tool */
+    padding: 5px; /* Memberikan padding di dalam card-tool */
+    text-align: center; /* Center text */
+    border-radius: 5px; 
+}
+
+.card-tool img {
+    max-width: 100%; /* Memastikan gambar tidak melampaui ukuran card-tool */
+    height: auto; /* Mempertahankan rasio aspek gambar */
+}
+
+.card-tool p {
+    margin-bottom: 0px;
+    color: var(--charcoal-gray);
+    font-weight: bold;
+}
+
+.card-testimoni {
+    width: 100%; /* Memastikan card testimoni lebar penuh */
+}
+
+.card {
+    width: 100%; /* Memastikan setiap card memenuhi kolom */
+}
+
+.card-head img {
+    width: 50px; /* Ukuran gambar profil */
+    height: auto; /* Mempertahankan rasio aspek */
+}
+
+.card-text {
+    font-size: 0.9rem; /* Ukuran font yang nyaman untuk bacaan */
+}
+
+.navtabs-more-testimoni {
+    margin-top: 20px; /* Jarak antara tombol dan card */
+}
+
+.paket {
+    color: var(--color-orange);
+    display: inline-block;
+    border: 2px solid var(--color-orange);
+    padding: 5px 10px; /* Sesuaikan padding untuk jarak dalam */
+    border-radius: 5px; /* Tambahkan border-radius untuk sudut melengkung */
+}
+
+.card-buy-body {
+    text-align: center; /* Menjadikan konten di dalam elemen ini rata tengah */
+}
+
+.card-buy {
+    width: 400px;
+    position: relative; 
+    z-index: 20;
+}
+
+.buy {
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    border-radius: 0px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.buy:hover {
+    color: white;
+    background-color: rgb(233, 162, 30);
+}
+
+.btn-warning:focus,
+.btn-warning:active {
+    color: white;
+    background-color: rgb(233, 162, 30);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .card-buy {
+        width: 100%; /* Full width for smaller screens */
+    }
+
+    .card-preview img {
+        height: auto; /* Maintain aspect ratio */
+    }
+
+    .card-bonus img {
+        max-width: 80px; /* Reduce image size */
+    }
+
+    .detail td:first-child {
+        width: auto; /* Allow flexibility on smaller screens */
+    }
+
+    h1 {
+        font-size: 1.5rem; /* Responsive heading size */
+    }
+
+    h3 {
+        font-size: 1.2rem; /* Responsive heading size */
+    }
+
+    h5 {
+        font-size: 1rem; /* Responsive heading size */
+    }
+
+    .card-text {
+        font-size: 0.8rem; /* Slightly smaller text */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card-tool img {
+        max-width: 100%; /* Memastikan gambar tidak melampaui ukuran card-tool */
+        height: auto; /* Mempertahankan rasio aspek gambar */
+    }
+
+    .paket {
+        font-size: 0.9rem; /* Adjust font size for smaller screens */
+    }
+
+    .card-buy-body {
+        font-size: 0.9rem; /* Adjust font size for smaller screens */
+    }
+}
