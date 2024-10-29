@@ -6,9 +6,9 @@
     --color-bg: white;
     --color-active: #FAA907;
     --color-icon: white;
-    --dim-grey:#B5B5B5;
+    --dim-grey: #B5B5B5;
     --blck-grey: #414142;
-    --lavender:#FFF6F6;
+    --lavender: #FFF6F6;
 }
 
 * {
@@ -45,14 +45,20 @@
     font-weight: 900;
 }
 
-.profile p {
-    margin: 1px 0;
-    font-size: 14px;
+.profile p:first-child {
+    font-size: 20px !important;
+    margin-bottom: 0 !important;
 }
-.name{
+
+.profile p:last-child {
+    font-size: 18px !important;
+}
+
+.name {
     color: var(--blck-grey);
 }
-.posisi{
+
+.posisi {
     color: var(--dim-grey);
 }
 
@@ -69,8 +75,8 @@
 .menu li {
     display: flex;
     align-items: center;
-    padding: 8px; 
-    margin-bottom: 5px; 
+    padding: 8px;
+    margin-bottom: 5px;
     cursor: pointer;
     border-radius: 8px;
     transition: background-color 0.3s;
@@ -86,13 +92,12 @@
 
 .menu li a {
     text-decoration: none;
-    font-size: 16px;
     color: var(--dim-grey);
     width: 100%;
 }
 
 .menu li:hover {
-    background-color:var(--lavender);
+    background-color: var(--lavender);
 }
 
 /* Active tab styling */
@@ -101,21 +106,65 @@
 }
 
 .menu li.active img {
-    filter: brightness(0) invert(1); /* Change icon color to white */
+    filter: brightness(0) invert(1);
+    /* Change icon color to white */
 }
 
 .menu li.active a {
     color: white;
 }
 
+#sidebar-mobile-section {
+    display: none;
+}
+
+#sidebar-mobile-section .row .col-sm-3 p {
+    color: var(--dim-grey);
+    font-weight: 600 !important;
+}
+
+#sidebar-mobile-section .row .col-sm-3 p.active {
+    color: var(--color-active) !important;
+}
+
+#sidebar-mobile-section {
+    position: fixed;
+    width: 100%;
+    bottom: 48px;
+    z-index: 999;
+}
+
+#sidebar-mobile-section .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 20px;
+}
+
+#sidebar-mobile-section .row .col-sm-3 img {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    border: 2px solid var(--dim-grey);
+    border-radius: 10px;
+}
+
+#sidebar-mobile-section .row .col-sm-3 img.active {
+    border-color: var(--color-active) !important;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .sidebar {
-        display: none;
-    }
 
     #course-card {
         width: 100%;
+    }
+
+    .sidebar {
+        height: max-content;
+        padding: 40px 40px;
     }
 
     .card-container {
@@ -124,8 +173,25 @@
     }
 }
 
-@media (max-width: 767px) {
-    .sidebar {
-        display: none;
+
+
+@media screen and (max-width: 768px) {
+    #sidebar-mobile-section {
+        display: block;
     }
+
+}
+
+@media screen and (max-width: 576px) {
+    #sidebar-mobile-section .row {
+        width: 90% !important;
+        margin: 0 auto;
+        padding: 14px 0px;
+    }
+
+    #sidebar-mobile-section .row .col-sm-3 img {
+        width: 46px;
+        height: 46px;
+    }
+
 }

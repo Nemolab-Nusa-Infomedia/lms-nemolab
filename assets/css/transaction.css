@@ -16,6 +16,10 @@ body {
     font-weight: bold;
 }
 
+.section-main {
+    margin-top: 120px;
+} 
+
 .filter-transaction .nav-tabs {
     display: flex;
     list-style: none;
@@ -130,4 +134,8 @@ transition: ease-in-out 0.3s;
 .btn-more button.btn-primary:active {
     color: #414142 !important;
     transform: scale(0.9);
+}
+
+@media screen and (max-width: 576px) {
+    
 }

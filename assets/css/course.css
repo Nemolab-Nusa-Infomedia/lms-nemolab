@@ -32,6 +32,11 @@ html::-ms-overflow-style {
   /* Firefox */
 }
 
+#section-pilih-kelas {
+  height: max-content;
+  padding: 40px 0;
+}
+
 #section-pilih-kelas .container-fluid .content-kelas {
   margin-top: 5rem;
 }
@@ -132,51 +137,9 @@ html::-ms-overflow-style {
   border-radius: 5px;
 }
 
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .filter-head {
-    font-size: 17px;
-  }
-  .card .card-img-top {
-    object-fit: cover;
-    height: 80px;
-    width: 110px;
-    border-radius: 7px;
-  }
-  .card-body,
-  .card-head {
-    padding: 10px;
-  }
-  .card-body {
-    position: relative;
-  }
-  .title-card h5 {
-    font-size: 12px;
-    margin-bottom: 2px;
-  }
-  .title-card img {
-    width: 20px;
-    height: 20px;
-    margin-bottom: 1px;
-  }
-  .card .avatar {
-    font-size: 11px;
-    font-weight: 700;
-    color: gray;
-  }
-  .btn-group-harga .btn-primary {
-    font-size: 10px;
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-  }
-  .harga {
-    font-size: 12px;
-  }
-  .paket {
-    font-size: 9px;
-  }
+#list-course {
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 .search {
@@ -207,3 +170,56 @@ html::-ms-overflow-style {
   cursor: pointer;
   font-size: 20px;
 }
+
+#parent-img {
+  height: max-content;
+}
+
+@media screen and (max-width: 1150px) {
+  #course-card {
+    width: 100%;
+    padding: 0 !important;
+  }
+
+  .ms-sm-2 {
+    margin-left: 2.5rem !important;
+  }
+
+  .not-found img {
+    max-width: 100% !important;
+  }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .filter-head {
+    font-size: 17px;
+  }
+
+
+
+  .title-card h5 {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+
+  .btn-group-harga .btn-primary {
+    font-size: 10px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .harga {
+    font-size: 12px;
+  }
+  .paket {
+    font-size: 9px;
+  }
+
+
+}
+
+
+
