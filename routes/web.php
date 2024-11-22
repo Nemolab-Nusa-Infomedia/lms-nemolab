@@ -107,8 +107,8 @@ Route::middleware('maintenance.middleware')->group(function () {
         // My transaction
         Route::prefix('transaction')->group(function () {
             Route::get('/', [MemberTransactionController::class, 'index'])->name('member.transaction');
-            Route::get('/view/transaction/{transaction_code}', [MemberPaymentController::class, 'viewTransaction'])->name('member.transaction.view-transaction');
             Route::delete('/cancel/{id}', [MemberTransactionController::class, 'cancel'])->name('member.transaction.cancel');
+            Route::get('/detail/{transaction_code}', [MemberTransactionController::class, 'show'])->name('member.transaction.view-transaction');
         });
 
 

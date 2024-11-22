@@ -18,20 +18,24 @@
                     <!-- Navigation Tabs -->
                     <div class="filter-transaction">
                         <ul class="nav-tabs">
-                            <li><a href="{{ route('member.transaction', ['status' => null]) }}" class="{{ is_null($status) ? 'active' : '' }}">Semua</a></li>
-                            <li><a href="{{ route('member.transaction', ['status' => 'success']) }}" class="{{ $status === 'success' ? 'active' : '' }}">Berhasil</a></li>
-                            <li><a href="{{ route('member.transaction', ['status' => 'pending']) }}" class="{{ $status === 'pending' ? 'active' : '' }}">Pending</a></li>
+                            <li><a href="{{ route('member.transaction', ['status' => null]) }}"
+                                    class="{{ is_null($status) ? 'active' : '' }}">Semua</a></li>
+                            <li><a href="{{ route('member.transaction', ['status' => 'success']) }}"
+                                    class="{{ $status === 'success' ? 'active' : '' }}">Berhasil</a></li>
+                            <li><a href="{{ route('member.transaction', ['status' => 'pending']) }}"
+                                    class="{{ $status === 'pending' ? 'active' : '' }}">Pending</a></li>
                             {{-- <li><a href="{{ route('member.transaction', ['status' => 'refund']) }}" class="{{ $status === 'refund' ? 'active' : '' }}">Refund</a></li> --}}
-                            <li><a href="{{ route('member.transaction', ['status' => 'failed']) }}" class="{{ $status === 'failed' ? 'active' : '' }}">Gagal</a></li>
+                            <li><a href="{{ route('member.transaction', ['status' => 'failed']) }}"
+                                    class="{{ $status === 'failed' ? 'active' : '' }}">Gagal</a></li>
                         </ul>
-                    </div>                    
-                    @if($transactions->isEmpty())
-                    <div class="col-md-12 d-flex justify-content-center align-items-center">
-                        <div class="not-found text-center">
-                            <p class="mt-3">Tidak Ada Transaksi</p>
-                        </div>
                     </div>
-                @endif
+                    @if ($transactions->isEmpty())
+                        <div class="col-md-12 d-flex justify-content-center align-items-center">
+                            <div class="not-found text-center">
+                                <p class="mt-3">Tidak Ada Transaksi</p>
+                            </div>
+                        </div>
+                    @endif
                     <!-- Transaction Cards -->
                     @foreach ($transactions as $transaction)
                     <div class="card mt-3">
@@ -48,87 +52,96 @@
                             @endphp
                             <img alt="Product image" src="{{ $coverPath }}" height="80" width="120" class="cover me-3" />
                             <div class="details">
-                                <p class="title" style="color: #414142" >{{ $transaction->name }}</p>
+                                <p class="title" >{{ $transaction->name }}</p>
                                     @if ($transaction->price == 0)
                                         <p class="Premium">
                                             @if ($transaction->bundle && $transaction->bundle->course)
-                                            Paket
+                                                Paket
                                             @elseif($transaction->ebook)
-                                            E-Book
+                                                E-Book
                                             @else
-                                            Kelas
+                                                Kelas
                                             @endif
-                                        Gratis</p>
+                                            Gratis
+                                        </p>
                                     @else
-                                    <p class="Premium">
-                                        @if ($transaction->bundle && $transaction->bundle->course)
-                                        Paket
-                                        @elseif($transaction->ebook)
-                                        E-Book
+                                        <p class="Premium">
+                                            @if ($transaction->bundle && $transaction->bundle->course)
+                                                Paket
+                                            @elseif($transaction->ebook)
+                                                E-Book
+                                            @else
+                                                Kelas
+                                            @endif
+                                            Premium
+                                        </p>
+                                    @endif
+                                    <div class="info mt-3">
+                                        <p class="price">Harga: Rp. {{ number_format($transaction->price, 0, ',', '.') }}
+                                        </p>
+                                        <p class="date">Tanggal: {{ $transaction->created_at->format('d-M-Y') }}</p>
+                                        <p class="status">Status:</p>
+                                        <p class="status-info"
+                                            style="color: {{ $transaction->status === 'success' ? 'green' : ($transaction->status === 'pending' ? 'orange' : 'red') }};">
+                                            {{ ucfirst($transaction->status) }}
+                                        </p>
+                                    </div>
+                                    <div class="aksi d-flex mt-1 justify-content-end d-md-none">
+                                        @if ($transaction->status === 'pending')
+                                            <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
+                                                class="d-flex gap-2" method="POST"
+                                                onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Batalkan
+                                                    Pembelian</button>
+                                                <a href="{{ route('member.transaction.view-transaction', $transaction->transaction_code) }}"
+                                                    class="btn btn-primary">Bayar</a>
+                                            </form>
+                                        @elseif ($transaction->status === 'failed')
+                                            <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Hapus
+                                                    Transaksi</button>
+                                            </form>
                                         @else
-                                        Kelas
+                                            <a href="{{ route('member.transaction.view-transaction', $transaction->transaction_code) }}"
+                                                class="btn btn-primary">Cek Transaksi</a>
                                         @endif
-                                    Premium</p>
-                                @endif
-                                <div class="info mt-3">
-                                    <p class="price">Harga: Rp. {{ number_format($transaction->price, 0, ',', '.') }}</p>
-                                    <p class="date">Tanggal: {{ $transaction->created_at->format('d-M-Y') }}</p>
-                                    <p class="status">Status:</p>
-                                    <p class="status-info"
-                                        style="color: {{ $transaction->status === 'success' ? 'green' : ($transaction->status === 'pending' ? 'orange' : 'red') }};">
-                                        {{ ucfirst($transaction->status) }}
-                                    </p>
+                                    </div>
                                 </div>
-                                <div class="aksi d-flex mt-1 justify-content-end d-md-none">
+                                <div class="action d-none d-md-block">
                                     @if ($transaction->status === 'pending')
-                                        <form action="{{ route('member.transaction.cancel', $transaction->id) }}" 
-                                              class="d-flex gap-2" method="POST"
-                                              onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
+                                        <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
+                                            class="d-flex gap-2" method="POST"
+                                            onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Batalkan Pembelian</button>
-                                            <a href="{{ route('member.transaction.view-transaction', $transaction->transaction_code) }}" 
-                                               class="btn btn-primary">Bayar</a>
+                                            <a href="{{ route('member.transaction.view-transaction', $transaction->transaction_code) }}"
+                                                class="btn btn-primary">Bayar</a>
                                         </form>
                                     @elseif ($transaction->status === 'failed')
-                                        <form action="{{ route('member.transaction.cancel', $transaction->id) }}" 
-                                              method="POST" 
-                                              onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
+                                        <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
+                                            method="POST"
+                                            onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Hapus Transaksi</button>
                                         </form>
                                     @else
-                                        <a href="{{ route('member.transaction.view-transaction' , $transaction->transaction_code) }}" class="btn btn-primary">Cek Transaksi</a>
+                                        <a
+                                            href="{{ route('member.transaction.view-transaction', $transaction->transaction_code) }}"class="btn btn-primary">Cek
+                                            Transaksi</a>
                                     @endif
-                                </div>                                
-                            </div>
-                            <div class="action d-none d-md-block">
-                                @if ($transaction->status === 'pending')
-                                    <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
-                                        class="d-flex gap-2" method="POST"
-                                        onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Batalkan Pembelian</button>
-                                        <a href="{{ route('member.transaction.view-transaction', $transaction->transaction_code) }}"
-                                            class="btn btn-primary">Bayar</a>
-                                    </form>
-                                @elseif ($transaction->status === 'failed')
-                                    <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
-                                        method="POST" onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">Hapus Transaksi</button>
-                                    </form>
-                                @else
-                                    <a href="{{ route('member.transaction.view-transaction' , $transaction->transaction_code) }}"class="btn btn-primary">Cek Transaksi</a>
-                                @endif
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-                
+                    @endforeach
+
 
                     <!-- Button for Load More -->
                     {{-- <div class="btn-more mt-lg-5 d-flex justify-content-center">
@@ -146,5 +159,5 @@
     @include('components.includes.member.sidebar-dashboard-mobile')
 @endsection
 @push('addon-script')
-<script src="{{ asset('nemolab/member/js/scroll-dashboard.js') }}"></script>
+    <script src="{{ asset('nemolab/member/js/scroll-dashboard.js') }}"></script>
 @endpush

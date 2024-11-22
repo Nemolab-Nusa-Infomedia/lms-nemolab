@@ -12,7 +12,7 @@ class CompleteEpisodeCourse extends Model
     protected $table = 'tbl_complete_episode_courses';
     protected $fillable = ['user_id', 'course_id', 'episode_id'];
     public function course()
-    {
+    {   
         return $this->belongsTo(Course::class, 'course_id', 'id');
     }
 }

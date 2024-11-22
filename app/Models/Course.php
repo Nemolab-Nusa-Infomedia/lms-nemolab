@@ -17,6 +17,7 @@ class Course extends Model
     use HasFactory, Sluggable;
 
     protected $table = 'tbl_courses';
+
     protected $fillable = [
         'category',
         'name',
@@ -64,6 +65,4 @@ class Course extends Model
     {
         return $this->hasMany(CourseEbook::class, 'course_id');
     }
-
-
 }

@@ -17,6 +17,7 @@ use App\Models\CourseEbook;
 use App\Models\Ebook;
 use App\Models\MyListCourse;
 use App\Models\DiskonKelas;
+use App\Models\detailTransactions;
 
 class MemberPaymentController extends Controller
 {
@@ -57,21 +58,25 @@ class MemberPaymentController extends Controller
 
         $name = '';
         $price = 0;
+        $hargaAwal = 0;
         $status = 'pending';
 
         $course = Course::find($courseId);
         $ebook = Ebook::find($ebookId);
         $bundle = CourseEbook::find($bundleId);
+        $diskon = 0;
 
         if ($course) {
             $name = $course->name . ' (Kursus)';
             $harga = $course->price;
+            $hargaAwal = $harga;
             if ($harga != 0) {
                 $price = $harga * 1.11 + 5000;
             }
         } elseif ($ebook) {
             $name = $ebook->name . ' (E-Book)';
             $harga = $ebook->price;
+            $hargaAwal = $harga;
             if ($harga != 0) {
                 $price = $harga * 1.11 + 5000;
             }
@@ -80,6 +85,7 @@ class MemberPaymentController extends Controller
             $courseId = $bundle->course_id;
             $ebookId = $bundle->ebook_id;
             $harga = $bundle->price;
+            $hargaAwal = $harga;
             if ($harga != 0) {
                 $price = $harga * 1.11 + 5000;
             }
@@ -106,6 +112,8 @@ class MemberPaymentController extends Controller
         if ($price == 0) {
             $status = 'success';
         }
+
+
 
         // Cek apakah transaksi sudah ada dan pending
         $checkTransaction = Transaction::where('course_id', $courseId)
@@ -175,6 +183,14 @@ class MemberPaymentController extends Controller
                 // jika bundle maka otomatis mengisi ebook_id dan course_id sesuai dengan nilai dari tbl_course_ebook
                 MyListCourse::create($myListCourse);
 
+                DetailTransactions::create([
+                    'transaction_code' => $transaction_code,
+                    'name_item' => $dataTransaction['name'],
+                    'harga_awal' => $hargaAwal,
+                    'promo' => $diskon,
+                    'total_harga' => intval($price),
+                ]);
+
                 Alert::success('success', 'Kelas Berhasil Dibeli');
                 if ($course) {
                     return redirect()->route('member.course.join', $course->slug);
@@ -212,12 +228,26 @@ class MemberPaymentController extends Controller
                     ],
                 ];
 
+                // dd([
+                //     'name_item' => $dataTransaction['name'],
+                //     'harga_awal' => $hargaAwal,
+                //     'promo' => $diskon,
+                //     'total_harga' => intval($price),
+                // ]);
+
+                DetailTransactions::create([
+                    'transaction_code' => $transaction_code,
+                    'name_item' => $dataTransaction['name'],
+                    'harga_awal' => $hargaAwal,
+                    'promo' => $diskon,
+                    'total_harga' => intval($price),
+                ]);
+
                 $createdTransactionMidtrans = \Midtrans\Snap::createTransaction($params);
                 $midtransRedirectUrl = $createdTransactionMidtrans->redirect_url;
 
                 $dataTransaction['snap_token'] = $createdTransactionMidtrans->token;
                 Transaction::create($dataTransaction);
-
                 return redirect($midtransRedirectUrl);
             }
         } else {
@@ -227,6 +257,15 @@ class MemberPaymentController extends Controller
 
                 // jika bundle maka otomatis mengisi ebook_id dan course_id sesuai dengan nilai dari tbl_course_ebook
                 MyListCourse::create($myListCourse);
+
+                DetailTransactions::create([
+                    'transaction_code' => $transaction_code,
+                    'name_item' => $dataTransaction['name'],
+                    'harga_awal' => $hargaAwal,
+                    'promo' => $diskon,
+                    'total_harga' => intval($price),
+                ]);
+
 
                 Alert::success('success', 'Kelas Berhasil Dibeli');
                 if ($course) {
@@ -246,8 +285,6 @@ class MemberPaymentController extends Controller
             // Redirect ke transaksi pending sebelumnya jika ada
         }
     }
-
-
 
     public function checkout()
     {
@@ -312,20 +349,5 @@ class MemberPaymentController extends Controller
         }
 
         return redirect()->to($url);
-    }
-
-    public function detailTransaction(Request $requests, $transaction_code)
-    {
-        $transaction = Transaction::where('transaction_code', $transaction_code)->first();
-        if ($transaction) {
-            if ($transaction->status == 'success' || $transaction->status == 'failed') {
-                return view('member.dashboard.transaction.detail-payment', compact('transaction'));
-            } else {
-                Alert::error('Error', 'Maaf Anda Tidak Bisa Akses Detail Transaction, Status Anda Masih Pending!!!');
-                return redirect()->route('member.transaction');
-            }
-        }
-
-        return view('error.page404');
     }
 }

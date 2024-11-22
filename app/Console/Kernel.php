@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('update:transaction-status')->everyMinute();
-        $schedule->command('update:delete-users-verif')->everyTenMinutes();
+        $schedule->command('update:delete-users-verif')->daily();
     }
 
     /**

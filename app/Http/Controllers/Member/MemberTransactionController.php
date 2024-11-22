@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Course;
+use App\Models\detailTransactions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
+
 use App\Models\Transaction;
+
 
 
 class MemberTransactionController extends Controller
@@ -37,8 +40,19 @@ class MemberTransactionController extends Controller
         return view('member.dashboard.transaction.view', compact('transactions', 'status'));
     }
 
-    public function show(){
-        $transaction = Transaction::where();
+    public function show(Request $requests, $transaction_code){
+        $transaction = Transaction::where('transaction_code', $transaction_code)->first();
+        $details = detailTransactions::where('transaction_code', $transaction_code)->first();
+        if ($transaction) {
+            if ($transaction->status == 'success' || $transaction->status == 'failed') {
+                return view('member.dashboard.transaction.show-payment', compact('details'));
+            } else {
+                Alert::error('Error', 'Maaf Anda Tidak Bisa Akses Detail Transaction, Status Anda Masih Pending!!!');
+                return redirect()->route('member.transaction');
+            }
+        }
+
+        return view('error.page404');
     }
 
 
@@ -46,7 +60,9 @@ class MemberTransactionController extends Controller
     public function cancel($id)
     {
         $transaction = Transaction::findOrFail($id);
+        $details = detailTransactions::where('transaction_code', $transaction->transaction_code);
         $transaction->delete();
+        $details->delete();
         Alert::success('Success', 'Transaction Berhasil Di Cancel');
         return redirect()->route('member.transaction');
     }
