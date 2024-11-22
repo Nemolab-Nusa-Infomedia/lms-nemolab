@@ -4,15 +4,12 @@ if ('serviceWorker' in navigator) {
             .catch((error) => console.error('ServiceWorker registration failed:', error));
     });
 }
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js';
-
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/nemolab/member/js/pdf.worker.min.js';
 const ebookElement = document.getElementById('ebook');
 const url = ebookElement.getAttribute('data-pdf');
 const canvas = document.getElementById('pdf-render');
 const ctx = canvas.getContext('2d');
 console.log(url);
-
 let pdfDoc = null;
 let pageNum = 1;
 let scale = window.innerWidth < 768 ? 0.8 : 1.6;

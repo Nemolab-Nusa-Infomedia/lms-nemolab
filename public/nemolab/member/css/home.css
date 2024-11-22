@@ -44,6 +44,7 @@ a.btn-warning{
     background-color: var(--color-orange);
     transition: all 0.3s ease;
     border: none;
+    font-weight: 700;
 }
 a.btn-warning:hover{
     color: white;
@@ -54,6 +55,7 @@ a.btn-primary{
     background-color: var(--color-blue);
     transition: all 0.3s ease;
     border: none;
+    font-weight: 700;
 }
 a.btn-primary:hover{
     color: white;
@@ -64,6 +66,7 @@ a.btn-light{
     background-color: #ffff;
     transition: all 0.3s ease;
     border: none;
+    font-weight: 700;
 }
 a.btn-light:hover{
     background-color: var(--color-light-hover);
@@ -75,12 +78,13 @@ h1{
     color: var(--color-grey);
 }
 p{
+    font-weight: 500;
     color: var(--shade-gray);
     font-size: 20px;
 }
 #section-hero-img {
     padding: 2rem 3rem;
-    margin-top: 5rem;
+    margin-top: 6rem;
 }
 #section-hero-img img {
     max-width: 100%;
@@ -165,8 +169,11 @@ p{
     -webkit-line-clamp: unset;
     max-height: none;
 }
-
+#section-pilih-kelas .harga p {
+    font-size: 12px;
+}
 #section-pilih-kelas .harga p:last-child {
+
     color: var(--color-grey);
 }
 
@@ -407,8 +414,8 @@ p{
 
     #section-pilih-kelas .card .card-img-top {
         object-fit: cover;
-        height: 80px;
-        width: 110px;
+        height: 48px;
+        width: 70px;
         border-radius: 7px;
     }
 
@@ -423,6 +430,7 @@ p{
 
     #section-pilih-kelas .title-card h5 {
         font-size: 12px;
+        font-weight: 600;
         margin-bottom: 2px;
         max-width: 200px;
     }
@@ -453,7 +461,7 @@ p{
 
     #section-pilih-kelas .paket-item {
         color: var(--color-orange);
-        font-size: 12px;
+        font-size: 9px;
     }
 }
 

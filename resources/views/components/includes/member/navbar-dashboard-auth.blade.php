@@ -23,7 +23,7 @@
                     </span>
                 </button>
 
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse justify-content-end my-3" id="navbarNavAltMarkup">
                     <ul class="navbar-nav d-lg-flex align-items-lg-center gap-lg-4 ps-xl-5">
                         <div class="dropdown dropdown-pilih-kelas">
                             <button
@@ -32,7 +32,7 @@
                                 Pilih Kelas
                                 <box-icon name='chevron-down' color="#414142"></box-icon>
                             </button>
-                            <ul class="dropdown-menu mt-lg-3 mb-3">
+                            <ul class="dropdown-menu m-3 mt-lg-3 mb-3">
                                 <div class="head-submenu d-flex justify-content-between align-items-center">
                                     <p class="m-0 p-0 fw-bold">Pilihan Kelas</p>
                                     <a href="{{ route('member.course') }}" class="m-0 p-0">Lihat Semua</a>

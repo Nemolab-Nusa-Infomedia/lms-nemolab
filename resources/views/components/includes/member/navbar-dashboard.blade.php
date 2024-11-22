@@ -23,7 +23,7 @@
                     </span>
                 </button>
 
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse justify-content-end my-3 my-md-0" id="navbarNavAltMarkup">
                     <ul class="navbar-nav d-lg-flex align-items-lg-center gap-lg-4 ps-xl-5">
                         <div class="dropdown dropdown-pilih-kelas">
                             <button
@@ -95,8 +95,8 @@
                         <a href="https://blog.nemolab.id/" class="text-decoration-none  pb-2 pb-lg-0">Artikel</a>
 
                         <div class="register-login d-flex align-items-center justify-content-end gap-2 ms-lg-5">
-                            <a href="{{ route('member.register') }}" class="btn btn-primary px-3 pt-1 pb-1">Daftar</a>
-                            <a href="{{ route('member.login') }}" class="btn btn-secondary px-3 pt-1 pb-1">Masuk</a>
+                            <a href="{{ route('member.register') }}" class="btn btn-primary px-4 py-2">Daftar</a>
+                            <a href="{{ route('member.login') }}" class="btn btn-secondary px-4 py-2">Masuk</a>
                         </div>
                     </ul>
                 </div>

@@ -12,7 +12,7 @@
             <div class="row">
                 @include('components.includes.member.sidebar-dashboard')
                 <div class="col-12 col-lg-9">
-                    <div>
+                    <div class="mb-4">
                         <h3 class="fw-bold">Transaksi Saya</h3>
                     </div>
                     <!-- Navigation Tabs -->
@@ -48,7 +48,7 @@
                             @endphp
                             <img alt="Product image" src="{{ $coverPath }}" height="80" width="120" class="cover me-3" />
                             <div class="details">
-                                <p class="title" >{{ $transaction->name }}</p>
+                                <p class="title" style="color: #414142" >{{ $transaction->name }}</p>
                                     @if ($transaction->price == 0)
                                         <p class="Premium">
                                             @if ($transaction->bundle && $transaction->bundle->course)

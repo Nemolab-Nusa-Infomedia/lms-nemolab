@@ -12,8 +12,8 @@
         <div class="row">
             <div class="col-md-6 mt-lg-5" data-aos="zoom-out">
                 <div class="text-center text-md-start me-md-3">
-                    <h1 class="fw-bold">BELAJAR KURSUS ONLINE GRATIS, KAPANPUN DAN DIMANAPUN</h1>
-                    <p>Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai macam kelas mulai
+                    <h1 class="fw-bold mt-4 mt-md-0">BELAJAR KURSUS ONLINE GRATIS, KAPANPUN DAN DIMANAPUN</h1>
+                    <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai macam kelas mulai
                         yang gratis hingga yang berbayar</p>
                     <a href="{{ route('member.course') }}" class="btn btn-warning px-4 pt-2 pb-2 mt-2">Mulai Belajar</a>
                 </div>
@@ -27,9 +27,9 @@
     <section class="section-pilh-kelas" id="section-pilih-kelas" data-aos="fade-up">
         <div class="container-fluid p-0 m-0">
             <div class="title-pilih-kelas d-flex justify-content-between align-items-center pt-5">
-                <div class="title-group ">
+                <div class="title-group text-center text-md-start">
                     <h1 class="title-kelas fw-bold">Pilihan Kelas</h1>
-                    <p class="subtitle-kelas">Beralih menjadi profesional dari sekarang dengan memilih kelas dan mulai
+                    <p class="subtitle-kelas" style="font-weight: 400">Beralih menjadi profesional dari sekarang dengan memilih kelas dan mulai
                         belajar</p>
                 </div>
                 <a href="{{ route('member.course') }}" class="btn btn-light fw-bold d-none d-md-block">Lihat Kelas Lainnya</a>
@@ -72,7 +72,7 @@
                                             @endif
                                         </div>
                                         <div class="title-card">
-                                            <h5 class="fw-bold truncate-text">{{ $course->category }} :
+                                            <h5 class="fw-bold my-2 my-md-0 truncate-text">{{ $course->category }} :
                                                 {{ $course->name }}
                                             </h5>
                                             <p class="avatar m-0 fw-bold me-1" style="color: #414142">
@@ -88,8 +88,7 @@
                                                 {{ $course->users ? $course->users->name : '-' }}
                                             </p>
                                         </div>
-                                        <div
-                                            class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3">
+                                        <div class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3">
                                             <div class="harga d-none d-md-block">
                                                 <p class="p-0 m-0 fw-semibold">Harga</p>
                                                 <p class="p-0 m-0 fw-semibold">
@@ -142,7 +141,7 @@
                 <div class="col-md-6">
                     <div class="ms-md-4 text-center text-md-start" data-aos="fade-up" data-aos-delay="200">
                         <h1 class="fw-bold">Mengapa Harus Belajar Keahlian Di Nemolab?</h1>
-                        <p>Kamu bisa belajar berbagai macam keahlian di sini. Kami juga menyediakan kelas video dan e-book
+                        <p class="my-4 my-md-3">Kamu bisa belajar berbagai macam keahlian di sini. Kami juga menyediakan kelas video dan e-book
                             yang bisa menyesuaikan tipe pembelajaran kamu. Jadi, mulailah menjadi ahli dari sekarang!</p>
                         <div class="link-href-group d-flex justify-content-center justify-content-md-start">
                             <!-- Center buttons on mobile -->
@@ -220,7 +219,7 @@
         <div class="container-fluid">
             <div class="testimoni-title pb-5">
                 <h1 class="fw-bold m-0">Selangkah Lebih Maju menjadi <br> Professional!!</h1>
-                <p class="fs-6 mt-2">Jangan ragu untuk bergabung di kelas-kelas kami! Banyak pengguna <br> sudah
+                <p class="fs-6 my-4 my-md-3">Jangan ragu untuk bergabung di kelas-kelas kami! Banyak pengguna <br> sudah
                     membuktikan dengan belajar di kelas kami</p>
                 <a href="{{ route('member.course') }}" class="btn btn-warning px-4">Coba Kursus</a>
             </div>

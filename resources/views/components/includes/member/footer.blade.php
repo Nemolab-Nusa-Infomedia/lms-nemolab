@@ -16,7 +16,7 @@
                             dan
                             dimanapun</p>
                     </div>
-                    <div class="col-3 col-md-2">
+                    <div class="col-3 mt-4 mt-md-0 col-md-2">
                         <h5 class="title text-white fw-bold mb-3">Pilih Kelas</h5>
                         <div class="content-kelas">
                             <a href="{{ route('member.course', ['filter-kelas' => 'UI/UX Designer']) }}" class="m-0 p-0 text-white mb-2">
@@ -30,7 +30,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-3 col-md-2">
+                    <div class="col-3 col-md-2 mt-4 mt-md-4">
                         <h5 class="title text-white fw-bold mb-3">Paket Kelas</h5>
                         <div class="content-paket-kelas">
                             <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}" class="m-0 p-0 text-white mb-2">
@@ -69,7 +69,7 @@
                 </div>
             </div>
             <div class="copyright d-sm-flex justify-content-sm-center align-items-sm-center pt-sm-4 pb-sm-4">
-                <p class="m-0 p-0 text-white">© 2024 All Rights Reserved. Design by <a href="https://vibrant.web.id/">Vibrant Ecosystem</a></p>
+                <p class="m-0 p-0 text-white text-center">© 2024 All Rights Reserved. Design by <a href="https://vibrant.web.id/">Vibrant Ecosystem</a></p>
             </div>
         </div>
     </footer>

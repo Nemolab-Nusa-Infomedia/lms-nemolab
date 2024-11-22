@@ -116,11 +116,6 @@ class MemberCourseController extends Controller
         $bundling = CourseEbook::whereIn('course_id', $courses->pluck('id'))->get()->mapWithKeys(function ($item) {
             return [$item->course_id => $item];
         });
-
-        if($request->ajax()){
-
-        }
-
         // Mengembalikan tampilan dengan data yang sudah diproses
         return view('member.course', [
             'data' => $paginatedData, // Data yang sudah dipaginasi
@@ -238,45 +233,33 @@ class MemberCourseController extends Controller
 
     public function detail($slug)
     {
-        // Mengambil data course berdasarkan slug yang diberikan
         $courses = Course::where('slug', $slug)->first();
-        // Mengambil semua review untuk course, termasuk data user yang memberikan review
         $reviews = Review::with('user')->where('course_id', $courses->id)->get();
-        // Mengambil data mentor (user) yang terkait dengan course
         $user = User::where('id', $courses->mentor_id)->first();
-        // Mengambil semua chapter yang terkait dengan course, termasuk data lessons di dalamnya
         $chapters = Chapter::with('lessons')->where('course_id', $courses->id)->get();
-        // Memeriksa apakah user yang sedang login sudah membeli course ini
         $checkTrx = Transaction::where('course_id', $courses->id)->where('user_id', Auth::user()->id)->first();
-        // Memeriksa apakah user yang sedang login sudah memberikan review untuk course ini
         $checkReview = Review::where('user_id', Auth::user()->id)->where('course_id', $courses->id)->first();
-        // Mengambil semua tools yang terkait dengan course
         $coursetools = Course::with('tools')->findOrFail($courses->id);
-        // Mengambil data episode yang telah diselesaikan oleh user dalam course ini
         $compeleteEps = CompleteEpisodeCourse::where('user_id', Auth::user()->id)->where('course_id', $courses->id)->get();
-        // Menghitung total jumlah lesson di semua chapter
+
         $totalLesson = 0;
         foreach ($chapters as $chapter) {
             $totalLesson += $chapter->lessons->count();
         }
-    
-        // Memeriksa apakah user telah menyelesaikan semua episode dalam course
+
         $checkSertifikat = false;
         if ($totalLesson == $compeleteEps->count()) {
-            $checkSertifikat = true; // Sertifikat dapat diberikan
+            $checkSertifikat = true;
         }
-    
-        // Jika user sudah membeli course
+
+
         if ($checkTrx) {
-            // Menampilkan halaman detail course untuk member
             return view('member.detail-course', compact('chapters', 'slug', 'courses', 'user', 'checkReview', 'coursetools', 'reviews', 'checkSertifikat'));
         } else {
-            // Jika user belum membeli course, tampilkan alert error dan arahkan ke halaman join course
             Alert::error('error', 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!');
             return redirect()->route('member.course.join', $slug);
         }
     }
-    
 
 
     public function generateSertifikat($slug)

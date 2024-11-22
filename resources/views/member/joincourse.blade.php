@@ -8,10 +8,10 @@
 
 @section('content')
     <main class="container mt-5 pt-5 pb-5">
-        <div class="row">
+        <div class="row my-3">
             <!-- Kolom Kiri -->
             <div class="layout-kiri col-md-8">
-                <h3 data-aos="fade-right" style="word-wrap: break-word; white-space: normal;">{{ $courses->name }}</h3>
+                <h3 class="" data-aos="fade-right" style="word-wrap: break-word; white-space: normal;">{{ $courses->name }}</h3>
                 <div class="card-preview mb-3">
                     @if ($courses->cover != null)
                         <img src="{{ asset('storage/images/covers/' . $courses->cover) }}" alt="">

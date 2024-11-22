@@ -30,7 +30,7 @@
                 @include('components.includes.member.sidebar-dashboard')
                 <!-- Cards -->
                 <div class="card-container col-md-9 pe-4" id="course-card">
-                    <div>
+                    <div class="mb-4">
                         <h3 class="fw-bold">Kelas Saya</h3>
                     </div>
                     <div class="filter-transaction mb-3">

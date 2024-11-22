@@ -76,8 +76,8 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 }
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu {
-    width: 380px;
-    padding: 14px;
+    width: 400px;
+    padding: 24px;
     border: none;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -122,6 +122,7 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
     background-color: var(--light-lavender) !important;
     border: var(--light-lavender) !important;
     color: black;
+    font-weight: 500;
 }
 
 

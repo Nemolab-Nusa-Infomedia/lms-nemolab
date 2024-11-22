@@ -7,6 +7,7 @@
     --card-bg-color: #fff;
     --button-blue: #007bff;
     --button-red: #ff0000;
+    --title-color: #414142;
     --premium-color: rgb(114, 114, 114);
 }
 
@@ -16,6 +17,9 @@ body {
     font-weight: bold;
 }
 
+.title p{
+    color: var(--title-color);
+}
 .section-main {
     margin-top: 120px;
 } 
@@ -44,12 +48,12 @@ body {
     text-decoration: none;
     font-size: 14px;
     margin-bottom: .5rem;
-    padding: 8px 25px;
+    padding: 10px 25px;
     border-radius: 20px;
     color: var(--primary-color);
     display: inline-block;
     font-size: 14px;
-    padding: 5px 15px;
+    padding: 8px 25px;
 }
 
 .filter-transaction .nav-tabs a:hover {
@@ -183,6 +187,10 @@ transition: ease-in-out 0.3s;
         margin: 0;
         font-size: 8px !important;
         max-width: 270px;
+    }
+    .filter-transaction .nav-tabs a {
+        font-size: 12px;
+        padding: 5px 15px;
     }
     .btn-primary {
         padding: 5px 10px;

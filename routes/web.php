@@ -57,14 +57,14 @@ Route::get('/maintenance', function () {
 // menampilkan halaman maintenance jika website sedang dalam pengembangan (jika ingin mengaktifkan tinggal costum boolean true di env maintenance_mode)
 Route::middleware('maintenance.middleware')->group(function () {
 
-    Route::get('/', [MemberLandingPagesController::class, 'index'])->name('home')->middleware('cache.headers:public;max_age=31536000;etag');
-    Route::view('/eror/pages', 'error.page404')->name('pages.error');
+    Route::get('/', [MemberLandingPagesController::class, 'index'])->name('home')->middleware('cache.headers:public;max_age=86400;etag');
+    Route::view('/eror/pages', 'error.page404')->name('pages.error')->middleware('cache.headers:public;max_age=31536000;etag');
 
     Route::prefix('member')->group(function () {
 
         // member course
         Route::prefix('course')->group(function () {
-            Route::get('/', [MemberCourseController::class, 'index'])->name('member.course')->middleware('cache.headers:public;max_age=31536000;etag');
+            Route::get('/', [MemberCourseController::class, 'index'])->name('member.course');
             Route::get('join/{slug}', [MemberCourseController::class, 'join'])->name('member.course.join')->middleware(['students', 'verified']);
             Route::get('{slug}/play/episode/{episode}', [MemberCourseController::class, 'play'])->name('member.course.play')->middleware(['students', 'verified']);
             Route::get('detail/{slug}', [MemberCourseController::class, 'detail'])->name('member.course.detail')->middleware(['students', 'verified']);
@@ -84,7 +84,7 @@ Route::middleware('maintenance.middleware')->group(function () {
 
         Route::prefix('ebook')->middleware(['students', 'verified'])->group(function () {
             Route::get('{slug}', [MemberEbookController::class, 'index'])->name('member.ebook.join');
-            Route::get('read/{slug}', [MemberEbookController::class, 'read'])->name('member.ebook.read');
+            Route::get('read/{slug}', [MemberEbookController::class, 'read'])->name('member.ebook.read')->middleware('cache.headers:public;max_age=31536000;etag');
             Route::get('detail/{slug}', [MemberEbookController::class, 'detail'])->name('member.ebook.detail');
         });
 
