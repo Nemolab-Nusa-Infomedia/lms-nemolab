@@ -1,9 +1,10 @@
+// 1. Pengaturan global dan elemen utama
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/nemolab/member/js/pdf.worker.min.js';
 const ebookElement = document.getElementById('ebook');
 const url = ebookElement.getAttribute('data-pdf');
 const canvas = document.getElementById('pdf-render');
 const ctx = canvas.getContext('2d');
-console.log(url);
+
 let pdfDoc = null;
 let pageNum = 1;
 let scale = window.innerWidth < 768 ? 0.8 : 1.8;
@@ -12,62 +13,60 @@ const maxScale = 2.5;
 let totalPages = 0;
 let isRendering = false;
 
-const renderPage = (num) => {
-    if (isRendering) return;
-    isRendering = true;
+console.log(url); // Debugging URL
 
-    // Tampilkan loading
-    document.getElementById('pdf-loading').style.display = 'block';
-    canvas.style.display = 'none';
-
-    pdfDoc.getPage(num).then((page) => {
-        const viewport = page.getViewport({ scale });
-        // Mengatur resolusi kanvas berdasarkan devicePixelRatio
-        const outputScale = window.devicePixelRatio || 1;
-        canvas.width = Math.floor(viewport.width * outputScale);
-        canvas.height = Math.floor(viewport.height * outputScale);        
-        canvas.style.width = `${viewport.width}px`;
-        canvas.style.height = `${viewport.height}px`;
-        const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
-        const renderContext = {
-            canvasContext: ctx,
-            viewport: viewport,
-            transform: transform,
-        };
-
-        return new Promise((resolve) => {
-            requestAnimationFrame(() => {
-                page.render(renderContext).promise.then(() => {
-                    resolve();
-                });
-            });
-        });
-    }).then(() => {
-        document.getElementById('page-input').value = num;
-        document.getElementById('page-count').textContent = totalPages;
-    }).catch(error => {
-        console.error('Error rendering page:', error);
-        alert('Failed to load the page.');
-    }).finally(() => {
-        isRendering = false;
-        // Sembunyikan loading dan tampilkan canvas setelah render selesai
-        document.getElementById('pdf-loading').style.display = 'none';
-        canvas.style.display = 'block';
-    });
-};
-
-// Mengambil dokumen PDF
+// 2. Pengambilan dokumen PDF// 2. Pengambilan dokumen PDF
 pdfjsLib.getDocument(url).promise.then(pdf => {
+    console.log('PDF berhasil dimuat:', url);
     pdfDoc = pdf;
     totalPages = pdf.numPages;
+    console.log(`Total halaman PDF: ${totalPages}`);
     renderPage(pageNum);
 }).catch(error => {
     console.error('Error loading PDF:', error);
     alert('Failed to load PDF.');
 });
 
+// 3. Fungsi untuk rendering halaman
+const renderPage = (num) => {
+    if (isRendering) return;
+    isRendering = true;
 
-// Fungsi untuk memperbarui zoom
+    console.log(`Rendering halaman ${num} dengan skala ${scale}`); // Log saat memulai rendering halaman
+
+    document.getElementById('pdf-loading').style.display = 'block';
+    canvas.style.display = 'none';
+
+    pdfDoc.getPage(num).then((page) => {
+        console.log(`Halaman ${num} berhasil diambil dari PDF.`); // Log jika halaman berhasil diambil
+        const viewport = page.getViewport({ scale });
+        const outputScale = window.devicePixelRatio || 1;
+
+        canvas.width = Math.floor(viewport.width * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);
+        canvas.style.width = `${viewport.width}px`;
+        canvas.style.height = `${viewport.height}px`;
+
+        const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
+        const renderContext = { canvasContext: ctx, viewport: viewport, transform: transform };
+
+        return page.render(renderContext).promise;
+    }).then(() => {
+        console.log(`Halaman ${num} berhasil dirender.`); // Log jika rendering halaman berhasil
+        document.getElementById('page-input').value = num;
+        document.getElementById('page-count').textContent = totalPages;
+    }).catch(error => {
+        console.error(`Error rendering halaman ${num}:`, error); // Log jika ada error saat rendering halaman
+        alert('Failed to load the page.');
+    }).finally(() => {
+        isRendering = false;
+        document.getElementById('pdf-loading').style.display = 'none';
+        canvas.style.display = 'block';
+    });
+};
+
+
+// 4. Zoom dan scale
 const updateZoom = (factor) => {
     if (factor === 0) {
         scale = window.innerWidth < 768 ? 0.8 : 1.6;
@@ -76,7 +75,8 @@ const updateZoom = (factor) => {
     }
     renderPage(pageNum);
 };
-// Event listeners untuk navigasi dan zoom
+
+// 5. Event listeners untuk navigasi, zoom, dan input
 document.getElementById('prev-page').addEventListener('click', () => {
     if (pageNum > 1) {
         pageNum--;
@@ -95,7 +95,6 @@ document.getElementById('zoom-in').addEventListener('click', () => updateZoom(0.
 document.getElementById('zoom-out').addEventListener('click', () => updateZoom(-0.1));
 document.getElementById('reset-zoom').addEventListener('click', () => updateZoom(0));
 
-// Event untuk input nomor halaman
 document.getElementById('page-input').addEventListener('change', (e) => {
     const pageNumber = parseInt(e.target.value);
     if (pageNumber >= 1 && pageNumber <= totalPages) {
@@ -114,7 +113,7 @@ document.getElementById('pdf-fullscreen').addEventListener('click', () => {
     }
 });
 
-// Pinch-to-zoom untuk perangkat mobile
+// 6. Pinch-to-zoom untuk perangkat mobile
 let initialDistance = null;
 
 const handleTouchStart = (e) => {
@@ -142,7 +141,6 @@ const handleTouchEnd = () => {
     initialDistance = null;
 };
 
-// Menambahkan event listeners untuk pinch-to-zoom pada canvas
 canvas.addEventListener('touchstart', handleTouchStart);
 canvas.addEventListener('touchmove', handleTouchMove);
 canvas.addEventListener('touchend', handleTouchEnd);

@@ -57,7 +57,7 @@ Route::get('/maintenance', function () {
 // menampilkan halaman maintenance jika website sedang dalam pengembangan (jika ingin mengaktifkan tinggal costum boolean true di env maintenance_mode)
 Route::middleware('maintenance.middleware')->group(function () {
 
-    Route::get('/', [MemberLandingPagesController::class, 'index'])->name('home')->middleware('cache.headers:public;max_age=3600;etag');
+    Route::get('/', [MemberLandingPagesController::class, 'index'])->name('home')->middleware('cache.headers:public;max_age=600;etag');
     Route::view('/eror/pages', 'error.page404')->name('pages.error')->middleware('cache.headers:public;max_age=31536000;etag');
 
     Route::prefix('member')->group(function () {
@@ -84,7 +84,7 @@ Route::middleware('maintenance.middleware')->group(function () {
 
         Route::prefix('ebook')->middleware(['students', 'verified'])->group(function () {
             Route::get('{slug}', [MemberEbookController::class, 'index'])->name('member.ebook.join');
-            Route::get('read/{slug}', [MemberEbookController::class, 'read'])->name('member.ebook.read')->middleware('cache.headers:public;max_age=31536000;etag');
+            Route::get('read/{slug}', [MemberEbookController::class, 'read'])->name('member.ebook.read');
             Route::get('detail/{slug}', [MemberEbookController::class, 'detail'])->name('member.ebook.detail');
         });
 
@@ -111,10 +111,10 @@ Route::middleware('maintenance.middleware')->group(function () {
             Route::get('/detail/{transaction_code}', [MemberTransactionController::class, 'show'])->name('member.transaction.view-transaction');
         });
 
-        Route::view('login', 'member.auth.login')->name('member.login')->middleware('cache.headers:public;max_age=31536000;etag');
+        Route::view('login', 'member.auth.login')->name('member.login');
         Route::post('login/auth', [MemberLoginController::class, 'login'])->name('member.login.auth');
 
-        Route::view('register', 'member.auth.register')->name('member.register')->middleware('cache.headers:public;max_age=31536000;etag');
+        Route::view('register', 'member.auth.register')->name('member.register');
         Route::post('register/store', [MemberRegisterController::class, 'store'])->name('member.register.store');
 
         // logout

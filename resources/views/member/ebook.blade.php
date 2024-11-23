@@ -12,6 +12,7 @@
     <div class="container mb-4" style="margin-top: 7rem">
         <div class="row">
             <div class="col-12 text-center justify-content-center">
+                <p>{{ $fileUrl }}</p>
                 <h4 class="fw-semibold">{{ $ebook->name }}</h4>
                 <!-- Ini -->
                 <div class="d-flex align-items-center justify-content-center flex-md-row flex-column"

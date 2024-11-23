@@ -10,6 +10,7 @@ use App\Models\Review;
 use App\Models\User;
 use App\Models\CourseEbook;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Storage;
 
 
 class MemberEbookController extends Controller
@@ -56,17 +57,31 @@ class MemberEbookController extends Controller
         $checkReview = Review::where('user_id', Auth::user()->id)->where('ebook_id', $ebook->id)->first();
     
         // Memeriksa apakah user memiliki transaksi yang valid untuk eBook ini
-        $checkTrx = Transaction::where('ebook_id', $ebook->id)->where('user_id', Auth::user()->id)->first();
-    
+        $checkTrx = Transaction::where('ebook_id', $ebook->id)
+            ->where('user_id', Auth::user()->id)
+            ->first();
+        // Path file PDF
+        $filePath = "public/file_pdf/{$ebook->file_ebook}";
+        // Memeriksa keberadaan file PDF
+        if (!Storage::exists($filePath)) {
+            // Jika file PDF tidak ditemukan, tampilkan pesan error
+            Alert::error('error', 'File eBook tidak ditemukan.');
+            return redirect()->route('member.ebook.index', $slug);
+        }
+        // Jika ada transaksi yang valid
         if ($checkTrx) {
-            // Jika transaksi valid, tampilkan halaman baca eBook
-            return view('member.ebook', compact('ebook', 'checkReview'));
+            // Buat URL file yang dapat diakses oleh frontend
+            $fileUrl = Storage::url($filePath);
+    
+            // Tampilkan halaman baca eBook
+            return view('member.ebook', compact('ebook', 'checkReview', 'fileUrl'));
         } else {
-            // Jika tidak ada transaksi, tampilkan pesan error dan arahkan ke halaman index eBook
-            Alert::error('error', 'Maaf Akses Akses Ditolak, Karena Anda Belum Berlangganan');
+            // Jika tidak ada transaksi, tampilkan pesan error
+            Alert::error('error', 'Maaf, akses ditolak. Anda belum berlangganan.');
             return redirect()->route('member.ebook.index', $slug);
         }
     }
+    
     
     public function detail($slug)
     {
