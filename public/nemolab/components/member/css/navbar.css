@@ -155,7 +155,6 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
     header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a {
         font-size: 16px !important;
     }
-
     header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav {
         padding-left: 0 !important;
         margin-top: 4px;
@@ -192,5 +191,11 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 
     header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a {
         display: none !important;
+    }    
+
+    .navbar-toggler {
+        border: none !important; 
+        outline: none !important; 
+        box-shadow: none !important;
     }
 }

@@ -12,7 +12,7 @@
 <section class="section-pilh-kelas" id="section-pilih-kelas">
     <div class="container-fluid mt-5 pt-5">
         <div class="row">
-            <div class="mobile-filter col-12 mb-5 d-lg-none fixed-top py-2">
+            <div class="mobile-filter col-12 mb-3 d-lg-none">
                 <div class="filter-menu d-flex align-items-center gap-2">
                     <button class="filter-togle btn btn-warning">
                         <img src="{{ asset('nemolab/components/member/img/filter.png') }}" alt="">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             @include('components.includes.member.sidebar-filter')
-            <div class="col-md-9 mt-5 mt-md-0" id="course-card">
+            <div class="col-md-9" id="course-card">
                 <div class="card-container">
                     <div class="row" id="row">
                         @if($data->isEmpty() && $data->isEmpty())
@@ -133,6 +133,7 @@
 @push('addon-script')
 <script src="{{ asset('nemolab/member/js/scroll-dashboard.js') }}"></script>
 <script>
+document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.filter-togle').addEventListener('click', function () {
         const sidebar = document.querySelector('.sidebar');
         const body = document.body;
@@ -167,6 +168,7 @@
             body.classList.remove('no-scroll');
         }
     });
+});
 </script>
 
 @endpush

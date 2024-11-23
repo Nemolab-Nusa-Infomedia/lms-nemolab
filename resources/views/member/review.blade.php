@@ -11,9 +11,12 @@
 @section('content')
 <div class="container mb-5" style="margin-top: 7rem">
         <div class="d-flex align-items-center mb-3">
-            <i class="fas fa-arrow-left back-button"></i>
-            <h1 class="h4 fw-bold mb-0">Review Kelas Kami</h1>
+            <a href="{{ route('member.course.detail', $course->slug) }}" class="custom-link d-flex align-items-center">
+                <i class="bi bi-arrow-left me-2"></i>
+                <span>Review Kelas Kami</span>
+            </a>
         </div>
+    
         <div class="card">
             <div class="card-body px-5">                
                 <div class="mb-4 text-center">

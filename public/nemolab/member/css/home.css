@@ -1,21 +1,4 @@
-/* font navbar */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-
-/* variabel color */
-:root {
-    --color-orange: #FAA907;
-    --color-grey: #414142;
-    --dim-grey: #696969;
-    --charcoal-gray: #414142;
-    --light-shade: #FDF8F8;
-    --shade-gray: #8F8F8F;
-    --lavender-mist: #F0EAFF;
-    --hero-bg: #F7F4FF;
-    --color-orange-hover: #CA8907;
-    --color-blue:#0774FA;
-    --color-blue-hover: #0055BC;
-    --color-light-hover:#EAEAEA;   
-}
+@import url('color.css');
 
 * {
     padding: 0;
@@ -50,6 +33,13 @@ a.btn-warning:hover{
     color: white;
     background-color: var(--color-orange-hover);
 }
+a.btn-warning:active {
+    color: white !important;
+    background-color: var(--color-orange-hover) !important;
+    transition: background-color 0s;
+}
+
+
 a.btn-primary{
     color: white;
     background-color: var(--color-blue);
@@ -61,6 +51,13 @@ a.btn-primary:hover{
     color: white;
     background-color: var(--color-blue-hover);
 }
+a.btn-primary:active {
+    color: white !important;
+    background-color: var(--color-blue-hover) !important;
+    transition: background-color 0s;
+}
+
+
 a.btn-light{
     color: var(--color-orange);
     background-color: #ffff;
@@ -72,16 +69,20 @@ a.btn-light:hover{
     background-color: var(--color-light-hover);
     color: var(--color-orange);
 }
+a.btn-light:active {
+    color: var(--color-orange) !important;
+    background-color: var(--color-light-hover) !important;
+    transition: background-color 0s;
+}
+
 
 h1{
-    font-size: 36px;
-    color: var(--color-grey);
+    color: var(--head-title);
 }
 p{
-    font-weight: 500;
-    color: var(--shade-gray);
-    font-size: 20px;
+    color: var(--sub-title);
 }
+
 #section-hero-img {
     padding: 2rem 3rem;
     margin-top: 6rem;
@@ -119,9 +120,9 @@ p{
 
 #section-pilih-kelas .card {
     width: 25rem;
+    padding: 0px !important;
     border-radius: 14px;
-    border: none;
-    /* height: max-content; */
+    height: max-content;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -132,12 +133,15 @@ p{
 }
 
 #section-pilih-kelas .card img {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
     object-fit: cover;
     width: 100%;
-    height: 201px;
+    height: 250px;
 }
 #section-pilih-kelas .title-card h5 {
     font-size: 17px;
+    color: var(--head-title);
 }
 
 
@@ -147,6 +151,32 @@ p{
     height: 35px;
     object-fit: cover;
 }
+
+#section-pilih-kelas .btn-group-harga .btn-primary {
+    background-color: var(--color-orange);
+    color: white;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    font-weight: 600;
+  }
+  
+#section-pilih-kelas .harga p:last-child {
+color: var(--color-grey);
+}
+#section-pilih-kelas .paket {
+    color: var(--color-orange);
+    display: flex;
+    font-size: small;
+    font-weight: 600;
+  }
+#section-pilih-kelas .paket-item {
+    color: var(--color-orange);
+    border: 1px solid var(--color-orange);
+    padding: 3px 7px;
+    margin: 0 5px 5px 0;
+    border-radius: 6px;
+  }
 
 #section-pilih-kelas .truncate-text {
     display: block;
@@ -169,26 +199,6 @@ p{
     -webkit-line-clamp: unset;
     max-height: none;
 }
-#section-pilih-kelas .harga p {
-    font-size: 12px;
-}
-#section-pilih-kelas .harga p:last-child {
-
-    color: var(--color-grey);
-}
-
-#section-pilih-kelas .paket {
-    display: flex;
-}
-
-#section-pilih-kelas .paket-item {
-    color: var(--color-orange);
-    font-size: 12px;
-    border: 1px solid var(--color-orange);
-    padding: 1px 5px;
-    margin: 0 5px 5px 0;
-    border-radius: 5px;
-}
 
 /* style section-tentang-nemolab */
 #section-tentang-nemolab {
@@ -201,6 +211,10 @@ p{
 }
 #section-tentang-nemolab a.btn-light:hover{
     background-color: var(--color-light-hover);
+}
+#section-tentang-nemolab a.btn-light:active{
+    color: #414142 !important;
+    background-color: var(--color-light-hover) !important;
 }
 #service {
     border-radius: 15px;
@@ -287,7 +301,6 @@ p{
 }
 
 #section-testimoni-kelas .container-fluid .testimoni-title p {
-    color: var(--shade-gray);
     font-size: 15px;
     text-align: center;
 }
@@ -381,6 +394,9 @@ p{
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .row {
+        margin: 0 !important;
+    }
     h1 {
         font-size: 24px;
     }
@@ -413,9 +429,10 @@ p{
     }
 
     #section-pilih-kelas .card .card-img-top {
-        object-fit: cover;
-        height: 48px;
-        width: 70px;
+        margin-top: 4px;
+        object-fit: fill;
+        height: 57px;
+        width: 80px;
         border-radius: 7px;
     }
 
@@ -429,22 +446,21 @@ p{
     }
 
     #section-pilih-kelas .title-card h5 {
-        font-size: 12px;
-        font-weight: 600;
+        font-size: 14px;
         margin-bottom: 2px;
         max-width: 200px;
     }
 
     #section-pilih-kelas .title-card img {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
         margin-bottom: 1px;
     }
 
-    #section-pilih-kelas .card .avatar {
-        font-size: 12px;
+    #section-pilih-kelas .card .avatar p{
+        font-size: 10px;
         font-weight: 700;
-        color: var(--color-grey);
+        color: var(--sub-title);
     }
 
     #section-pilih-kelas .btn-group-harga .btn-warning {

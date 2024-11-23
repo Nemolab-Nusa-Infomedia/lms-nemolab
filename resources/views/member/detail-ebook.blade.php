@@ -70,6 +70,7 @@
             </div>
 
             <div class="testimoni mt-5">
+            @if ($reviews->isNotEmpty())
                 <h1>Testimoni</h1>
                 <div class="col-12 mt-4">
                     <div class="row card-testimoni col-12  d-none d-md-flex">
@@ -118,6 +119,7 @@
                     </div>
                 </div>
             </div>
+            @endif
         </div>
     </section>
 @endsection

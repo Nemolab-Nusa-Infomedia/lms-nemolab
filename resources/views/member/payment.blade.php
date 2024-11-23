@@ -9,6 +9,7 @@
 @section('content')
     <section class="payment py-5 mt-5">
         <div class="container">
+
             <h2 class="text-center mb-3 fw-bold">Silahkan Selesaikan Pembelian Kelas</h2>
             <p class="text-center description">Setelah pembelian kelas sukses, anda dapat mengakses kelas dan mendapatkan
                 benefit lainnya seperti grup diskusi dan sertifikat resmi dari kami</p>
@@ -17,8 +18,12 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6 mt-5">
                         <div class="card card-bayar shadow p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <a href="{{ route('member.transaction') }}" class="custom-link d-flex align-items-center">
+                                    <i class="bi bi-arrow-left me-2"></i>
+                                </a>
+                            </div>
                             <h2 class="text-rinci mb-4">Rincian Pembayaran</h2>
-
                             <div class="nota">
                                 <div class="produk mb-3">
                                     <p class="mb-1">Produk yang Dibeli</p>
@@ -148,6 +153,11 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6 mt-5">
                         <div class="card card-bayar shadow p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <a href="{{ route('member.transaction') }}" class="custom-link d-flex align-items-center">
+                                    <i class="bi bi-arrow-left me-2"></i>
+                                </a>
+                            </div>
                             <h2 class="text-rinci mb-4">Rincian Pembayaran</h2>
 
                             <div class="promo d-flex justify-content-between align-items-center mb-3">

@@ -5,7 +5,7 @@
     --hover-color: rgb(218, 243, 242);
     --text-color: #fff;
     --card-bg-color: #fff;
-    --button-blue: #007bff;
+    --button-blue: #0774FA;
     --button-red: #ff0000;
     --title-color: #414142;
     --premium-color: rgb(114, 114, 114);
@@ -105,11 +105,12 @@ body {
 }
 
 .info {
-    display: flex;
-    /* flex-wrap: wrap; */
-    gap: 8px;
+    flex-wrap: wrap;
+    /* gap: 8px; */
 }
-
+.info p{
+    margin-right: 5px;
+}
 .price {
     color: var(--button-blue);
 }
@@ -183,10 +184,14 @@ transition: ease-in-out 0.3s;
     .not-found img {
         max-width: 100% !important;
       }
+
       .details p {
-        margin: 0;
-        font-size: 8px !important;
-        max-width: 270px;
+        font-size: 12px;
+    }
+
+    .info p {
+        font-size: 12px;
+        line-height: 1.5;
     }
     .filter-transaction .nav-tabs a {
         font-size: 12px;

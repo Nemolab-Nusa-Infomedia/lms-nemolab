@@ -160,10 +160,12 @@ class MemberCourseController extends Controller
             $coursetools = Course::with('tools')->findOrFail($courses->id);
             // Placeholder untuk transaksi eBook (jika diperlukan logika tambahan)
             $transactionForEbook = null;
-            // Mengecek semua course_id yang termasuk dalam bundling eBook
-            $InBundle = CourseEbook::pluck('course_id')->toArray();
+            $chapterInfo = Chapter::where('course_id', $courses->id)
+            ->orderBy('created_at', 'desc') 
+            ->first();
 
-            return view('member.joincourse', compact('chapters', 'courses', 'lesson', 'transaction', 'transactionForEbook', 'coursetools', 'reviews', 'bundling'));
+
+            return view('member.joincourse', compact('chapters', 'chapterInfo','courses', 'lesson', 'transaction', 'transactionForEbook', 'coursetools', 'reviews', 'bundling'));
         } else {
             // Jika kursus tidak ditemukan, redirect ke halaman error
             return redirect()->route('pages.error');
@@ -241,6 +243,12 @@ class MemberCourseController extends Controller
         $checkReview = Review::where('user_id', Auth::user()->id)->where('course_id', $courses->id)->first();
         $coursetools = Course::with('tools')->findOrFail($courses->id);
         $compeleteEps = CompleteEpisodeCourse::where('user_id', Auth::user()->id)->where('course_id', $courses->id)->get();
+        $bundling = CourseEbook::with(['course', 'ebook'])
+        ->where('course_id', $courses->id)
+        ->first();
+        $chapterInfo = Chapter::where('course_id', $courses->id)
+                              ->orderBy('created_at', 'desc') 
+                              ->first();
 
         $totalLesson = 0;
         foreach ($chapters as $chapter) {
@@ -254,7 +262,7 @@ class MemberCourseController extends Controller
 
 
         if ($checkTrx) {
-            return view('member.detail-course', compact('chapters', 'slug', 'courses', 'user', 'checkReview', 'coursetools', 'reviews', 'checkSertifikat'));
+            return view('member.detail-course', compact('chapterInfo','bundling','chapters', 'slug', 'courses', 'user', 'checkReview', 'coursetools', 'reviews', 'checkSertifikat'));
         } else {
             Alert::error('error', 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!');
             return redirect()->route('member.course.join', $slug);

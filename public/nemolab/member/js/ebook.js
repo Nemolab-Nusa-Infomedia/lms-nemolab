@@ -1,9 +1,3 @@
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/nemolab/member/js/service-worker.js')
-            .catch((error) => console.error('ServiceWorker registration failed:', error));
-    });
-}
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/nemolab/member/js/pdf.worker.min.js';
 const ebookElement = document.getElementById('ebook');
 const url = ebookElement.getAttribute('data-pdf');
@@ -12,7 +6,7 @@ const ctx = canvas.getContext('2d');
 console.log(url);
 let pdfDoc = null;
 let pageNum = 1;
-let scale = window.innerWidth < 768 ? 0.8 : 1.6;
+let scale = window.innerWidth < 768 ? 0.8 : 1.8;
 const minScale = 0.8;
 const maxScale = 2.5;
 let totalPages = 0;
@@ -31,7 +25,7 @@ const renderPage = (num) => {
         // Mengatur resolusi kanvas berdasarkan devicePixelRatio
         const outputScale = window.devicePixelRatio || 1;
         canvas.width = Math.floor(viewport.width * outputScale);
-        canvas.height = Math.floor(viewport.height * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);        
         canvas.style.width = `${viewport.width}px`;
         canvas.style.height = `${viewport.height}px`;
         const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
@@ -76,10 +70,8 @@ pdfjsLib.getDocument(url).promise.then(pdf => {
 // Fungsi untuk memperbarui zoom
 const updateZoom = (factor) => {
     if (factor === 0) {
-      
         scale = window.innerWidth < 768 ? 0.8 : 1.6;
     } else {
-        
         scale = Math.max(minScale, Math.min(maxScale, scale + factor));
     }
     renderPage(pageNum);

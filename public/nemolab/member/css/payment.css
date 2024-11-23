@@ -111,6 +111,18 @@ h2.text-rinci {
 }
 
 
+[class*=" bi-"]::before {
+    background-color: #0774FA;
+    border-radius: 50px;
+    color: white;
+    padding: 8px;
+    display: inline-block;
+}
+
+.custom-link i {
+    margin-right: 8px;
+}
+
 
 .redeem-content {
     background-color: var(--lavender);

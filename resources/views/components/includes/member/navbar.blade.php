@@ -17,9 +17,9 @@
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="">
-                        <img src="{{ asset('nemolab/member/img/icon-nav.png') }}" alt="">
+                    aria-label="Toggle navigation" id="navbarToggler">
+                    <span class="navbar-icon">
+                        <img src="{{ asset('nemolab/member/img/icon-nav.png') }}" alt="Icon" id="navbarIcon">
                     </span>
                 </button>
 

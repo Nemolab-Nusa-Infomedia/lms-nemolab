@@ -17,13 +17,12 @@
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="">
-                        <img src="{{ asset('nemolab/member/img/icon-nav.png') }}" alt="">
+                    aria-label="Toggle navigation" id="navbarToggler">
+                    <span class="navbar-icon">
+                        <img src="{{ asset('nemolab/member/img/icon-nav.png') }}" alt="Icon" id="navbarIcon">
                     </span>
                 </button>
-
-                <div class="collapse navbar-collapse justify-content-end my-3" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse justify-content-end my-3 my-md-0" id="navbarNavAltMarkup">
                     <ul class="navbar-nav d-lg-flex align-items-lg-center gap-lg-4 ps-xl-5">
                         <div class="dropdown dropdown-pilih-kelas">
                             <button
@@ -32,7 +31,7 @@
                                 Pilih Kelas
                                 <box-icon name='chevron-down' color="#414142"></box-icon>
                             </button>
-                            <ul class="dropdown-menu m-3 mt-lg-3 mb-3">
+                            <ul class="dropdown-menu mt-lg-3 mb-3">
                                 <div class="head-submenu d-flex justify-content-between align-items-center">
                                     <p class="m-0 p-0 fw-bold">Pilihan Kelas</p>
                                     <a href="{{ route('member.course') }}" class="m-0 p-0">Lihat Semua</a>
@@ -40,24 +39,16 @@
                                 <div class="content-submenu mt-2 ">
                                     <div class="row m-0 ">
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
-                                            <a
-                                                href="{{ route('member.course', ['filter-kelas' => 'UI/UX Designer']) }}">UI
-                                                UX Designer</a>
+                                            <a href="{{ route('member.course', ['filter-kelas' => 'UI/UX Designer']) }}">UI UX Designer</a>
                                         </div>
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
-                                            <a
-                                                href="{{ route('member.course', ['filter-kelas' => 'Frontend Developer']) }}">Frontend
-                                                Developer</a>
+                                            <a href="{{ route('member.course', ['filter-kelas' => 'Frontend Developer']) }}">Frontend Developer</a>
                                         </div>
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
-                                            <a
-                                                href="{{ route('member.course', ['filter-kelas' => 'Wordpress Developer']) }}">Wordpress
-                                                Developer</a>
+                                            <a href="{{ route('member.course', ['filter-kelas' => 'Wordpress Developer']) }}">Wordpress Developer</a>
                                         </div>
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
-                                            <a
-                                                href="{{ route('member.course', ['filter-kelas' => 'Backend Developer']) }}">Backend
-                                                Developer</a>
+                                            <a href="{{ route('member.course', ['filter-kelas' => 'Backend Developer']) }}">Backend Developer</a>
                                         </div>
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
                                             <a

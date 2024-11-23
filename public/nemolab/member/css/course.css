@@ -1,21 +1,6 @@
-/* Font Import */
-@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
-
-/* Color Variables */
-:root {
-  --color-orange: #faa907;
-  --hover-orange: #CA8907;
-  --color-grey: #414142;
-  --dim-grey: #696969;
-  --charcoal-gray: #414142;
-  --light-shade: #fdf8f8;
-  --shade-gray: #8f8f8f;
-  --lavender: #fff6f6;
-  --blue: #0774FA;
-  --lavender-mist: #f0eaff;
-}
-
 /* Global Styles */
+@import url('color.css');
+
 * {
   padding: 0;
   margin: 0;
@@ -24,7 +9,7 @@
 }
 
 body {
-  background-color: var(--lavender);
+  background-color: var(--background-color);
 }
 
 html {
@@ -41,13 +26,7 @@ html::-ms-overflow-style {
   margin-top: 5rem;
 }
 
-/* Search Group */
-.search-group input,
-.search-group input:focus {
-  font-family: "Nunito", sans-serif;
-  font-size: 16px;
-  width: 260px;
-}
+
 
 /* Card Styles */
 .card {
@@ -74,9 +53,6 @@ html::-ms-overflow-style {
   color: var(--color-grey);
 }
 
-.title-card p {
-  /* Additional styles can be added here if needed */
-}
 
 .title-card img {
   border-radius: 100%;
@@ -121,7 +97,7 @@ html::-ms-overflow-style {
 .not-found p {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #666;
+  color: var(--sub-title);
 }
 
 .pagination {
@@ -143,7 +119,7 @@ html::-ms-overflow-style {
 
 .page-item.disabled .page-link,
 .page-item-button.disabled .page-link {
-  color: var(--blue);
+  color: var(--color-blue);
   background-color: #eeeeee;
   pointer-events: none;
   cursor: not-allowed;
@@ -151,15 +127,15 @@ html::-ms-overflow-style {
 
 .page-item.active .page-link {
   color: #fff;
-  background-color: var(--blue);
-  border-color: var(--blue);
+  background-color: var(--color-blue);
+  border-color: var(--color-blue);
 }
 
 .page-link, .page-item-button .page-link {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--blue);
+  color: var(--color-blue);
   background-color: #eeeeee;
   width: 40px; 
   height: 40px;
@@ -170,8 +146,8 @@ html::-ms-overflow-style {
 .page-link:hover, .page-item-button .page-link:hover {
   transform: translateY(-5px);
   color: #fff;
-  background-color: var(--blue); 
-  border-color: var(--blue);
+  background-color: var(--color-blue); 
+  border-color: var(--color-blue);
   text-decoration: none;
 }
 
@@ -195,9 +171,16 @@ html::-ms-overflow-style {
   font-weight: 600;
   transition: all 0.5s ease;
 }
-.btn-group-harga .btn-primary:hover{
-  background-color: var(--hover-orange);
+.btn-group-harga .btn-primary:hover {
+  background-color: var(--color-orange-hover);
 }
+.btn-group-harga .btn-primary:active {
+  transition: background-color 0s;
+  background-color: var(--color-orange-hover) !important;
+}
+
+
+
 
 /* Price Styles */
 .harga p:first-child {
@@ -249,9 +232,10 @@ html::-ms-overflow-style {
   }
 
   .card .card-img-top {
-    object-fit: cover;
-    height: 80px;
-    width: 110px;
+    margin-top: 4px;
+    object-fit: fill;
+    height: 57px;
+    width: 80px;
     border-radius: 7px;
   }
 

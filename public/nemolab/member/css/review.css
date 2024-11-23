@@ -2,15 +2,27 @@ body {
     background-color: #FFF7F7;
     font-family: 'Nunito', sans-serif;
 }
-.back-button {
-    background-color: #007bff;
-    border-radius: 50%;
-    padding: 8px;
+main .container a {
     font-size: 24px;
-    color: #ffffff;
-    margin-right: 10px;
-    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold; 
+    color: #414142; 
+    display: inline-flex;
+    align-items: center; 
 }
+
+[class*=" bi-"]::before {
+    background-color: #0774FA;
+    border-radius: 50px;
+    color: white;
+    padding: 8px;
+    display: inline-block;
+}
+
+.custom-link i {
+    margin-right: 8px;
+}
+
 h1 {
     font-weight: bold;
 }

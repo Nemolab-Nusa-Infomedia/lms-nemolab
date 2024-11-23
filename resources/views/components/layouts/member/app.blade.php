@@ -81,6 +81,23 @@
             }
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggler = document.getElementById('navbarToggler');
+            const icon = document.getElementById('navbarIcon');
+
+            toggler.addEventListener('click', () => {
+                // Toggle class "active" pada gambar
+                if (toggler.getAttribute('aria-expanded') === 'true') {
+                    icon.src = "{{ asset('nemolab/member/img/icon-nav-active.png') }}";
+                    icon.classList.remove('active');
+                } else {
+                    icon.src = "{{ asset('nemolab/member/img/icon-nav.png') }}";
+                    icon.classList.add('active');
+                }
+            });
+        });
+    </script>
     @stack('addon-script')
 
 </body>

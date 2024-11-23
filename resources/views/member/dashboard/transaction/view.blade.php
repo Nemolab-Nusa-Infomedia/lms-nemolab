@@ -76,9 +76,8 @@
                                             Premium
                                         </p>
                                     @endif
-                                    <div class="info mt-3">
-                                        <p class="price">Harga: Rp. {{ number_format($transaction->price, 0, ',', '.') }}
-                                        </p>
+                                    <div class="info mt-2 d-flex">
+                                        <p class="price">Harga: Rp. {{ number_format($transaction->price, 0, ',', '.') }}</p>
                                         <p class="date">Tanggal: {{ $transaction->created_at->format('d-M-Y') }}</p>
                                         <p class="status">Status:</p>
                                         <p class="status-info"

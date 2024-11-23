@@ -10,7 +10,7 @@
     <!-- Section Hero -->
     <section class="section-hero-img d-flex align-items-center mb-5" id="section-hero-img">
         <div class="row">
-            <div class="col-md-6 mt-lg-5" data-aos="zoom-out">
+            <div class="col-md-6 mt-lg-5">
                 <div class="text-center text-md-start me-md-3">
                     <h1 class="fw-bold mt-4 mt-md-0">BELAJAR KURSUS ONLINE GRATIS, KAPANPUN DAN DIMANAPUN</h1>
                     <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai macam kelas mulai
@@ -38,69 +38,63 @@
                 <div class="row m-0 p-0 ">
                     @foreach ($courses as $course)
                         @if ($course)
-                            <div class="col-md-6 col-xl-3 col-12 d-flex justify-content-center my-2 pb-2">
-                                <div class="card d-flex flex-row d-md-block">
+                        <div class="col-md-6 col-xl-3 col-12 d-flex justify-content-center my-1 my-md-2 pb-2">
+                            <div class="card d-flex flex-row d-md-block">
+                                @if ($course->cover != null)
+                                    <img src="{{ asset('storage/images/covers/' . $course->cover) }}" class="card-img-top d-none d-md-block"
+                                        alt="{{ $course->name }}" />
+                                @else
+                                    <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-none d-md-block"
+                                        alt="{{ $course->name }}" />
+                                @endif
+                                <div class="card-head d-block d-md-none">
                                     @if ($course->cover != null)
-                                        <img src="{{ asset('storage/images/covers/' . $course->cover) }}"
-                                            class="card-img-top d-none d-md-block" alt="{{ $course->name }}"/>
+                                        <img src="{{ asset('storage/images/covers/' . $course->cover) }}" class="card-img-top"
+                                            alt="{{ $course->name }}" />
                                     @else
-                                        <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}"
-                                            class="card-img-top d-none d-md-block" alt="{{ $course->name }}"/>
+                                        <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top"
+                                            alt="{{ $course->name }}" />
                                     @endif
-                                    <div class="card-head d-block d-md-none">
-                                        @if ($course->cover != null)
-                                            <img src="{{ asset('storage/images/covers/' . $course->cover) }}"
-                                                class="card-img-top" alt="{{ $course->name }}" />
+                                    <div class="harga mt-4">
+                                        <p class="p-0 m-0 fw-bold">Harga</p>
+                                        <p class="p-0 m-0 fw-bold">
+                                            {{ $course->price == 0 ? 'Gratis' : 'Rp' . number_format($course->price, 0, ',', '.') }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="paket d-flex">
+                                        @if (in_array($course->id, $InBundle))
+                                        <p class="paket-item mt-md-2">Paket Combo</p>
                                         @else
-                                            <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top"
-                                                alt="{{ $course->name }}" />
+                                            <p class="paket-item mt-md-2">Kursus</p>
                                         @endif
-
-                                        <div class="harga mt-4">
+                                    </div>
+                                    <div class="title-card">
+                                        <h5 class="fw-bold truncate-text">{{ $course->category }} : {{ $course->name }}</h5>
+                                        <p class="avatar m-0 fw-bold me-1">
+                                            @if ($course->users->avatar != null)
+                                                <img class="me-2" src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
+                                                    alt="" />
+                                            @else
+                                                <img class="me-2" src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="" />
+                                            @endif
+                                            {{ $course->users->name }}
+                                        </p>
+                                    </div>
+                                    <div class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3">
+                                        <div class="harga d-none d-md-block">
                                             <p class="p-0 m-0 fw-semibold">Harga</p>
                                             <p class="p-0 m-0 fw-bold">
                                                 {{ $course->price == 0 ? 'Gratis' : 'Rp' . number_format($course->price, 0, ',', '.') }}
-                                            </p>
+                                            </p>                        
                                         </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="paket d-flex">
-                                            @if (in_array($course->id, $InBundle))
-                                                <p class="paket-item mt-md-2">Paket Combo</p>
-                                            @else
-                                                <p class="paket-item mt-md-2">Kursus</p>
-                                            @endif
-                                        </div>
-                                        <div class="title-card">
-                                            <h5 class="fw-bold my-2 my-md-0 truncate-text">{{ $course->category }} :
-                                                {{ $course->name }}
-                                            </h5>
-                                            <p class="avatar m-0 fw-bold me-1" style="color: #414142">
-                                                @if ($course->users && $course->users->avatar)
-                                                    <img class="me-2"
-                                                        src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
-                                                        alt="" />
-                                                @else
-                                                    <img class="me-2"
-                                                        src="{{ asset('nemolab/member/img/icon/Group 7.png') }}"
-                                                        alt="" />
-                                                @endif
-                                                {{ $course->users ? $course->users->name : '-' }}
-                                            </p>
-                                        </div>
-                                        <div class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3">
-                                            <div class="harga d-none d-md-block">
-                                                <p class="p-0 m-0 fw-semibold">Harga</p>
-                                                <p class="p-0 m-0 fw-semibold">
-                                                    {{ $course->price == 0 ? 'Gratis' : 'Rp' . number_format($course->price, 0, ',', '.') }}
-                                                </p>
-                                            </div>
-                                            <a href="{{ route('member.course.join', $course->slug) }}"
-                                                class="btn btn-warning">Mulai Belajar</a>
-                                        </div>
+                                        <a href="{{ route('member.course.join', $course->slug) }}" class="btn btn-warning">Mulai Belajar</a>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        
                         @endif
                     @endforeach
 

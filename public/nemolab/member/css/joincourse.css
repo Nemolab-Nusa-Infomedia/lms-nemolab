@@ -1,17 +1,5 @@
-/* font navbar */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('color.css');
 
-/* variabel color */
-:root {
-    --color-orange: #FAA907;
-    --color-grey: #414142;
-    --dim-grey: #696969;
-    --charcoal-gray: #414142;
-    --light-shade: #FDF8F8;
-    --shade-gray: #8F8F8F;
-    --lavender-mist: #F0EAFF;
-    --color-silver: #9D9D9D;
-}
 
 * {
     padding: 0;
@@ -39,11 +27,11 @@ h1, h3, h5 {
 }
 
 body {
-    background-color: #FFF6F6;
+    background-color: var(--background-color);
 }
 
 p {
-    color: var(--shade-gray);
+    color: var(--sub-title);
 }
 
 .card-preview img {
@@ -57,7 +45,6 @@ p {
 .card {
     border: none;
     border-radius: 15px; /* Sudut melingkar */
-    padding: 15px; /* Padding dalam card */
     background-color: #ffffff; /* Warna latar belakang */
 }
 
@@ -82,13 +69,13 @@ p {
 }
 
 .detail td {
-    color: var(--shade-gray);
+    color: var(--sub-title);
     padding: 5px; /* Padding untuk sel */
     vertical-align: top; /* Posisikan teks di atas sel */
 }
 
 .detail td:first-child {
-    color: var(--shade-gray);
+    color: var(--sub-title);
     font-weight: bold; /* Membuat teks judul lebih tebal */
     width: 200px; /* Lebar tetap untuk kolom judul */
 }
@@ -116,7 +103,7 @@ p {
 }
 .card-tool p {
     margin-bottom: 0px;
-    color: var(--charcoal-gray);
+    color: var(--head-title);
     font-weight: bold;
 }
 
@@ -152,6 +139,10 @@ p {
 .card-buy-body {
     text-align: center; /* Menjadikan konten di dalam elemen ini rata tengah */
 }
+.benefit-title{
+    padding: 0;
+    margin-bottom: 0px;
+}
 
 .card-buy {
     width: 400px;
@@ -168,15 +159,21 @@ p {
     border-bottom-right-radius: 15px;
 }
 
-.buy:hover {
+a.btn-warning{
     color: white;
-    background-color: rgb(233, 162, 30);
+    background-color: var(--color-orange);
+    transition: all 0.3s ease;
+    border: none;
+    font-weight: 700;
 }
-
-.btn-warning:focus,
-.btn-warning:active {
+a.btn-warning:hover{
     color: white;
-    background-color: rgb(233, 162, 30);
+    background-color: var(--color-orange-hover);
+}
+a.btn-warning:active {
+    color: white !important;
+    background-color: var(--color-orange-hover) !important;
+    transition: background-color 0s;
 }
 
 /* Responsive Styles */

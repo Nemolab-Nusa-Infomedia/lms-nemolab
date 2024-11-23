@@ -14,15 +14,20 @@
                 <div class="row justify-content-center">
                     <div class="col-md-6 mt-5">
                         <div class="card card-bayar shadow p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <a href="{{ route('member.transaction') }}" class="custom-link d-flex align-items-center">
+                                    <i class="bi bi-arrow-left me-2"></i>
+                                </a>
+                            </div>
                             <h2 class="text-rinci mb-4">Riwayat Pembelian</h2>
                             <div class="nota">
                                 <div class="produk mb-3">
                                     <p class="mb-1">Produk yang Dibeli</p>
-                                    {{ $details->name_items }}
+                                    <p>{{ $details->name_item}}</p>
                                 </div>
                                 <div class="harga mb-3">
                                     <div class="d-flex justify-content-between">
-                                        <p class="item mb-1 fw-bold">Harga Kelas</p>
+                                        <p class="item mb-1 fw-bold">Harga Produk</p>
                                         <p class="price mb-1 fw-bold">Rp.  {{ number_format($details->harga_awal, 0) }}</p>
                                     </div>
                                 </div>
