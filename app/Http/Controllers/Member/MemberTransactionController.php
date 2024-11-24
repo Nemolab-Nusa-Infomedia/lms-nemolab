@@ -40,10 +40,16 @@ class MemberTransactionController extends Controller
         return view('member.dashboard.transaction.view', compact('transactions', 'status'));
     }
 
-    public function show(Request $requests, $transaction_code){
+    public function show(Request $requests, $transaction_code)
+    {
         $transaction = Transaction::where('transaction_code', $transaction_code)->first();
         $details = detailTransactions::where('transaction_code', $transaction_code)->first();
         if ($transaction) {
+            if (!$details) {
+                Alert::error('Error', 'Maaf terjadi kesalahan pada pembayaran');
+                return redirect()->route('member.transaction');
+            }
+    
             if ($transaction->status == 'success' || $transaction->status == 'failed') {
                 return view('member.dashboard.transaction.show-payment', compact('details'));
             } else {
@@ -51,9 +57,9 @@ class MemberTransactionController extends Controller
                 return redirect()->route('member.transaction');
             }
         }
-
         return view('error.page404');
     }
+    
 
 
 

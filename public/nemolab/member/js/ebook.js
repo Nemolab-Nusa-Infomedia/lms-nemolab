@@ -7,39 +7,35 @@ const ctx = canvas.getContext('2d');
 
 let pdfDoc = null;
 let pageNum = 1;
-let scale = window.innerWidth < 768 ? 0.8 : 1.8;
-const minScale = 0.8;
+let scale = window.innerWidth < 768 ? 0.7 : 1.8;
+const minScale = 0.7;
 const maxScale = 2.5;
 let totalPages = 0;
 let isRendering = false;
 
-console.log(url); // Debugging URL
-
 // 2. Pengambilan dokumen PDF// 2. Pengambilan dokumen PDF
 pdfjsLib.getDocument(url).promise.then(pdf => {
-    console.log('PDF berhasil dimuat:', url);
+    console.log('PDF berhasil dimuat');
     pdfDoc = pdf;
     totalPages = pdf.numPages;
-    console.log(`Total halaman PDF: ${totalPages}`);
+    console.log(`Menampilkan ${totalPages} halaman`);
     renderPage(pageNum);
 }).catch(error => {
     console.error('Error loading PDF:', error);
-    alert('Failed to load PDF.');
+    alert('Gagal memuat eBook. Periksa koneksi atau matikan ekstensi browser anda.');
     console.log(`Total halaman PDF: ${totalPages}`);
 });
+
 
 // 3. Fungsi untuk rendering halaman
 const renderPage = (num) => {
     if (isRendering) return;
     isRendering = true;
 
-    console.log(`Rendering halaman ${num} dengan skala ${scale}`); // Log saat memulai rendering halaman
-
     document.getElementById('pdf-loading').style.display = 'block';
     canvas.style.display = 'none';
 
     pdfDoc.getPage(num).then((page) => {
-        console.log(`Halaman ${num} berhasil diambil dari PDF.`); // Log jika halaman berhasil diambil
         const viewport = page.getViewport({ scale });
         const outputScale = window.devicePixelRatio || 1;
 
@@ -53,11 +49,9 @@ const renderPage = (num) => {
 
         return page.render(renderContext).promise;
     }).then(() => {
-        console.log(`Halaman ${num} berhasil dirender.`); // Log jika rendering halaman berhasil
         document.getElementById('page-input').value = num;
         document.getElementById('page-count').textContent = totalPages;
     }).catch(error => {
-        console.error(`Error rendering halaman ${num}:`, error); // Log jika ada error saat rendering halaman
         alert('Failed to load the page.');
     }).finally(() => {
         isRendering = false;
@@ -114,6 +108,32 @@ document.getElementById('pdf-fullscreen').addEventListener('click', () => {
     }
 });
 
+// Event listeners untuk tombol panah dan fullscreen dengan keyboard
+document.addEventListener('keydown', (e) => {
+    // Left arrow for previous page
+    if (e.key === 'ArrowLeft') {
+        if (pageNum > 1) {
+            pageNum--;
+            renderPage(pageNum);
+        }
+    }
+    // Right arrow for next page
+    else if (e.key === 'ArrowRight') {
+        if (pageNum < totalPages) {
+            pageNum++;
+            renderPage(pageNum);
+        }
+    }
+    // 'F' for fullscreen toggle
+    else if (e.key.toLowerCase() === 'f') {
+        const elem = document.getElementById('ebook');
+        if (!document.fullscreenElement) {
+            elem.requestFullscreen().catch(err => console.error(`Fullscreen mode error: ${err.message}`));
+        } else {
+            document.exitFullscreen();
+        }
+    }
+});
 // 6. Pinch-to-zoom untuk perangkat mobile
 let initialDistance = null;
 

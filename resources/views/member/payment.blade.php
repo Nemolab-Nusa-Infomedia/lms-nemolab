@@ -1,4 +1,4 @@
-@extends('components.layouts.member.app')
+@extends('components.layouts.member.dashboard')
 
 @section('title', 'Nemolab - Selesaikan Pemabayaran Anda')
 
@@ -244,7 +244,7 @@
                                         @endif
                                         <input type="hidden" id="diskonInput" name="diskon">
                                         <input type="hidden" name="price" value="{{ $totalPrice }}">
-                                        <div class="form-check mt-4">
+                                        <div class="form-check mt-4 text-center">
                                             <input class="form-cek" type="checkbox" id="termsCheck" name="termsCheck"
                                                 required>
                                             <label class="form-check-label ms-2" for="termsCheck">

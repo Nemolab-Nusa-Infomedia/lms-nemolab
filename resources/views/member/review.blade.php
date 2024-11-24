@@ -1,5 +1,5 @@
 
-@extends('components.layouts.member.app')
+@extends('components.layouts.member.dashboard')
 
 @section('title', 'Nemolab - Kursus Online')
 
@@ -18,7 +18,7 @@
         </div>
     
         <div class="card">
-            <div class="card-body px-5">                
+            <div class="card-body px-sm-5">                
                 <div class="mb-4 text-center">
                     <label for="namaKelas" class="form-label" style="color: #414141">Nama Kelas:</label>
                     <p id="namaKelas" class="form-control-plaintext">{{ $course->name }}</p>

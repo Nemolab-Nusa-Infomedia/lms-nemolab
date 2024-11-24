@@ -1,4 +1,4 @@
-@extends('components.layouts.member.app')
+@extends('components.layouts.member.dashboard')
 
 @section('title', 'Nemolab - Detail Kursus')
 
@@ -257,7 +257,7 @@
                                                 <div class="card mb-4">
                                                     <div class="card-body">
                                                         <div class="card-head d-flex align-items-center">
-                                                            @if ($review->user->avatar !=null)
+                                                        @if ($review->user->avatar !=null)
                                                             <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" class="avatar-img" style="border-radius: 50%">
                                                             @else
                                                             <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" class="avatar-img" style="border-radius: 50%">

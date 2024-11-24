@@ -1,4 +1,4 @@
-@extends('components.layouts.member.app')
+@extends('components.layouts.member.dashboard')
 
 @section('title', $ebook->name)
 
@@ -27,9 +27,6 @@
     </div>
     <!-- Content -->
     <div class="container mb-5" id="ebook" data-pdf="{{ asset('storage/file_pdf/' . $ebook->file_ebook) }}">
-        <a href="{{ asset('storage/file_pdf/' . $ebook->file_ebook) }}" class="btn btn-primary" download>
-            Download File
-        </a>
         <div class="row">
             <div class="col-12 rounded-3 position-relative p-0 overflow-hidden">
                 <!-- Ebook Tools -->
@@ -73,19 +70,28 @@
                 <div class="mt-3 d-flex justify-content-between">
                     <a href="{{ route('member.ebook.detail' , $ebook->slug) }}" class="btn btn-secondary flex-grow-1 me-2" style="background-color: #414142 !important;">Detail E-Book</a>
                     @if (!$checkReview)
-                    <a href="{{ route('member.review.ebook' , $ebook->slug) }}" class="btn btn-primary flex-grow-1">Masukan Review</a>
+                    <a href="{{ route('member.review.ebook' , $ebook->slug) }}" class="btn btn-primary flex-grow-1">Berikan Komentar</a>
                     @endif
                 </div>
             </div>
         </div>
-    </div>
-
-    <div>
-        <iframe src="{{ asset('storage/file_pdf/' . $ebook->file_ebook) }}" frameborder="0"></iframe>
     </div>
 @endsection
 
 @push('prepend-script')
     <script src="{{ asset('nemolab/member/js/pdf.min.js') }}"></script>
     <script src="{{ asset('nemolab/member/js/ebook.js') }}"></script>
+    <script>
+        document.addEventListener('keydown', function(event) {
+            if ((event.ctrlKey && event.key === 's') || (event.ctrlKey && event.key === 'p')) {
+                event.preventDefault();
+            }
+            if (event.ctrlKey && event.shiftKey && event.key === 'I') {
+                event.preventDefault();
+            }
+        });
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); 
+        });        
+    </script>
 @endpush

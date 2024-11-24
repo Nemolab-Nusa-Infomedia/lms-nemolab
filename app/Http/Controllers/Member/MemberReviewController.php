@@ -124,9 +124,9 @@ public function index($slug)
                 'note' => $validated['note'],
             ]);
             // Tampilkan pesan sukses setelah review berhasil disimpan
-            Alert::success('success', 'Review berhasil ditambahkan.');
+            Alert::success('success', 'Komentar berhasil ditambahkan.');
             // Redirect kembali ke halaman detail eBook
-            return redirect()->route('member.ebook.detail', ['slug' => $ebook->slug])
+            return redirect()->route('member.ebook.read', ['slug' => $ebook->slug])
                 ->with('success', 'Review berhasil ditambahkan.');
         }
     }

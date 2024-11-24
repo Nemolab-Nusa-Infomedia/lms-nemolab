@@ -29,23 +29,19 @@ class AdminSuperadminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
-            'profession' => 'required|string|max:255',
         ]);
-
+    
         User::create([
             'name' => $request->name,
-            'profession' => $request->profession,
-            'username' => $request->name, 
-            'avatar' => 'default.png',
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'superadmin',
         ]);
-
+    
         Alert::success('Success', 'Data Superadmin Berhasil Dibuat');
-        return redirect()->route('admin.superadmin.index');
+        return redirect()->route('admin.superadmin');
     }
-
+    
     public function edit($id)
     {
         $superadmin = User::findOrFail($id);
@@ -60,19 +56,16 @@ class AdminSuperadminController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $superadmin->id,
             'password' => 'nullable|string|min:8|confirmed',
-            'profession' => 'nullable|string|max:255',
         ]);
 
         $superadmin->update([
             'name' => $request->name,
-            'profession' => $request->profession,
-            'username' => $request->name,
             'email' => $request->email,
             'password' => $request->filled('password') ? Hash::make($request->password) : $superadmin->password,
         ]);
 
         Alert::success('Success', 'Data Superadmin Berhasil Diupdate');
-        return redirect()->route('admin.superadmin.index');
+        return redirect()->route('admin.superadmin');
     }
 
     public function destroy($id)
@@ -90,6 +83,6 @@ class AdminSuperadminController extends Controller
         $superadmin->delete();
 
         Alert::success('Success', 'Data Superadmin Berhasil Dihapus');
-        return redirect()->route('admin.superadmin.index');
+        return redirect()->route('admin.superadmin');
     }
 }

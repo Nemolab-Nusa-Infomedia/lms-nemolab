@@ -23,7 +23,7 @@
                     </span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse  my-3 my-md-0" id="navbarNavAltMarkup">
                     <ul class="navbar-nav d-flex mx-auto">
                         <form action="{{ route('member.course') }}" method="GET" class="d-lg-flex d-none"
                             role="search">

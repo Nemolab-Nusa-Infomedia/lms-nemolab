@@ -1,5 +1,5 @@
 
-@extends('components.layouts.member.app')
+@extends('components.layouts.member.dashboard')
 
 @section('title', 'Nemolab - Kursus Online')
 
@@ -11,11 +11,13 @@
 @section('content')
 <div class="container mb-5" style="margin-top: 7rem">
         <div class="d-flex align-items-center mb-3">
-            <i class="fas fa-arrow-left back-button"></i>
-            <h1 class="h4 fw-bold mb-0">Review Ebook Kami</h1>
+            <a href="{{ route('member.ebook.read', $ebook->slug) }}" class="custom-link d-flex align-items-center">
+                <i class="bi bi-arrow-left me-2"></i>
+                <span>Review Kelas Kami</span>
+            </a>
         </div>
         <div class="card">
-            <div class="card-body px-5">                
+            <div class="card-body px-sm-5">                
                 <div class="mb-4 text-center">
                     <label for="namaKelas" class="form-label" style="color: #414141">Judul E-book:</label>
                     <p id="namaKelas" class="form-control-plaintext">{{ $ebook->name }}</p>
@@ -36,11 +38,10 @@
                     <input type="hidden" name="ebook_id" value="{{ $ebook->id }}">
                     <div class="mb-4">
                         <label for="reviewKelas" class="form-label">Review Kelas (maks. 100 karakter)</label>
-                        <textarea id="reviewKelas" name="note" class="form-control" rows="3" maxlength="100" placeholder="Masukkan komentar anda tentang kelas ini"></textarea>
+                        <textarea id="reviewKelas" name="note" class="form-control" rows="3" maxlength="100" placeholder="Masukkan komentar anda tentang E-Book ini"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Konfirmasi</button>
                 </form>                
-                <p class="text-center text-muted mt-3">*Anda bisa melihat/mengunduh sertifikat setelah Anda memberikan review pada kelas ini</p>
             </div>
         </div>        
     </div>

@@ -1,4 +1,4 @@
-@extends('components.layouts.member.app')
+@extends('components.layouts.member.dashboard')
 
 @section('title', 'Nemolab - Detail E-Book')
 
@@ -109,7 +109,7 @@
                 </div>
                 <div class="testimoni" id="testimoni" data-aos="fade-up">
                     <div class="container-fluid">
-                        @if ($reviews->isNotEmpty())
+                    @if ($reviews->isNotEmpty())
                         <h1>Testimoni</h1>
                         <div class="col-12 mt-4">
                             <div class="row card-testimoni d-none d-md-flex">
@@ -118,7 +118,11 @@
                                         <div class="card mb-4">
                                             <div class="card-body">
                                                 <div class="card-head d-flex align-items-center">
-                                                    <img src="{{ asset('storage/images/avatars/' . ($review->user->avatar ?? 'default-avatar.png')) }}" alt="User Avatar" class="avatar-img" style="border-radius: 50%">
+                                                @if ($review->user->avatar !=null)
+                                                    <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" class="avatar-img" style="border-radius: 50%">
+                                                    @else
+                                                    <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" class="avatar-img" style="border-radius: 50%">
+                                                @endif
     
                                                     <div class="name ms-3">
                                                         <h5 class="card-title m-0 fw-bold">{{ $review->user->name }}</h5>
@@ -138,7 +142,11 @@
                                             <div class="card mb-4">
                                                 <div class="card-body">
                                                     <div class="card-head d-flex align-items-center">
-                                                        <img src="{{ asset('storage/images/avatars/' . ($review->user->avatar ?? 'default-avatar.png')) }}" alt="User Avatar" class="avatar-img" style="border-radius: 50%">
+                                                    @if ($review->user->avatar !=null)
+                                                        <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" class="avatar-img" style="border-radius: 50%">
+                                                        @else
+                                                        <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" class="avatar-img" style="border-radius: 50%">
+                                                    @endif
     
                                                         <div class="name ms-3">
                                                             <h5 class="card-title m-0 fw-bold">{{ $review->user->name }}</h5>

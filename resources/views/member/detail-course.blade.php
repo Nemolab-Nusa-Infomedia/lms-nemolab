@@ -1,4 +1,4 @@
-@extends('components.layouts.member.app')
+@extends('components.layouts.member.dashboard')
 
 @section('title', 'Nemolab - Kursus Online')
 
@@ -9,7 +9,7 @@
 @section('content')
     <section class="detail-course-section" id="detail-course-section">
         <div class="container">
-            <a href="{{ route('member.course.join', $courses->slug) }}">
+            <a href="javascript:history.back()">
                 <i class="bi bi-arrow-left"></i>
             </a>
             <h4 class="m-0 p-0 mt-5 mb-4 text-center">{{ $courses->name }}</h4>

@@ -67,9 +67,6 @@ class MemberEbookController extends Controller
             Alert::error('error', 'File eBook tidak ditemukan.');
             return redirect()->route('member.ebook.join', $slug);
         }
-
-        
-    
         if ($checkTrx) {
             // Jika transaksi valid, tampilkan halaman baca eBook
             $fileUrl = Storage::url($filePath);

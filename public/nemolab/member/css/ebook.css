@@ -41,6 +41,11 @@ body::-webkit-scrollbar {
 .page-info img:hover {
     transform: scale(1.2);
 }
+.zoom img:active,
+#pdf-fullscreen:active,
+.page-info img:active {
+    transform: scale(1);
+}
 
 .pdf-height {
     border-bottom-left-radius: 15px;
@@ -154,7 +159,7 @@ input[type="number"]:focus {
     }
 
     .pdf-height {
-        height: 100vh; 
+        height: 80vh; 
         background-color: var(--secondary-color);
         overflow: auto;
     }

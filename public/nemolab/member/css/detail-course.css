@@ -303,6 +303,15 @@ main #detail-course-section .container .testimoni .col-12 .navtabs-more-testimon
 }
 
 @media screen and (max-width: 576px) {
+    main #detail-course-section {
+        margin-top: 20px;
+        height: max-content;
+        padding: 5px 5px;
+    }
+    .swiper-slide .card{
+        border: none !important;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
     main #detail-course-section .container h4 {
         font-size: clamp(18px, 28px, 28px) !important;
     }
