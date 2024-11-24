@@ -85,12 +85,12 @@
             if ((event.ctrlKey && event.key === 's') || (event.ctrlKey && event.key === 'p')) {
                 event.preventDefault();
             }
-            if (event.ctrlKey && event.shiftKey && event.key === 'I') {
-                event.preventDefault();
-            }
+            // if (event.ctrlKey && event.shiftKey && event.key === 'I') {
+            //     event.preventDefault();
+            // }
         });
-        document.addEventListener('contextmenu', function(event) {
-            event.preventDefault(); 
-        });        
+        // document.addEventListener('contextmenu', function(event) {
+        //     event.preventDefault(); 
+        // });        
     </script>
 @endpush

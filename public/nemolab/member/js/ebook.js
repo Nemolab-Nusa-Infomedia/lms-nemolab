@@ -26,12 +26,17 @@ pdfjsLib.getDocument(url).promise.then(pdf => {
     console.log(`Total halaman PDF: ${totalPages}`);
 });
 
-
 // 3. Fungsi untuk rendering halaman
 const renderPage = (num) => {
     if (isRendering) return;
     isRendering = true;
 
+    const pdfHeightElement = document.querySelector('.pdf-height');
+    if (window.innerWidth < 768) { 
+        pdfHeightElement.style.height = '760px';
+    } else {
+        pdfHeightElement.style.height = '100vh';
+    }
     document.getElementById('pdf-loading').style.display = 'block';
     canvas.style.display = 'none';
 
@@ -57,8 +62,10 @@ const renderPage = (num) => {
         isRendering = false;
         document.getElementById('pdf-loading').style.display = 'none';
         canvas.style.display = 'block';
+        pdfHeightElement.style.height = 'auto';
     });
 };
+
 
 
 // 4. Zoom dan scale

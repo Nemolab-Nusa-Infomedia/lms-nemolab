@@ -51,7 +51,7 @@ body::-webkit-scrollbar {
 .pdf-height {
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    height: 100vh;
+    height: 760px;
     background-color: var(--secondary-color);
     overflow-y: scroll;
 }
@@ -64,15 +64,13 @@ body::-webkit-scrollbar {
 .pdf-height {
     scrollbar-width: none; 
 }
-.pdf-render{
-    height: 100vh;
-}
+
 
 
 
 .pdf-preview {
     overflow-y: auto;
-    max-height: 100vh;
+    max-height: 100vh !important;
 }
 
 .pdf-preview::-webkit-scrollbar {
@@ -160,7 +158,6 @@ input[type="number"]:focus {
     .pdf-height {
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
-        height: 85vh ; 
         background-color: var(--secondary-color);
     }
 }
