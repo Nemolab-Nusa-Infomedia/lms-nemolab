@@ -44,7 +44,8 @@ body::-webkit-scrollbar {
 .zoom img:active,
 #pdf-fullscreen:active,
 .page-info img:active {
-    transform: scale(1);
+    transform: scale(1) !important;
+    transition: 0s;
 }
 
 .pdf-height {
@@ -65,7 +66,6 @@ body::-webkit-scrollbar {
 }
 .pdf-render{
     height: 100vh;
-    margin-bottom: 0px;
 }
 
 
@@ -124,11 +124,9 @@ input[type="number"]:focus {
         height: max-content !important;
     }
 
-    .pdf-preview {
-        height: max-content;
-    }
-
     .tools {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
         padding: 10px 25px !important;
     }
 
@@ -160,8 +158,9 @@ input[type="number"]:focus {
     }
 
     .pdf-height {
-        height: 80vh; 
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        height: 85vh ; 
         background-color: var(--secondary-color);
-        overflow: auto;
     }
 }

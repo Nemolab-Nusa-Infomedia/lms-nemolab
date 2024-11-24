@@ -26,9 +26,9 @@
         </div>
     </div>
     <!-- Content -->
-    <div class="container mb-5" id="ebook" data-pdf="{{ asset('storage/file_pdf/' . $ebook->file_ebook) }}">
+    <div class="container mb-5">
         <div class="row">
-            <div class="col-12 rounded-3 position-relative p-0 overflow-hidden">
+            <div class="col-12 rounded-3 position-relative p-0 overflow-hidden" id="ebook" data-pdf="{{ asset('storage/file_pdf/' . $ebook->file_ebook) }}">
                 <!-- Ebook Tools -->
                 <div class="tools p-4 px-5 w-100 d-flex justify-content-between align-items-center"
                     style="background-color: #faa907">
@@ -66,13 +66,12 @@
                         <canvas class="pdf-render mx-auto" id="pdf-render"></canvas>
                     </div>
                 </div>
-
-                <div class="mt-3 d-flex justify-content-between">
-                    <a href="{{ route('member.ebook.detail' , $ebook->slug) }}" class="btn btn-secondary flex-grow-1 me-2" style="background-color: #414142 !important;">Detail E-Book</a>
-                    @if (!$checkReview)
-                    <a href="{{ route('member.review.ebook' , $ebook->slug) }}" class="btn btn-primary flex-grow-1">Berikan Komentar</a>
-                    @endif
-                </div>
+            </div>
+            <div class="col-12 mt-2 d-flex justify-content-between">
+                <a href="{{ route('member.ebook.detail' , $ebook->slug) }}" class="btn btn-secondary flex-grow-1 me-2" style="background-color: #414142 !important;">Detail E-Book</a>
+                @if (!$checkReview)
+                <a href="{{ route('member.review.ebook' , $ebook->slug) }}" class="btn btn-primary flex-grow-1">Berikan Komentar</a>
+                @endif
             </div>
         </div>
     </div>

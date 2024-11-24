@@ -7,8 +7,8 @@ const ctx = canvas.getContext('2d');
 
 let pdfDoc = null;
 let pageNum = 1;
-let scale = window.innerWidth < 768 ? 0.7 : 1.8;
-const minScale = window.innerWidth < 768 ? 0.7 : 0.8;
+let scale = window.innerWidth < 768 ? 0.8 : 1.8;
+const minScale = 0.8;
 const maxScale = 2.5;
 let totalPages = 0;
 let isRendering = false;
@@ -22,7 +22,7 @@ pdfjsLib.getDocument(url).promise.then(pdf => {
     renderPage(pageNum);
 }).catch(error => {
     console.error('Error loading PDF:', error);
-    alert('Gagal memuat eBook. Periksa koneksi atau matikan ekstensi browser anda.');
+    // alert('Gagal memuat eBook. Periksa koneksi atau matikan ekstensi browser anda.');
     console.log(`Total halaman PDF: ${totalPages}`);
 });
 
