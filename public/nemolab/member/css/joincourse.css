@@ -175,13 +175,27 @@ a.btn-warning:active {
     background-color: var(--color-orange-hover) !important;
     transition: background-color 0s;
 }
+.swiper-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.swiper-wrapper {
+    display: flex;
+}
+.swiper-slide {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+    
 
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
     .card-buy {
         width: 100%; /* Full width for smaller screens */
     }
-
     .card-preview img {
         height: auto; /* Maintain aspect ratio */
     }

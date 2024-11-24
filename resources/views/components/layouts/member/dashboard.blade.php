@@ -9,8 +9,10 @@
     <!-- boostrap css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     {{-- aos --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
     @stack('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/navbar.css') }} ">
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/footer.css') }} ">
@@ -28,7 +30,7 @@
     @endif
 
 
-    <main id="content">
+    <main id="content" class="flex-grow-1" style="min-height: 100vh">
         {{-- content --}}
         @yield('content')
     </main>
@@ -57,6 +59,7 @@
             once: true, 
         });
       </script>
+       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const navbarToggler = document.querySelector('.dropdown-logout');

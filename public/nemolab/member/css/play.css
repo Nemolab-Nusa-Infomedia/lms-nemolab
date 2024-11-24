@@ -150,7 +150,12 @@ body {
 }
 
 @media screen and (max-width: 576px) {
-
+    /* style section 1 */
+    #view-course-section {
+        margin-top: 50px;
+        padding: 80px 1rem;
+        height: max-content;
+    }
     #view-course-section .container-fluid .row .col-lg-8 iframe {
         border-radius: 20px 20px 0px 0px;
     }

@@ -268,7 +268,21 @@ main #detail-course-section .container .testimoni .col-12 .navtabs-more-testimon
     border: none;
     font-size: 18px;
 }
+.swiper-container {
+    overflow: hidden;
+    width: 100%;
+}
 
+.swiper-wrapper {
+    display: flex;
+}
+.swiper-slide {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+    
 
 @media screen and (max-width: 992px) {
 

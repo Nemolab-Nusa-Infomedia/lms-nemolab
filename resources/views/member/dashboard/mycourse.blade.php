@@ -41,7 +41,7 @@
                         </ul>
                     </div>                                  
                     <div class="row mt-4">
-                    @if($coursesProgress->isEmpty() && $ebooks->isEmpty())
+                    @if($coursesData->isEmpty() && $ebooksData->isEmpty())
                         <div class="col-md-12 d-flex justify-content-center align-items-center">
                             <div class="not-found text-center">
                                 <img src="{{ asset('nemolab/member/img/search-not-found.png') }}" class="logo-not-found w-50 h-50" alt="Not Found">
@@ -49,9 +49,9 @@
                             </div>
                         </div>
                     @endif
-                    @foreach ($coursesProgress as $course)
+                    @foreach ($coursesData as $course)
                         @if ($course->transactions->isNotEmpty())
-                            <a href="{{ route('member.course.join', $course->slug) }}" class="col-md-4 d-flex justify-content-center pb-3 my-2 text-decoration-none">
+                            <a href="{{ route('member.course.join', $course->slug) }}" class="col-md-4 d-flex justify-content-center pb-3 mt-1 text-decoration-none">
                                 <div class="card">
                                     @if ($course->cover !=null)
                                         <img src="{{ asset('storage/images/covers/' . $course->cover) }}" class="card-img-top d-none d-md-block" alt="...">
@@ -69,14 +69,18 @@
                                         <div>
                                             <div class="title-card">
                                                 <p class="fw-bold truncate-text" style="">{{ $course->name }}</p>
-                                                <p class="tipe">Kelas {{ $course->type }}</p>
+                                                <p class="tipe" style="color: #666666">Kelas {{ $course->type }}</p>
                                             </div>
                                             <div class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3 gap-1 gap-md-0">
                                                 <div class="harga d-block">
                                                     <p class="p-0 m-0 ">Status: <br class="d-none d-md-block"><span style="color: #666666">{{ $course->status }}</span></p>
                                                 </div>
                                                 <div class="harga d-block">
-                                                    <p class="p-0 m-0">Bergabung: <br class="d-none d-md-block"> <span style="color: #666666">{{ $course->created_at->format('d F Y') }}</span></p>
+                                                    @if ($course->transaction) 
+                                                        <p class="p-0 m-0">Bergabung: <br class="d-none d-md-block"> 
+                                                            <span style="color: #666666">{{ $course->transaction->created_at->format('d-M-Y') }}</span>
+                                                        </p>
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>
@@ -87,9 +91,9 @@
                     @endforeach
 
 
-                    @foreach ($ebooks as $ebook)
+                    @foreach ($ebooksData as $ebook)
                         @if ($ebook->transactions->isNotEmpty())
-                        <a href="{{ route('member.ebook.join', $ebook->slug) }}" class="col-md-4 d-flex justify-content-center my-2 pb-3 text-decoration-none">
+                        <a href="{{ route('member.ebook.join', $ebook->slug) }}" class="col-md-4 d-flex justify-content-center mt-1 pb-3 text-decoration-none">
                             <div class="card">
                                 @if ($ebook->cover !=null)
                                     <img src="{{ asset('storage/images/covers/' . $ebook->cover) }}" class="card-img-top d-none d-md-block" alt="..." >
@@ -107,11 +111,13 @@
                                     <div>
                                         <div class="title-card">
                                             <p class="fw-bold truncate-text">{{ $ebook->name }}</p>
-                                            <p class="tipe">E-Book {{ $ebook->type }}</p>
+                                            <p class="tipe" style="color: #666666">E-Book {{ $ebook->type }}</p>
                                         </div>
                                         <div class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3 gap-1 gap-md-0">
                                             <div class="harga d-block">
-                                                <p class="p-0 m-0 fw-bold">Bergabung : <br class="d-none d-md-block"> <span style="color: #666666">{{ $ebook-> created_at->format('d F Y')}}</span></p>
+                                                @if ($ebook->transaction)
+                                                    <p>Bergabung:  <span style="color: #666666">{{ $ebook->transaction->created_at->format('d-M-Y') }}</span></p>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

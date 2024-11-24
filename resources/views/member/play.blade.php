@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="col-11 col-lg-4 mt-5 mt-lg-0  ">
-                    <div class="card mt-4 mt-sm-0">
+                    <div class="card mt-4 mt-sm-0" style="border: none;box-shadow: rgba(76, 76, 77, 0.219) 0px 8px 24px;">
                         <div class="card-body overflow-scroll">
                             @foreach ($chapters as $chapter)
                                 <div class="content mb-5">

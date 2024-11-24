@@ -30,7 +30,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-3 col-md-2 mt-4 mt-md-4">
+                    <div class="col-3 col-md-2 mt-4 mt-md-0">
                         <h5 class="title text-white fw-bold mb-3">Paket Kelas</h5>
                         <div class="content-paket-kelas">
                             <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}" class="m-0 p-0 text-white mb-2">
@@ -58,10 +58,10 @@
                     <div class="col-3 col-md-2">
                         <h5 class="title text-white fw-bold mb-3">Media Sosial</h5>
                         <div class="content-paket-kelas d-flex flex-column">
-                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                            <a href="https://www.instagram.com/nemolabid/" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
                                 Instagram
                             </a>
-                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                            <a href="https://www.youtube.com/@nemolabmedia3861" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
                                 Youtube
                             </a>
                         </div>

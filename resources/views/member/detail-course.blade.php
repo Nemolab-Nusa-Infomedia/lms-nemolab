@@ -123,12 +123,12 @@
 
                         <div class="row">
                             @foreach ($coursetools->tools as $tool)
-                                <div
+                                <a href="{{ $tool->link }}"
                                     class="col-6 col-sm-2 tools-group d-flex justify-content-center align-items-center flex-column">
                                     <img src="{{ asset('storage/images/logoTools/' . $tool->logo_tools) }}" alt=""
                                         width="70px" height="70px">
-                                    <p class="m-0 p-0 pt-1">{{ $tool->name_tools }}</p>
-                                </div>
+                                    <p class="m-0 p-0 pt-1 text-center">{{ $tool->name_tools }}</p>
+                                </a>
                             @endforeach
                         </div>
 
@@ -217,31 +217,32 @@
             });
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let swiper;
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let swiper;
 
-            function initializeSwiper() {
-                if (window.innerWidth < 768 && !swiper) {
-                    swiper = new Swiper('.swiper-container', {
-                        slidesPerView: 1,
-                        spaceBetween: 10,
-                        pagination: {
-                            el: '.swiper-pagination',
-                            clickable: true,
-                        },
-                        autoplay: {
-                            delay: 5000,
-                            disableOnInteraction: false,
-                        },
-                    });
-                } else if (window.innerWidth >= 768 && swiper) {
-                    swiper.destroy(true, true);
-                    swiper = undefined;
-                }
+        function initializeSwiper() {
+            if (window.innerWidth < 768 && !swiper) {
+                swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    centeredSlides: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                });
+            } else if (window.innerWidth >= 768 && swiper) {
+                swiper.destroy(true, true);
+                swiper = undefined;
             }
-            initializeSwiper();
-            window.addEventListener('resize', initializeSwiper);
-        });
-    </script>
+        }
+        initializeSwiper();
+        window.addEventListener('resize', initializeSwiper);
+    });
+</script>
 @endpush

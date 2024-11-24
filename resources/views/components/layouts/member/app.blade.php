@@ -28,7 +28,7 @@
     @endif
 
 
-    <main id="content">
+    <main id="content" class="flex-grow-1" >
         {{-- content --}}
         @yield('content')
     </main>

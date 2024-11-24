@@ -40,7 +40,7 @@ class MemberMyCourseController extends Controller
                 $ebooks = $ebooksQuery->get();
                 break;
         }    
-        $coursesProgress = $courses->map(function ($course) {
+        $coursesData = $courses->map(function ($course) {
             $totalLessons = Chapter::where('course_id', $course->id)
                 ->withCount('lessons')
                 ->get()
@@ -51,16 +51,25 @@ class MemberMyCourseController extends Controller
             $course->total_lesson = $totalLessons;
             $course->lesson_progress = $lessonProgress;
             $course->status = ($lessonProgress == $totalLessons) ? 'Selesai' : 'Belum Selesai';
+            $course->transaction = Transaction::where('user_id', Auth::user()->id)
+            ->where('course_id', $course->id)
+            ->first();
             
             return $course;
         });
-    
+        $ebooksData = $ebooks->map(function ($ebook) {
+            $ebook->transaction = Transaction::where('user_id', Auth::user()->id)
+                ->where('ebook_id', $ebook->id)
+                ->first(); 
+            return $ebook;
+        });
+
         $total_course = Transaction::where('user_id', Auth::user()->id)
                                     ->where('status', 'success')
                                     ->count();
         $submission = Submission::where('user_id', Auth::user()->id)->first();
     
-        return view('member.dashboard.mycourse', compact('coursesProgress', 'ebooks', 'submission', 'total_course'));
+        return view('member.dashboard.mycourse', compact('coursesData', 'ebooksData', 'submission', 'total_course'));
     }
     
     
