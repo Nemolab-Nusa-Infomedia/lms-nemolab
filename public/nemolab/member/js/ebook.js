@@ -7,8 +7,8 @@ const ctx = canvas.getContext('2d');
 
 let pdfDoc = null;
 let pageNum = 1;
-let scale = window.innerWidth < 768 ? 0.8 : 1.8;
-const minScale = 0.8;
+let scale = window.innerWidth < 768 ? 0.9 : 1.8;
+const minScale = 0.9;
 const maxScale = 2.5;
 let totalPages = 0;
 let isRendering = false;
@@ -64,7 +64,7 @@ const renderPage = (num) => {
 // 4. Zoom dan scale
 const updateZoom = (factor) => {
     if (factor === 0) {
-        scale = window.innerWidth < 768 ? 0.8 : 1.6;
+        scale = window.innerWidth < 768 ? 0.9 : 1.8;
     } else {
         scale = Math.max(minScale, Math.min(maxScale, scale + factor));
     }
