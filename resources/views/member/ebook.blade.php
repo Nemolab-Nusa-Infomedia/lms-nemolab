@@ -12,7 +12,6 @@
     <div class="container mb-4" style="margin-top: 7rem">
         <div class="row">
             <div class="col-12 text-center justify-content-center">
-                <p>{{ $fileUrl }}</p>
                 <h4 class="fw-semibold">{{ $ebook->name }}</h4>
                 <!-- Ini -->
                 <div class="d-flex align-items-center justify-content-center flex-md-row flex-column"
@@ -26,9 +25,11 @@
             </div>
         </div>
     </div>
-
     <!-- Content -->
     <div class="container mb-5" id="ebook" data-pdf="{{ asset('storage/file_pdf/' . $ebook->file_ebook) }}">
+        <a href="{{ asset('storage/file_pdf/' . $ebook->file_ebook) }}" class="btn btn-primary" download>
+            Download File
+        </a>
         <div class="row">
             <div class="col-12 rounded-3 position-relative p-0 overflow-hidden">
                 <!-- Ebook Tools -->
@@ -78,9 +79,13 @@
             </div>
         </div>
     </div>
+
+    <div>
+        <iframe src="{{ asset('storage/file_pdf/' . $ebook->file_ebook) }}" frameborder="0"></iframe>
+    </div>
 @endsection
 
 @push('prepend-script')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <script src="{{ asset('nemolab/member/js/pdf.min.js') }}"></script>
     <script src="{{ asset('nemolab/member/js/ebook.js') }}"></script>
 @endpush

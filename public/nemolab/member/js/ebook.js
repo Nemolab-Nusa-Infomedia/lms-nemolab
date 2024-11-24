@@ -25,6 +25,7 @@ pdfjsLib.getDocument(url).promise.then(pdf => {
 }).catch(error => {
     console.error('Error loading PDF:', error);
     alert('Failed to load PDF.');
+    console.log(`Total halaman PDF: ${totalPages}`);
 });
 
 // 3. Fungsi untuk rendering halaman

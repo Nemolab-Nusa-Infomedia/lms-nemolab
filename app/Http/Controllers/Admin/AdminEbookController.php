@@ -44,14 +44,16 @@ class AdminEbookController extends Controller
             $validatedData['price'] = 0;
         }
 
-        $cover =  $request->cover;
-        $coverName = Str::random(10) . '_' . $cover->getClientOriginalName();
-        $cover->storeAs('public/images/covers/'.$coverName);
+        // Simpan cover
+        $cover = $request->cover;
+        $coverName = Str::random(10) . '.' . $cover->getClientOriginalExtension();
+        $cover->storeAs('public/images/covers', $coverName);
         $validatedData['cover'] = $coverName;
 
+        // Simpan file ebook
         $ebookFile = $request->file_ebook;
-        $ebookFileName = Str::random(10) . '_' . $ebookFile->getClientOriginalName();
-        $ebookFile->storeAs('public/file_pdf/' . $ebookFileName);
+        $ebookFileName = Str::random(15) . '.' . $ebookFile->getClientOriginalExtension();
+        $ebookFile->storeAs('public/file_pdf', $ebookFileName);
         $validatedData['file_ebook'] = $ebookFileName;
 
         $validatedData['slug'] = Str::slug($validatedData['name']);
@@ -62,6 +64,7 @@ class AdminEbookController extends Controller
         Alert::success('Success', 'eBook Berhasil Dibuat');
         return redirect()->route('admin.ebook');
     }
+
 
     public function edit(Request $requests)
     {
@@ -85,25 +88,26 @@ class AdminEbookController extends Controller
             'cover' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-
         if ($validatedData['type'] === 'free') {
             $validatedData['price'] = 0;
         }
 
         if ($request->hasFile('cover')) {
             $cover = $request->cover;
-            $coverName = Str::random(10) . '_' . $cover->getClientOriginalName();
-            $cover->storeAs('public/images/covers/'.$coverName);
+            $coverName = Str::random(10) . '.' . $cover->getClientOriginalExtension();
+            $cover->storeAs('public/images/covers', $coverName);
 
-            Storage::delete('public/images/covers/'.$ebook->cover);
+            // Hapus cover lama
+            Storage::delete('public/images/covers/' . $ebook->cover);
             $validatedData['cover'] = $coverName;
         }
 
         if ($request->hasFile('file_ebook')) {
             $ebookFile = $request->file_ebook;
-            $ebookFileName = Str::random(10) . '_' . $ebookFile->getClientOriginalName();
-            $ebookFile->storeAs('public/file_pdf/' . $ebookFileName);
+            $ebookFileName = Str::random(15) . '.' . $ebookFile->getClientOriginalExtension();
+            $ebookFile->storeAs('public/file_pdf', $ebookFileName);
 
+            // Hapus file ebook lama
             Storage::delete('public/file_pdf/' . $ebook->file_ebook);
             $validatedData['file_ebook'] = $ebookFileName;
         }
@@ -114,6 +118,7 @@ class AdminEbookController extends Controller
         Alert::success('Success', 'eBook Berhasil Diperbarui');
         return redirect()->route('admin.ebook');
     }
+
 
     public function delete(Request $requests)
     {
