@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tbl_submissions', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['accept'])->default('accept');
+            $table->enum('status', ['accept','pending'])->default('pending');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

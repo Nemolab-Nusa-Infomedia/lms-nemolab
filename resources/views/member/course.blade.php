@@ -63,6 +63,10 @@
                             @endif
                             @foreach($data as $ebook)
                                 @include('components.includes.member.partials.ebook-card', ['ebook' => $ebook])
+                                <!-- Menyertakan file Blade 'ebook-card' yang ada di dalam direktori 'components/includes/member/partials'. 
+                                Parameter yang diberikan ke view ini adalah:
+                                - 'ebook' yang berisi data tentang kursus (setiap $ebook yang di-loop)
+                                - 'bundling' yang berisi data terkait bundling yang bisa digunakan di dalam 'ebook-card' -->
                             @endforeach
                         @elseif ($paketFilter == 'paket-bundling')
                             @if ($data->isEmpty())
@@ -73,9 +77,14 @@
                                     </div>
                                 </div>
                             @endif
-                            @foreach($data as $course)
-                                @include('components.includes.member.partials.course-card', ['course' => $course, 'bundling' => $bundling])
-                            @endforeach
+                            @foreach($data as $course) 
+                            <!-- Looping melalui setiap elemen dalam array atau koleksi $data, di mana setiap elemen disimpan dalam variabel $course -->
+                                @include('components.includes.member.partials.course-card', ['course' => $course, 'bundling' => $bundling]) 
+                                <!-- Menyertakan file Blade 'course-card' yang ada di dalam direktori 'components/includes/member/partials'. 
+                                    Parameter yang diberikan ke view ini adalah:
+                                    - 'course' yang berisi data tentang kursus (setiap $course yang di-loop)
+                                    - 'bundling' yang berisi data terkait bundling yang bisa digunakan di dalam 'course-card' -->
+                            @endforeach 
                         @else
                             @if($data->isEmpty())
                                 <div class="col-md-12 d-flex justify-content-center align-items-center">

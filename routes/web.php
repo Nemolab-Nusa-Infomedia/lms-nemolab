@@ -57,7 +57,7 @@ Route::get('/maintenance', function () {
 // menampilkan halaman maintenance jika website sedang dalam pengembangan (jika ingin mengaktifkan tinggal costum boolean true di env maintenance_mode)
 Route::middleware('maintenance.middleware')->group(function () {
 
-    Route::get('/', [MemberLandingPagesController::class, 'index'])->name('home')->middleware('cache.headers:public;max_age=600;etag');
+    Route::get('/', [MemberLandingPagesController::class, 'index'])->name('home');
     Route::view('/eror/pages', 'error.page404')->name('pages.error')->middleware('cache.headers:public;max_age=31536000;etag');
 
     Route::prefix('member')->group(function () {

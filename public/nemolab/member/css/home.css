@@ -21,6 +21,9 @@ html::-ms-overflow-style {
 html::-webkit-scrollbar {
     display: none;
 }
+
+
+
 /* button */
 a.btn-warning{
     color: white;
@@ -56,8 +59,6 @@ a.btn-primary:active {
     background-color: var(--color-blue-hover) !important;
     transition: background-color 0s;
 }
-
-
 a.btn-light{
     color: var(--color-orange);
     background-color: #ffff;

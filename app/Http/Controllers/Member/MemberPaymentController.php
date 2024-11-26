@@ -41,6 +41,7 @@ class MemberPaymentController extends Controller
 
     public function store(Request $request)
     {
+        //vaidari data
         $request->validate([
             'course_id' => 'nullable|exists:tbl_courses,id',
             'ebook_id' => 'nullable|exists:tbl_ebooks,id',
@@ -49,39 +50,42 @@ class MemberPaymentController extends Controller
             'diskon' => 'nullable|numeric',
             'termsCheck' => 'required|accepted',
         ]);
-
+        //simpan data pada variabel
         $courseId = $request->input('course_id');
         $ebookId = $request->input('ebook_id');
         $bundleId = $request->input('bundle_id');
         $user = Auth::user();
-        $transaction_code = 'NEMOLAB-' . strtoupper(Str::random(10));
+        $transaction_code = 'NEMOLAB-' . strtoupper(Str::random(10)); //membuat string acak setelah NEMOLAB-.  (strtoupper digunakan agar string dihasilkann adalah kapital)
 
-        $name = '';
-        $price = 0;
-        $hargaAwal = 0;
-        $status = 'pending';
+        $name = ''; //set name default kosong
+        $price = 0; //set price default 0
+        $hargaAwal = 0; //simpan harga awal
+        $status = 'pending'; //status otomatis panding
 
-        $course = Course::find($courseId);
+        $course = Course::find($courseId); //isi data fari variabel
         $ebook = Ebook::find($ebookId);
         $bundle = CourseEbook::find($bundleId);
         $diskon = 0;
 
+        // jika transaction course maka gunakan nama course 
         if ($course) {
-            $name = $course->name . ' (Kursus)';
+            $name = $course->name;
             $harga = $course->price;
             $hargaAwal = $harga;
             if ($harga != 0) {
-                $price = $harga * 1.11 + 5000;
+                $price = $harga * 1.11 + 5000; //harga akan * 1.11(ppn jika inign membuat PPN dinamis buat variabel guna menyimpan ppn) + 5000 (biaya perpelajar/fee)
             }
+        // jika transaction ebook maka gunakan nama ebook 
         } elseif ($ebook) {
-            $name = $ebook->name . ' (E-Book)';
+            $name = $ebook->name;
             $harga = $ebook->price;
             $hargaAwal = $harga;
             if ($harga != 0) {
                 $price = $harga * 1.11 + 5000;
             }
+        // jika transaction bundle maka gunakan nama course yang ada di bundle
         } elseif ($bundle) {
-            $name = $bundle->course->name . ' (Paket Combo)';
+            $name = $bundle->course->name;
             $courseId = $bundle->course_id;
             $ebookId = $bundle->ebook_id;
             $harga = $bundle->price;

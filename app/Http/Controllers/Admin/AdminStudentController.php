@@ -82,7 +82,7 @@ class AdminStudentController extends Controller
         $id = $requests->query('id');
         $student = User::where('id', $id)->first();
 
-        if ($student && !is_null($student->avatar) && $student->avatar !== 'default.png') {
+        if ($student->avatar && $student->avatar !== 'null') {
             $avatarPath = 'public/images/avatars/' . $student->avatar;
             if (Storage::exists($avatarPath)) {
                 Storage::delete($avatarPath);

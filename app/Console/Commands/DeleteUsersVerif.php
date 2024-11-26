@@ -30,7 +30,7 @@ class DeleteUsersVerif extends Command
         // ambil data user yang verif emailnya tidak ada
         $users = User::whereNull('email_verified_at')->get();
 
-        // hapus user yang tidak ada verif email
+        // hapus user yang tidak ada verif email (email_verifed_at kosong)
         $users->each(function ($user) {
             $user->delete();
         });

@@ -19,12 +19,17 @@
                 <p class="p-0 m-0 fw-bold">Harga</p>
                 <p class="p-0 m-0 fw-bold">
                     @php
+                        // Mengambil data bundling berdasarkan ID kursus yang ada pada collection
+                        // jika tidak ada data maka hasilnya null
                         $currentBundling = $bundling[$course->id] ?? null;
                     @endphp
                     {{ $currentBundling
+                        // Jika bundling ada dan harganya 0, tampilkan 'Gratis'
                         ? ($currentBundling->price == 0
                             ? 'Gratis'
+                                // selain itu (artinya harga bukan 0) maka tampilkan harga
                             : 'Rp' . number_format($currentBundling->price, 0, ',', '.'))
+                        // (kondisi else ':') Jika tidak ada bundling, tampilkan harga kursus jika harga 0, maka tampilkan 'Gratis'
                         : ($course->price == 0
                             ? 'Gratis'
                             : 'Rp' . number_format($course->price, 0, ',', '.')) }}
@@ -52,12 +57,18 @@
                     <p class="p-0 m-0 fw-semibold">Harga</p>
                     <p class="p-0 m-0 fw-semibold">
                         @php
+                            // Mengambil data bundling berdasarkan ID kursus yang ada pada collection
+                            // jika tidak ada data maka hasilnya null
                             $currentBundling = $bundling[$course->id] ?? null;
                         @endphp
                         {{ $currentBundling
+                            // Jika bundling ada dan harganya 0, tampilkan 'Gratis'
                             ? ($currentBundling->price == 0
                                 ? 'Gratis'
+                                // selain itu (artinya harga bukan 0) maka tampilkan harga
                                 : 'Rp' . number_format($currentBundling->price, 0, ',', '.'))
+
+                            // (kondisi else) Jika tidak ada bundling, tampilkan harga kursus jika harga 0, maka tampilkan 'Gratis'
                             : ($course->price == 0
                                 ? 'Gratis'
                                 : 'Rp' . number_format($course->price, 0, ',', '.')) }}

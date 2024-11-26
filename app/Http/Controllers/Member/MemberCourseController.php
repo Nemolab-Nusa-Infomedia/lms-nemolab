@@ -235,39 +235,50 @@ class MemberCourseController extends Controller
 
     public function detail($slug)
     {
+        // Mencari data kursus berdasarkan slug yang diberikan
         $courses = Course::where('slug', $slug)->first();
+        // Mengambil (review) untuk kursus yang ditemukan, beserta data pengguna yang memberi ulasan
         $reviews = Review::with('user')->where('course_id', $courses->id)->get();
+        // Mengambil data mentor (user) yang terkait dengan kursus
         $user = User::where('id', $courses->mentor_id)->first();
+        // Mengambil bab-bab (chapters) dan pelajaran (lessons) yang terkait dengan kursus
         $chapters = Chapter::with('lessons')->where('course_id', $courses->id)->get();
+        // Memeriksa apakah transaksi untuk kursus tersebut sudah ada untuk pengguna yang sedang login
         $checkTrx = Transaction::where('course_id', $courses->id)->where('user_id', Auth::user()->id)->first();
+        // Memeriksa apakah pengguna sudah memberikan ulasan untuk kursus ini
         $checkReview = Review::where('user_id', Auth::user()->id)->where('course_id', $courses->id)->first();
+        // Mengambil data alat (tools) yang terkait dengan kursus
         $coursetools = Course::with('tools')->findOrFail($courses->id);
+        // Memeriksa episode lengkap yang sudah diikuti oleh pengguna untuk kursus ini
         $compeleteEps = CompleteEpisodeCourse::where('user_id', Auth::user()->id)->where('course_id', $courses->id)->get();
+        // Mengambil data bundling yang terdiri dari kursus dan ebook yang terkait
         $bundling = CourseEbook::with(['course', 'ebook'])
-        ->where('course_id', $courses->id)
-        ->first();
+            ->where('course_id', $courses->id)
+            ->first();
+        // Mengambil informasi bab terakhir berdasarkan waktu pembuatan (terbaru)
         $chapterInfo = Chapter::where('course_id', $courses->id)
                               ->orderBy('created_at', 'desc') 
                               ->first();
-
+        // Menghitung total jumlah pelajaran dari semua bab
         $totalLesson = 0;
         foreach ($chapters as $chapter) {
             $totalLesson += $chapter->lessons->count();
         }
-
+        // Memeriksa apakah sertifikat sudah dapat diberikan (seluruh pelajaran telah diselesaikan)
         $checkSertifikat = false;
         if ($totalLesson == $compeleteEps->count()) {
             $checkSertifikat = true;
         }
-
-
+        // Jika transaksi ditemukan, tampilkan halaman detail kursus
         if ($checkTrx) {
             return view('member.detail-course', compact('chapterInfo','bundling','chapters', 'slug', 'courses', 'user', 'checkReview', 'coursetools', 'reviews', 'checkSertifikat'));
         } else {
+            // Jika tidak ada transaksi, tampilkan pesan error dan arahkan ke halaman bergabung dengan kursus
             Alert::error('error', 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!');
             return redirect()->route('member.course.join', $slug);
         }
     }
+    
 
 
     public function generateSertifikat($slug)

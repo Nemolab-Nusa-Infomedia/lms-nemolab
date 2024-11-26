@@ -1,0 +1,31 @@
+
+## Settings Production - Midtrans dan Bot Email Pada dan cara mengaktifkan mode maintenance di .env
+
+# Contoh Pengaturan Bot Email
+<!-- untuk Bot Email (untuk simulasi bisa gunakan mailtrap) untuk tampilan verifikasi email ada di email.blade.php -->
+MAIL_MAILER=smtp
+MAIL_HOST=your-mail-server.com                  # Ganti dengan host email server 
+MAIL_PORT=465                                   # Port untuk SMTP SSL
+MAIL_USERNAME=your-email@domain.com             # Ganti dengan username email 
+MAIL_PASSWORD=your-email-password               # Ganti dengan password email Anda yang aman
+MAIL_ENCRYPTION=ssl                             # Gunakan SSL untuk enkripsi
+MAIL_FROM_ADDRESS=your-email@domain.com         # Ganti dengan alamat pengirim yang sesuai
+MAIL_FROM_NAME="Your App Notification"          # Ganti dengan nama yang sesuai
+
+<!-- untuk Maintenance mode -->
+tambahkan bagian ini
+# command maintance
+MAINTENANCE_MODE=true                           #untuk menylakan mode maintenance set menjadi true dan false jika ingin mematikan
+
+<!-- untuk Middtrans -->
+# seting untuk sandbox
+MIDTRANS_ID_MERCHANT=G123456789                 #ganti dengan id merchant midtrans
+MIDTRANS_CLIENT_KEY=SB-Mid-client-_aJ!p1S4n9    #ganti dengan Client Key midtrans
+MIDTRANS_SERVER_KEY=SB-Mid-server-_aJ!93d4n9    #ganti dengan Server Key midtrans
+MIDTRANS_PRODUCTION=false                       #setting false karena masih dalam sandbox
+
+# seting untuk prodction
+MIDTRANS_ID_MERCHANT=G123456789                 #ganti dengan id merchant midtrans
+MIDTRANS_CLIENT_KEY=Mid-client-X_aJ!p1S4n9      #ganti dengan Client Key midtrans
+MIDTRANS_SERVER_KEY=Mid-server-_aJ!-93d4n9      #ganti dengan Server Key midtrans
+MIDTRANS_PRODUCTION=true                        #setting false karena masih dalam sandbox

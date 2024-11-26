@@ -12,7 +12,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        // Menjadwalkan perintah untuk memperbarui status transaksi setiap menit
         $schedule->command('update:transaction-status')->everyMinute();
+        // Menjadwalkan perintah untuk menghapus pengguna yang belum terverifikasi setiap hari
         $schedule->command('update:delete-users-verif')->daily();
     }
 

@@ -16,6 +16,7 @@ class SuperAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Pengecekan apakah user sudah login dan jenis user adalah Superadmin
         if (Auth::check() && Auth::user()->role == 'superadmin') {
             return $next($request);
         }

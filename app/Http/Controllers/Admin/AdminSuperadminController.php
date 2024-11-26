@@ -72,7 +72,7 @@ class AdminSuperadminController extends Controller
     {
         $superadmin = User::findOrFail($id);
         
-        if ($superadmin->avatar && $superadmin->avatar !== 'default.png') {
+        if ($superadmin->avatar && $superadmin->avatar !== 'null') {
             $avatarPath = 'public/images/avatars/' . $superadmin->avatar;
             
             if (Storage::exists($avatarPath)) {

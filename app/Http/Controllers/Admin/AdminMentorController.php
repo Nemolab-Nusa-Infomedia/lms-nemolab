@@ -14,6 +14,10 @@ use App\Models\Submission;
 
 class AdminMentorController extends Controller
 {
+    /**
+     * tampilkan halaman admin entor
+     * ambil data mentor saja
+     */
     public function index(Request $request)
     {
         $perPage = $request->get('entries', 10);
@@ -21,24 +25,30 @@ class AdminMentorController extends Controller
         return view('admin.mentor.view', compact('mentors'));
     }
 
+    /**
+     *  tampilkan halaman form pembuatan mentor
+     */
     public function create()
     {
         return view('admin.mentor.create');
     }
 
+    /**
+     * simpan data mentor baru
+     */
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email',
             'profession' => 'required|string|max:255',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string|min:6', //minimal 6 karaker
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password), // password akan di hash
             'role' => 'mentor',
             'profession' => $request->profession,
         ]);
@@ -79,12 +89,15 @@ class AdminMentorController extends Controller
         return redirect()->route('admin.mentor');
     }
 
+    /**
+     * hapus mentor sekaligus avatar
+     */
     public function delete(Request $requests)
     {
         $id = $requests->query('id');
         $mentor =  User::where('id', $id)->first();
 
-        if ($mentor->avatar && $mentor->avatar !== 'default.png') {
+        if ($mentor->avatar && $mentor->avatar !== 'null') {
             $avatarPath = 'public/images/avatars/' . $mentor->avatar;
             if (Storage::exists($avatarPath)) {
                 Storage::delete($avatarPath);

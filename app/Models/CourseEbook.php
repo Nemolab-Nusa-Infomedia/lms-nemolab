@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CourseEbook extends Model
 {
     use HasFactory;
-    protected $table = 'tbl_course_ebooks';
-
+    protected $table = 'tbl_course_ebooks'; // tbl_course_ebook
+    // memastikan file
     protected $fillable = [
         'course_id',
         'ebook_id',

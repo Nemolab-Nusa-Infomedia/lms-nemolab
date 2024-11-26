@@ -8,7 +8,7 @@
     @endpush
 @section('content')
 
-@if (Auth::user()->role == 'students')
+{{-- @if (Auth::user()->role == 'students')
 @if (!$submission && $total_course >= 5)
     <div class="alert alert-warning alert-dismissible fade show text-black position-fixed fixed-top d-flex justify-center align-items-center"
         role="alert">
@@ -23,7 +23,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif
-@endif
+@endif --}}
 <section class="section-pilh-kelas" id="section-pilih-kelas">
         <div class="container-fluid mt-5 pt-5 mb-5">
             <div class="row">

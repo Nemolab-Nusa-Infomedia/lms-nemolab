@@ -15,20 +15,25 @@ use App\Notifications\sendSubmissionMentorNotification;
 
 class AdminSubmissionController extends Controller
 {
+    // Menampilkan daftar mentor dengan data kursus dan status pengajuan
     public function index()
     {
-        $users = User::all(); // Ambil semua pengguna
+        // Ambil semua pengguna dari database
+        $users = User::all();
+
+        // Map data pengguna untuk mendapatkan mentor dengan jumlah kursus dan status pengajuan
         $mentorsWithCourses = $users->map(function ($mentor) {
+            // Hitung jumlah kursus yang telah berhasil dibeli oleh pengguna
             $total_course = Course::whereHas('transactions', function ($query) use ($mentor) {
                 $query->where('user_id', $mentor->id)
-                    ->where('status', 'success');
+                    ->where('status', 'success'); // Hanya transaksi dengan status 'success'
             })->count();
 
+            // Periksa apakah ada pengajuan untuk pengguna
             $submission_check = Submission::where('user_id', $mentor->id)->first();
 
-            // check jika tidak ada submission maka bernilai pending
+            // Ambil status pengajuan, default 'pending' jika tidak ditemukan
             $status_submission = $submission_check?->status ?? 'pending';
-
             return [
                 'mentor' => $mentor,
                 'total_course' => $total_course,
@@ -36,11 +41,14 @@ class AdminSubmissionController extends Controller
             ];
         });
 
+        // Kembalikan view 'admin.pengajuan-mentor.view' dengan data mentor
         return view('admin.pengajuan-mentor.view', compact('mentorsWithCourses'));
     }
 
+    // Menyimpan pengajuan mentor
     public function store(Request $requests, $id)
     {
+        // Validasi input dari permintaan
         $requests->validate([
             'link' => 'required|url',
             'action' => 'required|in:pending,accept',
@@ -48,15 +56,16 @@ class AdminSubmissionController extends Controller
 
         Submission::create([
             'status' => 'accept',
-            'user_id' => $id
+            'user_id' => $id,
         ]);
 
+        // Cari data pengajuan berdasarkan pengguna
         $submission = Submission::where('user_id', $id)->first();
 
-        // send mail
+        // Kirim notifikasi email ke pengguna terkait pengajuan
         $submission->user->notify(new sendSubmissionMentorNotification($submission, $requests->link));
 
-
+        // Tampilkan notifikasi sukses dan redirect ke halaman pengajuan
         Alert::success('Success', 'Pengajuan Berhasil Di Kirim');
         return redirect()->route('admin.pengajuan');
     }

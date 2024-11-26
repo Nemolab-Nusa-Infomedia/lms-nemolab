@@ -12,9 +12,10 @@ use App\Notifications\CustomVerifyEmailNotification;
 
 class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
+    //menggunakan Facktor agar dapat digunakan dengan seeder
     use HasApiTokens, HasFactory, Notifiable;
 
-
+    //memmeriksa agar hanya kolom tersebut yang boleh disi
     protected $fillable = [
         'avatar',
         'name',
@@ -24,35 +25,40 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'role',
     ];
 
+    //agar kolom dibawah ini tidak berubah
     protected $hidden = [
         'password',
         'remember_token',
     ];
-
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    // costum verifikasi
-    public function sendEmailVerificationNotification()
+    // costum verifikasi dokumentasi ada di https://laravel.com/docs/10.x/verification#main-content
+    public function sendEmailVerificationNotification() 
     {
-        $this->notify(new CustomVerifyEmailNotification());  // Sesuaikan dengan notifikasi kustom
+        $this->notify(new CustomVerifyEmailNotification()); //ctrl + clik pada CustomVerifyEmailNotification() untuk melihat code file
     }
 
     /**
      * Relasi ke model Course.
-     * Seorang user (mentor) dapat memiliki banyak course.
+     * Seorang user dapat berelasi denga banyak course
      */
     public function courses()
     {
         return $this->hasMany(Course::class, 'mentor_id', 'id');
     }
 
+    /**
+     * Seorang user dapat berelasi dengan banyak transaksi
+     */
     public function transactions()
     {
         return $this->hasMany(Transaction::class, 'user_id');
     }
-
+    /**
+     * Seorang user dapat berelasi dengan banyak transaksi
+     */
     public function submissions()
     {
         return $this->hasMany(Submission::class);
