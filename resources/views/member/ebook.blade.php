@@ -45,7 +45,7 @@
                             <img src="{{ asset('nemolab/member/img/chevron-left-white.png') }}" id="prev-page"
                                 alt="" width="20">
                             <input type="number" id="page-input" min="1"
-                                style="width: 30px; border: none; background: none; color: white; text-align: center;" />
+                                style="width: 30px; border: none; background: #CA8907; color: white; text-align: center; border-radius:5px" />
                             <span class="ms-2 m-sm-0">/</span>
                             <span id="page-count" class="ms-3"></span>
                             <img class="ms-2" src="{{ asset('nemolab/member/img/chevron-right-white.png') }}"

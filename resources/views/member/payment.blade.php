@@ -7,16 +7,15 @@
 @endpush
 
 @section('content')
-    <section class="payment py-5 mt-5">
+    <section class="payment" style="margin-top: 5rem">
         <div class="container">
-
             <h2 class="text-center mb-3 fw-bold">Silahkan Selesaikan Pembelian Kelas</h2>
             <p class="text-center description">Setelah pembelian kelas sukses, anda dapat mengakses kelas dan mendapatkan
                 benefit lainnya seperti grup diskusi dan sertifikat resmi dari kami</p>
 
             @if (($course && $course->price == 0) || ($ebook && $ebook->price == 0) || ($bundle && $bundle->price == 0))
                 <div class="row justify-content-center">
-                    <div class="col-md-6 mt-5">
+                    <div class="col-md-6 mt-1">
                         <div class="card card-bayar shadow p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <a href="{{ route('member.transaction') }}" class="custom-link d-flex align-items-center">
@@ -151,7 +150,7 @@
 
 
                 <div class="row justify-content-center">
-                    <div class="col-md-6 mt-5">
+                    <div class="col-md-6 mt-1">
                         <div class="card card-bayar shadow p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <a href="{{ route('member.transaction') }}" class="custom-link d-flex align-items-center">

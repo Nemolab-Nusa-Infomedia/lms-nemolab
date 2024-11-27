@@ -15,7 +15,7 @@
                     <h1 class="fw-bold mt-4 mt-md-0">BELAJAR KURSUS ONLINE GRATIS, KAPANPUN DAN DIMANAPUN</h1>
                     <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai macam kelas mulai
                         yang gratis hingga yang berbayar</p>
-                    <a href="{{ route('member.course') }}" class="btn btn-warning px-4 pt-2 pb-2 mt-2">Mulai Belajar</a>
+                    <a href="{{ route('member.course') }}" class="btn btn-warning px-4 py-2 mt-2">Mulai Belajar</a>
                 </div>
             </div>
             <div class="col-md-6 d-none d-md-block align-items-center" data-aos="zoom-out" data-aos-delay="100">
@@ -108,31 +108,33 @@
 
     <section class="section-tentang-nemolab" id="section-tentang-nemolab">
         <div class="container-fluid">
-            <div class="row align-items-center my-5 mx-md-3">
+            <div class="row my-5 mx-md-3">
                 <div class="col-md-6 justify-content-center d-none d-md-flex" id="service" data-aos="fade-up"
                     data-aos-delay="100">
-                    <div class="col-9 d-flex align-items-center justify-content-center">
+                    <div class="col-8 align-items-center">
                         <img src="{{ asset('nemolab/member/img/lp-hero-2.png') }}" class="img-fluid" alt="">
                     </div>
-                    <div class="col-3 d-flex flex-column justify-content-center mt-4" id="menu-service">
-                        <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out" data-aos-delay="200">
-                            <h4 class="fw-bold">Video</h4>
-                            <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}"
-                                class="btn btn-secondary py-1 px-2 mt-2">belajar sekarang</a>
-                        </div>
-                        <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out" data-aos-delay="300">
-                            <h4 class="fw-bold">E-book</h4>
-                            <a href="{{ route('member.course', ['filter-paket' => 'paket-ebook']) }}"
-                                class="btn btn-primary py-1 px-2 mt-2">belajar sekarang</a>
-                        </div>
-                        <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out" data-aos-delay="400">
-                            <h4 class="fw-bold">Video + E-book</h4>
-                            <a href="{{ route('member.course', ['filter-paket' => 'paket-bundling']) }}"
-                                class="btn btn-warning py-1 px-2 mt-2">belajar sekarang</a>
+                    <div class="col-4 flex-column mt-4" id="menu-service">
+                        <div class="ms-lg-5">
+                            <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out" data-aos-delay="200">
+                                <h4 class="fw-bold">Video</h4>
+                                <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}"
+                                    class="btn btn-secondary py-1 px-2 mt-2">belajar sekarang</a>
+                            </div>
+                            <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out" data-aos-delay="300">
+                                <h4 class="fw-bold">E-book</h4>
+                                <a href="{{ route('member.course', ['filter-paket' => 'paket-ebook']) }}"
+                                    class="btn btn-primary py-1 px-2 mt-2">belajar sekarang</a>
+                            </div>
+                            <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out" data-aos-delay="400">
+                                <h4 class="fw-bold">Video + E-book</h4>
+                                <a href="{{ route('member.course', ['filter-paket' => 'paket-bundling']) }}"
+                                    class="btn btn-warning py-1 px-2 mt-2">belajar sekarang</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 row align-items-center">
                     <div class="ms-md-4 text-center text-md-start" data-aos="fade-up" data-aos-delay="200">
                         <h1 class="fw-bold">Mengapa Harus Belajar Keahlian Di Nemolab?</h1>
                         <p class="my-4 my-md-3">Kamu bisa belajar berbagai macam keahlian di sini. Kami juga menyediakan kelas video dan e-book
@@ -140,10 +142,10 @@
                         <div class="link-href-group d-flex justify-content-center justify-content-md-start">
                             <!-- Center buttons on mobile -->
                             <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}"
-                                class="btn btn-warning fw-bold px-4 me-3 pt-2 pb-2" data-aos="fade-up"
+                                class="btn btn-warning fw-bold px-4 me-3 py-2" data-aos="fade-up"
                                 data-aos-delay="300">Coba Kursus</a>
                             <a href="{{ route('member.course', ['filter-paket' => 'paket-ebook']) }}"
-                                class="btn btn-light fw-bold px-4 pt-2 pb-2" data-aos="fade-up" data-aos-delay="400">Coba
+                                class="btn btn-light fw-bold px-4 py-2" data-aos="fade-up" data-aos-delay="400">Coba
                                 Ebook</a>
                         </div>
                     </div>
@@ -178,7 +180,7 @@
                                 <p class="m-0 p-0 ms-2">Konsultasi dengan mentor secara langsung</p>
                             </li>
                         </ul>
-                        <a href="{{ route('member.course') }}" class="btn btn-primary px-4 mt-4">Gabung Kelas</a>
+                        <a href="{{ route('member.course') }}" class="btn btn-primary px-4 py-2 mt-4">Gabung Kelas</a>
                     </div>
                 </div>
                 
@@ -189,14 +191,14 @@
                             <img src="{{ asset('nemolab/member/img/lp-person-1.png') }}" class="img-fluid"
                                 alt="Person">
                         </div>
-                        <div class="grid-images d-flex flex-wrap">
-                            <img src="{{ asset('nemolab/member/img/lp-person-3.png') }}" class="grid-img" alt="Image 1"
+                        <div class="grid-images ms-md-2 row">
+                            <img src="{{ asset('nemolab/member/img/lp-person-3.png') }}" class="grid-img col-sm-6 px-0" alt="Image 1"
                                 data-aos="zoom-in" data-aos-delay="100">
-                            <img src="{{ asset('nemolab/member/img/lp-person-2.png') }}" class="grid-img" alt="Image 2"
+                            <img src="{{ asset('nemolab/member/img/lp-person-2.png') }}" class="grid-img col-sm-6 px-0" alt="Image 2"
                                 data-aos="zoom-in" data-aos-delay="200">
-                            <img src="{{ asset('nemolab/member/img/lp-person-4.png') }}" class="grid-img" alt="Image 3"
+                            <img src="{{ asset('nemolab/member/img/lp-person-4.png') }}" class="grid-img col-sm-6 px-0" alt="Image 3"
                                 data-aos="zoom-in" data-aos-delay="300">
-                            <img src="{{ asset('nemolab/member/img/lp-person-5.png') }}" class="grid-img" alt="Image 4"
+                            <img src="{{ asset('nemolab/member/img/lp-person-5.png') }}" class="grid-img col-sm-6 px-0" alt="Image 4"
                                 data-aos="zoom-in" data-aos-delay="400">
                         </div>
                     </div>
@@ -215,7 +217,7 @@
                 <h1 class="fw-bold m-0">Selangkah Lebih Maju menjadi <br> Professional!!</h1>
                 <p class="fs-6 my-4 my-md-3">Jangan ragu untuk bergabung di kelas-kelas kami! Banyak pengguna <br> sudah
                     membuktikan dengan belajar di kelas kami</p>
-                <a href="{{ route('member.course') }}" class="btn btn-warning px-4">Coba Kursus</a>
+                <a href="{{ route('member.course') }}" class="btn btn-warning py-2 px-4">Coba Kursus</a>
             </div>
             <div class="row p-0 mx-md-3" id="testimonials">
                 <div class="col-md-4 scroll-up d-none d-md-block">
@@ -539,7 +541,7 @@
                 <div class="text-center me-md-4 text-md-start" data-aos="fade-up" data-aos-delay="100">
                     <h1 class="fw-bold">Hubungi Kami Jika Anda Memiliki Kendala</h1>
                     <p class="me-md-5">Laporkan masalah anda ke kontak dibawah untuk informasi lebih lanjut lagi</p>
-                        <a href="#" class="btn btn-light px-4 pt-2 pb-2 mt-2">Hubungi CS</a>
+                        <a href="#" class="btn btn-light px-4 py-2 mt-2">Hubungi CS</a>
                 </div>
             </div>
             <div class="col-md-6 d-none d-md-block">

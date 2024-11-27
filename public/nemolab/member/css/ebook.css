@@ -55,7 +55,9 @@ body::-webkit-scrollbar {
     background-color: var(--secondary-color);
     overflow-y: scroll;
 }
-
+.pdf-render{
+    margin: 15px 0px;
+}
 
 .pdf-height::-webkit-scrollbar {
     display: none;

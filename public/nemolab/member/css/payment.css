@@ -93,6 +93,15 @@ h2.text-rinci {
     text-decoration: none;
     border-radius: 5px;
 }
+.btn-promo:hover{
+    background-color: #CA8907;
+    color: white;
+}
+.btn-promo:active{
+    color: white !important;
+    background-color: #CA8907 !important;
+    transition: background-color 0s;
+}
 
 /* Redeem popup */
 .card-redeem {

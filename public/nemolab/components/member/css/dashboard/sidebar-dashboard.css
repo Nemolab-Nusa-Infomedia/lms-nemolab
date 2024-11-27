@@ -6,7 +6,7 @@
     --color-bg: white;
     --color-active: #FAA907;
     --color-icon: white;
-    --dim-grey: #B5B5B5;
+    --dim-grey:#B5B5B5;
     --blck-grey: #414142;
     --lavender: #FFF6F6;
 }
@@ -46,13 +46,15 @@
 }
 
 .profile p:first-child {
-    font-size: 20px !important;
+    font-size: 18px !important;
     margin-bottom: 0 !important;
 }
 
 .profile p:last-child {
-    font-size: 18px !important;
+    font-size: 15px !important;
+    color: #B5B5B5;
 }
+
 
 .name {
     color: var(--blck-grey);
@@ -84,15 +86,16 @@
 }
 
 .menu li img {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     margin-right: 10px;
     transition: filter 0.3s;
 }
 
 .menu li a {
     text-decoration: none;
-    color: var(--dim-grey);
+    color: #B5B5B5; /* Warna font sebelum aktif */
+    font-weight: 700 !important;
     width: 100%;
 }
 
@@ -114,23 +117,12 @@
     color: white;
 }
 
+/* Sidebar Mobile Section */
 #sidebar-mobile-section {
     display: none;
-}
-
-#sidebar-mobile-section .row .col-sm-3 p {
-    color: var(--dim-grey);
-    font-weight: 600 !important;
-}
-
-#sidebar-mobile-section .row .col-sm-3 p.active {
-    color: var(--color-active) !important;
-}
-
-#sidebar-mobile-section {
     position: fixed;
     width: 100%;
-    bottom: 48px;
+    bottom: 5px;
     z-index: 999;
 }
 
@@ -139,20 +131,31 @@
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    border-radius: 20px;
-    padding: 20px 20px;
+    border-radius: 5px;
+    padding: 10px;
 }
 
-#sidebar-mobile-section .row .col-sm-3 img {
+#sidebar-mobile-section .col-sm-3 img {
+    padding: 5px;
+    border: 2px solid #B5B5B5;
+    border-radius: 10px;
     width: 60px;
     height: 60px;
-    padding: 10px;
-    border: 2px solid var(--dim-grey);
-    border-radius: 10px;
+    transition: border-color 0.3s;
 }
 
-#sidebar-mobile-section .row .col-sm-3 img.active {
-    border-color: var(--color-active) !important;
+#sidebar-mobile-section .row .col-sm-3 a img.active {
+    border-color: var(--color-active);
+}
+
+
+#sidebar-mobile-section p {
+    color: #B5B5B5;
+    font-weight: 600 !important;
+}
+
+#sidebar-mobile-section p.active {
+    color: var(--color-active) !important;
 }
 
 /* Responsive Design */
@@ -187,14 +190,12 @@
 
 @media screen and (max-width: 576px) {
     #sidebar-mobile-section .row {
-        width: 90% !important;
         margin: 0 auto;
-        padding: 14px 0px;
+        padding: 10px 0;
     }
 
-    #sidebar-mobile-section .row .col-sm-3 img {
+    #sidebar-mobile-section .col-sm-3 img {
         width: 46px;
         height: 46px;
     }
-
 }

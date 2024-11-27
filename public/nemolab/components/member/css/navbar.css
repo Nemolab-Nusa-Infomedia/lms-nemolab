@@ -68,6 +68,10 @@ header .container-fluid .navbar-toggler {
     border: none;
     padding: 0px !important;
 }
+header .container-fluid .navbar-toggler img{
+    width: 30px;
+    height: 30px;
+}
 
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu {

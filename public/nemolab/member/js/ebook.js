@@ -75,8 +75,11 @@ const updateZoom = (factor) => {
     } else {
         scale = Math.max(minScale, Math.min(maxScale, scale + factor));
     }
+    console.log('Current scale:', scale);
+    
     renderPage(pageNum);
 };
+
 
 // 5. Event listeners untuk navigasi, zoom, dan input
 document.getElementById('prev-page').addEventListener('click', () => {

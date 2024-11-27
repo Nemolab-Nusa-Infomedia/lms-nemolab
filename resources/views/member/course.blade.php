@@ -14,9 +14,9 @@
         <div class="row">
             <div class="mobile-filter col-12 mb-3 d-lg-none">
                 <div class="filter-menu d-flex align-items-center gap-2">
-                    <button class="filter-togle btn btn-warning">
-                        <img src="{{ asset('nemolab/components/member/img/filter.png') }}" alt="">
-                    </button>
+                    <button class="filter-togle btn btn-warning d-flex justify-content-center align-items-center" style="height: 35px; width: 35px;">
+                        <img src="{{ asset('nemolab/components/member/img/filter.png') }}" alt="" style="width: 20px; height: 20px;">
+                    </button>                    
                     <form action="{{ route('member.course') }}" method="GET" class="d-flex flex-grow-1">
                         <div class="search position-relative w-100">
                             <input type="text" name="search-input" class="searchTerm form-control" 
@@ -30,7 +30,7 @@
                 </div>
             </div>
             @include('components.includes.member.sidebar-filter')
-            <div class="col-md-9" id="course-card">
+            <div class="col-md-9" id="course-card" style="min-height: 100vh">
                 <div class="card-container">
                     <div class="row" id="row">
                         @if($data->isEmpty() && $data->isEmpty())

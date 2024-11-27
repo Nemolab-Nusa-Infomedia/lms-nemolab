@@ -24,7 +24,7 @@ class CourseSeeder extends Seeder
         $faker = Faker::create();
         $timestamp = Carbon::now();
         
-        $numCourses = 8; 
+        $numCourses = 88; 
         for ($i = 0; $i < $numCourses; $i++) {
             DB::table('tbl_courses')->insert([
                 'category' => $categories[array_rand($categories)],

@@ -41,8 +41,6 @@ a.btn-warning:active {
     background-color: var(--color-orange-hover) !important;
     transition: background-color 0s;
 }
-
-
 a.btn-primary{
     color: white;
     background-color: var(--color-blue);
@@ -75,7 +73,17 @@ a.btn-light:active {
     background-color: var(--color-light-hover) !important;
     transition: background-color 0s;
 }
-
+a.btn-secondary{
+    background-color: var(--head-title);
+}
+a.btn-secondary:hover{
+    color: #ffff;
+}
+a.btn-secondary:active {
+    color: #ffff !important;
+    background-color: var(--head-title) !important;
+    transition: background-color 0s;
+}
 
 h1{
     color: var(--head-title);
@@ -209,7 +217,20 @@ color: var(--color-grey);
     color: #414142;
     background-color: #F0EAFF;
     transition: all 0.3s;
+    font-size: 15px;
 }
+/* #section-tentang-nemolab a.btn-secondary {
+    font-size: 13px;
+}
+#section-tentang-nemolab  a.btn-primary{
+    font-size: 13px;
+}
+#section-tentang-nemolab  a.btn-warning{
+    font-size: 15px;
+}
+#section-tentang-nemolab a.btn-warning{
+    font-size: 13px;
+} */
 #section-tentang-nemolab a.btn-light:hover{
     background-color: var(--color-light-hover);
 }
@@ -220,20 +241,14 @@ color: var(--color-grey);
 #service {
     border-radius: 15px;
     background-color: var(--hero-bg);
-    display: flex;
     flex-direction: row;
-}
-
-#menu-service {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
+    max-width: max-content;
 }
 
 .card-service {
+    height: 90px;
+    width: 142px;
     background-color: white;
-    padding: 14px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -273,13 +288,10 @@ color: var(--color-grey);
     gap: 50px;
 }
 
-.grid-images {
-    display: flex;
-    flex-wrap: wrap;
-}
 
 .grid-images .grid-img {
-    width: 190px;
+    width: 180px;
+    height: 100px;
     margin: 6px;
     max-width: 100%;
     height: auto;
@@ -491,10 +503,5 @@ color: var(--color-grey);
     #section-benefit-kelas .check-active-group {
         display: flex;
         flex-direction: column;
-    }
-
-    .grid-images .grid-img {
-        width: calc(50% - 12px);
-        margin: 6px;
     }
 }

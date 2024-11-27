@@ -21,7 +21,7 @@
                     <h2 class="m-0 p-0 mt-3 ps-2">
                         Episode: {{ $play->name }}
                     </h2>
-                    <div class="link-group d-block mt-3 mt-sm-4">
+                    <div class="link-group d-block mx-3 my-3 my-sm-4">
                         @if (!is_null($paketKelas))
                             <a href="{{ route('member.ebook.join', $paketKelas->ebook->slug) }}" class="btn btn-primary w-100">Belajar E-Book</a>
                         @endif

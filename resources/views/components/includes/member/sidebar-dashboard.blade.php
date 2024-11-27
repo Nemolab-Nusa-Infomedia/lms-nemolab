@@ -12,7 +12,7 @@
                 @endif
                 <div>
                     <p class="name fs-5">{{ Auth::user()->name }}</p>
-                    <p class="posisi mt-0">{{ Auth::user()->profession }}</p>
+                    <p class="posisi mt-0 fw-semibold">{{ Auth::user()->profession }}</p>
                 </div>
             </div>
             <div class="menu">

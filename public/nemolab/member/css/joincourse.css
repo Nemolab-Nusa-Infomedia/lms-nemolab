@@ -47,7 +47,10 @@ p {
     border-radius: 15px; /* Sudut melingkar */
     background-color: #ffffff; /* Warna latar belakang */
 }
-
+.card-body{
+    /* height: 150px; */
+    width: auto ;
+}
 .card-body h5 {
     margin-bottom: 15px; /* Margin bawah untuk judul */
 }
@@ -64,6 +67,7 @@ p {
 }
 
 .detail {
+    height: max-content;
     border-collapse: collapse; /* Menghilangkan jarak antara sel */
     width: 100%; /* Lebar penuh */
 }
@@ -89,9 +93,10 @@ p {
 }
 
 .card-tool img {
+    object-fit: fill;
     border-radius:  5px;
-    max-width: 70px;
-    height: auto;
+    width: 50px;
+    height: 50px;
 }
 .book-img img{
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -110,9 +115,19 @@ p {
 .card-testimoni {
     width: 100%; /* Memastikan card testimoni lebar penuh */
 }
+.card-testimoni .card-body{
+    height: 150px;
+}
 
 .card {
     width: 100%; /* Memastikan setiap card memenuhi kolom */
+}
+.card-body .name p{
+    font-size: 14px;
+}
+
+.card-body .name h5{
+    font-size: 18px;
 }
 
 .card-head img {
@@ -121,7 +136,8 @@ p {
 }
 
 .card-text {
-    font-size: 0.9rem; /* Ukuran font yang nyaman untuk bacaan */
+    font-size: 0.9rem;
+    color: var(--head-title);
 }
 
 .navtabs-more-testimoni {
@@ -188,6 +204,10 @@ a.btn-warning:active {
     padding: 0;
     width: 100%;
     box-sizing: border-box;
+}
+
+.swiper-slide .card-body{
+    height: 150px;
 }
     
 

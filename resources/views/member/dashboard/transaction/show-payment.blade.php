@@ -7,12 +7,12 @@
 @endpush
 
 @section('content')
-    <section class="payment py-5 mt-5">
+    <section class="payment py-5"  style="margin-top: 5rem">
         <div class="container">
             <h2 class="text-center mb-3 fw-bold">Riwayat Pemebelian Anda</h2>
             <p class="text-center description">Anda Dapat Melihat Detail Pembelian di Sini</p>
                 <div class="row justify-content-center">
-                    <div class="col-md-6 mt-5">
+                    <div class="col-md-6 mt-1">
                         <div class="card card-bayar shadow p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <a href="{{ route('member.transaction') }}" class="custom-link d-flex align-items-center">

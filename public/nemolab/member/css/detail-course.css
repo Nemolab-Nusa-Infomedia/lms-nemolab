@@ -64,7 +64,9 @@ main #detail-course-section .container h4 {
     font-size: 34px;
 }
 
-
+.card{
+    box-shadow: none !important;
+}
 
 main #detail-course-section .container .subcontent-images .row .col-sm-6 a {
     text-decoration: none;
@@ -125,7 +127,6 @@ main #detail-course-section .container .detail-courses .card .card-body {
     background-color: transparent;
     border: none;
 }
-
 
 main #detail-course-section .container .detail-courses .card .card-header h5 {
     color: var(--charcoal-gray);
@@ -230,18 +231,16 @@ main #detail-course-section .container .testimoni {
 }
 
 
-main #detail-course-section .container .testimoni h1 {
+main #detail-course-section .container .testimoni h5 {
     color: var(--charcoal-gray);
     font-weight: 800;
     font-size: 30px;
 }
 
-main #detail-course-section .container .testimoni .col-12 {
-    margin: 0 auto;
-}
-
 main #detail-course-section .container .testimoni .col-12 .row .col-md-6 .card {
-    height: 228px;
+    height: 180px;
+    width: auto;
+    border: none;
 }
 
 main #detail-course-section .container .testimoni .col-12 .row .col-md-6 .card .card-body .card-head .name .card-title {
@@ -249,7 +248,11 @@ main #detail-course-section .container .testimoni .col-12 .row .col-md-6 .card .
     color: var(--color-grey);
 }
 
-main #detail-course-section .container .testimoni .col-12 .row .col-md-6 .card .card-body .card-head .name p,
+main #detail-course-section .container .testimoni .col-12 .row .col-md-6 .card .card-body .card-head .name p{
+    font-size: 16px;
+    color: var(--shade-gray) !important;
+    font-weight: 600;
+}
 main #detail-course-section .container .testimoni .col-12 .row .col-md-6 .card .card-body p.card-text {
     font-size: 16px;
     color: var(--color-grey) !important;
@@ -282,7 +285,14 @@ main #detail-course-section .container .testimoni .col-12 .navtabs-more-testimon
     width: 100%;
     box-sizing: border-box;
 }
-    
+.tool-name {
+    word-wrap: break-word; 
+    overflow: hidden;
+    white-space: normal; 
+    max-width: 100%;
+    min-height: 40px; 
+    line-height: 1.2;
+}
 
 @media screen and (max-width: 992px) {
 
@@ -346,11 +356,33 @@ main #detail-course-section .container .testimoni .col-12 .navtabs-more-testimon
         font-size: 16px;
     }
 
-    main #detail-course-section .container .testimoni .col-12 .row .col-md-6 .card {
-        height: 320px;
+    main #detail-course-section .container .testimoni .swiper-container .swiper-wrapper .card {
+        height: 180px;
+        width: auto;
+        border: none;
     }
-
     main #detail-course-section .container .testimoni .col-12 .navtabs-more-testimoni button.btn-primary {
         font-size: 16px;
+    }
+
+    main #detail-course-section .container .testimoni h5 {
+        color: var(--charcoal-gray);
+        font-weight: 800;
+        font-size: 20px;
+    }
+    main #detail-course-section .container .testimoni .swiper-container h5 {
+        color: var(--charcoal-gray);
+        font-weight: 800;
+        font-size: 18px;
+    }
+    main #detail-course-section .container .testimoni .swiper-container .swiper-wrapper .card-body .card-head p {
+        color: var(--color-silver);
+        font-weight: 800;
+        font-size: 15px;
+    }
+    main #detail-course-section .container .testimoni .swiper-container .card-body p {
+        color: var(--charcoal-gray);
+        font-weight: 800;
+        font-size: 15px;
     }
 }

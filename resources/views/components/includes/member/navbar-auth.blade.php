@@ -10,7 +10,7 @@
                                 height="40" class="d-inline-block align-text-top">
                             <div class="title-navbar-brand ms-2 d-block">
                                 <p class="m-0 p-0 fw-bold">Nemolab</p>
-                                <p class="m-0 p-0 ">Kursus Online Terbaik</p>
+                                <p class="m-0 p-0 fw-bold">Kursus Online Terbaik</p>
                             </div>
                         </div>
                     </a>
