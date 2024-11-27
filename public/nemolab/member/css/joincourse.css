@@ -130,11 +130,6 @@ p {
     font-size: 18px;
 }
 
-.card-head img {
-    width: 50px; /* Ukuran gambar profil */
-    height: auto; /* Mempertahankan rasio aspek */
-}
-
 .card-text {
     font-size: 0.9rem;
     color: var(--head-title);
