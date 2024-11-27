@@ -125,7 +125,7 @@
                             <h5>Bonus</h5>
                             <div class="d-flex">
                                 <a class="book-img" href="{{ route('member.ebook.join', $bundling->ebook->slug) }}">
-                                    <img src="{{ asset('storage/images/covers/ebook/' . $bundling->ebook->cover) }}" alt="" width="80" height="100" style="object-fit: cover; border-radius: 5px">
+                                    <img src="{{ asset('storage/images/covers/' . $bundling->ebook->cover) }}" alt="" width="80" height="100" style="object-fit: cover; border-radius: 5px">
                                 </a>
                                 <table class="detail">
                                     <tr>
