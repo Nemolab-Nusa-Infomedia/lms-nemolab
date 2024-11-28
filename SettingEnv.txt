@@ -28,4 +28,4 @@ MIDTRANS_PRODUCTION=false                       #setting false karena masih dala
 MIDTRANS_ID_MERCHANT=G123456789                 #ganti dengan id merchant midtrans
 MIDTRANS_CLIENT_KEY=Mid-client-X_aJ!p1S4n9      #ganti dengan Client Key midtrans
 MIDTRANS_SERVER_KEY=Mid-server-_aJ!-93d4n9      #ganti dengan Server Key midtrans
-MIDTRANS_PRODUCTION=true                        #setting false karena masih dalam sandbox
+MIDTRANS_PRODUCTION=true                        #setting true karena dalam mode Production

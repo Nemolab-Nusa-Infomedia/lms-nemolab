@@ -229,9 +229,9 @@
                                                 <div class="card-body">
                                                     <div class="card-head d-flex align-items-center">
                                                         @if ($review->user->avatar !=null)
-                                                            <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" class="avatar-img" style="border-radius: 50%">
+                                                            <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
                                                             @else
-                                                            <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" class="avatar-img" style="border-radius: 50%">
+                                                            <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
                                                         @endif
                                                         
                                                         <div class="name ms-3">
