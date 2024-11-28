@@ -13,6 +13,13 @@
     --light-shade: #FDF8F8;
     --shade-gray: #8F8F8F;
 }
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+}
+*::-webkit-scrollbar {
+    display: none;
+}
 /* General Styles */
 body {
     font-family: 'Nunito', sans-serif;
@@ -28,10 +35,10 @@ body {
     border-radius: 15px;
     border: none;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    overflow: auto;
     max-width: 1200px;
     margin: auto;
-    height: 850px;
+    height: 100%;
 }
 
 .img-container {
@@ -86,6 +93,25 @@ p {
     opacity: 1;
 }
 
+.toggle-password {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.toggle-password img {
+    width: 20px;
+    height: 20px;
+}
+/* Hover dan Active State */
+.toggle-password:hover,
+.toggle-password:active,
+.toggle-password:focus {
+    background-color: transparent;
+    border: none !important;
+    outline: none !important;
+}
 .btn-back {
     background-color: var(--blue);
     border-radius: 50%;

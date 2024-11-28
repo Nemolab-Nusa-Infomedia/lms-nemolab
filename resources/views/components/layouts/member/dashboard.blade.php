@@ -35,7 +35,9 @@
         @yield('content')
     </main>
 
-    @include('components.includes.member.footer')
+    @if (!View::hasSection('hide_footer'))
+        @include('components.includes.member.footer')
+    @endif
 
     {{-- include sweetalert --}}
     @include('sweetalert::alert')

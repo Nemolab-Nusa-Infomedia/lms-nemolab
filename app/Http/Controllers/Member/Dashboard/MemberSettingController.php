@@ -31,11 +31,15 @@ class MemberSettingController extends Controller
     public function updateProfile(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            'name' => 'required|string|max:50',
             'avatar' => 'nullable|image|mimes:jpg,jpeg,png|max:1048',
             'profession' => 'required|string|max:255',
-        ]);
+        ],
+            [
+                'name.max' => 'Panjang Nama Harus 50 character',
+                'avatar.mimes' => 'Format gambar yang diperbolehkan: JPG, JPEG, PNG, SVG.',
+                'avatar.max' => 'Ukuran gambar maksimal 2MB.'
+            ]);
 
         $user = User::findOrFail(Auth::id());
         $user->name = $request->input('name');
@@ -62,6 +66,9 @@ class MemberSettingController extends Controller
     {
         $request->validate([
             'new_email' => 'required|email|unique:users,email|max:255',
+        ],
+        [
+            'new_email.unique' => 'Email Sudah Digunakan',
         ]);
 
         $user = User::findOrFail(Auth::id());
@@ -76,21 +83,39 @@ class MemberSettingController extends Controller
     {
         $request->validate([
             'old_password' => 'required|string',
-            'new_password' => 'required|string|min:8|confirmed',
+            'new_password' => [
+                'required',
+                'string',
+                'min:8',
+                'regex:/[a-z]/', 
+                'regex:/[0-9]/', 
+            ],
+            'new_password_confirmation' => 'required|string|same:new_password',
+        ], [
+            'old_password.required' => 'Harap masukkan kata sandi lama Anda.',
+            'new_password.required' => 'Harap masukkan kata sandi baru.',
+            'new_password.min' => 'Kata sandi baru harus minimal 8 karakter.',
+            'new_password.regex' => 'Kata sandi baru harus berisi huruf dan angka.',
+            'new_password_confirmation.required' => 'Harap konfirmasi kata sandi baru Anda.',
+            'new_password_confirmation.same' => 'Konfirmasi kata sandi tidak cocok.',
         ]);
-
+    
         $user = User::findOrFail(Auth::id());
-
+    
+        // Validasi kata sandi lama
         if (!Hash::check($request->input('old_password'), $user->password)) {
             return redirect()->route('member.setting.reset-password')
-                ->withErrors(['old_password' => 'The old password is incorrect.'])
+                ->withErrors(['old_password' => 'Kata sandi lama yang Anda masukkan salah.'])
                 ->withInput();
         }
-
+    
+        // Update kata sandi
         $user->password = Hash::make($request->input('new_password'));
         $user->save();
-
-        Alert::success('Password Berhasil Di Update');
+    
+        // Pesan sukses
+        Alert::success('Berhasil!', 'Kata sandi Anda berhasil diperbarui.');
         return redirect()->route('member.setting');
     }
+    
 }

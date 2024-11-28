@@ -1,6 +1,8 @@
 @extends('components.layouts.member.dashboard')
 
 @section('title', 'Ubah Password Anda Di Sini')
+@section('hide_footer')
+@endsection
 
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/dashboard/setting.css') }} ">
@@ -13,7 +15,6 @@
                 <div class="col-md-9 mx-auto">
                     <div class="card profile-card">
                         <div class="card-body">
-
                             <div class="d-flex align-items-center mb-3">
                                 <a href="{{ route('member.setting') }}" class="btn-back">
                                     <img src="{{ asset('nemolab/member/img/icon/arrow.png') }}" alt="Back"
@@ -28,29 +29,42 @@
                                 <div class="row">
                                     <div class="mb-3">
                                         <label for="old_password" class="form-label fw-bold">Kata Sandi Lama</label>
-                                        <input type="password" id="old_password" name="old_password"
-                                            class="form-control fw-bold" placeholder="Masukan kata sandi lama anda"
-                                            required value="{{ old('old_password') }}">
+                                        <div class="position-relative w-100">
+                                            <input type="password" name="old_password" placeholder="Masukan kata sandi lama disini"
+                                                   id="old_password" class="form-control fw-bold" required>
+                                            <button type="button" class="toggle-password btn btn-light position-absolute end-0 top-50 translate-middle-y px-3" style="background-color: transparent">
+                                                <img src="{{ asset('nemolab/member/img/mdi_show.png') }}" width="20" height="20" alt="Show Password Icon">
+                                            </button>
+                                        </div>
                                         @error('old_password')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
                                         <label for="new_password" class="form-label fw-bold">Kata Sandi Baru</label>
-                                        <input type="password" id="new_password" name="new_password"
-                                            class="form-control fw-bold" placeholder="Masukan kata sandi baru" required value="{{ old('new_password') }}">
+                                        <div class="position-relative w-100">
+                                            <input type="password" name="new_password" placeholder="Masukan kata sandi baru disini"
+                                                   id="new_password" class="form-control fw-bold" required>
+                                            <button type="button" class="toggle-password btn btn-light position-absolute end-0 top-50 translate-middle-y px-3" style="background-color: transparent">
+                                                <img src="{{ asset('nemolab/member/img/mdi_show.png') }}" width="20" height="20" alt="Show Password Icon">
+                                            </button>
+                                        </div>
                                         @error('new_password')
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="mb-3">
-                                        <label for="new_password_confirmation" class="form-label fw-bold">Konfirmasi Kata
-                                            Sandi Baru</label>
-                                        <input type="password" id="new_password_confirmation"
-                                            name="new_password_confirmation" class="form-control fw-bold"
-                                            placeholder="Masukan ulang kata sandi baru" required value="{{ old('new_password_confirmation') }}">
+                                        <label for="new_password_confirmation" class="form-label fw-bold">Konfirmasi Kata Sandi Baru</label>
+                                        <div class="position-relative w-100">
+                                            <input type="password" name="new_password_confirmation" placeholder="Masukan kata sandi disini"
+                                                   id="new_password_confirmation" class="form-control fw-bold" required>
+                                            <button type="button" class="toggle-password btn btn-light position-absolute end-0 top-50 translate-middle-y px-3" style="background-color: transparent">
+                                                <img src="{{ asset('nemolab/member/img/mdi_show.png') }}" width="20" height="20" alt="Show Password Icon">
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
+                                
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <button type="submit" id="submitButton"  class="btn btn-primary w-100 rounded-start fw-bold">Simpan
@@ -78,7 +92,6 @@
         const changedBackground = '#E8E8E8';
         const defaultButtonColor = '#ce8e0e'; 
         const changedButtonColor = '#faa907'; 
-
         // Deteksi perubahan
         inputs.forEach(input => {
             input.addEventListener('input', () => {
@@ -95,6 +108,47 @@
             });
             submitButton.style.backgroundColor = defaultButtonColor;
             submitButton.style.borderColor = defaultButtonColor;
+        });
+    });
+</script>
+
+<script>
+document.querySelectorAll('.toggle-password').forEach(button => {
+    button.addEventListener('click', function () {
+        const input = this.previousElementSibling; // Ambil input sebelum tombol
+        const icon = this.querySelector('img'); // Ambil ikon dalam tombol
+        const isPasswordVisible = input.type === 'password';
+
+        input.type = isPasswordVisible ? 'text' : 'password';
+        icon.src = isPasswordVisible 
+            ? '{{ asset("nemolab/member/img/mdi_hide.png") }}' 
+            : '{{ asset("nemolab/member/img/mdi_show.png") }}';
+    });
+});
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('profileForm');
+        form.querySelectorAll('input[required]').forEach(input => {
+            input.addEventListener('invalid', function() {
+                switch (this.type) {
+                    case 'text':
+                        this.setCustomValidity("Harap masukkan nama anda.");
+                        break;
+                    case 'email':
+                        this.setCustomValidity("Harap masukkan email yang valid.");
+                        break;
+                    case 'password':
+                        this.setCustomValidity("Harap masukkan kata sandi.");
+                        break;
+                    default:
+                        this.setCustomValidity("Field ini wajib diisi.");
+                }
+            });
+
+            input.addEventListener('input', function() {
+                this.setCustomValidity("");
+            });
         });
     });
 </script>

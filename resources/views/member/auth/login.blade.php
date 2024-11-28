@@ -33,7 +33,13 @@
                         </div>
                         <div class="mb-5" >
                             <label for="password" class="form-label fw-bold">Kata sandi</label>
-                            <input type="password" name="password" placeholder="Masukan password anda" id="password" class="form-control fw-bold py-2" required>
+                            <div class="position-relative w-100">
+                                <input type="password" name="password" placeholder="Masukan kata sandi disini"
+                                       id="password" class="form-control py-2 fw-bold" required>
+                                <button type="button" id="toggle-password" class="btn btn-light position-absolute end-0 top-50 translate-middle-y px-3" style="background-color: transparent">
+                                    <img src="{{ asset('nemolab/member/img/mdi_show.png') }}" width="20" height="20" alt="Show Password Icon" id="toggle-icon">
+                                </button>
+                            </div>
                             @error('password')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -51,3 +57,43 @@
 </div>
 @endsection
 
+@push('addon-script')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('loginForm');
+        form.querySelectorAll('input[required]').forEach(input => {
+            input.addEventListener('invalid', function() {
+                switch (this.type) {
+                    case 'text':
+                        this.setCustomValidity("Harap masukkan nama pengguna.");
+                        break;
+                    case 'email':
+                        this.setCustomValidity("Harap masukkan email yang valid.");
+                        break;
+                    case 'password':
+                        this.setCustomValidity("Harap masukkan kata sandi.");
+                        break;
+                    default:
+                        this.setCustomValidity("Field ini wajib diisi.");
+                }
+            });
+
+            input.addEventListener('input', function() {
+                this.setCustomValidity("");
+            });
+        });
+    });
+</script>
+<script>
+    document.getElementById('toggle-password').addEventListener('click', function () {
+        const passwordField = document.getElementById('password');
+        const toggleIcon = document.getElementById('toggle-icon');
+        const isPasswordVisible = passwordField.type === 'password';
+
+        passwordField.type = isPasswordVisible ? 'text' : 'password';
+        toggleIcon.src = isPasswordVisible 
+            ? '{{ asset("nemolab/member/img/mdi_hide.png") }}' 
+            : '{{ asset("nemolab/member/img/mdi_show.png") }}';
+    });
+</script>
+@endpush

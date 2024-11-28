@@ -1,6 +1,8 @@
 @extends('components.layouts.member.dashboard')
 
 @section('title', 'Ubah Profil Anda Di Sini')
+@section('hide_footer')
+@endsection
 
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/dashboard/setting.css') }} ">
@@ -148,6 +150,32 @@
                 });
                 submitButton.style.backgroundColor = defaultButtonColor;
                 submitButton.style.borderColor = defaultButtonColor;
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('profileForm');
+            form.querySelectorAll('input[required]').forEach(input => {
+                input.addEventListener('invalid', function() {
+                    switch (this.type) {
+                        case 'text':
+                            this.setCustomValidity("Harap masukkan nama anda.");
+                            break;
+                        case 'email':
+                            this.setCustomValidity("Harap masukkan email yang valid.");
+                            break;
+                        case 'password':
+                            this.setCustomValidity("Harap masukkan kata sandi.");
+                            break;
+                        default:
+                            this.setCustomValidity("Field ini wajib diisi.");
+                    }
+                });
+
+                input.addEventListener('input', function() {
+                    this.setCustomValidity("");
+                });
             });
         });
     </script>

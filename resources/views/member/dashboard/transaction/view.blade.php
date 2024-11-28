@@ -1,6 +1,8 @@
 @extends('components.layouts.member.dashboard')
 
 @section('title', 'Nemolab - Lihat informasi dan perkembangan anda disini')
+@section('hide_footer')
+@endsection
 
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/dashboard/sidebar-dashboard.css') }} ">
@@ -50,7 +52,7 @@
                                     $coverPath = asset('storage/images/covers/' . $transaction->bundle->course->cover);
                                 }
                             @endphp
-                            <img alt="Product image" src="{{ $coverPath }}" height="80" width="120" class="cover me-3" />
+                            <img alt="Product image" src="{{ $coverPath }}" height="80" width="120" class="cover me-3" style="object-fit: cover" />
                             <div class="details">
                                 <p class="title" >{{ $transaction->name }}</p>
                                     @if ($transaction->price == 0)

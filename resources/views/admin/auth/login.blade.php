@@ -11,10 +11,10 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card login-card d-flex flex-row">
-                <div class="img-container">
+                <div class="img-container col-md-6">
                     <img src="{{ asset('nemolab/member/img/bismen.jpeg') }}" alt="Team collaboration" class="img-fluid rounded-start">
                 </div>
-                <div class="card-body">
+                <div class="card-body col-md-6">
                     <a href="{{ route('home') }}" class="btn-back mb-4">
                         <img src="{{ asset('nemolab/member/img/icon/arrow.png') }}" alt="Back" class="back-icon">
                     </a>
@@ -49,3 +49,31 @@
 </div>
 @endsection
 
+@push('addon-script')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('loginForm');
+        form.querySelectorAll('input[required]').forEach(input => {
+            input.addEventListener('invalid', function() {
+                switch (this.type) {
+                    case 'text':
+                        this.setCustomValidity("Harap masukkan nama pengguna.");
+                        break;
+                    case 'email':
+                        this.setCustomValidity("Harap masukkan email yang valid.");
+                        break;
+                    case 'password':
+                        this.setCustomValidity("Harap masukkan kata sandi.");
+                        break;
+                    default:
+                        this.setCustomValidity("Field ini wajib diisi.");
+                }
+            });
+
+            input.addEventListener('input', function() {
+                this.setCustomValidity("");
+            });
+        });
+    });
+</script>
+@endpush

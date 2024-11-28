@@ -11,11 +11,11 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card login-card d-flex flex-row">
-                    <div class="img-container">
+                    <div class="img-container col-md-6">
                         <img src="{{ asset('nemolab/member/img/bismen.jpeg') }}" alt="Team collaboration"
                             class="img-fluid rounded-start">
                     </div>
-                    <div class="card-body">
+                    <div class="card-body col-md-6">
                         <a href="{{ route('home') }}" class="btn-back mb-4">
                             <img src="{{ asset('nemolab/member/img/icon/arrow.png') }}" alt="Back" class="back-icon">
                         </a>
@@ -80,8 +80,13 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label fw-bold">Buat Kata sandi</label>
-                                    <input type="password" name="password" placeholder="Masukan kata sandi disini"
-                                        id="password" class="form-control py-2 fw-bold" required>
+                                    <div class="position-relative w-100">
+                                        <input type="password" name="password" placeholder="Masukan kata sandi disini"
+                                               id="password" class="form-control py-2 fw-bold" required>
+                                        <button type="button" id="toggle-password" class="btn btn-light position-absolute end-0 top-50 translate-middle-y px-3" style="background-color: transparent">
+                                            <img src="{{ asset('nemolab/member/img/mdi_show.png') }}" width="20" height="20" alt="Show Password Icon" id="toggle-icon">
+                                        </button>
+                                    </div>
                                     @error('password')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -120,6 +125,45 @@
                     reader.readAsDataURL(file);
                 }
             });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('register-form');
+            form.querySelectorAll('input[required]').forEach(input => {
+                input.addEventListener('invalid', function() {
+                    switch (this.type) {
+                        case 'text':
+                            this.setCustomValidity("Harap masukkan nama pengguna.");
+                            break;
+                        case 'email':
+                            this.setCustomValidity("Harap masukkan email yang valid.");
+                            break;
+                        case 'password':
+                            this.setCustomValidity("Harap masukkan kata sandi.");
+                            break;
+                        default:
+                            this.setCustomValidity("Field ini wajib diisi.");
+                    }
+                });
+
+                input.addEventListener('input', function() {
+                    this.setCustomValidity("");
+                });
+            });
+        });
+    </script>
+    <script>
+        document.getElementById('toggle-password').addEventListener('click', function () {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggle-icon');
+            const isPasswordVisible = passwordField.type === 'password';
+
+            passwordField.type = isPasswordVisible ? 'text' : 'password';
+            toggleIcon.src = isPasswordVisible 
+                ? '{{ asset("nemolab/member/img/mdi_hide.png") }}' 
+                : '{{ asset("nemolab/member/img/mdi_show.png") }}';
         });
     </script>
 @endpush

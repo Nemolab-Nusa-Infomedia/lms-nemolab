@@ -38,7 +38,7 @@
                 <div class="row m-0 p-0 ">
                     @foreach ($courses as $course)
                         @if ($course)
-                        <div class="col-md-6 col-xl-3 col-12 d-flex justify-content-center my-1 my-md-2 pb-2">
+                        <div class="col-md-3 col-12 d-flex justify-content-center my-1 pb-3">
                             <div class="card d-flex flex-row d-md-block">
                                 @if ($course->cover != null)
                                     <img src="{{ asset('storage/images/covers/' . $course->cover) }}" class="card-img-top d-none d-md-block"

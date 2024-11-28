@@ -1,6 +1,8 @@
 @extends('components.layouts.member.dashboard')
 
 @section('title', 'Nemolab - Lihat informasi dan perkembangan anda disini')
+@section('hide_footer')
+@endsection
 
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/dashboard/sidebar-dashboard.css') }} ">

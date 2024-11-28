@@ -37,7 +37,11 @@ class MemberRegisterController extends Controller
                 'regex:/[0-9]/',
             ],
         ], [
-            'password.regex' => 'Password harus berisi kombinasi huruf dan angka',
+            // ini pesan error [targer].[condition]
+            'email.unique' => 'Email sudah terdaftar',
+            'password.regex' => 'Panjang password harus 8 karakter berisi kombinasi huruf dan angka.',
+            'avatar.mimes' => 'Format gambar yang diperbolehkan: JPG, JPEG, PNG, SVG.',
+            'avatar.max' => 'Ukuran gambar maksimal 2MB.',
         ]);
     
         $avatar = null;

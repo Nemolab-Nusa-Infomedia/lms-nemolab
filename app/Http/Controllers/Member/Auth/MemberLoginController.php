@@ -26,6 +26,11 @@ class MemberLoginController extends Controller
         $requests->validate([
             'email' => 'required|email',
             'password' => 'required',
+        ], [
+            // ini pesan error [target].[condition]
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Harap masukkan email yang valid.',
+            'password.required' => 'Kata sandi wajib diisi.',
         ]);
         if (Auth::check()) {
             Auth::logout();

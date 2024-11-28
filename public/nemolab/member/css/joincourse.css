@@ -150,6 +150,9 @@ p {
 .card-buy-body {
     text-align: center; /* Menjadikan konten di dalam elemen ini rata tengah */
 }
+.card-buy-body .benefit p{
+    color: var(--head-title);
+}
 .benefit-title{
     padding: 0;
     margin-bottom: 0px;

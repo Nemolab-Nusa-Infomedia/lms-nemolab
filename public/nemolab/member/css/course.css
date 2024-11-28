@@ -233,7 +233,7 @@ html::-ms-overflow-style {
 
   .card .card-img-top {
     margin-top: 4px;
-    object-fit: fill;
+    object-fit: cover;
     height: 57px;
     width: 80px;
     border-radius: 7px;

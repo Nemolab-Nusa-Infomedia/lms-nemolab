@@ -57,6 +57,7 @@ body::-webkit-scrollbar {
 }
 .pdf-render{
     margin: 15px 0px;
+    margin-bottom: 100px;
 }
 
 .pdf-height::-webkit-scrollbar {
@@ -75,9 +76,6 @@ body::-webkit-scrollbar {
     max-height: 100vh !important;
 }
 
-.pdf-preview::-webkit-scrollbar {
-    display: none;
-}
 
 .loading {
     position: absolute;

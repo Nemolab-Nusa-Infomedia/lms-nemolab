@@ -44,7 +44,7 @@
                     <div class="col-3 col-md-2">
                         <h5 class="title text-white fw-bold mb-3">Pusat Bantuan</h5>
                         <div class="content-paket-kelas d-flex flex-column">
-                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                            <a href="http://wa.me//+62851-8303-8794" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
                                 Hubungi CS
                             </a>
                             <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">

@@ -55,6 +55,10 @@ p{
     height: 30px;
     object-fit: contain;
 }
+.form-control::placeholder {
+    color: #8f8f8f;
+    opacity: 1;
+}
 
 .setting-section .setting-item .content {
     margin-left: 15px;
@@ -87,6 +91,24 @@ p{
     color: var(--dark-grey);
 }
 
+.toggle-password {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.toggle-password img {
+    width: 20px;
+    height: 20px;
+}
+/* Hover dan Active State */
+.toggle-password:hover,
+.toggle-password:active,
+.toggle-password:focus {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
 
 
 /* Untuk memastikan 2 kolom dalam 1 baris, tambahkan ini */
