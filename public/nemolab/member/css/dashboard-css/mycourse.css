@@ -60,8 +60,13 @@ p {
 .card .card-img-top {
     width: 100% !important;
     height: 250px !important;
+    object-fit: cover;
 }
-
+.card .card-img-top img {
+    width: 100% !important;
+    height: 250px !important;
+    object-fit: cover;
+}
 
 .truncate-text {
     display: block;
