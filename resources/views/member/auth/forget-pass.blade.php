@@ -56,3 +56,31 @@
     @include('sweetalert::alert')
 
 @endsection
+@push('addon-script')
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('loginForm');
+        form.querySelectorAll('input[required]').forEach(input => {
+            input.addEventListener('invalid', function() {
+                switch (this.type) {
+                    case 'text':
+                        this.setCustomValidity("Harap masukkan nama pengguna.");
+                        break;
+                    case 'email':
+                        this.setCustomValidity("Harap masukkan email yang valid.");
+                        break;
+                    case 'password':
+                        this.setCustomValidity("Harap masukkan kata sandi.");
+                        break;
+                    default:
+                        this.setCustomValidity("Field ini wajib diisi.");
+                }
+            });
+
+            input.addEventListener('input', function() {
+                this.setCustomValidity("");
+            });
+        });
+    });
+</script>
+@endpush

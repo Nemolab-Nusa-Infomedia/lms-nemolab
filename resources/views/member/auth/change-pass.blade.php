@@ -27,17 +27,22 @@
                             <input type="hidden" name="token" value="{{ $token }}">
                             <input type="hidden" name="email" value="{{ $email }}">
                             <div class="mb-1">
-                                <label for="password" class="form-label fw-bold py-2">Kata sandi baru</label>
-                                <input type="password" id="password" name="password" class="form-control fw-bold"
+                                <label for="new-password" class="form-label fw-bold py-2">Kata sandi baru</label>
+                                <input type="password" id="new-password" name="password" class="form-control fw-bold"
                                     placeholder="Masukan kata sandi disini" required>
                             </div>
                             @error('password')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                             <div class="mb-3">
-                                <label for="password" class="form-label fw-bold py-2">Konfirmasi kata sandi</label>
-                                <input type="password" id="confirm-password" name="password_confirmation"
-                                    class="form-control fw-bold" placeholder="Masukan kata sandi disini" required>
+                                <label for="confirm-password" class="form-label fw-bold py-2">Konfirmasi kata sandi</label>
+                                <div class="position-relative w-100">
+                                    <input type="password" name="confirm_pass" placeholder="Masukan kata sandi disini"
+                                           id="confirm-password-field" class="form-control py-2 fw-bold" required>
+                                    <button type="button" id="confirm-password" class="btn btn-light position-absolute end-0 top-50 translate-middle-y px-3" style="background-color: transparent">
+                                        <img src="{{ asset('nemolab/member/img/mdi_show.png') }}" width="20" height="20" alt="Show Password Icon" id="toggle-icon">
+                                    </button>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary w-100 py-2 rounded-start fw-bold"
@@ -54,11 +59,12 @@
     @include('sweetalert::alert')
 
 @endsection
+
 @push('addon-script')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const passwordInput = document.getElementById('password');
-            const confirmPasswordInput = document.getElementById('confirm-password');
+            const passwordInput = document.getElementById('new-password');
+            const confirmPasswordInput = document.getElementById('confirm-password-field');
             const submitButton = document.getElementById('submitBtn');
 
             submitButton.disabled = true;
@@ -76,5 +82,18 @@
             passwordInput.addEventListener('input', validatePasswords);
             confirmPasswordInput.addEventListener('input', validatePasswords);
         })
+    </script>
+
+    <script>
+        document.getElementById('confirm-password').addEventListener('click', function () {
+            const confirmPasswordField = document.getElementById('confirm-password-field');
+            const toggleIcon = document.getElementById('toggle-icon');
+            const isPasswordVisible = confirmPasswordField.type === 'password';
+
+            confirmPasswordField.type = isPasswordVisible ? 'text' : 'password';
+            toggleIcon.src = isPasswordVisible 
+                ? '{{ asset("nemolab/member/img/mdi_hide.png") }}' 
+                : '{{ asset("nemolab/member/img/mdi_show.png") }}';
+        });
     </script>
 @endpush

@@ -29,6 +29,9 @@ class forgotPassController extends Controller
         $requests->validate(
             [
                 'email' => 'required|email'
+            ],[
+                // ini pesan error [targer].[condition]
+                'email.email' => 'Harap Maskan Email',
             ]
         );
 
