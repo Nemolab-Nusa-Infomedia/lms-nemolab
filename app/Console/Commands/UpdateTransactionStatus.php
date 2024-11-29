@@ -32,7 +32,7 @@ class UpdateTransactionStatus extends Command
         $transactions = Transaction::where('status', 'pending')->get();
 
         foreach ($transactions as $transaction) {
-            // Fetch transaction status from Midtrans API
+            // Fetch transaction status dari Midtrans API (route ada di api.php)
             $response = $client->request('GET', 'https://api.sandbox.midtrans.com/v2/' . $transaction->transaction_code . '/status', [
                 'headers' => [
                     'accept' => 'application/json',

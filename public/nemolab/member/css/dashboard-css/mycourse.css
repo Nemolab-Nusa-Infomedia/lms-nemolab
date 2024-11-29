@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* Root Variables */
+:root {
+    --c-dark: #383131;
+    --c-brand: #faa907;
+    --c-brand-rgb: rgb(250, 169, 7);
+    --hover-color: rgb(218, 243, 242);
+    --font-base: "Poppins", sans-serif;
+    --transition: all 0.5s ease;
+    --lavender: #fff6f6;
+    --box-f-card: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+/* Base Styles */
+body {
+    background-color: var(--lavender);
+    font-family: var(--font-base), 'Nunito', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+p {
+    font-weight: bold !important;
+}
+
+
+#mycourse {
+    margin-top: 130px;
+}
+
+/* Content Styling */
+.tittle {
+    color: var(--c-brand);
+}
+
+.row-course {
+    overflow-y: scroll;
+}
+
+.row-course::-webkit-scrollbar {
+    display: none;
+}
+
+/* Card Styling */
+.card {
+    width: 25rem;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card .card-img-top {
+    width: 100% !important;
+    height: 250px !important;
+    object-fit: cover;
+}
+.card .card-img-top img {
+    width: 100% !important;
+    height: 250px !important;
+    object-fit: cover;
+}
+
+.truncate-text {
+    display: block;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-height: 3em;
+    text-overflow: ellipsis;
+    transition: max-height 0.3s ease, -webkit-line-clamp 0.3s ease;
+}
+
+.card:hover .truncate-text {
+    -webkit-line-clamp: unset;
+    max-height: none;
+}
+
+/* Title Card */
+.title-card h5 {
+    font-size: 17px;
+    color: var(--color-grey);
+}
+
+.title-card img {
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+}
+
+/* Not Found Styling */
+.not-found {
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.not-found img {
+    max-width: 25%;
+    height: auto;
+}
+
+.not-found p {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #666;
+}
+
+/* Filter Transaction Styling */
+.filter-transaction .nav-tabs {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: none;
+}
+
+.filter-transaction .nav-tabs li {
+    margin-right: 15px;
+}
+
+.filter-transaction .nav-tabs a {
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 8px 25px;
+    border-radius: 20px;
+    color: #ff7b00;
+}
+
+.filter-transaction .nav-tabs a:hover {
+    background-color: var(--hover-color);
+    color: #ff7b00;
+}
+
+.filter-transaction .nav-tabs a.active {
+    background-color: #ff7b00;
+    color: #fff;
+}
+
+/* Category Styling */
+.category {
+    padding: 5px 7px;
+    background-color: #e4e4e4;
+    max-width: max-content;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+.category p {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Profile Card */
+.profile-card a {
+    color: black;
+}
+
+/* Title Card and Status */
+.tittle-card {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: black;
+    flex-shrink: 0;
+    height: 20px;
+    max-width: 100%;
+    font-size: 14px;
+}
+
+.status {
+    width: 100%;
+    margin-top: auto;
+}
+
+.txt-start {
+    color: rgba(0, 0, 0, 0.5);
+    height: max-content;
+    margin: 0;
+}
+
+/* Mobile Specific Styles */
+@media only screen and (max-width: 992px) {
+    .profile-btn.btn {
+        background-color: #faa907;
+    }
+
+    .profile-btn.btn:active {
+        background-color: #d89309;
+    }
+
+    .sidebar-mobile {
+        display: none !important;
+    }
+
+    .sidebar-mobile.active {
+        display: block !important;
+        z-index: 999;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        max-height: 60vh;
+        border-radius: 50px 50px 0 0;
+        background: #fff;
+    }
+
+    .nav a {
+        color: #6c757d !important;
+    }
+
+    .nav-item img {
+        filter: grayscale(100%) brightness(70%);
+    }
+
+    .nav-item.active,
+    .nav-item.active img {
+        filter: none;
+        color: #faa907 !important;
+        font-weight: 600;
+    }
+}
+
+/* Tablet and Smaller Screen Styles */
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+
+    .not-found img {
+        max-width: 100% !important;
+    }
+
+    .tittle-card {
+        height: 36px;
+    }
+
+    .tittle-card p {
+        height: 30px;
+        font-size: 18px;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+
+    .profile-card img {
+        width: 45px !important;
+        height: 45px !important;
+    }
+
+    .category p {
+        font-size: 9px;
+    }
+
+    .img-card img {
+        width: 150px;
+        height: 100px;
+        padding: 7px;
+        object-fit: cover;
+        border-radius: 12px;
+        flex-shrink: 0;
+    }
+
+    .status {
+        margin-top: 0.7rem !important;
+    }
+
+    .status p {
+        max-width: 100%;
+        font-size: 10px !important;
+    }
+
+    .status img {
+        width: 14px;
+        height: 14px;
+    }
+
+    .card-body {
+        display: flex;
+        gap: 10px;
+        padding: 0.6rem !important;
+    }
+
+    .card-body p {
+        font-size: 12px;
+        max-width: 230px;
+        margin: 0 !important;
+    }
+    .filter-transaction .nav-tabs a {
+        font-weight: 700;
+        font-size: 12px;
+        padding: 5px 15px;
+    }
+
+    .harga.d-block {
+        display: flex !important;
+    }
+
+    .truncate-text {
+        display: block;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        max-width: 320px;
+        text-overflow: ellipsis;
+        transition: max-height 0.3s ease, -webkit-line-clamp 0.3s ease;
+    }
+
+    .card:hover .truncate-text {
+        -webkit-line-clamp: unset;
+        max-height: none;
+    }
+}

@@ -1,0 +1,186 @@
+/* font */
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap'); */
+@import url('color.css');
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+}
+*::-webkit-scrollbar {
+    display: none;
+}
+/* General Styles */
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--color-orange);
+}
+
+.login-section {
+    height: max-content;
+    padding: 50px 0;
+}
+
+.card.login-card {
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    max-width: 1200px;
+    margin: auto;
+    height: 100%;
+}
+
+.img-container {
+    flex: 1;
+    height: 100%;
+}
+
+.img-container img {
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-body {
+    flex: 1;
+    background-color: white;
+    padding: 3rem;
+}
+
+h3 {
+    text-align: center;
+    font-weight: 900;
+}
+
+p {
+    color: var(--dim-grey);
+    margin-bottom: 1px;
+}
+
+.form-control {
+    border: none;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    font-size: 16px;
+    padding: 0.8rem 1rem !important;
+}
+.form-control::placeholder {
+    color: var(--placeholder);
+    opacity: 1;
+}
+.form-select {
+    border: none;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    font-size: 16px;
+    color: var(--color-grey);
+    font-weight: 700;
+    padding: 0.8rem 1rem !important;
+}
+.form-select::placeholder {
+    color: var(--placeholder);
+    opacity: 1;
+}
+
+.toggle-password {
+    outline: none;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.toggle-password img {
+    width: 20px;
+    height: 20px;
+}
+/* Hover dan Active State */
+.toggle-password:hover,
+.toggle-password:active,
+.toggle-password:focus {
+    background-color: transparent;
+    border: none !important;
+    outline: none !important;
+}
+.btn-back {
+    background-color: var(--color-blue);
+    border-radius: 50%;
+    padding: 0.25rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+}
+.btn-back:hover{
+    background-color: var(--color-blue-hover);
+}
+
+.back-icon {
+    width: 20px;
+}
+
+.btn-primary {
+    background-color: var(--color-orange) !important;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-orange-hover) !important;
+}
+
+a {
+    color: var(--color-orange);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.email-info{
+    color: var(--color-blue);
+}
+
+/* OTP Input */
+
+.input-otp {
+    display: flex;
+    justify-content: space-between;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.otp-number-input {
+    width: 40px;
+    height: 50px;
+    border: none;
+    border-bottom: 3px solid var(--dim-grey);
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--blue);
+    background-color: transparent;
+    caret-color: transparent;
+    outline: none;
+}
+
+.otp-number-input::placeholder {
+    color: var(--color-grey);
+    font-size: 24px;
+    text-align: center;
+}
+
+.otp-number-input:focus {
+    border-color: var(--color-orange);
+}
+
+@media (max-width: 768px) {
+    .img-container {
+        display: none;
+    }
+    .card.login-card {
+        height: auto;
+    }
+    .card-body {
+        padding: 1.5rem;
+    }
+}

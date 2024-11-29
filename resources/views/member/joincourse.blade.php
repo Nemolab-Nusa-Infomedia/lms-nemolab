@@ -1,347 +1,438 @@
-@extends('components.layouts.member.navback')
+@extends('components.layouts.member.dashboard')
 
-@section('title', 'Join Kelas')
+@section('title', 'Nemolab - Detail Kursus')
 
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/member/css/joincourse.css') }}">
 @endpush
 
 @section('content')
-    <!-- Header -->
-    <div class="container mb-4" style="margin-top: 4rem">
-        <div class="row">
-            <div class="col-12 text-center">
-                <h4 class="fw-semibold">{{ $course->name }}</h4>
-                <div class="d-flex align-items-center justify-content-center flex-md-row flex-column"
-                    style="margin-top: -6px; font-size: 15px">
-                    <div class="d-flex align-items-center">
-                        <img src="{{ asset('nemolab/member/img/global.png') }}" alt="" width="18"
-                            height="18" />
-                        <p class="m-0 ms-2 fw-light" style="font-size: 14px">Tanggal Rilis:
-                            {{ $course->created_at->format('d F Y') }}</p>
-                    </div>
-                    <div class="rating d-flex ms-1 my-1 my-0 align-items-center {{ $course->rating == '0' ? 'd-none' : ''}}">
-                        <p class="m-0 ms-0 ms-md-5 me-2 fw-medium" style="font-size: 14px">{{ $course->rating }}</p>
-                        @for ($i = 0; $i < intval($course->rating); $i++)
-                            <img src="{{ asset('nemolab/member/img/star.png') }}" alt="" width="19"
-                                heaight="19" />
-                        @endfor
-                    </div>
-                </div>
+    <main class="container mt-5 pt-5 pb-5">
+        <div class="">
+            <div class="col-md-8">
+                <h3 class="" data-aos="fade-right" style="word-wrap: break-word; white-space: normal;">{{ $courses->name }}</h3>
             </div>
-        </div>
-    </div>
 
-    <!-- Content -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-12 p-lg-0 pe-lg-2">
-                <img src="{{ asset('storage/images/covers/' . $course->cover) }}" alt="" width="100%"
-                    class="rounded-4" style="max-height: 25rem; object-fit: cover" />
-            </div>
-            <div class="col-lg-4 mx-auto col-11 p-4 mt-4 mt-lg-0 border border-2 rounded-4 position-relative overflow-hidden shadow-sm"
-                style="height: 25rem">
-                @if ($chapters->isNotEmpty())
-                    <p class="fw-bold">{{ $chapters->count() }} Bab</p>
-                    <div class="playlist">
-                        @foreach ($chapters as $chapter)
-                            <div class="play">
-                                <div class="title d-flex">
-                                    <img src="{{ asset('nemolab/member/img/play.png') }}" alt="" width="25"
-                                        height="25" />
-                                    <p class="ms-3 m-0">{{ $chapter->name }}</p>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    @if ($transaction)
-                        @if ($transaction->status == 'pending')
-                            <div class="alert alert-warning mt-3" role="alert">
-                                Pembayaran anda sedang diproses.
-                            </div>
-                        @elseif ($transaction->status == 'success')
-                            @if (!isset($lesson->episode))
-                                <div class="alert alert-warning text-center" role="alert">
-                                    Maaf, Kelas Masih Dalam Update
-                                </div>
-                            @else
-                                <a
-                                    href="{{ route('member.course.play', ['slug' => $course->slug, 'episode' => $lesson->episode]) }}">
-                                    <div class="button">Mulai Belajar</div>
-                                </a>
-                            @endif
+            <div class="row mt-3">
+                <!-- Kolom Kiri -->
+                <div class="layout-kiri col-md-8">
+                    <div class="card-preview mb-3">
+                        @if ($courses->cover != null)
+                            <img src="{{ asset('storage/images/covers/' . $courses->cover) }}" alt="">
                         @else
-                            <a href="{{ route('member.payment', ['course_id' => $course->id]) }}">
-                                <div class="button">Mulai Belajar</div>
-                            </a>
+                            <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" alt="">
                         @endif
-                    @else
-                        <a href="{{ route('member.payment', ['course_id' => $course->id]) }}">
-                            <div class="button">Mulai Belajar</div>
-                        </a>
-                    @endif
-                @else
-                    <p class="fw-bold">0 Bab</p>
+                    </div>
+                    <div class="card mb-3 d-md-none">
+                        <div class="card-buy-body">
+                            <div class="m-3">
+                                @if ($bundling)
+                                <p class="paket text-center mt-2 mb-0">Paket Combo</p>
+                                @else
+                                <p class="paket text-center mt-2 mb-0">Kursus</p>
+                                @endif
+                                <h3 class="card-title text-center mt-3" data-aos="zoom-out" data-aos-delay="100">Mulai Belajar
+                                    Kursus Ini</h3>
+                                <p class="text-center mx-3" data-aos="zoom-out" data-aos-delay="200">Belajar dimanapun dan kapanpun
+                                    bersama kami, dan dapatkan akses kelas selamanya dengan bergabung di kursus ini</p>
+                                <div class="benefit ms-3">
+                                    <p class="" style="color: #414142">Keuntungan Belajar Kelas ini</p>
+                                    <ul class="check-active-group mt-3 list-unstyled">
+                                        <ul class="check-active-group mt-3 list-unstyled">
+                                            <li class="check-active d-flex align-items-center mt-2" data-aos="zoom-out"
+                                                data-aos-delay="100">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Akses kelas selamanya</p>
+                                            </li>
+                                            @if ($courses->resources != null)
+                                            <li class="check-active d-flex align-items-center mt-2" data-aos="zoom-out"
+                                                data-aos-delay="200">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Asset gratis</p>
+                                            </li>
+                                            @endif
+                                            @if ($courses->price == 0)
+                                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                                data-aos-delay="300">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Belajar gratis</p>
+                                            </li>
+                                            @endif
+                                            @if ($bundling)
+                                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                                data-aos-delay="400">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Bonus E-Book</p>
+                                            </li>
+                                            @endif
+                                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                                data-aos-delay="600">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Grup diskusi private</p>
+                                            </li>
+                                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                                data-aos-delay="700">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Konsultasi dengan mentor</p>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="mb-3">
+                                    @if ($transaction == null)
+                                        <p class="price-title text-center" style="color: #414142; margin:5px">Harga</p>
+                                        @if ($courses->price != 0 && !$bundling)
+                                            <h3 class="price text-center">Rp{{ number_format($courses->price, 0, ',', '.') }}</h3>
+                                        @elseif ($bundling && $bundling->price != 0)
+                                            <h3 class="price text-center">Rp{{ number_format($bundling->price, 0, ',', '.') }}</h3>
+                                        @else
+                                            <h3 class="price text-center">Gratis</h3>
+                                        @endif
+                                    @endif
+                                </div>
+    
+                                @if ($transaction)
+                                    @if ($transaction->status == 'pending')
+                                        <a href="#" class="buy btn btn-warning w-100">Dalam Proses Pembayaran</a>
+                                    @elseif ($transaction->status == 'success')
+                                        @if (isset($lesson) && isset($lesson->episode))
+                                            <a href="{{ route('member.course.play', ['slug' => $courses->slug, 'episode' => $lesson->episode]) }}"
+                                                class="buy btn btn-warning w-100">Mulai Belajar</a>
+                                        @else
+                                            <a href="#" class="buy btn btn-warning w-100">Kelas Dalam Pembaruan</a>
+                                        @endif
+                                    @else
+                                        <a href="{{ route('member.payment', ['course_id' => $courses->id]) }}"
+                                            class="buy btn btn-warning w-100">Ambil Kelas</a>
+                                    @endif
+                                @else
+                                    @if ($bundling)
+                                    <a href="{{ route('member.payment', ['bundle_id' => $bundling->id]) }}"
+                                        class="buy btn btn-warning w-100">Ambil Kelas</a>
+                                    @else
+                                        <a href="{{ route('member.payment', ['course_id' => $courses->id]) }}"
+                                            class="buy btn btn-warning w-100">Ambil Kelas</a>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    @if ($bundling)
+                    <div class="card-bonus mb-3" data-aos="fade-up">
+                        <div class="card-bonus-body">
+                            <h5>Bonus</h5>
+                            <div class="d-flex">
+                                <a class="book-img" href="{{ route('member.ebook.join', $bundling->ebook->slug) }}">
+                                    <img src="{{ asset('storage/images/covers/' . $bundling->ebook->cover) }}" alt="" width="80" height="100" style="object-fit: cover; border-radius: 5px">
+                                </a>
+                                <table class="detail">
+                                    <tr>
+                                        <td>Judul E-Book</td>
+                                        <td><span>: {{ $bundling->ebook->name }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kategori E-Book</td>
+                                        <td><span>: {{ $bundling->ebook->category }}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tingkatan</td>
+                                        <td><span>: 
+                                            @if ($bundling->ebook->level == 'beginner')
+                                            Pemula
+                                            @elseif ($bundling->ebook->level == 'intermediate')
+                                            Menengah
+                                            @else
+                                            Ahli
+                                            @endif</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div> 
                 @endif
-            </div>
-        </div>
-
-        <!-- About -->
-        <div class="row my-5">
-            <div class="col-12">
-                <h4 class="fw-semibold">Tentang Video</h4>
-                <p class="mt-4" style="font-size: 14px">
-                    {{ $course->description }}
-                </p>
-            </div>
-            {{-- @if ($course->ebook)
-                <div class="col-12 mt-4">
-                    <h4 class="fw-semibold">About eBook</h4>
-                    <p class="mt-4" style="font-size: 14px">
-                        eBook adalah buku elektronik yang memungkinkan Anda untuk membaca dan belajar kapan saja dan di mana
-                        saja melalui perangkat digital Anda. Dengan format yang fleksibel, eBook menawarkan cara baru yang
-                        praktis untuk mengakses informasi dan konten pendidikan.
-                    </p>
-                    <a href="/member/joinebook"><button class="btn px-4 py-2 fw-medium text-white">Start
-                            Learning</button></a>
-                </div>
-            @endif --}}
-        </div>
-
-        <!-- Tools -->
-        @if (count($course->tools) > 0)
-            <div class="row">
-                <div class="col-12">
-                    <h4 class="fw-semibold mb-4">Alat</h4>
-                </div>
-                <div class="col-12">
-                    <div class="row">
-                        @foreach ($course->tools as $tool)
-                            <div class="col-12 col-md-6 col-lg-3 mb-4">
-                                <a href="{{ $tool->link }}" class="text-decoration-none text-black">
-                                    <div class="tools p-3 p-md-5 pt-lg-5 rounded-4">
-                                        <div
-                                            class="d-flex align-items-center justify-content-center text-center d-md-block">
-                                            <div class="col-6 col-md-12">
-                                                <img src="{{ asset('storage/images/logoTools/' . $tool->logo_tools) }}"
-                                                    alt="" class="rounded-3 object-fit-cover" />
+                
+                    <div class="card mb-3" data-aos="fade-up">
+                        <div class="card-body">
+                            <h5>Detail Kursus</h5>
+                            <table class="detail">
+                                <tr>
+                                    <td>Tanggal rilis</td>
+                                    <td><span>: {{ $courses->created_at->format('d F Y') }}</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal update</td>
+                                    <td>
+                                        @if ($chapterInfo) 
+                                        <span>: {{ $chapterInfo->updated_at->format('d F Y') }}</span>
+                                        @else
+                                            <span>: -</span> 
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tingkatan</td>
+                                    <td>
+                                        <span>:
+                                            @if ($courses->type == 'beginner')
+                                                Pemula
+                                            @elseif ($courses->type == 'intermediate')
+                                                Menengah
+                                            @else
+                                                Ahli
+                                            @endif
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Jenis paket</td>
+                                    <td>
+                                        <span>: Kursus
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+    
+                    <div class="card mb-3" data-aos="fade-up">
+                        <div class="card-body">
+                            <h5>Deskripsi Kursus</h5>
+                            <p>{{ $courses->description }}</p>
+                        </div>
+                    </div>
+    
+                    <div class="card mb-3" data-aos="fade-up">
+                        <div class="card-body">
+                            <h5>Tools</h5>
+                            <div class="d-flex">
+                                @foreach ($coursetools->tools as $tool)
+                                    <div class="card-tool px-2 pt-2 me-3 mb-3">
+                                        <img src="{{ asset('storage/images/logoTools/' . $tool->logo_tools) }}" alt=""
+                                            class="" width="50" height="50">
+                                        <p>{{ $tool->name_tools }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimoni" id="testimoni" data-aos="fade-up">
+                        <div class="container-fluid">
+                            @if ($reviews->isNotEmpty())
+                            <h5>Testimoni</h5>
+                            <div class="col-12 mt-4">
+                                <div class="row card-testimoni d-none d-md-flex">
+                                    @foreach ($reviews as $index => $review)
+                                        <div class="col-12 col-md-6 testimoni-card review-item" data-index="{{ $index }}" style="{{ $index >= 2 ? 'display: none;' : '' }}">
+                                            <div class="card mb-4">
+                                                <div class="card-body">
+                                                    <div class="card-head d-flex align-items-center">
+                                                        @if ($review->user->avatar !=null)
+                                                            <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" width="50" class="avatar-img" style="border-radius: 50%">
+                                                            @else
+                                                            <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" width="50" width="50" class="avatar-img" style="border-radius: 50%">
+                                                        @endif
+                                                        
+                                                        <div class="name ms-3">
+                                                            <h5 class="card-title m-0 fw-bold">{{ $review->user->name }}</h5>
+                                                            <p class="m-0">{{ $review->user->profession }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <p class="card-text p-0 m-0 mt-2">{{ $review->note }}</p>
+                                                </div>
                                             </div>
-                                            <div class="col-6 col-md-12">
-                                                <p class="fw-semibold m-0 mt-md-4">
-                                                    {{ $tool->name_tools }} <br />
-                                                    Software Gratis
-                                                </p>
-                                            </div>
-
                                         </div>
+                                    @endforeach
+                                </div>
+                                <div class="swiper-container d-md-none">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($reviews as $review)
+                                            <div class="swiper-slide testimoni-card review-item">
+                                                <div class="card mb-4">
+                                                    <div class="card-body">
+                                                        <div class="card-head d-flex align-items-center">
+                                                        @if ($review->user->avatar !=null)
+                                                            <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" class="avatar-img" width="50" height="50" style="border-radius: 50%">
+                                                            @else
+                                                            <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" class="avatar-img" width="50" height="50" style="border-radius: 50%">
+                                                        @endif
+                                                            
+                                                            <div class="name ms-3">
+                                                                <h5 class="card-title m-0 fw-bold">{{ $review->user->name }}</h5>
+                                                                <p class="m-0">{{ $review->user->profession ?? 'Profession not specified' }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <p class="card-text p-0 m-0 mt-2">{{ $review->note }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                </a>
+                                </div>
+                                <div class="navtabs-more-testimoni d-flex justify-content-center mt-4 d-none d-md-flex">
+                                    <button class="btn btn-primary px-4 pt-2 pb-2" id="show-more-btn">
+                                        Lihat Lainnya
+                                    </button>
+                                </div>
                             </div>
-                        @endforeach
+                            @endif
+                        </div>
+                    </div>
+                    
+                </div>
+    
+                <!-- Kolom Kanan -->
+                <div class="layout-kanan col-md-4 d-none d-md-block">
+                    <div class="card-buy card mb-3" style="position: sticky; top: 100px;">
+                        <div class="card-buy-body">
+                            <div class="m-3">
+                                @if ($bundling)
+                                <p class="paket text-center mt-2 mb-0">Paket Combo</p>
+                                @else
+                                <p class="paket text-center mt-2 mb-0">Kursus</p>
+                                @endif
+                                <h3 class="card-title text-center mt-3" data-aos="zoom-out" data-aos-delay="100">Mulai Belajar
+                                    Kursus Ini</h3>
+                                <p class="text-center mx-3" data-aos="zoom-out" data-aos-delay="200">Belajar dimanapun dan kapanpun
+                                    bersama kami, dan dapatkan akses kelas selamanya dengan bergabung di kursus ini</p>
+                                <div class="benefit ms-3">
+                                    <p class="" style="color: #414142">Keuntungan Belajar Kelas ini</p>
+                                    <ul class="check-active-group mt-3 list-unstyled">
+                                        <ul class="check-active-group mt-3 list-unstyled">
+                                            <li class="check-active d-flex align-items-center mt-2" data-aos="zoom-out"
+                                                data-aos-delay="100">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Akses kelas selamanya</p>
+                                            </li>
+                                            @if ($courses->resources != null)
+                                            <li class="check-active d-flex align-items-center mt-2" data-aos="zoom-out"
+                                                data-aos-delay="200">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Asset gratis</p>
+                                            </li>
+                                            @endif
+                                            @if ($courses->price == 0)
+                                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                                data-aos-delay="300">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Belajar gratis</p>
+                                            </li>
+                                            @endif
+                                            @if ($bundling)
+                                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                                data-aos-delay="400">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Bonus E-Book</p>
+                                            </li>
+                                            @endif
+                                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                                data-aos-delay="600">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Grup diskusi private</p>
+                                            </li>
+                                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                                data-aos-delay="700">
+                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <p class="m-0 p-0 ms-2">Konsultasi dengan mentor</p>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="mb-4">
+                                    @if ($transaction == null)
+                                    <p class="price-title text-center" style="color: #414142; margin:5px">Harga</p>
+                                    @if ($courses->price != 0 && !$bundling)
+                                        <h3 class="price text-center">Rp{{ number_format($courses->price, 0, ',', '.') }}</h3>
+                                    @elseif ($bundling && $bundling->price != 0)
+                                        <h3 class="price text-center">Rp{{ number_format($bundling->price, 0, ',', '.') }}</h3>
+                                    @else
+                                        <h3 class="price text-center">Gratis</h3>
+                                    @endif
+                                    @endif
+                                </div>
+    
+                                @if ($transaction)
+                                    @if ($transaction->status == 'pending')
+                                        <a href="#" class="buy btn btn-warning w-100">Dalam Proses Pembayaran</a>
+                                    @elseif ($transaction->status == 'success')
+                                        @if (isset($lesson) && isset($lesson->episode))
+                                            <a href="{{ route('member.course.play', ['slug' => $courses->slug, 'episode' => $lesson->episode]) }}"
+                                                class="buy btn btn-warning w-100">Mulai Belajar</a>
+                                        @else
+                                            <a href="#" class="buy btn btn-warning w-100">Kelas Dalam Pembaruan</a>
+                                        @endif
+                                    @else
+                                        <a href="{{ route('member.payment', ['course_id' => $courses->id]) }}"
+                                            class="buy btn btn-warning w-100">Ambil Kelas</a>
+                                    @endif
+                                @else
+                                    @if ($bundling)
+                                    <a href="{{ route('member.payment', ['bundle_id' => $bundling->id]) }}"
+                                        class="buy btn btn-warning w-100">Ambil Kelas</a>
+                                    @else
+                                        <a href="{{ route('member.payment', ['course_id' => $courses->id]) }}"
+                                            class="buy btn btn-warning w-100">Ambil Kelas</a>
+                                    @endif
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        @endif
-
-        <!-- Payment -->
-        @if ($chapters->isNotEmpty())
-            <div class="row my-5">
-                <div class="col-12">
-                    <h4 class="fw-semibold">Pembayaran</h4>
-                </div>
-                <div class="d-flex justify-content-md-between w-100" style="flex-wrap: wrap">
-                    <div class="col-custom col-md-6 col-12 rounded-4 p-4 ms-lg-2 mt-4">
-                        <img src="{{ asset('nemolab/member/img/payment-img.png') }}" alt="" width="70" />
-                        <p class="mt-4 fw-light mb-1" style="font-size: 15px">Video</p>
-                        <h5 class="fw-semibold">Rp {{ number_format($course->price, 0) }}</h5>
-                        <p>Raih Akses Premium Seumur Hidup dan Bangun Proyek Nyata Anda Sendiri</p>
-                        <hr class="mb-4 border-2" />
-                        <div>
-                            @foreach (['Akses Eksklusif Seumur Hidup', 'Raih Premium Istimewa', 'Konsultasi Karier Pribadi', 'Sertifikat Kelulusan Prestisius', 'Kesempatan Karier Bergengsi'] as $item)
-                                <div class="profit">
-                                    <img src="{{ asset('nemolab/member/img/check.png') }}" alt="" width="25"
-                                        height="25" />
-                                    <p>{{ $item }}</p>
-                                </div>
-                            @endforeach
-                        </div>
-                        @if (!isset($transaction) || $transaction->status == 'failed')
-                            <a href="{{ route('member.payment', ['course_id' => $course->id]) }}"
-                                class="text-decoration-none disabled text-capitalize">
-                                <button class="btn mx-auto d-flex px-5 py-2 mt-3 text-white fw-semibold rounded-3">Beli
-                                    Kelas</button>
-                            </a>
-                        @elseif($transaction->status == 'success')
-                            <div class="alert alert-success mt-3 text-center text-capitalize" role="alert">
-                                Kelas Sudah Di Beli
-                            </div>
-                        @else
-                            <div class="alert alert-warning mt-3 text-center text-capitalize" role="alert">
-                                {{ $transaction->status }}
-                            </div>
-                        @endif
-
-                    </div>
-
-                </div>
-            </div>
-        @endif
-{{--
-        <div class="row">
-            <div class="col-12">
-                <h4 class="fw-semibold mb-4">Ulasan</h4>
-            </div>
-            <div class="col-12">
-                <div id="ulasanUser" class="carousel slide">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <div class="row text-black">
-                            <div class="col-6">
-                                <div class="ulasan border border-1 border-black p-4 rounded-4">
-                                <div class="d-flex gap-3 mb-3 align-items-center">
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <p class="m-0 fw-semibold">(8.9K)</p>
-                                </div>
-                                <p class="desc-ulasan">Saya sangat puas dengan pelatihan ini. Instruktur yang berpengalaman dan dukungan komunitas sangat membantu saya dalam mengasah keterampilan desain web. Sangat direkomendasikan!</p>
-                                <div class="d-flex gap-3 align-items-center">
-                                    <div><img src="{{ asset('nemolab/admin/img/avatar.png') }}" alt="" width="50" /></div>
-                                    <div>
-                                    <h5 class="mb-0" style="font-size: 18px">Pria Ikhlas Sambada</h5>
-                                    <p class="m-0" style="font-size: 11px">Mentor</p>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="ulasan border border-1 border-black p-4 rounded-4">
-                                <div class="d-flex gap-3 mb-3 align-items-center">
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <p class="m-0 fw-semibold">(8.9K)</p>
-                                </div>
-                                <p class="desc-ulasan">Kursus ini benar-benar membuka wawasan saya tentang desain web. Materi yang disampaikan</p>
-                                <div class="d-flex gap-3 align-items-center">
-                                    <div><img src="{{ asset('nemolab/admin/img/avatar.png') }}" alt="" width="50" /></div>
-                                    <div>
-                                    <h5 class="mb-0" style="font-size: 18px">Reveiro Keyla Ega Pradana</h5>
-                                    <p class="m-0" style="font-size: 11px">Mentor</p>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <div class="row text-black">
-                            <div class="col-6">
-                                <div class="ulasan border border-1 border-black p-4 rounded-4">
-                                <div class="d-flex gap-3 mb-3 align-items-center">
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <p class="m-0 fw-semibold">(8.9K)</p>
-                                </div>
-                                <p class="desc-ulasan">Saya sangat puas dengan pelatihan ini. Instruktur yang berpengalaman dan dukungan komunitas sangat membantu saya dalam mengasah keterampilan desain web. Sangat direkomendasikan!</p>
-                                <div class="d-flex gap-3 align-items-center">
-                                    <div><img src="{{ asset('nemolab/admin/img/avatar.png') }}" alt="" width="50" /></div>
-                                    <div>
-                                    <h5 class="mb-0" style="font-size: 18px">Vebrian</h5>
-                                    <p class="m-0" style="font-size: 11px">Mentor</p>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="ulasan border border-1 border-black p-4 rounded-4">
-                                <div class="d-flex gap-3 mb-3 align-items-center">
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <p class="m-0 fw-semibold">(8.9K)</p>
-                                </div>
-                                <p class="desc-ulasan">Kursus ini benar-benar membuka wawasan saya tentang desain web. Materi yang disampaikan</p>
-                                <div class="d-flex gap-3 align-items-center">
-                                    <div><img src="{{ asset('nemolab/admin/img/avatar.png') }}" alt="" width="50" /></div>
-                                    <div>
-                                    <h5 class="mb-0" style="font-size: 18px">Wahid Satrio Aji</h5>
-                                    <p class="m-0" style="font-size: 11px">Mentor</p>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <div class="row text-black">
-                            <div class="col-6">
-                                <div class="ulasan border border-1 border-black p-4 rounded-4">
-                                <div class="d-flex gap-3 mb-3 align-items-center">
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <p class="m-0 fw-semibold">(8.9K)</p>
-                                </div>
-                                <p class="desc-ulasan">Saya sangat puas dengan pelatihan ini. Instruktur yang berpengalaman dan dukungan komunitas sangat membantu saya dalam mengasah keterampilan desain web. Sangat direkomendasikan!</p>
-                                <div class="d-flex gap-3 align-items-center">
-                                    <div><img src="{{ asset('nemolab/admin/img/avatar.png') }}" alt="" width="50" /></div>
-                                    <div>
-                                    <h5 class="mb-0" style="font-size: 18px">Naufal Muhammad Dzaky</h5>
-                                    <p class="m-0" style="font-size: 11px">Mentor</p>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="ulasan border border-1 border-black p-4 rounded-4">
-                                <div class="d-flex gap-3 mb-3 align-items-center">
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <img src="{{ asset('nemolab/member/img/star-ulasan.png') }}" alt="" width="17" height="17" />
-                                    <p class="m-0 fw-semibold">(8.9K)</p>
-                                </div>
-                                <p class="desc-ulasan">Kursus ini benar-benar membuka wawasan saya tentang desain web. Materi yang disampaikan</p>
-                                <div class="d-flex gap-3 align-items-center">
-                                    <div><img src="{{ asset('nemolab/admin/img/avatar.png') }}" alt="" width="50" /></div>
-                                    <div>
-                                    <h5 class="mb-0" style="font-size: 18px">Muhammad Wildan Saputra</h5>
-                                    <p class="m-0" style="font-size: 11px">Mentor</p>
-                                    </div>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-indicators position-relative mt-4">
-                        <button class="prev" type="button" data-bs-target="#ulasanUser" data-bs-slide="prev">
-                            <img src="{{ asset('nemolab/member/img/arrow-ulasan.png') }}" alt="" width="50" style="position: absolute; left: 19rem; top:-6px;">
-                        </button>
-                        <button type="button" data-bs-target="#ulasanUser" data-bs-slide-to="0" class="active point" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#ulasanUser" data-bs-slide-to="1" aria-label="Slide 2" class="point"></button>
-                        <button type="button" data-bs-target="#ulasanUser" data-bs-slide-to="2" aria-label="Slide 3" class="point"></button>
-
-                        <button class="next" type="button" data-bs-target="#ulasanUser" data-bs-slide="next">
-                            <img src="{{ asset('nemolab/member/img/arrow-ulasan.png') }}" alt="" width="50" style="position: absolute; right: 19rem; top:-6px; transform: scaleX(-1); ">
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-    </div>
+        </div>
+    </main>
 @endsection
+@push('addon-script')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const showMoreBtn = document.getElementById('show-more-btn');
+        let currentLimit = 4;
+
+        showMoreBtn.addEventListener('click', function() {
+            const reviews = document.querySelectorAll('.review-item');
+            for (let i = currentLimit; i < currentLimit + 4 && i < reviews.length; i++) {
+                reviews[i].style.display = 'block';
+            }
+            currentLimit += 4;
+            if (currentLimit >= reviews.length) {
+                showMoreBtn.style.display = 'none';
+            }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let swiper;
+
+        function initializeSwiper() {
+            if (window.innerWidth < 768 && !swiper) {
+                swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    centeredSlides: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    autoplay: {
+                        delay: 5000,
+                        disableOnInteraction: false,
+                    },
+                });
+            } else if (window.innerWidth >= 768 && swiper) {
+                swiper.destroy(true, true);
+                swiper = undefined;
+            }
+        }
+        initializeSwiper();
+        window.addEventListener('resize', initializeSwiper);
+    });
+</script>
+
+
+
+@endpush

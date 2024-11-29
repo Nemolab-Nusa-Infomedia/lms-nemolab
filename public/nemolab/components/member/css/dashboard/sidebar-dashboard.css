@@ -1,0 +1,201 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600;700&display=swap');
+
+/* Variable for colors */
+:root {
+    --color-bg: white;
+    --color-active: #FAA907;
+    --color-icon: white;
+    --dim-grey:#B5B5B5;
+    --blck-grey: #414142;
+    --lavender: #FFF6F6;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+}
+
+/* Sidebar styling */
+.sidebar {
+    background-color: var(--color-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 83vh;
+    position: relative;
+    transition: top 0.7s ease-in-out;
+}
+
+/* Sidebar profile section */
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile h5 {
+    color: var(--blck-grey);
+    font-weight: 900;
+}
+
+.profile p:first-child {
+    font-size: 18px !important;
+    margin-bottom: 0 !important;
+}
+
+.profile p:last-child {
+    font-size: 15px !important;
+    color: #B5B5B5;
+}
+
+
+.name {
+    color: var(--blck-grey);
+}
+
+.posisi {
+    color: var(--dim-grey);
+}
+
+/* Sidebar menu */
+.menu {
+    padding-left: 0;
+}
+
+.menu ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.menu li {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    justify-content: flex-start;
+}
+
+.menu li img {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    transition: filter 0.3s;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #B5B5B5; /* Warna font sebelum aktif */
+    font-weight: 700 !important;
+    width: 100%;
+}
+
+.menu li:hover {
+    background-color: var(--lavender);
+}
+
+/* Active tab styling */
+.menu li.active {
+    background-color: var(--color-active);
+}
+
+.menu li.active img {
+    filter: brightness(0) invert(1);
+    /* Change icon color to white */
+}
+
+.menu li.active a {
+    color: white;
+}
+
+/* Sidebar Mobile Section */
+#sidebar-mobile-section {
+    display: none;
+    position: fixed;
+    width: 100%;
+    bottom: 5px;
+    z-index: 999;
+}
+
+#sidebar-mobile-section .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+#sidebar-mobile-section .col-sm-3 img {
+    padding: 5px;
+    border: 2px solid #B5B5B5;
+    border-radius: 10px;
+    width: 60px;
+    height: 60px;
+    transition: border-color 0.3s;
+}
+
+#sidebar-mobile-section .row .col-sm-3 a img.active {
+    border-color: var(--color-active);
+}
+
+
+#sidebar-mobile-section p {
+    color: #B5B5B5;
+    font-weight: 600 !important;
+}
+
+#sidebar-mobile-section p.active {
+    color: var(--color-active) !important;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+
+    #course-card {
+        width: 100%;
+    }
+
+    .sidebar {
+        height: max-content;
+        padding: 40px 40px;
+    }
+
+    .card-container {
+        padding-left: 20px;
+        padding-right: 0;
+    }
+    #sidebar-mobile-section {
+        display: block;
+    }
+}
+
+/* 
+
+@media screen and (max-width: 768px) {
+    #sidebar-mobile-section {
+        display: block;
+    }
+
+} */
+
+@media screen and (max-width: 576px) {
+    #sidebar-mobile-section .row {
+        margin: 0 auto;
+        padding: 10px 0;
+    }
+
+    #sidebar-mobile-section .col-sm-3 img {
+        width: 46px;
+        height: 46px;
+    }
+}

@@ -1,38 +1,122 @@
-/* FOOTER */
-.footer {
-    margin-top: 50px;
-    background-color: white;
-    padding-bottom: 10px;
-}
-.footer .logo img {
-    max-height: 40px;
-}
-.footer .social-icons {
-    text-align: right;
-}
-.footer .social-icons a {
-    margin: 0 3px;
-}
-.footer .social-icons img {
-    height: 35px;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+/* variabel color */
+:root {
+    --dim-grey: #696969;
+    --charcoal-gray: #414142;
 }
 
-@media (max-width: 576px) {
-    .company-name p {
-        font-size: 15px;
+/* #footer  {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+} */
+
+#footer .container-fluid .brand-nemolab-icon .title-navbar-brand p {
+    color: white;
+    font-family: 'Nunito', sans-serif !important;
+    line-height: 1.2;
+    font-weight: 400 !important;
+}
+
+#footer .container-fluid .brand-nemolab-icon .title-navbar-brand p:first-child {
+    font-size: 20px;
+    font-weight: 700 !important;
+}
+
+#footer .container-fluid .brand-nemolab-icon .title-navbar-brand p:last-child {
+    font-size: 14px;
+}
+
+
+#footer .container-fluid .content .col-12 p {
+    font-weight: 400 !important;
+}
+
+#footer .container-fluid .content .col-3 div p,
+#footer .container-fluid .content .col-3 div a {
+    font-weight: 400 !important;
+}
+
+
+#footer .container-fluid .content {
+    background-color: var(--charcoal-gray);
+    padding: 30px 2.5rem;
+}
+
+#footer .container-fluid .copyright {
+    background-color: var(--dim-grey);
+}
+
+
+@media screen and (min-width: 480px) and (max-width: 576px) {
+
+    #footer .container-fluid .content {
+        padding: 50px 2.5rem !important;
     }
 
-    .footer .social-icons img {
-        width: 32px;
-        height: 32px;
+    #footer .container-fluid .copyright {
+        padding: 20px 2.5rem !important;
+    }
+
+    #footer .container-fluid .content .row .col-3 {
+        width: 50%;
+    }
+
+    #footer .container-fluid .content .row .col-3:nth-child(4),
+    #footer .container-fluid .content .row .col-3:nth-child(5) {
+        margin-top: 30px !important;
+    }
+
+    #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:first-child,
+    #footer .container-fluid .content .col-3 .title {
+        font-size: 20px !important;
+    }
+
+    #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:last-child,
+    #footer .container-fluid .content .col-12 p,
+    #footer .container-fluid .content .col-3 .content-kelas p {
+        font-size: 18px !important;
+    }
+
+
+    #footer .container-fluid .copyright p {
+        font-size: 18px !important;
     }
 }
-@media (max-width: 992px) {
-    .company-name p {
-        font-size: 14px;
+
+@media screen and (max-width: 480px) {
+
+    #footer .container-fluid .content {
+        padding: 50px 2.5rem !important;
     }
-    .footer .social-icons img {
-        width: 30px;
-        height: 30px;
+
+    #footer .container-fluid .copyright {
+        padding: 20px 2.5rem !important;
     }
+
+    #footer .container-fluid .content .row .col-3 {
+        width: 50%;
+    }
+
+    #footer .container-fluid .content .row .col-3:nth-child(4),
+    #footer .container-fluid .content .row .col-3:nth-child(5) {
+        margin-top: 30px !important;
+    }
+
+    #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:first-child,
+    #footer .container-fluid .content .col-3 .title {
+        font-size: 18px !important;
+    }
+
+    #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:last-child,
+    #footer .container-fluid .content .col-12 p,
+    #footer .container-fluid .content .col-3 .content-kelas p {
+        font-size: 16px !important;
+    }
+
+    #footer .container-fluid .copyright p {
+        font-size: 16px !important;
+    }
+
 }

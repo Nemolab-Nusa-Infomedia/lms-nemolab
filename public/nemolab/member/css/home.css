@@ -1,276 +1,363 @@
-:root {
-    --c-dark: #383131;
-    --c-brand: #faa907;
-    --c-brand-rgb: rgb(250, 169, 7);
-    --font-base: "Montserrat", sans-serif;
-    --font-nunito:"Nunito Sans", sans-serif;
-    --font-quicksand:"Quicksand", sans-serif;
-    --transition: all 0.5s ease;
-    --box-shadow-card: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+@import url('color.css');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif !important;
 }
 
-body {
-    font-family: var(--font-base) !important;
-    line-height: 1.7;
-    height: 100vh;
-    overflow-y: auto;
+
+html {
+    scroll-behavior: smooth;
 }
 
-body::-webkit-scrollbar {
+html::-ms-overflow-style {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+html::-webkit-scrollbar {
     display: none;
 }
 
-/* NAVBAR
-  .navbar-brand img {
-    width: auto;
-    height: 40px;
-  }
-  
-  .navbar-nav {
-    gap: 2rem;
-  }
-  
-  .nav-link {
-    font-weight: normal;
-    color: var(--c-dark);
-  }
-  
-  .active {
-    background: -webkit-linear-gradient(
-      0deg,
-      rgba(250, 169, 7, 1) 1%,
-      rgba(255, 119, 0, 1) 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: bold;
-  }
-  
-  .btn-login {
-    font-weight: 600;
-    color: var(--c-dark);
-    width: 87px;
-    border-radius: 10px;
-  }
-  
-  .btn-login:hover {
-    color: var(--c-brand);
-    transition: var(--transition);
-    border: 1px solid var(--c-brand);
-  }
-  
-  .btn-signup {
-    background-color: var(--c-brand);
-    font-weight: 600;
-    border-radius: 10px;
-  }
-  
-  .btn-signup:hover {
-    background-color: var(--c-brand);
-  } */
 
-/* HOME */
-.card-home {
-    width: 100%;
-    height: auto;
-    border-radius: 50px;
-    border: none;
-    background-size: cover;
-    background-repeat: no-repeat;
-    box-shadow: var(--box-shadow-card);
-    background-image: url("/nemolab/member/img/Frame223.png") !important;
-}
 
-.card-title {
-    font-size: 32px;
-    font-family: "Montserrat", sans-serif;
-}
-
-.card-text{
-    font-size: "Nunito Sans", sans-serif;
-}
-
-.btn-started {
-    border: none;
-    background-color: #fff;
-    text-decoration: none;
-    padding: 10px 0;
-    color: var(--c-brand);
-    font-weight: bold;
-}
-
-.btn-started:hover {
-    background-color: #f1f0f0;
-    transition: 0.2s all;
-}
-
-.tools {
-    gap: 6rem;
-}
-
-.card-tools {
-    border: 3px solid var(--c-brand);
-    border-radius: 20px;
-    box-shadow: 0px 0px 5px var(--c-brand);
-    font-family: "Quicksand", sans-serif;
-}
-
-.figma {
-    width: 15% !important;
-}
-
-.card-tools img {
-    width: 18%;
-}
-
-.card-tools h3 {
-    font-weight: bold;
-}
-
-/* COURSE */
-#course {
-    background-color: var(--c-brand);
+/* button */
+a.btn-warning{
     color: white;
-    border-radius: 50px;
-}
-
-.deskripsi-course {
-    width: 50%;
-}
-
-.row-course {
-    height: 35rem;
-}
-
-.image-course-1 {
-    background-image: linear-gradient(
-            to bottom,
-            transparent,
-            rgba(0, 0, 0, 0.438)
-        ),
-        url("/nemolab/member/img/img-course-1.png");
-    background-size: cover;
-    border: none !important;
-}
-
-.image-course-2 {
-    background-image: linear-gradient(
-            to bottom,
-            transparent,
-            rgba(0, 0, 0, 0.438)
-        ),
-        url("/nemolab/member/img/img-course-2.png");
-    background-size: cover;
-    border: none !important;
-}
-
-.image-course-3 {
-    background-image: linear-gradient(
-            to bottom,
-            transparent,
-            rgba(0, 0, 0, 0.438)
-        ),
-        url("/nemolab/member/img/img-course-3.png");
-    background-size: cover;
-    border: none !important;
-}
-
-.btn-join {
-    border: 1px solid white;
-    border-radius: 30px;
-    padding: 15px 35px;
-}
-
-.btn-join:hover {
-    border: 1px solid var(--c-brand);
-    transition: var(--transition);
-}
-
-.btn-more {
-    text-decoration: none;
-    background-color: #fff;
-    color: var(--c-brand);
-    border-radius: 30px;
-    padding: 15px 35px;
-    transition: 0.2s all;
-    /* padding: 12px 30px; */
-}
-
-.btn-more:hover {
-    background-color: #f1f0f0;
-    color: var(--c-brand);
-}
-
-/* TESTIMONIAL */
-
-#testimonial h2{
-    font-family: "Montserrat", sans-serif;
-}
-
-#testimonial p{
-    font-family: "Nunito Sans", sans-serif;
-}
-
-.name p{
-    font-family: "Quicksand", sans-serif !important;
-}
-
-.comment{
-    font-family: "Nunito Sans", sans-serif;
-}
-
-.text-gray {
-    color: #a7abb6;
-}
-
-.marquee-container {
-    overflow-y: auto;
-}
-
-.marquee-container::-webkit-scrollbar {
-    display: none;
-}
-
-.scroll {
-    animation: scroll-up 24s linear infinite;
-    height: 100vh;
-}
-
-.scroll-reverse {
-    animation: scroll-down 25s linear infinite;
-    height: 100vh;
-}
-
-.card-testimonial {
-    width: 80%;
-    height: auto;
-    border-radius: 15px;
+    background-color: var(--color-orange);
+    transition: all 0.3s ease;
     border: none;
-    background-color: var(--c-brand);
-    margin-top: 1rem; /* Add some space between the cards */
-    flex-shrink: 0; /* Prevent flex items from shrinking */
+    font-weight: 700;
+}
+a.btn-warning:hover{
+    color: white;
+    background-color: var(--color-orange-hover);
+}
+a.btn-warning:active {
+    color: white !important;
+    background-color: var(--color-orange-hover) !important;
+    transition: background-color 0s;
+}
+a.btn-primary{
+    color: white;
+    background-color: var(--color-blue);
+    transition: all 0.3s ease;
+    border: none;
+    font-weight: 700;
+}
+a.btn-primary:hover{
+    color: white;
+    background-color: var(--color-blue-hover);
+}
+a.btn-primary:active {
+    color: white !important;
+    background-color: var(--color-blue-hover) !important;
+    transition: background-color 0s;
+}
+a.btn-light{
+    color: var(--color-orange);
+    background-color: #ffff;
+    transition: all 0.3s ease;
+    border: none;
+    font-weight: 700;
+}
+a.btn-light:hover{
+    background-color: var(--color-light-hover);
+    color: var(--color-orange);
+}
+a.btn-light:active {
+    color: var(--color-orange) !important;
+    background-color: var(--color-light-hover) !important;
+    transition: background-color 0s;
+}
+a.btn-secondary{
+    background-color: var(--head-title);
+}
+a.btn-secondary:hover{
+    color: #ffff;
+}
+a.btn-secondary:active {
+    color: #ffff !important;
+    background-color: var(--head-title) !important;
+    transition: background-color 0s;
 }
 
-.card-testimonial p {
-    font-weight: 500;
+h1{
+    color: var(--head-title);
+}
+p{
+    color: var(--sub-title);
+}
+
+#section-hero-img {
+    padding: 2rem 3rem;
+    margin-top: 6rem;
+}
+#section-hero-img img {
+    max-width: 100%;
+    height: auto; 
+}
+/* end style section 1 */
+
+
+
+/* sesion 2 */
+#section-pilih-kelas {
+    background-color: var(--color-orange);
+    padding: 0 2.5rem;
+    padding-bottom: 60px !important;
+}
+
+#section-pilih-kelas .container-fluid .title-pilih-kelas .title-group h1,
+#section-pilih-kelas .container-fluid .title-pilih-kelas .title-group p {
+    color: white;
+    line-height: 1.3;
+}
+
+#section-pilih-kelas .container-fluid .title-pilih-kelas a {
     font-size: 16px;
+    background-color: white;
+    color: var(--color-orange);
+    padding: 10px 24px;
+}
+#section-pilih-kelas .container-fluid .title-pilih-kelas a:hover {
+    background-color: var(--color-light-hover);
 }
 
-.profile img {
-    width: 40px;
-    height: 40px;
-    margin: auto 0;
+#section-pilih-kelas .card {
+    width: 25rem;
+    border-radius: 14px;
+    height: max-content;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.comment {
-    font-size: 12px;
+#section-pilih-kelas .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+#section-pilih-kelas .card img {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    object-fit: cover;
+    width: 100%;
+    height: 250px;
+}
+#section-pilih-kelas .title-card h5 {
+    font-size: 17px;
+    color: var(--head-title);
+}
+
+
+#section-pilih-kelas .title-card img {
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+}
+
+#section-pilih-kelas .btn-group-harga .btn-primary {
+    background-color: var(--color-orange);
     color: white;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    font-weight: 600;
+  }
+  
+#section-pilih-kelas .harga p:last-child {
+color: var(--color-grey);
+}
+#section-pilih-kelas .paket {
+    color: var(--color-orange);
+    display: flex;
+    font-size: small;
+    font-weight: 600;
+  }
+#section-pilih-kelas .paket-item {
+    color: var(--color-orange);
+    border: 1px solid var(--color-orange);
+    padding: 3px 7px;
+    margin: 0 5px 5px 0;
+    border-radius: 6px;
+  }
+
+#section-pilih-kelas .truncate-text {
+    display: block;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    max-height: 3em;
+    text-overflow: ellipsis;
+    transition: max-height 0.3s ease, -webkit-line-clamp 0.3s ease;
+}
+
+#section-pilih-kelas .card:hover .truncate-text {
+    -webkit-line-clamp: unset;
+    max-height: none;
+}
+
+#section-pilih-kelas .truncate-text.expanded {
+    white-space: normal;
+    -webkit-line-clamp: unset;
+    max-height: none;
+}
+
+/* style section-tentang-nemolab */
+#section-tentang-nemolab {
+    padding: 60px 1rem;
+}
+#section-tentang-nemolab a.btn-light{
+    color: #414142;
+    background-color: #F0EAFF;
+    transition: all 0.3s;
+    font-size: 15px;
+}
+/* #section-tentang-nemolab a.btn-secondary {
+    font-size: 13px;
+}
+#section-tentang-nemolab  a.btn-primary{
+    font-size: 13px;
+}
+#section-tentang-nemolab  a.btn-warning{
+    font-size: 15px;
+}
+#section-tentang-nemolab a.btn-warning{
+    font-size: 13px;
+} */
+#section-tentang-nemolab a.btn-light:hover{
+    background-color: var(--color-light-hover);
+}
+#section-tentang-nemolab a.btn-light:active{
+    color: #414142 !important;
+    background-color: var(--color-light-hover) !important;
+}
+#service {
+    border-radius: 15px;
+    background-color: var(--hero-bg);
+    flex-direction: row;
+    max-width: max-content;
+}
+
+.card-service {
+    height: 90px;
+    width: 142px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card-service h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: var(--color-grey);
+}
+
+.card-service .btn {
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+}
+/* end style section-tentang-nemolab */
+
+
+
+#section-benefit-kelas {
+    padding: 10px 1rem;
+}
+
+
+.check-active-group {
+    text-align: left;
+    /* Keep text left-aligned for check-active items */
+}
+
+.check-active-group .check-active p {
+    font-weight: 600;
+    color: var(--color-grey);
+}
+
+.benefit-images {
+    gap: 50px;
+}
+
+
+.grid-images .grid-img {
+    width: 180px;
+    height: 100px;
+    margin: 6px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* style section 5 */
+#section-testimoni-kelas {
+    padding: 80px 1rem;
+}
+
+#section-testimoni-kelas .container-fluid .testimoni-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#section-testimoni-kelas .container-fluid .testimoni-title h1 {
+    text-align: center;
+}
+
+#section-testimoni-kelas .container-fluid .testimoni-title p {
+    font-size: 15px;
+    text-align: center;
+}
+
+#section-testimoni-kelas .container-fluid .row {
+    height: 500px;
+    overflow: hidden;
+}
+
+#section-testimoni-kelas .container-fluid .row .col-md-4 .card {
+    width: 20rem;
+    border: none;
+    border-radius: 13px;
+    background-color: var(--light-shade);
+}
+
+#section-testimoni-kelas .container-fluid .row .col-md-4 .card .card-body .name h5 {
+    font-size: 16px;
+    color: var(--color-grey);
+}
+
+#section-testimoni-kelas .container-fluid .row .col-md-4 .card .card-body .name p {
+    font-size: 14px;
+    color: var(--shade-gray);
+}
+
+#section-testimoni-kelas .container-fluid .row .col-md-4 .card .card-body p {
+    font-size: 14px;
+    color: var(--color-gray);
+}
+
+
+.scroll-up {
+    animation: scroll-down 10s linear infinite;
+}
+
+.scroll-down {
+    animation: scroll-up 10s linear infinite;
 }
 
 @keyframes scroll-up {
     0% {
         transform: translateY(0);
     }
+
     100% {
         transform: translateY(-50%);
     }
@@ -280,467 +367,140 @@ body::-webkit-scrollbar {
     0% {
         transform: translateY(-50%);
     }
+
     100% {
         transform: translateY(0);
     }
-} 
-
-.scroll:hover,
-.scroll-reverse:hover {
-    animation-play-state: paused;
 }
 
-/* ABOUT US */
-#aboutus {
-    margin-top: 120px;
+/* end style section 5 */
+
+
+/* section 6 */
+#section-pusat-bantuan {
+    padding: 100px 1rem;
+    background-color: var(--color-orange);
 }
 
-#aboutus h1{
-    font-family: "Montserrat", sans-serif;
-}
-
-#aboutus h5{
-    font-family: "Nunito Sans", sans-serif;
-    font-weight: normal;
-}
-
-.stat-label{
-    font-weight: normal !important;
-}
-
-.stat{
-    font-weight: 500;
-    font-family:"Quicksand", sans-serif ;
-}
-
-.text-gradient {
-    color: var(--c-brand);
-    font-weight: bold;
-    background: -webkit-linear-gradient(
-        0deg,
-        rgba(250, 169, 7, 1) 1%,
-        rgba(255, 119, 0, 1) 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.stats-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.stat {
-    text-align: center;
-    font-size: 3.6rem;
-    padding: 0 2em; /* Adjust the padding to control the space around the vertical line */
-}
-
-.stat-line {
-    border-right: 1px solid black;
-}
-
-.stat-label {
-    font-size: 1.2rem;
-    white-space: nowrap;
-}
-
-/* CONTACTUS */
-#contactus {
-    border: 1px solid rgba(0, 0, 0, 0.455);
-    border-radius: 20px;
-    color: black;
-}
-
-#contactus h3 {
-    color: var(--c-brand);
-    font-family: "Quicksand", sans-serif;
-}
-
-#contactus p {
-    font-family: "Nunito Sans", sans-serif;
-}
-
-.card-contact {
-    background-color: var(--c-brand);
+#section-pusat-bantuan h1 {
     color: white;
-    border-radius: 20px;
 }
 
-.card-contact img {
-    max-width: 30px;
+#section-pusat-bantuan p {
+    font-size: 18px;
+    color: white;
 }
-
-.contact-platform {
-    font-size: 17px;
-    font-weight: 500;
-    font-family: "Montserrat", sans-serif !important;
-}
-
-.value-platform {
-    font-size: 13px;
-}
-
-.entryarea {
-    position: relative;
-    height: 50px;
-    margin-bottom: 1rem;
-}
-
-input,
-textarea {
-    position: absolute;
+#section-pusat-bantuan img{
     width: 100%;
-    outline: none;
-    padding: 0 20px;
-    line-height: 50px;
-    border-radius: 15px;
-    border: 1px solid rgb(0, 0, 0);
-    background: transparent;
-    transition: 0.1s ease;
-    z-index: 1;
-    color: rgb(0, 0, 0);
-    font-family: "Nunito Sans", sans-serif;
+    height: auto;
 }
 
-.labelline,
-.labelline-textarea {
-    position: absolute;
-    color: rgb(0, 0, 0);
-    padding: 0 10px;
-    margin: 0 15px;
-    background-color: white; /* Default brand color */
-    transition: 0.2s ease;
-    pointer-events: none;
-    line-height: 50px;
+/* end section 6 */
+
+
+.order-center {
+    display: flex !important;
+    justify-content: center;
 }
 
-input:focus,
-input:valid,
-textarea:focus,
-textarea:valid {
-    border: 2px solid rgb(0, 0, 0);
-}
 
-input:focus + .labelline,
-input:valid + .labelline,
-textarea:focus + .labelline-textarea,
-textarea:valid + .labelline-textarea {
-    color: rgb(0, 0, 0);
-    height: 20px;
-    line-height: 20px;
-    padding: 0 10px;
-    transform: translate(-10px, -15px) scale(0.88);
-    z-index: 1;
-}
-
-input[type="email"]:focus + .labelline,
-input[type="email"]:valid + .labelline {
-    color: rgb(0, 0, 0);
-    height: 20px;
-    line-height: 20px;
-    padding: 0 10px;
-    transform: translate(-10px, -15px) scale(0.88);
-    z-index: 1;
-}
-
-textarea {
-    line-height: 1.5;
-    height: 190px; /* Adjusted height for better textarea fit */
-    padding-top: 10px;
-}
-
-.entryarea-textarea {
-    height: auto; /* Adjust height for textarea container */
-}
-
-textarea::-webkit-scrollbar {
-    display: none;
-}
-
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-/* Firefox */
-
-.btn-kirim {
-    text-decoration: none;
-    background-color: var(--c-brand);
-    font-size: 16px;
-    padding: 9px 15px;
-    font-family: "Montserrat", sans-serif;
-}
-
-.btn-kirim:hover {
-    transition: 0.2s all;
-    background-color: #fa9d07;
-}
-
-@media screen and (max-width: 1200px) {
-    /* HOME */
-    .card-tools {
-        border: 3px solid var(--c-brand);
-        border-radius: 20px;
-        width: 25%;
-        box-shadow: 0px 0px 5px var(--c-brand);
+/* Responsive Design */
+@media (max-width: 768px) {
+    .row {
+        margin: 0 !important;
     }
-
-    .card-tools img {
-        width: 50px;
+    h1 {
+        font-size: 24px;
     }
-
-    .card-tools h3 {
+    p {
         font-size: 16px;
     }
-
-    /* COURSE */
-    .row-course {
-        height: 28rem !important;
+    #section-hero-img {
+        padding: 60px 1rem;
+        height: max-content;
+        margin-top: 60px;
     }
 
-    .card-title {
-        font-size: 26px;
+    #section-pilih-kelas .container-fluid .title-pilih-kelas .title-group h1,
+    #section-pilih-kelas .container-fluid .title-pilih-kelas .title-group p {
+        margin-left: 12px;
     }
 
-    #course .card-text {
+    #section-pilih-kelas {
+        background-color: var(--color-orange);
+        padding: 0rem;
+    }
+
+    #section-pilih-kelas .content-kelas .btn-light{
+        font-size: 16px;
+        padding: 10px 24px;
+    }
+
+    #section-pilih-kelas .filter-head {
+        font-size: 17px;
+    }
+
+    #section-pilih-kelas .card .card-img-top {
+        margin-top: 4px;
+        object-fit: cover;
+        height: 57px;
+        width: 80px;
+        border-radius: 7px;
+    }
+
+    #section-pilih-kelas .card-body,
+    .card-head {
+        padding: 10px;
+    }
+
+    #section-pilih-kelas .card-body {
+        position: relative;
+    }
+
+    #section-pilih-kelas .title-card h5 {
+        font-size: 14px;
+        margin-bottom: 2px;
+        max-width: 200px;
+    }
+
+    #section-pilih-kelas .title-card img {
+        width: 25px;
+        height: 25px;
+        margin-bottom: 1px;
+    }
+
+    #section-pilih-kelas .card .avatar p{
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--sub-title);
+    }
+
+    #section-pilih-kelas .btn-group-harga .btn-warning {
+        background-color: var(--color-orange);
+        font-size: 10px;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+
+    #section-pilih-kelas .harga {
         font-size: 12px;
-        width: 100%;
     }
 
-    /* TESTTIMONIAL */
-    .card-testimonial {
-        width: 100%;
+    #section-pilih-kelas .paket-item {
+        color: var(--color-orange);
+        font-size: 9px;
     }
+}
 
-    /* ABOUT US */
-    .stat {
+
+@media (max-width: 1024px) {
+    #section-benefit-kelas .col-md-6.text-center {
         text-align: center;
-        font-size: 3.3rem;
-        padding: 0 2em; /* Adjust the padding to control the space around the vertical line */
     }
 
-    .stat-label {
-        font-size: 0.9rem;
+    #section-benefit-kelas .check-active-group {
+        display: flex;
+        flex-direction: column;
     }
-
-    #aboutus h1 {
-        font-size: 30px;
-    }
-
-    #aboutus h5 {
-        font-size: 20px;
-    }
-}
-
-@media screen and (max-width: 992px) {
-    /* NAVBAR */
-    .navbar-nav {
-        gap: 0;
-    }
-
-    /* HOME */
-    .card-home {
-        background-image: url("/nemolab/member/img/bg-card-home2.png") !important;
-        border-radius: 18px;
-    }
-
-    .card-tools {
-        border: 3px solid var(--c-brand);
-        border-radius: 20px;
-        width: 25%;
-        box-shadow: 0px 0px 5px var(--c-brand);
-    }
-
-    .card-tools img {
-        width: 30px;
-    }
-
-    .card-tools h3 {
-        font-size: 16px;
-    }
-
-    /* COURSE */
-    .row-course {
-        height: max-content !important;
-    }
-
-    .image-course-1 {
-        height: 300px !important;
-    }
-
-    .image-course-2 {
-        height: 200px !important;
-        margin-top: 20px;
-    }
-
-    .image-course-3 {
-        height: 200px !important;
-        margin-top: 20px;
-    }
-
-    .btn-join {
-        border: 1px solid white;
-        border-radius: 30px;
-        padding: 8px 28px;
-    }
-
-    /* ABOUT US */
-    #aboutus h1 {
-        font-size: 28px;
-    }
-
-    #aboutus h5 {
-        font-size: 16px;
-    }
-
-    .stat {
-        text-align: center;
-        font-size: 2.5rem;
-        padding: 0 2em; /* Adjust the padding to control the space around the vertical line */
-    }
-
-    /* CONTACT US */
-    #contactus .col-lg-7 h3 {
-        margin-top: 40px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    /* HOME */
-    .card-tools {
-        width: 100%;
-    }
-
-    .tools {
-        gap: 2rem;
-    }
-
-    .card-tools img {
-        width: 30px;
-    }
-
-    .card-tools h3 {
-        font-size: 16px;
-    }
-
-    /* COURSE */
-    .image-course-1 {
-        background-position: center;
-    }
-
-    .image-course-2 {
-        background-position-x: -140px;
-    }
-
-    /* ABOUT US */
-    .stat {
-        padding: 0 40px;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    /* HOME */
-    #home .col-lg-6 {
-        padding: 20px;
-    }
-
-    .tools {
-        display: block !important;
-        margin: 0;
-        padding: 0 !important;
-        margin-bottom: 10px;
-    }
-
-    .card-tools {
-        width: 100%;
-        margin-bottom: 20px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    .card-tools h3 {
-        font-size: 20px;
-        width: max-content;
-    }
-
-    .figma {
-        width: 30px !important;
-    }
-
-    .card-tools img {
-        width: 40px;
-    }
-
-    /* COURSE */
-    #course {
-        border-radius: 0px;
-    }
-
-    #course p {
-        width: 100% !important;
-        text-align: justify;
-    }
-
-    .row-course {
-        padding: 0 !important;
-    }
-
-    .deskripsi-course {
-        width: 100% !important;
-    }
-
-    .image-course-2 {
-        height: 300px !important;
-    }
-
-    .image-course-3 {
-        height: 300px !important;
-    }
-
-    .btn-join {
-        margin-bottom: 20px !important;
-    }
-
-    /* TESTIMONIAL */
-    #testimonial {
-        margin-top: 50px;
-    }
-
-    .row-marque {
-        width: 90%;
-        margin: 0 auto;
-    }
-
-    .first-marque {
-        display: none;
-    }
-
-    .second-marque {
-        display: none;
-    }
-
-    /* ABOUT US */
-    .stat {
-        display: none;
-    }
-
-    /* CONTACTUS */
-    #contactus {
-        border-radius: 0px;
-        border: none;
-        margin-top: 0px !important;
-        padding: 0px 12px !important ;
-    }
-
-    #contactus .col-6 {
-        width: 100%;
-    }
-}
-
-@media screen and(max-width:460px) {
 }

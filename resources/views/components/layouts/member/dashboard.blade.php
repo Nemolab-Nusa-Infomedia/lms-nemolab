@@ -4,46 +4,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="{{ asset('nemolab/member/img/logo-nemolab.png') }}" type="image/x-icon" />
+    <title>Nemolab - @yield('title')</title>
+    <!-- boostrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    {{-- aos --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    
     @stack('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/navbar.css') }} ">
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/footer.css') }} ">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="icon" href="{{ asset('nemolab/member/img/nemolab.ico') }}" type="image/x-icon">
-    @stack('addon-script')
+    {{-- <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/dashboard/setting.css') }} "> --}}
+
+    @stack('addon-style')
 </head>
 
 <body>
-    <header>
-        @include('components.includes.member.navbar-auth')
-    </header>
 
-    <div id="content">
+    @if (Auth::check())
+        @include('components.includes.member.navbar-dashboard-auth')
+    @else
+        @include('components.includes.member.navbar-dashboard')
+    @endif
+
+
+    <main id="content" class="flex-grow-1" style="min-height: 100vh">
         {{-- content --}}
         @yield('content')
-    </div>
-    @include('components.includes.member.footer')
+    </main>
+
+    @if (!View::hasSection('hide_footer'))
+        @include('components.includes.member.footer')
+    @endif
 
     {{-- include sweetalert --}}
     @include('sweetalert::alert')
 
     @stack('prepend-script')
-    <script src="{{ asset('nemolab/components/admin/js/profile-navbar.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <!-- boostrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- box icon -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+
+    <!-- Inisialisasi AOS -->
+    <script>
+        AOS.init({
+            once: true, 
+        });
+      </script>
+       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.dropdown-logout');
+            const registerBtn = document.getElementById('dropdownMenuButton1');
+            function LinkLogoutFunc() {
+                if (window.innerWidth < 992) {
+
+                    navbarToggler.style.display = 'none';
+
+                    registerBtn.setAttribute('data-bs-toggle', 'modal');
+                    registerBtn.setAttribute('data-bs-target', '#targetModalLogin');
+                    
+                } else {
+                    navbarToggler.style.display = 'block';
+
+                    registerBtn.setAttribute('data-bs-toggle', 'dropdown');
+                }
+                window.addEventListener('resize', LinkLogoutFunc())
+            }
+        });
     </script>
     <script>
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            this.classList.toggle('on');
-            document.getElementById('navbarContent').classList.toggle('show');
+        document.addEventListener("DOMContentLoaded", function() {
+            const sidebarLinks = document.querySelectorAll(".side-tabs li a");
+            
+            sidebarLinks.forEach(link => {
+                const linkUrl = new URL(link.href);
+                const currentUrl = new URL(window.location.href);
+                if (linkUrl.origin === currentUrl.origin && linkUrl.pathname === currentUrl.pathname) {
+                    link.parentElement.classList.add("active");
+                } else {
+                    link.parentElement.classList.remove("active");
+                }
+            });
         });
-        const navLink = document.querySelectorAll('.nav-link');
-        navLink.forEach(nav => nav.classList.remove('active'));
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggler = document.getElementById('navbarToggler');
+            const icon = document.getElementById('navbarIcon');
+
+            toggler.addEventListener('click', () => {
+                // Toggle class "active" pada gambar
+                if (toggler.getAttribute('aria-expanded') === 'true') {
+                    icon.src = "{{ asset('nemolab/member/img/icon-nav-active.png') }}";
+
+                    icon.classList.remove('active');
+                } else {
+                    icon.src = "{{ asset('nemolab/member/img/icon-nav.png') }}";
+                    icon.classList.add('active');
+                }
+            });
+        });
     </script>
     @stack('addon-script')
 

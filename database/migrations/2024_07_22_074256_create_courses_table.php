@@ -15,20 +15,21 @@ return new class extends Migration
             $table->id();
             // Foreign key constraint
             $table->foreignId('mentor_id')->constrained('users')->onDelete('cascade');
-            $table->string('category', 255);
+            $table->enum('category', ['Frontend Developer', 'Backend Developer', 'Wordpress Developer','Graphics Designer','Fullstack Developer','UI/UX Designer'])->default('Frontend Developer');
             $table->string('name', 255);
             $table->string('slug', 255);
             $table->text('cover')->nullable();
             $table->enum('type', ['free', 'premium']);
+            $table->string('product_type')->default('video');
             $table->enum('status', ['draft', 'published']);
             $table->integer('price');
             $table->enum('level', ['beginner', 'intermediate', 'expert']);
             $table->text('description')->nullable();
             $table->text('resources')->nullable(true);
             $table->text('link_grub')->nullable(false);
-            $table->text('rating')->nullable(true);
+            // $table->text('rating')->nullable(true);
             $table->timestamps();
-
+    
 
         });
     }

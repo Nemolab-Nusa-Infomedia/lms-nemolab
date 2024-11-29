@@ -6,6 +6,7 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+
 body {
     background: linear-gradient(to bottom right, #faa907, #ff7700);
     min-height: 100vh;
@@ -13,6 +14,7 @@ body {
     justify-content: center;
     align-items: center;
 }
+
 .container {
     background-color: #fff;
     border-radius: 10px;
@@ -25,6 +27,7 @@ body {
 #preview {
     border-radius: 30px;
 }
+
 h2 {
     background: linear-gradient(to right, #faa907, #ff7700);
     -webkit-background-clip: text;
@@ -71,17 +74,21 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 .btn-kirim {
     background-color: #faa907;
     border: none;
 }
+
 .btn-kirim:hover {
     background-color: #ff7700;
 }
+
 .btn-batal {
     background-color: gray;
     border: none;
 }
+
 .btn-batal:hover {
     background-color: rgb(60, 57, 57);
 }
@@ -100,10 +107,10 @@ input::-webkit-inner-spin-button {
     pointer-events: none;
 }
 
-input:focus + .labelline,
-input:not(:placeholder-shown) + .labelline,
-textarea:focus + .labelline-textarea,
-textarea:not(:placeholder-shown) + .labelline-textarea {
+input:focus+.labelline,
+input:not(:placeholder-shown)+.labelline,
+textarea:focus+.labelline-textarea,
+textarea:not(:placeholder-shown)+.labelline-textarea {
     color: rgb(0, 0, 0);
     height: 20px;
     line-height: 20px;
@@ -127,9 +134,7 @@ textarea:not(:placeholder-shown) + .labelline-textarea {
     border: 1px solid rgb(0, 0, 0);
     border-radius: 8px;
     appearance: none;
-    background: #fff
-        url('data:image/svg+xml;utf8,<svg fill="%23faa907" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>')
-        no-repeat right 0.75em center;
+    background: #fff url('data:image/svg+xml;utf8,<svg fill="%23faa907" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 0.75em center;
     background-size: 1em;
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
@@ -154,7 +159,8 @@ textarea:not(:placeholder-shown) + .labelline-textarea {
 
 /* Styling the file input */
 .custom-file-input {
-    display: none; /* Hide the default input */
+    display: none;
+    /* Hide the default input */
 }
 
 /* Styling the custom file label */
@@ -163,25 +169,34 @@ textarea:not(:placeholder-shown) + .labelline-textarea {
     padding: 0.5em 1em;
     font-size: 1em;
     color: #fff;
-    background-color: #000; /* Black background */
-    border: 1px solid #000; /* Black border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
+    background-color: #000;
+    /* Black background */
+    border: 1px solid #000;
+    /* Black border */
+    border-radius: 4px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Pointer cursor on hover */
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 /* Change background color on hover */
 .custom-file-label:hover {
-    background-color: #333; /* Darker background on hover */
+    background-color: #333;
+    /* Darker background on hover */
 }
 
 /* Styling the image preview */
 .image-preview {
     margin-top: 2em;
-    height: 307px; /* Set height for preview */
-    border: 1px solid #000; /* Black border */
-    border-radius: 4px; /* Rounded corners */
-    background-color: #f0f0f0; /* Light gray background */
+    height: 307px;
+    /* Set height for preview */
+    border: 1px solid #000;
+    /* Black border */
+    border-radius: 4px;
+    /* Rounded corners */
+    background-color: #f0f0f0;
+    /* Light gray background */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -201,7 +216,7 @@ textarea:not(:placeholder-shown) + .labelline-textarea {
 .required-field::before {
     content: "*";
     color: red;
-  }
+}
 
 @media (min-width: 576px) {
     .card-custom-width {

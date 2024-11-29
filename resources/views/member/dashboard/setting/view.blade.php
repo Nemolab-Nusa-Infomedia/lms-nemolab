@@ -1,80 +1,81 @@
-@extends('components.layouts.member.app')
+@extends('components.layouts.member.dashboard')
 
-@push('prepend-style')
-<link rel="stylesheet" href="{{ asset('nemolab/member/css/setting-profile.css') }}">
-<link rel="stylesheet" href="{{ asset('nemolab/components/member/css/dashboard/sidebar.css') }}">
+@section('title', 'Nemolab - Lihat informasi dan perkembangan anda disini')
+@section('hide_footer')
+@endsection
+
+
+@push('addon-style')
+    <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/dashboard/sidebar-dashboard.css') }} ">
+    <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/dashboard/setting.css') }} ">
 @endpush
 
 @section('content')
-    <section id="setting">
-        <div class="container" style="margin-top: 5rem">
+    <section class="setting-section" id="setting-section">
+        <div class="container-fluid mt-4 mt-sm-5 pt-0 pt-sm-5">
             <div class="row">
-                <!-- Sidebar -->
-                <div class="col-3 d-none d-xl-block p-4 pb-5 rounded-4 text-white px-5"
-                    style="background-color: #faa907; width: max-content;">
-                    @if (Auth::user()->avatar != 'default.png')
-                        <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}" style="border-radius: 100%;"
-                            alt="" width="70" height="70" class="d-flex mx-lg-auto mt-3" />
-                    @else
-                        <img src="{{ asset('nemolab/admin/img/avatar.png') }}" style="border-radius: 100%;" alt=""
-                            width="70" height="70" class="d-flex mx-lg-auto mt-3" />
-                    @endif
-                    <h4 class="m-0 mt-lg-5 mt-3 fw-semibold">{{ Auth::user()->name }}</h4>
-                    <p class="m-0 fw-light">Status {{ Auth::user()->role }}</p>
-                    <div class="mt-5">
-                        <a href="{{ route('member.dashboard') }}" class="list-sidebar">
-                            <img src="{{ asset('nemolab/member/img/course.png') }}" alt="" width="30" />
-                            <p class="m-0">Kursus Saya</p>
-                        </a>
-                        <a href="{{ route('member.portofolio') }}" class="list-sidebar">
-                            <img src="{{ asset('nemolab/member/img/portofolio.png') }}" alt="" width="30" />
-                            <p class="m-0">Portofolio Saya</p>
-                        </a>
-                        <a href="{{ route('member.transaction') }}" class="list-sidebar">
-                            <img src="{{ asset('nemolab/member/img/transaksi.png') }}" alt="" width="30" />
-                            <p class="m-0">Transaksi Saya</p>
-                        </a>
+
+                @include('components.includes.member.sidebar-dashboard')
+
+                <!-- Setting Cards -->
+                <div class="col-11 col-md-7 col-xl-9 mx-auto ">
+                    <h5 class="mb-4 mt-4 title-pengaturan">Pengaturan</h5>
+                    <div class="row gy-4">
+                        <div class="col-md-12 col-xl-6 ">
+                            <a href="{{ route('member.setting.profile') }}" class="text-decoration-none">
+                                <div class="setting-item">
+                                    <div class="icon py-2 px-3 mx-3">
+                                        <img src="{{ asset('nemolab/member/img/icon/card-profile.png') }}" alt="">
+                                    </div>
+                                    <div class="content ms-1 mt-3">
+                                        <h3 class="text-black">Ubah profil anda</h3>
+                                        <p class="">Ketuk untuk mengubah data diri anda disini</p>
+                                    </div>
+                                    <div class="toggle me-3">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 col-xl-6">
+                            <a href="{{ route('member.setting.reset-password') }}" class="text-decoration-none">
+                                <div class="setting-item">
+                                    <div class="icon py-2 px-3 mx-3">
+                                        <img src="{{ asset('nemolab/member/img/icon/auth.png') }}" alt="">
+                                    </div>
+                                    <div class="content ms-1 mt-3">
+                                        <h3 class="text-black">Ubah kata sandi anda</h3>
+                                        <p>Ketuk untuk mengubah kata sandi anda disini</p>
+                                    </div>
+                                    <div class="toggle me-3">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-md-12 col-xl-6">
+                            <a href="{{ route('member.setting.change-email') }}" class="text-decoration-none">
+                                <div class="setting-item">
+                                    <div class="icon py-2 px-3 mx-3">
+                                        <img src="{{ asset('nemolab/member/img/icon/message.png') }}" alt="">
+                                    </div>
+                                    <div class="content ms-1 mt-3">
+                                        <h3 class="text-black">Ubah email anda</h3>
+                                        <p>Ketuk untuk mengubah email anda disini</p>
+                                    </div>
+                                    <div class="toggle me-3">
+                                        <i class="bi bi-chevron-right"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <!-- End Sidebar -->
-    
-                <!-- My Profil -->
-                <div class="col-lg-5 col-md-10 col-12 mx-auto mx-lg-0 px-5 ms-lg-3">
-                    <h3 class="fw-semibold mb-4" style="color: #faa907">My Profile</h3>
-                    <form action="">
-                        {{-- <div class="input">
-                            <label for="">My Avatar</label><br />
-                            <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}" alt=""
-                                width="90" />
-                        </div> --}}
-                        <div class="input">
-                            <label for="name">Nama Lengkap</label><br />
-                            <input type="text" id="name" value="{{ Auth::user()->name }}" readonly />
-                        </div>
-                        <div class="input">
-                            <label for="email">Alamat Email</label><br />
-                            <input type="email" id="email" value="{{ Auth::user()->email }}" readonly />
-                        </div>
-                        <div class="input">
-                            <label for="username">Nama Pengguna</label><br />
-                            <input type="text" id="username" value="{{ Auth::user()->username }}" readonly />
-                        </div>
-                        <div class="input d-flex gap-2">
-                            <div class="input-password w-50">
-                                <label for="password">Password</label><br />
-                                <input type="password" id="password" value="{{ Auth::user()->password }}" readonly />
-                            </div>
-                            <div class="btn-password w-50" style="padding-top: 35px">
-                                <a href="{{ route('member.edit-password') }}" class="edit-pass">Edit Pass<span
-                                        class="d-none d-md-inline-block">word</span></a>
-                            </div>
-                        </div>
-                        <div class="input mt-4">
-                            <a href="{{ route('member.edit-profile') }}" class="edit-pass">Edit Profil</a>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
     </section>
+
+    @include('components.includes.member.sidebar-dashboard-mobile')
 @endsection

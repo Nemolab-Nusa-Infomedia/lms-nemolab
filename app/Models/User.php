@@ -2,36 +2,47 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\CustomVerifyEmailNotification;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
+    //menggunakan Facktor agar dapat digunakan dengan seeder
     use HasApiTokens, HasFactory, Notifiable;
 
+    //memmeriksa agar hanya kolom tersebut yang boleh disi
     protected $fillable = [
+        'avatar',
         'name',
-        'username',
         'email',
         'password',
-        'avatar',
+        'profession',
         'role',
     ];
 
+    //agar kolom dibawah ini tidak berubah
     protected $hidden = [
         'password',
         'remember_token',
     ];
-
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
+    // costum verifikasi dokumentasi ada di https://laravel.com/docs/10.x/verification#main-content
+    public function sendEmailVerificationNotification() 
+    {
+        $this->notify(new CustomVerifyEmailNotification()); //ctrl + clik pada CustomVerifyEmailNotification() untuk melihat code file
+    }
+
     /**
      * Relasi ke model Course.
-     * Seorang user (mentor) dapat memiliki banyak course.
+     * Seorang user dapat berelasi denga banyak course
      */
     public function courses()
     {
@@ -39,29 +50,18 @@ class User extends Authenticatable
     }
 
     /**
-     * Relasi ke model Transaction.
-     * Seorang user dapat memiliki banyak transaksi.
+     * Seorang user dapat berelasi dengan banyak transaksi
      */
     public function transactions()
     {
         return $this->hasMany(Transaction::class, 'user_id');
     }
-
     /**
-     * Relasi ke model Forum.
-     * Seorang user dapat membuat banyak forum.
+     * Seorang user dapat berelasi dengan banyak transaksi
      */
-    public function forums()
+    public function submissions()
     {
-        return $this->hasMany(Forum::class);
+        return $this->hasMany(Submission::class);
     }
 
-    /**
-     * Relasi ke model Comments.
-     * Seorang user dapat membuat banyak komentar.
-     */
-    public function comments()
-    {
-        return $this->hasMany(Comments::class);
-    }
 }
