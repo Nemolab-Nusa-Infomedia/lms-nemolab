@@ -85,6 +85,7 @@
     });
 </script>
 <script>
+    
     document.getElementById('toggle-password').addEventListener('click', function () {
         const passwordField = document.getElementById('password');
         const toggleIcon = document.getElementById('toggle-icon');

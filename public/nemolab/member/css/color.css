@@ -10,7 +10,6 @@
     --sub-title: #8F8F8F;
     --light-shade: #FDF8F8;
     --hero-bg: #F7F4FF;
-
     /* clickable content */
     --color-light:#F0EAFF;
     --color-orange: #FAA907;
@@ -19,8 +18,11 @@
     --color-blue-hover: #0055BC;
     --color-orange-hover: #CA8907;
     --color-light-hover:#E2D6FF;   
-
     /* card color */
     --card-bg: #ffffff;
     /* --card-bg-hover: #ffffff; */
+
+
+    /* input color */
+    --placeholder: rgba(0, 0, 0, 0.3);
 }

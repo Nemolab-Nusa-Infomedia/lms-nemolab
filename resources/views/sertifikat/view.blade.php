@@ -50,6 +50,7 @@
 
         .certificate-subtitle {
             font-size: 18px;
+            font-weight: 600;
             color: #666666;
             margin-bottom: 20px;
         }
@@ -85,67 +86,75 @@
             margin-bottom: 40px;
         }
 
-        .certificate-signature {
-            font-size: 14px;
-            color: #457b9d;
+        .certificate-signature p {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0774FA;
+            line-height: .1;
         }
+
+        .certificate-signature p:last-child {
+            font-size: 16px;
+            font-weight: 500;
+            color: #4D9DFF;
+        }
+
 
         .content {
             position: absolute;
             padding: 20px;
             width: 100%;
-            top: 66px;
-        }
+            top: 25px;
+        }   
+
 
         .logo-groups-elips {
             position: absolute;
             top: 0;
             left: 0;
+            right: 0;
             width: 100%;
             height: 100px;
         }
 
         .logo-groups-elips img {
+            width: 232px;
+            height: 277px;
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            max-height: 100px;
+            top: 0;
         }
 
         .logo-groups-elips img:first-child {
             left: 0;
-            transform: translateY(-77%) translateX(-12%);
         }
 
         .logo-groups-elips img:last-child {
             right: 0;
-            transform: translateY(-77%) translateX(0%) scaleX(-1) scaleY(-1);
         }
 
         /* Elips di pojok bawah kiri dan kanan */
         .logo-groups-elips-bottom {
             position: absolute;
+            left: 0;
+            right: 0;
             bottom: 0;
             width: 100%;
             height: 100px;
         }
 
         .logo-groups-elips-bottom img {
+            width: 232px;
+            height: 277px;
             position: absolute;
             bottom: 0;
-            transform: translateY(50%) scaleX(1) scaleY(1);
-            max-height: 100px;
         }
 
         .logo-groups-elips-bottom img:first-child {
             left: 0;
-            transform: scaleX(1) scaleY(1);
         }
 
         .logo-groups-elips-bottom img:last-child {
             right: 0;
-            transform: translateY(10%) scaleX(-1) scaleY(-1);
-            ;
         }
     </style>
 </head>
@@ -154,46 +163,55 @@
     <div class="certificate-container">
         <!-- Logo Elips atas -->
         <div class="logo-groups-elips">
-            <img src="{{ 'nemolab/member/img/sertifikat/elips-orange.png' }}" alt="">
-            <img src="{{ 'nemolab/member/img/sertifikat/elips-blue.png' }}" alt="">
+            <img src="{{ 'nemolab/member/img/sertifikat/kiri_atas.png' }}" alt="">
+            <img src="{{ 'nemolab/member/img/sertifikat/kanan_atas.png' }}" alt="">
         </div>
 
-        <div class="content">
-            <!-- Logo -->
-            <div class="certificate-logo">
-                <img src="{{ 'nemolab/member/img/sertifikat/icon-nemolab.png' }}" alt="Nemolab Logo"
-                    style="width: 130px; height: auto;">
-            </div>
-
-            <!-- Title -->
-            <div class="certificate-title">SERTIFIKAT PENGHARGAAN</div>
-            <div class="certificate-subtitle">Sertifikat Pembelajaran Kelas</div>
-
-            <!-- Awarded to -->
-            <p class="certificate-award">diberikan kepada :</p>
-            <p class="certificate-name">{{ $name }}</p>
-            <hr style="width: 70%;"> <!-- Arah horizontal garis -->
-
-            <!-- Description -->
-            <div class="certificate-desc">
-                Selamat atas keberhasilan anda dalam menyelesaikan kelas<br>
-                <span style="font-weight: bold; color: #414142;">“{{ $course }}”</span>
-            </div>
-
-            <!-- Date -->
-            <div class="certificate-date">{{ $date }}</div>
-
-            <!-- Signature -->
-            <div class="certificate-signature">
-                <div class="name">Pri Anton Subardio</div>
-                CEO Nemolab
+        <div class="content" style="position: relative;">
+            <div class="content-body" style="position: relative; z-index: 1;">
+                <!-- Watermark -->
+                <img src="{{'nemolab/member/img/sertifikat/watermark.png'}}" 
+                     alt="Watermark" 
+                     style="position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%); 
+                    width: 300px; height: auto; z-index: 0;">
+                <!-- Logo -->
+                <div class="certificate-logo">
+                    <img src="{{'nemolab/member/img/sertifikat/icon-nemolab.png' }}" alt="Nemolab Logo"
+                        style="width: 180px; height: auto;">
+                </div>
+        
+                <!-- Title -->
+                <div class="certificate-title">SERTIFIKAT PENGHARGAAN</div>
+                <div class="certificate-subtitle">Sertifikat Pembelajaran Kelas</div>
+        
+                <!-- Awarded to -->
+                <p class="certificate-award">diberikan kepada :</p>
+                <p class="certificate-name">{{ $name }}</p>
+                <hr style="width: 70%;"> <!-- Arah horizontal garis -->
+        
+                <!-- Description -->
+                <div class="certificate-desc">
+                    Selamat atas keberhasilan anda dalam menyelesaikan kelas<br>
+                    <span style="font-weight: bold; color: #414142;">“{{ $course }}”</span>
+                </div>
+                
+                <!-- Signature and Date -->
+                <div class="content-signature" style="margin-top: 80px">
+                    <div class="certificate-date">{{ $date }}</div>
+                    <div class="certificate-signature">
+                        <img src="{{'nemolab/member/img/sertifikat/signature.png'}}" height="80" width="100" alt="">
+                        <p class="name">Pri Anton Subardio</p>
+                        <p>CEO Nemolab</p>
+                    </div>
+                </div>
             </div>
         </div>
+        
 
         <!-- Logo Elips bawah -->
         <div class="logo-groups-elips-bottom">
-            <img src="{{ 'nemolab/member/img/sertifikat/elips-blue.png' }}" alt="">
-            <img src="{{ 'nemolab/member/img/sertifikat/elips-orange.png' }}" alt="">
+            <img src="{{ 'nemolab/member/img/sertifikat/kiri_bawah.png' }}" alt="">
+            <img src="{{ 'nemolab/member/img/sertifikat/kanan_bawah.png' }}" alt="">
         </div>
     </div>
 </body>

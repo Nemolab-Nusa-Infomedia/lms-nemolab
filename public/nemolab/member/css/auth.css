@@ -1,18 +1,6 @@
 /* font */
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-
-:root {
-    --card-bg:#fff;
-    --lavender: #FFF6F6;
-    --blue: #0774FA;
-    --color-orange: #FAA907;
-    --color-grey: #414142;
-    --dim-grey: #696969;
-    --placeholder: rgba(0, 0, 0, 0.3);
-    --charcoal-gray: #414142;
-    --light-shade: #FDF8F8;
-    --shade-gray: #8F8F8F;
-}
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap'); */
+@import url('color.css');
 * {
     scrollbar-width: none;
     -ms-overflow-style: none; 
@@ -70,7 +58,7 @@ p {
 
 .form-control {
     border: none;
-    background-color: var(--lavender);
+    background-color: var(--background-color);
     border-radius: 10px;
     font-size: 16px;
     padding: 0.8rem 1rem !important;
@@ -81,7 +69,7 @@ p {
 }
 .form-select {
     border: none;
-    background-color: var(--lavender);
+    background-color: var(--background-color);
     border-radius: 10px;
     font-size: 16px;
     color: var(--color-grey);
@@ -113,7 +101,7 @@ p {
     outline: none !important;
 }
 .btn-back {
-    background-color: var(--blue);
+    background-color: var(--color-blue);
     border-radius: 50%;
     padding: 0.25rem;
     display: inline-flex;
@@ -123,7 +111,7 @@ p {
     height: 40px;
 }
 .btn-back:hover{
-    background-color: rgb(61, 61, 233);
+    background-color: var(--color-blue-hover);
 }
 
 .back-icon {
@@ -136,7 +124,7 @@ p {
 }
 
 .btn-primary:hover {
-    background-color: #f57c00;
+    background-color: var(--color-orange-hover) !important;
 }
 
 a {
@@ -149,7 +137,7 @@ a:hover {
 }
 
 .email-info{
-    color: var(--blue);
+    color: var(--color-blue);
 }
 
 /* OTP Input */
@@ -176,7 +164,7 @@ a:hover {
 }
 
 .otp-number-input::placeholder {
-    color: var(--grey);
+    color: var(--color-grey);
     font-size: 24px;
     text-align: center;
 }
