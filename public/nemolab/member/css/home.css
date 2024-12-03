@@ -302,14 +302,22 @@ p {
     flex-direction: column;
 }
 
+#section-pilih-kelas a {
+    /* flex-grow: 1; */
+    text-decoration: none !important;
+}
+
 #section-pilih-kelas .title-card h5 {
-    font-size: 17px;
+    font-size: 18px;
+    font-weight: 800;
     color: var(--head-title);
 }
 
 #section-pilih-kelas .title-card p {
     /* flex-grow: 1; */
     margin: 0;
+    font-weight: 600;
+    font-size: 16px;
 
     img {
         width: 1.75rem;
@@ -348,6 +356,14 @@ p {
 #section-pilih-kelas .paket-item {
     color: var(--color-orange);
     border: 1px solid var(--color-orange);
+    padding: 3px 7px;
+    margin: 0 5px 5px 0;
+    border-radius: 6px;
+}
+
+#section-pilih-kelas .paket-item:hover{
+    color: var(--color-orange-hover);
+    border: 1px solid var(--color-orange-hover);
     padding: 3px 7px;
     margin: 0 5px 5px 0;
     border-radius: 6px;
@@ -627,11 +643,10 @@ p {
     #section-pilih-kelas .container-fluid .title-pilih-kelas .title-group h1,
     #section-pilih-kelas .container-fluid .title-pilih-kelas .title-group p {
         margin-left: 12px;
-        color: #ffff;
+        /* color: #ffff; */
     }
 
     #section-pilih-kelas {
-        background-color: var(--color-orange);
         padding: 0rem;
     }
 
@@ -644,7 +659,16 @@ p {
         font-size: 17px;
     }
 
-    #section-pilih-kelas .card .card-img-top {
+    #section-pilih-kelas .course-card{
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    #section-pilih-kelas .card{
+        width: 100%;
+    }
+
+    /* #section-pilih-kelas .card .card-img-top {
         margin-top: 4px;
         object-fit: cover;
         height: 57px;
@@ -694,7 +718,7 @@ p {
     #section-pilih-kelas .paket-item {
         color: var(--color-orange);
         font-size: 9px;
-    }
+    } */
 }
 
 

@@ -13,21 +13,25 @@
             <div class="col-md-6">
                 <div class="text-center text-md-start me-md-3">
                     <h1 class="fw-bold mt-4 mt-md-0">BELAJAR KURSUS ONLINE GRATIS, KAPANPUN DAN DIMANAPUN</h1>
-                    <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai macam kelas mulai
+                    <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai macam
+                        kelas mulai
                         yang gratis hingga yang berbayar</p>
                     <a href="{{ route('member.course') }}" class="btn btn-warning px-4 py-2 mt-2">Mulai Belajar</a>
                 </div>
             </div>
             <div class="col-md-6 d-none d-md-block align-items-center">
                 <div class="image-wrapper">
-                    <img src="{{ asset('nemolab/member/img/lp-hero-pisah-1.png') }}" alt="" data-aos="fade-up" data-aos-delay="100">
+                    <img src="{{ asset('nemolab/member/img/lp-hero-pisah-1.png') }}" alt="" data-aos="fade-up"
+                        data-aos-delay="100">
                     <div class="image-overlay1">
-                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-2.png') }}" alt="" data-aos-delay="300" data-aos="fade-down">
+                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-2.png') }}" alt="" data-aos-delay="300"
+                            data-aos="fade-down">
                     </div>
                     <div class="image-overlay2">
-                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-3.png') }}" alt="" data-aos-delay="500" data-aos="fade-left">
+                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-3.png') }}" alt="" data-aos-delay="500"
+                            data-aos="fade-left">
                     </div>
-                </div>              
+                </div>
             </div>
         </div>
     </section>
@@ -40,55 +44,67 @@
                     <p class="subtitle-kelas">Beralih menjadi profesional dari sekarang dengan memilih kelas dan mulai
                         belajar</p>
                 </div>
-                <a href="{{ route('member.course') }}" class="btn btn-light fw-bold d-none d-md-block">Lihat Kelas Lainnya</a>
+                <a href="{{ route('member.course') }}" class="btn btn-light fw-bold d-none d-md-block">Lihat Kelas
+                    Lainnya</a>
             </div>
-            
+
             <div class="courses-wrapper">
                 <div class="courses-scroll">
                     @foreach ($courses as $course)
                         @if ($course)
-                        <div class="course-card">
-                            <div class="card">
-                                @if ($course->cover != null)
-                                    <img src="{{ asset('storage/images/covers/' . $course->cover) }}" class="card-img-top"
-                                        alt="{{ $course->name }}" />
-                                @else
-                                    <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top"
-                                        alt="{{ $course->name }}" />
-                                @endif
-                                <div class="card-body">
-                                    <div class="paket d-flex">
-                                        @if (in_array($course->id, $InBundle))
-                                        <p class="paket-item">Paket Combo</p>
-                                        @else
-                                            <p class="paket-item">Kursus</p>
-                                        @endif
-                                    </div>
-                                    <div class="title-card">
-                                        <p>{{ $course->category }}</p>
-                                        <h5 class="fw-bold truncate-text">{{ $course->name }}</h5>
-                                        <p class="avatar m-0 fw-bold me-1">
-                                            @if ($course->users->avatar != null)
-                                                <img class="me-2" src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
-                                                    alt="" />
+                            <div class="course-card">
+                                <div class="card">
+                                    @if ($course->cover != null)
+                                        <img src="{{ asset('storage/images/covers/' . $course->cover) }}"
+                                            class="card-img-top" alt="{{ $course->name }}" />
+                                    @else
+                                        <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top"
+                                            alt="{{ $course->name }}" />
+                                    @endif
+                                    <div class="card-body">
+                                        <div class="paket d-flex">
+                                            @if (in_array($course->id, $InBundle))
+                                                <a
+                                                    href="{{ route('member.course', ['filter-paket' => 'paket-bundling']) }}">
+                                                    <p class="paket-item">Paket Combo</p>
+                                                </a>
                                             @else
-                                                <img class="me-2" src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="" />
+                                                <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}">
+                                                    <p class="paket-item">Kursus</p>
+                                                </a>
                                             @endif
-                                            {{ $course->users->name }}
-                                        </p>
-                                    </div>
-                                    <div class="btn-group-harga d-flex justify-content-between align-items-center mt-3">
-                                        <div class="harga">
-                                            <p class="p-0 m-0 fw-semibold">Harga</p>
-                                            <p class="p-0 m-0 fw-bold">
-                                                {{ $course->price == 0 ? 'Gratis' : 'Rp' . number_format($course->price, 0, ',', '.') }}
-                                            </p>                        
                                         </div>
-                                        <a href="{{ route('member.course.join', $course->slug) }}" class="btn btn-warning">Mulai Belajar</a>
+                                        <div class="title-card">
+                                            <a href="{{ route('member.course.join', $course->slug) }}">
+                                                <p>{{ $course->category }}</p>
+                                                <h5 class="fw-bold truncate-text">{{ $course->name }}</h5>
+                                            </a>
+                                            <p class="avatar m-0 fw-bold me-1">
+                                                @if ($course->users->avatar != null)
+                                                    <img class="me-2"
+                                                        src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
+                                                        alt="" />
+                                                @else
+                                                    <img class="me-2"
+                                                        src="{{ asset('nemolab/member/img/icon/Group 7.png') }}"
+                                                        alt="" />
+                                                @endif
+                                                {{ $course->users->name }}
+                                            </p>
+                                        </div>
+                                        <div class="btn-group-harga d-flex justify-content-between align-items-center mt-3">
+                                            <div class="harga">
+                                                <p class="p-0 m-0 fw-semibold">Harga</p>
+                                                <p class="p-0 m-0 fw-bold">
+                                                    {{ $course->price == 0 ? 'Gratis' : 'Rp' . number_format($course->price, 0, ',', '.') }}
+                                                </p>
+                                            </div>
+                                            <a href="{{ route('member.course.join', $course->slug) }}"
+                                                class="btn btn-warning">Mulai Belajar</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         @endif
                     @endforeach
                 </div>
@@ -120,7 +136,8 @@
                                 <a href="{{ route('member.course', ['filter-paket' => 'paket-ebook']) }}"
                                     class="btn btn-primary py-1 px-2 mt-2">belajar sekarang</a>
                             </div>
-                            <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out" data-aos-delay="400">
+                            <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out"
+                                data-aos-delay="400">
                                 <h4 class="fw-bold">Video + E-book</h4>
                                 <a href="{{ route('member.course', ['filter-paket' => 'paket-bundling']) }}"
                                     class="btn btn-warning py-1 px-2 mt-2">belajar sekarang</a>
@@ -131,7 +148,8 @@
                 <div class="col-md-6 row align-items-center">
                     <div class="ms-md-4 text-center text-md-start" data-aos="fade-up" data-aos-delay="200">
                         <h1 class="fw-bold">Mengapa Harus Belajar Keahlian Di Nemolab?</h1>
-                        <p class="my-4 my-md-3">Kamu bisa belajar berbagai macam keahlian di sini. Kami juga menyediakan kelas video dan e-book
+                        <p class="my-4 my-md-3">Kamu bisa belajar berbagai macam keahlian di sini. Kami juga menyediakan
+                            kelas video dan e-book
                             yang bisa menyesuaikan tipe pembelajaran kamu. Jadi, mulailah menjadi ahli dari sekarang!</p>
                         <div class="link-href-group d-flex justify-content-center justify-content-md-start">
                             <!-- Center buttons on mobile -->
@@ -161,15 +179,18 @@
                                 <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
                                 <p class="m-0 p-0 ms-2">Akses kelas selamanya</p>
                             </li>
-                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out" data-aos-delay="100">
+                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                data-aos-delay="100">
                                 <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
                                 <p class="m-0 p-0 ms-2">Mendapat sertifikat pembelajaran resmi</p>
                             </li>
-                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out" data-aos-delay="200">
+                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                data-aos-delay="200">
                                 <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
                                 <p class="m-0 p-0 ms-2">Grup diskusi private</p>
                             </li>
-                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out" data-aos-delay="300">
+                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                data-aos-delay="300">
                                 <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
                                 <p class="m-0 p-0 ms-2">Konsultasi dengan mentor secara langsung</p>
                             </li>
@@ -177,7 +198,7 @@
                         <a href="{{ route('member.course') }}" class="btn btn-primary px-4 py-2 mt-4">Gabung Kelas</a>
                     </div>
                 </div>
-                
+
                 <div class="col-md-6 justify-content-center d-none d-md-flex image" id="service" data-aos="fade-up"
                     data-aos-delay="100">
                     <div class="benefit-images my-3">
@@ -186,14 +207,14 @@
                                 alt="Person">
                         </div>
                         <div class="grid-images">
-                            <img src="{{ asset('nemolab/member/img/lp-person-3.png') }}" class="grid-img col-sm-6 px-0" alt="Image 1"
-                                data-aos="zoom-in" data-aos-delay="100">
-                            <img src="{{ asset('nemolab/member/img/lp-person-2.png') }}" class="grid-img col-sm-6 px-0" alt="Image 2"
-                                data-aos="zoom-in" data-aos-delay="200">
-                            <img src="{{ asset('nemolab/member/img/lp-person-4.png') }}" class="grid-img col-sm-6 px-0" alt="Image 3"
-                                data-aos="zoom-in" data-aos-delay="300">
-                            <img src="{{ asset('nemolab/member/img/lp-person-5.png') }}" class="grid-img col-sm-6 px-0" alt="Image 4"
-                                data-aos="zoom-in" data-aos-delay="400">
+                            <img src="{{ asset('nemolab/member/img/lp-person-3.png') }}" class="grid-img col-sm-6 px-0"
+                                alt="Image 1" data-aos="zoom-in" data-aos-delay="100">
+                            <img src="{{ asset('nemolab/member/img/lp-person-2.png') }}" class="grid-img col-sm-6 px-0"
+                                alt="Image 2" data-aos="zoom-in" data-aos-delay="200">
+                            <img src="{{ asset('nemolab/member/img/lp-person-4.png') }}" class="grid-img col-sm-6 px-0"
+                                alt="Image 3" data-aos="zoom-in" data-aos-delay="300">
+                            <img src="{{ asset('nemolab/member/img/lp-person-5.png') }}" class="grid-img col-sm-6 px-0"
+                                alt="Image 4" data-aos="zoom-in" data-aos-delay="400">
                         </div>
                     </div>
                 </div>
@@ -535,7 +556,7 @@
                 <div class="text-center me-md-4 text-md-start" data-aos="fade-up" data-aos-delay="100">
                     <h1 class="fw-bold">Hubungi Kami Jika Anda Memiliki Kendala</h1>
                     <p class="me-md-5">Laporkan masalah anda ke kontak dibawah untuk informasi lebih lanjut lagi</p>
-                        <a href="#" class="btn btn-light px-4 py-2 mt-2">Hubungi CS</a>
+                    <a href="#" class="btn btn-light px-4 py-2 mt-2">Hubungi CS</a>
                 </div>
             </div>
             <div class="col-md-6 d-none d-md-block">
@@ -547,18 +568,20 @@
 @endsection
 
 @push('addon-script')
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const coursesScroll = document.querySelector('.courses-scroll');
-    
-    if (coursesScroll) {
-        coursesScroll.addEventListener('wheel', function(e) {
-            if (e.deltaY !== 0) {
-                e.preventDefault();
-                this.scrollLeft += (e.deltaY*7);
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const coursesScroll = document.querySelector('.courses-scroll');
+            const screenWidth = window.innerWidth;
+            const speed = screenWidth / 240
+
+            if (coursesScroll) {
+                coursesScroll.addEventListener('wheel', function(e) {
+                    if (e.deltaY !== 0) {
+                        e.preventDefault();
+                        this.scrollLeft += (e.deltaY * speed);
+                    }
+                });
             }
         });
-    }
-});
-</script>
+    </script>
 @endpush
