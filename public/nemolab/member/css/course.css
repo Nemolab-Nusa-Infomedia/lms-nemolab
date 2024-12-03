@@ -29,6 +29,10 @@ html::-ms-overflow-style {
 
 
 /* Card Styles */
+a{
+  text-decoration: none;
+}
+
 .card {
   aspect-ratio: 5 / 6 ;
     width: 25rem;
