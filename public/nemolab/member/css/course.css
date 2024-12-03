@@ -30,11 +30,12 @@ html::-ms-overflow-style {
 
 /* Card Styles */
 .card {
-  width: 25rem;
-  border: none;
-  border-radius: 14px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: 5 / 6 ;
+    width: 25rem;
+    border-radius: 14px;
+    /* height: max-content; */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -42,17 +43,43 @@ html::-ms-overflow-style {
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
+.card-body
+{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
 .card img {
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
   object-fit: cover;
-  height: 250px;
+  /* width: 100%;
+  height: 250px; */
+  height: auto;
+  width: 100%;
+  aspect-ratio: 16 / 9;
 }
 
 /* Title Styles */
-.title-card h5 {
-  font-size: 17px;
-  color: var(--color-grey);
+.title-card {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
+.title-card h5 {
+  font-size: 17px;
+  color: var(--head-title);
+}
+
+.title-card p {
+  /* flex-grow: 1; */
+  margin: 0;
+  color: var(--sub-title);
+  font-weight: 600 !important;
+  font-size: large;
+}
 
 .title-card img {
   border-radius: 100%;

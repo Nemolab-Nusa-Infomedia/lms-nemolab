@@ -41,7 +41,8 @@
                 <p class="paket-item mt-md-2">{{ isset($bundling[$course->id]) ? 'Paket Combo' : 'Kursus' }}</p>
             </div>
             <div class="title-card">
-                <h5 class="fw-bold truncate-text">{{ $course->category }} : {{ $course->name }}</h5>
+                <p>{{ $course->category }}</p>
+                <h5 class="fw-bold truncate-text">{{ $course->name }}</h5>
                 <p class="avatar m-0 fw-bold me-1">
                     @if ($course->users->avatar != null)
                         <img class="me-2" src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
