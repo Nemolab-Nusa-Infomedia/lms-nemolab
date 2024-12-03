@@ -178,14 +178,14 @@
                     </div>
                 </div>
                 
-                <div class="col-md-6 justify-content-center d-none d-md-flex" id="service" data-aos="fade-up"
+                <div class="col-md-6 justify-content-center d-none d-md-flex image" id="service" data-aos="fade-up"
                     data-aos-delay="100">
-                    <div class="benefit-images d-flex my-3">
+                    <div class="benefit-images my-3">
                         <div class="person-image">
                             <img src="{{ asset('nemolab/member/img/lp-person-1.png') }}" class="img-fluid"
                                 alt="Person">
                         </div>
-                        <div class="grid-images ms-md-2 row">
+                        <div class="grid-images">
                             <img src="{{ asset('nemolab/member/img/lp-person-3.png') }}" class="grid-img col-sm-6 px-0" alt="Image 1"
                                 data-aos="zoom-in" data-aos-delay="100">
                             <img src="{{ asset('nemolab/member/img/lp-person-2.png') }}" class="grid-img col-sm-6 px-0" alt="Image 2"
