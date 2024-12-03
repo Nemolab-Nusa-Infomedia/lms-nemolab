@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div class="col-lg-3 p-0">
+<div class="col-md-3 p-0">
     <div class="col-md-9 ms-5">
         <div class="sidebar">
             <div class="filter-paket">
