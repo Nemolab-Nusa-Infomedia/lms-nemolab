@@ -111,8 +111,8 @@
                         <a href="https://blog.nemolab.id/" class="text-decoration-none  pb-2 pb-lg-0">Artikel</a>
 
                         <div class="register-login d-flex align-items-center justify-content-end gap-2 ms-lg-5">
-                            <a href="{{ route('member.register') }}" class="btn btn-primary px-3 pt-1 pb-1">Daftar</a>
-                            <a href="{{ route('member.login') }}" class="btn btn-secondary px-3 pt-1 pb-1">Masuk</a>
+                            <a href="{{ route('member.register') }}" class="btn btn-warning px-4 py-2 rounded-pill">Daftar</a>
+                            <a href="{{ route('member.login') }}" class="btn btn-outline-secondary px-4 py-2 rounded-pill">Masuk</a>
                         </div>
                     </ul>
                 </div>

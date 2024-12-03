@@ -1,4 +1,4 @@
-@extends('components.layouts.member.dashboard')
+@extends('components.layouts.member.app')
 
 @section('title', 'Belajar Kursus Online Kapan Saja dan Dimanapun')
 
@@ -10,7 +10,7 @@
     <!-- Section Hero -->
     <section class="section-hero-img d-flex align-items-center mb-5" id="section-hero-img">
         <div class="row">
-            <div class="col-md-6 mt-lg-5">
+            <div class="col-md-6">
                 <div class="text-center text-md-start me-md-3">
                     <h1 class="fw-bold mt-4 mt-md-0">BELAJAR KURSUS ONLINE GRATIS, KAPANPUN DAN DIMANAPUN</h1>
                     <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai macam kelas mulai
@@ -39,7 +39,7 @@
                     @foreach ($courses as $course)
                         @if ($course)
                         <div class="col-md-3 col-12 d-flex justify-content-center my-1 pb-3">
-                            <div class="card d-flex flex-row d-md-block">
+                            <div class="card d-flex flex-row flex-md-column">
                                 @if ($course->cover != null)
                                     <img src="{{ asset('storage/images/covers/' . $course->cover) }}" class="card-img-top d-none d-md-block"
                                         alt="{{ $course->name }}" />
@@ -71,13 +71,14 @@
                                         @endif
                                     </div>
                                     <div class="title-card">
-                                        <h5 class="fw-bold truncate-text">{{ $course->category }} : {{ $course->name }}</h5>
+                                        <p>{{ $course->category }}</p>
+                                        <h5 class="fw-bold truncate-text flex-grow-1">{{ $course->name }}</h5>
                                         <p class="avatar m-0 fw-bold me-1">
                                             @if ($course->users->avatar != null)
-                                                <img class="me-2" src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
+                                                <img class="me-2 " src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
                                                     alt="" />
                                             @else
-                                                <img class="me-2" src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="" />
+                                                <img class="me-2 " src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="" />
                                             @endif
                                             {{ $course->users->name }}
                                         </p>

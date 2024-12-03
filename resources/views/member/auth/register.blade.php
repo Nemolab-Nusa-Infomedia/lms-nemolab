@@ -28,7 +28,7 @@
                             enctype="multipart/form-data">
                             @csrf
                             <div class="first-reigster-sesion mt-3" id="first-regist">
-                                <div class="mb-3 text-center">
+                                {{-- <div class="mb-3 text-center">
                                     <div class="d-flex flex-column align-items-center">
                                         <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="avatar"
                                             width="130" height="130" class="avatar class mb-3"
@@ -40,7 +40,7 @@
                                     @error('avatar')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                </div>
+                                </div> --}}
                                 <div class="row mb-3">
                                     <div class="col-6">
                                         <div class="">
