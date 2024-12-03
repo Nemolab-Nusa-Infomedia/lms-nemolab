@@ -83,9 +83,13 @@ a
   flex-direction: column;
 }
 
+.title-card a{
+    flex-grow: 1;
+}
+
 .title-card h5
 {
-  font-size: 17px;
+  font-size: 18px;
   color: var(--head-title);
 }
 
@@ -95,7 +99,6 @@ a
   margin: 0;
   color: var(--sub-title);
   font-weight: 600 !important;
-  font-size: large;
 }
 
 .title-card img

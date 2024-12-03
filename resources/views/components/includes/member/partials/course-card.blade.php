@@ -1,5 +1,5 @@
 <div class="w-100 d-flex justify-content-center">
-    <div class="card d-flex flex-row d-md-block">
+    <div class="card d-flex flex-column">
         @if ($course->cover != null)
             <img src="{{ asset('storage/images/covers/' . $course->cover) }}" class="card-img-top d-none d-md-block"
                 alt="{{ $course->name }}" />
