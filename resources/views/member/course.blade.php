@@ -32,7 +32,7 @@
             @include('components.includes.member.sidebar-filter')
             <div class="col-md-9" id="course-card" style="min-height: 100vh">
                 <div class="card-container">
-                    <div class="row" id="row">
+                    <div class="courses-scroll" id="row">
                         @if($data->isEmpty() && $data->isEmpty())
                             <div class="col-md-12 d-flex justify-content-center align-items-center">
                                 <div class="not-found text-center">

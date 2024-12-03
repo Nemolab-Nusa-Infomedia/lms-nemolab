@@ -1,4 +1,4 @@
-<div class="col-md-4 col-12 d-flex justify-content-center my-1 pb-3">
+<div class="d-flex justify-content-center">
     <div class="card d-flex flex-row d-md-block">
         @if ($ebook->cover != null)
         <img src="{{ asset('storage/images/covers/' . $ebook->cover) }}" class="card-img-top d-none d-md-block" alt="{{ $ebook->name }}" />
