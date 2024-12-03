@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <main class="login-section d-flex align-items-center">
+    <main class="login-section d-flex align-items-center justify-content-center">
         {{-- content --}}
         @yield('content')
     </main>
