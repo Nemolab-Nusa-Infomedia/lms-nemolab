@@ -152,10 +152,36 @@ p
     align-items: center;
 }
 
-#section-hero-img img
+#section-hero-img .image-wrapper
 {
-    max-width: 100%;
+    position: relative;
+    width: 100%;
     height: auto;
+}
+#section-hero-img .image-wrapper img
+{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#section-hero-img .image-wrapper .image-overlay2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: auto;
+    z-index: 2;
+}
+
+#section-hero-img .image-wrapper .image-overlay1 
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40%;
+    height: auto;
+    z-index: 2;
 }
 
 /* end style section 1 */

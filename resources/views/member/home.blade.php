@@ -18,8 +18,12 @@
                     <a href="{{ route('member.course') }}" class="btn btn-warning px-4 py-2 mt-2">Mulai Belajar</a>
                 </div>
             </div>
-            <div class="col-md-6 d-none d-md-block align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                <img src="{{ asset('nemolab/member/img/lp-hero-1.png') }}" alt="">
+            <div class="col-md-6 d-none d-md-block align-items-center">
+                <div class="image-wrapper">
+                    <img src="{{ asset('nemolab/member/img/lp-hero-pisah-1.png') }}" alt="" data-aos="fade-up" data-aos-delay="100">
+                    <img src="{{ asset('nemolab/member/img/lp-hero-pisah-2.png') }}" alt="" class="image-overlay1" data-aos="fade-down" data-aos-delay="300">
+                    <img src="{{ asset('nemolab/member/img/lp-hero-pisah-3.png') }}" alt="" class="image-overlay2" data-aos="fade-left" data-aos-delay="500">
+                </div>              
             </div>
         </div>
     </section>
