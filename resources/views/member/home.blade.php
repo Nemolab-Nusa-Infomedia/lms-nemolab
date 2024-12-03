@@ -21,11 +21,11 @@
             <div class="col-md-6 d-none d-md-block align-items-center">
                 <div class="image-wrapper">
                     <img src="{{ asset('nemolab/member/img/lp-hero-pisah-1.png') }}" alt="" data-aos="fade-up" data-aos-delay="100">
-                    <div>
-                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-2.png') }}" alt="" class="image-overlay1" data-aos="fade-down" data-aos-delay="300">
+                    <div class="image-overlay1">
+                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-2.png') }}" alt="" data-aos-delay="300" data-aos="fade-down">
                     </div>
-                    <div>
-                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-3.png') }}" alt="" class="image-overlay2" data-aos="fade-left" data-aos-delay="500">
+                    <div class="image-overlay2">
+                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-3.png') }}" alt="" data-aos-delay="500" data-aos="fade-left">
                     </div>
                 </div>              
             </div>

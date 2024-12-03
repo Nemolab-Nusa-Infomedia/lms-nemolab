@@ -26,8 +26,6 @@ html::-webkit-scrollbar
     display: none;
 }
 
-
-
 /* button */
 a.btn-warning
 {
@@ -172,6 +170,11 @@ p
     width: 30%;
     height: auto;
     z-index: 2;
+    transition: transform 0.3s ease-in-out;
+}
+
+#section-hero-img .image-wrapper .image-overlay2:hover {
+    transform: scale(1.1);
 }
 
 #section-hero-img .image-wrapper .image-overlay1 
@@ -182,6 +185,11 @@ p
     width: 40%;
     height: auto;
     z-index: 2;
+    transition: transform 0.3s ease-in-out;
+}
+
+#section-hero-img .image-wrapper .image-overlay1:hover {
+    transform: scale(1.1);
 }
 
 /* end style section 1 */
