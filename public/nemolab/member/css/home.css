@@ -632,7 +632,16 @@ p
     border: none;
     border-radius: 13px;
     background-color: var(--light-shade);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+#section-testimoni-kelas .container-fluid .row .col-md-4 .card:hover
+{
+    background: linear-gradient(to bottom right, #ffffff, #ffffff, #ffd5b1) !important;
+    transform: scale(1.05);
+    transform: translateY(10px);   
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}  
 
 #section-testimoni-kelas .container-fluid .row .col-md-4 .card .card-body .name h5
 {
