@@ -662,6 +662,13 @@ p
 {
     animation: scroll-up 10s linear infinite;
 }
+.scroll-up:hover {
+    animation-play-state: paused;
+}
+
+.scroll-down:hover {
+    animation-play-state: paused;
+}
 
 @keyframes scroll-up
 {
