@@ -29,7 +29,7 @@
             <div class="title-pilih-kelas d-flex justify-content-between align-items-center pt-5">
                 <div class="title-group text-center text-md-start">
                     <h1 class="title-kelas fw-bold">Pilihan Kelas</h1>
-                    <p class="subtitle-kelas" style="font-weight: 400">Beralih menjadi profesional dari sekarang dengan memilih kelas dan mulai
+                    <p class="subtitle-kelas">Beralih menjadi profesional dari sekarang dengan memilih kelas dan mulai
                         belajar</p>
                 </div>
                 <a href="{{ route('member.course') }}" class="btn btn-light fw-bold d-none d-md-block">Lihat Kelas Lainnya</a>
