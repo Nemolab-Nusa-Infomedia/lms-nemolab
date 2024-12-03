@@ -42,57 +42,43 @@
                 </div>
                 <a href="{{ route('member.course') }}" class="btn btn-light fw-bold d-none d-md-block">Lihat Kelas Lainnya</a>
             </div>
-            <div class="content-kelas mt-2 mt-md-4">
-                <div class="row m-0 p-0 ">
+            
+            <div class="courses-wrapper">
+                <div class="courses-scroll">
                     @foreach ($courses as $course)
                         @if ($course)
-                        <div class="col-md-3 col-12 d-flex justify-content-center my-1 pb-3">
-                            <div class="card d-flex flex-row flex-md-column">
+                        <div class="course-card">
+                            <div class="card">
                                 @if ($course->cover != null)
-                                    <img src="{{ asset('storage/images/covers/' . $course->cover) }}" class="card-img-top d-none d-md-block"
+                                    <img src="{{ asset('storage/images/covers/' . $course->cover) }}" class="card-img-top"
                                         alt="{{ $course->name }}" />
                                 @else
-                                    <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-none d-md-block"
+                                    <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top"
                                         alt="{{ $course->name }}" />
                                 @endif
-                                <div class="card-head d-block d-md-none">
-                                    @if ($course->cover != null)
-                                        <img src="{{ asset('storage/images/covers/' . $course->cover) }}" class="card-img-top"
-                                            alt="{{ $course->name }}" />
-                                    @else
-                                        <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top"
-                                            alt="{{ $course->name }}" />
-                                    @endif
-                                    <div class="harga mt-4">
-                                        <p class="p-0 m-0 fw-bold">Harga</p>
-                                        <p class="p-0 m-0 fw-bold">
-                                            {{ $course->price == 0 ? 'Gratis' : 'Rp' . number_format($course->price, 0, ',', '.') }}
-                                        </p>
-                                    </div>
-                                </div>
                                 <div class="card-body">
                                     <div class="paket d-flex">
                                         @if (in_array($course->id, $InBundle))
-                                        <p class="paket-item mt-md-2">Paket Combo</p>
+                                        <p class="paket-item">Paket Combo</p>
                                         @else
-                                            <p class="paket-item mt-md-2">Kursus</p>
+                                            <p class="paket-item">Kursus</p>
                                         @endif
                                     </div>
                                     <div class="title-card">
                                         <p>{{ $course->category }}</p>
-                                        <h5 class="fw-bold truncate-text flex-grow-1">{{ $course->name }}</h5>
+                                        <h5 class="fw-bold truncate-text">{{ $course->name }}</h5>
                                         <p class="avatar m-0 fw-bold me-1">
                                             @if ($course->users->avatar != null)
-                                                <img class="me-2 " src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
+                                                <img class="me-2" src="{{ asset('storage/images/avatars/' . $course->users->avatar) }}"
                                                     alt="" />
                                             @else
-                                                <img class="me-2 " src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="" />
+                                                <img class="me-2" src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="" />
                                             @endif
                                             {{ $course->users->name }}
                                         </p>
                                     </div>
-                                    <div class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3">
-                                        <div class="harga d-none d-md-block">
+                                    <div class="btn-group-harga d-flex justify-content-between align-items-center mt-3">
+                                        <div class="harga">
                                             <p class="p-0 m-0 fw-semibold">Harga</p>
                                             <p class="p-0 m-0 fw-bold">
                                                 {{ $course->price == 0 ? 'Gratis' : 'Rp' . number_format($course->price, 0, ',', '.') }}
@@ -103,14 +89,13 @@
                                 </div>
                             </div>
                         </div>
-                        
                         @endif
                     @endforeach
+                </div>
+            </div>
 
-                </div>
-                <div class="d-flex justify-content-center">
-                    <a href="{{ route('member.course') }}" class="btn btn-light fw-bold d-md-none">Lihat Kelas Lainnya</a>
-                </div>
+            <div class="d-flex justify-content-center mt-4">
+                <a href="{{ route('member.course') }}" class="btn btn-light fw-bold d-md-none">Lihat Kelas Lainnya</a>
             </div>
         </div>
     </section>
@@ -560,3 +545,20 @@
     </section>
     <!-- end section 6 -->
 @endsection
+
+@push('addon-script')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const coursesScroll = document.querySelector('.courses-scroll');
+    
+    if (coursesScroll) {
+        coursesScroll.addEventListener('wheel', function(e) {
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                this.scrollLeft += (e.deltaY*7);
+            }
+        });
+    }
+});
+</script>
+@endpush

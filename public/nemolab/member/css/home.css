@@ -186,7 +186,69 @@ p
 
 /* end style section 1 */
 
+.courses-wrapper {
+    width: 100%;
+    overflow: hidden; /* Change from overflow-x: auto */
+    padding: 20px 0;
+    position: relative;
+}
 
+.courses-scroll {
+    display: flex;
+    gap: 20px;
+    padding: 12px 20px 12px 20px;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* Hide scrollbar IE and Edge */
+    scrollbar-width: none;  /* Hide scrollbar Firefox */
+}
+
+.courses-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 50px;
+    background: linear-gradient(to right, transparent, rgba(255,255,255,0.8));
+    pointer-events: none;
+}
+
+.courses-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.course-card {
+    min-width: 300px;
+    flex-shrink: 0;
+}
+
+.course-card .card {
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.course-card .card-img-top {
+    height: 160px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.course-card .avatar img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.truncate-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
 /* sesion 2 */
 #section-pilih-kelas
