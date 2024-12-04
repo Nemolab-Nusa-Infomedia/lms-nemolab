@@ -150,51 +150,71 @@ p
     align-items: center;
 }
 
-#section-hero-img .image-wrapper
-{
+#section-hero-img .image-wrapper {
     position: relative;
     width: 100%;
     height: auto;
+    transition: transform 0.3s ease-in-out;
 }
 
-#section-hero-img .image-wrapper img
-{
+#section-hero-img .image-wrapper img {
     width: 100%;
     height: auto;
     display: block;
 }
 
-#section-hero-img .image-wrapper .image-overlay2
-{
+#section-hero-img .image-wrapper .main-image {
+    transition: transform 0.3s ease-in-out;
+}
+
+#section-hero-img .image-wrapper .image-overlay1,
+#section-hero-img .image-wrapper .image-overlay2 {
     position: absolute;
     top: 0;
-    right: 0;
-    width: 30%;
+    width: auto;
     height: auto;
     z-index: 2;
     transition: transform 0.3s ease-in-out;
 }
 
-#section-hero-img .image-wrapper .image-overlay2:hover
-{
-    transform: scale(1.1);
-}
-
-#section-hero-img .image-wrapper .image-overlay1
-{
-    position: absolute;
-    top: 0;
+#section-hero-img .image-wrapper .image-overlay1 {
     left: 0;
     width: 40%;
-    height: auto;
-    z-index: 2;
-    transition: transform 0.3s ease-in-out;
 }
 
-#section-hero-img .image-wrapper .image-overlay1:hover
-{
-    transform: scale(1.1);
+#section-hero-img .image-wrapper .image-overlay2 {
+    right: 0;
+    width: 30%;
 }
+
+/* hover trigger semua */
+#section-hero-img .main-image:hover {
+    transform: scale(1.05);
+}
+
+#section-hero-img .main-image:hover ~ .image-overlay1 {
+    transform: rotate(-3deg) translateX(-10px);
+}
+
+#section-hero-img .main-image:hover ~ .image-overlay2 {
+    transform: rotate(5deg) translateX(10px);
+}
+
+/* hover overlay */
+#section-hero-img .image-wrapper .image-overlay1:hover {
+    transform: scale(1.05) rotate(-4deg);
+}
+
+#section-hero-img .image-wrapper .image-overlay2:hover {
+    transform: scale(1.05) rotate(6deg);
+}
+
+/* gambar utama balik pas hover overlay */
+#section-hero-img .image-wrapper .image-overlay1:hover ~ .main-image,
+#section-hero-img .image-wrapper .image-overlay2:hover ~ .main-image {
+    transform: none;
+}
+
 
 /* end style section 1 */
 
