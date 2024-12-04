@@ -178,22 +178,30 @@
                         <h1 class="fw-bold">Benefit Yang Bisa Kamu Dapatkan Jika Belajar Disini</h1>
                         <ul class="check-active-group mt-3 list-unstyled"> <!-- Changed to ul and added list-unstyled -->
                             <li class="check-active d-flex align-items-center" data-aos="zoom-out">
-                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
-                                <p class="m-0 p-0 ms-2">Akses kelas selamanya</p>
-                            </li>
-                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;" viewBox="0 0 16 16">
+                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                                  </svg>
+                                  <p class="m-0 p-0 ms-2">Akses kelas selamanya</p>
+                                </li>
+                                <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                 data-aos-delay="100">
-                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
-                                <p class="m-0 p-0 ms-2">Mendapat sertifikat pembelajaran resmi</p>
-                            </li>
-                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;" viewBox="0 0 16 16">
+                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                                  </svg>
+                                  <p class="m-0 p-0 ms-2">Mendapat sertifikat pembelajaran resmi</p>
+                                </li>
+                                <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                 data-aos-delay="200">
-                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
-                                <p class="m-0 p-0 ms-2">Grup diskusi private</p>
-                            </li>
-                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;" viewBox="0 0 16 16">
+                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                                  </svg>
+                                  <p class="m-0 p-0 ms-2">Grup diskusi private</p>
+                                </li>
+                                <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                 data-aos-delay="300">
-                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;" viewBox="0 0 16 16">
+                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
+                                  </svg>
                                 <p class="m-0 p-0 ms-2">Konsultasi dengan mentor secara langsung</p>
                             </li>
                         </ul>
