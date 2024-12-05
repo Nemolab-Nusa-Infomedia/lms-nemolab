@@ -23,7 +23,7 @@
                 <div class="image-wrapper">
                     <div class="main-image">
                         <img src="{{ asset('nemolab/member/img/lp-hero-pisah-1.png') }}" alt="" data-aos="fade-up"
-                        data-aos-delay="100">
+                            data-aos-delay="100">
                     </div>
                     <div class="image-overlay1">
                         <img src="{{ asset('nemolab/member/img/lp-hero-pisah-2.png') }}" alt="" data-aos-delay="300"
@@ -51,6 +51,13 @@
             </div>
 
             <div class="courses-wrapper">
+                <button class="scroll-course" data-direction="left">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path
+                            d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z" />
+                    </svg>
+                </button>
                 <div class="courses-scroll">
                     @foreach ($courses as $course)
                         @if ($course)
@@ -110,6 +117,13 @@
                         @endif
                     @endforeach
                 </div>
+                <button class="scroll-course" data-direction="right">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                        <path
+                            d="M470.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 256 265.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160zm-352 160l160-160c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L210.7 256 73.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0z" />
+                    </svg>
+                </button>
             </div>
 
             <div class="d-flex justify-content-center mt-4">
@@ -133,7 +147,8 @@
                                 <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}"
                                     class="btn btn-secondary py-1 px-2 mt-2">belajar sekarang</a>
                             </div>
-                            <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out" data-aos-delay="300">
+                            <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out"
+                                data-aos-delay="300">
                                 <h4 class="fw-bold">E-book</h4>
                                 <a href="{{ route('member.course', ['filter-paket' => 'paket-ebook']) }}"
                                     class="btn btn-primary py-1 px-2 mt-2">belajar sekarang</a>
@@ -178,30 +193,42 @@
                         <h1 class="fw-bold">Benefit Yang Bisa Kamu Dapatkan Jika Belajar Disini</h1>
                         <ul class="check-active-group mt-3 list-unstyled"> <!-- Changed to ul and added list-unstyled -->
                             <li class="check-active d-flex align-items-center" data-aos="zoom-out">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;" viewBox="0 0 16 16">
-                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
-                                  </svg>
-                                  <p class="m-0 p-0 ms-2">Akses kelas selamanya</p>
-                                </li>
-                                <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
+                                </svg>
+                                <p class="m-0 p-0 ms-2">Akses kelas selamanya</p>
+                            </li>
+                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                 data-aos-delay="100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;" viewBox="0 0 16 16">
-                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
-                                  </svg>
-                                  <p class="m-0 p-0 ms-2">Mendapat sertifikat pembelajaran resmi</p>
-                                </li>
-                                <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
+                                </svg>
+                                <p class="m-0 p-0 ms-2">Mendapat sertifikat pembelajaran resmi</p>
+                            </li>
+                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                 data-aos-delay="200">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;" viewBox="0 0 16 16">
-                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
-                                  </svg>
-                                  <p class="m-0 p-0 ms-2">Grup diskusi private</p>
-                                </li>
-                                <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
+                                </svg>
+                                <p class="m-0 p-0 ms-2">Grup diskusi private</p>
+                            </li>
+                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                 data-aos-delay="300">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;" viewBox="0 0 16 16">
-                                    <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"/>
-                                  </svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    fill="currentColor" class="bi bi-check-square-fill" style="color: #a3d798;"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
+                                </svg>
                                 <p class="m-0 p-0 ms-2">Konsultasi dengan mentor secara langsung</p>
                             </li>
                         </ul>
@@ -580,17 +607,25 @@
 @push('addon-script')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const coursesScroll = document.querySelector('.courses-scroll');
+            const coursesScroll = document.querySelectorAll('.scroll-course');
+            const scrollContainer = document.querySelector('.courses-scroll');
             const screenWidth = window.innerWidth;
-            const speed = screenWidth / 240
+            const speed = screenWidth / 2
 
             if (coursesScroll) {
-                coursesScroll.addEventListener('wheel', function(e) {
-                    if (e.deltaY !== 0) {
-                        e.preventDefault();
-                        this.scrollLeft += (e.deltaY * speed);
-                    }
+                coursesScroll.forEach(element => {
+                    element.addEventListener('click', function() {
+                        const direction = this.dataset.direction;
+                        if (direction === 'left') scrollContainer.scrollLeft -= speed;
+                        else if (direction === 'right') scrollContainer.scrollLeft += speed;
+                    })
                 });
+                // coursesScroll.addEventListener('wheel', function(e) {
+                //     if (e.deltaY !== 0) {
+                //         e.preventDefault();
+                //         this.scrollLeft += (e.deltaY * speed);
+                //     }
+                // });
             }
         });
     </script>

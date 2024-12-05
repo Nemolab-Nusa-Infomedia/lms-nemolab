@@ -223,9 +223,13 @@ p
 {
     width: 100%;
     overflow: hidden;
+    display: flex;
     /* Change from overflow-x: auto */
-    padding: 20px 0;
+    padding: 20px;
+    gap: 20px;
+    border-radius: 1rem;
     position: relative;
+    background: rgb(255, 255, 255);
 }
 
 .courses-scroll
@@ -241,7 +245,7 @@ p
     /* Hide scrollbar Firefox */
 }
 
-.courses-wrapper::after
+/* .courses-wrapper::after
 {
     content: '';
     position: absolute;
@@ -249,14 +253,20 @@ p
     top: 0;
     height: 100%;
     width: 50px;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.8));
     pointer-events: none;
+} */
+
+.scroll-course{
+    min-width: 2rem;
+    background: none;
+    border: none;
 }
 
 .courses-scroll::-webkit-scrollbar
 {
     display: none;
 }
+
 
 .course-card
 {
