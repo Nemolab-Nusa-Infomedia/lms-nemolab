@@ -69,8 +69,8 @@ class AdminCourseController extends Controller
             'price' => 'required|integer',
             'level' => 'required|in:beginner,intermediate,expert',
             'description' => 'required|string',
-            'tools' => 'required',
-            'tools.*' => 'exists:tbl_tools,id',
+            'tools' => 'required|array', // Pastikan tools adalah array
+            'tools.*' => 'exists:tbl_tools,id', // Setiap elemen tools harus valid di tabel tools
             'link_grub' => 'required'
         ]);
         if ($request['type'] === 'free') {
@@ -113,7 +113,15 @@ class AdminCourseController extends Controller
             'mentor_id' => Auth::user()->id,
         ]);
         // Menghubungkan course dengan tools menggunakan relasi many-to-many (bisa diilhat di model tools)
-        $course->tools()->sync($request->tools); // Sinkronisasi tool yang dipilih dengan ID tools yang ada di request
+        $tools = is_string($request->tools) ? json_decode($request->tools, true) : $request->tools;
+
+        if (is_array($tools)) {
+            // Convert the tools array to a simple array of IDs
+            $toolIds = array_map('intval', $tools);
+            $course->tools()->sync($toolIds);
+        } else {
+            return back()->withErrors(['tools' => 'Invalid tools data.']);
+        }
 
         Alert::success('Success', 'Course Berhasil Di Buat');
         return redirect()->route('admin.course');
@@ -154,8 +162,8 @@ class AdminCourseController extends Controller
             'price' => 'required|integer',
             'level' => 'required|in:beginner,intermediate,expert',
             'description' => 'required|string',
-            'tools' => 'required',
-            'tools.*' => 'exists:tbl_tools,id', //harus berisi data yang tersedia pada tabel tools
+            'tools' => 'required|array', // Pastikan tools adalah array
+            'tools.*' => 'exists:tbl_tools,id', // Setiap elemen tools harus valid di tabel tools
             'link_grub' => 'required',
         ]);
 
@@ -194,8 +202,16 @@ class AdminCourseController extends Controller
             'description' => $request->description,
         ]);
 
-        $course->tools()->sync($request->tools);//sama speerti pada methdo store
+        $tools = is_string($request->tools) ? json_decode($request->tools, true) : $request->tools;
 
+        if (is_array($tools)) {
+            // Convert the tools array to a simple array of IDs
+            $toolIds = array_map('intval', $tools);
+            $course->tools()->sync($toolIds);
+        } else {
+            return back()->withErrors(['tools' => 'Invalid tools data.']);
+        }
+        
         Alert::success('Success', 'Course Berhasil Di Update');
         return redirect()->route('admin.course');
     }
