@@ -177,16 +177,10 @@
             return `
 <div class="w-100 d-flex justify-content-center">
     <div class="card d-flex flex-column">
-        ${item.cover != null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}" class="card-img-top d-none d-md-block" alt="${item.name}">` : `<img src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-none d-md-block" alt="${item.name}">`}
-        <div class="card-head d-block d-md-none">
-            <div class="price position-absolute">
-                <span class="text">Harga</span>
-                <span class="nominal">${price}</span>
-            </div>
-        </div>
+        ${item.cover != null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}" class="card-img-top d-block" alt="${item.name}">` : `<img src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="${item.name}">`}
         <div class="card-body p-3">
             <div class="paket d-flex">
-               <p class="paket-item mt-md-2">${item.product_type === 'ebook' ? 'E-Book' : currentBundling ? 'Paket Combo' : 'Kursus'}</p>
+               <p class="paket-item mt-2">${item.product_type === 'ebook' ? 'E-Book' : currentBundling ? 'Paket Combo' : 'Kursus'}</p>
             </div>
             <div class="title-card">
                 <a href="${item.product_type === 'ebook' ? '{{ route('member.ebook.join', '') }}' : '{{ route('member.course.join', '') }}/'}${item.slug}">
@@ -202,7 +196,7 @@
                 </p>
             </div>
             <div class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3">
-                <div class="harga d-none d-md-block">
+                <div class="harga d--block">
                     <p class="p-0 m-0 fw-semibold">Harga</p>
                     <p class="p-0 m-0 fw-semibold">${price}</p>
                 </div>

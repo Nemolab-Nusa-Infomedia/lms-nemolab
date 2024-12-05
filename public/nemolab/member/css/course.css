@@ -83,8 +83,9 @@ a
   flex-direction: column;
 }
 
-.title-card a{
-    flex-grow: 1;
+.title-card a
+{
+  flex-grow: 1;
 }
 
 .title-card h5
@@ -322,12 +323,17 @@ a
     padding: 0 15px;
   }
 
+  .card
+  {
+    aspect-ratio: 8 / 9;
+  }
+
   .card .card-img-top
   {
-    margin-top: 4px;
     object-fit: cover;
+    /* margin-top: 4px;
     height: 57px;
-    width: 80px;
+    width: 80px; */
     border-radius: 7px;
   }
 
@@ -340,6 +346,14 @@ a
   .card-body
   {
     position: relative;
+  }
+  
+  .card .card-body a p{
+    font-size: 12px;
+  }
+
+  .card .card-body h5{
+    font-size: 20px;
   }
 
   .title-card h5
