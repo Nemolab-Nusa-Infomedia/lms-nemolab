@@ -361,6 +361,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="card-head d-flex align-items-center">
+                                    <img src="{{ asset('nemolab/member/img/dumy-13.png') }}" width="45"
+                                        height="45" style="border-radius: 50%;object-fit:cover" alt="">
+                                    <div class="name ms-3">
+                                        <h5 class="card-title m-0 fw-bold">Denis Rizkyan</h5>
+                                        <p class="m-0">Backend Develeoper</p>
+                                    </div>
+                                </div>
+                                <p class="card-text p-0 m-0 mt-2">Materi tentang PHP dan Laravel di kursus ini sangat
+                                    lengkap. Saya bisa memahami konsep MVC dengan baik, dan sekarang saya sedang mengerjakan
+                                    proyek website saya sendiri menggunakan Laravel!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-4 scroll-down">
 

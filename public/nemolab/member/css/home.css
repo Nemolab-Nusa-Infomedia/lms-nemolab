@@ -692,15 +692,40 @@ p
 }
 
 
-.scroll-up
-{
-    animation: scroll-down 10s linear infinite;
+.scroll-up {
+    animation: scroll-back-and-forth 15s linear infinite;
+}
+
+/* Keyframes untuk animasi bolak-balik */
+@keyframes scroll-back-and-forth {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-60%); /* Ubah nilai ini sesuai kebutuhan */
+    }
+    100% {
+        transform: translateY(0);
+    }
 }
 
 .scroll-down
 {
-    animation: scroll-up 10s linear infinite;
+    animation: scroll-forth-and-back 15s linear infinite;
 }
+
+@keyframes scroll-forth-and-back {
+    0% {
+        transform: translateY(-60%);
+    }
+    50% {
+        transform: translateY(0); /* Ubah nilai ini sesuai kebutuhan */
+    }
+    100% {
+        transform: translateY(-60%);
+    }
+}
+
 .scroll-up:hover {
     animation-play-state: paused;
 }
