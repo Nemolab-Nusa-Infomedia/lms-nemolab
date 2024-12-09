@@ -25,12 +25,10 @@
 
                 <div class="collapse navbar-collapse  my-3 my-md-0" id="navbarNavAltMarkup">
                     <ul class="navbar-nav d-flex mx-auto">
-                        <form action="{{ route('member.course') }}" method="GET" class="d-lg-flex d-none"
-                            role="search">
-                            <div class="search-group d-flex">
-                                <input class="" type="text" name="search-input" placeholder="Cari Kelas Disini"
-                                    id="search-input" value="{{ request('search-input') }}" aria-label="Search">
-                                <button class="btn p-0 m-0" type="submit">
+                        <form action="{{ route('member.course') }}" method="GET"  class="d-lg-flex d-none" role="search">
+                            <div class="search-group position-relative">
+                                <input class="form-control w-100 h-100" type="text" name="search-input" placeholder="Cari Kelas Disini" id="search-input" value="{{ request('search-input') }}" aria-label="Search">
+                                <button class="btn p-0 m-0 position-absolute" type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                                         viewBox="0 0 24 24">
                                         <path

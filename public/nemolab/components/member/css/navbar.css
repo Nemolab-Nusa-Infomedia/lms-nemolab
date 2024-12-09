@@ -33,8 +33,6 @@ header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navb
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:first-child .search-group
 {
-    background-color: var(--color-pink);
-    padding: 10px 20px;
     width: max-content;
     border-radius: 50px;
     display: flex;
@@ -46,12 +44,22 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:first-child .search-group input:focus
 {
     outline: none;
+    background-color: var(--color-pink);
+    border-radius: 50px;
+    padding: 10px 40px 10px 20px;
     border: none;
-    background: transparent;
     font-family: 'Nunito', sans-serif;
     color: var(--dark-grey);
     font-size: 16px;
-    width: 260px;
+    width: 320px;
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:first-child .search-group button,
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:first-child .search-group button:active
+{
+    border: none;
+    outline:none;
+    right: 10px;
 }
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button,
