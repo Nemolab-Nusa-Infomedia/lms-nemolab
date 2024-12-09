@@ -106,9 +106,8 @@
                     <!-- Popup Tambah Tools -->
                     <div id="tools-popup" class="tools-popup shadow p-3 bg-white rounded" style="display: none; position: absolute; top: 50px; right: 20px; width: 300px; z-index: 1050;">
                         <!-- Search bar -->
-                        <div class="input-group mb-3">
+                        <div class="mb-3">
                             <input type="text" id="tool-search" class="form-control" placeholder="Cari tools">
-                            <button class="btn btn-outline-secondary" id="search-tools-btn" type="button">Search</button>
                         </div>
 
                         <!-- Grid tools -->
@@ -255,7 +254,9 @@
 
         // Close popup when clicking outside
         document.addEventListener('click', (e) => {
-            if (!toolsPopup.contains(e.target) && e.target.id !== 'add-tools-btn') {
+            if (!toolsPopup.contains(e.target) && 
+                e.target.id !== 'add-tools-btn' && 
+                !e.target.classList.contains('remove-tool-btn')) {
                 toolsPopup.style.display = 'none';
             }
         });
@@ -287,6 +288,12 @@
 
                     selectedToolsContainer.appendChild(selectedTool);
                     updateSelectedToolsInput();
+                } else {
+                    // Find and trigger the corresponding remove button
+                    const removeButton = selectedToolsContainer.querySelector(`.remove-tool-btn[data-tool-id="${toolId}"]`);
+                    if (removeButton) {
+                        removeButton.click();
+                    }
                 }
             }
         });
@@ -297,32 +304,39 @@
                 const toolId = e.target.dataset.toolId;
                 const toolItem = toolsGrid.querySelector(`.tool-item[data-tool-id="${toolId}"]`);
                 const selectedTool = e.target.closest('.selected-tool');
-
-                const toolCheckbox = toolItem.querySelector('.tool-checkbox');
-                toolCheckbox.checked = false;
-                toolItem.style.display = '';
+                
+                if (toolItem) {
+                    const toolCheckbox = toolItem.querySelector(`input[value="${toolId}"]`);
+                    if (toolCheckbox) {
+                        toolCheckbox.checked = false;
+                    }
+                    toolItem.style.display = '';
+                }
+                
                 selectedTool.remove();
                 updateSelectedToolsInput();
             }
         });
 
         // Search functionality
-        const filterTools = () => {
+        toolSearch.addEventListener('input', () => {
             const query = toolSearch.value.trim().toLowerCase();
+            console.log('Searching for:', query);
 
             toolsGrid.querySelectorAll('.tool-item').forEach((toolItem) => {
-                const toolName = toolItem.dataset.toolName;
-                toolItem.style.display = toolName.includes(query) ? '' : 'none';
+                const toolName = toolItem.dataset.toolName.toLowerCase();
+                const checkbox = toolItem.querySelector('.tool-checkbox');
+                
+                if (query === '') {
+                    // If search is empty, show all items except checked ones
+                    toolItem.setAttribute("style","")
+                } else {
+                    // During search, show/hide based on match, regardless of checked status
+                    toolItem.setAttribute("style",toolName.includes(query) ?"": "display:none !important")
+                }
+                
+                console.log(`Tool: ${toolName}, Query: ${query}, Visible: ${toolItem.style.display === ''}`);
             });
-        };
-
-        toolSearch.addEventListener('input', filterTools);
-        searchToolsBtn.addEventListener('click', filterTools);
-        toolSearch.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                filterTools();
-            }
         });
     });
     </script>

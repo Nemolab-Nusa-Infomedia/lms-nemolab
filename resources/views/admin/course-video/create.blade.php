@@ -114,11 +114,8 @@
                             <div id="tools-popup" class="tools-popup shadow p-3 bg-white rounded"
                                 style="display: none; position: absolute; top: 50px; right: 20px; width: 300px; z-index: 1050;">
                                 <!-- Search bar -->
-                                <div class="input-group mb-3">
-                                    <input type="text" id="tool-search" class="form-control"
-                                        placeholder="Cari tools">
-                                    <button class="btn btn-outline-secondary" id="search-tools-btn"
-                                        type="button">Search</button>
+                                <div class="mb-3">
+                                    <input type="text" id="tool-search" class="form-control" placeholder="Cari tools">
                                 </div>
 
                                 <!-- Grid tools -->
@@ -237,8 +234,10 @@
 
             // Close popup only if clicking outside both popup and "Tambah Tools" button
             document.addEventListener('click', (e) => {
-                if (!toolsPopup.contains(e.target) && e.target.id !== 'add-tools-btn') {
-                    toolsPopup.style.display = 'none'; // Hide popup
+                if (!toolsPopup.contains(e.target) && 
+                    e.target.id !== 'add-tools-btn' && 
+                    !e.target.classList.contains('remove-tool-btn')) {
+                    toolsPopup.style.display = 'none';
                 }
             });
 
@@ -255,10 +254,8 @@
                     const toolName = toolItem.dataset.toolName;
 
                     if (e.target.checked) {
-                        // Remove tool from popup
                         toolItem.style.display = 'none';
 
-                        // Add tool to selected tools container
                         const selectedTool = document.createElement('div');
                         selectedTool.classList.add('selected-tool', 'd-flex', 'align-items-center', 'ms-2', 'mb-2');
                         selectedTool.dataset.toolId = toolId;
@@ -270,9 +267,13 @@
                         `;
 
                         selectedToolsContainer.appendChild(selectedTool);
-
-                        // Update hidden input value
                         updateSelectedToolsInput();
+                    } else {
+                        // Find and trigger the corresponding remove button
+                        const removeButton = selectedToolsContainer.querySelector(`.remove-tool-btn[data-tool-id="${toolId}"]`);
+                        if (removeButton) {
+                            removeButton.click();
+                        }
                     }
                 }
             });
@@ -290,66 +291,39 @@
                     const toolId = e.target.dataset.toolId;
                     const toolItem = toolsGrid.querySelector(`.tool-item[data-tool-id="${toolId}"]`);
                     const selectedTool = e.target.closest('.selected-tool');
-
-                    // Uncheck checkbox in popup
-                    const toolCheckbox = toolItem.querySelector('.tool-checkbox');
-                    toolCheckbox.checked = false;
-
-                    // Display tool back in popup
-                    toolItem.style.display = '';
-
-                    // Remove tool from selected tools container
+                    
+                    if (toolItem) {
+                        const toolCheckbox = toolItem.querySelector(`input[value="${toolId}"]`);
+                        if (toolCheckbox) {
+                            toolCheckbox.checked = false;
+                        }
+                        toolItem.style.display = '';
+                    }
+                    
                     selectedTool.remove();
-
-                    // Update hidden input value
-                    const updateSelectedToolsInput = () => {
-                        const selectedToolIds = Array.from(selectedToolsContainer.querySelectorAll('.selected-tool'))
-                            .map(selectedTool => selectedTool.dataset.toolId);
-
-                        // Update hidden input as JSON array
-                        document.getElementById('selected-tools-input').value = JSON.stringify(selectedToolIds);
-                    };
+                    updateSelectedToolsInput();
                 }
             });
 
             // Filter tools based on search query
-            const filterTools = () => {
-                const query = toolSearch.value.trim().toLowerCase();
+            toolSearch.addEventListener('input', () => {
+            const query = toolSearch.value.trim().toLowerCase();
+            console.log('Searching for:', query);
 
-                toolsGrid.querySelectorAll('.tool-item').forEach((toolItem) => {
-                    const toolName = toolItem.dataset.toolName;
-
-                    if (toolName.includes(query)) {
-                        toolItem.style.display = '';
-                    } else {
-                        toolItem.style.display = 'none';
-                    }
-
-                    // Search button click
-                    searchToolsBtn.addEventListener('click', filterTools);
-
-                    // Press "Enter" to search
-                    toolSearch.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter') {
-                            e.preventDefault();
-                            filterTools();
-                        }
-                    });
-                });
-            };
-
-            // Live search while typing
-            toolSearch.addEventListener('input', filterTools);
-
-            // Search button click
-            searchToolsBtn.addEventListener('click', filterTools);
-
-            // Press "Enter" to search
-            toolSearch.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    filterTools();
+            toolsGrid.querySelectorAll('.tool-item').forEach((toolItem) => {
+                const toolName = toolItem.dataset.toolName.toLowerCase();
+                const checkbox = toolItem.querySelector('.tool-checkbox');
+                
+                if (query === '') {
+                    // If search is empty, show all items except checked ones
+                    toolItem.setAttribute("style","")
+                } else {
+                    // During search, show/hide based on match, regardless of checked status
+                    toolItem.setAttribute("style",toolName.includes(query) ?"": "display:none !important")
                 }
+                
+                console.log(`Tool: ${toolName}, Query: ${query}, Visible: ${toolItem.style.display === ''}`);
             });
+        });
     </script>
 @endpush
