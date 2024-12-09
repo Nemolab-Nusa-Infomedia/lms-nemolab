@@ -91,8 +91,8 @@
     {{-- load data script --}}
     <script>
         let loading = false;
-        let lastItem = null;
-        let lastCreated = null;
+        let lastBookId = null;
+        let lastCourseId = null;
         let hasMore = true;
 
         // Mendapatkan elemen grid container
@@ -117,8 +117,8 @@
                 'search-input': searchInput,
                 'filter-kelas': categoryFilter,
                 'filter-paket': paketFilter,
-                'lastItem': lastItem,
-                'lastCreated': lastCreated,
+                'lastBookId': lastBookId,
+                'lastCourseId': lastCourseId,
                 'requestTotal': totalColumns,
             })}`, {
                     headers: {
@@ -129,7 +129,7 @@
                 .then(response => {
                     const container = document.querySelector('.courses-scroll');
                     hasMore = response.hasMore;
-
+                    console.log(response)
                     // Memeriksa data yang akan ditampilkan
                     if (Array.isArray(response.data)) {
                         response.data.forEach(item => {
@@ -137,11 +137,11 @@
                             container.insertAdjacentHTML('beforeend', itemHtml);
                         });
                         // Mengatur ulang nilai grid-template-columns jika data sedikit
-                        if (!hasMore && lastCreated == null && response.data.length < totalColumns) {
+                        if (!hasMore && lastCourseId == null && response.data.length < totalColumns) {
                             document.querySelector('.courses-scroll').style.gridTemplateColumns =
                                 'repeat(auto-fit, minmax(280px, 300px))';
                         }
-                    } else if(lastCreated == null){
+                    } else if(lastCourseId == null){
                         // Menampilkan not found
                         container.insertAdjacentHTML('beforeend', `
                             <img src="{{ asset('nemolab/member/img/search-not-found.png') }}"
@@ -155,8 +155,8 @@
                     }
 
                     // set data terakhir (checkpoint) untuk server
-                    lastItem = response.lastItem;
-                    lastCreated = response.lastCreated;
+                    lastBookId = response.lastBookId;
+                    lastCourseId = response.lastCourseId;
                     document.querySelector('#sentinel').style.display = hasMore ? 'block' : 'none';
                     loading = false;
                 })
@@ -228,7 +228,7 @@
         // Menambahkan event listeners untuk filter
         document.querySelectorAll('.filter-input').forEach(filter => {
             filter.addEventListener('change', () => {
-                lastItem = null;
+                lastBookId = null;
                 hasMore = true;
                 document.querySelector('.courses-scroll').innerHTML = '';
                 loadMoreContent();

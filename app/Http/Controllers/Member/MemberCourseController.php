@@ -28,53 +28,27 @@ class MemberCourseController extends Controller
     {
         if ($request->ajax()) {
             // Mengambil input dari request dan mengatur nilai default jika null
-            $lastItem = $request->input('lastItem') == 'null' ? null : explode(',', $request->input('lastItem'));
-            $lastCreated = $request->input('lastCreated') == "null" ? null : $request->input('lastCreated');
+            $lastBookId = $request->input('lastBookId') == 'null' ? null : explode(',', $request->input('lastBookId'));
+            $lastCourseId = $request->input('lastCourseId') == "null" ? null : $request->input('lastCourseId');
             $searchQuery = $request->input('search-input') == "null" ? null : $request->input('search-input');
             $categoryFilter = $request->input('filter-kelas') == "null" ? null : $request->input('filter-kelas');
             $paketFilter = $request->input('filter-paket') == "null" ? null : $request->input('filter-paket');
             $itemsPerRow = $request->input('requestTotal') == "null" ? null : $request->input('requestTotal'); // Items per row pada grid
-            $rowsToLoad = 5; // Baris yang diload
+            $rowsToLoad = 10; // Baris yang diload
             $perLoad = $itemsPerRow * $rowsToLoad; // Total items per load
 
-            // Array Mapping
-            if (is_array($lastItem) || is_object($lastItem)) {
-                foreach ($lastItem as $key => $item) {
-                    if ($key <= (count($lastItem) / 2 - 1)) { // Mengambil data id di setengah awal array
-                        $lastItem[$key] = [
-                            'id' => str_replace(['[', ']'], '', $item),
-                            'product_type' => null
-                        ];
-                    } else { // Mengambil data product_type dan meletakan di array yang sesuai
-                        $lastItem[$key - (count($lastItem) / 2)] = [
-                            'id' => (int)$lastItem[$key - (count($lastItem) / 2)]['id'], // mengambil array id awal
-                            'product_type' => str_replace(['"', ' [', ']'], '', $item),
-                        ];
-                    }
-                }
-                $length = count($lastItem);
-                $lastItem = array_splice($lastItem, 0, ceil($length / 2)); // menghapus array sisa yang tidak digunakan
-            }
-
             // Query dasar untuk courses dan ebooks
-            $coursesQuery = Course::where('status', 'published')->orderByDesc('created_at');
-            $ebooksQuery = Ebook::where('status', 'published')->orderByDesc('created_at');
+            $coursesQuery = Course::where('status', 'published')->orderByDesc('id');
+            $ebooksQuery = Ebook::where('status', 'published')->orderByDesc('id');
 
             // Menerapkan filter berdasarkan lastCreated
-            if ($lastCreated != null) {
-                $coursesQuery->where('created_at', '<=', $lastCreated);
-                $ebooksQuery->where('created_at', '<=', $lastCreated);
+            if ($lastCourseId != null) {
+                $coursesQuery->where('id', '<', $lastCourseId);
             }
 
             // Menerapkan filter berdasarkan lastItem
-            if ($lastItem != null) {
-                foreach ($lastItem as $last) {
-                    if ($last['product_type'] == 'ebook') {
-                        $ebooksQuery->whereNot('id', $last['id']);
-                    } else {
-                        $coursesQuery->whereNot('id', $last['id']);
-                    }
-                }
+            if ($lastBookId != null) {
+                $ebooksQuery->where('id', '<', $lastBookId);
             }
 
             // Menerapkan filter pencarian
@@ -132,8 +106,7 @@ class MemberCourseController extends Controller
                 ->get() : collect();
 
             // Menggabungkan dan mengurutkan data berdasarkan created_at
-            $merged = $courses->concat($ebooks)->sortByDesc('created_at')->take($perLoad);
-
+            $merged = $ebooks->concat($courses)->sortByDesc('created_at')->take($perLoad);
             // Mengambil data bundling
             $bundling = CourseEbook::whereIn('course_id', $courses->pluck('id'))
                 ->get()
@@ -143,133 +116,31 @@ class MemberCourseController extends Controller
 
             // Menentukan apakah masih ada data yang bisa di-load
             $hasMore = $merged->count() >= $perLoad;
-            if ($merged->count() > 0) {
-                $lastCreated = $merged->first()->created_at;
-                $lastCreated = Carbon::parse($lastCreated);
-                $lastCreated = $lastCreated->format('Y-m-d H:i:s');
-                $lastItem = [
-                    'id' => $merged->pluck('id'),
-                    'product_type' => $merged->pluck('product_type'),
-                ];
-                $lastItem = implode(', ', $lastItem);
-            } else {
+            if ($merged->count() <= 0) {
                 $merged = null;
             }
+
+            // Set data terakhir dari tiap tipe
+            $lastCourse = $merged->where('product_type', 'video')->last();
+            $lastEbook = $merged->where('product_type', 'ebook')->last();
+
+            // Ambil Id terakhir sebagai check point
+            if(isset($lastCourse->id)) $lastCourseId = $lastCourse->id;
+            if(isset( $lastEbook->id)) $lastBookId =  $lastEbook->id;
 
             // Mengembalikan respons JSON
             return response()->json([
                 'data' => $merged != null ? $merged->values()->all() : $merged, // Convert collection to array
                 'bundling' => $bundling,
                 'hasMore' => $hasMore,
-                'lastItem' => $lastItem,
-                'lastCreated' => $lastCreated,
+                'lastBookId' => $lastBookId,
+                'lastCourseId' => $lastCourseId,
             ]);
         }
 
         // Mengembalikan view jika bukan permintaan AJAX
         return view('member.course');
     }
-
-    // public function index(Request $request)
-    // {
-    //     // Mengambil input filter
-    //     $searchQuery = $request->input('search-input'); 
-    //     $categoryFilter = $request->input('filter-kelas');
-    //     $paketFilter = $request->input('filter-paket');
-    //     $perPage = 9; //jumlah data tampil pada per 1 halaman
-
-    //     // Membuat query dasar untuk mengambil data kursus hanya saat status "published"
-    //     $coursesQuery = Course::where('status', 'published');
-
-    //     // Membuat query dasar untuk mengambil data ebook hanya saat status "published"
-    //     $ebooksQuery = Ebook::where('status', 'published');
-
-    //     // jalankan logika ini saat ada input dari pencarian
-    //     if ($searchQuery) {
-    //         $coursesQuery->where(function ($query) use ($searchQuery) {
-    //             $query->where('name', 'LIKE', '%' . $searchQuery . '%')
-    //                 ->orWhere('category', 'LIKE', '%' . $searchQuery . '%')
-    //                 ->orWhereHas('users', function ($q) use ($searchQuery) {
-    //                     // Filter berdasarkan nama mentor
-    //                     $q->where('name', 'LIKE', '%' . $searchQuery . '%');
-    //                 });
-    //         });
-    //         $ebooksQuery->where(function ($query) use ($searchQuery) {
-    //             $query->where('name', 'LIKE', '%' . $searchQuery . '%')
-    //                 ->orWhere('category', 'LIKE', '%' . $searchQuery . '%')
-    //                 ->orWhereHas('users', function ($q) use ($searchQuery) {
-    //                     // Filter berdasarkan nama mentor
-    //                     $q->where('name', 'LIKE', '%' . $searchQuery . '%');
-    //                 });
-    //         });
-    //     }
-
-    //     // Jalankan logika ini saat ada input dari filter category dan menghindari nilai 'semua' karena 'semua' bukan termasuk category
-    //     if ($categoryFilter && $categoryFilter != 'semua') {
-    //         $coursesQuery->where('category', $categoryFilter);
-    //         $ebooksQuery->where('category', $categoryFilter);
-    //     }
-
-    //     // Filter paket berdasarkan pilihan pengguna
-    //     switch ($paketFilter) {
-    //         case 'paket-kursus':
-    //             // Jika paket yang dipilih adalah paket kursus, ambil hanya data kursus
-    //             $coursesQuery->whereDoesntHave('courseEbooks');
-    //             $ebooksQuery = null; // Jangan ambil data ebook
-    //             break;
-
-    //         case 'paket-ebook':
-    //             // Jika paket yang dipilih adalah paket ebook, ambil hanya data ebook
-    //             $ebooksQuery->whereDoesntHave('courseEbooks');
-    //             $coursesQuery = null; // Jangan ambil data kursus
-    //             break;
-
-    //         case 'paket-bundling':
-    //             // Jika paket yang dipilih adalah paket bundling, ambil data kursus yang memiliki bundling
-    //             $coursesQuery->whereHas('courseEbooks');
-    //             $ebooksQuery = null; // Jangan ambil data ebook
-    //             break;
-
-    //         default:
-    //             // kondisi default/pada saat filter diluar case. maka hanya terapkan pengaturan saat ebook tidak termasuk bundling
-    //             $ebooksQuery->whereDoesntHave('courseEbooks');
-    //             break;
-    //     }
-
-    //     // ambil data course saat coursesQuery tidak null dan menyimpanya pada memory dengan collection
-    //     $courses = $coursesQuery ? $coursesQuery->with('users', 'courseEbooks')
-    //         ->select('id', 'mentor_id', 'cover', 'name', 'category', 'slug', 'created_at', 'product_type', 'price')->get() : collect();
-    //     // ambil data ebook saat ebooksQuery tidak null dan menyimpanya pada memory dengan collection
-    //     $ebooks = $ebooksQuery ? $ebooksQuery->with('users')
-    //         ->select('id', 'mentor_id', 'cover', 'name', 'category', 'slug', 'created_at', 'product_type', 'price')->get() : collect();
-
-    //     //Menggabungkan data kursus dan ebook, lalu mengurutkan berdasarkan waktu terbaru rilis,
-    //     //menggunakan concat untuk menggabungkan 2 collection($ebooks dan $courses) menjadi 1,
-    //     //dan pada saat ada id yang sama pada kedua collection maka data tersebut menjadi entri terpisah dan tidak menimpa(menghindari hanya menampilkan 1 data saat 2 id sama)
-    //     $merged = $courses->concat($ebooks)->sortByDesc('created_at');
-
-    //     // Mengatur pagination secara manual menggunakan LengthAwarePaginator karena data berasal dari collection
-    //     $page = $request->input('page', 1);
-    //     $paginatedData = new LengthAwarePaginator(
-    //         $merged->forPage($page, $perPage), // Mengambil data sesuai halaman
-    //         $merged->count(), // Total data yang akan dipaginasi
-    //         $perPage, // Jumlah data per halaman
-    //         $page, // Halaman saat ini
-    //         ['path' => $request->url(), 'query' => $request->query()] // URL dan query parameter untuk pagination
-    //     );
-
-    //     // Mengambil data bundling yang terkait dengan kursus
-    //     $bundling = CourseEbook::whereIn('course_id', $courses->pluck('id'))->get()->mapWithKeys(function ($item) {
-    //         return [$item->course_id => $item];
-    //     });
-    //     // Mengembalikan tampilan dengan data yang sudah diproses
-    //     return view('member.course', [
-    //         'data' => $paginatedData, // Data yang sudah dipaginasi
-    //         'paketFilter' => $paketFilter, // Filter paket yang dipilih
-    //         'bundling' => $bundling, // Data bundling yang terkait
-    //     ]);
-    // }
-
 
     public function join($slug)
     {
