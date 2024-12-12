@@ -73,7 +73,7 @@ class MemberRegisterController extends Controller
         $user->sendEmailVerificationNotification();
         event(new Registered($user));
         Auth::login($user);
-        Alert::success('Success', 'Berhasil Mengirimkan Tautan Verifikasi');
+        Alert::success('Success', 'Berhasil Mengirimkan PIN Verifikasi');
         return redirect()->route('verification.notice');
     }
 }

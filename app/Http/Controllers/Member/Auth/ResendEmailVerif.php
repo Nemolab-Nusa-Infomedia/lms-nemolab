@@ -19,22 +19,45 @@ class ResendEmailVerif extends Controller
     public function resend(Request $requests)
     {
         $requests->user()->sendEmailVerificationNotification();
-
         RateLimiter::hit('verification-email:' . Auth::user()->id, 3600);
-
-        Alert::success('Success', 'Berhasil Mengirimkan Tautan Verifikasi');
+        Alert::success('Success', 'PIN Verifikasi Telah Dikirim');
         return redirect()->back();
     }
 
-    // Handler untuk email verifikasi
-    public function handler(EmailVerificationRequest $request, $id, $hash) // Perbaiki nama parameter dari $requests menjadi $request
+    public function verifyPin(Request $request)
     {
-        $request->fulfill(); // Panggil method fulfill untuk menyelesaikan verifikasi
+        $request->validate([
+            'pin' => 'required|string|size:4'
+        ]);
 
-        Alert::success('Success', 'Akun Anda Berhasil Terverifikasi');
-        if (Auth::user()->role != 'students') {
-            return redirect()->route('admin.course');
+        $user = Auth::user();
+        
+        if ($user->verification_pin === $request->pin) {
+            $user->email_verified_at = now();
+            $user->verification_pin = null; // Clear the PIN after successful verification
+            $user->save();
+
+            Alert::success('Success', 'Akun Anda Berhasil Terverifikasi');
+            
+            if ($user->role != 'students') {
+                return redirect()->route('admin.course');
+            }
+            return redirect()->route('home');
         }
-        return redirect()->route('member.setting'); // Redirect dengan pesan
+
+        Alert::error('Error', 'PIN Verifikasi Tidak Valid');
+        return back();
     }
+
+    // // Handler untuk email verifikasi
+    // public function handler(EmailVerificationRequest $request, $id, $hash) // Perbaiki nama parameter dari $requests menjadi $request
+    // {
+    //     $request->fulfill(); // Panggil method fulfill untuk menyelesaikan verifikasi
+
+    //     Alert::success('Success', 'Akun Anda Berhasil Terverifikasi');
+    //     if (Auth::user()->role != 'students') {
+    //         return redirect()->route('admin.course');
+    //     }
+    //     return redirect()->route('member.setting'); // Redirect dengan pesan
+    // }
 }

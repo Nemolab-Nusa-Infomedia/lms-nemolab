@@ -64,63 +64,44 @@
 </head>
 
 <body>
-    <!-- navbar -->
-    <header class="ps-3 pe-3 pt-2 pb-2 w-100 fixed-top position-fixed bg-white shadow-sm">
-        <div class="container-fluid ">
-            <nav class="navbar navbar-expand-lg bg-transparent">
-                <div class="container-fluid ">
-                    <div class="profile-auth ms-auto">
-                        <div class="dropdown d-flex justify-content-end">
-                            <button class="btn dropdown-toggle " type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" style="color: #414142 !important;">
-                                <span class="fw-bold">
-                                    {{ Auth::user()->name }}
-                                </span>
-                                @if (Auth::user()->avatar != null)
-                                    <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}"
-                                        class="rounded-5 ms-1" style="width: 42px; height: 42px;" id="img-profile">
-                                @else
-                                    <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" class="rounded-5 ms-1"
-                                        style="width: 42px; height: 42px;" id="img-profile">
-                                @endif
-                            </button>
-                            <ul class="dropdown-menu w-100 mt-2 dropdown-logout" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="{{ route('member.logout') }}">Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
-    <!-- end navbar -->
     <main>
-        <div class="container" style="margin-top: 140px">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header text-center bg-white">
-                            <h3 class="mb-0">Verifikasi Email</h3>
-                        </div>
-                        <div class="card-body">
-                            <p>Terima kasih telah mendaftar! Silakan verifikasi email Anda untuk melanjutkan.</p>
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Verifikasi Email</div>
+                <div class="card-body">
+                    <h4>{{ Auth::user()->name }}</h4>
+                    
+                    @if (Auth::user()->avatar != null)
+                        <!-- Avatar display logic -->
+                    @endif
 
-                            <p>Jika Anda tidak menerima email verifikasi, Anda dapat mengklik tombol di bawah ini untuk
-                                mengirim ulang:</p>
+                    <p>Terima kasih telah mendaftar! Silakan masukkan PIN verifikasi yang telah dikirim ke email Anda.</p>
 
-                            @if (session('status') != 'limit')
-                                <form action="{{ route('verification.send') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-orange">Kirim Ulang Verifikasi</button>
-                                </form>
-                            @else
-                                <button class="btn btn-orange" disabled>Kirim Ulang Verifikasi</button>
-                            @endif
+                    <form method="POST" action="{{ route('verification.verify-pin') }}">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" name="pin" class="form-control" 
+                                   maxlength="4" placeholder="Masukkan PIN 4 digit"
+                                   style="letter-spacing: 1em; text-align: center;">
                         </div>
-                    </div>
+                        <button type="submit" class="btn btn-primary mt-3">Verifikasi PIN</button>
+                    </form>
+
+                    @if (session('status') != 'limit')
+                        <form method="POST" action="{{ route('verification.send') }}" class="mt-3">
+                            @csrf
+                            <button type="submit" class="btn btn-link">Kirim Ulang PIN Verifikasi</button>
+                        </form>
+                    @else
+                        <button disabled class="btn btn-link">Kirim Ulang PIN Verifikasi</button>
+                    @endif
                 </div>
             </div>
         </div>
+    </div>
+</div>
     </main>
 
     {{-- include sweetalert --}}

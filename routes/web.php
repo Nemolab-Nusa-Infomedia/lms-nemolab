@@ -137,6 +137,10 @@ Route::middleware('maintenance.middleware')->group(function () {
         // kirim link reset password
         Route::get('/reset-password/{token}', [MemberForgotPassController::class, 'sendResetLinkPassword'])->name('password.reset');
         Route::post('/reset-password/updated', [MemberForgotPassController::class, 'resetPassword'])->name('member.reset-password.updated');
+
+        Route::post('/email/verify-pin', [MemberResendEmailController::class, 'verifyPin'])
+        ->middleware(['auth', 'throttle:6,1'])
+        ->name('verification.verify-pin');
     });
 
 

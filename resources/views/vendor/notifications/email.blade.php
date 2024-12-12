@@ -1,106 +1,68 @@
 <!DOCTYPE html>
-<html lang="id">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verifikasi Email Anda</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Email Verification</title>
     <style>
-        /* CSS dasar untuk gaya email */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            line-height: 1.6;
             margin: 0;
             padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Memastikan halaman memenuhi tinggi viewport */
-            background: #f4f4f4;
         }
-
-        .email-container {
+        .container {
             max-width: 600px;
-            width: 100%;
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #FAA907;
-            text-align: center;
-            box-sizing: border-box;
-        }
-
-        .email-header img {
-            max-width: 150px;
-            margin-bottom: 20px;
-        }
-
-        .email-header h2 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .email-body {
-            margin: 20px 0;
-            line-height: 1.6;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #FAA907;
-            color: #ffffff;
-            text-decoration: none;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
             border-radius: 5px;
-            font-weight: bold;
-            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
-        .email-footer {
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .verification-code {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            margin: 20px 0;
+            padding: 10px;
+            background: #f5f5f5;
+            border-radius: 5px;
+        }
+        .footer {
             margin-top: 30px;
+            text-align: center;
             font-size: 12px;
             color: #666;
-            text-align: center;
-        }
-
-        /* Responsivitas untuk perangkat mobile */
-        @media (max-width: 600px) {
-            .email-container {
-                padding: 20px;
-                max-width: 100%;
-            }
-
-            .btn {
-                width: 100%;
-                padding: 14px;
-                text-align: center;
-            }
         }
     </style>
 </head>
-
 <body>
-    <div class="email-container">
-        <div class="email-header">
-            <!-- Ganti path dengan logo Anda -->
-            <img src="https://i.ibb.co.com/JRR254r/logo-nemolab.png" alt="Logo Aplikasi">
+    <div class="container">
+        <div class="header">
             <h2>Verifikasi Email Anda</h2>
         </div>
-        <div class="email-body">
-            <p>Halo, {{ $user->name }}!</p>
-            <p>Terima kasih telah mendaftar di nemolab. Silakan klik tombol di bawah ini untuk memverifikasi alamat
-                email Anda:</p>
-            <p>
-                <a href="{{ $url }}" class="btn" style="color: white;">Verifikasi Email</a>
-            </p>
-            <p>Jika Anda tidak mendaftar, abaikan email ini.</p>
+        
+        <p>Halo {{ $user->name }},</p>
+        
+        <p>Terima kasih telah mendaftar. Untuk memverifikasi email Anda, masukkan kode PIN berikut:</p>
+        
+        <div class="verification-code">
+            {{ $pin }}
         </div>
-        <div class="email-footer">
-            <p>© 2024 All Rights Reserved. Design by Vibrant Ecosystem</p>
+        
+        <p>Kode PIN ini akan kedaluwarsa dalam 60 menit.</p>
+        
+        <p>Jika Anda tidak membuat permintaan ini, Anda dapat mengabaikan email ini.</p>
+        
+        <div class="footer">
+            <p>Email ini dikirim secara otomatis, mohon tidak membalas email ini.</p>
+            <p>&copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
         </div>
     </div>
 </body>
-
 </html>
