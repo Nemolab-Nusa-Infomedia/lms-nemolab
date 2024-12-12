@@ -65,12 +65,12 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button,
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a
 {
-    color: var(--dark-grey) !important;
+    color: white !important;
     background: none;
     outline: none;
     border: none;
     font-family: 'Nunito', sans-serif;
-    font-size: 18px !important;
+    font-size: 16px !important;
     background-color: transparent !important;
     font-weight: 600 !important;
 }

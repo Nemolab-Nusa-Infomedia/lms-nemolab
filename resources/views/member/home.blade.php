@@ -11,26 +11,42 @@
     <section class="section-hero-img d-flex align-items-center mb-5" id="section-hero-img">
         <div class="row">
             <div class="col-md-6">
-                <div class="text-center text-md-start me-md-3">
+                <div class="text-center text-md-start me-md-3 mx-4">
                     <h1 class="fw-bold mt-4 mt-md-0">BELAJAR KURSUS ONLINE GRATIS, KAPANPUN DAN DIMANAPUN</h1>
-                    <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai macam
-                        kelas mulai
-                        yang gratis hingga yang berbayar</p>
-                    <a href="{{ route('member.course') }}" class="btn btn-warning px-4 py-2 mt-2">Mulai Belajar</a>
+                    <div class="paragraph">
+                        <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai macam
+                            kelas mulai
+                            yang gratis hingga yang berbayar</p>
+                    </div>
+                        <a href="{{ route('member.course') }}" class="btn btn-warning px-4 py-2 mt-2">Mulai Belajar</a>
+                    </div>
+                    <img class="dots" src="{{ asset('nemolab/member/img/dot.png') }}" alt="">
+                    <img class="dots2" src="{{ asset('nemolab/member/img/dot.png') }}" alt="">
+                    <div class="circle3">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 d-none d-md-block align-items-center">
-                <div class="image-wrapper">
+                <div class="col-md-6 d-none d-md-block align-items-center">
+                    <div class="image-wrapper">
+                        <div data-aos="fade-down-left">
+                            <div class="circle1"></div>
+                        </div>
+                        <div data-aos="fade-down-left" data-aos-delay="50">
+                            <div class="circle2"></div>
+                        </div>
                     <div class="main-image">
                         <img src="{{ asset('nemolab/member/img/lp-hero-pisah-1.png') }}" alt="" data-aos="fade-up"
-                            data-aos-delay="100">
+                            data-aos-delay="200">
                     </div>
                     <div class="image-overlay1">
-                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-2.png') }}" alt="" data-aos-delay="300"
+                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-2.png') }}" alt="" data-aos-delay="400"
                             data-aos="fade-down">
                     </div>
+                    <div class="dot">
+                        <img src="{{ asset('nemolab/member/img/dot.png') }}" alt="" data-aos-delay="600"
+                        data-aos="fade-left">
+                    </div>
                     <div class="image-overlay2">
-                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-3.png') }}" alt="" data-aos-delay="500"
+                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-3.png') }}" alt="" data-aos-delay="600"
                             data-aos="fade-left">
                     </div>
                 </div>

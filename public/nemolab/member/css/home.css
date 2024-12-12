@@ -5,9 +5,13 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Nunito", sans-serif !important;
+    font-family: "poppins", sans-serif !important;
 }
 
+body
+{
+    overflow-x: hidden;
+}
 
 html
 {
@@ -113,46 +117,96 @@ a.btn-secondary:active
 h1
 {
     color: var(--head-title);
-    font-weight: 800 !important;
+    font-weight: 600 !important;
     line-height: 1.3;
+    font-size: 2rem;
 }
 
 p
 {
+    font-family: "Nunito", sans-serif !important;
     color: var(--sub-title);
     font-weight: 600 !important;
-    font-size: large;
+    font-size: 1rem;
 }
 
 #section-hero-img
 {
+    background: linear-gradient(to bottom right, #f8eaff, #ffffff);
     padding: 2rem 3rem;
     height: 100svh;
 }
 
 #section-hero-img h1
 {
-    font-weight: 800 !important;
     /* font-size: minmax(1.5rem, 2.5svw); */
-    letter-spacing: 1px;
+}
+
+#section-hero-img .paragraph
+{
+    width: 50%;
 }
 
 #section-hero-img p
 {
-    font-weight: 600 !important;
-    font-size: large;
     word-spacing: .25rem;
-    letter-spacing: .5px;
 }
 
 #section-hero-img .row
 {
-    align-items: center;
+    align-items: top;
+
+}
+
+#section-hero-img .circle1 {
+    position: absolute;
+    transform: translate(-4%, -38%);
+    height: 70svw;
+    width: 70svw;
+    background-color: #ebe6fb;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+}
+
+#section-hero-img .circle2 {
+    position: absolute;
+    transform: translate(-3%, -45%);
+    height: 60svw;
+    width: 60svw;
+    background: linear-gradient(to right, #FAA907, #ffe0a2);
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+    z-index: -1;
+}
+
+#section-hero-img .circle3 {
+    position: absolute;
+    transform: translate(-30%, 45%);
+    height: 20svw;
+    width: 20svw;
+    background: linear-gradient(to bottom, #ff8e01, #ff8e01,#ffffff);
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+    z-index: 4;
+}
+
+#section-hero-img .dots {
+    position: absolute;
+    transform: translate(0, 50%);
+    z-index: 5;
+}
+
+#section-hero-img .dots2 {
+    position: absolute;
+    transform: translate(-68%, 50%);
+    z-index: 5;
 }
 
 #section-hero-img .image-wrapper {
     position: relative;
-    width: 100%;
+    right: 0;
+    width: 90%;
     height: auto;
     transition: transform 0.3s ease-in-out;
 }
@@ -168,7 +222,8 @@ p
 }
 
 #section-hero-img .image-wrapper .image-overlay1,
-#section-hero-img .image-wrapper .image-overlay2 {
+#section-hero-img .image-wrapper .image-overlay2,
+#section-hero-img .image-wrapper .dot {
     position: absolute;
     top: 0;
     width: auto;
@@ -178,13 +233,20 @@ p
 }
 
 #section-hero-img .image-wrapper .image-overlay1 {
-    left: 0;
-    width: 40%;
+    top: -11%;
+    left: 10%;
+    width: 30%;
 }
 
-#section-hero-img .image-wrapper .image-overlay2 {
+#section-hero-img .image-wrapper .image-overlay2{
     right: 0;
     width: 30%;
+}
+
+#section-hero-img .image-wrapper .dot {
+    top: -1%;
+    right: -20%;
+    width: 50%;
 }
 
 /* hover trigger semua */
@@ -198,6 +260,17 @@ p
 
 #section-hero-img .main-image:hover ~ .image-overlay2 {
     transform: rotate(5deg) translateX(10px);
+}
+
+#section-hero-img .main-image:hover ~ .dot {
+    transform: translateX(10px);
+}
+
+#section-hero-img .image-wrapper:hover .circle1 {
+    transform: translate(-3%, -38%) !important;
+}
+#section-hero-img .image-wrapper:hover .circle2 {
+    transform: translate(-5%, -44%) !important;
 }
 
 /* hover overlay */
@@ -658,19 +731,16 @@ p
 
 #section-testimoni-kelas .container-fluid .row .col-md-4 .card
 {
-    width: 20rem;
+    width: max-content;
     border: none;
     border-radius: 13px;
-    background-color: var(--light-shade);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fde7c2;
+    transition: box-shadow 0.3s ease;
 }
 
 #section-testimoni-kelas .container-fluid .row .col-md-4 .card:hover
-{
-    background: linear-gradient(to bottom right, #ffffff, #ffffff, #ffd5b1) !important;
-    transform: scale(1.05);
-    transform: translateY(10px);   
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+{   
+    box-shadow: inset 0px 8px 15px rgba(0, 0, 0, 0.2);
 }  
 
 #section-testimoni-kelas .container-fluid .row .col-md-4 .card .card-body .name h5
@@ -699,13 +769,13 @@ p
 /* Keyframes untuk animasi bolak-balik */
 @keyframes scroll-back-and-forth {
     0% {
-        transform: translateY(0);
+        transform: translateY(5%);
     }
     50% {
         transform: translateY(-60%); /* Ubah nilai ini sesuai kebutuhan */
     }
     100% {
-        transform: translateY(0);
+        transform: translateY(5%);
     }
 }
 
@@ -719,7 +789,7 @@ p
         transform: translateY(-60%);
     }
     50% {
-        transform: translateY(0); /* Ubah nilai ini sesuai kebutuhan */
+        transform: translateY(5%); /* Ubah nilai ini sesuai kebutuhan */
     }
     100% {
         transform: translateY(-60%);
