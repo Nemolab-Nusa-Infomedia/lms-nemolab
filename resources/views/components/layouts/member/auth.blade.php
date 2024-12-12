@@ -14,9 +14,18 @@
 </head>
 
 <body>
+    <header>
+        @include('components.includes.universal.navbar-auth')
+    </header>
+
     <main class="login-section d-flex align-items-center justify-content-center">
-        {{-- content --}}
-        @yield('content')
+        @include('components.includes.universal.background-auth')
+        <section>
+                <img src="{{ asset('nemolab/img_component/karakter.png') }}" alt="">
+            <div class="content">
+                @yield('content')
+            </div>
+        </section>
     </main>
     {{-- include sweetalert --}}
     @include('sweetalert::alert')

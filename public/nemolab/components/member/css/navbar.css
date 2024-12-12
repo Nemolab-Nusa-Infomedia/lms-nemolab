@@ -58,7 +58,7 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:first-child .search-group button:active
 {
     border: none;
-    outline:none;
+    outline: none;
     right: 10px;
 }
 

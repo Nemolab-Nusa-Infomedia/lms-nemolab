@@ -4,6 +4,19 @@
 /* variabel color */
 :root
 {
+    /* main color */
+    --color-orange: #FAA907;
+    --color-orange-hover: #CA8907;
+
+    /* Text color */
+    --text-color-main: #0e0e0e;
+    --text-color-second: #2a2a2a;
+    --text-color-third: #4c4c4c;
+    --text-color-danger: #ff3434;
+    --text-color-brand: #ff7700;
+
+    --brand-color-hover: #da6600;
+
     --light-border: #DEE2E6;
 
     /* static content */
@@ -15,11 +28,9 @@
     --hero-bg: #F7F4FF;
     /* clickable content */
     --color-light: #F0EAFF;
-    --color-orange: #FAA907;
     --color-grey: #414142;
     --color-blue: #0774FA;
     --color-blue-hover: #0055BC;
-    --color-orange-hover: #CA8907;
     --color-light-hover: #E2D6FF;
     /* card color */
     --card-bg: #ffffff;

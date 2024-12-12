@@ -13,7 +13,7 @@
                                 <p class="m-0 p-0 fw-bold">Kursus Online Terbaik</p>
                             </div>
                         </div>
-                    </a>
+                    </a> 
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
