@@ -14,7 +14,8 @@
                 <div class="text-center text-md-start me-md-3 mx-4" style="margin-top: -4rem">
                     <h1 class="fw-bold mt-4 mt-md-0">BELAJAR KURSUS ONLINE GRATIS, KAPANPUN DAN DIMANAPUN</h1>
                     <div class="paragraph">
-                        <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai macam
+                        <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai
+                            macam
                             kelas mulai
                             yang gratis hingga yang berbayar</p>
                     </div>
@@ -56,14 +57,14 @@
     </section>
 
     <section class="section-pilh-kelas" id="section-pilih-kelas" data-aos="fade-up">
-        <div class="d-flex flex-column align-items-center p-0 m-0">
+        <div class="d-flex flex-column align-items-center justify-content-between p-0 py-5 m-0">
             <div class="title-pilih-kelas d-flex justify-content-center align-items-center pt-5">
                 <div class="title-group text-center ">
                     <h1 class="title-kelas fw-bold">Pilihan Kelas</h1>
                     <p class="subtitle-kelas">Beralih menjadi profesional dari sekarang dengan memilih kelas dan mulai
                         belajar</p>
                 </div>
-                
+
             </div>
 
             <div class="courses-wrapper">
@@ -145,6 +146,8 @@
             <a href="{{ route('member.course') }}" class="btn btn-light fw-bold d-none d-md-block">Lihat Kelas
                 Lainnya</a>
         </div>
+
+        <img class="dots" src="{{ asset('nemolab/member/img/dot.png') }}" alt="">
     </section>
 
     <section class="section-tentang-nemolab" id="section-tentang-nemolab">
@@ -161,13 +164,13 @@
                                 data-aos-delay="200">
                                 <h4 class="fw-bold">Video</h4>
                                 <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}"
-                                    class="btn btn-secondary py-1 px-2 mt-2">belajar sekarang</a>
+                                    class="btn btn-warning py-1 px-2 mt-2">belajar sekarang</a>
                             </div>
                             <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out"
                                 data-aos-delay="300">
                                 <h4 class="fw-bold">E-book</h4>
                                 <a href="{{ route('member.course', ['filter-paket' => 'paket-ebook']) }}"
-                                    class="btn btn-primary py-1 px-2 mt-2">belajar sekarang</a>
+                                    class="btn btn-warning py-1 px-2 mt-2">belajar sekarang</a>
                             </div>
                             <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out"
                                 data-aos-delay="400">
@@ -180,7 +183,18 @@
                 </div>
                 <div class="col-md-6 row align-items-center">
                     <div class="ms-md-4 text-center text-md-start" data-aos="fade-up" data-aos-delay="200">
-                        <h1 class="fw-bold">Mengapa Harus Belajar Keahlian Di Nemolab?</h1>
+                        <h1 class="fw-bold">Mengapa Harus Belajar
+                            <span>
+                                Keahlian
+                                <img src="{{ asset('nemolab/img_component/5fca34d4581c9a99a016ddecf9ddf318.png') }}"
+                                    alt="">
+                            </span> Di 
+                            <span>
+                                Nemolab?
+                                <img src="{{ asset('nemolab/img_component/f69671db8d39c5bd931f5129eb023a5f.png') }}"
+                                    alt="">
+                            </span>
+                        </h1>
                         <p class="my-4 my-md-3">Kamu bisa belajar berbagai macam keahlian di sini. Kami juga menyediakan
                             kelas video dan e-book
                             yang bisa menyesuaikan tipe pembelajaran kamu. Jadi, mulailah menjadi ahli dari sekarang!</p>
@@ -197,6 +211,7 @@
                 </div>
             </div>
         </div>
+        <img class="dots" src="{{ asset('nemolab/member/img/dot.png') }}" alt="">
     </section>
 
 

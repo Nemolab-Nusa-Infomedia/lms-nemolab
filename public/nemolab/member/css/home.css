@@ -1,11 +1,17 @@
 @import url('color.css');
 
+:root
+{
+    --brand-light-color: #FFFCEA;
+}
+
 *
 {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: "poppins", sans-serif !important;
+    transition: all 300ms;
 }
 
 body
@@ -149,7 +155,7 @@ p
 
 #section-hero-img p
 {
-    word-spacing: .25rem;
+    word-spacing: .26rem;
 }
 
 #section-hero-img .row
@@ -344,6 +350,7 @@ p
     display: flex;
     gap: 20px;
     padding: 12px 20px 12px 20px;
+    height: 28rem;
     overflow-x: scroll;
     scroll-behavior: smooth;
     -ms-overflow-style: none;
@@ -379,12 +386,13 @@ p
 .course-card
 {
     max-width: 20rem;
+    height: 26rem;
     flex-shrink: 0;
 }
 
 .course-card .card
 {
-    height: 100%;
+    height: 26rem;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -417,6 +425,12 @@ p
 {
     padding: 0 2.5rem;
     padding-bottom: 60px !important;
+    height: 100svh;
+}
+
+#section-pilih-kelas .flex-column
+{
+    height: 100%;
 }
 
 #section-pilih-kelas .container-fluid .title-pilih-kelas .title-group h1
@@ -444,7 +458,6 @@ p
     width: 20rem;
     border-radius: 14px;
     border: none;
-    /* height: max-content; */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -576,10 +589,16 @@ p
     transition: max-height 0.3s ease, -webkit-line-clamp 0.3s ease;
 }
 
-#section-pilih-kelas .card:hover .truncate-text
+#section-pilih-kelas .card:hover
 {
-    -webkit-line-clamp: unset;
-    max-height: none;
+    height: auto;
+    min-height: 26rem;
+
+    .truncate-text
+    {
+        -webkit-line-clamp: unset;
+        max-height: none;
+    }
 }
 
 #section-pilih-kelas .truncate-text.expanded
@@ -603,32 +622,58 @@ p
     background: none;
 }
 
+#section-pilih-kelas > img{
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+}
+/* End Section 2 */
+
 /* style section-tentang-nemolab */
 #section-tentang-nemolab
 {
     padding: 60px 1rem;
+    position: relative;
 }
 
 #section-tentang-nemolab a.btn-light
 {
     color: #414142;
-    background-color: #F0EAFF;
+    background-color: #ffffff;
     transition: all 0.3s;
     font-size: 15px;
 }
 
-/* #section-tentang-nemolab a.btn-secondary {
-    font-size: 13px;
+#section-tentang-nemolab a.btn-light:hover
+{
+    background: rgb(238, 238, 238) !important;
 }
-#section-tentang-nemolab  a.btn-primary{
-    font-size: 13px;
+
+#section-tentang-nemolab .container-fluid h1 span
+{
+    position: relative;
 }
-#section-tentang-nemolab  a.btn-warning{
-    font-size: 15px;
+
+#section-tentang-nemolab .container-fluid h1 span img
+{
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    transform: translateX(-10px) rotate(180deg);
+    width: 156px;
 }
-#section-tentang-nemolab a.btn-warning{
-    font-size: 13px;
-} */
+
+#section-tentang-nemolab .container-fluid h1 span:first-child img
+{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: -10px;
+    top: -50%;
+    width: 150px;
+    transform: rotate(10.14deg) translateY(-10%);
+}
+
 #section-tentang-nemolab a.btn-light:hover
 {
     background-color: var(--color-light-hover);
@@ -643,7 +688,7 @@ p
 #service
 {
     border-radius: 15px;
-    background-color: var(--hero-bg);
+    background-color: var(--brand-light-color);
     flex-direction: row;
     max-width: max-content;
 }
@@ -671,7 +716,12 @@ p
     font-size: 14px;
     border-radius: 5px;
 }
-
+#section-tentang-nemolab > img{
+    position: absolute;
+    bottom: 0;
+    rotate: 180deg;
+    right: 10px;
+}
 /* end style section-tentang-nemolab */
 
 /* style section 4 */
