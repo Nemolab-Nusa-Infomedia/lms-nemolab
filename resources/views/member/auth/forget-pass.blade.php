@@ -1,86 +1,107 @@
 @extends('components.layouts.member.auth')
 
-@section('title', 'Login Member')
+@section('title', 'Lupa Sandi')
 
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/member/css/auth.css') }} ">
 @endpush
 
 @section('content')
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card login-card d-flex flex-row">
-                    <div class="img-container">
-                        <img src="{{ asset('nemolab/member/img/bismen.jpeg') }}" alt="Team collaboration"
-                            class="img-fluid rounded-start">
-                    </div>
-                    <div class="card-body ps-4">
-                        <a href="{{ route('member.login') }}" class="btn-back mb-4">
-                            <img src="{{ asset('nemolab/member/img/icon/arrow.png') }}" alt="Back" class="back-icon">
-                        </a>
-                        <div class="px-3 text-center">
-                            <h3 class="mb-4" data-aos="fade-left" data-aos-delay="100">Lupa Kata Sandi</h3>
-                            <p class="fw-bold" data-aos="fade-left" data-aos-delay="200">Masukan alamat email anda
-                                dibawah</p>
-                        </div>
-                        <form id="signin-form" method="POST" action="{{ route('member.forget-password.check') }}"
-                            class="signin-form">
-                            <div class="mb-5">
-                                @csrf
-                                <label for="email" class="form-label fw-bold">Email</label>
-                                <input type="email" id="email" name="email" class="form-control fw-bold py-2"
-                                    placeholder="masukan email disini" required>
-                                @error('email')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                @if (session('statusSend') != 'limit')
-                                    <button type="submit" class="btn btn-primary py-2 w-100 rounded-start fw-bold">Reset
-                                        Password</button>
-                                @else
-                                    <button class="btn btn-orange py-2 w-100 rounded-start fw-bold" disabled>Reset
-                                        Password</button>
-                                @endif
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+<form class="card" id="signin-form" method="POST" action="{{ route('member.forget-password.check') }}">
+    @csrf
+    <div class="card-title">
+        <h1>Lupa Kata Sandi</h1>
+        <p>Masukan nama email anda dibawah</p>
+    </div>
+    <div class="card-form">
+        <div class="input-container">
+            <label for="email">Email</label>
+            <input required type="email" id="email" name="email">
+            <p id="" class="error">
+                @error('email')
+                    {{ $message }}
+                @enderror
+            </p>
         </div>
     </div>
+    <div class="card-foot">
+        @if (session('statusSend') != 'limit')
+            <button type="submit" >Konfirmasi</button>
+        @else
+            <button disabled >Konfirmasi</button>
+        @endif
+    </div>
+</form>
 
     {{-- include sweetalert --}}
     @include('sweetalert::alert')
 
 @endsection
 @push('addon-script')
-    <script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('loginForm');
-        form.querySelectorAll('input[required]').forEach(input => {
-            input.addEventListener('invalid', function() {
-                switch (this.type) {
-                    case 'text':
-                        this.setCustomValidity("Harap masukkan nama pengguna.");
-                        break;
-                    case 'email':
-                        this.setCustomValidity("Harap masukkan email yang valid.");
-                        break;
-                    case 'password':
-                        this.setCustomValidity("Harap masukkan kata sandi.");
-                        break;
-                    default:
-                        this.setCustomValidity("Field ini wajib diisi.");
-                }
-            });
+        const input = document.querySelectorAll('input');
+        // Fungsi untuk mengubah gaya elemen sebelumnya
+        function changePreviousElementStyle(currentElement) {
+            const previousElement = currentElement.previousElementSibling;
+            if (previousElement) {
+                previousElement.classList.add('highlight');
+            }
+        }
 
-            input.addEventListener('input', function() {
-                this.setCustomValidity("");
+        // Fungsi untuk menghapus gaya elemen sebelumnya
+        function removePreviousElementStyle(currentElement) {
+            const previousElement = currentElement.previousElementSibling;
+            if (previousElement && !currentElement.value) {
+                previousElement.classList.remove('highlight');
+            }
+        }
+
+        // Menambahkan event listener untuk setiap input
+        input.forEach(input => {
+            input.addEventListener('focus', (event) => {
+                changePreviousElementStyle(event.target);
             });
+            input.addEventListener('change', (event) => {
+                changePreviousElementStyle(event.target);
+            });
+            input.addEventListener('blur', (event) => {
+                removePreviousElementStyle(event.target);
+            });
+            if(input.value) {
+                changePreviousElementStyle(input);                    
+            }
         });
     });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('signin-form');
+
+                // form.querySelector('select[required]').addEventListener('invalid', function() {
+                //     this.setCustomValidity("Harap pilih posisi impianmu.");
+                // });
+
+                // form.querySelector('select[required]').addEventListener('input', function() {
+                //     this.setCustomValidity("");
+                // })
+
+                form.querySelectorAll('input[required]').forEach(input => {
+                        input.addEventListener('invalid', function() {
+                                switch (this.type) {
+                                    case 'email':
+                                        this.setCustomValidity("Harap masukkan email yang valid.");
+                                        break;
+                                    case 'password':
+                                    default:
+                                }
+                                });
+                            
+                            input.addEventListener('input', function() {
+                                this.setCustomValidity("");
+                            });
+                        });
+                });
 </script>
 @endpush

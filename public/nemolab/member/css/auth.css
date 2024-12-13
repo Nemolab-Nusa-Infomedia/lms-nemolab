@@ -191,7 +191,7 @@ main section .content
 /* Card Input */
 main section .content .card
 {
-    width: 100%;
+    width: 80%;
     background-color: var(--card-color);
     padding: 2.5rem;
     border-radius: 1rem;
@@ -206,14 +206,16 @@ main section .content .card .card-title
 
     h1
     {
+        text-align: center;
         font-weight: 900;
-        font-size: 2.25rem;
+        font-size: 2.20rem;
     }
 
     p
     {
+        text-align: center;
         font-weight: 600;
-        font-size: 1.25rem;
+        font-size: 1.20rem;
         color: var(--text-color-third);
 
         strong
@@ -223,6 +225,23 @@ main section .content .card .card-title
             color: var(--text-color-brand);
         }
     }
+}
+
+.mb {
+    margin-bottom: 2.5rem !important;
+}
+
+main section .content .card .card-form .otp-input
+{
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-bottom: black solid 3px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    outline: none;
+    background-color: transparent;
 }
 
 main section .content .card .card-form .input-container
@@ -283,8 +302,7 @@ main section .content .card .card-foot
     flex-direction: column;
     align-items: center;
 
-    button
-    {
+    button{
         width: 100%;
         padding: .5rem;
         font-weight: 900;
@@ -299,6 +317,14 @@ main section .content .card .card-foot
         background-color: var(--background-color-1-hover);
     }
 
+    a{
+        font-weight: 700;
+        font-size: 1rem;
+        color: black;
+        text-decoration: none;
+        margin-bottom:1rem ;
+    }
+
     p{
         font-weight: 700;
         font-size: 1rem;
@@ -307,6 +333,7 @@ main section .content .card .card-foot
         }
 
         a:hover{
+            text-decoration: none;
             color: var(--brand-color-hover);
         }
     }

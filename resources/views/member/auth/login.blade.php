@@ -7,58 +7,48 @@
 @endpush
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card login-card d-flex flex-row">
-                <div class="img-container">
-                    <img src="{{ asset('nemolab/member/img/bismen.jpeg') }}" alt="Team collaboration" class="img-fluid rounded-start">
-                </div>
-                <div class="card-body">
-                    <a href="{{ route('home') }}" class="btn-back mb-4">
-                        <img src="{{ asset('nemolab/member/img/icon/arrow.png') }}" alt="Back" class="back-icon">
-                    </a>
-                    <div class="px-3 text-center">
-                        <h3 class="mb-4" data-aos="fade-left" data-aos-delay="100">MASUK DENGAN AKUNMU!</h3>
-                        <p class="fw-bold" data-aos="fade-left" data-aos-delay="200">Masuk untuk mengakses akun anda, dengan mengisi email dan password dibawah ini</p>
-                    </div>
-                    <form id="loginForm" method="POST" action="{{ route('member.login.auth') }}" class="signin-form">
-                        @csrf
-                        <div class="mb-1" >
-                            <label for="email" class="form-label fw-bold">Email</label>
-                            <input type="email" name="email" placeholder="Masukan email anda"  value="{{ old('email') }}" class="form-control fw-bold py-2" required>
-                            @error('email')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="mb-5" >
-                            <label for="password" class="form-label fw-bold">Kata sandi</label>
-                            <div class="position-relative w-100">
-                                <input type="password" name="password" placeholder="Masukan kata sandi disini"
-                                       id="password" class="form-control py-2 fw-bold" required>
-                                <button type="button" id="toggle-password" class="btn btn-light position-absolute end-0 top-50 translate-middle-y px-3" style="background-color: transparent">
-                                    <img src="{{ asset('nemolab/member/img/mdi_show.png') }}" width="20" height="20" alt="Show Password Icon" id="toggle-icon">
-                                </button>
-                            </div>
-                            @error('password')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="mb-3" >
-                            <button type="submit" class="btn btn-primary w-100 rounded-start py-2 fw-bold">Masuk</button>
-                        </div>
-                    </form>
-                    <p class="text-center fw-bold">tidak memiliki akun? <a href="{{ route('member.register') }}">daftar disini</a></p>
-                    <p class="text-center fw-bold">lupa kata sandi? <a href="{{ route('member.forget-password') }}">ganti sandi disini</a></p>
-                </div>
-            </div>
+<form class="card" id="login-form" method="POST" action="{{ route('member.login.auth') }}">
+    @csrf
+    <div class="card-title">
+        <h1>Masuk Dengan Akunmu</h1>
+        <p>Masuk untuk mengakses akun anda, dengan mengisi email dan kata sandi dibawah ini</p>
+    </div>
+    <div class="card-form">
+        <div class="input-container mb">
+            <label for="email">Email</label>
+            <input required type="email" id="email" name="email" value="{{ old('email') }}">
+            <p id="" class="error">
+                @error('email')
+                    {{ $message }}
+                @enderror
+            </p>
+        </div>
+        <div class="input-container">
+            <label for="password">Kata Sandi</label>
+            <input required type="password" id="password" name="password" minlength="8">
+            <button type="button"
+                class="btn btn-light position-absolute end-0 top-50 translate-middle-y px-3 toggle-password"
+                style="background-color: transparent" data-target="password">
+                <img src="{{ asset('nemolab/member/img/mdi_show.png') }}" width="20" height="20"
+                    alt="Show Password Icon" id="toggle-icon">
+            </button>
+            <p id="passwordError" class="error">
+                @error('password')
+                    {{ $message }}
+                @enderror
+            </p>
         </div>
     </div>
-</div>
+    <div class="card-foot">
+        <button type="submit">Masuk</button>
+        <p>Tidak memiliki akun? <a href="{{ route('member.register') }}">Daftar disini</a></p>
+        <p>Lupa Kata Sandi? <a href="{{ route('member.forget-password') }}">Ganti sandi disini</a></p>
+    </div>
+</form>
 @endsection
 
 @push('addon-script')
-<script>
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.getElementById('loginForm');
         form.querySelectorAll('input[required]').forEach(input => {
@@ -95,6 +85,93 @@
         toggleIcon.src = isPasswordVisible 
             ? '{{ asset("nemolab/member/img/mdi_hide.png") }}' 
             : '{{ asset("nemolab/member/img/mdi_show.png") }}';
+    });
+</script> --}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const input = document.querySelectorAll('input');
+        // Fungsi untuk mengubah gaya elemen sebelumnya
+        function changePreviousElementStyle(currentElement) {
+            const previousElement = currentElement.previousElementSibling;
+            if (previousElement) {
+                previousElement.classList.add('highlight');
+            }
+        }
+
+        // Fungsi untuk menghapus gaya elemen sebelumnya
+        function removePreviousElementStyle(currentElement) {
+            const previousElement = currentElement.previousElementSibling;
+            if (previousElement && !currentElement.value) {
+                previousElement.classList.remove('highlight');
+            }
+        }
+
+        // Menambahkan event listener untuk setiap input
+        input.forEach(input => {
+            input.addEventListener('focus', (event) => {
+                changePreviousElementStyle(event.target);
+            });
+            input.addEventListener('change', (event) => {
+                changePreviousElementStyle(event.target);
+            });
+            input.addEventListener('blur', (event) => {
+                removePreviousElementStyle(event.target);
+            });
+            if(input.value) {
+                changePreviousElementStyle(input);                    
+            }
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('login-form');
+
+                // form.querySelector('select[required]').addEventListener('invalid', function() {
+                //     this.setCustomValidity("Harap pilih posisi impianmu.");
+                // });
+
+                // form.querySelector('select[required]').addEventListener('input', function() {
+                //     this.setCustomValidity("");
+                // })
+
+                form.querySelectorAll('input[required]').forEach(input => {
+                        input.addEventListener('invalid', function() {
+                                switch (this.type) {
+                                    case 'email':
+                                        this.setCustomValidity("Harap masukkan email yang valid.");
+                                        break;
+                                    case 'password':
+                                        this.setCustomValidity(
+                                            "Harap masukkan kata sandi, minimal 8 karakter.");
+                                        break;
+                                    default:
+                                }
+                                });
+                            
+                            input.addEventListener('input', function() {
+                                this.setCustomValidity("");
+                            });
+                        });
+                });
+</script>
+<script>
+    const tooglePassword = document.querySelectorAll('.toggle-password');
+
+    tooglePassword.forEach(element => {
+        element.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            const passwordField = document.getElementById(target);
+            const toggleIcon = document.getElementById('toggle-icon');
+            const isPasswordVisible = passwordField.type === 'password';
+
+            passwordField.type = isPasswordVisible ? 'text' : 'password';
+            this.querySelector('img').src = isPasswordVisible ?
+                '{{ asset('nemolab/member/img/mdi_hide.png') }}' :
+                '{{ asset('nemolab/member/img/mdi_show.png') }}';
+        });
     });
 </script>
 @endpush

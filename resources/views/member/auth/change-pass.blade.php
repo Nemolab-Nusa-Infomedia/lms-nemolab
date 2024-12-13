@@ -1,99 +1,192 @@
 @extends('components.layouts.member.auth')
 
-@section('title', 'reset Password Anda Sekarang!!!')
+@section('title', 'Reset Sandi Anda Sekarang')
 
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/member/css/auth.css') }} ">
 @endpush
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card login-card d-flex flex-row">
-                    <div class="img-container">
-                        <img src="{{ asset('nemolab/member/img/bismen.jpeg') }}" alt="Team collaboration"
-                            class="img-fluid rounded-start">
-                    </div>
-                    <div class="card-body ps-4">
-                        <a href="{{ route('member.forget-password') }}" class="btn-back mb-4">
-                            <img src="{{ asset('nemolab/member/img/icon/arrow.png') }}" alt="Back" class="back-icon">
-                        </a>
-                        <div class="px-3 text-center">
-                            <h3 class="mb-4" data-aos="fade-left" data-aos-delay="100">Reset Password Akunmu Di Sini!</h3>
-                        </div>
-                        <form action="{{ route('member.reset-password.updated') }}" class="signin-form" method="POST">
-                            @csrf
-                            <input type="hidden" name="token" value="{{ $token }}">
-                            <input type="hidden" name="email" value="{{ $email }}">
-                            <div class="mb-1">
-                                <label for="new-password" class="form-label fw-bold py-2">Kata sandi baru</label>
-                                <input type="password" id="new-password" name="password" class="form-control fw-bold"
-                                    placeholder="Masukan kata sandi disini" required>
-                            </div>
-                            @error('password')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                            <div class="mb-3">
-                                <label for="confirm-password" class="form-label fw-bold py-2">Konfirmasi kata sandi</label>
-                                <div class="position-relative w-100">
-                                    <input type="password" name="confirm_pass" placeholder="Masukan kata sandi disini"
-                                           id="confirm-password-field" class="form-control py-2 fw-bold" required>
-                                    <button type="button" id="confirm-password" class="btn btn-light position-absolute end-0 top-50 translate-middle-y px-3" style="background-color: transparent">
-                                        <img src="{{ asset('nemolab/member/img/mdi_show.png') }}" width="20" height="20" alt="Show Password Icon" id="toggle-icon">
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" class="btn btn-primary w-100 py-2 rounded-start fw-bold"
-                                    id="submitBtn">Ubah Kata Sandi</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+    <form class="card" id="register-form" action="{{ route('member.reset-password.updated') }}" method="POST">
+        @csrf
+        <div class="card-title">
+            <h1>Buat Kata Sandi Baru</h1>
+            <p>Gunakan kata sandi yang mudah Anda ingat!</p>
+        </div>
+        <input type="hidden" name="token" value="{{ $token }}">
+        <input type="hidden" name="email" value="{{ $email }}">
+        <div class="card-form">
+            <div class="input-container mb">
+                <label for="password">Kata Sandi Baru</label>
+                <input required type="password" id="password" name="password" minlength="8">
+                <button type="button"
+                    class="btn btn-light position-absolute end-0 top-50 translate-middle-y px-3 toggle-password"
+                    style="background-color: transparent" data-target="password">
+                    <img src="{{ asset('nemolab/member/img/mdi_show.png') }}" width="20" height="20"
+                        alt="Show Password Icon" id="toggle-icon">
+                </button>
+                <p id="passwordError" class="error">
+                    @error('password')
+                        {{ $message }}
+                    @enderror
+                </p>
+            </div>
+            <div class="input-container">
+                <label for="password_confirmation">Konfirmasi Kata Sandi</label>
+                <input required type="password" id="password_confirmation" name="confirm-pass">
+                <button type="button"
+                    class="btn btn-light position-absolute end-0 top-50 translate-middle-y px-3 toggle-password"
+                    style="background-color: transparent" data-target="password_confirmation">
+                    <img src="{{ asset('nemolab/member/img/mdi_show.png') }}" width="20" height="20"
+                        alt="Show Password Icon" id="toggle-icon">
+                </button>
+                <p id="passwordConfirmationError" class="error">
+                    @error('password_confirmation')
+                        {{ $message }}
+                    @enderror
+                </p>
             </div>
         </div>
-    </div>
-
-    {{-- include sweetalert --}}
-    @include('sweetalert::alert')
-
+        <div class="card-foot">
+            <button type="submit" id="submitBtn">Ubah Kata Sandi</button>
+        </div>
+    </form>
 @endsection
 
 @push('addon-script')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const passwordInput = document.getElementById('new-password');
-            const confirmPasswordInput = document.getElementById('confirm-password-field');
-            const submitButton = document.getElementById('submitBtn');
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const avatarPreview = document.getElementById('avatarPreview');
+        //     const fileUpload = document.getElementById('fileUpload');
 
-            submitButton.disabled = true;
-
-            function validatePasswords() {
-                // Enable the button only if both fields are filled and passwords match
-                if (passwordInput.value === confirmPasswordInput.value) {
-                    submitButton.disabled = false;
-                } else {
-                    submitButton.disabled = true;
-                }
-            }
-
-            // Add event listeners to both password fields
-            passwordInput.addEventListener('input', validatePasswords);
-            confirmPasswordInput.addEventListener('input', validatePasswords);
-        })
+        //     // Fungsi untuk memperbarui gambar pratinjau
+        //     fileUpload.addEventListener('change', (event) => {
+        //         const file = event.target.files[0];
+        //         if (file) {
+        //             const reader = new FileReader();
+        //             reader.onload = function(e) {
+        //                 avatarPreview.src = e.target.result; // Memperbarui sumber gambar pratinjau
+        //             };
+        //             reader.readAsDataURL(file);
+        //         }
+        //     });
+        // });
     </script>
 
     <script>
-        document.getElementById('confirm-password').addEventListener('click', function () {
-            const confirmPasswordField = document.getElementById('confirm-password-field');
-            const toggleIcon = document.getElementById('toggle-icon');
-            const isPasswordVisible = confirmPasswordField.type === 'password';
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input');          
 
-            confirmPasswordField.type = isPasswordVisible ? 'text' : 'password';
-            toggleIcon.src = isPasswordVisible 
-                ? '{{ asset("nemolab/member/img/mdi_hide.png") }}' 
-                : '{{ asset("nemolab/member/img/mdi_show.png") }}';
+            // Fungsi untuk mengubah gaya elemen sebelumnya
+            function changePreviousElementStyle(currentElement) {
+                const previousElement = currentElement.previousElementSibling;
+                if (previousElement) {
+                    previousElement.classList.add('highlight');
+                }
+            }
+
+            // Fungsi untuk menghapus gaya elemen sebelumnya
+            function removePreviousElementStyle(currentElement) {
+                const previousElement = currentElement.previousElementSibling;
+                if (previousElement && !currentElement.value) {
+                    previousElement.classList.remove('highlight');
+                }
+            }
+
+            // Menambahkan event listener untuk setiap input
+            inputs.forEach(input => {
+                input.addEventListener('focus', (event) => {
+                    changePreviousElementStyle(event.target);
+                });
+                input.addEventListener('input', (event) => {
+                    changePreviousElementStyle(event.target);
+                });
+                input.addEventListener('blur', (event) => {
+                    removePreviousElementStyle(event.target);
+                });
+                input.addEventListener('animationstart', (event) => {
+                    if (event.animationName === 'onAutoFillStart') {
+                        changePreviousElementStyle(event.target);
+                    }
+                });
+                if (input.value) {
+                    changePreviousElementStyle(input);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('register-form');
+
+            // form.querySelector('select[required]').addEventListener('invalid', function() {
+            //     this.setCustomValidity("Harap pilih posisi impianmu.");
+            // });
+
+            // form.querySelector('select[required]').addEventListener('input', function() {
+            //     this.setCustomValidity("");
+            // })
+
+            form.querySelectorAll('input[required]').forEach(input => {
+                input.addEventListener('invalid', function() {
+                    switch (this.type) {
+                        case 'password':
+                            this.setCustomValidity(
+                                "Harap masukkan kata sandi, minimal 8 karakter.");
+                            break;
+                        default:
+                    }
+                });
+
+                input.addEventListener('input', function() {
+                    this.setCustomValidity("");
+                });
+            });
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                let isValid = true; // Reset error messages 
+                // document.getElementById('nameError').textContent = '';
+                // document.getElementById('emailError').textContent = '';
+                // document.getElementById('professionError').textContent = '';
+                document.getElementById('passwordError').textContent = '';
+                document.getElementById('passwordConfirmationError').textContent =
+                    ''; // Validate password 
+                const password = document.getElementById('password').value;
+                const passwordRegex = /^(?=.*[a-z])(?=.*[0-9]).{8,}$/;
+                if (!passwordRegex.test(password)) {
+                    document.getElementById('passwordError').textContent =
+                        'Password harus berisi kombinasi huruf dan angka.';
+                    isValid = false;
+                } // Validate password confirmation 
+                const passwordConfirmation = document.getElementById('password_confirmation').value;
+                if (password !== passwordConfirmation) {
+                    document.getElementById('passwordConfirmationError').textContent =
+                        'Konfirmasi password tidak cocok.';
+                    isValid = false;
+                }
+                if (isValid) {
+                    this.submit();
+                }
+            });
+        });
+    </script>
+    <script>
+        const tooglePassword = document.querySelectorAll('.toggle-password');
+
+        tooglePassword.forEach(element => {
+            element.addEventListener('click', function() {
+                const target = this.getAttribute('data-target');
+                const passwordField = document.getElementById(target);
+                const toggleIcon = document.getElementById('toggle-icon');
+                const isPasswordVisible = passwordField.type === 'password';
+
+                passwordField.type = isPasswordVisible ? 'text' : 'password';
+                this.querySelector('img').src = isPasswordVisible ?
+                    '{{ asset('nemolab/member/img/mdi_hide.png') }}' :
+                    '{{ asset('nemolab/member/img/mdi_show.png') }}';
+            });
         });
     </script>
 @endpush

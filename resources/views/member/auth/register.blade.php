@@ -33,7 +33,7 @@
                 </p>
             </div>
             <div class="input-container">
-                <label for="password">Password</label>
+                <label for="password">Kata Sandi</label>
                 <input required type="password" id="password" name="password" minlength="8">
                 <button type="button"
                     class="btn btn-light position-absolute end-0 top-50 translate-middle-y px-3 toggle-password"
@@ -48,7 +48,7 @@
                 </p>
             </div>
             <div class="input-container">
-                <label for="password_confirmation">Confirmasi Password</label>
+                <label for="password_confirmation">Konfirmasi Kata Sandi</label>
                 <input required type="password" id="password_confirmation" name="password_confirmation">
                 <button type="button"
                     class="btn btn-light position-absolute end-0 top-50 translate-middle-y px-3 toggle-password"

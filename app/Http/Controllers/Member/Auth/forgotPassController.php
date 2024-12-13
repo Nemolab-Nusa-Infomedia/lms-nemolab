@@ -46,7 +46,7 @@ class forgotPassController extends Controller
             RateLimiter::hit('reset-password:' . $requests->email, 3600);
             $statusSend = 'success';
             Alert::success('Berhasil', 'Link Reset Password Berhasil Di Kirim Ke Email Anda.');
-            return redirect()->back();
+            return view('member.auth.check-email');
         }
 
 
