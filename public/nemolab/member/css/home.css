@@ -11,6 +11,7 @@
 body
 {
     overflow-x: hidden;
+    background: linear-gradient(175deg, #f8eaff 12%, #ffffff 20%);
 }
 
 html
@@ -132,7 +133,6 @@ p
 
 #section-hero-img
 {
-    background: linear-gradient(to bottom right, #f8eaff, #ffffff);
     padding: 2rem 3rem;
     height: 100svh;
 }
@@ -144,7 +144,7 @@ p
 
 #section-hero-img .paragraph
 {
-    width: 50%;
+    width: 90%;
 }
 
 #section-hero-img p
@@ -158,7 +158,8 @@ p
 
 }
 
-#section-hero-img .circle1 {
+#section-hero-img .circle1
+{
     position: absolute;
     transform: translate(-4%, -38%);
     height: 70svw;
@@ -169,7 +170,8 @@ p
     z-index: -1;
 }
 
-#section-hero-img .circle2 {
+#section-hero-img .circle2
+{
     position: absolute;
     transform: translate(-3%, -45%);
     height: 60svw;
@@ -180,30 +182,46 @@ p
     z-index: -1;
 }
 
-#section-hero-img .circle3 {
+#section-hero-img .circle3
+{
     position: absolute;
-    transform: translate(-30%, 45%);
+    bottom: 0;
+    left: 0;
+    transform: translate(-30%, 50%);
     height: 20svw;
     width: 20svw;
-    background: linear-gradient(to bottom, #ff8e01, #ff8e01,#ffffff);
+    background: linear-gradient(to bottom, #ff8e01, #ff8e01, #ffffff);
     border-radius: 50%;
     transition: transform 0.3s ease-in-out;
-    z-index: 4;
+    z-index: 1;
+
+    div
+    {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
 }
 
-#section-hero-img .dots {
+#section-hero-img .dots
+{
     position: absolute;
-    transform: translate(0, 50%);
-    z-index: 5;
+    top: 0;
+    left: 40%;
+    height: 90%;
+    width: auto;
 }
 
-#section-hero-img .dots2 {
+#section-hero-img .dots2
+{
     position: absolute;
-    transform: translate(-68%, 50%);
-    z-index: 5;
+    transform: translate(67%, 15%);
+    /* z-index: 5; */
+    scale: 1.5;
 }
 
-#section-hero-img .image-wrapper {
+#section-hero-img .image-wrapper
+{
     position: relative;
     right: 0;
     width: 90%;
@@ -211,19 +229,22 @@ p
     transition: transform 0.3s ease-in-out;
 }
 
-#section-hero-img .image-wrapper img {
+#section-hero-img .image-wrapper img
+{
     width: 100%;
     height: auto;
     display: block;
 }
 
-#section-hero-img .image-wrapper .main-image {
+#section-hero-img .image-wrapper .main-image
+{
     transition: transform 0.3s ease-in-out;
 }
 
 #section-hero-img .image-wrapper .image-overlay1,
 #section-hero-img .image-wrapper .image-overlay2,
-#section-hero-img .image-wrapper .dot {
+#section-hero-img .image-wrapper .dot
+{
     position: absolute;
     top: 0;
     width: auto;
@@ -232,66 +253,79 @@ p
     transition: transform 0.3s ease-in-out;
 }
 
-#section-hero-img .image-wrapper .image-overlay1 {
+#section-hero-img .image-wrapper .image-overlay1
+{
     top: -11%;
     left: 10%;
     width: 30%;
 }
 
-#section-hero-img .image-wrapper .image-overlay2{
+#section-hero-img .image-wrapper .image-overlay2
+{
     right: 0;
     width: 30%;
 }
 
-#section-hero-img .image-wrapper .dot {
+#section-hero-img .image-wrapper .dot
+{
     top: -1%;
     right: -20%;
     width: 50%;
 }
 
 /* hover trigger semua */
-#section-hero-img .main-image:hover {
+#section-hero-img .main-image:hover
+{
     transform: scale(1.05);
 }
 
-#section-hero-img .main-image:hover ~ .image-overlay1 {
+#section-hero-img .main-image:hover~.image-overlay1
+{
     transform: rotate(-3deg) translateX(-10px);
 }
 
-#section-hero-img .main-image:hover ~ .image-overlay2 {
+#section-hero-img .main-image:hover~.image-overlay2
+{
     transform: rotate(5deg) translateX(10px);
 }
 
-#section-hero-img .main-image:hover ~ .dot {
+#section-hero-img .main-image:hover~.dot
+{
     transform: translateX(10px);
 }
 
-#section-hero-img .image-wrapper:hover .circle1 {
+#section-hero-img .image-wrapper:hover .circle1
+{
     transform: translate(-3%, -38%) !important;
 }
-#section-hero-img .image-wrapper:hover .circle2 {
+
+#section-hero-img .image-wrapper:hover .circle2
+{
     transform: translate(-5%, -44%) !important;
 }
 
 /* hover overlay */
-#section-hero-img .image-wrapper .image-overlay1:hover {
+#section-hero-img .image-wrapper .image-overlay1:hover
+{
     transform: scale(1.05) rotate(-4deg);
 }
 
-#section-hero-img .image-wrapper .image-overlay2:hover {
+#section-hero-img .image-wrapper .image-overlay2:hover
+{
     transform: scale(1.05) rotate(6deg);
 }
 
 /* gambar utama balik pas hover overlay */
-#section-hero-img .image-wrapper .image-overlay1:hover ~ .main-image,
-#section-hero-img .image-wrapper .image-overlay2:hover ~ .main-image {
+#section-hero-img .image-wrapper .image-overlay1:hover~.main-image,
+#section-hero-img .image-wrapper .image-overlay2:hover~.main-image
+{
     transform: none;
 }
 
 
 /* end style section 1 */
 
-/* sesion 2 */
+/* section 2 */
 .courses-wrapper
 {
     width: 100%;
@@ -329,7 +363,8 @@ p
     pointer-events: none;
 } */
 
-.scroll-course{
+.scroll-course
+{
     min-width: 2rem;
     background: none;
     border: none;
@@ -343,7 +378,7 @@ p
 
 .course-card
 {
-    min-width: 300px;
+    max-width: 20rem;
     flex-shrink: 0;
 }
 
@@ -380,7 +415,6 @@ p
 
 #section-pilih-kelas
 {
-    background-color: var(--light-shade);
     padding: 0 2.5rem;
     padding-bottom: 60px !important;
 }
@@ -397,26 +431,20 @@ p
     font-size: large;
 }
 
-#section-pilih-kelas .container-fluid .title-pilih-kelas a
+#section-pilih-kelas .course-card
 {
-    font-size: 16px;
-    background-color: var(--color-orange);
-    color: white;
-    padding: 10px 24px;
-}
-
-#section-pilih-kelas .container-fluid .title-pilih-kelas a:hover
-{
-    background-color: var(--color-orange-hover);
+    border-radius: 14px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #section-pilih-kelas .card
 {
+    box-shadow: 1px 0 5px rgba(190, 190, 190, 0.189) inset, -1px 0 5px rgba(190, 190, 190, 0.189) inset;
     aspect-ratio: 5 / 6;
-    width: 25rem;
+    width: 20rem;
     border-radius: 14px;
+    border: none;
     /* height: max-content; */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -427,22 +455,24 @@ p
     flex-grow: 1;
 }
 
-#section-pilih-kelas .card:hover
+#section-pilih-kelas .course-card:hover
 {
     transform: translateY(-10px);
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-#section-pilih-kelas .card img
+#section-pilih-kelas .card>img
 {
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
     object-fit: cover;
+    padding: 2px;
     /* width: 100%;
     height: 250px; */
     height: auto;
     width: 100%;
     aspect-ratio: 16 / 9;
+    box-shadow: 0 5px 5px rgba(190, 190, 190, 0.189);
 }
 
 #section-pilih-kelas .title-card
@@ -557,6 +587,20 @@ p
     white-space: normal;
     -webkit-line-clamp: unset;
     max-height: none;
+}
+
+#section-pilih-kelas .flex-column>a
+{
+    border: solid 2px var(--color-orange);
+    width: max-content;
+}
+
+#section-pilih-kelas .flex-column>a:hover
+{
+    border: solid 2px var(--color-orange-hover);
+    width: max-content;
+    color: var(--color-orange-hover);
+    background: none;
 }
 
 /* style section-tentang-nemolab */
@@ -739,9 +783,9 @@ p
 }
 
 #section-testimoni-kelas .container-fluid .row .col-md-4 .card:hover
-{   
+{
     box-shadow: inset 0px 8px 15px rgba(0, 0, 0, 0.2);
-}  
+}
 
 #section-testimoni-kelas .container-fluid .row .col-md-4 .card .card-body .name h5
 {
@@ -762,19 +806,27 @@ p
 }
 
 
-.scroll-up {
+.scroll-up
+{
     animation: scroll-back-and-forth 15s linear infinite;
 }
 
 /* Keyframes untuk animasi bolak-balik */
-@keyframes scroll-back-and-forth {
-    0% {
+@keyframes scroll-back-and-forth
+{
+    0%
+    {
         transform: translateY(5%);
     }
-    50% {
-        transform: translateY(-60%); /* Ubah nilai ini sesuai kebutuhan */
+
+    50%
+    {
+        transform: translateY(-60%);
+        /* Ubah nilai ini sesuai kebutuhan */
     }
-    100% {
+
+    100%
+    {
         transform: translateY(5%);
     }
 }
@@ -784,23 +836,32 @@ p
     animation: scroll-forth-and-back 15s linear infinite;
 }
 
-@keyframes scroll-forth-and-back {
-    0% {
+@keyframes scroll-forth-and-back
+{
+    0%
+    {
         transform: translateY(-60%);
     }
-    50% {
-        transform: translateY(5%); /* Ubah nilai ini sesuai kebutuhan */
+
+    50%
+    {
+        transform: translateY(5%);
+        /* Ubah nilai ini sesuai kebutuhan */
     }
-    100% {
+
+    100%
+    {
         transform: translateY(-60%);
     }
 }
 
-.scroll-up:hover {
+.scroll-up:hover
+{
     animation-play-state: paused;
 }
 
-.scroll-down:hover {
+.scroll-down:hover
+{
     animation-play-state: paused;
 }
 

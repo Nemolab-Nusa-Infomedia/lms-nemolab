@@ -92,7 +92,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const input = document.querySelectorAll('input');
+            const inputs = document.querySelectorAll('input');
+
             // Fungsi untuk mengubah gaya elemen sebelumnya
             function changePreviousElementStyle(currentElement) {
                 const previousElement = currentElement.previousElementSibling;
@@ -110,18 +111,23 @@
             }
 
             // Menambahkan event listener untuk setiap input
-            input.forEach(input => {
+            inputs.forEach(input => {
                 input.addEventListener('focus', (event) => {
                     changePreviousElementStyle(event.target);
                 });
-                input.addEventListener('change', (event) => {
+                input.addEventListener('input', (event) => {
                     changePreviousElementStyle(event.target);
                 });
                 input.addEventListener('blur', (event) => {
                     removePreviousElementStyle(event.target);
                 });
-                if(input.value) {
-                    changePreviousElementStyle(input);                    
+                input.addEventListener('animationstart', (event) => {
+                    if (event.animationName === 'onAutoFillStart') {
+                        changePreviousElementStyle(event.target);
+                    }
+                });
+                if (input.value) {
+                    changePreviousElementStyle(input);
                 }
             });
         });
@@ -129,64 +135,65 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-                    const form = document.getElementById('register-form');
+            const form = document.getElementById('register-form');
 
-                    // form.querySelector('select[required]').addEventListener('invalid', function() {
-                    //     this.setCustomValidity("Harap pilih posisi impianmu.");
-                    // });
+            // form.querySelector('select[required]').addEventListener('invalid', function() {
+            //     this.setCustomValidity("Harap pilih posisi impianmu.");
+            // });
 
-                    // form.querySelector('select[required]').addEventListener('input', function() {
-                    //     this.setCustomValidity("");
-                    // })
+            // form.querySelector('select[required]').addEventListener('input', function() {
+            //     this.setCustomValidity("");
+            // })
 
-                    form.querySelectorAll('input[required]').forEach(input => {
-                            input.addEventListener('invalid', function() {
-                                    switch (this.type) {
-                                        case 'text':
-                                            this.setCustomValidity("Harap masukkan nama pengguna.");
-                                            break;
-                                        case 'email':
-                                            this.setCustomValidity("Harap masukkan email yang valid.");
-                                            break;
-                                        case 'password':
-                                            this.setCustomValidity(
-                                                "Harap masukkan kata sandi, minimal 8 karakter.");
-                                            break;
-                                        default:
-                                    });
+            form.querySelectorAll('input[required]').forEach(input => {
+                input.addEventListener('invalid', function() {
+                    switch (this.type) {
+                        case 'text':
+                            this.setCustomValidity("Harap masukkan nama pengguna.");
+                            break;
+                        case 'email':
+                            this.setCustomValidity("Harap masukkan email yang valid.");
+                            break;
+                        case 'password':
+                            this.setCustomValidity(
+                                "Harap masukkan kata sandi, minimal 8 karakter.");
+                            break;
+                        default:
+                    }
+                });
 
-                                input.addEventListener('input', function() {
-                                    this.setCustomValidity("");
-                                });
-                            });
+                input.addEventListener('input', function() {
+                    this.setCustomValidity("");
+                });
+            });
 
-                        form.addEventListener('submit', function(event) {
-                            event.preventDefault();
-                            let isValid = true; // Reset error messages 
-                            // document.getElementById('nameError').textContent = '';
-                            // document.getElementById('emailError').textContent = '';
-                            // document.getElementById('professionError').textContent = '';
-                            document.getElementById('passwordError').textContent = '';
-                            document.getElementById('passwordConfirmationError').textContent =
-                            ''; // Validate password 
-                            const password = document.getElementById('password').value;
-                            const passwordRegex = /^(?=.*[a-z])(?=.*[0-9]).{8,}$/;
-                            if (!passwordRegex.test(password)) {
-                                document.getElementById('passwordError').textContent =
-                                    'Password harus berisi kombinasi huruf dan angka.';
-                                isValid = false;
-                            } // Validate password confirmation 
-                            const passwordConfirmation = document.getElementById('password_confirmation').value;
-                            if (password !== passwordConfirmation) {
-                                document.getElementById('passwordConfirmationError').textContent =
-                                    'Konfirmasi password tidak cocok.';
-                                isValid = false;
-                            }
-                            if (isValid) {
-                                this.submit();
-                            }
-                        });
-                    });
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                let isValid = true; // Reset error messages 
+                // document.getElementById('nameError').textContent = '';
+                // document.getElementById('emailError').textContent = '';
+                // document.getElementById('professionError').textContent = '';
+                document.getElementById('passwordError').textContent = '';
+                document.getElementById('passwordConfirmationError').textContent =
+                    ''; // Validate password 
+                const password = document.getElementById('password').value;
+                const passwordRegex = /^(?=.*[a-z])(?=.*[0-9]).{8,}$/;
+                if (!passwordRegex.test(password)) {
+                    document.getElementById('passwordError').textContent =
+                        'Password harus berisi kombinasi huruf dan angka.';
+                    isValid = false;
+                } // Validate password confirmation 
+                const passwordConfirmation = document.getElementById('password_confirmation').value;
+                if (password !== passwordConfirmation) {
+                    document.getElementById('passwordConfirmationError').textContent =
+                        'Konfirmasi password tidak cocok.';
+                    isValid = false;
+                }
+                if (isValid) {
+                    this.submit();
+                }
+            });
+        });
     </script>
     <script>
         const tooglePassword = document.querySelectorAll('.toggle-password');

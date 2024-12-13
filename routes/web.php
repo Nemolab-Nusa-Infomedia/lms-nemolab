@@ -139,8 +139,8 @@ Route::middleware('maintenance.middleware')->group(function () {
         Route::post('/reset-password/updated', [MemberForgotPassController::class, 'resetPassword'])->name('member.reset-password.updated');
 
         Route::post('/email/verify-pin', [MemberResendEmailController::class, 'verifyPin'])
-        ->middleware(['auth', 'throttle:6,1'])
-        ->name('verification.verify-pin');
+            ->middleware(['auth', 'throttle:6,1'])
+            ->name('verification.verify-pin');
     });
 
 

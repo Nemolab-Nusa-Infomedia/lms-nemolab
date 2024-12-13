@@ -8,31 +8,27 @@
 
 @section('content')
     <!-- Section Hero -->
-    <section class="section-hero-img d-flex align-items-center mb-5" id="section-hero-img">
+    <section class="section-hero-img d-flex align-items-center mb-5 position-relative" id="section-hero-img">
         <div class="row">
-            <div class="col-md-6">
-                <div class="text-center text-md-start me-md-3 mx-4">
+            <div class="col-md-6 row align-items-center" style="z-index: 1">
+                <div class="text-center text-md-start me-md-3 mx-4" style="margin-top: -4rem">
                     <h1 class="fw-bold mt-4 mt-md-0">BELAJAR KURSUS ONLINE GRATIS, KAPANPUN DAN DIMANAPUN</h1>
                     <div class="paragraph">
                         <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai macam
                             kelas mulai
                             yang gratis hingga yang berbayar</p>
                     </div>
-                        <a href="{{ route('member.course') }}" class="btn btn-warning px-4 py-2 mt-2">Mulai Belajar</a>
-                    </div>
-                    <img class="dots" src="{{ asset('nemolab/member/img/dot.png') }}" alt="">
-                    <img class="dots2" src="{{ asset('nemolab/member/img/dot.png') }}" alt="">
-                    <div class="circle3">
-                    </div>
+                    <a href="{{ route('member.course') }}" class="btn btn-warning px-4 py-2 mt-2">Mulai Belajar</a>
                 </div>
-                <div class="col-md-6 d-none d-md-block align-items-center">
-                    <div class="image-wrapper">
-                        <div data-aos="fade-down-left">
-                            <div class="circle1"></div>
-                        </div>
-                        <div data-aos="fade-down-left" data-aos-delay="50">
-                            <div class="circle2"></div>
-                        </div>
+            </div>
+            <div class="col-md-6 d-none d-md-block align-items-center">
+                <div class="image-wrapper">
+                    <div data-aos="fade-down-left">
+                        <div class="circle1"></div>
+                    </div>
+                    <div data-aos="fade-down-left" data-aos-delay="50">
+                        <div class="circle2"></div>
+                    </div>
                     <div class="main-image">
                         <img src="{{ asset('nemolab/member/img/lp-hero-pisah-1.png') }}" alt="" data-aos="fade-up"
                             data-aos-delay="200">
@@ -43,7 +39,7 @@
                     </div>
                     <div class="dot">
                         <img src="{{ asset('nemolab/member/img/dot.png') }}" alt="" data-aos-delay="600"
-                        data-aos="fade-left">
+                            data-aos="fade-left">
                     </div>
                     <div class="image-overlay2">
                         <img src="{{ asset('nemolab/member/img/lp-hero-pisah-3.png') }}" alt="" data-aos-delay="600"
@@ -52,18 +48,22 @@
                 </div>
             </div>
         </div>
+        <div class="circle3">
+            <div>
+                <img class="dots" src="{{ asset('nemolab/member/img/dot.png') }}" alt="">
+            </div>
+        </div>
     </section>
 
     <section class="section-pilh-kelas" id="section-pilih-kelas" data-aos="fade-up">
-        <div class="container-fluid p-0 m-0">
-            <div class="title-pilih-kelas d-flex justify-content-between align-items-center pt-5">
-                <div class="title-group text-center text-md-start">
+        <div class="d-flex flex-column align-items-center p-0 m-0">
+            <div class="title-pilih-kelas d-flex justify-content-center align-items-center pt-5">
+                <div class="title-group text-center ">
                     <h1 class="title-kelas fw-bold">Pilihan Kelas</h1>
                     <p class="subtitle-kelas">Beralih menjadi profesional dari sekarang dengan memilih kelas dan mulai
                         belajar</p>
                 </div>
-                <a href="{{ route('member.course') }}" class="btn btn-light fw-bold d-none d-md-block">Lihat Kelas
-                    Lainnya</a>
+                
             </div>
 
             <div class="courses-wrapper">
@@ -142,9 +142,8 @@
                 </button>
             </div>
 
-            <div class="d-flex justify-content-center mt-4">
-                <a href="{{ route('member.course') }}" class="btn btn-light fw-bold d-md-none">Lihat Kelas Lainnya</a>
-            </div>
+            <a href="{{ route('member.course') }}" class="btn btn-light fw-bold d-none d-md-block">Lihat Kelas
+                Lainnya</a>
         </div>
     </section>
 
@@ -158,7 +157,8 @@
                     </div>
                     <div class="col-4 flex-column mt-4" id="menu-service">
                         <div class="ms-lg-5">
-                            <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out" data-aos-delay="200">
+                            <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out"
+                                data-aos-delay="200">
                                 <h4 class="fw-bold">Video</h4>
                                 <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}"
                                     class="btn btn-secondary py-1 px-2 mt-2">belajar sekarang</a>
@@ -210,8 +210,8 @@
                         <ul class="check-active-group mt-3 list-unstyled"> <!-- Changed to ul and added list-unstyled -->
                             <li class="check-active d-flex align-items-center" data-aos="zoom-out">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    fill="currentColor" class="bi bi-check-square-fill" style="color: hsl(100, 96%, 42.5%);"
-                                    viewBox="0 0 16 16">
+                                    fill="currentColor" class="bi bi-check-square-fill"
+                                    style="color: hsl(100, 96%, 42.5%);" viewBox="0 0 16 16">
                                     <path
                                         d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
                                 </svg>
@@ -220,8 +220,8 @@
                             <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                 data-aos-delay="100">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    fill="currentColor" class="bi bi-check-square-fill" style="color: hsl(100, 96%, 42.5%);"
-                                    viewBox="0 0 16 16">
+                                    fill="currentColor" class="bi bi-check-square-fill"
+                                    style="color: hsl(100, 96%, 42.5%);" viewBox="0 0 16 16">
                                     <path
                                         d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
                                 </svg>
@@ -230,8 +230,8 @@
                             <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                 data-aos-delay="200">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    fill="currentColor" class="bi bi-check-square-fill" style="color: hsl(100, 96%, 42.5%);"
-                                    viewBox="0 0 16 16">
+                                    fill="currentColor" class="bi bi-check-square-fill"
+                                    style="color: hsl(100, 96%, 42.5%);" viewBox="0 0 16 16">
                                     <path
                                         d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
                                 </svg>
@@ -240,8 +240,8 @@
                             <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                 data-aos-delay="300">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    fill="currentColor" class="bi bi-check-square-fill" style="color: hsl(100, 96%, 42.5%);"
-                                    viewBox="0 0 16 16">
+                                    fill="currentColor" class="bi bi-check-square-fill"
+                                    style="color: hsl(100, 96%, 42.5%);" viewBox="0 0 16 16">
                                     <path
                                         d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
                                 </svg>
