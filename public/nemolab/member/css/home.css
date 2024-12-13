@@ -424,7 +424,6 @@ p
 #section-pilih-kelas
 {
     padding: 0 2.5rem;
-    padding-bottom: 60px !important;
     height: 100svh;
 }
 
@@ -625,6 +624,7 @@ p
 #section-pilih-kelas > img{
     position: absolute;
     bottom: 0;
+    transform: translateY(40%);
     left: 10px;
 }
 /* End Section 2 */
