@@ -37,6 +37,11 @@ html::-webkit-scrollbar
     display: none;
 }
 
+.col-md-6
+{
+    min-width: 50%;
+}
+
 /* button */
 a.btn-warning
 {
@@ -621,12 +626,14 @@ p
     background: none;
 }
 
-#section-pilih-kelas > img{
+#section-pilih-kelas>img
+{
     position: absolute;
     bottom: 0;
-    transform: translateY(40%);
+    transform: translateY(50%);
     left: 10px;
 }
+
 /* End Section 2 */
 
 /* style section-tentang-nemolab */
@@ -716,12 +723,15 @@ p
     font-size: 14px;
     border-radius: 5px;
 }
-#section-tentang-nemolab > img{
+
+#section-tentang-nemolab>img
+{
     position: absolute;
     bottom: 0;
     rotate: 180deg;
     right: 10px;
 }
+
 /* end style section-tentang-nemolab */
 
 /* style section 4 */
@@ -729,6 +739,42 @@ p
 #section-benefit-kelas
 {
     padding: 10px 1rem;
+}
+
+#section-benefit-kelas h1 span
+{
+    color: var(--color-orange);
+}
+
+#section-benefit-kelas iframe
+{
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border-radius: 2rem;
+}
+
+#section-benefit-kelas .values-grid
+{
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr 1fr;
+}
+
+#section-benefit-kelas .values-grid .value
+{
+    .icon
+    {
+        background: var(--color-orange);
+        width: 4rem;
+        height: 4rem;
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    h5
+    {
+        font-weight: 600;
+    }
 }
 
 .check-active-group
@@ -793,6 +839,36 @@ p
 /* end section 4 */
 
 /* style section 5 */
+#section-support-by
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+
+    p
+    {
+        width: 50%;
+        text-align: center;
+    }
+
+    .support-brand
+    {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+
+        img
+        {
+            height: 4rem;
+        }
+    }
+}
+
+/* end section 5 */
+
+/* style section 6 */
 #section-testimoni-kelas
 {
     padding: 80px 1rem;
@@ -809,6 +885,25 @@ p
 #section-testimoni-kelas .container-fluid .testimoni-title h1
 {
     text-align: center;
+    position: relative;
+}
+
+#section-testimoni-kelas .container-fluid .testimoni-title h1 img
+{
+    position: absolute;
+    top: -2rem;
+    left: -6rem;
+    transform: translate(50%, -50%);
+    rotate: 33.87deg;
+    width: 4rem;
+}
+
+#section-testimoni-kelas .container-fluid .testimoni-title h1 img:last-child
+{
+    right: 0;
+    left: auto;
+    top: -7rem;
+    rotate: 114.55deg;
 }
 
 #section-testimoni-kelas .container-fluid .testimoni-title p
@@ -941,25 +1036,24 @@ p
     }
 }
 
-/* end style section 5 */
+/* end style section 6 */
 
 
-/* section 6 */
+/* section 7 */
 #section-pusat-bantuan
 {
     padding: 100px 1rem;
-    background-color: var(--color-orange);
 }
 
 #section-pusat-bantuan h1
 {
-    color: white;
+    color: black;
 }
 
 #section-pusat-bantuan p
 {
     font-size: 18px;
-    color: white;
+    color: var(--text-color-second);
 }
 
 #section-pusat-bantuan img
@@ -968,7 +1062,7 @@ p
     height: auto;
 }
 
-/* end section 6 */
+/* end section 7 */
 
 
 .order-center
