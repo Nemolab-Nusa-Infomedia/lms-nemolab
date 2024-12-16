@@ -88,153 +88,80 @@
         });
     </script>
 
-    {{-- load data script --}}
-    <script>
-        let loading = false;
-        let lastBookId = null;
-        let lastCourseId = null;
-        let hasMore = true;
+<<<<<<< HEAD
+                // ubah value query
+                query = query = document.querySelector(`label[for="${this.id}"]`).textContent;
+                getDataCourse();
+            })
+        });
 
-        // Mendapatkan elemen grid container
-        const gridContainer = document.querySelector('.courses-scroll');
-        // Mendapatkan nilai grid-template-columns
-        const gridTemplateColumns = window.getComputedStyle(gridContainer).getPropertyValue('grid-template-columns');
-        // Menghitung jumlah kolom
-        const totalColumns = gridTemplateColumns.split(' ').length;
 
-        // Request data dan enambahkan card ke container
-        function loadMoreContent() {
-            if (loading || !hasMore) return;
+        getDataCourse();
 
-            loading = true;
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchInput = urlParams.get('search-input');
-            const categoryFilter = urlParams.get('filter-kelas');
-            const paketFilter = urlParams.get('filter-paket');
-
-            // Melakukan permintaan menggunakan fetch
-            fetch(`${window.location.pathname}?${new URLSearchParams({
-                'search-input': searchInput,
-                'filter-kelas': categoryFilter,
-                'filter-paket': paketFilter,
-                'lastBookId': lastBookId,
-                'lastCourseId': lastCourseId,
-                'requestTotal': totalColumns,
-            })}`, {
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                })
+        function getDataCourse() {
+            fetch('https://nemolab.id/api/v1/course/category?q=' + query)
                 .then(response => response.json())
-                .then(response => {
-                    const container = document.querySelector('.courses-scroll');
-                    hasMore = response.hasMore;
-                    console.log(response)
-                    // Memeriksa data yang akan ditampilkan
-                    if (Array.isArray(response.data)) {
-                        response.data.forEach(item => {
-                            const itemHtml = createItemHtml(item, response.bundling || {});
-                            container.insertAdjacentHTML('beforeend', itemHtml);
-                        });
-                        // Mengatur ulang nilai grid-template-columns jika data sedikit
-                        if (!hasMore && lastCourseId == null && response.data.length < totalColumns) {
-                            document.querySelector('.courses-scroll').style.gridTemplateColumns =
-                                'repeat(auto-fit, minmax(280px, 300px))';
-                        }
-                    } else if(lastCourseId == null){
-                        // Menampilkan not found
-                        container.insertAdjacentHTML('beforeend', `
-                            <img src="{{ asset('nemolab/member/img/search-not-found.png') }}"
-                                class="logo-not-found" style="max-width: 50svh" alt="Not Found">
-                            <p class="mt-3">Kelas Yang Kamu Cari Tidak Tersedia</p>
-                        `);
-                        document.querySelector('.courses-scroll').style.display = "flex";
-                        document.querySelector('.courses-scroll').style.flexDirection = "column";
-                        document.querySelector('.courses-scroll').style.alignItems = "center";
-                        document.querySelector('.courses-scroll').style.justifyContent = "center";
-                    }
+                .then(data => {
+                    const courses = data.data;
+                    const courseContainer = document.getElementById('course-container');
 
-                    // set data terakhir (checkpoint) untuk server
-                    lastBookId = response.lastBookId;
-                    lastCourseId = response.lastCourseId;
-                    document.querySelector('#sentinel').style.display = hasMore ? 'block' : 'none';
-                    loading = false;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    loading = false;
-                });
-        }
+                    // Menghapus semua elemen anak dari courseContainer
+                    courseContainer.innerHTML = '';
 
-        // Fungsi untuk membuat HTML item
-        function createItemHtml(item, bundling) {
-            const currentBundling = bundling[item.id] || null;
-            const price = currentBundling ?
-                (currentBundling.price == 0 ? 'Gratis' : 'Rp ' + new Intl.NumberFormat('id-ID').format(currentBundling
-                    .price)) :
-                (item.price == 0 ? 'Gratis' : 'Rp ' + new Intl.NumberFormat('id-ID').format(item.price));
-
-            return `
-<div class="w-100 d-flex justify-content-center">
-    <div class="card d-flex flex-column">
-        ${item.cover != null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}" class="card-img-top d-block" alt="${item.name}">` : `<img src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="${item.name}">`}
-        <div class="card-body p-3">
-            <div class="paket d-flex">
-               <p class="paket-item mt-2">${item.product_type === 'ebook' ? 'E-Book' : currentBundling ? 'Paket Combo' : 'Kursus'}</p>
+                    if (courses.message != "notfound") {
+                        courses.forEach(courseData => {
+                            courseData.course.forEach(course => {
+                                const courseElement = document.createElement('div');
+                                courseElement.className =
+                                    'col-12 col-md-4 col-lg-4 card-parent';
+                                    courseElement.innerHTML = `
+    <a href="#" data-slug-course="${course.slug_course}" onclick="setCourseUrl(this)" style="text-decoration: none;">
+        <div class="card-course d-flex d-md-block mt-3 mt-md-1 position-relative">
+            <img src="${courseData.avatars_mentor}" alt="${courseData.name_mentor}" class="card-img-profile d-md-none position-absolute" style="border-radius: 100%;">
+            <div>
+                <img src="${course.cover_course}" class="img-card" alt="${course.title_course}">
             </div>
-            <div class="title-card">
-                <a href="${item.product_type === 'ebook' ? '{{ route('member.ebook.join', '') }}' : '{{ route('member.course.join', '') }}/'}${item.slug}">
-                    <p>${item.category}</p>
-                    <h5 class="fw-bold truncate-text">${item.name}</h5>
-                </a>
-                <p class="avatar m-0 fw-bold me-1">
-                    ${item.users.avatar != null
-                        ? `<img src="{{ url('/') }}/storage/images/avatars/${item.users.avatar}" alt="${item.users.name}" style="width: 24px; height: 24px; border-radius: 50%;">`
-                        : `<img src="{{ asset('nemolab/member/img/default-user.png') }}" alt="${item.users.name}" style="width: 24px; height: 24px; border-radius: 50%;">`
-                    }
-                    ${item.users.name}
-                </p>
-            </div>
-            <div class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3">
-                <div class="harga d--block">
-                    <p class="p-0 m-0 fw-semibold">Harga</p>
-                    <p class="p-0 m-0 fw-semibold">${price}</p>
+            <div class="container-card px-3">
+                <p class="produck-title text-black fw-medium mb-0 mb-md-2 mt-2 mt-md-0">${course.category_course}: ${course.title_course}</p>
+                <div class="profile-card d-none d-md-flex align-items-center">
+                    <img src="${courseData.avatars_mentor}" alt="${courseData.name_mentor}" class="card-img-profile" style="border-radius: 100%;">
+                    <p class="profile-mentor text-black m-0 ms-2 fw-medium">${courseData.name_mentor}</p>
                 </div>
-                <a href="{{ route('member.course.join', '') }}/${item.slug}" class="btn btn-primary">Mulai Belajar</a>
+                <div class="price mt-1 mb-2 my-md-2">
+                    <p class="text-black mb-0 fw-light">Rp. ${course.price_course}</p>
+                </div>
+                <div class="status d-flex">
+                    <div class="d-inline-flex">
+                        <p>Video</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-        `;
-        }
+    </a>
+`;
 
-        // Intersection Observer untuk infinite scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    loadMoreContent();
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
+                                courseContainer.appendChild(courseElement);
+                            });
+                        });
+                    } else {
+                        const courseElement = document.createElement('div');
+                        courseElement.className =
+                            'col-12 d-flex justify-content-center align-items-center fw-medium';
+                        courseElement.innerHTML = `Maaf Course Belum Tersedia`
+                        courseContainer.appendChild(courseElement);
+                    }
 
-        // Mengamati elemen sentinel
-        const sentinel = document.querySelector('#sentinel');
-        if (sentinel) {
-            observer.observe(sentinel);
-        }
+                })
+                .catch(error => console.error('Error fetching courses:', error));
+        };
 
-        // Menambahkan event listeners untuk filter
-        document.querySelectorAll('.filter-input').forEach(filter => {
-            filter.addEventListener('change', () => {
-                lastBookId = null;
-                hasMore = true;
-                document.querySelector('.courses-scroll').innerHTML = '';
-                loadMoreContent();
-            });
-        });
-
-        loadMoreContent();
+        function setCourseUrl(element) {
+            var slugCourse = element.getAttribute('data-slug-course');
+            var url = "{{ route('member.course.join', ':slug_course') }}";
+            url = url.replace(':slug_course', slugCourse);
+            window.location.href = url;
+        };
     </script>
+=======
+>>>>>>> dev
 @endpush

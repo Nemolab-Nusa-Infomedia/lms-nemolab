@@ -37,7 +37,7 @@ class UpdateTransactionStatus extends Command
             $response = $client->request('GET', 'https://api.sandbox.midtrans.com/v2/' . $transaction->transaction_code . '/status', [
                 'headers' => [
                     'accept' => 'application/json',
-                    'authorization' => 'Basic U0ItTWlkLXNlcnZlci1pNU9GbWpiR1ppSGc5cVBHVmg3MHdHcTI6',
+                    'authorization' => 'Basic TWlkLWNsaWVudC1YajYyZEtuaWpyYnpoRm5mOg==',
                 ],
             ]);
 
