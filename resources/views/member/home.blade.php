@@ -57,7 +57,7 @@
     </section>
 
     <section class="section-pilh-kelas" id="section-pilih-kelas" data-aos="fade-up">
-        <div class="d-flex flex-column align-items-center justify-content-between p-0 py-5 m-0">
+        <div class="d-flex flex-column align-items-center justify-content-evenly p-0 py-2 py-xxl-5 m-0">
             <div class="title-pilih-kelas d-flex justify-content-center align-items-center pt-5">
                 <div class="title-group text-center ">
                     <h1 class="title-kelas fw-bold">Pilihan Kelas</h1>
@@ -155,7 +155,7 @@
             <div class="row my-5 mx-md-3">
                 <div class="col-md-6 justify-content-center d-none d-md-flex" id="service" data-aos="fade-up"
                     data-aos-delay="100">
-                    <div class="col-8 align-items-center">
+                    <div class="col-8 align-items-center justify-content-center d-flex">
                         <img src="{{ asset('nemolab/member/img/lp-hero-2.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-4 flex-column mt-4" id="menu-service">
@@ -188,7 +188,7 @@
                                 Keahlian
                                 <img src="{{ asset('nemolab/img_component/5fca34d4581c9a99a016ddecf9ddf318.png') }}"
                                     alt="">
-                            </span> Di 
+                            </span> Di
                             <span>
                                 Nemolab?
                                 <img src="{{ asset('nemolab/img_component/f69671db8d39c5bd931f5129eb023a5f.png') }}"
@@ -221,83 +221,68 @@
             <div class="row align-items-center my-5 mx-md-3">
                 <div class="col-md-6">
                     <div class="me-md-4 text-center text-md-start">
-                        <h1 class="fw-bold">Benefit Yang Bisa Kamu Dapatkan Jika Belajar Disini</h1>
-                        <ul class="check-active-group mt-3 list-unstyled"> <!-- Changed to ul and added list-unstyled -->
-                            <li class="check-active d-flex align-items-center" data-aos="zoom-out">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    fill="currentColor" class="bi bi-check-square-fill"
-                                    style="color: hsl(100, 96%, 42.5%);" viewBox="0 0 16 16">
-                                    <path
-                                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
-                                </svg>
-                                <p class="m-0 p-0 ms-2">Akses kelas selamanya</p>
-                            </li>
-                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
-                                data-aos-delay="100">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    fill="currentColor" class="bi bi-check-square-fill"
-                                    style="color: hsl(100, 96%, 42.5%);" viewBox="0 0 16 16">
-                                    <path
-                                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
-                                </svg>
-                                <p class="m-0 p-0 ms-2">Mendapat sertifikat pembelajaran resmi</p>
-                            </li>
-                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
-                                data-aos-delay="200">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    fill="currentColor" class="bi bi-check-square-fill"
-                                    style="color: hsl(100, 96%, 42.5%);" viewBox="0 0 16 16">
-                                    <path
-                                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
-                                </svg>
-                                <p class="m-0 p-0 ms-2">Grup diskusi private</p>
-                            </li>
-                            <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
-                                data-aos-delay="300">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    fill="currentColor" class="bi bi-check-square-fill"
-                                    style="color: hsl(100, 96%, 42.5%);" viewBox="0 0 16 16">
-                                    <path
-                                        d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
-                                </svg>
-                                <p class="m-0 p-0 ms-2">Konsultasi dengan mentor secara langsung</p>
-                            </li>
-                        </ul>
-                        <a href="{{ route('member.course') }}" class="btn btn-warning px-4 py-2 mt-4">Gabung Kelas</a>
+                        <h1 class="fw-bold">Benefit Yang Bisa Kamu Dapatkan Jika <span>Belajar</span> Disini</h1>
+                        <p>Sesuatu yang lebih besar untuk mencapai impian Anda jadi kami menyediakan semua hal hebat ini
+                            untuk Anda dan banyak lagi </p>
+                        <iframe src="https://www.youtube.com/embed/Pt7PiJJsarw" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                     </div>
                 </div>
-
-                <div class="col-md-6 justify-content-center d-none d-md-flex image" id="service" data-aos="fade-up"
-                    data-aos-delay="100">
-                    <div class="benefit-images my-3">
-                        <div class="person-image">
-                            <img src="{{ asset('nemolab/member/img/lp-person-1.png') }}" class="img-fluid"
-                                alt="Person">
+                <div class="col-md-6">
+                    <div class="values-grid">
+                        <div class="value">
+                            <div class="icon">
+                            </div>
+                            <h5>Mendapatkan Sertifikat </h5>
+                            <p>Mendapatkan kesempatan untuk mengakses materi kelas kapan saja dan tanpa batas waktu</p>
                         </div>
-                        <div class="grid-images">
-                            <img src="{{ asset('nemolab/member/img/lp-person-3.png') }}" class="grid-img col-sm-6 px-0"
-                                alt="Image 1" data-aos="zoom-in" data-aos-delay="100">
-                            <img src="{{ asset('nemolab/member/img/lp-person-2.png') }}" class="grid-img col-sm-6 px-0"
-                                alt="Image 2" data-aos="zoom-in" data-aos-delay="200">
-                            <img src="{{ asset('nemolab/member/img/lp-person-4.png') }}" class="grid-img col-sm-6 px-0"
-                                alt="Image 3" data-aos="zoom-in" data-aos-delay="300">
-                            <img src="{{ asset('nemolab/member/img/lp-person-5.png') }}" class="grid-img col-sm-6 px-0"
-                                alt="Image 4" data-aos="zoom-in" data-aos-delay="400">
+                        <div class="value">
+                            <div class="icon">
+                            </div>
+                            <h5>Mendapatkan Sertifikat </h5>
+                            <p>Mendapatkan kesempatan untuk mengakses materi kelas kapan saja dan tanpa batas waktu</p>
+                        </div>
+                        <div class="value">
+                            <div class="icon">
+                            </div>
+                            <h5>Mendapatkan Sertifikat </h5>
+                            <p>Mendapatkan kesempatan untuk mengakses materi kelas kapan saja dan tanpa batas waktu</p>
+                        </div>
+                        <div class="value">
+                            <div class="icon">
+                            </div>
+                            <h5>Mendapatkan Sertifikat </h5>
+                            <p>Mendapatkan kesempatan untuk mengakses materi kelas kapan saja dan tanpa batas waktu</p>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
     <!-- end section 4 -->
 
-
     <!-- section 5 -->
+    <section id="section-support-by">
+        <h1 class="fw-bold m-0">Support By</h1>
+        <p>Banyak brand dan perusahaan besar mendukung tujuan kami untuk menjadi yang terbaik dan terpercaya dalam
+            pengembangan pribadi dan karier</p>
+        <div class="support-brand">
+            <img src="{{ asset('nemolab/img_component/Nemolab.png') }}" alt="">
+            <img src="{{ asset('nemolab/img_component/Hugo_Studio.png') }}" alt="">
+            <img src="{{ asset('nemolab/img_component/Vibrant_Ecosystem.png') }}" alt="">
+        </div>
+    </section>
+    <!-- end section 5 -->
+
+    <!-- section 6 -->
     <section class="section-testimoni-kelas mt-5" id="section-testimoni-kelas" data-aos="fade-up">
         <div class="container-fluid">
             <div class="testimoni-title pb-5">
-                <h1 class="fw-bold m-0">Selangkah Lebih Maju menjadi <br> Professional!!</h1>
+                <h1 class="fw-bold m-0">Selangkah Lebih Maju menjadi <br> Professional!!
+                    <img src="{{ asset('nemolab/img_component/7d2fbaa6b76535cd0fbe793bdc002092.png') }}" alt="">
+                    <img src="{{ asset('nemolab/img_component/7d2fbaa6b76535cd0fbe793bdc002092.png') }}" alt="">
+                </h1>
                 <p class="fs-6 my-4 my-md-3">Jangan ragu untuk bergabung di kelas-kelas kami! Banyak pengguna <br> sudah
                     membuktikan dengan belajar di kelas kami</p>
                 <a href="{{ route('member.course') }}" class="btn btn-warning py-2 px-4">Coba Kursus</a>
@@ -633,16 +618,16 @@
             </div>
         </div>
     </section>
-    <!-- end section 5 -->
+    <!-- end section 6 -->
 
-    <!-- section 6 -->
+    <!-- section 7 -->
     <section class="section-pusat-bantuan mt-5" id="section-pusat-bantuan" data-aos="fade-up">
         <div class="row align-items-center mt-0 mx-md-3">
             <div class="col-md-6">
                 <div class="text-center me-md-4 text-md-start" data-aos="fade-up" data-aos-delay="100">
                     <h1 class="fw-bold">Hubungi Kami Jika Anda Memiliki Kendala</h1>
                     <p class="me-md-5">Laporkan masalah anda ke kontak dibawah untuk informasi lebih lanjut lagi</p>
-                    <a href="#" class="btn btn-light px-4 py-2 mt-2">Hubungi CS</a>
+                    <a href="#" class="btn btn-warning px-4 py-2 mt-2">Hubungi CS</a>
                 </div>
             </div>
             <div class="col-md-6 d-none d-md-block">
@@ -650,7 +635,7 @@
             </div>
         </div>
     </section>
-    <!-- end section 6 -->
+    <!-- end section 7 -->
 @endsection
 
 @push('addon-script')
@@ -669,12 +654,6 @@
                         else if (direction === 'right') scrollContainer.scrollLeft += speed;
                     })
                 });
-                // coursesScroll.addEventListener('wheel', function(e) {
-                //     if (e.deltaY !== 0) {
-                //         e.preventDefault();
-                //         this.scrollLeft += (e.deltaY * speed);
-                //     }
-                // });
             }
         });
     </script>
