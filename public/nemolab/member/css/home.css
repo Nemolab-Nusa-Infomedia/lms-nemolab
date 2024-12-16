@@ -172,7 +172,7 @@ p
 #section-hero-img .circle1
 {
     position: absolute;
-    transform: translate(-4%, -38%);
+    transform: translate(62%, -61%);
     height: 70svw;
     width: 70svw;
     background-color: #ebe6fb;
@@ -184,9 +184,9 @@ p
 #section-hero-img .circle2
 {
     position: absolute;
-    transform: translate(-3%, -45%);
-    height: 60svw;
-    width: 60svw;
+    transform: translate(68%, -70%);
+    height: 65svw;
+    width: 65svw;
     background: linear-gradient(to right, #FAA907, #ffe0a2);
     border-radius: 50%;
     transition: transform 0.3s ease-in-out;
@@ -234,7 +234,8 @@ p
 #section-hero-img .image-wrapper
 {
     position: relative;
-    right: 0;
+    top: 15%;
+    right: -5%;
     width: 90%;
     height: auto;
     transition: transform 0.3s ease-in-out;
@@ -303,16 +304,6 @@ p
 #section-hero-img .main-image:hover~.dot
 {
     transform: translateX(10px);
-}
-
-#section-hero-img .image-wrapper:hover .circle1
-{
-    transform: translate(-3%, -38%) !important;
-}
-
-#section-hero-img .image-wrapper:hover .circle2
-{
-    transform: translate(-5%, -44%) !important;
 }
 
 /* hover overlay */
