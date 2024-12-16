@@ -654,12 +654,6 @@
                         else if (direction === 'right') scrollContainer.scrollLeft += speed;
                     })
                 });
-                // coursesScroll.addEventListener('wheel', function(e) {
-                //     if (e.deltaY !== 0) {
-                //         e.preventDefault();
-                //         this.scrollLeft += (e.deltaY * speed);
-                //     }
-                // });
             }
         });
     </script>
