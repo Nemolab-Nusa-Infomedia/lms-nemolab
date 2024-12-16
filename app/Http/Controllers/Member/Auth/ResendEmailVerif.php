@@ -13,15 +13,16 @@ class ResendEmailVerif extends Controller
 {
     public function index()
     {
-        return view('member.auth.verify-email');
+        // return view('member.auth.verify-email');
     }
 
     public function resend(Request $requests)
     {
-        $requests->user()->sendEmailVerificationNotification();
+        $e=$requests->user()->sendEmailVerificationNotification();
         RateLimiter::hit('verification-email:' . Auth::user()->id, 3600);
         Alert::success('Success', 'PIN Verifikasi Telah Dikirim');
-        return redirect()->back();
+        // return redirect()->back();
+        return response()->json($e);
     }
 
     public function verifyPin(Request $request)

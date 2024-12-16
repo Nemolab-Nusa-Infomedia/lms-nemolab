@@ -40,12 +40,17 @@
         <input type="hidden" name="pin" id="complete-pin">
     </div>
     <div class="card-foot">
-        <form id="resend-form" action="{{ route('verification.send') }}" method="POST" style="display: inline;">
-            @csrf
-            <button type="submit" class="resend-btn" id="resend-btn" {{ session('status') == 'limit' ? 'disabled' : '' }}>
-                Kirim Ulang Kode<span id="timer" class="timer">(01:00)</span>
-            </button>
-        </form>
+        <div id="resend-container">
+            <p>Jika Anda tidak menerima email verifikasi, Anda dapat mengklik tombol di bawah ini untuk mengirim ulang:</p>
+            @if (session('status') != 'limit')
+                <form action="{{ route('verification.send') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-orange">Kirim Ulang Verifikasi</button>
+                </form>
+            @else
+                <button class="btn btn-orange" disabled>Kirim Ulang Verifikasi</button>
+            @endif
+        </div>
         <button type="submit">Konfirmasi</button>
     </div>
 </form>
@@ -99,48 +104,6 @@
                 }
                 button.classList.remove("active");
             });
-        });
-
-        // Timer functionality
-        function startTimer() {
-            let timeLeft = 60; // 1 minute in seconds
-            const timerElement = document.getElementById('timer');
-            const resendBtn = document.getElementById('resend-btn');
-            
-            resendBtn.disabled = true;
-            
-            const interval = setInterval(() => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                
-                timerElement.textContent = `(${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')})`;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(interval);
-                    resendBtn.disabled = false;
-                    timerElement.textContent = '';
-                } else {
-                    timeLeft--;
-                }
-            }, 1000);
-        }
-
-        // Start timer on page load
-        window.addEventListener("load", () => {
-            inputs[0].focus();
-            startTimer();
-        });
-
-        // Handle resend form submission
-        const resendForm = document.getElementById('resend-form');
-        const resendBtn = document.getElementById('resend-btn');
-
-        resendForm.addEventListener('submit', function(e) {
-            if (resendBtn.disabled) {
-                e.preventDefault();
-                return;
-            }
-            startTimer();
         });
     </script>
 @endpush
