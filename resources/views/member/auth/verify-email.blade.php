@@ -43,25 +43,59 @@
         </div>
         <div class="card-foot">
             <div id="resend-container">
-                <p>Jika Anda tidak menerima email verifikasi, Anda dapat mengklik tombol di bawah ini untuk mengirim ulang:
-                </p>
-                <button type="button" id="verificationButton" class="btn btn-orange">Kirim Ulang Verifikasi</button>
+                @if (session('status') != 'limit')
+                    <button type="button" id="verificationButton" class="resend-btn">
+                        Kirim Ulang PIN Verifikasi<span id="timer" class="timer">(01:00)</span>
+                    </button>
+                @else
+                    <button type="button" disabled class="resend-btn">Kirim Ulang PIN Verifikasi</button>
+                @endif            
             </div>
             <button type="submit">Konfirmasi</button>
         </div>
     </form>
 
-    <form action="{{ route('verification.send') }}" id="verificationForm" method="POST">
+    <form method="POST" action="{{ route('verification.send') }}" id="verificationForm">
         @csrf
     </form>
     @push('addon-script')
         <script>
             const form = document.getElementById('verificationForm');
             const btn = document.getElementById('verificationButton');
+            const timerDisplay = document.getElementById('timer');
+            let timeLeft = 60; // 1 minute in seconds
+            let timerId = null;
+
+            function startTimer() {
+                btn.disabled = true;
+                
+                timerId = setInterval(() => {
+                    timeLeft--;
+                    
+                    const minutes = Math.floor(timeLeft / 60);
+                    const seconds = timeLeft % 60;
+                    
+                    // Format timer display
+                    timerDisplay.textContent = `(${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')})`;
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timerId);
+                        btn.disabled = false;
+                        timerDisplay.textContent = '';
+                        timeLeft = 60;
+                    }
+                }, 1000);
+            }
+
+            // Start timer on page load if there's no 'limit' status
+            if (btn && !btn.disabled) {
+                startTimer();
+            }
 
             btn.addEventListener('click', function() {
                 form.submit();
-            })
+                startTimer();
+            });
 
             const inputs = document.querySelectorAll(".otp-input"),
                 button = document.querySelector("button[type='submit']"),

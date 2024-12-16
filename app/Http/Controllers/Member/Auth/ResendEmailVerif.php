@@ -24,7 +24,6 @@ class ResendEmailVerif extends Controller
         RateLimiter::hit('verification-email:' . Auth::user()->id, 3600);
         Alert::success('Success', 'PIN Verifikasi Telah Dikirim');
         return redirect()->back();
-        // return response()->json($e);
     }
 
     public function verifyPin(Request $request)

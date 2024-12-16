@@ -37,8 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
     // costum verifikasi dokumentasi ada di https://laravel.com/docs/10.x/verification#main-content
     public function sendEmailVerificationNotification() 
     {
-        $this->notify(new CustomVerifyEmailNotification());
-        return "tes"; //ctrl + clik pada CustomVerifyEmailNotification() untuk melihat code file
+        $this->notify(new CustomVerifyEmailNotification()); //ctrl + clik pada CustomVerifyEmailNotification() untuk melihat code file
     }
 
     /**
