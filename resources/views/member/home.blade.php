@@ -9,6 +9,12 @@
 @section('content')
     <!-- Section Hero -->
     <section class="section-hero-img d-flex align-items-center mb-5 position-relative" id="section-hero-img">
+        <div data-aos="fade-down-left">
+            <div class="circle1"></div>
+        </div>
+        <div data-aos="fade-down-left" data-aos-delay="50">
+            <div class="circle2"></div>
+        </div>
         <div class="row">
             <div class="col-md-6 row align-items-center" style="z-index: 1">
                 <div class="text-center text-md-start me-md-3 mx-4" style="margin-top: -4rem">
@@ -24,12 +30,6 @@
             </div>
             <div class="col-md-6 d-none d-md-block align-items-center">
                 <div class="image-wrapper">
-                    <div data-aos="fade-down-left">
-                        <div class="circle1"></div>
-                    </div>
-                    <div data-aos="fade-down-left" data-aos-delay="50">
-                        <div class="circle2"></div>
-                    </div>
                     <div class="main-image">
                         <img src="{{ asset('nemolab/member/img/lp-hero-pisah-1.png') }}" alt="" data-aos="fade-up"
                             data-aos-delay="200">

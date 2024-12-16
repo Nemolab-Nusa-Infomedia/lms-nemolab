@@ -30,7 +30,7 @@
                                 class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pt-2 pt-lg-0 pb-2 pb-lg-0"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Pilih Kelas
-                                <box-icon name='chevron-down' color="#414142"></box-icon>
+                                <box-icon name='chevron-down' color="#ffffff"></box-icon>
                             </button>
                             <ul class="dropdown-menu mt-lg-3 mb-3">
                                 <div class="head-submenu d-flex justify-content-between align-items-center">
@@ -69,7 +69,7 @@
                             <button class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pb-2 pb-lg-0"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Paket Kelas
-                                <box-icon name='chevron-down' color="#414142"></box-icon>
+                                <box-icon name='chevron-down' color="#ffffff"></box-icon>
                             </button>
                             <ul class="dropdown-menu mt-lg-3 mb-3">
                                 <div class="head-submenu d-flex justify-content-between align-items-center">
