@@ -44,11 +44,11 @@
         <div class="card-foot">
             <div id="resend-container">
                 @if (session('status') != 'limit')
-                    <button type="button" id="verificationButton" class="resend-btn">
-                        Kirim Ulang PIN Verifikasi<span id="timer" class="timer">(01:00)</span>
+                    <button class="kirim-ulang" type="button" id="verificationButton" class="resend-btn">
+                        Kirim ulang kode<span id="timer" class="timer">(01:00)</span>
                     </button>
                 @else
-                    <button type="button" disabled class="resend-btn">Kirim Ulang PIN Verifikasi</button>
+                    <button type="button" disabled class="resend-btn">Kirim ulang kode</button>
                 @endif            
             </div>
             <button type="submit">Konfirmasi</button>

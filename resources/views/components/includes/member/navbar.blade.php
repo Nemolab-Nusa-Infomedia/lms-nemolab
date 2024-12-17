@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-transparent">
             <div class="container-fluid">
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center justify-center">
                     <a href="{{ route('home') }}" style="text-decoration: none;">
                         <div class="brand-nemolab-icon d-flex align-items-center">
                             <img src="{{ asset('nemolab/member/img/logo-nemolab.png') }}" alt="Logo" width="40" height="40"
@@ -111,8 +111,8 @@
                         <a href="https://blog.nemolab.id/" class="text-decoration-none  pb-2 pb-lg-0">Artikel</a>
 
                         <div class="register-login d-flex align-items-center justify-content-end gap-2 ms-lg-5">
-                            <a href="{{ route('member.register') }}" class="btn btn-warning px-4 py-2 rounded-pill">Daftar</a>
-                            <a href="{{ route('member.login') }}" class="btn btn-secondary px-4 py-2 rounded-pill">Masuk</a>
+                            <a href="{{ route('member.register') }}" class="btn btn-warning px-4 py-2">Daftar</a>
+                            <a href="{{ route('member.login') }}" class="btn btn-secondary px-4 py-2">Masuk</a>
                         </div>
                     </ul>
                 </div>

@@ -171,10 +171,11 @@ main section
 }
 
 /* Left Img */
-main section img
+main section .karakter
 {
     aspect-ratio: 1 /1;
-    height: 100svh;
+    height: auto;
+    width: 50svw;
 }
 
 main section .content
@@ -317,12 +318,16 @@ main section .content .card .card-foot
         background-color: var(--background-color-1-hover);
     }
 
-    a{
+    .kirim-ulang{
         font-weight: 700;
         font-size: 1rem;
         color: black;
-        text-decoration: none;
-        margin-bottom:1rem ;
+        background: 0;
+        margin-bottom: 0;
+    }   
+
+    .kirim-ulang:hover{
+        background:none;
     }
 
     p{
@@ -340,5 +345,164 @@ main section .content .card .card-foot
 }
 
 /* End Card Input */
+
+/* Responsive Styles */
+@media (max-width: 884px) {
+    body {
+        padding: 1rem;
+        height: auto;
+    }
+
+    nav {
+        max-height: unset;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+
+    nav .brand-nemolab {
+        align-items: flex-start;
+    }
+    
+    main section img{
+        display: none;
+    }
+    
+    /* Background circles */
+    main .background .circle-1 {
+        width: 150svw;
+        height: 150svw;
+        top: 50%;
+        right: 20%;
+        transform: translateY(-44%) translateX(-27%);
+    }
+
+    main .background .circle-1 .circle-2 {
+        width: 50%;
+        height: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-79%, -39%);
+    }
+
+    /* Section content */
+    main section {
+        flex-direction: column;
+        height: 70%;
+        padding: 2rem 1rem;
+        z-index: 1; /* Form di atas circle */
+    }
+
+    main section .content {
+        margin-top: 50px;
+        width: 100%;
+        margin-right: 0;
+        padding: 1rem;
+    }
+
+    main section .content .card {
+        width: 100%;
+        padding: 1.5rem;
+        z-index: 1; /* Pastikan form di atas circle */
+    }
+}
+    
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+        height: auto;
+    }
+
+    nav {
+        max-height: unset;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+
+    nav .brand-nemolab {
+        align-items: flex-start;
+    }
+
+    /* Background circles */
+    main .background .circle-1 {
+        width: 150svw;
+        height: 150svw;
+        top: 50%;
+        right: 20%;
+        transform: translateY(-42%) translateX(-23%);
+    }
+
+    main .background .circle-1 .circle-2 {
+        width: 50%;
+        height: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-79%, -39%);
+    }
+
+    /* Section content */
+    main section {
+        flex-direction: column;
+        height: auto;
+        padding: 2rem 1rem;
+        z-index: 1; /* Form di atas circle */
+    }
+
+    main section .content {
+        margin-top: 50px;
+        width: 100%;
+        margin-right: 0;
+        padding: 1rem;
+    }
+
+    main section .content .card {
+        width: 100%;
+        padding: 1.5rem;
+        z-index: 1; /* Pastikan form di atas circle */
+    }
+
+    main section .content .card .card-title h1 {
+        font-size: 1.8rem;
+    }
+
+    main section .content .card .card-title p {
+        font-size: 1rem;
+    }
+
+    main section .content .card .card-foot button {
+        font-size: 1rem;
+        padding: 0.75rem;
+    }
+
+    main section .content .card .card-foot a {
+        font-size: 0.9rem;
+    }
+}
+
+/* Untuk layar lebih kecil dari 480px (smartphone kecil) */
+@media (max-width: 480px) {
+
+    main section .content .card {
+        padding: 1rem;
+    }
+
+    main section .content .card .card-title h1 {
+        font-size: 1.5rem;
+    }
+
+    main section .content .card .card-title p {
+        font-size: 0.9rem;
+    }
+
+    main section .content .card .card-foot button {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    main section .content .card .card-foot a {
+        font-size: 0.8rem;
+    }
+}
+
 
 /* End Content */
