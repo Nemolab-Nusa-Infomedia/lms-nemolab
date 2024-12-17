@@ -373,7 +373,7 @@ main section .content .card .card-foot
         align-items: flex-start;
     }
 
-    main section img
+    main section .karakter
     {
         display: none;
     }
