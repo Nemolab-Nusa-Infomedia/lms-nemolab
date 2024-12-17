@@ -1,4 +1,5 @@
 <!-- navbar -->
+<div class="backdrop-header d-lg-none" style="display: none"></div>
 <header class="ps-3 pe-3 pt-2 pb-2 w-100 fixed-top position-fixed bg-transparent">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-transparent">
@@ -6,11 +7,11 @@
                 <div class="d-flex align-items-center justify-center">
                     <a href="{{ route('home') }}" style="text-decoration: none;">
                         <div class="brand-nemolab-icon d-flex align-items-center">
-                            <img src="{{ asset('nemolab/member/img/logo-nemolab.png') }}" alt="Logo" width="40" height="40"
-                                class="d-inline-block align-text-top">
+                            <img src="{{ asset('nemolab/member/img/logo-nemolab.png') }}" alt="Logo" width="40"
+                                height="40" class="d-inline-block align-text-top">
                             <div class="title-navbar-brand ms-2 d-block">
-                                <p class="m-0 p-0 fw-bold">Nemolab</p>
-                                <p class="m-0 p-0 fw-bold">Kursus Online Terbaik</p>
+                                <p class="m-0 p-0 title">Nemolab</p>
+                                <p class="m-0 p-0 subtitle">Kursus Online Terbaik</p>
                             </div>
                         </div>
                     </a>
@@ -25,9 +26,12 @@
 
                 <div class="collapse navbar-collapse  my-3 my-md-0" id="navbarNavAltMarkup">
                     <ul class="navbar-nav d-flex mx-auto">
-                        <form action="{{ route('member.course') }}" method="GET"  class="d-lg-flex d-none" role="search">
+                        <form action="{{ route('member.course') }}" method="GET" class="d-lg-flex d-none"
+                            role="search">
                             <div class="search-group position-relative">
-                                <input class="form-control w-100 h-100" type="text" name="search-input" placeholder="Cari Kelas Disini" id="search-input" value="{{ request('search-input') }}" aria-label="Search">
+                                <input class="form-control w-100 h-100" type="text" name="search-input"
+                                    placeholder="Cari Kelas Disini" id="search-input"
+                                    value="{{ request('search-input') }}" aria-label="Search">
                                 <button class="btn p-0 m-0 position-absolute" type="submit">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                                         viewBox="0 0 24 24">
@@ -46,7 +50,7 @@
                                 class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pt-2 pt-lg-0 pb-2 pb-lg-0"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Pilih Kelas
-                                <box-icon name='chevron-down' color="#ffffff"></box-icon>
+                                <box-icon name='chevron-down' color="#000000"></box-icon>
                             </button>
                             <ul class="dropdown-menu mt-lg-3 mb-3">
                                 <div class="head-submenu d-flex justify-content-between align-items-center">
@@ -56,16 +60,24 @@
                                 <div class="content-submenu mt-2 ">
                                     <div class="row m-0 ">
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
-                                            <a href="{{ route('member.course', ['filter-kelas' => 'UI/UX Designer']) }}">UI UX Designer</a>
+                                            <a
+                                                href="{{ route('member.course', ['filter-kelas' => 'UI/UX Designer']) }}">UI
+                                                UX Designer</a>
                                         </div>
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
-                                            <a href="{{ route('member.course', ['filter-kelas' => 'Frontend Developer']) }}">Frontend Developer</a>
+                                            <a
+                                                href="{{ route('member.course', ['filter-kelas' => 'Frontend Developer']) }}">Frontend
+                                                Developer</a>
                                         </div>
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
-                                            <a href="{{ route('member.course', ['filter-kelas' => 'Wordpress Developer']) }}">Wordpress Developer</a>
+                                            <a
+                                                href="{{ route('member.course', ['filter-kelas' => 'Wordpress Developer']) }}">Wordpress
+                                                Developer</a>
                                         </div>
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
-                                            <a href="{{ route('member.course', ['filter-kelas' => 'Backend Developer']) }}">Backend Developer</a>
+                                            <a
+                                                href="{{ route('member.course', ['filter-kelas' => 'Backend Developer']) }}">Backend
+                                                Developer</a>
                                         </div>
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
                                             <a
@@ -74,7 +86,8 @@
                                         </div>
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
                                             <a
-                                                href="{{ route('member.course', ['filter-kelas' => 'Fullstack Developer']) }}">Fullstack Developer</a>
+                                                href="{{ route('member.course', ['filter-kelas' => 'Fullstack Developer']) }}">Fullstack
+                                                Developer</a>
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +98,7 @@
                             <button class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pb-2 pb-lg-0"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Paket Kelas
-                                <box-icon name='chevron-down' color="#ffffff"></box-icon>
+                                <box-icon name='chevron-down' color="#00000 "></box-icon>
                             </button>
                             <ul class="dropdown-menu mt-lg-3 mb-3">
                                 <div class="head-submenu d-flex justify-content-between align-items-center">
@@ -95,13 +108,17 @@
                                 <div class="content-submenu mt-2 ">
                                     <div class="row m-0">
                                         <div class="col-sm-12 ps-0 pl-1 mb-1">
-                                            <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}">Course</a>
+                                            <a
+                                                href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}">Course</a>
                                         </div>
                                         <div class="col-sm-12 ps-0 pl-1 mb-1">
-                                            <a href="{{ route('member.course', ['filter-paket' => 'paket-ebook']) }}">Ebook</a>
+                                            <a
+                                                href="{{ route('member.course', ['filter-paket' => 'paket-ebook']) }}">Ebook</a>
                                         </div>
                                         <div class="col-sm-12 ps-0 pl-1 mb-1">
-                                            <a href="{{ route('member.course', ['filter-paket' => 'paket-bundling']) }}">Paket Combo</a>
+                                            <a
+                                                href="{{ route('member.course', ['filter-paket' => 'paket-bundling']) }}">Paket
+                                                Combo</a>
                                         </div>
                                     </div>
                                 </div>
@@ -120,4 +137,19 @@
         </nav>
     </div>
 </header>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        document.getElementById('navbarToggler').addEventListener('click', function() {
+            console.log(this.ariaExpanded == 'false');
+            if (this.ariaExpanded == 'true') {
+                document.querySelector('header').setAttribute('style', 'background: white !important; box-shadow: 4px 0 8px black')
+                document.querySelector('.backdrop-header').setAttribute('style', 'display: block')
+            } else {
+                document.querySelector('header').setAttribute('style', '')
+                document.querySelector('.backdrop-header').setAttribute('style', 'display: none')
+            }
+        });
+    });
+</script>
 <!-- end navbar -->

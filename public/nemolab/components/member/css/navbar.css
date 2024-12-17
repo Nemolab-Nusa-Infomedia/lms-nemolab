@@ -11,11 +11,25 @@
     --color-pink: #FFF6F6;
 }
 
+.backdrop-header
+{
+    min-height: 100svh;
+    min-width: 100svw;
+    background: #00000063;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+}
 
+header
+{
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-bottom: solid 2px rgba(255, 255, 255, 0.2);
+}
 
 header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p
 {
-    color: var(--dark-grey);
     font-family: 'Nunito', sans-serif;
     line-height: 1.2;
     background-color: transparent !important;
@@ -23,12 +37,17 @@ header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navb
 
 header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:first-child
 {
-    font-size: 20px;
+    font-size: 1.25rem;
+    color: var(--text-color-main);
+    font-weight: 800;
 }
 
 header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:last-child
 {
-    font-size: 14px;
+    font-size: .75rem;
+    margin-top: -.5rem;
+    color: var(--text-color-second);
+    font-weight: 700;
 }
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:first-child .search-group
@@ -65,7 +84,7 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button,
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a
 {
-    color: white !important;
+    color: black !important;
     background: none;
     outline: none;
     border: none;

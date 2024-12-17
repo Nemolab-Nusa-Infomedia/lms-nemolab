@@ -19,7 +19,7 @@
     }
 }
 
-*
+main *
 {
     padding: 0;
     margin: 0;
@@ -140,7 +140,7 @@ a.btn-secondary:active
     transition: background-color 0s;
 }
 
-h1
+main h1
 {
     color: var(--head-title);
     font-weight: 600 !important;
@@ -148,7 +148,7 @@ h1
     font-size: var(--title-size);
 }
 
-p
+main p
 {
     font-family: "Nunito", sans-serif !important;
     color: var(--sub-title);

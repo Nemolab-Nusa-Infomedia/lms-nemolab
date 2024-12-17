@@ -45,45 +45,22 @@ body
 }
 
 /* Navbar */
-nav
+
+header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p
 {
-    min-width: 100svw;
-    max-height: 4.5rem;
-    display: flex;
-    position: fixed;
-    align-items: center;
-    top: 0;
-    left: 0;
-    padding: 1rem 2rem;
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.2;
+    background-color: transparent !important;
 }
 
-nav .left-item
+header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:first-child
 {
-    padding: 0;
-    margin: 0;
-}
-
-nav a .brand-nemolab
-{
-    display: flex;
-    align-items: center;
-    gap: .5rem;
-}
-
-nav a .brand-nemolab .brand-nemolab-title
-{
-    display: flex;
-    flex-direction: column;
-}
-
-nav a .brand-nemolab .brand-nemolab-title .title
-{
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: var(--text-color-main);
     font-weight: 800;
 }
 
-nav a .brand-nemolab .brand-nemolab-title .subtitle
+header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:last-child
 {
     font-size: .75rem;
     margin-top: -.5rem;
@@ -230,7 +207,8 @@ main section .content .card .card-title
     }
 }
 
-.mb {
+.mb
+{
     margin-bottom: 2.5rem !important;
 }
 
@@ -279,10 +257,13 @@ main section .content .card .card-form .input-container
         width: 100%;
     }
 
-    button{
+    button
+    {
         top: 1rem !important;
         border: none;
-        img{
+
+        img
+        {
             height: 1.5rem;
         }
     }
@@ -310,7 +291,9 @@ main section .content .card .card-foot
     flex-direction: column;
     align-items: center;
     margin-top: auto;
-    button{
+
+    button
+    {
         width: 100%;
         padding: .5rem;
         font-weight: 900;
@@ -321,30 +304,46 @@ main section .content .card .card-foot
         background-color: var(--background-color-1);
     }
 
-    button:hover{
+    button:hover
+    {
         background-color: var(--background-color-1-hover);
     }
 
-    .kirim-ulang{
+    .kirim-ulang
+    {
         font-weight: 700;
         font-size: 1rem;
         color: black;
         background: 0;
         margin-bottom: 0;
-    }   
-
-    .kirim-ulang:hover{
-        background:none;
     }
 
-    p{
+    .kirim-ulang:hover
+    {
+        background: none;
+    }
+
+    a
+    {
         font-weight: 700;
         font-size: 1rem;
-        a{
+        color: black;
+        text-decoration: none;
+        margin-bottom: 1rem;
+    }
+
+    p
+    {
+        font-weight: 700;
+        font-size: 1rem;
+
+        a
+        {
             color: var(--text-color-brand);
         }
 
-        a:hover{
+        a:hover
+        {
             text-decoration: none;
             color: var(--brand-color-hover);
         }
@@ -354,28 +353,34 @@ main section .content .card .card-foot
 /* End Card Input */
 
 /* Responsive Styles */
-@media (max-width: 884px) {
-    body {
+@media (max-width: 884px)
+{
+    body
+    {
         padding: 1rem;
         height: auto;
     }
 
-    nav {
+    nav
+    {
         max-height: unset;
         align-items: flex-start;
         padding: 1rem;
     }
 
-    nav .brand-nemolab {
+    nav .brand-nemolab
+    {
         align-items: flex-start;
     }
-    
-    main section img{
+
+    main section img
+    {
         display: none;
     }
-    
+
     /* Background circles */
-    main .background .circle-1 {
+    main .background .circle-1
+    {
         width: 150svw;
         height: 150svw;
         top: 50%;
@@ -383,7 +388,8 @@ main section .content .card .card-foot
         transform: translateY(-44%) translateX(-27%);
     }
 
-    main .background .circle-1 .circle-2 {
+    main .background .circle-1 .circle-2
+    {
         width: 50%;
         height: 50%;
         top: 50%;
@@ -392,46 +398,56 @@ main section .content .card .card-foot
     }
 
     /* Section content */
-    main section {
+    main section
+    {
         flex-direction: column;
         height: 70%;
         padding: 2rem 1rem;
-        z-index: 1; /* Form di atas circle */
+        z-index: 1;
+        /* Form di atas circle */
     }
 
-    main section .content {
+    main section .content
+    {
         margin-top: 50px;
         width: 100%;
         margin-right: 0;
         padding: 1rem;
     }
 
-    main section .content .card {
+    main section .content .card
+    {
         width: 100%;
         padding: 1.5rem;
-        z-index: 1; /* Pastikan form di atas circle */
+        z-index: 1;
+        /* Pastikan form di atas circle */
     }
 }
-    
 
-@media (max-width: 768px) {
-    body {
+
+@media (max-width: 768px)
+{
+    body
+    {
         padding: 1rem;
         height: auto;
     }
 
-    nav {
+    nav
+    {
         max-height: unset;
         align-items: flex-start;
         padding: 1rem;
     }
 
-    nav .brand-nemolab {
+    nav .brand-nemolab
+    {
         align-items: flex-start;
     }
 
     /* Background circles */
-    main .background .circle-1 {
+    main .background .circle-1
+    {
         width: 150svw;
         height: 150svw;
         top: 50%;
@@ -439,7 +455,8 @@ main section .content .card .card-foot
         transform: translateY(-42%) translateX(-23%);
     }
 
-    main .background .circle-1 .circle-2 {
+    main .background .circle-1 .circle-2
+    {
         width: 50%;
         height: 50%;
         top: 50%;
@@ -448,65 +465,80 @@ main section .content .card .card-foot
     }
 
     /* Section content */
-    main section {
+    main section
+    {
         flex-direction: column;
         height: auto;
         padding: 2rem 1rem;
-        z-index: 1; /* Form di atas circle */
+        z-index: 1;
+        /* Form di atas circle */
     }
 
-    main section .content {
+    main section .content
+    {
         margin-top: 50px;
         width: 100%;
         margin-right: 0;
         padding: 1rem;
     }
 
-    main section .content .card {
+    main section .content .card
+    {
         width: 100%;
         padding: 1.5rem;
-        z-index: 1; /* Pastikan form di atas circle */
+        z-index: 1;
+        /* Pastikan form di atas circle */
     }
 
-    main section .content .card .card-title h1 {
+    main section .content .card .card-title h1
+    {
         font-size: 1.8rem;
     }
 
-    main section .content .card .card-title p {
+    main section .content .card .card-title p
+    {
         font-size: 1rem;
     }
 
-    main section .content .card .card-foot button {
+    main section .content .card .card-foot button
+    {
         font-size: 1rem;
         padding: 0.75rem;
     }
 
-    main section .content .card .card-foot a {
+    main section .content .card .card-foot a
+    {
         font-size: 0.9rem;
     }
 }
 
 /* Untuk layar lebih kecil dari 480px (smartphone kecil) */
-@media (max-width: 480px) {
+@media (max-width: 480px)
+{
 
-    main section .content .card {
+    main section .content .card
+    {
         padding: 1rem;
     }
 
-    main section .content .card .card-title h1 {
+    main section .content .card .card-title h1
+    {
         font-size: 1.5rem;
     }
 
-    main section .content .card .card-title p {
+    main section .content .card .card-title p
+    {
         font-size: 0.9rem;
     }
 
-    main section .content .card .card-foot button {
+    main section .content .card .card-foot button
+    {
         font-size: 0.9rem;
         padding: 0.5rem;
     }
 
-    main section .content .card .card-foot a {
+    main section .content .card .card-foot a
+    {
         font-size: 0.8rem;
     }
 }
