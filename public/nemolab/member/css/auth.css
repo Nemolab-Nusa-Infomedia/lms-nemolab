@@ -183,8 +183,8 @@ main section .content
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    margin-right: 5svw;
+    width: 50%;
+    height: 80%;
 }
 
 /* End Left Img */
@@ -192,6 +192,8 @@ main section .content
 /* Card Input */
 main section .content .card
 {
+    justify-content: space-between;
+    height: 100%;
     width: 80%;
     background-color: var(--card-color);
     padding: 2.5rem;
@@ -230,6 +232,12 @@ main section .content .card .card-title
 
 .mb {
     margin-bottom: 2.5rem !important;
+}
+
+main section .content .card .card-form
+{
+    margin-bottom: auto;
+    margin-top: auto;
 }
 
 main section .content .card .card-form .otp-input
@@ -298,11 +306,10 @@ main section .content .card .card-form .input-container
 
 main section .content .card .card-foot
 {
-    margin-top: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    margin-top: auto;
     button{
         width: 100%;
         padding: .5rem;

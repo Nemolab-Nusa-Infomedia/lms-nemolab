@@ -30,11 +30,11 @@
 @section('content')
     <form class="card" method="post" action="{{ route('verification.verify-pin') }}">
         @csrf
-        <div class="card-title mb">
+        <div class="card-title">
             <h1>Verifikasi Email</h1>
             <p>Untuk memastikan akun email anda asli, mohon konfirmasi email anda dengan kode yang telah kami kirimkan</p>
         </div>
-        <div class="card-form d-flex flex-row gap-3 justify-content-center mb">
+        <div class="card-form d-flex flex-row gap-3 justify-content-center">
             <input type="text" class="otp-input" data-index="1">
             <input type="text" class="otp-input" data-index="2" disabled>
             <input type="text" class="otp-input" data-index="3" disabled>
