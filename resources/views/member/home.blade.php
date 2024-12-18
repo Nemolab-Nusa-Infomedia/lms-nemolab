@@ -309,14 +309,14 @@
     <!-- end section 4 -->
 
     <!-- section 5 -->
-    <section id="section-support-by">
+    <section id="section-support-by" data-aos="fade-up">
         <h1 class="fw-bold m-0">Support By</h1>
         <p>Banyak brand dan perusahaan besar mendukung tujuan kami untuk menjadi yang terbaik dan terpercaya dalam
             pengembangan pribadi dan karier</p>
         <div class="support-brand">
-            <img src="{{ asset('nemolab/img_component/Nemolab.png') }}" alt="">
-            <img src="{{ asset('nemolab/img_component/Hugo_Studio.png') }}" alt="">
-            <img src="{{ asset('nemolab/img_component/Vibrant_Ecosystem.png') }}" alt="">
+            <img src="{{ asset('nemolab/img_component/Nemolab.png') }}" alt="" data-aos="fade-right" data-aos-delay="100">
+            <img src="{{ asset('nemolab/img_component/Hugo_Studio.png') }}" alt="" data-aos="fade-right" data-aos-delay="300">
+            <img src="{{ asset('nemolab/img_component/Vibrant_Ecosystem.png') }}" alt="" data-aos="fade-right" data-aos-delay="500">
         </div>
     </section>
     <!-- end section 5 -->

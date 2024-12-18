@@ -57,7 +57,7 @@
                                     </div>
                                 </div>
                             </form>
-                            <form method="POST" action="{{ route('verification-pass') }}" id="verificationForm">
+                            <form method="POST" action="{{ route('verification-repass') }}" id="verificationForm">
                                 @csrf
                             </form>
                         </div>
@@ -148,10 +148,8 @@
                 }
 
                 if (!inputs[3].disabled && inputs[3].value !== "") {
-                    button.classList.add("active");
                     return;
                 }
-                button.classList.remove("active");
             });
         });
     </script>
