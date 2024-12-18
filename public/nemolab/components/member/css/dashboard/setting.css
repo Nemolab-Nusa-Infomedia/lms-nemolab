@@ -23,6 +23,7 @@ body
 
 p
 {
+    font-size: 0.85rem;
     color: var(--color-silver);
 }
 
@@ -35,6 +36,12 @@ p
 .card
 {
     border: none;
+}
+
+.card-body
+{
+    justify-content: space-between;
+    height: 100%;
 }
 
 .profile-saya-section form .img-container
@@ -51,11 +58,6 @@ p
         height: 100%;
         width: 100%;
     }
-}
-.profile-saya-section form .mb-4 label{
-    background: #414142;
-    box-shadow: 0px 4px 4px 0px #00000040;
-
 }
 .setting-section .setting-item
 {
@@ -172,6 +174,77 @@ input:focus {
     text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.402);
     margin-bottom: 10px;
 }
+
+.otp-input{
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-bottom: #8F8F8F solid 3px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.otp-input:focus{
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-bottom: #8F8F8F solid 3px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    outline: none;
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.kirim-ulang
+    {
+        font-weight: 700;
+        font-size: 1rem;
+        color: black;
+        background: 0;
+        margin-bottom: 0;
+    }
+
+    .kirim-ulang:hover
+    {
+        background: none;
+    }
+
+    a
+    {
+        font-weight: 700;
+        font-size: 1rem;
+        color: black;
+        text-decoration: none;
+        margin-bottom: 1rem;
+    }
+
+    p
+    {
+        font-weight: 700;
+        font-size: 1rem;
+
+        a
+        {
+            color: var(--text-color-brand);
+        }
+
+        a:hover
+        {
+            text-decoration: none;
+            color: var(--brand-color-hover);
+        }
+    }
+
 
 
 /* Untuk memastikan 2 kolom dalam 1 baris, tambahkan ini */

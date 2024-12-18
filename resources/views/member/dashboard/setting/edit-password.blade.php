@@ -100,34 +100,34 @@
 @endsection
 @push('addon-script')
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('profileForm');
-            const inputs = form.querySelectorAll('input, select');
-            const submitButton = document.getElementById('submitButton');
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     const form = document.getElementById('profileForm');
+        //     const inputs = form.querySelectorAll('input, select');
+        //     const submitButton = document.getElementById('submitButton');
 
-            // Asal warna default
-            const defaultBackground = '#fff';
-            const changedBackground = '#E8E8E8';
-            const defaultButtonColor = '#ce8e0e';
-            const changedButtonColor = '#faa907';
-            // Deteksi perubahan
-            inputs.forEach(input => {
-                input.addEventListener('input', () => {
-                    input.style.backgroundColor = changedBackground;
-                    submitButton.style.backgroundColor = changedButtonColor;
-                    submitButton.style.borderColor = changedButtonColor;
-                });
-            });
+        //     // Asal warna default
+        //     const defaultBackground = '#fff';
+        //     const changedBackground = '#E8E8E8';
+        //     const defaultButtonColor = '#ce8e0e';
+        //     const changedButtonColor = '#faa907';
+        //     // Deteksi perubahan
+        //     inputs.forEach(input => {
+        //         input.addEventListener('input', () => {
+        //             input.style.backgroundColor = changedBackground;
+        //             submitButton.style.backgroundColor = changedButtonColor;
+        //             submitButton.style.borderColor = changedButtonColor;
+        //         });
+        //     });
 
-            // Reset tombol ke default setelah submit
-            form.addEventListener('submit', () => {
-                inputs.forEach(input => {
-                    input.style.backgroundColor = defaultBackground;
-                });
-                submitButton.style.backgroundColor = defaultButtonColor;
-                submitButton.style.borderColor = defaultButtonColor;
-            });
-        });
+        //     // Reset tombol ke default setelah submit
+        //     form.addEventListener('submit', () => {
+        //         inputs.forEach(input => {
+        //             input.style.backgroundColor = defaultBackground;
+        //         });
+        //         submitButton.style.backgroundColor = defaultButtonColor;
+        //         submitButton.style.borderColor = defaultButtonColor;
+        //     });
+        // });
     </script>
 
     <script>

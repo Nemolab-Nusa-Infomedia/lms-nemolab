@@ -99,7 +99,9 @@ Route::middleware('maintenance.middleware')->group(function () {
 
             Route::view('change-email', 'member.dashboard.setting.edit-email')->name('member.setting.change-email');
             Route::put('change-email/updated', [MemberSettingController::class, 'updateEmail'])->name('member.setting.change-email.updated');
-
+            
+            Route::view('verifikasi-password', 'member.dashboard.setting.verifikasi-password')->name('member.setting.verifikasi-password');
+            
             Route::view('reset-password', 'member.dashboard.setting.edit-password')->name('member.setting.reset-password');
             Route::put('reset-password/updated', [MemberSettingController::class, 'updatePassword'])->name('member.setting.reset-password.updated');
         });
