@@ -5,6 +5,7 @@
 @endsection
 
 @push('prepend-style')
+    <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/dashboard/sidebar-dashboard.css') }} ">
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/dashboard/setting.css') }} ">
 @endpush
 @section('content')
@@ -12,8 +13,10 @@
         <div class="container-fluid mt-5 pt-5">
             <div class="row">
 
+                @include('components.includes.member.sidebar-dashboard')
+
                 <!-- Profile Form -->
-                <div class="col-12 col-sm-9 mx-auto mt-2">
+                <div class="col-11 col-md-7 col-xl-9 mx-auto mt-2">
                     <div class="card profile-card ">
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-3">
@@ -84,8 +87,8 @@
                                                 {{ old('profession', Auth::user()->profession) == 'Graphics Designer' ? 'selected' : '' }}>
                                                 Graphics Designer</option>
                                             <option value="Fullstack Developer"
-                                            {{ old('profession', Auth::user()->profession) == 'Fullstack Developer' ? 'selected' : '' }}>
-                                            Fullstack Developer</option>
+                                                {{ old('profession', Auth::user()->profession) == 'Fullstack Developer' ? 'selected' : '' }}>
+                                                Fullstack Developer</option>
                                         </select>
                                         @error('profession')
                                             <div class="text-danger">{{ $message }}</div>
@@ -94,7 +97,8 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <button type="submit" id="submitButton" class="btn btn-primary w-100 rounded-start fw-bold" style="">Simpan
+                                        <button type="submit" id="submitButton"
+                                            class="btn btn-primary w-100 rounded-start fw-bold" style="">Simpan
                                             Perubahan</button>
                                     </div>
                                 </div>
@@ -129,10 +133,10 @@
             const submitButton = document.getElementById('submitButton');
 
             // Asal warna default
-            const defaultBackground = '#fff'; 
+            const defaultBackground = '#fff';
             const changedBackground = '#E8E8E8';
-            const defaultButtonColor = '#ce8e0e'; 
-            const changedButtonColor = '#faa907'; 
+            const defaultButtonColor = '#ce8e0e';
+            const changedButtonColor = '#faa907';
 
             // Deteksi perubahan
             inputs.forEach(input => {

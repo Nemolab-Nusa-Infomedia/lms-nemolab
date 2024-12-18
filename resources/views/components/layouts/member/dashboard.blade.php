@@ -84,19 +84,19 @@
         });
     </script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const sidebarLinks = document.querySelectorAll(".side-tabs li a");
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     const sidebarLinks = document.querySelectorAll(".side-tabs li a");
             
-            sidebarLinks.forEach(link => {
-                const linkUrl = new URL(link.href);
-                const currentUrl = new URL(window.location.href);
-                if (linkUrl.origin === currentUrl.origin && linkUrl.pathname === currentUrl.pathname) {
-                    link.parentElement.classList.add("active");
-                } else {
-                    link.parentElement.classList.remove("active");
-                }
-            });
-        });
+        //     sidebarLinks.forEach(link => {
+        //         const linkUrl = new URL(link.href);
+        //         const currentUrl = new URL(window.location.href);
+        //         if (linkUrl.origin === currentUrl.origin && linkUrl.pathname === currentUrl.pathname) {
+        //             link.parentElement.classList.add("active");
+        //         } else {
+        //             link.parentElement.classList.remove("active");
+        //         }
+        //     });
+        // });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {

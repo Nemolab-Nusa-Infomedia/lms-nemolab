@@ -41,7 +41,7 @@ p{
 }
 
 .setting-section .setting-item .icon {
-    background-color: var(--bg-color);
+    background-color: var(--color-orange);
     padding: 10px;
     border-radius: 5px;
     display: flex;
@@ -49,10 +49,11 @@ p{
     justify-content: center;
 }
 
-.setting-section .setting-item .icon img {
+.setting-section .setting-item .icon svg {
     width: 30px;
     /* memastikan ukuran icon sama */
     height: 30px;
+    fill: white;
     object-fit: contain;
 }
 .form-control::placeholder {
