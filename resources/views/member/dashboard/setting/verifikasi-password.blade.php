@@ -30,7 +30,7 @@
                                 method="POST" class="edit-form">
                                 @csrf
                                 @method('put')
-                                <p class="text-center">Kami telah mengirimkan kode verifikasi ke email anda, silahkan cek email anda untuk mendapatkan kode verifikasi</p>
+                                <p class="text-center mb-0">Kami telah mengirimkan kode verifikasi ke email anda, silahkan cek email anda untuk mendapatkan kode verifikasi</p>
                                 <div class="my-auto">
                                     <div class="d-flex flex-row gap-3 justify-content-center my-auto">
                                         <input type="text" class="otp-input" data-index="1">
@@ -43,13 +43,15 @@
 
                                 <div class="w-100 align-self-end">
                                     <div class="col-md-12 mb-3 mt-auto">
-                                        @if (session('status') != 'limit')
-                                        <button class="kirim-ulang" type="button" id="verificationButton" class="resend-btn">
-                                            Kirim ulang kode<span id="timer" class="timer">(01:00)</span>
-                                        </button>
-                                        @else
-                                        <button type="button" disabled class="resend-btn">Kirim ulang kode</button>
-                                        @endif 
+                                       <div class="align-self-center text-center">
+                                            @if (session('status') != 'limit')
+                                            <button class="kirim-ulang" type="button" id="verificationButton" class="resend-btn">
+                                                Kirim ulang kode<span id="timer" class="timer">(01:00)</span>
+                                            </button>
+                                            @else
+                                            <button type="button" disabled class="resend-btn">Kirim ulang kode</button>
+                                            @endif 
+                                       </div>
                                         <button type="submit" id="submitButton"
                                             class="btn btn-primary w-100 rounded-start fw-bold">Konfirmasi</button>
                                     </div>
