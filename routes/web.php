@@ -8,6 +8,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\Member\Auth\MemberLoginController;
 use App\Http\Controllers\Member\Auth\MemberRegisterController;
 use App\Http\Controllers\Member\Auth\ResendEmailVerif as MemberResendEmailController;
+use App\Http\Controllers\Member\Auth\VerifpassController;
 use App\Http\Controllers\Member\Auth\forgotPassController as MemberForgotPassController;
 use App\Http\Controllers\Member\Dashboard\MemberSettingController;
 use App\Http\Controllers\Member\LandingpageController as MemberLandingPagesController;
@@ -101,7 +102,7 @@ Route::middleware('maintenance.middleware')->group(function () {
             Route::put('change-email/updated', [MemberSettingController::class, 'updateEmail'])->name('member.setting.change-email.updated');
             
             Route::view('verifikasi-password', 'member.dashboard.setting.verifikasi-password')->name('member.setting.verifikasi-password');
-            
+
             Route::view('reset-password', 'member.dashboard.setting.edit-password')->name('member.setting.reset-password');
             Route::put('reset-password/updated', [MemberSettingController::class, 'updatePassword'])->name('member.setting.reset-password.updated');
         });
@@ -121,6 +122,11 @@ Route::middleware('maintenance.middleware')->group(function () {
 
         // logout
         Route::get('user/logout', [MemberLoginController::class, 'logout'])->name('member.logout');
+
+        Route::get('verif-pass', [VerifpassController::class, 'index'])->name('verification-pass');
+        Route::post('/setting/verifikasi-password', [VerifpassController::class, 'resend'])->name('verification-repass');
+        Route::put('/setting/verify-pin', [VerifpassController::class, 'verifyPin'])
+            ->name('verification.verify-pass');
 
         // route halaman send verified
         Route::get('email/verify', [MemberResendEmailController::class, 'index'])->middleware('students')->name('verification.notice');

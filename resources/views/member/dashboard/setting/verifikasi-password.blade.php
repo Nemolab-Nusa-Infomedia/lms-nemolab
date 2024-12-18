@@ -26,7 +26,7 @@
                                 </a>
                                 <h5 class="title p-0 ps-3 fw-bold m-0">Konfirmasi Kode Verifikasi</h5>
                             </div>
-                            <form class="d-flex flex-column align-items-center justify-content-between h-100 w-100" action="#" id="profileForm"
+                            <form class="d-flex flex-column align-items-center justify-content-between h-100 w-100" action="{{ route('verification.verify-pass') }}" id="profileForm"
                                 method="POST" class="edit-form">
                                 @csrf
                                 @method('put')
@@ -54,6 +54,9 @@
                                             class="btn btn-primary w-100 rounded-start fw-bold">Konfirmasi</button>
                                     </div>
                                 </div>
+                            </form>
+                            <form method="POST" action="{{ route('verification-pass') }}" id="verificationForm">
+                                @csrf
                             </form>
                         </div>
                     </div>

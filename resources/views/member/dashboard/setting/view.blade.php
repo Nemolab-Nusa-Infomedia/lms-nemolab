@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="col-md-12 col-xl-6">
-                            <a href="{{ route('member.setting.verifikasi-password') }}" class="text-decoration-none">
+                            <a href="{{ route('verification-pass') }}" class="text-decoration-none">
                                 <div class="setting-item">
                                     <div class="icon py-2 px-3 mx-3">
                                         <svg width="40" height="27" viewBox="0 0 40 27" fill="none"
