@@ -41,7 +41,7 @@
                                             style="border-radius: 50%; object-fit: cover;" id="avatarPreview" />
                                     </div>
                                     <input type="file" id="fileUpload" name="avatar" class="d-none">
-                                    <label for="fileUpload" class="btn btn-secondary px-5">Pilih foto</label>
+                                    <label for="fileUpload" class="btn btn-secondary px-5 pilih-foto">Pilih foto</label>
                                     @error('avatar')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
