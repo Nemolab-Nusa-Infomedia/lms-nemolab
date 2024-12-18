@@ -31,12 +31,12 @@
                                 @csrf
                                 @method('put')
                                 <div class="row">
-                                    <div class="mb-3">
+                                    <div class="mb-4">
                                         <label for="old_password" class="form-label fw-bold">Kata Sandi Lama</label>
                                         <div class="position-relative w-100">
                                             <input type="password" name="old_password"
                                                 placeholder="Masukan kata sandi lama disini" id="old_password"
-                                                class="form-control fw-bold" required>
+                                                class="fw-bold" required>
                                             <button type="button"
                                                 class="toggle-password btn btn-light position-absolute end-0 top-50 translate-middle-y px-3"
                                                 style="background-color: transparent">
@@ -48,12 +48,12 @@
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-4">
                                         <label for="new_password" class="form-label fw-bold">Kata Sandi Baru</label>
                                         <div class="position-relative w-100">
                                             <input type="password" name="new_password"
                                                 placeholder="Masukan kata sandi baru disini" id="new_password"
-                                                class="form-control fw-bold" required>
+                                                class="fw-bold" required>
                                             <button type="button"
                                                 class="toggle-password btn btn-light position-absolute end-0 top-50 translate-middle-y px-3"
                                                 style="background-color: transparent">
@@ -65,13 +65,13 @@
                                             <div class="text-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="mb-3">
+                                    <div class="mb-4">
                                         <label for="new_password_confirmation" class="form-label fw-bold">Konfirmasi Kata
                                             Sandi Baru</label>
                                         <div class="position-relative w-100">
                                             <input type="password" name="new_password_confirmation"
                                                 placeholder="Masukan kata sandi disini" id="new_password_confirmation"
-                                                class="form-control fw-bold" required>
+                                                class="fw-bold" required>
                                             <button type="button"
                                                 class="toggle-password btn btn-light position-absolute end-0 top-50 translate-middle-y px-3"
                                                 style="background-color: transparent">
