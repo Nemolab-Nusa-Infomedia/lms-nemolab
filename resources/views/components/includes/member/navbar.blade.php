@@ -1,6 +1,6 @@
 <!-- navbar -->
 <div class="backdrop-header d-lg-none" style="display: none"></div>
-<header class="ps-3 pe-3 pt-2 pb-2 w-100 fixed-top position-fixed bg-transparent">
+<header class="w-100 fixed-top position-fixed bg-transparent">
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-transparent">
             <div class="container-fluid">
