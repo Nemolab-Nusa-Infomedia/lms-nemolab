@@ -4,7 +4,7 @@
 :root {
     --card-bg: #fff;
     --color-silver: #8F8F8F;
-    --bg-color: #FFF6F6;
+    --bg-color: #ffffff;
     --dark-grey: #414142;
     --blue: #0774FA;
     --color-orange: #faa907;
@@ -26,9 +26,7 @@ p{
     height: 110vh;
 }
 .card{
-    padding: 5px 5px;
     border: none;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .setting-section .setting-item {
