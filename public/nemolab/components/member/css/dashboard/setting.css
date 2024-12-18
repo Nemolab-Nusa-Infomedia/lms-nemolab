@@ -38,12 +38,6 @@ p
     border: none;
 }
 
-.card-body
-{
-    justify-content: space-between;
-    height: 100%;
-}
-
 .profile-saya-section form .img-container
 {
     display: inline-block;
@@ -53,11 +47,17 @@ p
     border-radius: 50%;
     vertical-align: middle;
     box-shadow: 0px 4px 4px 0px #00000040;
-    
-    img{
+
+    img
+    {
         height: 100%;
         width: 100%;
     }
+}
+.profile-saya-section form .mb-4 label{
+    background: #414142;
+    box-shadow: 0px 4px 4px 0px #00000040;
+
 }
 .setting-section .setting-item
 {
@@ -155,7 +155,9 @@ p
     outline: none;
 }
 
-input {
+input,
+select
+{
     border: none;
     outline: none;
     width: 100%;
@@ -165,12 +167,15 @@ input {
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.492);
 }
 
-input:focus {
+input:focus,
+select:focus
+{
     background-color: #fff6f6;
-    box-shadow:inset 0 2px 3px rgba(0, 0, 0, 0.492);
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.492);
 }
 
-.form-label{
+.form-label
+{
     text-shadow: 2px 5px 5px rgba(0, 0, 0, 0.402);
     margin-bottom: 10px;
 }
@@ -225,7 +230,6 @@ input:focus {
         font-size: 1rem;
         color: black;
         text-decoration: none;
-        margin-bottom: 1rem;
     }
 
     p
@@ -287,7 +291,7 @@ input:focus {
 
 button.btn-primary
 {
-    background-color: var(--disable-orange);
+    background-color: var(--color-orange);
     outline: none;
     border: none;
     transition: all .5s ease;

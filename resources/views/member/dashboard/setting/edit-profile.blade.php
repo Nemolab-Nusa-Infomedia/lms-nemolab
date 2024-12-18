@@ -32,8 +32,8 @@
                                 @method('put')
                                 <div class="mb-4">
                                     <div>
-                                        <h6 class="fw-bold">Foto Profil</h6>
-                                        <p>Ukuran Foto Maksimal (1 MB)</p>
+                                        <h6 class="fw-bold form-label">Foto Profil</h6>
+                                        <p class="form-label">Ukuran Foto Maksimal (1 MB)</p>
                                     </div>
                                     <div class="img-container">
                                         <img src="{{ Auth::user()->avatar !== null ? asset('storage/images/avatars/' . Auth::user()->avatar) : asset('nemolab/member/img/icon/Group 7.png') }}"
@@ -49,7 +49,7 @@
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="name" class="form-label fw-bold">Nama Pengguna</label>
-                                        <input type="text" id="name" name="name" class=" fw-bold"
+                                        <input type="text" id="name" name="name" class=" "
                                             placeholder="Masukan nama disini" value="{{ old('name', Auth::user()->name) }}"
                                             required>
                                         @error('name')
@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="email" class="form-label fw-bold">Email</label>
-                                        <input type="email" id="email" name="email" class=" fw-bold"
+                                        <input type="email" id="email" name="email" class=" "
                                             value="{{ Auth::user()->email }}" readonly
                                             style="cursor: pointer; background-color:#E8E8E8;">
                                         @error('email')
@@ -67,9 +67,9 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-12 mb-3">
                                         <label for="profession" class="form-label fw-bold">Karir Impian</label>
-                                        <select name="profession" id="profession" class="form-select">
+                                        <select name="profession" id="profession" class=" ">
                                             <option value="Pelajar Jangka Panjang"
                                                 {{ old('profession', Auth::user()->profession) == 'Pelajar Jangka Panjang' ? 'selected' : '' }}>
                                                 Pelajar Jangka Panjang</option>

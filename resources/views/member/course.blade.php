@@ -88,12 +88,7 @@
         });
     </script>
 
-<<<<<<< HEAD
-                // ubah value query
-                query = query = document.querySelector(`label[for="${this.id}"]`).textContent;
-                getDataCourse();
-            })
-        });
+<script>
 
 
         getDataCourse();
@@ -162,6 +157,4 @@
             window.location.href = url;
         };
     </script>
-=======
->>>>>>> dev
 @endpush

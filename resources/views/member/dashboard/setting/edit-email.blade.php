@@ -33,7 +33,7 @@
                                 <div class="row">
                                     <div class="mb-3">
                                         <label for="email" class="form-label fw-bold">Email saat ini</label>
-                                        <input type="email" id="email" name="email" class="form-control fw-bold"
+                                        <input type="email" id="email" name="email" class=" fw-bold"
                                             value="{{ Auth::user()->email }}" readonly
                                             style="cursor: pointer; background-color:#E8E8E8 ;" value="{{ old('email') }}">
                                         @error('email')
@@ -43,7 +43,7 @@
 
                                     <div class="mb-3">
                                         <label for="new_email" class="form-label fw-bold">Email Baru</label>
-                                        <input type="email" id="new_email" name="new_email" class="form-control fw-bold"
+                                        <input type="email" id="new_email" name="new_email" class=" fw-bold"
                                             placeholder="Masukan email baru anda" required value="{{ old('new_email') }}">
                                         @error('new_email')
                                             <div class="text-danger">{{ $message }}</div>
