@@ -21,6 +21,12 @@ body
     color: #000;
 }
 
+@media (min-width: 768px) {
+    body{
+        overflow-y: hidden;
+    }
+}
+
 p
 {
     font-size: 0.85rem;
