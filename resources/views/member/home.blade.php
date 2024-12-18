@@ -322,22 +322,6 @@
     <!-- end section 5 -->
 
     <!-- section 6 -->
-    <section class="section-testimoni-kelas mt-5" id="section-testimoni-kelas" data-aos="fade-up">
-        <div class="container-fluid">
-            <div class="testimoni-title">
-                <h1 class="fw-bold m-0">Selangkah Lebih Maju menjadi <br> Professional!!
-                    <img src="{{ asset('nemolab/img_component/7d2fbaa6b76535cd0fbe793bdc002092.png') }}" alt="">
-                    <img src="{{ asset('nemolab/img_component/7d2fbaa6b76535cd0fbe793bdc002092.png') }}" alt="">
-                </h1>
-                <p class="fs-6 my-4 my-md-3">Jangan ragu untuk bergabung di kelas-kelas kami! Banyak pengguna <br> sudah
-                    membuktikan dengan belajar di kelas kami</p>
-                <a href="{{ route('member.course') }}" class="btn btn-warning py-2 px-4">Coba Kursus</a>
-            </div>
-        </div>
-    </section>
-    <!-- end section 6 -->
-
-    <!-- section 7 -->
     <section class="section-pusat-bantuan" id="section-pusat-bantuan" data-aos="fade-up">
         <div class="row align-items-center mt-0 mx-md-3">
             <div class="col-md-6">
@@ -352,7 +336,7 @@
             </div>
         </div>
     </section>
-    <!-- end section 7 -->
+    <!-- end section 6 -->
 @endsection
 
 @push('addon-script')
