@@ -132,16 +132,16 @@ p {
     text-decoration: none;
     padding: 8px 25px;
     border-radius: 20px;
-    color: #ff7b00;
+    color: #FAA907;
 }
 
 .filter-transaction .nav-tabs a:hover {
     background-color: var(--hover-color);
-    color: #ff7b00;
+    color: #FAA907;
 }
 
 .filter-transaction .nav-tabs a.active {
-    background-color: #ff7b00;
+    background-color: #FAA907;
     color: #fff;
 }
 
