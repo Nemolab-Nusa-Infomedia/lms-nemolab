@@ -160,7 +160,8 @@
                     </div>
                     <div class="col-4 flex-column mt-4" id="menu-service">
                         <div class="ms-xl-5">
-                            <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out" data-aos-delay="200">
+                            <div class="card-service mb-4 py-2" id="item-service" data-aos="zoom-out"
+                                data-aos-delay="200">
                                 <h4 class="fw-bold">Video</h4>
                                 <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}"
                                     class="btn btn-warning py-1 px-2 mt-2">belajar sekarang</a>
@@ -351,8 +352,13 @@
                 coursesScroll.forEach(element => {
                     element.addEventListener('click', function() {
                         const direction = this.dataset.direction;
-                        if (direction === 'left') scrollContainer.scrollLeft -= speed;
-                        else if (direction === 'right') scrollContainer.scrollLeft += speed;
+                        if (window.innerWidth < 768) {
+                            if (direction === 'left') scrollContainer.scrollTop -= speed;
+                            else if (direction === 'right') scrollContainer.scrollTop += speed;
+                        } else {
+                            if (direction === 'left') scrollContainer.scrollLeft -= speed;
+                            else if (direction === 'right') scrollContainer.scrollLeft += speed;
+                        }
                     })
                 });
             }
