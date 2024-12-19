@@ -21,11 +21,11 @@
 
 <body>
 
-    @if (Auth::check())
+    {{-- @if (Auth::check())
         @include('components.includes.member.navbar-auth')
-    @else
+    @else --}}
         @include('components.includes.member.navbar')
-    @endif
+    {{-- @endif --}}
 
 
     <main id="content" class="flex-grow-1" style="min-height: 100vh">

@@ -16,7 +16,8 @@
                         </div>
                     </a>
                 </div>
-                <form action="{{ route('member.course') }}" method="GET" class="d-lg-flex d-none flex-grow-1 flex-lg-grow-0" role="search" id="search-form">
+                <form action="{{ route('member.course') }}" method="GET"
+                    class="d-lg-flex d-none flex-grow-1 flex-lg-grow-0" role="search" id="search-form">
                     <div class="search-group position-relative flex-grow-1 flex-lg-grow-0">
                         <input class="form-control w-100 h-100" type="text" name="search-input"
                             placeholder="Cari Kelas Disini" id="search-input" value="{{ request('search-input') }}"
@@ -51,7 +52,8 @@
                     </span>
                 </button>
 
-                <div class="collapse navbar-collapse  my-3 my-md-0" style="flex-grow: 0 !important" id="navbarNavAltMarkup">
+                <div class="collapse navbar-collapse  my-3 my-md-0" style="flex-grow: 0 !important"
+                    id="navbarNavAltMarkup">
                     <ul class="navbar-nav d-lg-flex align-items-lg-center gap-lg-4 ps-xl-5">
                         <div class="dropdown dropdown-pilih-kelas">
                             <button
@@ -135,11 +137,52 @@
                         </div>
 
                         <a href="https://blog.nemolab.id/" class="text-decoration-none  pb-2 pb-lg-0">Artikel</a>
+                        @auth
 
-                        <div class="register-login d-flex align-items-center justify-content-end gap-2 ms-lg-5">
-                            <a href="{{ route('member.register') }}" class="btn btn-warning px-4 py-2">Daftar</a>
-                            <a href="{{ route('member.login') }}" class="btn btn-secondary px-4 py-2">Masuk</a>
-                        </div>
+                            <div class="profile-auth ms-lg-5 mx-lg-0">
+                                <div class="dropdown d-flex justify-content-end">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                                        <span class="fw-bold">
+                                            {{ Auth::user()->name }}
+                                        </span>
+                                        @if (Auth::user()->avatar != null)
+                                            <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}"
+                                                class="rounded-5 ms-1" style="width: 42px; height: 42px;"
+                                                id="img-profile">
+                                        @else
+                                            <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}"
+                                                class="rounded-5 ms-1" style="width: 42px; height: 42px;"
+                                                id="img-profile">
+                                        @endif
+                                    </button>
+
+                                    <ul class="dropdown-menu w-100 mt-2 dropdown-logout">
+                                        @if (!Request::routeIs('member.setting') && !Request::routeIs('member.setting.*'))
+                                            <li><a class="dropdown-item" href="{{ route('member.dashboard') }}">Kelas
+                                                    Saya</a>
+                                            </li>
+                                            <li><a class="dropdown-item"
+                                                    href="{{ route('member.transaction') }}">Transaksi
+                                                    Saya</a></li>
+                                            <li class="border-bottom pb-3"><a class="dropdown-item"
+                                                    href="{{ route('member.setting') }}">Pengaturan</a>
+                                            </li>
+                                        @endif
+                                        <li class="mt-2">
+                                            <a class="dropdown-item" href="{{ route('member.logout') }}"
+                                                id="logout-btn">Logout</a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        @else
+                            <div class="register-login d-flex align-items-center justify-content-end gap-2 ms-lg-5">
+                                <a href="{{ route('member.register') }}" class="btn btn-warning px-4 py-2">Daftar</a>
+                                <a href="{{ route('member.login') }}" class="btn btn-secondary px-4 py-2">Masuk</a>
+                            </div>
+                        @endauth
                     </ul>
                 </div>
             </div>
