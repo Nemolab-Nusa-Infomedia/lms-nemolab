@@ -105,6 +105,11 @@
                 }
             });
             window.onresize = () => {
+                if (window.innerWidth <= 1200 && window.innerWidth > 768) {
+                    document.getElementById('search-input').setAttribute('disabled', '');
+                }else{
+                    document.getElementById('search-input').removeAttribute('disabled');
+                }
                 if (window.innerWidth <= 768 && toggler.getAttribute('aria-expanded') === 'false') {
                     searchForm.setAttribute('style', 'display: none !important');
                 } else {
