@@ -82,42 +82,6 @@
             }
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggler = document.getElementById('navbarToggler');
-            const iconOpened = document.getElementById('navbar-opened');
-            const iconClosed = document.getElementById('navbar-closed');
-            const searchForm = document.getElementById('search-form');
-            const navbarBrand = document.getElementById('navbar-brand');
-
-            toggler.addEventListener('click', () => {
-                // Toggle class "active" pada gambar
-                if (toggler.getAttribute('aria-expanded') === 'true') {
-                    iconClosed.setAttribute('style', 'display: none');
-                    iconOpened.setAttribute('style', 'display: block');
-                    navbarBrand.setAttribute('style', 'display: none !important');
-                    searchForm.setAttribute('style', 'display: flex !important');
-                } else {
-                    iconClosed.setAttribute('style', 'display: block');
-                    iconOpened.setAttribute('style', 'display: none');
-                    navbarBrand.setAttribute('style', 'display: flex !important');
-                    searchForm.setAttribute('style', 'display: none !important');
-                }
-            });
-            window.onresize = () => {
-                if (window.innerWidth <= 1200 && window.innerWidth > 768) {
-                    document.getElementById('search-input').setAttribute('disabled', '');
-                }else{
-                    document.getElementById('search-input').removeAttribute('disabled');
-                }
-                if (window.innerWidth <= 768 && toggler.getAttribute('aria-expanded') === 'false') {
-                    searchForm.setAttribute('style', 'display: none !important');
-                } else {
-                    searchForm.setAttribute('style', 'display: flex !important');
-                }
-            }
-        });
-    </script>
     @stack('addon-script')
 
 </body>
