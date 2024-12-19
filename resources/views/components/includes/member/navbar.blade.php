@@ -1,8 +1,8 @@
 <!-- navbar -->
-<div class="backdrop-header d-lg-none" style="display: none"></div>
+<div class="backdrop-header d-md-none" style="display: none"></div>
 <header class="w-100 fixed-top position-fixed bg-transparent">
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg bg-transparent">
+        <nav class="navbar navbar-expand-md bg-transparent">
             <div class="container-fluid">
                 <div class="d-flex align-items-center justify-center" id="navbar-brand">
                     <a href="{{ route('home') }}" style="text-decoration: none;">
@@ -17,8 +17,24 @@
                     </a>
                 </div>
                 <form action="{{ route('member.course') }}" method="GET"
-                    class="d-lg-flex d-none flex-grow-1 flex-lg-grow-0" role="search" id="search-form">
-                    <div class="search-group position-relative flex-grow-1 flex-lg-grow-0">
+                    class="d-md-flex d-none flex-grow-1 flex-md-grow-0 mx-md-4 mx-lg-0" role="search" id="search-form">
+                    <div class="search-group position-relative flex-grow-1 flex-md-grow-0">
+                        <input type="checkbox" name="search-toggle" style="display: none" id="search-toggle">
+                        <label for="search-toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="d-xl-none" width="22" height="22"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
+                                    fill="#414142">
+                                </path>
+                            </svg>
+                            <svg class="d-xl-none" width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M3.7 3.69987C3.93437 3.46579 4.25208 3.33431 4.58333 3.33431C4.91458 3.33431 5.23229 3.46579 5.46666 3.69987L9.99999 8.23154L14.5333 3.69987C14.6493 3.58387 14.787 3.49185 14.9386 3.42908C15.0902 3.3663 15.2526 3.33398 15.4167 3.33398C15.5807 3.33398 15.7432 3.3663 15.8947 3.42908C16.0463 3.49185 16.184 3.58387 16.3 3.69987C16.416 3.81587 16.508 3.95359 16.5708 4.10515C16.6336 4.25671 16.6659 4.41916 16.6659 4.58321C16.6659 4.74726 16.6336 4.9097 16.5708 5.06126C16.508 5.21283 16.416 5.35054 16.3 5.46654L11.7683 9.99987L16.3 14.5332C16.5343 14.7675 16.6659 15.0852 16.6659 15.4165C16.6659 15.7479 16.5343 16.0656 16.3 16.2999C16.0657 16.5341 15.748 16.6658 15.4167 16.6658C15.0853 16.6658 14.7676 16.5341 14.5333 16.2999L9.99999 11.7682L5.46666 16.2999C5.23239 16.5341 4.91464 16.6658 4.58333 16.6658C4.25201 16.6658 3.93427 16.5341 3.7 16.2999C3.46572 16.0656 3.33411 15.7479 3.33411 15.4165C3.33411 15.0852 3.46572 14.7675 3.7 14.5332L8.23166 9.99987L3.7 5.46654C3.46591 5.23216 3.33443 4.91446 3.33443 4.58321C3.33443 4.25196 3.46591 3.93425 3.7 3.69987Z"
+                                    fill="#8F8F8F" />
+                            </svg>
+                        </label>
                         <input class="form-control w-100 h-100" type="text" name="search-input"
                             placeholder="Cari Kelas Disini" id="search-input" value="{{ request('search-input') }}"
                             aria-label="Search">
@@ -32,7 +48,7 @@
                         </button>
                     </div>
                 </form>
-                <button class="navbar-toggler d-flex d-lg-none" type="button" data-bs-toggle="collapse"
+                <button class="navbar-toggler d-flex d-md-none" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation" id="navbarToggler">
                     <span class="navbar-icon">
@@ -54,15 +70,15 @@
 
                 <div class="collapse navbar-collapse  my-3 my-md-0" style="flex-grow: 0 !important"
                     id="navbarNavAltMarkup">
-                    <ul class="navbar-nav d-lg-flex align-items-lg-center gap-lg-4 ps-xl-5">
+                    <ul class="navbar-nav d-md-flex align-items-md-center gap-md-4 ps-xl-5">
                         <div class="dropdown dropdown-pilih-kelas">
                             <button
-                                class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pt-2 pt-lg-0 pb-2 pb-lg-0"
+                                class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pt-2 pt-md-0 pb-2 pb-md-0"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Pilih Kelas
                                 <box-icon name='chevron-down' color="#000000"></box-icon>
                             </button>
-                            <ul class="dropdown-menu mt-lg-3 mb-3">
+                            <ul class="dropdown-menu mt-md-3 mb-3">
                                 <div class="head-submenu d-flex justify-content-between align-items-center">
                                     <p class="m-0 p-0 fw-bold">Pilihan Kelas</p>
                                     <a href="{{ route('member.course') }}" class="m-0 p-0">Lihat Semua</a>
@@ -106,12 +122,12 @@
 
                         <div class="dropdown dropdown-pilih-paket-kelas">
                             <button
-                                class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pb-2 pb-lg-0"
+                                class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pb-2 pb-md-0"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Paket Kelas
                                 <box-icon name='chevron-down' color="#00000 "></box-icon>
                             </button>
-                            <ul class="dropdown-menu mt-lg-3 mb-3">
+                            <ul class="dropdown-menu mt-md-3 mb-3">
                                 <div class="head-submenu d-flex justify-content-between align-items-center">
                                     <p class="m-0 p-0 fw-bold">Pilihan Paket Kelas</p>
                                     <a href="{{ route('member.course') }}" class="m-0 p-0">Lihat Semua</a>
@@ -136,10 +152,10 @@
                             </ul>
                         </div>
 
-                        <a href="https://blog.nemolab.id/" class="text-decoration-none  pb-2 pb-lg-0">Artikel</a>
+                        <a href="https://blog.nemolab.id/" class="text-decoration-none  pb-2 pb-md-0">Artikel</a>
                         @auth
 
-                            <div class="profile-auth ms-lg-5 mx-lg-0">
+                            <div id="auth-section" class="profile-auth ms-md-5 mx-md-0">
                                 <div class="dropdown d-flex justify-content-end">
                                     <button class="btn btn-secondary dropdown-toggle" type="button"
                                         id="dropdownMenuButton1" data-bs-toggle="dropdown">
@@ -178,7 +194,8 @@
                                 </div>
                             </div>
                         @else
-                            <div class="register-login d-flex align-items-center justify-content-end gap-2 ms-lg-5">
+                            <div id="auth-section"
+                                class="register-login d-flex align-items-center justify-content-end gap-2 ms-md-5">
                                 <a href="{{ route('member.register') }}" class="btn btn-warning px-4 py-2">Daftar</a>
                                 <a href="{{ route('member.login') }}" class="btn btn-secondary px-4 py-2">Masuk</a>
                             </div>
@@ -201,6 +218,15 @@
             } else {
                 document.querySelector('header').setAttribute('style', '')
                 document.querySelector('.backdrop-header').setAttribute('style', 'display: none')
+            }
+        });
+
+        document.getElementById('search-toggle').addEventListener('change', function() {
+            console.log(this.checked)
+            if (this.checked) {
+                document.getElementById('auth-section').setAttribute('style', 'display: none !important')
+            } else {
+                document.getElementById('auth-section').setAttribute('style', '')
             }
         });
     });

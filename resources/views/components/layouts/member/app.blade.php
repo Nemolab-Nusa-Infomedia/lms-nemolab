@@ -105,7 +105,7 @@
                 }
             });
             window.onresize = () => {
-                if (window.innerWidth <= 992 && toggler.getAttribute('aria-expanded') === 'false') {
+                if (window.innerWidth <= 768 && toggler.getAttribute('aria-expanded') === 'false') {
                     searchForm.setAttribute('style', 'display: none !important');
                 } else {
                     searchForm.setAttribute('style', 'display: flex !important');

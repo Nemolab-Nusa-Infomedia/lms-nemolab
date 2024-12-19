@@ -16,8 +16,8 @@
             <div class="circle2"></div>
         </div>
         <div class="row">
-            <div class="col-md-6 row align-items-center" style="z-index: 1">
-                <div class="text-center text-md-start me-md-3 mx-md-4" style="margin-top: -4rem">
+            <div class="col-md-6 row align-items-center" id="text-hero" style="z-index: 1">
+                <div class="text-center text-md-start me-md-3 mx-md-4">
                     <h1 class="fw-bold mt-4 mt-md-0">BELAJAR KURSUS ONLINE GRATIS, KAPANPUN DAN DIMANAPUN</h1>
                     <div class="paragraph">
                         <p class=" my-3 ">Belajar keahlian seputar teknologi dari pemula hingga ahli, dapatkan berbagai
@@ -219,7 +219,7 @@
     <section class="section-benefit-kelas my-5" id="section-benefit-kelas" data-aos="fade-up">
         <div class="container-fluid">
             <div class="row align-items-center my-5 mx-md-3">
-                <div class="col-xxl-6">
+                <div class="col-sm-6">
                     <div class="values-grid">
                         <div class="value">
                             <div class="icon">
@@ -294,12 +294,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xxl-6">
+                <div class="col-sm-6">
                     <div class="me-md-4 mx-3 mx-md-0 text-center text-md-start">
-                        <h1 class="fw-bold">Benefit Yang Bisa Kamu Dapatkan Jika <span>Belajar</span> Disini</h1>
-                        <p>Sesuatu yang lebih besar untuk mencapai impian Anda jadi kami menyediakan semua hal hebat ini
+                        <h1 class="fw-bold ms-sm-4">Benefit Yang Bisa Kamu Dapatkan Jika <span>Belajar</span> Disini</h1>
+                        <p class=" ms-sm-4">Sesuatu yang lebih besar untuk mencapai impian Anda jadi kami menyediakan semua hal hebat ini
                             untuk Anda dan banyak lagi </p>
-                        <iframe src="https://www.youtube.com/embed/Pt7PiJJsarw" frameborder="0"
+                        <iframe src="https://www.youtube.com/embed/Pt7PiJJsarw" class="mt-2" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
                     </div>
