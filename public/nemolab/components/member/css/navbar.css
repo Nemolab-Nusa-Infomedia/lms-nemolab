@@ -1,34 +1,65 @@
 /* font navbar */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('../../../member/css/color.css');
 
 /* variabel color */
-:root {
+:root
+{
     --dark-grey: #414142;
     --blue-link: #0774FA;
     --light-lavender: #F0EAFF;
     --color-pink: #FFF6F6;
 }
 
+.backdrop-header
+{
+    min-height: 100svh;
+    min-width: 100svw;
+    background: #00000063;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+}
 
+header
+{
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-bottom: solid 2px rgba(255, 255, 255, 0.2);
+}
 
-header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p {
-    color: var(--dark-grey);
+@media(max-width: 512px)
+{
+    header
+    {
+        backdrop-filter: blur(2px);
+    }
+}
+
+header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p
+{
     font-family: 'Nunito', sans-serif;
     line-height: 1.2;
     background-color: transparent !important;
 }
 
-header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:first-child {
-    font-size: 20px;
+header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:first-child
+{
+    font-size: 1.25rem;
+    color: var(--text-color-main);
+    font-weight: 800;
 }
 
-header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:last-child {
-    font-size: 14px;
+header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:last-child
+{
+    font-size: .75rem;
+    margin-top: -.5rem;
+    color: var(--text-color-second);
+    font-weight: 700;
 }
 
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:first-child .search-group {
-    background-color: var(--color-pink);
-    padding: 10px 20px;
+header .container-fluid .navbar .container-fluid .search-group
+{
     width: max-content;
     border-radius: 50px;
     display: flex;
@@ -36,50 +67,101 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
     align-items: center;
 }
 
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:first-child .search-group input,
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:first-child .search-group input:focus {
+header .container-fluid .navbar .container-fluid .search-group input,
+header .container-fluid .navbar .container-fluid .search-group input:focus
+{
     outline: none;
+    background-color: var(--color-pink);
+    border-radius: 50px;
+    padding: 10px 40px 10px 20px;
     border: none;
-    background: transparent;
     font-family: 'Nunito', sans-serif;
     color: var(--dark-grey);
     font-size: 16px;
-    width: 260px;
+    width: 320px;
+}
+
+@media(max-width:992px)
+{
+    header .container-fluid .navbar .container-fluid .search-group
+    {
+        margin-right: 2rem;
+    }
+
+    header .container-fluid .navbar .container-fluid .search-group input,
+    header .container-fluid .navbar .container-fluid .search-group input:focus
+    {
+        border-radius: .5rem;
+        background: none;
+        flex-grow: 1;
+        border: solid 1px black;
+    }
+}
+
+@media(max-width:512px)
+{
+
+    header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:last-child
+    {
+        font-size: 1rem;
+        margin-top: -.5rem;
+        color: var(--text-color-second);
+        font-weight: 700;
+    }
+}
+
+header .container-fluid .navbar .container-fluid .search-group button,
+header .container-fluid .navbar .container-fluid .search-group button:active
+{
+    border: none;
+    outline: none;
+    right: 10px;
 }
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button,
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a {
-    color: var(--dark-grey) !important;
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a
+{
+    color: black !important;
     background: none;
     outline: none;
     border: none;
     font-family: 'Nunito', sans-serif;
-    font-size: 18px !important;
+    font-size: 16px !important;
     background-color: transparent !important;
     font-weight: 600 !important;
 }
 
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button.dropdown-toggle::after {
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button.dropdown-toggle::after
+{
     display: none;
 }
 
-header .container-fluid .navbar-toggler {
-    background-color: orange;
+header .container-fluid .navbar-toggler
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    width: 28px;
     border: none;
     padding: 0px !important;
 }
-header .container-fluid .navbar-toggler img{
+
+header .container-fluid .navbar-toggler img
+{
     width: 30px;
     height: 30px;
 }
 
 
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu {
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu
+{
     width: max-content;
     padding: 10px;
 }
 
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu {
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu
+{
     width: 400px;
     padding: 24px;
     border: none;
@@ -87,22 +169,26 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 }
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu p,
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a {
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a
+{
     font-size: 18px !important;
     font-family: 'Nunito', sans-serif;
 }
 
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu p {
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu p
+{
     color: var(--dark-grey);
 }
 
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a {
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a
+{
     color: var(--blue-link);
     text-decoration: none;
 }
 
 
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a {
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a
+{
     font-size: 16px !important;
     font-family: 'Nunito', sans-serif !important;
     color: var(--dark-grey);
@@ -111,95 +197,151 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
     font-weight: 400 !important;
 }
 
+a.btn-warning
+{}
 
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a:hover {
+a.btn-warning:hover
+{}
+
+a.btn-warning:active
+{}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a:hover
+{
     color: var(--blue-link);
 }
 
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a {
-    font-size: 18px;
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a
+{
+    color: white;
+    background-color: var(--color-orange);
+    transition: all 0.3s ease;
+    border: none;
+    font-weight: 700;
+    font-size: 16px;
     font-family: 'Nunito', sans-serif;
     width: max-content;
 }
 
-header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a.btn-secondary {
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a:hover
+{
+    background-color: var(--color-orange-hover);
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a:active
+{
+    color: white !important;
+    background-color: var(--color-orange-hover) !important;
+    transition: background-color 0s;
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a.btn-secondary
+{
     background-color: var(--light-lavender) !important;
-    border: var(--light-lavender) !important;
+    outline: solid 1px var(--light-border) !important;
     color: black;
     font-weight: 500;
 }
 
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a.btn-secondary:hover
+{
+    background-color: var(--color-light-hover) !important;
+}
 
-@media screen and (max-width: 992px) {
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu {
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a.btn-secondary:active
+{
+    color: black !important;
+}
+
+@media screen and (max-width: 992px)
+{
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu
+    {
         position: absolute !important;
     }
 }
 
-@media screen and (min-width: 480px) and (max-width: 576px) {
+@media screen and (min-width: 480px) and (max-width: 576px)
+{
 
     header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button,
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a {
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a
+    {
         font-size: 16px !important;
     }
 
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a {
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a
+    {
         font-size: 16px !important;
     }
 
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu {
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu
+    {
         width: 100%;
     }
 
     header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu p,
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a {
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a
+    {
         font-size: 18px !important;
     }
 
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a {
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a
+    {
         font-size: 16px !important;
     }
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav {
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
+    {
         padding-left: 0 !important;
         margin-top: 4px;
     }
 }
 
-@media screen and (max-width: 480px) {
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav {
+@media screen and (max-width: 480px)
+{
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
+    {
         padding-left: 0 !important;
         margin-top: 4px;
     }
 
     header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button,
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a {
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a
+    {
         font-size: 16px !important;
     }
 
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a {
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a
+    {
         font-size: 16px !important;
     }
 
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu {
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu
+    {
         width: 100%;
     }
 
     header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu p,
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a {
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a
+    {
         font-size: 16px !important;
     }
 
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a {
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a
+    {
         font-size: 14px !important;
     }
 
-    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a {
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a
+    {
         display: none !important;
-    }    
+    }
 
-    .navbar-toggler {
-        border: none !important; 
-        outline: none !important; 
+    .navbar-toggler
+    {
+        border: none !important;
+        outline: none !important;
         box-shadow: none !important;
     }
 }

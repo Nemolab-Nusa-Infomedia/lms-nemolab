@@ -23,8 +23,8 @@ class CourseSeeder extends Seeder
         
         $faker = Faker::create();
         $timestamp = Carbon::now();
-        
-        $numCourses = 88; 
+
+        $numCourses = 100; 
         for ($i = 0; $i < $numCourses; $i++) {
             DB::table('tbl_courses')->insert([
                 'category' => $categories[array_rand($categories)],
@@ -33,7 +33,6 @@ class CourseSeeder extends Seeder
                 'type' => 'free', 
                 'status' => $faker->randomElement(['published']),
                 'price' => 0,
-                // 'price' => 2000,
                 'level' => $faker->randomElement(['beginner', 'intermediate', 'expert']), 
                 'description' => $faker->paragraph(), 
                 'resources' => $faker->url(),

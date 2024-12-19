@@ -95,19 +95,32 @@
                             <span style="color: red">{{ $message }}</span>
                         @enderror
                     </div>
-                    <p class="m-0 mb-1 mt-3">Pilih Tools</p>
-                    <div class="col-12 d-flex align-items-center mb-3">
-                        @foreach ($tools as $toolall)
-                            <div class="form-check d-flex align-items-center ms-2">
-                                <input class="form-check-input p-0 p-2 border-0"
-                                    style="float: none; border: 2px solid #faa907 !important;" type="checkbox"
-                                    value="{{ $toolall->id }}" id="flexCheckDefault" name="tools[]"
-                                    {{ in_array($toolall->id, $coursetool->tools->pluck('id')->toArray()) ? 'checked' : '' }}>
-                                <label class="form-check-label ms-2" for="flexCheckDefault">
-                                    {{ $toolall->name_tools }}
-                                </label>
-                            </div>
-                        @endforeach
+                    <div class="d-flex align-items-center">
+                        <p class="m-0 mb-1 mt-3">Pilih Tools</p>
+                        <button type="button" class="btn btn-link text-primary p-0 ms-3" id="add-tools-btn">Tambah Tools</button>
+                    </div>
+                    <div id="selected-tools" class="col-12 d-flex align-items-center mb-3">
+                        <!-- Default: no tools displayed here -->
+                    </div>
+
+                    <!-- Popup Tambah Tools -->
+                    <div id="tools-popup" class="tools-popup shadow p-3 bg-white rounded" style="display: none; position: absolute; top: 50px; right: 20px; width: 300px; z-index: 1050;">
+                        <!-- Search bar -->
+                        <div class="mb-3">
+                            <input type="text" id="tool-search" class="form-control" placeholder="Cari tools">
+                        </div>
+
+                        <!-- Grid tools -->
+                        <div id="tools-grid" class="row">
+                            @foreach ($tools as $toolall)
+                                <div class="col-12 tool-item d-flex align-items-center mb-2" data-tool-name="{{ strtolower($toolall->name_tools) }}" data-tool-id="{{ $toolall->id }}">
+                                    <input class="form-check-input tool-checkbox me-2" type="checkbox" value="{{ $toolall->id }}" id="tool-{{ $toolall->id }}" />
+                                    <label class="form-check-label" for="tool-{{ $toolall->id }}">
+                                        {{ $toolall->name_tools }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                     @error('tools')
                         <span class="text-danger">{{ $message }}</span>
@@ -168,29 +181,195 @@
 
 @push('addon-script')
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const type = document.getElementById('type');
-            const price = document.getElementById('price');
 
-            var valuePrice = 0;
+    // Define variables and functions in global scope
+    let toolsGrid;
+    let selectedToolsContainer;
+    let updateSelectedToolsInput;
 
-            if (type.value == 'premium') {
+    document.addEventListener('DOMContentLoaded', function() {
+        // Definisikan semua variabel di awal
+        const type = document.getElementById('type');
+        const price = document.getElementById('price');
+        const form = document.querySelector('form');
+        const toolsPopup = document.getElementById('tools-popup');
+        const addToolsBtn = document.getElementById('add-tools-btn');
+        toolsGrid = document.getElementById('tools-grid'); // Assign to global variable
+        const toolSearch = document.getElementById('tool-search');
+        const searchToolsBtn = document.getElementById('search-tools-btn');
+        selectedToolsContainer = document.getElementById('selected-tools'); // Assign to global variable
+
+        // Definisikan fungsi updateSelectedToolsInput
+        updateSelectedToolsInput = () => {
+            const selectedToolIds = Array.from(selectedToolsContainer.querySelectorAll('.selected-tool'))
+                .map(selectedTool => selectedTool.dataset.toolId);
+            
+            const existingInputs = document.querySelectorAll('input[name="tools[]"]');
+            existingInputs.forEach(input => input.remove());
+
+            selectedToolIds.forEach(toolId => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'tools[]';
+                input.value = toolId;
+                form.appendChild(input);
+            });
+        };
+
+        // Handle price visibility
+        var valuePrice = 0;
+
+        if (type.value == 'premium') {
+            price.classList.replace('d-none', 'd-block');
+            valuePrice = document.querySelector('input[name="price"]').value
+        } else {
+            price.classList.replace('d-block', 'd-none');
+            price.querySelector('input[name="price"]').value = '0';
+        }
+
+        // Type change event listener
+        type.addEventListener('change', (e) => {
+            if (e.target.value == 'premium') {
                 price.classList.replace('d-none', 'd-block');
-                valuePrice = document.querySelector('input[name="price"]').value
-            } else {
+                price.querySelector('input[name="price"]').value = valuePrice
+            } else if (e.target.value == 'free') {
                 price.classList.replace('d-block', 'd-none');
                 price.querySelector('input[name="price"]').value = '0';
             }
+        });
 
-            type.addEventListener('change', (e) => {
-                if (e.target.value == 'premium') {
-                    price.classList.replace('d-none', 'd-block');
-                    price.querySelector('input[name="price"]').value = valuePrice
-                } else if (e.target.value == 'free') {
-                    price.classList.replace('d-block', 'd-none');
-                    price.querySelector('input[name="price"]').value = '0';
+        // Form submit prevention for tools popup
+        form.addEventListener('submit', function(e) {
+            if (toolsPopup.style.display === 'block') {
+                e.preventDefault();
+            }
+        });
+
+        // Tools popup toggle
+        addToolsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toolsPopup.style.display = 'block';
+        });
+
+        // Close popup when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!toolsPopup.contains(e.target) && 
+                e.target.id !== 'add-tools-btn' && 
+                !e.target.classList.contains('remove-tool-btn')) {
+                toolsPopup.style.display = 'none';
+            }
+        });
+
+        // Prevent popup close when clicking inside
+        toolsPopup.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Tool checkbox change handler
+        toolsGrid.addEventListener('change', (e) => {
+            if (e.target.classList.contains('tool-checkbox')) {
+                const toolItem = e.target.closest('.tool-item');
+                const toolId = e.target.value;
+                const toolName = toolItem.dataset.toolName;
+
+                if (e.target.checked) {
+                    toolItem.style.display = 'none';
+
+                    const selectedTool = document.createElement('div');
+                    selectedTool.classList.add('selected-tool', 'd-flex', 'align-items-center', 'ms-2', 'mb-2');
+                    selectedTool.dataset.toolId = toolId;
+                    selectedTool.innerHTML = `
+                        <span class="me-2">${toolName}</span>
+                        <button type="button" class="btn btn-danger btn-sm remove-tool-btn" data-tool-id="${toolId}">
+                            X
+                        </button>
+                    `;
+
+                    selectedToolsContainer.appendChild(selectedTool);
+                    updateSelectedToolsInput();
+                } else {
+                    // Find and trigger the corresponding remove button
+                    const removeButton = selectedToolsContainer.querySelector(`.remove-tool-btn[data-tool-id="${toolId}"]`);
+                    if (removeButton) {
+                        removeButton.click();
+                    }
                 }
+            }
+        });
+
+        // Remove tool handler
+        selectedToolsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-tool-btn')) {
+                const toolId = e.target.dataset.toolId;
+                const toolItem = toolsGrid.querySelector(`.tool-item[data-tool-id="${toolId}"]`);
+                const selectedTool = e.target.closest('.selected-tool');
+                
+                if (toolItem) {
+                    const toolCheckbox = toolItem.querySelector(`input[value="${toolId}"]`);
+                    if (toolCheckbox) {
+                        toolCheckbox.checked = false;
+                    }
+                    toolItem.style.display = '';
+                }
+                
+                selectedTool.remove();
+                updateSelectedToolsInput();
+            }
+        });
+
+        // Search functionality
+        toolSearch.addEventListener('input', () => {
+            const query = toolSearch.value.trim().toLowerCase();
+            console.log('Searching for:', query);
+
+            toolsGrid.querySelectorAll('.tool-item').forEach((toolItem) => {
+                const toolName = toolItem.dataset.toolName.toLowerCase();
+                const checkbox = toolItem.querySelector('.tool-checkbox');
+                
+                if (query === '') {
+                    // If search is empty, show all items except checked ones
+                    toolItem.setAttribute("style","")
+                } else {
+                    // During search, show/hide based on match, regardless of checked status
+                    toolItem.setAttribute("style",toolName.includes(query) ?"": "display:none !important")
+                }
+                
+                console.log(`Tool: ${toolName}, Query: ${query}, Visible: ${toolItem.style.display === ''}`);
             });
         });
+    });
     </script>
+
+@if(isset($course->tools) && $course->tools->count() > 0)
+    @foreach($course->tools as $tool)
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toolItem = toolsGrid.querySelector(`.tool-item[data-tool-id="{{ $tool->id }}"]`);
+            if (toolItem) {
+                const checkbox = toolItem.querySelector('.tool-checkbox');
+                checkbox.checked = true;
+                toolItem.style.display = 'none';
+
+                const selectedTool = document.createElement('div');
+                selectedTool.classList.add('selected-tool', 'd-flex', 'align-items-center', 'ms-2', 'mb-2');
+                selectedTool.dataset.toolId = "{{ $tool->id }}";
+                selectedTool.innerHTML = `
+                    <span class="me-2">{{ $tool->name_tools }}</span>
+                    <button type="button" class="btn btn-danger btn-sm remove-tool-btn" data-tool-id="{{ $tool->id }}">
+                        X
+                    </button>
+                `;
+                selectedToolsContainer.appendChild(selectedTool);
+                console.log('tes') 
+            }
+        });
+    </script>    
+    @endforeach
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSelectedToolsInput();
+        });
+    </script>
+@endif
 @endpush

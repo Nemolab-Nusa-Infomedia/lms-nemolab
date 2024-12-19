@@ -1,11 +1,11 @@
-<div class="col-md-4 col-12 d-flex justify-content-center my-1 pb-3">
-    <div class="card d-flex flex-row d-md-block">
+<div class="d-flex justify-content-center">
+    <div class="card d-flex flex-column">
         @if ($ebook->cover != null)
-        <img src="{{ asset('storage/images/covers/' . $ebook->cover) }}" class="card-img-top d-none d-md-block" alt="{{ $ebook->name }}" />
+        <img src="{{ asset('storage/images/covers/' . $ebook->cover) }}" class="card-img-top d-block" alt="{{ $ebook->name }}" />
         @else
-            <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-none d-md-block" alt="{{ $ebook->name }}" />
+            <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="{{ $ebook->name }}" />
         @endif
-        <div class="card-head d-block d-md-none">
+        {{-- <div class="card-head d-block d-md-none">
             @if ($ebook->cover != null)
             <img src="{{ asset('storage/images/covers/' . $ebook->cover) }}" class="card-img-top" alt="{{ $ebook->name }}" />
             @else
@@ -15,13 +15,16 @@
                 <p class="p-0 m-0 fw-bold">Harga</p>
                 <p class="p-0 m-0 fw-bold">{{ $ebook->price == 0 ? 'Gratis' : 'Rp' . number_format($ebook->price, 0, ',', '.') }}</p>
             </div>
-        </div>
+        </div> --}}
         <div class="card-body">
             <div class="paket d-flex">
                 <p class="paket-item mt-md-2">E-book</p>
             </div>
             <div class="title-card">
-                <h5 class="fw-bold truncate-text">{{ $ebook->category }} : {{ $ebook->name }}</h5>
+                <a href="{{ route('member.course.join', $ebook->slug) }}">
+                    <p>{{ $ebook->category }}</p>
+                    <h5 class="fw-bold truncate-text">{{ $ebook->name }}</h5>
+                </a>
                 <p class="avatar m-0 fw-bold me-1">
                     @if ($ebook->users->avatar != null)
                     <img class="me-2" src="{{ asset('storage/images/avatars/' . $ebook->users->avatar) }}" alt="" />
@@ -32,7 +35,7 @@
                 </p>
             </div>
             <div class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3">
-                <div class="harga d-none d-md-block">
+                <div class="harga d-block">
                     <p class="p-0 m-0 fw-semibold">Harga</p>
                     <p class="p-0 m-0 fw-semibold">{{ $ebook->price == 0 ? 'Gratis' : 'Rp' . number_format($ebook->price, 0, ',', '.') }}</p>
                 </div>

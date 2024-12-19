@@ -49,7 +49,7 @@
         
         <p>Halo {{ $user->name }},</p>
         
-        <p>Terima kasih telah mendaftar. Untuk memverifikasi email Anda, masukkan kode PIN berikut:</p>
+        <p>Untuk Mengubah Password Anda, masukkan kode PIN berikut:</p>
         
         <div class="verification-code">
             {{ $pin }}

@@ -34,6 +34,12 @@ h2 {
     -webkit-text-fill-color: transparent;
 }
 
+.tools-popup {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+}
+
 input,
 textarea {
     position: relative;

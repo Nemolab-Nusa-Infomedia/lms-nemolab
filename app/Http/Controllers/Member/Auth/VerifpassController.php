@@ -11,17 +11,20 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Notifications\CustomVerifyEmailNotification;
 
-class ResendEmailVerif extends Controller
+class VerifpassController extends Controller
 {
     public function index()
     {
-        return view('member.auth.verify-email');
+        $user = User::find(Auth::user()->id);
+        $user->notify(new CustomVerifyEmailNotification(true)); // true for password verification
+        Alert::success('Success', 'Berhasil Mengirimkan PIN Verifikasi');
+        return redirect()->route('member.setting.verifikasi-password');
     }
 
     public function resend(Request $requests)
     {
         $user = User::find(Auth::user()->id);
-        $user->notify(new CustomVerifyEmailNotification(false)); // true for password verification
+        $user->notify(new CustomVerifyEmailNotification(true)); // true for password verification
         RateLimiter::hit('verification-email:' . Auth::user()->id, 3600);
         Alert::success('Success', 'PIN Verifikasi Telah Dikirim');
         return redirect()->back();
@@ -48,11 +51,7 @@ class ResendEmailVerif extends Controller
             $user->save();
 
             Alert::success('Success', 'Akun Anda Berhasil Terverifikasi');
-
-            if ($user->role != 'students') {
-                return redirect()->route('admin.course');
-            }
-            return redirect()->route('home');
+            return redirect()->route('member.setting.reset-password');
         }
 
         Alert::error('Error', 'PIN Verifikasi Tidak Valid');

@@ -7,17 +7,24 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class CustomVerifyEmailNotification extends Notification
 {
     use Queueable;
 
+    protected $pin;
+    protected $expires_at;
+    protected $isPasswordVerification;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($isPasswordVerification = false)
     {
-        //
+        $this->pin = Str::random(4);
+        $this->expires_at = now()->addMinutes(60);
+        $this->isPasswordVerification = $isPasswordVerification;
     }
 
     /**
@@ -27,7 +34,7 @@ class CustomVerifyEmailNotification extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail']; // Menggunakan saluran email
+        return ['mail'];
     }
 
     /**
@@ -35,39 +42,19 @@ class CustomVerifyEmailNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        // Membuat URL verifikasi
-        $url = $this->verificationUrl($notifiable);
+        $notifiable->verification_pin = $this->pin;
+        $notifiable->pin_expires_at = $this->expires_at;
+        $notifiable->save();
 
-        // Kirim email dengan tampilan kustom
+        $template = $this->isPasswordVerification ? 'vendor.notifications.emailPass' : 'vendor.notifications.email';
+
         return (new MailMessage)
             ->subject('Verifikasi Email Anda')
-            ->view('vendor.notifications.email', [
+            ->view($template, [
                 'user' => $notifiable,
-                'url' => $url
+                'pin' => $this->pin,
+                'expires_at' => $this->expires_at
             ]);
-    }
-
-    /**
-     * Membuat URL verifikasi untuk email.
-     *
-     * @param  \Illuminate\Contracts\Auth\MustVerifyEmail  $notifiable
-     * @return string
-     */
-    protected function verificationUrl($notifiable)
-    {
-        if ($notifiable instanceof \App\Models\User) {
-            // Menghasilkan URL sementara dengan tanda tangan yang valid, berlaku selama 60 menit
-            $verificationUrl = URL::temporarySignedRoute(
-                'verification.verify',
-                now()->addMinutes(60), // URL berlaku selama 60 menit
-                ['id' => $notifiable->getKey(), 'hash' => sha1($notifiable->getEmailForVerification())]
-            );
-
-            return url($verificationUrl);
-        }
-
-        // Jika bukan User, bisa melemparkan exception atau return null
-        throw new \Exception('Notifiable is not an instance of User.');
     }
 
     /**
@@ -78,7 +65,8 @@ class CustomVerifyEmailNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            // Representasi array dari notifikasi (jika diperlukan)
+            'pin' => $this->pin,
+            'expires_at' => $this->expires_at
         ];
     }
 }

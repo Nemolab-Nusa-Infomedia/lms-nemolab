@@ -1,134 +1,197 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('components.layouts.member.auth')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verifikasi Email</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+@section('title', 'Verifikasi Email Anda')
+
+@push('prepend-style')
+    <link rel="stylesheet" href="{{ asset('nemolab/member/css/auth.css') }} ">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
-
-        /* variabel color */
-        :root {
-            --dark-grey: #414142;
-            --blue-link: #0774FA;
-            --light-lavender: #F0EAFF;
-            --color-pink: #FFF6F6;
+        .timer {
+            font-size: 14px;
+            color: #666;
+            margin-left: 5px;
         }
 
-        body {
-            background-color: #f8f9fa;
-            /* Warna latar belakang */
-        }
-
-        header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav .profile-auth button {
-            font-size: 18px;
-            font-family: 'Nunito', sans-serif;
-            width: max-content;
-        }
-
-        header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav .profile-auth button.btn {
-            outline: none;
+        .resend-btn {
             border: none;
-            background: transparent;
+            background: none;
+            color: #007bff;
+            padding: 0;
+            cursor: pointer;
+            text-decoration: underline;
         }
 
-        .card {
-            border: 1px solid #fd7e14;
-            /* Warna border oranye */
-        }
-
-        .btn-orange {
-            background-color: #fd7e14;
-            /* Warna tombol oranye */
-            color: white;
-        }
-
-        .btn-orange:hover {
-            background-color: #e67e22;
-            /* Warna hover untuk tombol */
-            color: white;
-        }
-
-        .limit-btn {
-            background-color: #e0e0e0;
-            /* Warna abu-abu untuk tombol dinonaktifkan */
-            color: #a0a0a0;
-            /* Warna teks abu-abu */
+        .resend-btn:disabled {
+            opacity: 0.5;
             cursor: not-allowed;
-            /* Menunjukkan bahwa tombol tidak dapat diklik */
         }
     </style>
-</head>
+@endpush
 
-<body>
-    <!-- navbar -->
-    <header class="ps-3 pe-3 pt-2 pb-2 w-100 fixed-top position-fixed bg-white shadow-sm">
-        <div class="container-fluid ">
-            <nav class="navbar navbar-expand-lg bg-transparent">
-                <div class="container-fluid ">
-                    <div class="profile-auth ms-auto">
-                        <div class="dropdown d-flex justify-content-end">
-                            <button class="btn dropdown-toggle " type="button" id="dropdownMenuButton1"
-                                data-bs-toggle="dropdown" style="color: #414142 !important;">
-                                <span class="fw-bold">
-                                    {{ Auth::user()->name }}
-                                </span>
-                                @if (Auth::user()->avatar != null)
-                                    <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}"
-                                        class="rounded-5 ms-1" style="width: 42px; height: 42px;" id="img-profile">
-                                @else
-                                    <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" class="rounded-5 ms-1"
-                                        style="width: 42px; height: 42px;" id="img-profile">
-                                @endif
-                            </button>
-                            <ul class="dropdown-menu w-100 mt-2 dropdown-logout" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="{{ route('member.logout') }}">Logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+@section('content')
+    @php
+        $pinExpiresAt = Auth::user()->pin_expires_at ? strtotime(Auth::user()->pin_expires_at) : null;
+    @endphp
+    <form class="card" method="post" action="{{ route('verification.verify-pin') }}">
+        @csrf
+        <div class="card-title">
+            <h1>Verifikasi Email</h1>
+            <p>Untuk memastikan akun email anda asli, mohon konfirmasi email anda dengan kode yang telah kami kirimkan</p>
         </div>
-    </header>
-    <!-- end navbar -->
-    <main>
-        <div class="container" style="margin-top: 140px">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header text-center bg-white">
-                            <h3 class="mb-0">Verifikasi Email</h3>
-                        </div>
-                        <div class="card-body">
-                            <p>Terima kasih telah mendaftar! Silakan verifikasi email Anda untuk melanjutkan.</p>
-
-                            <p>Jika Anda tidak menerima email verifikasi, Anda dapat mengklik tombol di bawah ini untuk
-                                mengirim ulang:</p>
-
-                            @if (session('status') != 'limit')
-                                <form action="{{ route('verification.send') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-orange">Kirim Ulang Verifikasi</button>
-                                </form>
-                            @else
-                                <button class="btn btn-orange" disabled>Kirim Ulang Verifikasi</button>
-                            @endif
-                        </div>
-                    </div>
-                </div>
+        <div class="card-form d-flex flex-row gap-3 justify-content-center">
+            <input type="text" class="otp-input" data-index="1">
+            <input type="text" class="otp-input" data-index="2" disabled>
+            <input type="text" class="otp-input" data-index="3" disabled>
+            <input type="text" class="otp-input" data-index="4" disabled>
+            <input type="hidden" name="pin" id="complete-pin">
+        </div>
+        <div class="card-foot">
+            <div id="resend-container">
+                @if (session('status') != 'limit')
+                    <button class="kirim-ulang" type="button" id="verificationButton" class="resend-btn">
+                        Kirim ulang kode<span id="timer" class="timer">(01:00)</span>
+                    </button>
+                @else
+                    <button type="button" disabled class="resend-btn">Kirim ulang kode</button>
+                @endif            
             </div>
+            <button type="submit">Konfirmasi</button>
         </div>
-    </main>
+    </form>
 
-    {{-- include sweetalert --}}
-    @include('sweetalert::alert')
+    <form method="POST" action="{{ route('verification.send') }}" id="verificationForm">
+        @csrf
+    </form>
+    @push('addon-script')
+        <script>
+            const form = document.getElementById('verificationForm');
+            const btn = document.getElementById('verificationButton');
+            const timerDisplay = document.getElementById('timer');
+            let timeLeft = 60; // 1 minute in seconds
+            let timerId = null;
+            const pinExpiresAt = {{ $pinExpiresAt ?? 'null' }};
 
-    <!-- Bootstrap JS (optional) -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-</body>
+            function checkPinExpiration() {
+                if (pinExpiresAt) {
+                    const now = Math.floor(Date.now() / 1000); // Current timestamp in seconds
+                    if (now >= pinExpiresAt) {
+                        clearInterval(timerId);
+                        btn.disabled = false;
+                        timerDisplay.textContent = ' (PIN Kadaluarsa)';
+                        
+                        // Disable all OTP inputs
+                        inputs.forEach(input => {
+                            input.disabled = true;
+                        });
+                        
+                        // Disable submit button
+                        button.disabled = true;
+                        button.classList.remove("active");
+                        
+                        // Optional: Show alert
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'PIN Verifikasi telah kadaluarsa. Silakan kirim ulang kode.',
+                            icon: 'error'
+                        });
+                        
+                        return true;
+                    }
+                }
+                return false;
+            }
 
-</html>
+            function startTimer() {
+                btn.disabled = true;
+
+                if (checkPinExpiration()) {
+                    return;
+                }
+                
+                timerId = setInterval(() => {
+                    timeLeft--;
+                    
+                    const minutes = Math.floor(timeLeft / 60);
+                    const seconds = timeLeft % 60;
+                    
+                    // Format timer display
+                    timerDisplay.textContent = `(${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')})`;
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timerId);
+                        btn.disabled = false;
+                        timerDisplay.textContent = '';
+                        timeLeft = 60;
+
+                        checkPinExpiration();
+                    }
+                }, 1000);
+            }
+
+            // Start timer on page load if there's no 'limit' status
+            if (btn && !btn.disabled) {
+                startTimer();
+            }
+
+            // Check PIN expiration on page load
+            if (btn && !btn.disabled) {
+                if (!checkPinExpiration()) {
+                    startTimer();
+                }
+            }
+
+            btn.addEventListener('click', function() {
+                form.submit();
+                startTimer();
+            });
+
+            const inputs = document.querySelectorAll(".otp-input"),
+                button = document.querySelector("button[type='submit']"),
+                completePin = document.querySelector("#complete-pin");
+
+            function updateCompletePin() {
+                let pin = '';
+                inputs.forEach(input => {
+                    pin += input.value;
+                });
+                completePin.value = pin;
+            }
+
+            inputs.forEach((input, index1) => {
+                input.addEventListener("keyup", (e) => {
+                    const currentInput = input,
+                        nextInput = input.nextElementSibling,
+                        prevInput = input.previousElementSibling;
+
+                    if (currentInput.value.length > 1) {
+                        currentInput.value = "";
+                        return;
+                    }
+
+                    updateCompletePin();
+
+                    if (nextInput && nextInput.hasAttribute("disabled") && currentInput.value !== "") {
+                        nextInput.removeAttribute("disabled");
+                        nextInput.focus();
+                    }
+
+                    if (e.key === "Backspace") {
+                        inputs.forEach((input, index2) => {
+                            if (index1 <= index2 && prevInput) {
+                                input.setAttribute("disabled", true);
+                                input.value = "";
+                                prevInput.focus();
+                            }
+                        });
+                        updateCompletePin();
+                    }
+
+                    if (!inputs[3].disabled && inputs[3].value !== "") {
+                        button.classList.add("active");
+                        return;
+                    }
+                    button.classList.remove("active");
+                });
+            });
+        </script>
+    @endpush
+@endsection

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('email', 255)->nullable(false);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 255)->nullable(false);
+            $table->string('verification_pin', 4)->nullable();
+            $table->timestamp('pin_expires_at')->nullable();
             $table->enum('profession', ['Pelajar Jangka Panjang', 'UI/UX Designer', 'Frontend Developer', 'Backend Developer', 'Wordpress Developer', 'Graphics Designer', 'Fullstack Developer'])->default('Pelajar Jangka Panjang');
             $table->enum('role', ['students', 'mentor', 'superadmin'])->default('students');
             $table->timestamps();

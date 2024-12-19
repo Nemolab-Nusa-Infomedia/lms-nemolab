@@ -23,6 +23,8 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'password',
         'profession',
         'role',
+        'verification_pin',
+        'pin_expires_at',
     ];
 
     //agar kolom dibawah ini tidak berubah
@@ -34,11 +36,11 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         'email_verified_at' => 'datetime',
     ];
 
-    // costum verifikasi dokumentasi ada di https://laravel.com/docs/10.x/verification#main-content
-    public function sendEmailVerificationNotification() 
-    {
-        $this->notify(new CustomVerifyEmailNotification()); //ctrl + clik pada CustomVerifyEmailNotification() untuk melihat code file
-    }
+    // // costum verifikasi dokumentasi ada di https://laravel.com/docs/10.x/verification#main-content
+    // public function sendEmailVerificationNotification() 
+    // {
+    //     $this->notify(new CustomVerifyEmailNotification()); //ctrl + clik pada CustomVerifyEmailNotification() untuk melihat code file
+    // }
 
     /**
      * Relasi ke model Course.

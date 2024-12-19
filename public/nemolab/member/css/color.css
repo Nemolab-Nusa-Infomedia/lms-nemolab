@@ -2,27 +2,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 /* variabel color */
-:root {
+:root
+{
+    /* main color */
+    --color-orange: #FAA907;
+    --color-orange-hover: #CA8907;
+
+    /* Text color */
+    --text-color-main: #0e0e0e;
+    --text-color-second: #2a2a2a;
+    --text-color-third: #4c4c4c;
+    --text-color-danger: #ff3434;
+    --text-color-brand: #ff7700;
+
+    --brand-color-hover: #da6600;
+
+
+    --light-border: #DEE2E6;
+
     /* static content */
-    --background-color:#FFF6F6;
+    --background-color: #FFF6F6;
     --dim-grey: #696969;
     --head-title: #414142;
-    --sub-title: #8F8F8F;
+    --sub-title: #434343;
     --light-shade: #FDF8F8;
     --hero-bg: #F7F4FF;
     /* clickable content */
-    --color-light:#F0EAFF;
-    --color-orange: #FAA907;
+    --color-light: #F0EAFF;
     --color-grey: #414142;
-    --color-blue:#0774FA;
+    --color-blue: #0774FA;
     --color-blue-hover: #0055BC;
-    --color-orange-hover: #CA8907;
-    --color-light-hover:#E2D6FF;   
+    --color-light-hover: #E2D6FF;
     /* card color */
     --card-bg: #ffffff;
     /* --card-bg-hover: #ffffff; */
 
 
     /* input color */
-    --placeholder: rgba(0, 0, 0, 0.3);
+    --placeholder: rgba(0, 0, 0, 0.4);
 }
