@@ -18,7 +18,7 @@
     }
 }
 
-@media(max-width:512px)
+@media(max-width:576px)
 {
     html
     {
@@ -421,7 +421,7 @@ main p
 
 }
 
-@media screen and (max-width: 512px)
+@media screen and (max-width: 576px)
 {
 
     #section-hero-img .circle1
@@ -781,7 +781,7 @@ main p
 
 }
 
-@media (max-width:512px)
+@media (max-width:576px)
 {
 
     .course-card
@@ -1019,9 +1019,9 @@ main p
 {
     position: absolute;
     right: 0;
-    bottom: -10px;
+    bottom: -0.75rem;
     transform: translateX(-10px) rotate(180deg);
-    width: 156px;
+    width: 9.75rem;
 }
 
 #section-tentang-nemolab .container-fluid h1 span:first-child img
@@ -1029,9 +1029,9 @@ main p
     position: absolute;
     right: 0;
     bottom: 0;
-    left: -10px;
+    left: -0.75rem;
     top: -50%;
-    width: 150px;
+    width: 9.375rem;
     transform: rotate(10.14deg) translateY(-10%);
 }
 
@@ -1051,7 +1051,6 @@ main p
     border-radius: 15px;
     background-color: var(--brand-light-color);
     flex-direction: row;
-    max-width: max-content;
 }
 
 .card-service
@@ -1086,12 +1085,11 @@ main p
     right: 10px;
 }
 
-@media (max-width:1200px) and (min-width:992px)
+@media (max-width:1195px) and (min-width:992px)
 {
     #section-tentang-nemolab .container-fluid h1 span:first-child img
     {
-        /* left: calc(-50svw + 13.5rem);
-        top: 75%; */
+        display: none;
     }
 }
 
@@ -1099,14 +1097,13 @@ main p
 {
     #section-tentang-nemolab .container-fluid h1 span:last-child img
     {
-        /* top: 200%;
-        left: calc(-65svw + 13.5rem); */
+        display: none;
     }
 }
 
-@media (max-width:512px)
+@media (max-width:576px)
 {
-    #section-tentang-nemolab .container-fluid h1 span img
+    /* #section-tentang-nemolab .container-fluid h1 span img
     {
         scale: 0.65;
     }
@@ -1121,27 +1118,27 @@ main p
     {
         top: auto;
         left: -25%;
-    }
+    } */
 
 }
 
 @media(max-width: 992px)
 {
-    #section-tentang-nemolab>img
+    /* #section-tentang-nemolab>img
     {
         bottom: -4rem;
         right: -5rem;
-    }
+    } */
 
 }
 
-@media(max-width: 512px)
+@media(max-width: 576px)
 {
-    #section-tentang-nemolab>img
+    /* #section-tentang-nemolab>img
     {
         bottom: -10rem;
         right: -5rem;
-    }
+    } */
 
 }
 
@@ -1201,7 +1198,6 @@ main p
     }
 }
 
-
 @media(max-width: 768px)
 {
     #section-benefit-kelas .values-grid .value
@@ -1217,6 +1213,15 @@ main p
         {
             display: none;
         }
+    }
+}
+
+@media(max-width: 576px)
+{
+    #section-benefit-kelas .container-fluid .row
+    {
+        flex-direction: column;
+        gap: 4rem;
     }
 }
 
@@ -1524,7 +1529,7 @@ main p
     color: var(--text-color-second);
 }
 
-@media (max-width: 512px)
+@media (max-width: 576px)
 {
 
     #section-pusat-bantuan p
@@ -1551,7 +1556,7 @@ main p
 
 
 /* Responsive Design */
-@media (max-width: 512px)
+@media (max-width: 576px)
 {
     .row
     {
