@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-transparent">
             <div class="container-fluid">
-                <div class="d-flex align-items-center justify-center">
+                <div class="d-flex align-items-center justify-center" id="navbar-brand">
                     <a href="{{ route('home') }}" style="text-decoration: none;">
                         <div class="brand-nemolab-icon d-flex align-items-center">
                             <img src="{{ asset('nemolab/member/img/logo-nemolab.png') }}" alt="Logo" width="40"
@@ -16,34 +16,42 @@
                         </div>
                     </a>
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                <form action="{{ route('member.course') }}" method="GET" class="d-lg-flex d-none flex-grow-1 flex-lg-grow-0" role="search" id="search-form">
+                    <div class="search-group position-relative flex-grow-1 flex-lg-grow-0">
+                        <input class="form-control w-100 h-100" type="text" name="search-input"
+                            placeholder="Cari Kelas Disini" id="search-input" value="{{ request('search-input') }}"
+                            aria-label="Search">
+                        <button class="btn p-0 m-0 position-absolute" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                                <path
+                                    d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
+                                    fill="#414142">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
+                <button class="navbar-toggler d-flex d-lg-none" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation" id="navbarToggler">
                     <span class="navbar-icon">
-                        <img src="{{ asset('nemolab/member/img/icon-nav.png') }}" alt="Icon" id="navbarIcon">
+                        <svg width="29" height="27" viewBox="0 0 29 27" fill="none" id="navbar-closed"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <rect width="29" height="27" rx="7" fill="#FFF7E7" />
+                            <path d="M7 8H22" stroke="#FAA907" stroke-width="2" stroke-linecap="round" />
+                            <path d="M10.5 14H18.5" stroke="#FAA907" stroke-width="2" stroke-linecap="round" />
+                            <path d="M7 20H22" stroke="#FAA907" stroke-width="2" stroke-linecap="round" />
+                        </svg>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="display: none"
+                            xmlns="http://www.w3.org/2000/svg" id="navbar-opened">
+                            <path
+                                d="M3.7 3.69987C3.93437 3.46579 4.25208 3.33431 4.58333 3.33431C4.91458 3.33431 5.23229 3.46579 5.46666 3.69987L9.99999 8.23154L14.5333 3.69987C14.6493 3.58387 14.787 3.49185 14.9386 3.42908C15.0902 3.3663 15.2526 3.33398 15.4167 3.33398C15.5807 3.33398 15.7432 3.3663 15.8947 3.42908C16.0463 3.49185 16.184 3.58387 16.3 3.69987C16.416 3.81587 16.508 3.95359 16.5708 4.10515C16.6336 4.25671 16.6659 4.41916 16.6659 4.58321C16.6659 4.74726 16.6336 4.9097 16.5708 5.06126C16.508 5.21283 16.416 5.35054 16.3 5.46654L11.7683 9.99987L16.3 14.5332C16.5343 14.7675 16.6659 15.0852 16.6659 15.4165C16.6659 15.7479 16.5343 16.0656 16.3 16.2999C16.0657 16.5341 15.748 16.6658 15.4167 16.6658C15.0853 16.6658 14.7676 16.5341 14.5333 16.2999L9.99999 11.7682L5.46666 16.2999C5.23239 16.5341 4.91464 16.6658 4.58333 16.6658C4.25201 16.6658 3.93427 16.5341 3.7 16.2999C3.46572 16.0656 3.33411 15.7479 3.33411 15.4165C3.33411 15.0852 3.46572 14.7675 3.7 14.5332L8.23166 9.99987L3.7 5.46654C3.46591 5.23216 3.33443 4.91446 3.33443 4.58321C3.33443 4.25196 3.46591 3.93425 3.7 3.69987Z"
+                                fill="#8F8F8F" />
+                        </svg>
                     </span>
                 </button>
 
-                <div class="collapse navbar-collapse  my-3 my-md-0" id="navbarNavAltMarkup">
-                    <ul class="navbar-nav d-flex mx-auto">
-                        <form action="{{ route('member.course') }}" method="GET" class="d-lg-flex d-none"
-                            role="search">
-                            <div class="search-group position-relative">
-                                <input class="form-control w-100 h-100" type="text" name="search-input"
-                                    placeholder="Cari Kelas Disini" id="search-input"
-                                    value="{{ request('search-input') }}" aria-label="Search">
-                                <button class="btn p-0 m-0 position-absolute" type="submit">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                        viewBox="0 0 24 24">
-                                        <path
-                                            d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392.604.646 2.121-2.121-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5 5 2.243 5 5-2.243 5-5 5z"
-                                            fill="#414142">
-                                        </path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </form>
-                    </ul>
+                <div class="collapse navbar-collapse  my-3 my-md-0" style="flex-grow: 0 !important" id="navbarNavAltMarkup">
                     <ul class="navbar-nav d-lg-flex align-items-lg-center gap-lg-4 ps-xl-5">
                         <div class="dropdown dropdown-pilih-kelas">
                             <button
@@ -95,7 +103,8 @@
                         </div>
 
                         <div class="dropdown dropdown-pilih-paket-kelas">
-                            <button class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pb-2 pb-lg-0"
+                            <button
+                                class="btn btn-secondary dropdown-toggle d-flex align-items-center p-0 pb-2 pb-lg-0"
                                 type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Paket Kelas
                                 <box-icon name='chevron-down' color="#00000 "></box-icon>
@@ -143,7 +152,8 @@
         document.getElementById('navbarToggler').addEventListener('click', function() {
             console.log(this.ariaExpanded == 'false');
             if (this.ariaExpanded == 'true') {
-                document.querySelector('header').setAttribute('style', 'background: white !important; box-shadow: 4px 0 8px black')
+                document.querySelector('header').setAttribute('style',
+                    'background: white !important; box-shadow: 4px 0 8px black')
                 document.querySelector('.backdrop-header').setAttribute('style', 'display: block')
             } else {
                 document.querySelector('header').setAttribute('style', '')

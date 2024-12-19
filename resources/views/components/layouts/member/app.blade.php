@@ -57,11 +57,12 @@
         AOS.init({
             once: true
         });
-    </script>    
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const navbarToggler = document.querySelector('.dropdown-logout');
             const registerBtn = document.getElementById('dropdownMenuButton1');
+
             function LinkLogoutFunc() {
                 if (window.innerWidth < 992) {
 
@@ -69,7 +70,7 @@
 
                     registerBtn.setAttribute('data-bs-toggle', 'modal');
                     registerBtn.setAttribute('data-bs-target', '#targetModalLogin');
-                    
+
                 } else {
                     navbarToggler.style.display = 'block';
 
@@ -84,18 +85,32 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const toggler = document.getElementById('navbarToggler');
-            const icon = document.getElementById('navbarIcon');
+            const iconOpened = document.getElementById('navbar-opened');
+            const iconClosed = document.getElementById('navbar-closed');
+            const searchForm = document.getElementById('search-form');
+            const navbarBrand = document.getElementById('navbar-brand');
 
             toggler.addEventListener('click', () => {
                 // Toggle class "active" pada gambar
                 if (toggler.getAttribute('aria-expanded') === 'true') {
-                    icon.src = "{{ asset('nemolab/member/img/icon-nav-active.png') }}";
-                    icon.classList.remove('active');
+                    iconClosed.setAttribute('style', 'display: none');
+                    iconOpened.setAttribute('style', 'display: block');
+                    navbarBrand.setAttribute('style', 'display: none !important');
+                    searchForm.setAttribute('style', 'display: flex !important');
                 } else {
-                    icon.src = "{{ asset('nemolab/member/img/icon-nav.png') }}";
-                    icon.classList.add('active');
+                    iconClosed.setAttribute('style', 'display: block');
+                    iconOpened.setAttribute('style', 'display: none');
+                    navbarBrand.setAttribute('style', 'display: flex !important');
+                    searchForm.setAttribute('style', 'display: none !important');
                 }
             });
+            window.onresize = () => {
+                if (window.innerWidth <= 992 && toggler.getAttribute('aria-expanded') === 'false') {
+                    searchForm.setAttribute('style', 'display: none !important');
+                } else {
+                    searchForm.setAttribute('style', 'display: flex !important');
+                }
+            }
         });
     </script>
     @stack('addon-script')

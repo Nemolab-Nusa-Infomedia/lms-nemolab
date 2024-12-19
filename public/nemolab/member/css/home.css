@@ -10,12 +10,16 @@
     --subtitle-size: 1rem;
 }
 
-@media(max-width:768px)
+@media(max-width:512px)
 {
+    html
+    {
+        font-size: 62.5%;
+    }
+
     :root
     {
-        --hero-title-size: 1.25rem;
-        --title-size: 1.5rem;
+        --subtitle-size: 1.25rem;
     }
 }
 
@@ -468,6 +472,7 @@ main p
 .courses-scroll
 {
     display: flex;
+    flex-grow: 1;
     gap: 20px;
     padding: 12px 20px 12px 20px;
     height: 28rem;
@@ -627,7 +632,7 @@ main p
 
 #section-pilih-kelas .title-card h5
 {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 800;
     color: var(--head-title);
 }
@@ -637,7 +642,7 @@ main p
     /* flex-grow: 1; */
     margin: 0;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 1rem;
 
     img
     {
@@ -758,31 +763,6 @@ main p
 
 }
 
-@media (max-width:320px){
-    #section-pilih-kelas .course-card
-    {
-        aspect-ratio: 25 / 12;
-        height: auto;
-        width: 100%;
-    }
-
-    #section-pilih-kelas .card
-    {
-        box-shadow: 1px 10px 5px rgba(90, 90, 90, 0.2) inset, -1px 10px 5px rgba(90, 90, 90, 0.2) inset;
-        padding: 1rem;
-        flex-direction: row;
-        width: 100%;
-        aspect-ratio: 25 / 12;
-        height: auto;
-    }
-
-    #section-pilih-kelas .course-card:hover
-    {
-        aspect-ratio: 25 / 12;
-        height: auto;
-        width: 100%;
-    }
-}
 @media (max-width:512px)
 {
 
@@ -823,7 +803,7 @@ main p
 
     #section-pilih-kelas .course-card
     {
-        aspect-ratio: 25 / 10;
+        aspect-ratio: 25 / 9;
         height: auto;
         width: 100%;
     }
@@ -834,13 +814,13 @@ main p
         padding: 1rem;
         flex-direction: row;
         width: 100%;
-        aspect-ratio: 25 / 10;
+        aspect-ratio: 25 / 9;
         height: auto;
     }
 
     #section-pilih-kelas .course-card:hover
     {
-        aspect-ratio: 25 / 10;
+        aspect-ratio: 25 / 9;
         height: auto;
         width: 100%;
     }
@@ -866,9 +846,10 @@ main p
         grid-row: 4;
         margin-left: 1rem;
         align-self: end;
-        
-        a p{
-            font-size: .75rem;
+
+        a p
+        {
+            /* font-size: .75rem; */
         }
     }
 
@@ -878,9 +859,11 @@ main p
         grid-row: 1 / 2;
         margin-left: 1rem;
 
-        a h5, a p, p
+        a h5,
+        a p,
+        p
         {
-            font-size: .75rem;
+            /* font-size: .75rem; */
         }
     }
 
@@ -890,8 +873,9 @@ main p
         grid-row: 4 / 5;
         align-self: end;
 
-        *{
-            font-size: 0.75rem;
+        *
+        {
+            /* font-size: 0.75rem; */
             margin: 0 !important;
         }
     }
@@ -923,7 +907,7 @@ main p
 
     #section-pilih-kelas .title-card h5
     {
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 800;
         color: var(--head-title);
     }
@@ -933,7 +917,7 @@ main p
         /* flex-grow: 1; */
         margin: 0;
         font-weight: 600;
-        font-size: 16px;
+        font-size: 1rem;
 
         img
         {
@@ -951,6 +935,39 @@ main p
         object-fit: cover;
     }
 
+    #section-pilih-kelas>img
+    {
+        left: -5rem;
+        bottom: -1.5rem
+    }
+
+}
+
+@media (max-width:321px)
+{
+    #section-pilih-kelas .course-card
+    {
+        aspect-ratio: 25 / 12;
+        height: auto;
+        width: 100%;
+    }
+
+    #section-pilih-kelas .card
+    {
+        box-shadow: 1px 10px 5px rgba(90, 90, 90, 0.2) inset, -1px 10px 5px rgba(90, 90, 90, 0.2) inset;
+        padding: 1rem;
+        flex-direction: row;
+        width: 100%;
+        aspect-ratio: 25 / 12;
+        height: auto;
+    }
+
+    #section-pilih-kelas .course-card:hover
+    {
+        aspect-ratio: 25 / 12;
+        height: auto;
+        width: 100%;
+    }
 }
 
 /* End Section 2 */
@@ -967,7 +984,7 @@ main p
     color: #414142;
     background-color: #ffffff;
     transition: all 0.3s;
-    font-size: 15px;
+    font-size: 1rem;
 }
 
 #section-tentang-nemolab a.btn-light:hover
@@ -1032,14 +1049,14 @@ main p
 .card-service h4
 {
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--color-grey);
 }
 
 .card-service .btn
 {
     color: white;
-    font-size: 14px;
+    font-size: .875rem;
     border-radius: 5px;
 }
 
@@ -1069,23 +1086,23 @@ main p
     }
 }
 
-@media (max-width:768px)
+@media (max-width:512px)
 {
     #section-tentang-nemolab .container-fluid h1 span img
     {
-        scale: 0.75;
+        scale: 0.65;
     }
 
     #section-tentang-nemolab .container-fluid h1 span:first-child img
     {
-        top: -75%;
-        left: -24%;
+        top: -115%;
+        left: -40%;
     }
 
     #section-tentang-nemolab .container-fluid h1 span:last-child img
     {
         top: auto;
-        left: -15%;
+        left: -25%;
     }
 
 }
@@ -1095,6 +1112,16 @@ main p
     #section-tentang-nemolab>img
     {
         bottom: -4rem;
+        right: -5rem;
+    }
+
+}
+
+@media(max-width: 512px)
+{
+    #section-tentang-nemolab>img
+    {
+        bottom: -10rem;
         right: -5rem;
     }
 
@@ -1156,6 +1183,7 @@ main p
     }
 }
 
+
 @media(max-width: 768px)
 {
     #section-benefit-kelas .values-grid .value
@@ -1171,6 +1199,15 @@ main p
         {
             display: none;
         }
+    }
+}
+
+@media(max-width: 512px)
+{
+    #section-benefit-kelas .values-grid .value .icon > svg
+    {
+        width: 3rem;
+        height: 4.5rem;
     }
 }
 
@@ -1325,7 +1362,7 @@ main p
 
 #section-testimoni-kelas .container-fluid .testimoni-title p
 {
-    font-size: 15px;
+    font-size: 1rem;
     text-align: center;
 }
 
@@ -1351,19 +1388,19 @@ main p
 
 #section-testimoni-kelas .container-fluid .row .col-md-4 .card .card-body .name h5
 {
-    font-size: 16px;
+    font-size: 1rem;
     color: var(--color-grey);
 }
 
 #section-testimoni-kelas .container-fluid .row .col-md-4 .card .card-body .name p
 {
-    font-size: 14px;
+    font-size: .875rem;
     color: var(--shade-gray);
 }
 
 #section-testimoni-kelas .container-fluid .row .col-md-4 .card .card-body p
 {
-    font-size: 14px;
+    font-size: .875rem;
     color: var(--color-gray);
 }
 
@@ -1469,10 +1506,17 @@ main p
 
 #section-pusat-bantuan p
 {
-    font-size: 18px;
+    font-size: .875rem;
     color: var(--text-color-second);
 }
+@media (max-width: 512px){
 
+    #section-pusat-bantuan p
+    {
+        font-size: 1.25rem;
+        color: var(--text-color-second);
+    }
+}
 #section-pusat-bantuan img
 {
     width: 100%;
@@ -1490,7 +1534,7 @@ main p
 
 
 /* Responsive Design */
-@media (max-width: 768px)
+@media (max-width: 512px)
 {
     .row
     {
@@ -1508,7 +1552,6 @@ main p
     #section-pilih-kelas .container-fluid .title-pilih-kelas .title-group p
     {
         margin-left: 12px;
-        /* color: #ffff; */
     }
 
     #section-pilih-kelas
@@ -1518,13 +1561,13 @@ main p
 
     #section-pilih-kelas .content-kelas .btn-light
     {
-        font-size: 16px;
+        font-size: 1rem;
         padding: 10px 24px;
     }
 
     #section-pilih-kelas .filter-head
     {
-        font-size: 17px;
+        font-size: 1rem;
     }
 
     #section-pilih-kelas .course-card
