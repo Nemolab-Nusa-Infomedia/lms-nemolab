@@ -28,6 +28,9 @@
 @endpush
 
 @section('content')
+    @php
+        $pinExpiresAt = Auth::user()->pin_expires_at ? strtotime(Auth::user()->pin_expires_at) : null;
+    @endphp
     <form class="card" method="post" action="{{ route('verification.verify-pin') }}">
         @csrf
         <div class="card-title">
@@ -65,9 +68,44 @@
             const timerDisplay = document.getElementById('timer');
             let timeLeft = 60; // 1 minute in seconds
             let timerId = null;
+            const pinExpiresAt = {{ $pinExpiresAt ?? 'null' }};
+
+            function checkPinExpiration() {
+                if (pinExpiresAt) {
+                    const now = Math.floor(Date.now() / 1000); // Current timestamp in seconds
+                    if (now >= pinExpiresAt) {
+                        clearInterval(timerId);
+                        btn.disabled = false;
+                        timerDisplay.textContent = ' (PIN Kadaluarsa)';
+                        
+                        // Disable all OTP inputs
+                        inputs.forEach(input => {
+                            input.disabled = true;
+                        });
+                        
+                        // Disable submit button
+                        button.disabled = true;
+                        button.classList.remove("active");
+                        
+                        // Optional: Show alert
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'PIN Verifikasi telah kadaluarsa. Silakan kirim ulang kode.',
+                            icon: 'error'
+                        });
+                        
+                        return true;
+                    }
+                }
+                return false;
+            }
 
             function startTimer() {
                 btn.disabled = true;
+
+                if (checkPinExpiration()) {
+                    return;
+                }
                 
                 timerId = setInterval(() => {
                     timeLeft--;
@@ -83,6 +121,8 @@
                         btn.disabled = false;
                         timerDisplay.textContent = '';
                         timeLeft = 60;
+
+                        checkPinExpiration();
                     }
                 }, 1000);
             }
@@ -90,6 +130,13 @@
             // Start timer on page load if there's no 'limit' status
             if (btn && !btn.disabled) {
                 startTimer();
+            }
+
+            // Check PIN expiration on page load
+            if (btn && !btn.disabled) {
+                if (!checkPinExpiration()) {
+                    startTimer();
+                }
             }
 
             btn.addEventListener('click', function() {
