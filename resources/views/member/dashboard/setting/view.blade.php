@@ -18,7 +18,7 @@
                 @include('components.includes.member.sidebar-dashboard')
 
                 <!-- Setting Cards -->
-                <div class="col-11 col-md-7 col-xl-9 mx-auto ">
+                <div class="col-11 col-lg-6 col-xl-9 mx-auto">
                     <h5 class="mb-4 mt-4 title-pengaturan">Pengaturan</h5>
                     <div class="row gy-4">
                         <div class="col-md-12 col-xl-6 ">

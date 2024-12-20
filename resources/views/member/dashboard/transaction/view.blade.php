@@ -13,7 +13,7 @@
         <div class="container-fluid mt-5 pt-5">
             <div class="row">
                 @include('components.includes.member.sidebar-dashboard')
-                <div class="col-12 col-lg-9">
+                <div class="card-container col-xl-9 col-lg-8 pe-4">
                     <div class="mb-4">
                         <h3 class="fw-bold">Transaksi Saya</h3>
                     </div>
