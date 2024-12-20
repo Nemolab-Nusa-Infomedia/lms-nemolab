@@ -12,8 +12,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
+        // Menjadwalkan perintah untuk memperbarui status transaksi setiap menit
         $schedule->command('update:transaction-status')->everyMinute();
-        $schedule->command('update:ranting-course')->everyMinute();
+        // Menjadwalkan perintah untuk menghapus pengguna yang belum terverifikasi setiap hari
+        $schedule->command('update:delete-users-verif')->daily();
     }
 
     /**
@@ -21,7 +23,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands(): void
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }

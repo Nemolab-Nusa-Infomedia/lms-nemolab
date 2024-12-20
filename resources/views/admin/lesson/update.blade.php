@@ -4,14 +4,14 @@
     <link rel="stylesheet" href="{{ asset('nemolab/admin/css/create-update.css') }}">
 @endpush
 
-@section('title', 'Create Lesson')
+@section('title', 'Edit Lesson')
 
 @section('content')
 
     <div class="card card-custom-width" style="border: none !important;">
         <div class="card-header d-flex justify-content-between bg-transparent pb-0" style="border: none !important;">
             <h2 class="fw-semibold fs-4 mb-4" style="color: #faa907">Tambah Data<span class="required-field"></span></h2>
-            <a href="{{ route('admin.lesson', ['slug' => $slug, 'id_chapter' => $id_chapter]) }}" class="btn btn-orange"> Kembali
+            <a href="{{ route('admin.lesson', [$slug_course, $id_chapter]) }}" class="btn btn-orange"> Kembali
             </a>
         </div>
         <div class="card-body pt-2">

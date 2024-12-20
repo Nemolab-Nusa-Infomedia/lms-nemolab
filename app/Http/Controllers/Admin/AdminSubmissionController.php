@@ -11,112 +11,62 @@ use App\Models\Submission;
 use App\Models\Course;
 use App\Models\User;
 use App\Mail\MailNotificationMentor;
+use App\Notifications\sendSubmissionMentorNotification;
 
 class AdminSubmissionController extends Controller
 {
+    // Menampilkan daftar mentor dengan data kursus dan status pengajuan
     public function index()
     {
-        $mentors = Submission::with('user')->get();
-        $total_course = 0; 
+        // Ambil semua pengguna dari database
+        $users = User::all();
 
-        // check total course
-        foreach ($mentors as $mentor) {
-            $total_course = Course::with(['transactions' => function ($query) use ($mentor)  {
-                $query->where('user_id', $mentor->user->id);
-                $query->where('status', 'success');
-            }])->count();
-        }
+        // Map data pengguna untuk mendapatkan mentor dengan jumlah kursus dan status pengajuan
+        $mentorsWithCourses = $users->map(function ($mentor) {
+            // Hitung jumlah kursus yang telah berhasil dibeli oleh pengguna
+            $total_course = Course::whereHas('transactions', function ($query) use ($mentor) {
+                $query->where('user_id', $mentor->id)
+                    ->where('status', 'success'); // Hanya transaksi dengan status 'success'
+            })->count();
 
-        return view('admin.pengajuanmentor.view', compact('mentors', 'total_course'));
+            // Periksa apakah ada pengajuan untuk pengguna
+            $submission_check = Submission::where('user_id', $mentor->id)->first();
+
+            // Ambil status pengajuan, default 'pending' jika tidak ditemukan
+            $status_submission = $submission_check?->status ?? 'pending';
+            return [
+                'mentor' => $mentor,
+                'total_course' => $total_course,
+                'submission_status' => $status_submission
+            ];
+        });
+
+        // Kembalikan view 'admin.pengajuan-mentor.view' dengan data mentor
+        return view('admin.pengajuan-mentor.view', compact('mentorsWithCourses'));
     }
 
-    // public function create()
-    // {
-    //     return response()->json([
-    //         'message' => 'Create submission form',
-    //         // You can return additional data needed for creating a submission if required
-    //     ], 200);
-    // }
-
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'status' => 'required|in:pending,accept,deaccept',
-    //         'user_id' => 'required|exists:users,id',
-    //     ]);
-
-    //     $submission = Submission::create([
-    //         'status' => $request->status,
-    //         'user_id' => $request->user_id,
-    //     ]);
-
-    //     return response()->json([
-    //         'message' => 'Submission created successfully',
-    //         'data' => $submission
-    //     ], 201);
-    // }
-
-    // public function edit($id)
-    // {
-    //     $submission = Submission::find($id);
-
-    //     if (!$submission) {
-    //         return response()->json([
-    //             'message' => 'Submission not found'
-    //         ], 404);
-    //     }
-
-    //     return response()->json([
-    //         'message' => 'Edit submission form',
-    //         'data' => $submission
-    //     ], 200);
-    // }
-
-    public function update(Request $request, $id)
+    // Menyimpan pengajuan mentor
+    public function store(Request $requests, $id)
     {
-        $request->validate([
-            'action' => 'required|in:pending,accept,deaccept',
+        // Validasi input dari permintaan
+        $requests->validate([
+            'link' => 'required|url',
+            'action' => 'required|in:pending,accept',
         ]);
 
+        Submission::create([
+            'status' => 'accept',
+            'user_id' => $id,
+        ]);
+
+        // Cari data pengajuan berdasarkan pengguna
         $submission = Submission::where('user_id', $id)->first();
 
-        if($submission) {
-            $submission->update([
-                'status' => $request->action,
-            ]);
-            
-            $user = User::where('id', $id)->first();
-            
-            if($request->action == 'accept') {
-                $user->update([
-                    'role' => 'mentor'
-                ]);
-                Alert::success('Success', 'Pengajuan Berhasil Di Accepted');
-            }
-            else {
-                Alert::success('Success', 'Pengajuan Berhasil Di Rejected');
-            }
+        // Kirim notifikasi email ke pengguna terkait pengajuan
+        $submission->user->notify(new sendSubmissionMentorNotification($submission, $requests->link));
 
-            // send mail
-            // Mail::to($user->email)->send(new MailNotificationMentor($request->action));
-
-            return redirect()->route('admin.submissions');   
-        }
-    }
-
-    public function delete($id)
-    {
-        $submission = Submission::find($id);
-
-        if (!$submission) {
-            return response()->json([
-                'message' => 'Submission not found'
-            ], 404);
-        }
-
-        $submission->delete();
-
-        Alert::success('Success', 'Pengajuan Berhasil Di Hapus');
-        return redirect()->route('admin.submissions');
+        // Tampilkan notifikasi sukses dan redirect ke halaman pengajuan
+        Alert::success('Success', 'Pengajuan Berhasil Di Kirim');
+        return redirect()->route('admin.pengajuan');
     }
 }

@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+:root {
+    --card-bg: #fff;
+    --dark-grey:#8F8F8F;
+    --bg-color:#FFF6F6;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    color: #000;
+}
+
+.section-pilih-kelas .setting-item {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    background-color: var(--card-bg);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.section-pilih-kelas .setting-item .icon {
+    background-color: var(--bg-color);
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-pilih-kelas .setting-item .icon img {
+    width: 30px; /* memastikan ukuran icon sama */
+    height: 30px;
+    object-fit: contain;
+}
+
+.section-pilih-kelas .setting-item .content {
+    margin-left: 15px;
+}
+
+.section-pilih-kelas .setting-item h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.section-pilih-kelas .setting-item p {
+    font-size: 0.875rem;
+    color: var(--dark-grey);
+}
+
+.section-pilih-kelas .setting-item .toggle {
+    margin-left: auto;
+    font-size: 1.2rem;
+}
+
+.section-pilih-kelas .setting-item .toggle i {
+    color: #000000;
+    font-size: 25px;
+}
+
+/* Untuk memastikan 2 kolom dalam 1 baris, tambahkan ini */
+@media (min-width: 768px) {
+    .section-pilih-kelas .col-md-6 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+}
+
+@media screen and (max-width: 576px) {
+    .section-pilih-kelas {
+        padding: 50px 0 !important;
+    }
+    .section-pilih-kelas .setting-item h3 {
+        font-size: 18px !important;
+    }
+}

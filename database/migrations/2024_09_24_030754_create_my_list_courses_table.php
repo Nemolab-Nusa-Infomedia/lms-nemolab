@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('tbl_my_list_courses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('course_id');
-            // $table->unsignedBigInteger('ebook_id');
+            $table->unsignedBigInteger('course_id')->nullable();
+            $table->unsignedBigInteger('ebook_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('tbl_courses')->onDelete('cascade');
-            // $table->foreign('ebook_id')->references('id')->on('tbl_courses')->onDelete('cascade');
+            $table->foreign('ebook_id')->references('id')->on('tbl_ebooks')->onDelete('cascade');
             $table->timestamps();
         });
     }
