@@ -304,7 +304,7 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a.btn-secondary
 {
-    background-color: var(--light-lavender) !important;
+    background-color: white !important;
     outline: solid 1px var(--light-border) !important;
     color: black;
     font-weight: 500;
@@ -312,7 +312,7 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a.btn-secondary:hover
 {
-    background-color: var(--color-light-hover) !important;
+    background-color: rgb(238, 238, 238) !important;
 }
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a.btn-secondary:active

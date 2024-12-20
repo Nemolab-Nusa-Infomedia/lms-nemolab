@@ -68,6 +68,10 @@ html::-webkit-scrollbar
     min-width: 50%;
 }
 
+.dots{
+    z-index: -1;
+}
+
 /* button */
 a.btn-warning
 {

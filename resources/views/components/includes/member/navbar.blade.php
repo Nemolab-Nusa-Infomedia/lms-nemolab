@@ -35,7 +35,7 @@
                                     fill="#8F8F8F" />
                             </svg>
                         </label>
-                        <input class="form-control w-100 h-100" type="text" name="search-input" 
+                        <input class="form-control w-100 h-100" type="text" required name="search-input" 
                             placeholder="Cari Kelas Disini" id="search-input" value="{{ request('search-input') }}"
                             aria-label="Search">
                         <button class="btn p-0 m-0 position-absolute" type="submit">
