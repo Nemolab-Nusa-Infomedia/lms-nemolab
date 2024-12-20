@@ -7,9 +7,9 @@
 @endpush
 
 @section('content')
-    <main class="container mt-5 pt-5 pb-5">
-        <div class="">
-            <div class="col-md-8">
+<main class="container mt-5 pt-5 pb-5">
+    <div class="">
+            <div class="col-md-8">  
                 <h3 class="" data-aos="fade-right" style="word-wrap: break-word; white-space: normal;">{{ $courses->name }}</h3>
             </div>
 
@@ -31,12 +31,12 @@
                                 @else
                                 <p class="paket text-center mt-2 mb-0">Kursus</p>
                                 @endif
-                                <h3 class="card-title text-center mt-3" data-aos="zoom-out" data-aos-delay="100">Mulai Belajar
+                                <h3 class="card-title text-center mt-3 font" data-aos="zoom-out" data-aos-delay="100">Mulai Belajar
                                     Kursus Ini</h3>
                                 <p class="text-center mx-3" data-aos="zoom-out" data-aos-delay="200">Belajar dimanapun dan kapanpun
                                     bersama kami, dan dapatkan akses kelas selamanya dengan bergabung di kursus ini</p>
                                 <div class="benefit ms-3">
-                                    <p class="" style="color: #414142">Keuntungan Belajar Kelas ini</p>
+                                    <h5 class="card-title" data-aos="zoom-out" data-aos-delay="200">Keuntungan Belajar Kelas ini</h5>
                                     <ul class="check-active-group mt-3 list-unstyled">
                                         <ul class="check-active-group mt-3 list-unstyled">
                                             <li class="check-active d-flex align-items-center mt-2" data-aos="zoom-out"
@@ -222,7 +222,7 @@
                     </div>
     
                     <div class="card mb-3" data-aos="fade-up">
-                        <div class="card-body">
+                        <div class=" card card-body card-tools">
                             <h5>Tools</h5>
                             <div class="d-flex">
                                 @foreach ($coursetools->tools as $tool)
@@ -302,7 +302,7 @@
     
                 <!-- Kolom Kanan -->
                 <div class="layout-kanan col-md-4 d-none d-md-block">
-                    <div class="card-buy card mb-3" style="position: sticky; top: 100px;">
+                    <div class="card mb-3" style="position: sticky; top: 100px;">
                         <div class="card-buy-body">
                             <div class="m-3">
                                 @if ($bundling)
@@ -310,48 +310,66 @@
                                 @else
                                 <p class="paket text-center mt-2 mb-0">Kursus</p>
                                 @endif
-                                <h3 class="card-title text-center mt-3" data-aos="zoom-out" data-aos-delay="100">Mulai Belajar
+                                <h3 class="card-title text-center mt-3 font" data-aos="zoom-out" data-aos-delay="100">Mulai Belajar
                                     Kursus Ini</h3>
                                 <p class="text-center mx-3" data-aos="zoom-out" data-aos-delay="200">Belajar dimanapun dan kapanpun
                                     bersama kami, dan dapatkan akses kelas selamanya dengan bergabung di kursus ini</p>
                                 <div class="benefit ms-3">
-                                    <p class="" style="color: #414142">Keuntungan Belajar Kelas ini</p>
+                                    <h5 class="card-title" data-aos="zoom-out" data-aos-delay="200">Keuntungan Belajar Kelas ini</h5>
                                     <ul class="check-active-group mt-3 list-unstyled">
                                         <ul class="check-active-group mt-3 list-unstyled">
                                             <li class="check-active d-flex align-items-center mt-2" data-aos="zoom-out"
                                                 data-aos-delay="100">
-                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="15" height="16" rx="4" fill="#58AE47"/>
+                                                <path d="M11.8468 5.80908L6.31002 10.8607C6.26179 10.9049 6.20449 10.9399 6.14139 10.9638C6.0783 10.9877 6.01065 11 5.94234 11C5.87402 11 5.80637 10.9877 5.74328 10.9638C5.68018 10.9399 5.62288 10.9049 5.57466 10.8607L3.1523 8.65062C3.10401 8.60657 3.06571 8.55427 3.03958 8.49671C3.01345 8.43915 3 8.37746 3 8.31516C3 8.25286 3.01345 8.19117 3.03958 8.13361C3.06571 8.07605 3.10401 8.02376 3.1523 7.9797C3.20058 7.93565 3.2579 7.9007 3.32099 7.87686C3.38408 7.85302 3.45169 7.84075 3.51998 7.84075C3.58826 7.84075 3.65588 7.85302 3.71896 7.87686C3.78205 7.9007 3.83937 7.93565 3.88766 7.9797L5.94277 9.85472L11.1123 5.13895C11.2099 5.04998 11.3421 5 11.48 5C11.6179 5 11.7502 5.04998 11.8477 5.13895C11.9452 5.22792 12 5.34859 12 5.47441C12 5.60023 11.9452 5.7209 11.8477 5.80987L11.8468 5.80908Z" fill="white"/>
+                                                </svg>
                                                 <p class="m-0 p-0 ms-2">Akses kelas selamanya</p>
                                             </li>
                                             @if ($courses->resources != null)
                                             <li class="check-active d-flex align-items-center mt-2" data-aos="zoom-out"
                                                 data-aos-delay="200">
-                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="15" height="16" rx="4" fill="#58AE47"/>
+                                                <path d="M11.8468 5.80908L6.31002 10.8607C6.26179 10.9049 6.20449 10.9399 6.14139 10.9638C6.0783 10.9877 6.01065 11 5.94234 11C5.87402 11 5.80637 10.9877 5.74328 10.9638C5.68018 10.9399 5.62288 10.9049 5.57466 10.8607L3.1523 8.65062C3.10401 8.60657 3.06571 8.55427 3.03958 8.49671C3.01345 8.43915 3 8.37746 3 8.31516C3 8.25286 3.01345 8.19117 3.03958 8.13361C3.06571 8.07605 3.10401 8.02376 3.1523 7.9797C3.20058 7.93565 3.2579 7.9007 3.32099 7.87686C3.38408 7.85302 3.45169 7.84075 3.51998 7.84075C3.58826 7.84075 3.65588 7.85302 3.71896 7.87686C3.78205 7.9007 3.83937 7.93565 3.88766 7.9797L5.94277 9.85472L11.1123 5.13895C11.2099 5.04998 11.3421 5 11.48 5C11.6179 5 11.7502 5.04998 11.8477 5.13895C11.9452 5.22792 12 5.34859 12 5.47441C12 5.60023 11.9452 5.7209 11.8477 5.80987L11.8468 5.80908Z" fill="white"/>
+                                                </svg>
                                                 <p class="m-0 p-0 ms-2">Asset gratis</p>
                                             </li>
                                             @endif
                                             @if ($courses->price == 0)
                                             <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                                 data-aos-delay="300">
-                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="15" height="16" rx="4" fill="#58AE47"/>
+                                                <path d="M11.8468 5.80908L6.31002 10.8607C6.26179 10.9049 6.20449 10.9399 6.14139 10.9638C6.0783 10.9877 6.01065 11 5.94234 11C5.87402 11 5.80637 10.9877 5.74328 10.9638C5.68018 10.9399 5.62288 10.9049 5.57466 10.8607L3.1523 8.65062C3.10401 8.60657 3.06571 8.55427 3.03958 8.49671C3.01345 8.43915 3 8.37746 3 8.31516C3 8.25286 3.01345 8.19117 3.03958 8.13361C3.06571 8.07605 3.10401 8.02376 3.1523 7.9797C3.20058 7.93565 3.2579 7.9007 3.32099 7.87686C3.38408 7.85302 3.45169 7.84075 3.51998 7.84075C3.58826 7.84075 3.65588 7.85302 3.71896 7.87686C3.78205 7.9007 3.83937 7.93565 3.88766 7.9797L5.94277 9.85472L11.1123 5.13895C11.2099 5.04998 11.3421 5 11.48 5C11.6179 5 11.7502 5.04998 11.8477 5.13895C11.9452 5.22792 12 5.34859 12 5.47441C12 5.60023 11.9452 5.7209 11.8477 5.80987L11.8468 5.80908Z" fill="white"/>
+                                                </svg>
                                                 <p class="m-0 p-0 ms-2">Belajar gratis</p>
                                             </li>
                                             @endif
                                             @if ($bundling)
                                             <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                                 data-aos-delay="400">
-                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="15" height="16" rx="4" fill="#58AE47"/>
+                                                <path d="M11.8468 5.80908L6.31002 10.8607C6.26179 10.9049 6.20449 10.9399 6.14139 10.9638C6.0783 10.9877 6.01065 11 5.94234 11C5.87402 11 5.80637 10.9877 5.74328 10.9638C5.68018 10.9399 5.62288 10.9049 5.57466 10.8607L3.1523 8.65062C3.10401 8.60657 3.06571 8.55427 3.03958 8.49671C3.01345 8.43915 3 8.37746 3 8.31516C3 8.25286 3.01345 8.19117 3.03958 8.13361C3.06571 8.07605 3.10401 8.02376 3.1523 7.9797C3.20058 7.93565 3.2579 7.9007 3.32099 7.87686C3.38408 7.85302 3.45169 7.84075 3.51998 7.84075C3.58826 7.84075 3.65588 7.85302 3.71896 7.87686C3.78205 7.9007 3.83937 7.93565 3.88766 7.9797L5.94277 9.85472L11.1123 5.13895C11.2099 5.04998 11.3421 5 11.48 5C11.6179 5 11.7502 5.04998 11.8477 5.13895C11.9452 5.22792 12 5.34859 12 5.47441C12 5.60023 11.9452 5.7209 11.8477 5.80987L11.8468 5.80908Z" fill="white"/>
+                                                </svg>
                                                 <p class="m-0 p-0 ms-2">Bonus E-Book</p>
                                             </li>
                                             @endif
                                             <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                                 data-aos-delay="600">
-                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="15" height="16" rx="4" fill="#58AE47"/>
+                                                <path d="M11.8468 5.80908L6.31002 10.8607C6.26179 10.9049 6.20449 10.9399 6.14139 10.9638C6.0783 10.9877 6.01065 11 5.94234 11C5.87402 11 5.80637 10.9877 5.74328 10.9638C5.68018 10.9399 5.62288 10.9049 5.57466 10.8607L3.1523 8.65062C3.10401 8.60657 3.06571 8.55427 3.03958 8.49671C3.01345 8.43915 3 8.37746 3 8.31516C3 8.25286 3.01345 8.19117 3.03958 8.13361C3.06571 8.07605 3.10401 8.02376 3.1523 7.9797C3.20058 7.93565 3.2579 7.9007 3.32099 7.87686C3.38408 7.85302 3.45169 7.84075 3.51998 7.84075C3.58826 7.84075 3.65588 7.85302 3.71896 7.87686C3.78205 7.9007 3.83937 7.93565 3.88766 7.9797L5.94277 9.85472L11.1123 5.13895C11.2099 5.04998 11.3421 5 11.48 5C11.6179 5 11.7502 5.04998 11.8477 5.13895C11.9452 5.22792 12 5.34859 12 5.47441C12 5.60023 11.9452 5.7209 11.8477 5.80987L11.8468 5.80908Z" fill="white"/>
+                                                </svg>
                                                 <p class="m-0 p-0 ms-2">Grup diskusi private</p>
                                             </li>
                                             <li class="check-active d-flex mt-2 align-items-center" data-aos="zoom-out"
                                                 data-aos-delay="700">
-                                                <img src="{{ asset('nemolab/member/img/check-active.png') }}" alt="Check">
+                                                <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect width="15" height="16" rx="4" fill="#58AE47"/>
+                                                <path d="M11.8468 5.80908L6.31002 10.8607C6.26179 10.9049 6.20449 10.9399 6.14139 10.9638C6.0783 10.9877 6.01065 11 5.94234 11C5.87402 11 5.80637 10.9877 5.74328 10.9638C5.68018 10.9399 5.62288 10.9049 5.57466 10.8607L3.1523 8.65062C3.10401 8.60657 3.06571 8.55427 3.03958 8.49671C3.01345 8.43915 3 8.37746 3 8.31516C3 8.25286 3.01345 8.19117 3.03958 8.13361C3.06571 8.07605 3.10401 8.02376 3.1523 7.9797C3.20058 7.93565 3.2579 7.9007 3.32099 7.87686C3.38408 7.85302 3.45169 7.84075 3.51998 7.84075C3.58826 7.84075 3.65588 7.85302 3.71896 7.87686C3.78205 7.9007 3.83937 7.93565 3.88766 7.9797L5.94277 9.85472L11.1123 5.13895C11.2099 5.04998 11.3421 5 11.48 5C11.6179 5 11.7502 5.04998 11.8477 5.13895C11.9452 5.22792 12 5.34859 12 5.47441C12 5.60023 11.9452 5.7209 11.8477 5.80987L11.8468 5.80908Z" fill="white"/>
+                                                </svg>
                                                 <p class="m-0 p-0 ms-2">Konsultasi dengan mentor</p>
                                             </li>
                                         </ul>
