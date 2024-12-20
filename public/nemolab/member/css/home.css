@@ -569,6 +569,10 @@ main p
     padding: 0 2.5rem;
     height: 100svh;
 }
+#section-pilih-kelas .scroll-course{
+    z-index: 1;
+}
+
 
 #section-pilih-kelas .flex-column
 {
