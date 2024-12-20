@@ -251,7 +251,7 @@
                <p class="paket-item mt-2">${item.product_type === 'ebook' ? 'E-Book' : currentBundling ? 'Paket Combo' : 'Kursus'}</p>
             </div>
             <div class="title-card">
-                <a href="${item.product_type === 'ebook' ? '{{ route('member.ebook.join', '') }}' : '{{ route('member.course.join', '') }}/'}${item.slug}">
+                <a href="${item.product_type === 'ebook' ? '{{ route('member.ebook.join', '') }}' : '{{ route('member.course.join', '') }}'}/${item.slug}">
                     <p>${item.category}</p>
                     <h5 class="fw-bold truncate-text">${item.name}</h5>
                 </a>
@@ -268,7 +268,7 @@
                     <p class="p-0 m-0 fw-semibold">Harga</p>
                     <p class="p-0 m-0 fw-semibold">${price}</p>
                 </div>
-                <a href="{{ route('member.course.join', '') }}/${item.slug}" class="btn btn-primary">Mulai Belajar</a>
+                <a href="${item.product_type === 'ebook' ? '{{ route('member.ebook.join', '') }}' : '{{ route('member.course.join', '') }}'}/${item.slug}" class="btn btn-primary">Mulai Belajar</a>
             </div>
         </div>
     </div>
