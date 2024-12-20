@@ -24,14 +24,29 @@
             opacity: 0.5;
             cursor: not-allowed;
         }
+
+        .pin-expired {
+            color: #dc3545;
+        }
+        
+        .kirim-ulang {
+            cursor: pointer;
+        }
+        
+        .kirim-ulang:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 @endpush
 
 @section('content')
+
     @php
         $pinExpiresAt = Auth::user()->pin_expires_at ? strtotime(Auth::user()->pin_expires_at) : null;
     @endphp
-    <form class="card" method="post" action="{{ route('verification.verify-pin') }}">
+
+    <form class="card" method="post" action="{{ route('verification.verify-pin') }}" id="pinForm">
         @csrf
         <div class="card-title">
             <h1>Verifikasi Email</h1>
@@ -47,73 +62,101 @@
         <div class="card-foot">
             <div id="resend-container">
                 @if (session('status') != 'limit')
-                    <button class="kirim-ulang" type="button" id="verificationButton" class="resend-btn">
-                        Kirim ulang kode<span id="timer" class="timer">(01:00)</span>
+                    <button type="button" id="verificationButton" class="kirim-ulang">
+                        Kirim ulang kode<span id="timer" class="timer"></span>
                     </button>
                 @else
-                    <button type="button" disabled class="resend-btn">Kirim ulang kode</button>
+                    <button type="button" disabled class="kirim-ulang">Kirim ulang kode</button>
                 @endif            
             </div>
-            <button type="submit">Konfirmasi</button>
+            <button type="submit" id="submitBtn">Konfirmasi</button>
         </div>
     </form>
 
     <form method="POST" action="{{ route('verification.send') }}" id="verificationForm">
         @csrf
     </form>
+
     @push('addon-script')
         <script>
             const form = document.getElementById('verificationForm');
+            const pinForm = document.getElementById('pinForm');
             const btn = document.getElementById('verificationButton');
             const timerDisplay = document.getElementById('timer');
-            let timeLeft = 60; // 1 minute in seconds
+            const inputs = document.querySelectorAll(".otp-input");
+            const submitBtn = document.getElementById('submitBtn');
+            const completePin = document.querySelector("#complete-pin");
+            let timeLeft = 60;
             let timerId = null;
-            const pinExpiresAt = {{ $pinExpiresAt ?? 'null' }};
+            let pinExpiresAt = {{ $pinExpiresAt ?? 'null' }};
+            let isExpired = false;
+
+            function disableInputs() {
+                inputs.forEach(input => {
+                    input.disabled = true;
+                    input.value = '';
+                });
+                completePin.value = '';
+                submitBtn.disabled = true;
+                submitBtn.classList.remove("active");
+            }
+
+            function enableInputs() {
+                inputs[0].disabled = false;
+                inputs[0].focus();
+                submitBtn.disabled = false;
+            }
+
+            function resetTimer() {
+                clearInterval(timerId);
+                btn.disabled = false;
+                timerDisplay.textContent = ' (PIN Kadaluarsa)';
+                timerDisplay.classList.add('pin-expired');
+                disableInputs();
+            }
 
             function checkPinExpiration() {
                 if (pinExpiresAt) {
-                    const now = Math.floor(Date.now() / 1000); // Current timestamp in seconds
+                    const now = Math.floor(Date.now() / 1000);
                     if (now >= pinExpiresAt) {
-                        clearInterval(timerId);
-                        btn.disabled = false;
-                        timerDisplay.textContent = ' (PIN Kadaluarsa)';
-                        
-                        // Disable all OTP inputs
-                        inputs.forEach(input => {
-                            input.disabled = true;
-                        });
-                        
-                        // Disable submit button
-                        button.disabled = true;
-                        button.classList.remove("active");
-                        
-                        // Optional: Show alert
-                        Swal.fire({
-                            title: 'Error',
-                            text: 'PIN Verifikasi telah kadaluarsa. Silakan kirim ulang kode.',
-                            icon: 'error'
-                        });
-                        
+                        if (!isExpired) {
+                            resetTimer();
+                            
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'PIN Verifikasi telah kadaluarsa. Silakan kirim ulang kode.',
+                                icon: 'error'
+                            });
+                            
+                            isExpired = true;
+                        }
                         return true;
                     }
                 }
+                isExpired = false;
                 return false;
             }
 
             function startTimer() {
+                timeLeft = 60;
                 btn.disabled = true;
+                timerDisplay.classList.remove('pin-expired');
+                timerDisplay.textContent = '';
 
                 if (checkPinExpiration()) {
+                    resetTimer();
                     return;
                 }
-                
+
+                enableInputs();
+
+                clearInterval(timerId);
                 timerId = setInterval(() => {
                     timeLeft--;
                     
                     const minutes = Math.floor(timeLeft / 60);
                     const seconds = timeLeft % 60;
                     
-                    // Format timer display
                     timerDisplay.textContent = `(${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')})`;
                     
                     if (timeLeft <= 0) {
@@ -121,32 +164,22 @@
                         btn.disabled = false;
                         timerDisplay.textContent = '';
                         timeLeft = 60;
-
                         checkPinExpiration();
                     }
                 }, 1000);
             }
 
-            // Start timer on page load if there's no 'limit' status
-            if (btn && !btn.disabled) {
-                startTimer();
-            }
-
-            // Check PIN expiration on page load
-            if (btn && !btn.disabled) {
-                if (!checkPinExpiration()) {
+            // Initialize on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                if (checkPinExpiration()) {
+                    resetTimer();
+                } else {
                     startTimer();
                 }
-            }
-
-            btn.addEventListener('click', function() {
-                form.submit();
-                startTimer();
             });
 
-            const inputs = document.querySelectorAll(".otp-input"),
-                button = document.querySelector("button[type='submit']"),
-                completePin = document.querySelector("#complete-pin");
+            // Rest of the event listeners remain the same
+            setInterval(checkPinExpiration, 1000);
 
             function updateCompletePin() {
                 let pin = '';
@@ -158,6 +191,10 @@
 
             inputs.forEach((input, index1) => {
                 input.addEventListener("keyup", (e) => {
+                    if (checkPinExpiration()) {
+                        return;
+                    }
+
                     const currentInput = input,
                         nextInput = input.nextElementSibling,
                         prevInput = input.previousElementSibling;
@@ -186,11 +223,29 @@
                     }
 
                     if (!inputs[3].disabled && inputs[3].value !== "") {
-                        button.classList.add("active");
+                        submitBtn.classList.add("active");
                         return;
                     }
-                    button.classList.remove("active");
+                    submitBtn.classList.remove("active");
                 });
+            });
+
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                form.submit();
+                startTimer();
+            });
+
+            pinForm.addEventListener('submit', function(e) {
+                if (checkPinExpiration()) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'PIN Verifikasi telah kadaluarsa. Silakan kirim ulang kode.',
+                        icon: 'error'
+                    });
+                    return false;
+                }
             });
         </script>
     @endpush
