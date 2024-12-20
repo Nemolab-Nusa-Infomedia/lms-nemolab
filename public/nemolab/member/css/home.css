@@ -68,7 +68,8 @@ html::-webkit-scrollbar
     min-width: 50%;
 }
 
-.dots{
+.dots
+{
     z-index: -1;
 }
 
@@ -530,21 +531,16 @@ main p
 }
 
 
-.course-card
+.card
 {
     max-width: 20rem;
     height: 26rem;
     flex-shrink: 0;
-}
-
-.course-card .card
-{
-    height: 26rem;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.course-card .card-img-top
+.card .card-img-top
 {
     height: 160px;
     object-fit: cover;
@@ -552,7 +548,7 @@ main p
     border-top-right-radius: 10px;
 }
 
-.course-card .avatar img
+.card .avatar img
 {
     width: 24px;
     height: 24px;
@@ -573,7 +569,9 @@ main p
     padding: 0 2.5rem;
     height: 100svh;
 }
-#section-pilih-kelas .scroll-course{
+
+#section-pilih-kelas .scroll-course
+{
     z-index: 1;
 }
 
@@ -595,15 +593,10 @@ main p
     font-size: large;
 }
 
-#section-pilih-kelas .course-card
-{
-    border-radius: 14px;
-    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
 #section-pilih-kelas .card
 {
-    box-shadow: 1px 0 5px rgba(190, 190, 190, 0.189) inset, -1px 0 5px rgba(190, 190, 190, 0.189) inset;
+    border-radius: 14px;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px 4px 6px rgba(0, 0, 0, 0.1), 1px 0 5px rgba(190, 190, 190, 0.189) inset, -1px 0 5px rgba(190, 190, 190, 0.189) inset;
     aspect-ratio: 5 / 6;
     width: 20rem;
     border-radius: 14px;
@@ -618,10 +611,10 @@ main p
     flex-grow: 1;
 }
 
-#section-pilih-kelas .course-card:hover
+#section-pilih-kelas .card:hover
 {
     transform: translateY(-10px);
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px 4px 6px rgba(0, 0, 0, 0.1), 1px 0 5px rgba(190, 190, 190, 0.189) inset, -1px 0 5px rgba(190, 190, 190, 0.189) inset, 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
 #section-pilih-kelas .card>img
@@ -782,7 +775,7 @@ main p
 
 @media (max-width:992px)
 {
-    #section-pilih-kelas>img
+    #section-pilih-kelas>imgwrapper
     {
         left: -5rem;
     }
@@ -812,6 +805,7 @@ main p
         flex-direction: column;
         align-items: center;
         height: 100svh;
+        padding: 20px 0px;
 
         button
         {
@@ -824,19 +818,19 @@ main p
     {
         flex-direction: column;
         width: 100%;
-        padding: 12px 0;
+        padding: 12px 20px;
     }
 
-    #section-pilih-kelas .course-card
+    /* #section-pilih-kelas .course-card
     {
         aspect-ratio: 25 / 9;
         height: auto;
         width: 100%;
-    }
+    } */
 
     #section-pilih-kelas .card
     {
-        box-shadow: 1px 10px 5px rgba(90, 90, 90, 0.2) inset, -1px 10px 5px rgba(90, 90, 90, 0.2) inset;
+        box-shadow: 0px 4px 4px 0px #0000001F inset;
         padding: 1rem;
         flex-direction: row;
         width: 100%;
@@ -844,15 +838,12 @@ main p
         height: auto;
     }
 
-    #section-pilih-kelas .course-card:hover
-    {
-        aspect-ratio: 25 / 9;
-        height: auto;
-        width: 100%;
-    }
-
     #section-pilih-kelas .card:hover
     {
+        aspect-ratio: 25 / 9;
+        box-shadow: 0px 4px 4px 0px #0000001F inset, 0 4px 4px #0000001F;
+        height: auto;
+        width: 100%;
         min-height: auto;
     }
 
@@ -971,7 +962,7 @@ main p
 
 @media (max-width:321px)
 {
-    #section-pilih-kelas .course-card
+    #section-pilih-kelas .card
     {
         aspect-ratio: 25 / 12;
         height: auto;
@@ -988,7 +979,7 @@ main p
         height: auto;
     }
 
-    #section-pilih-kelas .course-card:hover
+    #section-pilih-kelas .card:hover
     {
         aspect-ratio: 25 / 12;
         height: auto;
@@ -1600,7 +1591,7 @@ main p
         font-size: 1rem;
     }
 
-    #section-pilih-kelas .course-card
+    #section-pilih-kelas .card
     {
         min-width: 100%;
         max-width: 100%;

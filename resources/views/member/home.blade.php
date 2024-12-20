@@ -78,7 +78,6 @@
                 <div class="courses-scroll">
                     @foreach ($courses as $course)
                         @if ($course)
-                            <div class="course-card">
                                 <div class="card">
                                     @if ($course->cover != null)
                                         <img src="{{ asset('storage/images/covers/' . $course->cover) }}"
@@ -130,7 +129,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         @endif
                     @endforeach
                 </div>

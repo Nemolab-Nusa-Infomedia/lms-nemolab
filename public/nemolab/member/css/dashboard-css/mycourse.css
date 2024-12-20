@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 /* Root Variables */
-:root {
+:root
+{
     --c-dark: #383131;
     --c-brand: #faa907;
     --c-brand-rgb: rgb(250, 169, 7);
@@ -13,38 +14,46 @@
 }
 
 /* Base Styles */
-body {
-    background-color: var(--lavender);
+body
+{
     font-family: var(--font-base), 'Nunito', sans-serif;
 }
 
-a {
+a
+{
     text-decoration: none;
 }
-p {
+
+p
+{
     font-weight: bold !important;
 }
 
 
-#mycourse {
+#mycourse
+{
     margin-top: 130px;
 }
 
 /* Content Styling */
-.tittle {
+.tittle
+{
     color: var(--c-brand);
 }
 
-.row-course {
+.row-course
+{
     overflow-y: scroll;
 }
 
-.row-course::-webkit-scrollbar {
+.row-course::-webkit-scrollbar
+{
     display: none;
 }
 
 /* Card Styling */
-.card {
+.card
+{
     width: 25rem;
     border: none;
     border-radius: 14px;
@@ -52,23 +61,28 @@ p {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
+.card:hover
+{
     transform: translateY(-10px);
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-.card .card-img-top {
-    width: 100% !important;
-    height: 250px !important;
-    object-fit: cover;
-}
-.card .card-img-top img {
+.card .card-img-top
+{
     width: 100% !important;
     height: 250px !important;
     object-fit: cover;
 }
 
-.truncate-text {
+.card .card-img-top img
+{
+    width: 100% !important;
+    height: 250px !important;
+    object-fit: cover;
+}
+
+.truncate-text
+{
     display: block;
     overflow: hidden;
     display: -webkit-box;
@@ -79,42 +93,49 @@ p {
     transition: max-height 0.3s ease, -webkit-line-clamp 0.3s ease;
 }
 
-.card:hover .truncate-text {
+.card:hover .truncate-text
+{
     -webkit-line-clamp: unset;
     max-height: none;
 }
 
 /* Title Card */
-.title-card h5 {
+.title-card h5
+{
     font-size: 17px;
     color: var(--color-grey);
 }
 
-.title-card img {
+.title-card img
+{
     border-radius: 100%;
     width: 35px;
     height: 35px;
 }
 
 /* Not Found Styling */
-.not-found {
+.not-found
+{
     margin-top: 50px;
     justify-content: center;
 }
 
-.not-found img {
+.not-found img
+{
     max-width: 25%;
     height: auto;
 }
 
-.not-found p {
+.not-found p
+{
     font-size: 1.25rem;
     font-weight: bold;
     color: #666;
 }
 
 /* Filter Transaction Styling */
-.filter-transaction .nav-tabs {
+.filter-transaction .nav-tabs
+{
     display: flex;
     list-style: none;
     padding: 0;
@@ -122,31 +143,40 @@ p {
     border: none;
 }
 
-.filter-transaction .nav-tabs li {
+.filter-transaction .nav-tabs li
+{
     margin-right: 15px;
 }
 
-.filter-transaction .nav-tabs a {
+.filter-transaction .nav-tabs a
+{
     font-weight: 700;
     font-size: 14px;
     text-decoration: none;
     padding: 8px 25px;
     border-radius: 20px;
+    background: #FFF1E6;
+    border: solid 1px #FAA907;
     color: #FAA907;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 
-.filter-transaction .nav-tabs a:hover {
-    background-color: var(--hover-color);
-    color: #FAA907;
+.filter-transaction .nav-tabs a:hover
+{
+    background: #efe2d8;
+    border: solid 1px #b87a00;
+    color: #af7500;
 }
 
-.filter-transaction .nav-tabs a.active {
+.filter-transaction .nav-tabs a.active
+{
     background-color: #FAA907;
     color: #fff;
 }
 
 /* Category Styling */
-.category {
+.category
+{
     padding: 5px 7px;
     background-color: #e4e4e4;
     max-width: max-content;
@@ -154,18 +184,21 @@ p {
     flex-shrink: 0;
 }
 
-.category p {
+.category p
+{
     font-size: 12px;
     font-weight: 500;
 }
 
 /* Profile Card */
-.profile-card a {
+.profile-card a
+{
     color: black;
 }
 
 /* Title Card and Status */
-.tittle-card {
+.tittle-card
+{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -176,32 +209,39 @@ p {
     font-size: 14px;
 }
 
-.status {
+.status
+{
     width: 100%;
     margin-top: auto;
 }
 
-.txt-start {
+.txt-start
+{
     color: rgba(0, 0, 0, 0.5);
     height: max-content;
     margin: 0;
 }
 
 /* Mobile Specific Styles */
-@media only screen and (max-width: 992px) {
-    .profile-btn.btn {
+@media only screen and (max-width: 992px)
+{
+    .profile-btn.btn
+    {
         background-color: #faa907;
     }
 
-    .profile-btn.btn:active {
+    .profile-btn.btn:active
+    {
         background-color: #d89309;
     }
 
-    .sidebar-mobile {
+    .sidebar-mobile
+    {
         display: none !important;
     }
 
-    .sidebar-mobile.active {
+    .sidebar-mobile.active
+    {
         display: block !important;
         z-index: 999;
         position: absolute;
@@ -213,16 +253,19 @@ p {
         background: #fff;
     }
 
-    .nav a {
+    .nav a
+    {
         color: #6c757d !important;
     }
 
-    .nav-item img {
+    .nav-item img
+    {
         filter: grayscale(100%) brightness(70%);
     }
 
     .nav-item.active,
-    .nav-item.active img {
+    .nav-item.active img
+    {
         filter: none;
         color: #faa907 !important;
         font-weight: 600;
@@ -230,20 +273,25 @@ p {
 }
 
 /* Tablet and Smaller Screen Styles */
-@media (max-width: 768px) {
-    .card {
+@media (max-width: 768px)
+{
+    .card
+    {
         width: 100%;
     }
 
-    .not-found img {
+    .not-found img
+    {
         max-width: 100% !important;
     }
 
-    .tittle-card {
+    .tittle-card
+    {
         height: 36px;
     }
 
-    .tittle-card p {
+    .tittle-card p
+    {
         height: 30px;
         font-size: 18px;
         display: -webkit-box !important;
@@ -255,16 +303,19 @@ p {
         max-width: 100%;
     }
 
-    .profile-card img {
+    .profile-card img
+    {
         width: 45px !important;
         height: 45px !important;
     }
 
-    .category p {
+    .category p
+    {
         font-size: 9px;
     }
 
-    .img-card img {
+    .img-card img
+    {
         width: 150px;
         height: 100px;
         padding: 7px;
@@ -273,42 +324,51 @@ p {
         flex-shrink: 0;
     }
 
-    .status {
+    .status
+    {
         margin-top: 0.7rem !important;
     }
 
-    .status p {
+    .status p
+    {
         max-width: 100%;
         font-size: 10px !important;
     }
 
-    .status img {
+    .status img
+    {
         width: 14px;
         height: 14px;
     }
 
-    .card-body {
+    .card-body
+    {
         display: flex;
         gap: 10px;
         padding: 0.6rem !important;
     }
 
-    .card-body p {
+    .card-body p
+    {
         font-size: 12px;
         max-width: 230px;
         margin: 0 !important;
     }
-    .filter-transaction .nav-tabs a {
+
+    .filter-transaction .nav-tabs a
+    {
         font-weight: 700;
         font-size: 12px;
         padding: 5px 15px;
     }
 
-    .harga.d-block {
+    .harga.d-block
+    {
         display: flex !important;
     }
 
-    .truncate-text {
+    .truncate-text
+    {
         display: block;
         overflow: hidden;
         display: -webkit-box;
@@ -319,7 +379,8 @@ p {
         transition: max-height 0.3s ease, -webkit-line-clamp 0.3s ease;
     }
 
-    .card:hover .truncate-text {
+    .card:hover .truncate-text
+    {
         -webkit-line-clamp: unset;
         max-height: none;
     }
