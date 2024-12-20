@@ -352,7 +352,7 @@
                 coursesScroll.forEach(element => {
                     element.addEventListener('click', function() {
                         const direction = this.dataset.direction;
-                        if (window.innerWidth < 512) {
+                        if (window.innerWidth < 576) {
                             if (direction === 'left') scrollContainer.scrollTop -= speed;
                             else if (direction === 'right') scrollContainer.scrollTop += speed;
                         } else {
