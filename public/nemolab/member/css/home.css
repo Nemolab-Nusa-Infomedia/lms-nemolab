@@ -1517,17 +1517,6 @@ main p
     padding: 100px 1rem;
 }
 
-#section-pusat-bantuan h1
-{
-    color: black;
-}
-
-#section-pusat-bantuan p
-{
-    font-size: .875rem;
-    color: var(--text-color-second);
-}
-
 @media (max-width: 576px)
 {
 
