@@ -188,7 +188,8 @@ select:focus
 
 .otp-input{
     width: 50px;
-    height: 50px;
+    height: 55px;
+    padding-bottom: 5px;
     border: none;
     border-bottom: #8F8F8F solid 3px;
     text-align: center;
@@ -203,8 +204,6 @@ select:focus
 }
 
 .otp-input:focus{
-    width: 50px;
-    height: 50px;
     border: none;
     border-bottom: #8F8F8F solid 3px;
     outline: none;
@@ -300,6 +299,16 @@ button.btn-primary
 }
 
 button.btn-primary:hover
+{
+    background-color: var(--disable-orange) !important;
+}
+
+button.active
+{
+    background-color: var(--color-orange) !important;
+}
+
+button.btn-primary:disabled
 {
     background-color: var(--disable-orange) !important;
 }
