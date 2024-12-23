@@ -174,21 +174,27 @@
                                     </button>
 
                                     <ul class="dropdown-menu w-100 mt-2 dropdown-logout">
+                                        <div class="content-submenu">
                                         @if (!Request::routeIs('member.setting') && !Request::routeIs('member.setting.*'))
-                                            <li><a class="dropdown-item" href="{{ route('member.dashboard') }}">Kelas
-                                                    Saya</a>
-                                            </li>
-                                            <li><a class="dropdown-item"
-                                                    href="{{ route('member.transaction') }}">Transaksi
-                                                    Saya</a></li>
-                                            <li class="border-bottom pb-3"><a class="dropdown-item"
-                                                    href="{{ route('member.setting') }}">Pengaturan</a>
-                                            </li>
+                                        <div class="col-sm-12 ps-0 pl-1 mb-1">
+                                            <a href="{{ route('member.dashboard') }}">Kelas
+                                                Saya</a>
+                                        </div>
+                                        <div class="col-sm-12 ps-0 pl-1 mb-1">
+                                            <a
+                                                href="{{ route('member.transaction') }}">Transaksi
+                                                Saya</a>
+                                        </div>
+                                        <div class="col-sm-12 ps-0 pl-1 mb-1 pb-1 border-bottom">
+                                            <a
+                                                href="{{ route('member.setting') }}">Pengaturan</a>
+                                        </div>
                                         @endif
-                                        <li class="mt-2">
-                                            <a class="dropdown-item" href="{{ route('member.logout') }}"
+                                        <div class="col-sm-12 ps-0 pl-1">
+                                            <a href="{{ route('member.logout') }}"
                                                 id="logout-btn">Logout</a>
-                                        </li>
+                                        </div>
+                                        </div>
                                     </ul>
 
                                 </div>

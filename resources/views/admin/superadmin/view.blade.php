@@ -13,8 +13,7 @@
 
             <div class="col-12 col-lg-9 ps-xl-3 d-flex justify-content-center" style="height: 600px">
                 <div class="table-responsive shadow-lg rounded-3 p-3 w-100" style="background-color: #ffffff;">
-                    <a href="{{ route('admin.superadmin.create') }}" class="btn"
-                        style="background-color: #faa907; color: white; border-radius: 10px; padding: 6px 10px;">Tambahkan
+                    <a href="{{ route('admin.superadmin.create') }}" class="tambah-data">Tambahkan
                         Data</a>
                     <table class=" table table-bordered table-striped shadow-none mb-0" id="tablesContent">
                         <thead class="table-dark">
