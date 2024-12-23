@@ -131,11 +131,13 @@
                                         </span>
                                         @if (Auth::user()->avatar != null)
                                             <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}"
-                                                class="rounded-5 ms-1" style="width: 42px; height: 42px;"
+                                                class="rounded-5 ms-1" 
+                                                style="width: 42px; height: 42px; object-fit: cover;" 
                                                 id="img-profile">
                                         @else
                                             <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}"
-                                                class="rounded-5 ms-1" style="width: 42px; height: 42px;"
+                                                class="rounded-5 ms-1" 
+                                                style="width: 42px; height: 42px; object-fit: cover;" 
                                                 id="img-profile">
                                         @endif
                                     </button>
