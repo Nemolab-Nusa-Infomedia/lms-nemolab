@@ -3,20 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
+
 use App\Models\User;
+use App\Models\CompleteEpisodeCourse;
+use App\Models\MyListCourse;
+use Symfony\Component\Console\Command\CompleteCommand;
 
 class AdminStudentController extends Controller
 {
     public function index(Request $request)
     {
-        $perPage = $request->get('entries', 10);
-        $students = User::where('role', 'students')->paginate($perPage);
-        return view('admin.member.view', [
-            'students' => $students
-        ]);
+        $students = User::where('role', 'students')->get();
+        return view('admin.member.view', compact('students'));
     }
 
     public function create()
@@ -28,75 +31,72 @@ class AdminStudentController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8',
+            'profession' => 'required|string|max:255',
         ]);
 
         User::create([
             'name' => $request->name,
-            'username' => $request->name,
-            'avatar' => 'default.png',
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'role' => 'students',
+            'profession' => $request->profession,
         ]);
 
-        Alert::success('Success', 'Data Member Berhasil Di Buat');
-        return redirect()->route('admin.member');
+        Alert::success('Success', 'Data Member Berhasil Dibuat');
+        return redirect()->route('admin.student');
     }
 
-    public function edit($id)
+    public function edit(Request $requests)
     {
-        $student = User::findOrFail($id);
-        return view('admin.member.edit', compact('student'));
+        $id = $requests->query('id');
+        $student =  User::where('id', $id)->first();
+        return view('admin.member.update', compact('student'));
     }
 
     public function update(Request $request, $id)
     {
+        $student =  User::where('id', $id)->first();
+
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'password' => 'nullable|string|min:8',
+            'email' => 'required|email|max:255|unique:users,email,' . $student->id,
+            'password' => 'nullable|string|min:8|confirmed',
+            'profession' => 'nullable|string|max:255',
         ]);
 
-        $student = User::where('id', $id)->first();
-        $student->name = $request->name;
-        $student->username = $request->name;
-        $student->email = $request->email;
-        if ($request->password) {
-            $student->password = bcrypt($request->password);
-        }
-        
-        $student->save();
+        $student->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'profession' => $request->profession,
+            'password' => $request->filled('password') ? Hash::make($request->password) : $student->password,
+        ]);
 
-        Alert::success('Success', 'Data Member Berhasil Di Update');
-        return redirect()->route('admin.member');
+        Alert::success('Success', 'Data Member Berhasil Diupdate');
+        return redirect()->route('admin.student');
     }
 
-    public function destroy($id)
+    public function delete(Request $requests)
     {
+        $id = $requests->query('id');
         $student = User::where('id', $id)->first();
-    
-        if ($student->avatar) {
+
+        if ($student->avatar && $student->avatar !== 'null') {
             $avatarPath = 'public/images/avatars/' . $student->avatar;
-            
             if (Storage::exists($avatarPath)) {
-                if (Storage::delete($avatarPath)) {
-                    $message = 'Student and avatar deleted successfully';
-                } else {
-                    return response()->json([
-                        'message' => 'Failed to delete avatar'
-                    ], 500);
-                }
-            } else {
-                $message = 'Student deleted successfully, but avatar does not exist';
+                Storage::delete($avatarPath);
             }
-        } else {
-            $message = 'Student deleted successfully';
         }
-    
+
+
+        Transaction::where('user_id', $student->id)->delete();
+        MyListCourse::where('user_id', $student->id)->delete();
+        CompleteEpisodeCourse::where('user_id', $student->id)->delete();
         $student->delete();
-        Alert::success('Success', 'Data Member Berhasil Di Hapus');
-        return redirect()->route('admin.member');
+
+
+        Alert::success('Success', 'Data Member Berhasil Dihapus');
+        return redirect()->route('admin.student');
     }
 }
