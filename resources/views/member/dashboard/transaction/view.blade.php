@@ -89,16 +89,25 @@
                                     </div>
                                     <div class="aksi d-flex mt-1 justify-content-end d-md-none">
                                         @if ($transaction->status === 'pending')
-                                            <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
-                                                class="d-flex gap-2" method="POST"
-                                                onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Batalkan
-                                                    Pembelian</button>
-                                                <a href="{{ route('member.transaction.view-transaction', $transaction->transaction_code) }}"
-                                                    class="btn btn-primary">Bayar</a>
-                                            </form>
+                                            <div class="d-flex gap-2">
+                                                <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
+                                                    method="POST"
+                                                    onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">Batalkan
+                                                        Pembelian</button>
+                                                </form>
+                                                <form action="{{ route('member.transaction.store') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="course_id" value="{{ $transaction->course_id }}">
+                                                    <input type="hidden" name="ebook_id" value="{{ $transaction->ebook_id }}">
+                                                    <input type="hidden" name="bundle_id" value="{{ $transaction->bundle_id }}">
+                                                    <input type="hidden" name="price" value="{{ $transaction->price }}">
+                                                    <input type="hidden" name="termsCheck" value="1">
+                                                    <button type="submit" class="btn btn-primary">Bayar</button>
+                                                </form>
+                                            </div>
                                         @elseif ($transaction->status === 'failed')
                                             <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
                                                 method="POST"
@@ -116,15 +125,24 @@
                                 </div>
                                 <div class="action d-none d-md-block">
                                     @if ($transaction->status === 'pending')
-                                        <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
-                                            class="d-flex gap-2" method="POST"
-                                            onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Batalkan Pembelian</button>
-                                            <a href="{{ route('member.transaction.view-transaction', $transaction->transaction_code) }}"
-                                                class="btn btn-primary">Bayar</a>
-                                        </form>
+                                        <div class="d-flex gap-2">
+                                            <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">Batalkan Pembelian</button>
+                                            </form>
+                                            <form action="{{ route('member.transaction.store') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="course_id" value="{{ $transaction->course_id }}">
+                                                <input type="hidden" name="ebook_id" value="{{ $transaction->ebook_id }}">
+                                                <input type="hidden" name="bundle_id" value="{{ $transaction->bundle_id }}">
+                                                <input type="hidden" name="price" value="{{ $transaction->price }}">
+                                                <input type="hidden" name="termsCheck" value="1">
+                                                <button type="submit" class="btn btn-primary">Bayar</button>
+                                            </form>
+                                        </div>
                                     @elseif ($transaction->status === 'failed')
                                         <form action="{{ route('member.transaction.cancel', $transaction->id) }}"
                                             method="POST"
@@ -142,17 +160,6 @@
                             </div>
                         </div>
                     @endforeach
-
-
-                    <!-- Button for Load More -->
-                    {{-- <div class="btn-more mt-lg-5 d-flex justify-content-center">
-                        <button class="btn btn-primary d-inline-flex align-items-center">
-                            Tampilkan Lebih Banyak
-                            <span class="d-flex align-items-center">
-                                <box-icon name='chevron-down' color="#414142"></box-icon>
-                            </span>
-                        </button>
-                    </div> --}}
                 </div>
             </div>
         </div>
