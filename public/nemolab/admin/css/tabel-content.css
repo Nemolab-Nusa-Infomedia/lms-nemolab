@@ -103,10 +103,12 @@ tr {
     padding: 0;
     margin: 0;
     text-align: center;
-    height: 50px;
+    width: auto;
 }
 
 table {
+    table-layout: auto;
+    width: auto;
     border-collapse: collapse;
     border-spacing: 0;
 }
@@ -146,11 +148,28 @@ label {
     align-items: center;
 }
 
+.dt-length label{
+    gap: 5px;
+}
+
 .dt-search {
     display: flex !important;
     justify-content: center;
     align-items: center;
     margin-top: 6px;
+    gap: 5px;
+}
+
+select:focus {
+    border: var(--bs-border-width) solid var(--c-brand) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input:focus {
+    border: var(--bs-border-width) solid var(--c-brand) !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 #tablesContent_wrapper {
