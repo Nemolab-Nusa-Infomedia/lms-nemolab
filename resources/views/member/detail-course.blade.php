@@ -59,7 +59,7 @@
                     @endif
                 </div>
             </div>
-            <div class="detail-courses mt-5 shadow-sm">
+            <div class="detail-courses mt-5">
                 <div class="card">
                     <div class="card-header p-0">
                         <h5 class="m-0">Detail</h5>
@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </div>
-            <div class="description-courses mt-5 shadow-sm">
+            <div class="description-courses mt-5">
                 <div class="card">
                     <div class="card-header p-0">
                         <h5 class="m-0">Deskripsi Kursus</h5>
@@ -114,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tools-courses mt-5 shadow-sm">
+            <div class="tools-courses mt-5">
                 <div class="card">
                     <div class="card-header p-0">
                         <h5 class="m-0">Tools</h5>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
             </div>
-            <div class="testimoni mt-3" id="testimoni" data-aos="fade-up">
+            {{-- <div class="testimoni mt-3" id="testimoni" data-aos="fade-up">
                 <div class="container-fluid">
                 @if ($reviews->isNotEmpty())
                     <h5>Testimoni</h5>
@@ -194,7 +194,7 @@
                     </div>
                     @endif
                 </div>
-            </div>
+            </div> --}}
     </section>
 @endsection
 @push('addon-script')

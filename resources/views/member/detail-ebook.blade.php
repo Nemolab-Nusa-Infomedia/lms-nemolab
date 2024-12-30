@@ -20,7 +20,7 @@
                 <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" alt="" class="img-fluid" width="900" height="800" style="border-radius: 15px; object-fit: cover">
                 @endif
             </div>
-            <div class="detail-courses mt-5 shadow-sm">
+            <div class="detail-courses mt-5">
                 <div class="card">
                     <div class="card-header p-0">
                         <h5 class="m-0">Detail</h5>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            <div class="description-courses mt-5 shadow-sm">
+            <div class="description-courses mt-5">
                 <div class="card">
                     <div class="card-header p-0">
                         <h5 class="m-0">Deskripsi Kursus</h5>
