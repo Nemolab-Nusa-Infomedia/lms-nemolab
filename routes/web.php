@@ -100,7 +100,7 @@ Route::middleware('maintenance.middleware')->group(function () {
 
             Route::view('change-email', 'member.dashboard.setting.edit-email')->name('member.setting.change-email');
             Route::put('change-email/updated', [MemberSettingController::class, 'updateEmail'])->name('member.setting.change-email.updated');
-            
+
             Route::view('verifikasi-password', 'member.dashboard.setting.verifikasi-password')->name('member.setting.verifikasi-password');
 
             Route::view('reset-password', 'member.dashboard.setting.edit-password')->name('member.setting.reset-password');
@@ -108,7 +108,7 @@ Route::middleware('maintenance.middleware')->group(function () {
         });
 
         // My transaction
-        Route::prefix('transaction')->group(function () {
+        Route::prefix('transaction')->middleware(['students', 'verified'])->group(function () {
             Route::get('/', [MemberTransactionController::class, 'index'])->name('member.transaction');
             Route::delete('/cancel/{id}', [MemberTransactionController::class, 'cancel'])->name('member.transaction.cancel');
             Route::get('/detail/{transaction_code}', [MemberTransactionController::class, 'show'])->name('member.transaction.view-transaction');
