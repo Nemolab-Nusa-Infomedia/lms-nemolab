@@ -46,8 +46,8 @@
                                     class="{{ request('filter') == 'ebook' ? 'active' : '' }}">E-Book</a></li>
                         </ul>
                     </div>
-                    <div class=" mt-4 @if ($coursesData->isEmpty() && $ebooksData->isEmpty()) courses-scroll @endif">
-                        @if ($coursesData->isEmpty() && $ebooksData->isEmpty())
+                    <div class=" mt-4 courses-scroll">
+                        {{-- @if ($coursesData->isEmpty() && $ebooksData->isEmpty())
                             <div class="col-md-12 d-flex justify-content-center align-items-center">
                                 <div class="not-found text-center">
                                     <img src="{{ asset('nemolab/member/img/search-not-found.png') }}"
@@ -148,7 +148,12 @@
                                     </div>
                                 </a>
                             @endif
-                        @endforeach
+                        @endforeach --}}
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border my-4" id="sentinel"role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,5 +162,139 @@
     @include('components.includes.member.sidebar-dashboard-mobile')
 @endsection
 @push('addon-script')
-    <script src="{{ asset('nemolab/member/js/scroll-dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('nemolab/member/js/scroll-dashboard.js') }}"></script> --}}
+    <script>
+        let loading = false;
+        let lastBookId = null;
+        let lastCourseId = null;
+        let hasMore = true;
+
+        // Mendapatkan elemen grid container
+        const gridContainer = document.querySelector('.courses-scroll');
+        // Mendapatkan nilai grid-template-columns
+        const gridTemplateColumns = window.getComputedStyle(gridContainer).getPropertyValue(
+            'grid-template-columns');
+        // Menghitung jumlah kolom
+        const totalColumns = gridTemplateColumns.split(' ').length;
+
+        function loadMoreContent() {
+            if (loading || !hasMore) return;
+
+            loading = true;
+            const urlParams = new URLSearchParams(window.location.search);
+            const filter = urlParams.get('filter');
+
+            fetch(`${window.location.pathname}?${new URLSearchParams({
+                'filter': filter,
+                'lastBookId': lastBookId,
+                'lastCourseId': lastCourseId,
+                'itemsPerRow': totalColumns,
+            })}`, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            }).then(response => response.json()).then(response => {
+                const container = document.querySelector('.courses-scroll');
+                hasMore = response.hasMore;
+
+                console.log(response)
+
+                if (Array.isArray(response.data)) {
+                    response.data.forEach(item => {
+                        const itemHtml = createItemHtml(item);
+                        container.insertAdjacentHTML('beforeend', itemHtml);
+                    });
+
+                    if (!hasMore && lastCourseId == null && response.data.length < totalColumns) {
+                        document.querySelector('.courses-scroll')
+                            .style.gridTemplateColumns = 'repeat(auto-fit, minmax(250px, 280px))';
+                    }
+                } else if (lastCourseId == null) {
+                    container.insertAdjacentHTML(
+                        'beforeend',
+                        `<div class="col-md-12 d-flex justify-content-center align-items-center">
+                            <div class="not-found text-center">
+                                <img src="{{ asset('nemolab/member/img/search-not-found.png') }}"
+                                    class="logo-not-found w-50 h-50" alt="Not Found">
+                                <p class="mt-3">Kelas Tidak Tersedia</p>
+                            </div>
+                        </div>`
+                    );
+                }
+
+                lastBookId = response.lastBookId;
+                lastCourseId = response.lastCourseId;
+                document.querySelector('#sentinel').style.display = hasMore ? 'block' : 'none';
+                loading = false;
+            }).catch(error => {
+                console.error('Error:', error);
+                loading = false;
+            });
+        }
+
+        function createItemHtml(item) {
+
+            return `
+                <a href="{{ route('member.course.join', '') }}/${item.slug}" class="card">
+                    ${item.cover !=null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}"" class="card-img-top d-none d-sm-block" alt="...">` : `<img  src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-none d-sm-block" alt="...">` }
+                    <div class="card-body">
+                        <div>
+                            ${item.cover !=null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}" alt="..." style="height: 40px;width: 60px; border-radius: 5px;" class="d-block d-sm-none">` : `<img  src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" alt="..." style="height: 40px;width: 60px; border-radius: 5px;" class="d-block d-sm-none">` }
+                        </div>
+                        <div class="title-card">
+                            <p>${item.category}</p>
+                            <h5 class="fw-bold truncate-text" style="">${item.name}</h5>
+                        </div>
+                        <p class="tipe" style="color: #666666">${item.product_type} ${item.type}</p>
+                        <div
+                            class="btn-group-harga d-flex justify-content-between align-items-center gap-1 gap-md-0">
+                            ${item.type == 'free' ? '' : 
+                                `<div class="harga d-block">
+                                                        <p class="p-0 m-0 ">Status: <br class="d-none d-sm-block"><span
+                                                                style="color: #666666">${item.status}</span></p>
+                                                    </div>`
+                            }
+                            <div class="harga d-block">
+                                    <p class="p-0 m-0">Bergabung: <br class="d-none d-sm-block">
+                                        <span
+                                            style="color: #666666">${formatDate(item.mylist[0].created_at)}</span>
+                                    </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const locale = navigator.language; // Mendapatkan locale dari perangkat pengguna
+            const options = {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+            };
+            return date.toLocaleString(locale, options).replace(/ /g, '-').replace(',', '');
+        }
+
+        // Intersection Observer untuk infinite scroll
+        const observer = new IntersectionObserver((entries) => {
+            console.log('fetch')
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadMoreContent();
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        // Mengamati elemen sentinel
+        const sentinel = document.querySelector('#sentinel');
+        if (sentinel) {
+            observer.observe(sentinel);
+        }
+
+        // loadMoreContent();
+    </script>
 @endpush

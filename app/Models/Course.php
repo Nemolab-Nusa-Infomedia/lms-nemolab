@@ -72,5 +72,9 @@ class Course extends Model
     {
         return $this->hasMany(CourseEbook::class, 'course_id');
     }
+
+    public function mylist(){
+        return $this->hasMany(MyListCourse::class, 'course_id', 'id');
+    }
 }
 
