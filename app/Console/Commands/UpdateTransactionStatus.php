@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\MyListCourse;
 use App\Models\Transaction;
 
 use Illuminate\Console\Command;
@@ -69,8 +70,11 @@ class UpdateTransactionStatus extends Command
                     $status = 'failed';
                     break;
             }
+
+            Transaction::where('id', $transaction->id)->update(['status' => $status]);
             
-            Transaction::where('id', $transaction->id)->update(['status' => $status,]);
+            $transaction = Transaction::where('id', $transaction->id)->first();
+            MyListCourse::create(['user_id' => $transaction->user_id, 'course_id' => $transaction->course_id, 'ebook_id' => $transaction->ebook_id]);
         }
     }
 }
