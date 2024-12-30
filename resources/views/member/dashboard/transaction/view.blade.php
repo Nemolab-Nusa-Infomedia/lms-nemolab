@@ -52,9 +52,9 @@
                                     $coverPath = asset('storage/images/covers/' . $transaction->bundle->course->cover);
                                 }
                             @endphp
-                            <img alt="Product image" src="{{ $coverPath }}" height="80" width="120" class="cover me-3" style="object-fit: cover" />
+                            <img alt="Product image" src="{{ $coverPath }}" height="80" width="120" class="cover me-3" style="object-fit: cover;" />                          
                             <div class="details">
-                                <p class="title" >{{ $transaction->name }}</p>
+                                <p class="title fw-bold" >{{ $transaction->name }}</p>
                                     @if ($transaction->price == 0)
                                         <p class="Premium">
                                             @if ($transaction->bundle && $transaction->bundle->course)
@@ -78,15 +78,23 @@
                                             Premium
                                         </p>
                                     @endif
-                                    <div class="info mt-2 d-flex">
-                                        <p class="price">Harga: Rp. {{ number_format($transaction->price, 0, ',', '.') }}</p>
-                                        <p class="date">Tanggal: {{ $transaction->created_at->format('d-M-Y') }}</p>
-                                        <p class="status">Status:</p>
-                                        <p class="status-info"
-                                            style="color: {{ $transaction->status === 'success' ? 'green' : ($transaction->status === 'pending' ? 'orange' : 'red') }};">
-                                            {{ ucfirst($transaction->status) }}
-                                        </p>
-                                    </div>
+                                    <div class="info mt-2 row">
+                                        <div class="col-auto">
+                                            <p class="price fw-bold">Harga: Rp. {{ number_format($transaction->price, 0, ',', '.') }}</p>
+                                        </div>
+                                        <div class="col-auto">
+                                            <p class="date fw-bold">Tanggal: {{ $transaction->created_at->format('d-M-Y') }}</p>
+                                        </div>
+                                        <div class="col-auto">
+                                            <p class="status fw-bold">
+                                                Status: 
+                                                <span class="status-info"
+                                                      style="color: {{ $transaction->status === 'success' ? 'green' : ($transaction->status === 'pending' ? 'orange' : 'red') }};">
+                                                    {{ ucfirst($transaction->status) }}
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>                                                                                                                                             
                                     <div class="aksi d-flex mt-1 justify-content-end d-md-none">
                                         @if ($transaction->status === 'pending')
                                             <div class="d-flex gap-2">
@@ -95,7 +103,7 @@
                                                     onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">Batalkan
+                                                    <button type="submit" class="btn btn-danger">Batalkan
                                                         Pembelian</button>
                                                 </form>
                                                 <form action="{{ route('member.transaction.store') }}" method="POST">
@@ -114,7 +122,7 @@
                                                 onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Hapus
+                                                <button type="submit" class="btn btn-danger">Hapus
                                                     Transaksi</button>
                                             </form>
                                         @else
@@ -131,7 +139,7 @@
                                                 onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">Batalkan Pembelian</button>
+                                                <button type="submit" class="btn btn-danger">Batalkan Pembelian</button>
                                             </form>
                                             <form action="{{ route('member.transaction.store') }}" method="POST">
                                                 @csrf
@@ -149,7 +157,7 @@
                                             onsubmit="return confirm('Apa anda yakin ingin membatalkan transaksi?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm">Hapus Transaksi</button>
+                                            <button type="submit" class="btn btn-danger">Hapus Transaksi</button>
                                         </form>
                                     @else
                                         <a
