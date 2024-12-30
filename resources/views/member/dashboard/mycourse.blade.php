@@ -47,108 +47,6 @@
                         </ul>
                     </div>
                     <div class=" mt-4 courses-scroll">
-                        {{-- @if ($coursesData->isEmpty() && $ebooksData->isEmpty())
-                            <div class="col-md-12 d-flex justify-content-center align-items-center">
-                                <div class="not-found text-center">
-                                    <img src="{{ asset('nemolab/member/img/search-not-found.png') }}"
-                                        class="logo-not-found w-50 h-50" alt="Not Found">
-                                    <p class="mt-3">Kelas Tidak Tersedia</p>
-                                </div>
-                            </div>
-                        @endif
-                        @foreach ($coursesData as $course)
-                            @if ($course->transactions->isNotEmpty())
-                                <a href="{{ route('member.course.join', $course->slug) }}" class="card">
-                                    @if ($course->cover != null)
-                                        <img src="{{ asset('storage/images/covers/' . $course->cover) }}"
-                                            class="card-img-top d-none d-sm-block" alt="...">
-                                    @else
-                                        <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}"
-                                            class="card-img-top d-none d-sm-block" alt="...">
-                                    @endif
-                                    <div class="card-body">
-                                        <div>
-                                            @if ($course->cover != null)
-                                                <img src="{{ asset('storage/images/covers/' . $course->cover) }}"
-                                                    alt="..." style="height: 40px;width: 60px; border-radius: 5px;"
-                                                    class="d-block d-sm-none">
-                                            @else
-                                                <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" alt="..."
-                                                    style="height: 40px;width: 60px; border-radius: 5px;"
-                                                    class="d-block d-sm-none">
-                                            @endif
-                                        </div>
-                                        <div class="title-card">
-                                            <p>{{ $course->category }}</p>
-                                            <h5 class="fw-bold truncate-text" style="">{{ $course->name }}</h5>
-                                        </div>
-                                        <p class="tipe" style="color: #666666">Kelas {{ $course->type }}</p>
-                                        <div
-                                            class="btn-group-harga d-flex justify-content-between align-items-center gap-1 gap-md-0">
-                                            <div class="harga d-block">
-                                                <p class="p-0 m-0 ">Status: <br class="d-none d-sm-block"><span
-                                                        style="color: #666666">{{ $course->status }}</span></p>
-                                            </div>
-                                            <div class="harga d-block">
-                                                @if ($course->transaction)
-                                                    <p class="p-0 m-0">Bergabung: <br class="d-none d-sm-block">
-                                                        <span
-                                                            style="color: #666666">{{ $course->transaction->created_at->format('d-M-Y') }}</span>
-                                                    </p>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endif
-                        @endforeach
-
-
-                        @foreach ($ebooksData as $ebook)
-                            @if ($ebook->transactions->isNotEmpty())
-                                <a href="{{ route('member.ebook.join', $ebook->slug) }}"
-                                    class="col-md-4 d-flex justify-content-center mt-1 pb-3 text-decoration-none">
-                                    <div class="card">
-                                        @if ($ebook->cover != null)
-                                            <img src="{{ asset('storage/images/covers/' . $ebook->cover) }}"
-                                                class="card-img-top d-none d-sm-block" alt="...">
-                                        @else
-                                            <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}"
-                                                class="card-img-top d-none d-sm-block" alt="...">
-                                        @endif
-                                        <div class="card-body">
-                                            <div>
-                                                @if ($ebook->cover != null)
-                                                    <img src="{{ asset('storage/images/covers/' . $ebook->cover) }}"
-                                                        alt="..." style="height: 40px;width: 60px; border-radius: 5px;"
-                                                        class="d-block d-sm-none">
-                                                @else
-                                                    <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}"
-                                                        alt="..." style="height: 40px;width: 60px; border-radius: 5px;"
-                                                        class="d-block d-sm-none">
-                                                @endif
-                                            </div>
-                                            <div>
-                                                <div class="title-card">
-                                                    <p class="fw-bold truncate-text">{{ $ebook->name }}</p>
-                                                    <p class="tipe" style="color: #666666">E-Book {{ $ebook->type }}</p>
-                                                </div>
-                                                <div
-                                                    class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3 gap-1 gap-md-0">
-                                                    <div class="harga d-block">
-                                                        @if ($ebook->transaction)
-                                                            <p>Bergabung: <span
-                                                                    style="color: #666666">{{ $ebook->transaction->created_at->format('d-M-Y') }}</span>
-                                                            </p>
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endif
-                        @endforeach --}}
                     </div>
                     <div class="d-flex justify-content-center">
                         <div class="spinner-border my-4" id="sentinel"role="status">
@@ -162,7 +60,6 @@
     @include('components.includes.member.sidebar-dashboard-mobile')
 @endsection
 @push('addon-script')
-    {{-- <script src="{{ asset('nemolab/member/js/scroll-dashboard.js') }}"></script> --}}
     <script>
         let loading = false;
         let lastBookId = null;
@@ -196,8 +93,6 @@
             }).then(response => response.json()).then(response => {
                 const container = document.querySelector('.courses-scroll');
                 hasMore = response.hasMore;
-
-                console.log(response)
 
                 if (Array.isArray(response.data)) {
                     response.data.forEach(item => {
@@ -250,9 +145,9 @@
                             class="btn-group-harga d-flex justify-content-between align-items-center gap-1 gap-md-0">
                             ${item.type == 'free' ? '' : 
                                 `<div class="harga d-block">
-                                                        <p class="p-0 m-0 ">Status: <br class="d-none d-sm-block"><span
-                                                                style="color: #666666">${item.status}</span></p>
-                                                    </div>`
+                                    <p class="p-0 m-0 ">Status: <br class="d-none d-sm-block"><span
+                                            style="color: #666666">${item.status}</span></p>
+                                </div>`
                             }
                             <div class="harga d-block">
                                     <p class="p-0 m-0">Bergabung: <br class="d-none d-sm-block">
@@ -279,7 +174,6 @@
 
         // Intersection Observer untuk infinite scroll
         const observer = new IntersectionObserver((entries) => {
-            console.log('fetch')
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     loadMoreContent();
@@ -297,4 +191,5 @@
 
         // loadMoreContent();
     </script>
+    <script src="{{ asset('nemolab/member/js/scroll-dashboard.js') }}"></script>
 @endpush
