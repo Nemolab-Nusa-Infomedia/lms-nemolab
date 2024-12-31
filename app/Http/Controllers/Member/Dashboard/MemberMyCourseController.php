@@ -26,7 +26,7 @@ class MemberMyCourseController extends Controller
 
             $filter = $request->input('filter') == "null" ? null : $request->input('filter');
 
-            $itemsPerRow = $request->input('requestTotal') == false ? 1 : $request->input('requestTotal');
+            $itemsPerRow = $request->input('itemsPerRow') == false ? 1 : $request->input('itemsPerRow');
             $rowsToLoad = 10;
             $perLoad = $itemsPerRow * $rowsToLoad;
 
@@ -44,7 +44,7 @@ class MemberMyCourseController extends Controller
             $courseIds = $courseQuery->get('course_id');
 
             $ebookIds = $ebookQuery->get('ebook_id');
-            // return response()->json( $courseIds);
+            // return response()->json( $perLoad);
 
             $coursesQuery = Course::whereIn('id', $courseIds)->with('mylist')->orderBy('id', 'DESC');
             $ebooksQuery = Ebook::whereIn('id', $ebookIds)->with('mylist')->orderBy('id', 'DESC');

@@ -34,7 +34,7 @@ function elementFollowScroll(object, sectionContainer, topMargin, stopOn = false
 $(document).ready(function() {
     // Initialize sidebar sticky only if the window width is greater than 962 pixels
     const sidebar = $(".sidebar");
-    const sectionContainer = $(".col-md-3");
+    const sectionContainer = $(".scroll-parent");
     const topMargin = 90;
     const footer = $("footer"); 
     

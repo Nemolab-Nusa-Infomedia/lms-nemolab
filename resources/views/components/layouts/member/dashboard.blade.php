@@ -33,6 +33,8 @@
 
     @if (!View::hasSection('hide_footer'))
         @include('components.includes.member.footer')
+    @else
+        <footer class="footer" id="footer" style="height: 0 !important; margin: 0 !important; padding: 0 !important;"></footer>
     @endif
 
     {{-- include sweetalert --}}

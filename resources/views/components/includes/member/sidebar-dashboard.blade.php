@@ -1,4 +1,4 @@
-<div class="col-md-4 col-xl-3 d-none d-lg-block p-0">
+<div class="col-md-4 col-xl-3 d-none d-lg-block p-0 scroll-parent">
     <div class="col-md-9 ms-5">
         <div class="sidebar" id="sidebar">
             <div class="profile">
