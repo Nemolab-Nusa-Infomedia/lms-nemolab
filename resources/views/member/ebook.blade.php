@@ -68,10 +68,10 @@
                 </div>
             </div>
             <div class="col-12 mt-2 d-flex justify-content-between">
-                <a href="{{ route('member.ebook.detail' , $ebook->slug) }}" class="btn btn-secondary flex-grow-1 me-2" style="background-color: #414142 !important;">Detail E-Book</a>
-                @if (!$checkReview)
+                <a href="{{ route('member.ebook.detail' , $ebook->slug) }}" class="btn btn-primary flex-grow-1 me-2">Detail E-Book</a>
+                {{-- @if (!$checkReview)
                 <a href="{{ route('member.review.ebook' , $ebook->slug) }}" class="btn btn-primary flex-grow-1">Berikan Komentar</a>
-                @endif
+                @endif --}}
             </div>
         </div>
     </div>

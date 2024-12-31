@@ -189,6 +189,14 @@ main #detail-course-section .container .tools-courses .card {
     border: none;
 }
 
+main #detail-course-section .container .tools-courses .card-tools {
+    background-color: white;
+    max-width: fit-content;
+    padding: 20px;
+    box-shadow: 0 4px 4px 0 #00000040;
+    border: none;
+}
+
 main #detail-course-section .container .tools-courses .card .card-header,
 main #detail-course-section .container .tools-courses .card .card-body {
     background-color: transparent;

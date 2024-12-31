@@ -115,7 +115,7 @@
                 </div>
             </div>
             <div class="tools-courses mt-5">
-                <div class="card">
+                <div class="card card-tools">
                     <div class="card-header p-0">
                         <h5 class="m-0">Tools</h5>
                     </div>
@@ -123,7 +123,7 @@
                         <div class="row">
                             @foreach ($coursetools->tools as $tool)
                                 <a href="{{ $tool->link }}"
-                                    class="col-6 col-sm-2 tools-group d-flex justify-content-center align-items-center flex-column text-center" style=" height: 100%;">
+                                    class="col-auto me-2 tools-group justify-content-center align-items-center flex-column text-center" style=" height: 100%;">
                                     <img src="{{ asset('storage/images/logoTools/' . $tool->logo_tools) }}" alt=""
                                         width="50px" height="50px">
                                     <p class="tool-name m-0 p-0 pt-1">{{ $tool->name_tools }}</p>
