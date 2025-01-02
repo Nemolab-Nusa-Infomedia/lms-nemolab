@@ -117,9 +117,6 @@ input[type="radio"]:checked + label span {
 } */
 
 /* General Styling */
-.mobile-filter {
-    background-color: var(--lavender);
-}
 
 /* Search Input and Button Styling */
 .search {
@@ -168,12 +165,14 @@ input[type="radio"]:checked + label span {
     }
 
     .sidebar.show-sidebar {
-        transform: translateX(0);
+        transform: translateX(4%);
     }
 }
 
 @media (max-width: 767px) {
     .sidebar {
-        width: 80%;
+        width: fit-content;
+        height: fit-content;
+        translate: 0 -30px;
     }
 }
