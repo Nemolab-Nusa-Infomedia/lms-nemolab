@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="testimoni mt-3" id="testimoni" data-aos="fade-up">
+            {{-- <div class="testimoni mt-3" id="testimoni" data-aos="fade-up">
                 <div class="container-fluid">
                 @if ($reviews->isNotEmpty())
                     <h5>Testimoni</h5>
@@ -130,7 +130,7 @@
                     </div>
                     @endif
                 </div>
-            </div>
+            </div> --}}
     </section>
 @endsection
 @push('addon-script')

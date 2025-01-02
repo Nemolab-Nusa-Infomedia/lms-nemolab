@@ -235,7 +235,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="testimoni" id="testimoni" data-aos="fade-up">
+                    {{-- <div class="testimoni" id="testimoni" data-aos="fade-up">
                         <div class="container-fluid">
                             @if ($reviews->isNotEmpty())
                             <h5>Testimoni</h5>
@@ -296,7 +296,7 @@
                             </div>
                             @endif
                         </div>
-                    </div>
+                    </div> --}}
                     
                 </div>
     
