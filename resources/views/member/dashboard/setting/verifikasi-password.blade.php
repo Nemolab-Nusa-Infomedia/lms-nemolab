@@ -39,7 +39,7 @@
                     <div class="card profile-card h-100">
                         <div class="card-body d-flex flex-column align-items-center justify-content-between">
                             <div class="d-flex align-items-center align-self-start mb-3">
-                                <a href="{{ route('member.setting') }}" class="btn-back">
+                                <a href="{{ route('member.setting.reset-password') }}" class="btn-back">
                                     <img src="{{ asset('nemolab/member/img/icon/arrow.png') }}" alt="Back"
                                         class="back-icon btn-costum">
                                 </a>

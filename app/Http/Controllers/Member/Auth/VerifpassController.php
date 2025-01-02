@@ -13,13 +13,13 @@ use App\Notifications\CustomVerifyEmailNotification;
 
 class VerifpassController extends Controller
 {
-    public function index()
-    {
-        $user = User::find(Auth::user()->id);
-        $user->notify(new CustomVerifyEmailNotification(true)); // true for password verification
-        Alert::success('Success', 'Berhasil Mengirimkan PIN Verifikasi');
-        return redirect()->route('member.setting.verifikasi-password');
-    }
+    // public function index()
+    // {
+    //     $user = User::find(Auth::user()->id);
+    //     $user->notify(new CustomVerifyEmailNotification(true)); // true for password verification
+    //     Alert::success('Success', 'Berhasil Mengirimkan PIN Verifikasi');
+    //     return redirect()->route('member.setting.verifikasi-password');
+    // }
 
     public function resend(Request $requests)
     {
@@ -50,8 +50,8 @@ class VerifpassController extends Controller
             $user->pin_expires_at = null; // Clear expiration timestamp
             $user->save();
 
-            Alert::success('Success', 'Akun Anda Berhasil Terverifikasi');
-            return redirect()->route('member.setting.reset-password');
+            Alert::success('Berhasil!', 'Kata sandi Anda berhasil diperbarui.');
+            return redirect()->route('member.setting');
         }
 
         Alert::error('Error', 'PIN Verifikasi Tidak Valid');
