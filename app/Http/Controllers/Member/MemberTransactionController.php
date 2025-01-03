@@ -8,20 +8,21 @@ use App\Models\detailTransactions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
-
 use App\Models\Transaction;
-
-
 
 class MemberTransactionController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->ajax()){
-
-            $status = $request->input('status');
+        if($request->ajax()) {
+            $status = $request->input('status') == "null" ? null : $request->input('status');
+            $lastId = $request->input('lastId') == "null" ? null : $request->input('lastId');
             
-            $transactions = Transaction::with([
+            $itemsPerRow = $request->input('itemsPerRow') == false ? 1 : $request->input('itemsPerRow');
+            $rowsToLoad = 10;
+            $perLoad = $itemsPerRow * $rowsToLoad;
+
+            $query = Transaction::with([
                 'course' => function ($query) {
                     $query->select('id', 'name', 'cover', 'price');
                 },
@@ -31,18 +32,29 @@ class MemberTransactionController extends Controller
                 'bundle.course' => function ($query) {
                     $query->select('id', 'name', 'cover', 'price');
                 }
-                ])
-                ->where('user_id', Auth::id())
-                ->when($status, function ($query, $status) {
-                    return $query->where('status', $status);
-                })
-                ->orderBy('created_at', 'desc')
-                ->get();
+            ])
+            ->where('user_id', Auth::id())
+            ->when($status, function ($query, $status) {
+                return $query->where('status', $status);
+            })
+            ->orderBy('created_at', 'desc');
+
+            if ($lastId) {
+                $query->where('id', '<', $lastId);
             }
 
-        return view('member.dashboard.transaction.view'
-        // , compact('transactions', 'status')
-        );
+            $transactions = $query->limit($perLoad)->get();
+
+            $lastId = $transactions->last() ? $transactions->last()->id : null;
+
+            return response()->json([
+                'data' => $transactions,
+                'hasMore' => $transactions->count() >= $perLoad,
+                'lastId' => $lastId
+            ]);
+        }
+
+        return view('member.dashboard.transaction.view');
     }
 
     public function show(Request $requests, $transaction_code)
