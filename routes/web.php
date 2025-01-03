@@ -100,7 +100,7 @@ Route::middleware('maintenance.middleware')->group(function () {
 
             Route::view('change-email', 'member.dashboard.setting.edit-email')->name('member.setting.change-email');
             Route::put('change-email/updated', [MemberSettingController::class, 'updateEmail'])->name('member.setting.change-email.updated');
-            
+
             Route::view('verifikasi-password', 'member.dashboard.setting.verifikasi-password')->name('member.setting.verifikasi-password');
 
             Route::view('reset-password', 'member.dashboard.setting.edit-password')->name('member.setting.reset-password');
@@ -108,7 +108,7 @@ Route::middleware('maintenance.middleware')->group(function () {
         });
 
         // My transaction
-        Route::prefix('transaction')->group(function () {
+        Route::prefix('transaction')->middleware(['students', 'verified'])->group(function () {
             Route::get('/', [MemberTransactionController::class, 'index'])->name('member.transaction');
             Route::delete('/cancel/{id}', [MemberTransactionController::class, 'cancel'])->name('member.transaction.cancel');
             Route::get('/detail/{transaction_code}', [MemberTransactionController::class, 'show'])->name('member.transaction.view-transaction');
@@ -123,10 +123,8 @@ Route::middleware('maintenance.middleware')->group(function () {
         // logout
         Route::get('user/logout', [MemberLoginController::class, 'logout'])->name('member.logout');
 
-        Route::get('verif-pass', [VerifpassController::class, 'index'])->name('verification-pass');
         Route::post('/setting/verifikasi-password', [VerifpassController::class, 'resend'])->name('verification-repass');
-        Route::put('/setting/verify-pin', [VerifpassController::class, 'verifyPin'])
-            ->name('verification.verify-pass');
+        Route::put('/setting/verify-pin', [VerifpassController::class, 'verifyPin'])->name('verification.verify-pass');
 
         // route halaman send verified
         Route::get('email/verify', [MemberResendEmailController::class, 'index'])->middleware('students')->name('verification.notice');

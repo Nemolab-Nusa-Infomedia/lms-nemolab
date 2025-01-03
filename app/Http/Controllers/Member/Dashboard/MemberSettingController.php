@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
+use App\Notifications\CustomVerifyEmailNotification;
 
 class MemberSettingController extends Controller
 {
@@ -113,9 +114,10 @@ class MemberSettingController extends Controller
         $user->password = Hash::make($request->input('new_password'));
         $user->save();
     
-        // Pesan sukses
-        Alert::success('Berhasil!', 'Kata sandi Anda berhasil diperbarui.');
-        return redirect()->route('member.setting');
+        $user = User::find(Auth::user()->id);
+        $user->notify(new CustomVerifyEmailNotification(true)); // true for password verification
+        Alert::success('Success', 'Berhasil Mengirimkan PIN Verifikasi');
+        return redirect()->route('member.setting.verifikasi-password');
     }
     
 }

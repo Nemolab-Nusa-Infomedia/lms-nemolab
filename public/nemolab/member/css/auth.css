@@ -170,7 +170,6 @@ main section .content
 main section .content .card
 {
     justify-content: space-between;
-    height: 100%;
     width: 80%;
     background-color: var(--card-color);
     padding: 2.5rem;
@@ -417,7 +416,6 @@ main section .content .card .card-foot
 
     main section .content .card
     {
-        width: 100%;
         padding: 1.5rem;
         z-index: 1;
         /* Pastikan form di atas circle */

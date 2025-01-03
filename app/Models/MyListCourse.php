@@ -16,4 +16,11 @@ class MyListCourse extends Model
         'course_id',
         'ebook_id',
     ];
+
+    function Course(){
+        return $this->belongsTo(Course::class, 'course_id', 'id');
+    }
+    function Ebook(){
+        return $this->belongsTo(Ebook::class, 'ebook_id', 'id');
+    }
 }

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     {{-- aos --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    
+
     @stack('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/navbar.css') }} ">
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/footer.css') }} ">
@@ -23,11 +23,7 @@
 
 <body>
 
-    @if (Auth::check())
-        @include('components.includes.member.navbar-dashboard-auth')
-    @else
-        @include('components.includes.member.navbar-dashboard')
-    @endif
+    @include('components.includes.member.navbar-dashboard')
 
 
     <main id="content" class="flex-grow-1" style="min-height: 100vh">
@@ -37,6 +33,8 @@
 
     @if (!View::hasSection('hide_footer'))
         @include('components.includes.member.footer')
+    @else
+        <footer class="footer" id="footer" style="height: 0 !important; margin: 0 !important; padding: 0 !important;"></footer>
     @endif
 
     {{-- include sweetalert --}}
@@ -58,14 +56,15 @@
     <!-- Inisialisasi AOS -->
     <script>
         AOS.init({
-            once: true, 
+            once: true,
         });
-      </script>
-       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    </script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const navbarToggler = document.querySelector('.dropdown-logout');
             const registerBtn = document.getElementById('dropdownMenuButton1');
+
             function LinkLogoutFunc() {
                 if (window.innerWidth < 992) {
 
@@ -73,7 +72,7 @@
 
                     registerBtn.setAttribute('data-bs-toggle', 'modal');
                     registerBtn.setAttribute('data-bs-target', '#targetModalLogin');
-                    
+
                 } else {
                     navbarToggler.style.display = 'block';
 
@@ -86,7 +85,7 @@
     <script>
         // document.addEventListener("DOMContentLoaded", function() {
         //     const sidebarLinks = document.querySelectorAll(".side-tabs li a");
-            
+
         //     sidebarLinks.forEach(link => {
         //         const linkUrl = new URL(link.href);
         //         const currentUrl = new URL(window.location.href);

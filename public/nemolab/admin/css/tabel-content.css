@@ -11,6 +11,7 @@ body {
     font-family: "Poppins", sans-serif !important;
 }
 
+
 /* .btn-primary {
     background-color: var(--c-brand);
     border: none;
@@ -81,18 +82,16 @@ a {
     border-radius: 10px;
 }
 
-.tambah-data {
-    /* width: 100px; */
-    background-color: var(--c-brand);
-    border-radius: 10px;
-    color: white;
-    border: none;
-    transition: all 0.3s linear;
+.tambah-data{
+    background-color: var(--c-brand); 
+    color: white; 
+    border-radius: 6px; 
+    padding: 6px 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
 .tambah-data:hover {
     background-color: var(--c-brand-dark);
-    color: white;
 }
 
 thead,
@@ -104,10 +103,12 @@ tr {
     padding: 0;
     margin: 0;
     text-align: center;
-    height: 50px;
+    width: auto;
 }
 
 table {
+    table-layout: auto;
+    width: auto;
     border-collapse: collapse;
     border-spacing: 0;
 }
@@ -147,11 +148,28 @@ label {
     align-items: center;
 }
 
+.dt-length label{
+    gap: 5px;
+}
+
 .dt-search {
     display: flex !important;
     justify-content: center;
     align-items: center;
     margin-top: 6px;
+    gap: 5px;
+}
+
+select:focus {
+    border: var(--bs-border-width) solid var(--c-brand) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input:focus {
+    border: var(--bs-border-width) solid var(--c-brand) !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 #tablesContent_wrapper {

@@ -18,7 +18,7 @@
                 @include('components.includes.member.sidebar-dashboard')
 
                 <!-- Setting Cards -->
-                <div class="col-11 col-md-7 col-xl-9 mx-auto ">
+                <div class="col-11 col-lg-6 col-xl-9 mx-auto">
                     <h5 class="mb-4 mt-4 title-pengaturan">Pengaturan</h5>
                     <div class="row gy-4">
                         <div class="col-md-12 col-xl-6 ">
@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="col-md-12 col-xl-6">
-                            <a href="{{ route('verification-pass') }}" class="text-decoration-none">
+                            <a href="{{ route('member.setting.reset-password') }}" class="text-decoration-none">
                                 <div class="setting-item">
                                     <div class="icon py-2 px-3 mx-3">
                                         <svg width="40" height="27" viewBox="0 0 40 27" fill="none"

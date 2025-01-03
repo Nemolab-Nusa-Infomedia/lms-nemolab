@@ -78,7 +78,6 @@
                 <div class="courses-scroll">
                     @foreach ($courses as $course)
                         @if ($course)
-                            <div class="course-card">
                                 <div class="card">
                                     @if ($course->cover != null)
                                         <img src="{{ asset('storage/images/covers/' . $course->cover) }}"
@@ -130,7 +129,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                         @endif
                     @endforeach
                 </div>
@@ -296,8 +294,8 @@
                 </div>
                 <div class="col-sm-6">
                     <div class="me-md-4 mx-3 mx-md-0 text-center text-md-start">
-                        <h1 class="fw-bold ms-sm-4">Benefit Yang Bisa Kamu Dapatkan Jika <span>Belajar</span> Disini</h1>
-                        <p class=" ms-sm-4">Sesuatu yang lebih besar untuk mencapai impian Anda jadi kami menyediakan semua hal hebat ini
+                        <h1 class="fw-bold ms-sm-4 mb-3">Benefit Yang Bisa Kamu Dapatkan Jika <span>Belajar</span> Disini</h1>
+                        <p class=" ms-sm-4 mb-3">Sesuatu yang lebih besar untuk mencapai impian Anda jadi kami menyediakan semua hal hebat ini
                             untuk Anda dan banyak lagi </p>
                         <iframe src="https://www.youtube.com/embed/Pt7PiJJsarw" class="mt-2" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -327,7 +325,7 @@
         <div class="row align-items-center mt-0 mx-md-3">
             <div class="col-md-6">
                 <div class="text-center me-md-4 text-md-start" data-aos="fade-up" data-aos-delay="100">
-                    <h1 class="fw-bold">Hubungi Kami Jika Anda Memiliki Kendala</h1>
+                    <h1 class="fw-bold mb-3">Hubungi Kami Jika Anda Memiliki Kendala</h1>
                     <p class="me-md-5">Laporkan masalah anda ke kontak dibawah untuk informasi lebih lanjut lagi</p>
                     <a href="#" class="btn btn-warning px-4 py-2 mt-2">Hubungi CS</a>
                 </div>
@@ -352,7 +350,8 @@
                 coursesScroll.forEach(element => {
                     element.addEventListener('click', function() {
                         const direction = this.dataset.direction;
-                        if (window.innerWidth < 512) {
+                        console.log(direction)
+                        if (window.innerWidth < 576) {
                             if (direction === 'left') scrollContainer.scrollTop -= speed;
                             else if (direction === 'right') scrollContainer.scrollTop += speed;
                         } else {

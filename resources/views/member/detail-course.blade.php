@@ -59,7 +59,7 @@
                     @endif
                 </div>
             </div>
-            <div class="detail-courses mt-5 shadow-sm">
+            <div class="detail-courses mt-5">
                 <div class="card">
                     <div class="card-header p-0">
                         <h5 class="m-0">Detail</h5>
@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </div>
-            <div class="description-courses mt-5 shadow-sm">
+            <div class="description-courses mt-5">
                 <div class="card">
                     <div class="card-header p-0">
                         <h5 class="m-0">Deskripsi Kursus</h5>
@@ -114,8 +114,8 @@
                     </div>
                 </div>
             </div>
-            <div class="tools-courses mt-5 shadow-sm">
-                <div class="card">
+            <div class="tools-courses mt-5">
+                <div class="card card-tools">
                     <div class="card-header p-0">
                         <h5 class="m-0">Tools</h5>
                     </div>
@@ -123,7 +123,7 @@
                         <div class="row">
                             @foreach ($coursetools->tools as $tool)
                                 <a href="{{ $tool->link }}"
-                                    class="col-6 col-sm-2 tools-group d-flex justify-content-center align-items-center flex-column text-center" style=" height: 100%;">
+                                    class="col-auto me-2 tools-group justify-content-center align-items-center flex-column text-center" style=" height: 100%;">
                                     <img src="{{ asset('storage/images/logoTools/' . $tool->logo_tools) }}" alt=""
                                         width="50px" height="50px">
                                     <p class="tool-name m-0 p-0 pt-1">{{ $tool->name_tools }}</p>
@@ -133,7 +133,7 @@
                     </div>
                 </div>
             </div>
-            <div class="testimoni mt-3" id="testimoni" data-aos="fade-up">
+            {{-- <div class="testimoni mt-3" id="testimoni" data-aos="fade-up">
                 <div class="container-fluid">
                 @if ($reviews->isNotEmpty())
                     <h5>Testimoni</h5>
@@ -194,7 +194,7 @@
                     </div>
                     @endif
                 </div>
-            </div>
+            </div> --}}
     </section>
 @endsection
 @push('addon-script')

@@ -61,4 +61,8 @@ class Ebook extends Model
         // eBook dapat terkait dengan banyak CourseEbook melalui `ebook_id`
         return $this->hasMany(CourseEbook::class, 'ebook_id');
     }
+    
+    public function mylist(){
+        return $this->hasMany(MyListCourse::class, 'ebook_id', 'id');
+    }
 }

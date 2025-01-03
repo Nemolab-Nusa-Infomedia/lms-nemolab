@@ -12,25 +12,27 @@
         <div class="container-fluid">
             <div class="row justify-content-between">
                 <div class="col-11 col-lg-8 ">
-                    <iframe id="youtubePlayer" width="100%" height="70%" src="{{ $play->video }}"
+                    <iframe id="youtubePlayer" width="100%" height="80%" src="{{ $play->video }}"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
                     </iframe>
 
                     <h2 class="m-0 p-0 mt-3 ps-2">
-                        Episode: {{ $play->name }}
+                        {{ $play->name }}
                     </h2>
                     <div class="link-group d-block mx-3 my-3 my-sm-4">
                         @if (!is_null($paketKelas))
                             <a href="{{ route('member.ebook.join', $paketKelas->ebook->slug) }}" class="btn btn-primary w-100">Belajar E-Book</a>
+                            <a href="{{ route('member.course.detail', $courses->slug) }}" class="btn btn-secondary w-100 mt-1">Detail Kelas</a>
+                        @else
+                            <a href="{{ route('member.course.detail', $courses->slug) }}" class="btn btn-primary w-100">Detail Kelas</a>
                         @endif
-                        <a href="{{ route('member.course.detail', $courses->slug) }}" class="btn btn-secondary w-100 mt-1">Detail Kelas</a>
                     </div>
                 </div>
                 <div class="col-11 col-lg-4 mt-5 mt-lg-0  ">
-                    <div class="card mt-4 mt-sm-0" style="border: none;box-shadow: rgba(76, 76, 77, 0.219) 0px 8px 24px;">
-                        <div class="card-body overflow-scroll">
+                    <div class="card mt-4 mt-sm-0" style="border: none; ">
+                        <div class="card-body">
                             @foreach ($chapters as $chapter)
                                 <div class="content mb-5">
                                     <h5 class="m-0 p-0">{{ $chapter->name }}</h5>
@@ -42,7 +44,7 @@
                                                     class="text-wrap flex-grow-1 play-video "
                                                     data-episode-id="{{ $lesson->id }}"
                                                     data-course-id="{{ $courses->id }}">{{ $lesson->name }}</a>
-                                                <img src="{{ asset('nemolab/member/img/check-course.png') }}"
+                                                <img src="{{ asset('nemolab/member/img/iconamoon_check-bold.png') }}"
                                                     alt=""
                                                     class="check-icon {{ in_array($lesson->id, $epComplete) ? '' : 'd-none' }}"
                                                     id="check-icon-{{ $lesson->id }}">

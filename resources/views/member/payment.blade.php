@@ -9,14 +9,14 @@
 @section('content')
     <section class="payment" style="margin-top: 5rem">
         <div class="container">
-            <h2 class="text-center mb-3 fw-bold">Silahkan Selesaikan Pembelian Kelas</h2>
-            <p class="text-center description">Setelah pembelian kelas sukses, anda dapat mengakses kelas dan mendapatkan
+            <h2 class="text-center mb-3">Silahkan Selesaikan Pembelian Kelas</h2>
+            <p class="text-center description mb-4">Setelah pembelian kelas sukses, anda dapat mengakses kelas dan mendapatkan
                 benefit lainnya seperti grup diskusi dan sertifikat resmi dari kami</p>
 
             @if (($course && $course->price == 0) || ($ebook && $ebook->price == 0) || ($bundle && $bundle->price == 0))
                 <div class="row justify-content-center">
                     <div class="col-md-6 mt-1">
-                        <div class="card card-bayar shadow p-4">
+                        <div class="card card-bayar p-4">
                             <div class="d-flex align-items-center mb-3">
                                 <a href="{{ route('member.transaction') }}" class="custom-link d-flex align-items-center">
                                     <i class="bi bi-arrow-left me-2"></i>
@@ -25,17 +25,19 @@
                             <h2 class="text-rinci mb-4">Rincian Pembayaran</h2>
                             <div class="nota">
                                 <div class="produk mb-3">
-                                    <p class="mb-1">Produk yang Dibeli</p>
-                                    @if ($course)
-                                        {{ $course->name }} (Video)
-                                    @elseif ($ebook)
-                                        {{ $ebook->name }} (eBook)
-                                    @elseif ($bundle)
-                                        {{ $bundle->course->name }} (Paket Combo)
-                                    @endif
+                                    <p class="item mb-1 fw-bold">Produk yang Dibeli</p>
+                                    <p class="mb-1 fw-bolder">    
+                                        @if ($course)
+                                            {{ $course->name }} (Video)
+                                        @elseif ($ebook)
+                                            {{ $ebook->name }} (eBook)
+                                        @elseif ($bundle)
+                                            {{ $bundle->course->name }} (Paket Combo)
+                                        @endif
+                                    </p>
                                 </div>
 
-                                <div class="harga mb-3">
+                                <div class="harga mb-5">
                                     <div class="d-flex justify-content-between">
                                         @if ($course)
                                             <p class="item mb-1 fw-bold">Harga Kelas</p>
@@ -46,29 +48,29 @@
                                         @endif
                                         <p class="price mb-1 fw-bold">Rp. 0</p>
                                     </div>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <p class="item mb-1 fw-bold">PPN (11%)</p>
-                                    @if ($course)
+                                    <div class="d-flex justify-content-between">
+                                        <p class="item mb-1 fw-bold">PPN (11%)</p>
+                                        @if ($course)
                                         <p class="tax mb-1 fw-bold">+ Rp. {{ number_format($course->price * 0.11, 0) }}</p>
-                                    @elseif ($ebook)
+                                        @elseif ($ebook)
                                         <p class="tax mb-1 fw-bold">+ Rp. {{ number_format($ebook->price * 0.11, 0) }}</p>
-                                    @elseif ($bundle)
+                                        @elseif ($bundle)
                                         <p class="tax mb-1 fw-bold">+ Rp. {{ number_format($bundle->price * 0.11, 0) }}</p>
-                                    @endif
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <p class="item mb-1 fw-bold">Biaya Service Tambahan</p>
-                                    <p class="tax mb-1 fw-bold">+ Rp. 0</p>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <p class="item mb-1 fw-bold">Potongan Kode Promo</p>
-                                    <p class="diskon-total mb-1 fw-bold">Tidak Ada</p>
+                                        @endif
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="item mb-1 fw-bold">Biaya Service Tambahan</p>
+                                        <p class="tax mb-1 fw-bold">+ Rp. 0</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="item mb-1 fw-bold">Potongan Kode Promo</p>
+                                        <p class="diskon-total mb-1 fw-bold">Tidak Ada</p>
+                                    </div>
                                 </div>
 
                                 <div class="total d-flex justify-content-between align-items-center">
                                     <h6 class="fw-bold fs-4">Total Harga</h6>
-                                    <p class="fw-bold fs-4">Rp. 0</p>
+                                    <p class="price fw-bold fs-4">Rp. 0</p>
                                 </div>
 
                                 @php
@@ -112,8 +114,8 @@
             @else
                 <!-- Modal Pop Up Redeem -->
                 <div class="modal fade" id="myModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content shadow">
                             <!-- Header Modal -->
                             <div class="modal-header">
                                 <h5 class="modal-title" id="myModalLabel">Gunakan Kode Promo</h5>
@@ -123,20 +125,22 @@
                             <!-- Body Modal -->
                             <div class="modal-body">
                                 <div class="redeem-content">
-                                    <div>
                                         @if (!is_null($kelasDiskon) && !$kelasDiskon->isEmpty())
-                                            <select class="form-select" id="promo">
-                                                @foreach ($kelasDiskon as $diskon)
-                                                    <option value="{{ $diskon->rate_diskon }}">
-                                                        {{ $diskon->kode_diskon }} - {{ $diskon->rate_diskon }}%
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            <div>
+                                                <select class="form-select" id="promo">
+                                                    @foreach ($kelasDiskon as $diskon)
+                                                        <option value="{{ $diskon->rate_diskon }}">
+                                                            {{ $diskon->kode_diskon }} - {{ $diskon->rate_diskon }}%
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         @else
-                                            <p class="text-center my-auto text-body-secondary fw-bold">Promo Belum Tersedia
-                                            </p>
+                                            <div class="h-100 d-flex flex-column align-content-center">
+                                                <p class="text-center my-auto text-body-secondary fw-bold">Promo Belum Tersedia
+                                                </p>
+                                            </div>
                                         @endif
-                                    </div>
                                 </div>
                             </div>
                             <!-- Footer Modal -->
@@ -169,27 +173,29 @@
 
                             <div class="nota">
                                 <div class="produk mb-3">
-                                    <p class="mb-1">Produk yang Dibeli</p>
-                                    @if ($course)
-                                        {{ $course->name }} (Video)
-                                    @elseif ($ebook)
-                                        {{ $ebook->name }} (eBook)
-                                    @elseif ($bundle)
-                                        {{ $bundle->course->name }} (Paket Combo)
-                                    @endif
+                                    <p class="item mb-1 fw-bold">Produk yang Dibeli</p>
+                                    <p class="mb-1 fw-bolder">    
+                                        @if ($course)
+                                            {{ $course->name }} (Video)
+                                        @elseif ($ebook)
+                                            {{ $ebook->name }} (eBook)
+                                        @elseif ($bundle)
+                                            {{ $bundle->course->name }} (Paket Combo)
+                                        @endif
+                                    </p>
                                 </div>
 
-                                <div class="harga mb-3">
+                                <div class="harga mb-5">
                                     <div class="d-flex justify-content-between">
                                         @if ($course)
                                             <p class="item mb-1 fw-bold">Harga Kelas</p>
-                                            <p class="tax mb-1 fw-bold">+ Rp. {{ number_format($course->price) }}</p>
+                                            <p class="price mb-1 fw-bold">+ Rp. {{ number_format($course->price) }}</p>
                                         @elseif ($ebook)
                                             <p class="item mb-1 fw-bold">Harga E-Book</p>
-                                            <p class="tax mb-1 fw-bold">+ Rp. {{ number_format($ebook->price) }}</p>
+                                            <p class="price mb-1 fw-bold">+ Rp. {{ number_format($ebook->price) }}</p>
                                         @elseif ($bundle)
                                             <p class="item mb-1 fw-bold">Harga Paket</p>
-                                            <p class="tax mb-1 fw-bold">+ Rp. {{ number_format($bundle->price) }}</p>
+                                            <p class="price mb-1 fw-bold">+ Rp. {{ number_format($bundle->price) }}</p>
                                         @endif
                                     </div>
                                     <div class="d-flex justify-content-between">

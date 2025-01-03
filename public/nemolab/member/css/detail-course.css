@@ -36,7 +36,7 @@ html::-webkit-scrollbar {
 }
 
 body {
-    background-color: #FFF6F6;
+    background-color: #FFFFFF;
 }
 
 
@@ -52,7 +52,7 @@ main #detail-course-section .container a {
 }
 
 [class*=" bi-"]::before {
-    background-color: #0774FA;
+    background-color: var(--color-orange);
     border-radius: 50px;
     color: white;
     padding: 8px;
@@ -62,10 +62,6 @@ main #detail-course-section .container h4 {
     font-weight: 800;
     color: var(--charcoal-gray);
     font-size: 34px;
-}
-
-.card{
-    box-shadow: none !important;
 }
 
 main #detail-course-section .container .subcontent-images .row .col-sm-6 a {
@@ -193,17 +189,25 @@ main #detail-course-section .container .tools-courses .card {
     border: none;
 }
 
+main #detail-course-section .container .tools-courses .card-tools {
+    background-color: white;
+    max-width: fit-content;
+    padding: 20px;
+    box-shadow: 0 4px 4px 0 #00000040;
+    border: none;
+}
+
 main #detail-course-section .container .tools-courses .card .card-header,
 main #detail-course-section .container .tools-courses .card .card-body {
     background-color: transparent;
     border: none;
 }
 
-/* main #detail-course-section .container .tools-courses .card .card-body .tools-group {
+main #detail-course-section .container .tools-courses .card .card-body .tools-group {
     background-color: #FDF8F8;
     padding: 10px 20px;
     border-radius: 10px;
-} */
+}
 
 
 main #detail-course-section .container .tools-courses .card .card-header h5 {

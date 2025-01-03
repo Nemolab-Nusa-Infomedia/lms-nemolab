@@ -1,6 +1,6 @@
 <header>
-    <nav class="navbar fixed-top bg-white px-5" id="navbar-id">
-        <div class="container-fluid py-2" style="flex-wrap: nowrap">
+    <nav class="navbar fixed-top bg-white px-2 px-md-5" id="navbar-id">
+        <div class="container-fluid" style="flex-wrap: nowrap">
             <div class="sidebar" id="sidebar">
                 <div class="ms-3 me-3">
                     @if (Auth::user()->role == 'superadmin')
@@ -88,19 +88,24 @@
                 <button class="btn d-flex align-items-center ms-2 border-0 " type="button" data-bs-toggle="dropdown">
                     <p class="fw-semibold m-0">{{ Auth::user()->name }}</p>
                     @if (Auth::user()->avatar != null)
-                        <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}" class="rounded-5 ms-1"
-                            style="width: 42px; height: 42px;" id="img-profile">
+                        <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}"
+                            class="rounded-5 ms-1" 
+                            style="width: 42px; height: 42px; object-fit: cover;" 
+                            id="img-profile">
                     @else
-                        <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" class="rounded-5 ms-1"
-                            style="width: 42px; height: 42px;" id="img-profile">
+                        <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}"
+                            class="rounded-5 ms-1" 
+                            style="width: 42px; height: 42px; object-fit: cover;" 
+                            id="img-profile">
                     @endif
                 </button>
 
                 <!-- Profile Menu -->
                 <ul class="dropdown-menu mt-2 ">
-                    <li class="mt-2">
-                        <a class="dropdown-item" href="{{ route('member.logout') }}" id="logout-btn">Logout</a>
-                    </li>
+                    <div class="content-submenu">
+                            <a  href="{{ route('admin.logout') }}"
+                                id="logout-btn">Logout</a>
+                    </div>
                 </ul>
             </div>
         </div>

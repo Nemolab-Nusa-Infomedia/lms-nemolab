@@ -121,6 +121,49 @@ header .container-fluid .sidebar-toggler {
     color: black;
 }
 
+.dropdown-menu
+{
+    width: max-content;
+    padding: 10px;
+}
+
+.dropdown-menu
+{
+    padding: 24px;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+
+.head-submenu a
+{
+    color: var(--blue-link);
+    text-decoration: none;
+}
+
+.content-submenu
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 15px;
+}
+
+.content-submenu a
+{
+    font-size: 16px !important;
+    font-family: 'Nunito', sans-serif !important;
+    color: var(--dark-grey);
+    text-decoration: none;
+    transition: all ease-in-out 0.5ms;
+    font-weight: 400 !important;
+}
+
+.content-submenu a:hover
+{
+    color: var(--blue-link);
+}
+
 
 @media screen and (min-width: 480px) and (max-width: 576px) {
 

@@ -21,7 +21,7 @@ class ResendEmailVerif extends Controller
     public function resend(Request $requests)
     {
         $user = User::find(Auth::user()->id);
-        $user->notify(new CustomVerifyEmailNotification(false)); // true for password verification
+        $user->notify(new CustomVerifyEmailNotification(false)); 
         RateLimiter::hit('verification-email:' . Auth::user()->id, 3600);
         Alert::success('Success', 'PIN Verifikasi Telah Dikirim');
         return redirect()->back();
@@ -44,7 +44,7 @@ class ResendEmailVerif extends Controller
         if ($user->verification_pin === $request->pin) {
             $user->email_verified_at = now();
             $user->verification_pin = null;
-            $user->pin_expires_at = null; // Clear expiration timestamp
+            $user->pin_expires_at = null; 
             $user->save();
 
             Alert::success('Success', 'Akun Anda Berhasil Terverifikasi');

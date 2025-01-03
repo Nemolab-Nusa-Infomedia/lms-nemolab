@@ -87,76 +87,6 @@
 
         });
     </script>
-    {{-- 
-<script>
-
-
-        getDataCourse();
-
-        function getDataCourse() {
-            fetch('https://nemolab.id/api/v1/course/category?q=' + query)
-                .then(response => response.json())
-                .then(data => {
-                    const courses = data.data;
-                    const courseContainer = document.getElementById('course-container');
-
-                    // Menghapus semua elemen anak dari courseContainer
-                    courseContainer.innerHTML = '';
-
-                    if (courses.message != "notfound") {
-                        courses.forEach(courseData => {
-                            courseData.course.forEach(course => {
-                                const courseElement = document.createElement('div');
-                                courseElement.className =
-                                    'col-12 col-md-4 col-lg-4 card-parent';
-                                    courseElement.innerHTML = `
-    <a href="#" data-slug-course="${course.slug_course}" onclick="setCourseUrl(this)" style="text-decoration: none;">
-        <div class="card-course d-flex d-md-block mt-3 mt-md-1 position-relative">
-            <img src="${courseData.avatars_mentor}" alt="${courseData.name_mentor}" class="card-img-profile d-md-none position-absolute" style="border-radius: 100%;">
-            <div>
-                <img src="${course.cover_course}" class="img-card" alt="${course.title_course}">
-            </div>
-            <div class="container-card px-3">
-                <p class="produck-title text-black fw-medium mb-0 mb-md-2 mt-2 mt-md-0">${course.category_course}: ${course.title_course}</p>
-                <div class="profile-card d-none d-md-flex align-items-center">
-                    <img src="${courseData.avatars_mentor}" alt="${courseData.name_mentor}" class="card-img-profile" style="border-radius: 100%;">
-                    <p class="profile-mentor text-black m-0 ms-2 fw-medium">${courseData.name_mentor}</p>
-                </div>
-                <div class="price mt-1 mb-2 my-md-2">
-                    <p class="text-black mb-0 fw-light">Rp. ${course.price_course}</p>
-                </div>
-                <div class="status d-flex">
-                    <div class="d-inline-flex">
-                        <p>Video</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </a>
-`;
-
-                                courseContainer.appendChild(courseElement);
-                            });
-                        });
-                    } else {
-                        const courseElement = document.createElement('div');
-                        courseElement.className =
-                            'col-12 d-flex justify-content-center align-items-center fw-medium';
-                        courseElement.innerHTML = `Maaf Course Belum Tersedia`
-                        courseContainer.appendChild(courseElement);
-                    }
-
-                })
-                .catch(error => console.error('Error fetching courses:', error));
-        };
-
-        function setCourseUrl(element) {
-            var slugCourse = element.getAttribute('data-slug-course');
-            var url = "{{ route('member.course.join', ':slug_course') }}";
-            url = url.replace(':slug_course', slugCourse);
-            window.location.href = url;
-        };
-    </script> --}}
     <script>
         let loading = false;
         let lastBookId = null;
@@ -227,6 +157,7 @@
                     lastCourseId = response.lastCourseId;
                     document.querySelector('#sentinel').style.display = hasMore ? 'block' : 'none';
                     loading = false;
+                    SetLineClamp();
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -243,37 +174,35 @@
                 (item.price == 0 ? 'Gratis' : 'Rp ' + new Intl.NumberFormat('id-ID').format(item.price));
 
             return `
-<div class="w-100 d-flex justify-content-center">
-    <div class="card d-flex flex-column">
-        ${item.cover != null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}" class="card-img-top d-block" alt="${item.name}">` : `<img src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="${item.name}">`}
-        <div class="card-body p-3">
-            <div class="paket d-flex">
-               <p class="paket-item mt-2">${item.product_type === 'ebook' ? 'E-Book' : currentBundling ? 'Paket Combo' : 'Kursus'}</p>
-            </div>
-            <div class="title-card">
-                <a href="${item.product_type === 'ebook' ? '{{ route('member.ebook.join', '') }}' : '{{ route('member.course.join', '') }}/'}${item.slug}">
-                    <p>${item.category}</p>
-                    <h5 class="fw-bold truncate-text">${item.name}</h5>
-                </a>
-                <p class="avatar m-0 fw-bold me-1">
-                    ${item.users.avatar != null
-                        ? `<img src="{{ url('/') }}/storage/images/avatars/${item.users.avatar}" alt="${item.users.name}" style="width: 24px; height: 24px; border-radius: 50%;">`
-                        : `<img src="{{ asset('nemolab/member/img/default-user.png') }}" alt="${item.users.name}" style="width: 24px; height: 24px; border-radius: 50%;">`
-                    }
-                    ${item.users.name}
-                </p>
-            </div>
-            <div class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3">
-                <div class="harga d--block">
-                    <p class="p-0 m-0 fw-semibold">Harga</p>
-                    <p class="p-0 m-0 fw-semibold">${price}</p>
+                <div class="card d-flex flex-column">
+                    ${item.cover != null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}" class="card-img-top d-block" alt="${item.name}">` : `<img src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="${item.name}">`}
+                    <div class="card-body p-3">
+                        <div class="paket d-flex">
+                           <p class="paket-item mt-2">${item.product_type === 'ebook' ? 'E-Book' : currentBundling ? 'Paket Combo' : 'Kursus'}</p>
+                        </div>
+                        <div class="title-card">
+                            <a class="title-link" href="${item.product_type === 'ebook' ? '{{ route('member.ebook.join', '') }}' : '{{ route('member.course.join', '') }}'}/${item.slug}">
+                                <p>${item.category}</p>
+                                <h5 class="fw-bold truncate-text">${item.name}</h5>
+                            </a>
+                            <p class="avatar m-0 fw-bold me-1">
+                                ${item.users.avatar != null
+                                    ? `<img src="{{ url('/') }}/storage/images/avatars/${item.users.avatar}" alt="${item.users.name}" style="width: 24px; height: 24px; border-radius: 50%;">`
+                                    : `<img src="/nemolab/member/img/icon/Group 7.png" alt="${item.users.name}" style="width: 24px; height: 24px; border-radius: 50%;">`
+                                }
+                                ${item.users.name}
+                            </p>
+                        </div>
+                        <div class="btn-group-harga d-flex justify-content-between align-items-center mt-md-3">
+                            <div class="harga d--block">
+                                <p class="p-0 m-0 fw-semibold">Harga</p>
+                                <p class="p-0 m-0 fw-semibold">${price}</p>
+                            </div>
+                            <a href="${item.product_type === 'ebook' ? '{{ route('member.ebook.join', '') }}' : '{{ route('member.course.join', '') }}'}/${item.slug}" class="btn btn-primary">Mulai Belajar</a>
+                        </div>
+                    </div>
                 </div>
-                <a href="{{ route('member.course.join', '') }}/${item.slug}" class="btn btn-primary">Mulai Belajar</a>
-            </div>
-        </div>
-    </div>
-</div>
-        `;
+            `;
         }
 
         // Intersection Observer untuk infinite scroll
@@ -302,6 +231,37 @@
                 loadMoreContent();
             });
         });
+
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                clearTimeout(timeout);
+                timeout = setTimeout(func, wait);
+            };
+        }
+
+        function SetLineClamp() {
+            console.log('SetLineClamp');
+            const el = document.querySelectorAll('.title-link')
+            const text = document.querySelectorAll('.truncate-text')
+            el.forEach(element => {
+                text.forEach(textElement => {
+                    if (window.innerWidth > 576) {
+                        textElement.style.webkitLineClamp = Math.floor((element.clientHeight - 32) / 21.6);
+                        textElement.style.maxHeight =
+                            21.6 * Math.floor((element.clientHeight - 32) / 21.6) + 'px';
+                    } else {
+                        textElement.style.webkitLineClamp = 'none';
+                        textElement.style.maxHeight = 'none';
+                    }
+                });
+            })
+        }
+
+        window.addEventListener('resize', debounce(function() {
+            SetLineClamp();
+
+        }), 100);
 
         loadMoreContent();
     </script>

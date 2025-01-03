@@ -104,21 +104,16 @@
                                     Tools</button>
                             </div>
                             <div id="selected-tools" class="col-12 d-flex align-items-center mb-3">
-                                <!-- Default: no tools displayed here -->
                             </div>
 
-                            <!-- Hidden input to store selected tools -->
                             <input type="hidden" name="tools[]" id="selected-tools-input">
 
-                            <!-- Popup Tambah Tools -->
                             <div id="tools-popup" class="tools-popup shadow p-3 bg-white rounded"
                                 style="display: none; position: absolute; top: 50px; right: 20px; width: 300px; z-index: 1050;">
-                                <!-- Search bar -->
                                 <div class="mb-3">
                                     <input type="text" id="tool-search" class="form-control" placeholder="Cari tools">
                                 </div>
 
-                                <!-- Grid tools -->
                                 <div id="tools-grid" class="row">
                                     @foreach ($tools as $toolall)
                                         <div class="col-12 tool-item d-flex align-items-center mb-2"
@@ -213,100 +208,96 @@
             }
         });
 
-        // Prevent form submission when interacting with the tools popup
         form.addEventListener('submit', function (e) {
-                if (toolsPopup.style.display === 'block') {
-                    e.preventDefault();
-                }
-            });
+            if (toolsPopup.style.display === 'block') {
+                e.preventDefault();
+            }
+        });
 
-            // Show popup when "Tambah Tools" button is clicked
-            addToolsBtn.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent default button action
-                toolsPopup.style.display = 'block'; // Show popup
-            });
-            
-            // Open popup when "Tambah Tools" button is clicked
-            addToolsBtn.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent triggering document click event
-                toolsPopup.style.display = 'block'; // Show popup
-            });
+        addToolsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation(); 
+            toolsPopup.style.display = 'block'; 
+        });
 
-            // Close popup only if clicking outside both popup and "Tambah Tools" button
-            document.addEventListener('click', (e) => {
-                if (!toolsPopup.contains(e.target) && 
-                    e.target.id !== 'add-tools-btn' && 
-                    !e.target.classList.contains('remove-tool-btn')) {
-                    toolsPopup.style.display = 'none';
-                }
-            });
+        document.addEventListener('click', (e) => {
+            if (!toolsPopup.contains(e.target) && 
+                e.target.id !== 'add-tools-btn' && 
+                !e.target.classList.contains('remove-tool-btn')) {
+                toolsPopup.style.display = 'none';
+            }
+        });
 
-            // Prevent popup from closing when clicking inside it
-            toolsPopup.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent triggering document click event
-            });
+        toolsPopup.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+        });
 
-            // Add tool to selected tools when checkbox is checked
-            toolsGrid.addEventListener('change', (e) => {
-                if (e.target.classList.contains('tool-checkbox')) {
-                    const toolItem = e.target.closest('.tool-item');
-                    const toolId = e.target.value;
-                    const toolName = toolItem.dataset.toolName;
+        toolsGrid.addEventListener('change', (e) => {
+            if (e.target.classList.contains('tool-checkbox')) {
+                const toolItem = e.target.closest('.tool-item');
+                const toolId = e.target.value;
+                const toolName = toolItem.dataset.toolName;
 
-                    if (e.target.checked) {
-                        toolItem.style.display = 'none';
+                if (e.target.checked) {
+                    toolItem.style.display = 'none';
 
-                        const selectedTool = document.createElement('div');
-                        selectedTool.classList.add('selected-tool', 'd-flex', 'align-items-center', 'ms-2', 'mb-2');
-                        selectedTool.dataset.toolId = toolId;
-                        selectedTool.innerHTML = `
-                            <span class="me-2">${toolName}</span>
-                            <button type="button" class="btn btn-danger btn-sm remove-tool-btn" data-tool-id="${toolId}">
-                                X
-                            </button>
-                        `;
+                    const selectedTool = document.createElement('div');
+                    selectedTool.classList.add('selected-tool', 'd-flex', 'align-items-center', 'ms-2', 'mb-2');
+                    selectedTool.dataset.toolId = toolId;
+                    selectedTool.innerHTML = `
+                        <span class="me-2">${toolName}</span>
+                        <button type="button" class="btn btn-danger btn-sm remove-tool-btn" data-tool-id="${toolId}">
+                            X
+                        </button>
+                    `;
 
-                        selectedToolsContainer.appendChild(selectedTool);
-                        updateSelectedToolsInput();
-                    } else {
-                        // Find and trigger the corresponding remove button
-                        const removeButton = selectedToolsContainer.querySelector(`.remove-tool-btn[data-tool-id="${toolId}"]`);
-                        if (removeButton) {
-                            removeButton.click();
-                        }
-                    }
-                }
-            });
-
-            const updateSelectedToolsInput = () => {
-                const selectedToolIds = Array.from(selectedToolsContainer.querySelectorAll('.selected-tool'))
-                    .map(selectedTool => selectedTool.dataset.toolId);
-
-                document.getElementById('selected-tools-input').value = selectedToolIds.join(',');
-            };
-
-            // Remove tool from selected tools and add it back to popup when "X" is clicked
-            selectedToolsContainer.addEventListener('click', (e) => {
-                if (e.target.classList.contains('remove-tool-btn')) {
-                    const toolId = e.target.dataset.toolId;
-                    const toolItem = toolsGrid.querySelector(`.tool-item[data-tool-id="${toolId}"]`);
-                    const selectedTool = e.target.closest('.selected-tool');
-                    
-                    if (toolItem) {
-                        const toolCheckbox = toolItem.querySelector(`input[value="${toolId}"]`);
-                        if (toolCheckbox) {
-                            toolCheckbox.checked = false;
-                        }
-                        toolItem.style.display = '';
-                    }
-                    
-                    selectedTool.remove();
+                    selectedToolsContainer.appendChild(selectedTool);
                     updateSelectedToolsInput();
+                } else {
+                    const removeButton = selectedToolsContainer.querySelector(`.remove-tool-btn[data-tool-id="${toolId}"]`);
+                    if (removeButton) {
+                        removeButton.click();
+                    }
                 }
-            });
+            }
+        });
 
-            // Filter tools based on search query
-            toolSearch.addEventListener('input', () => {
+        const updateSelectedToolsInput = () => {
+            const selectedToolIds = Array.from(selectedToolsContainer.querySelectorAll('.selected-tool'))
+                .map(selectedTool => selectedTool.dataset.toolId);
+            
+            const existingInputs = document.querySelectorAll('input[name="tools[]"]');
+            existingInputs.forEach(input => input.remove());
+            
+            selectedToolIds.forEach(toolId => {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'tools[]';
+                input.value = toolId;
+                document.getElementById('formAction').appendChild(input);
+            });
+        };
+
+        selectedToolsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-tool-btn')) {
+                const toolId = e.target.dataset.toolId;
+                const toolItem = toolsGrid.querySelector(`.tool-item[data-tool-id="${toolId}"]`);
+                const selectedTool = e.target.closest('.selected-tool');
+                
+                if (toolItem) {
+                    const toolCheckbox = toolItem.querySelector(`input[value="${toolId}"]`);
+                    if (toolCheckbox) {
+                        toolCheckbox.checked = false;
+                    }
+                    toolItem.style.display = '';
+                }
+                
+                selectedTool.remove();
+                updateSelectedToolsInput();
+            }
+        });
+
+        toolSearch.addEventListener('input', () => {
             const query = toolSearch.value.trim().toLowerCase();
             console.log('Searching for:', query);
 
@@ -315,10 +306,8 @@
                 const checkbox = toolItem.querySelector('.tool-checkbox');
                 
                 if (query === '') {
-                    // If search is empty, show all items except checked ones
                     toolItem.setAttribute("style","")
                 } else {
-                    // During search, show/hide based on match, regardless of checked status
                     toolItem.setAttribute("style",toolName.includes(query) ?"": "display:none !important")
                 }
                 

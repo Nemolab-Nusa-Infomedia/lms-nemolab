@@ -25,6 +25,10 @@
     margin: 20px 0;
 }
 
+.list-sidebar p {
+    font-size: 1.25rem;
+}
+
 .active {
     width: 100%;
     cursor: pointer;

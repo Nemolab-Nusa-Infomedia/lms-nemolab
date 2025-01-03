@@ -35,7 +35,7 @@
                                     fill="#8F8F8F" />
                             </svg>
                         </label>
-                        <input class="form-control w-100 h-100" type="text" name="search-input"
+                        <input class="form-control w-100 h-100" type="text" required name="search-input" 
                             placeholder="Cari Kelas Disini" id="search-input" value="{{ request('search-input') }}"
                             aria-label="Search">
                         <button class="btn p-0 m-0 position-absolute" type="submit">
@@ -164,31 +164,39 @@
                                         </span>
                                         @if (Auth::user()->avatar != null)
                                             <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}"
-                                                class="rounded-5 ms-1" style="width: 42px; height: 42px;"
+                                                class="rounded-5 ms-1" 
+                                                style="width: 42px; height: 42px; object-fit: cover;" 
                                                 id="img-profile">
                                         @else
                                             <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}"
-                                                class="rounded-5 ms-1" style="width: 42px; height: 42px;"
-                                                id="img-profile">
+                                                class="rounded-5 ms-1" 
+                                                style="width: 42px; height: 42px; object-fit: cover;" 
+                                                id="img-profile">                                   
                                         @endif
                                     </button>
 
                                     <ul class="dropdown-menu w-100 mt-2 dropdown-logout">
+                                        <div class="content-submenu">
                                         @if (!Request::routeIs('member.setting') && !Request::routeIs('member.setting.*'))
-                                            <li><a class="dropdown-item" href="{{ route('member.dashboard') }}">Kelas
-                                                    Saya</a>
-                                            </li>
-                                            <li><a class="dropdown-item"
-                                                    href="{{ route('member.transaction') }}">Transaksi
-                                                    Saya</a></li>
-                                            <li class="border-bottom pb-3"><a class="dropdown-item"
-                                                    href="{{ route('member.setting') }}">Pengaturan</a>
-                                            </li>
+                                        <div class="col-sm-12 ps-0 pl-1 mb-1">
+                                            <a href="{{ route('member.dashboard') }}">Kelas
+                                                Saya</a>
+                                        </div>
+                                        <div class="col-sm-12 ps-0 pl-1 mb-1">
+                                            <a
+                                                href="{{ route('member.transaction') }}">Transaksi
+                                                Saya</a>
+                                        </div>
+                                        <div class="col-sm-12 ps-0 pl-1 mb-1 pb-1 border-bottom">
+                                            <a
+                                                href="{{ route('member.setting') }}">Pengaturan</a>
+                                        </div>
                                         @endif
-                                        <li class="mt-2">
-                                            <a class="dropdown-item" href="{{ route('member.logout') }}"
+                                        <div class="col-sm-12 ps-0 pl-1">
+                                            <a href="{{ route('member.logout') }}"
                                                 id="logout-btn">Logout</a>
-                                        </li>
+                                        </div>
+                                        </div>
                                     </ul>
 
                                 </div>
@@ -225,10 +233,48 @@
             console.log(this.checked)
             if (this.checked) {
                 document.getElementById('auth-section').setAttribute('style', 'display: none !important')
+                document.getElementById('search-input').removeAttribute('disabled');
             } else {
                 document.getElementById('auth-section').setAttribute('style', '')
+                document.getElementById('search-input').setAttribute('disabled', '');
             }
         });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggler = document.getElementById('navbarToggler');
+        const iconOpened = document.getElementById('navbar-opened');
+        const iconClosed = document.getElementById('navbar-closed');
+        const searchForm = document.getElementById('search-form');
+        const navbarBrand = document.getElementById('navbar-brand');
+
+        toggler.addEventListener('click', () => {
+            // Toggle class "active" pada gambar
+            if (toggler.getAttribute('aria-expanded') === 'true') {
+                iconClosed.setAttribute('style', 'display: none');
+                iconOpened.setAttribute('style', 'display: block');
+                navbarBrand.setAttribute('style', 'display: none !important');
+                searchForm.setAttribute('style', 'display: flex !important');
+            } else {
+                iconClosed.setAttribute('style', 'display: block');
+                iconOpened.setAttribute('style', 'display: none');
+                navbarBrand.setAttribute('style', 'display: flex !important');
+                searchForm.setAttribute('style', 'display: none !important');
+            }
+        });
+        window.onresize = () => {
+            if (window.innerWidth <= 1200 && window.innerWidth > 768) {
+                document.getElementById('search-input').setAttribute('disabled', '');
+            }else{
+                document.getElementById('search-input').removeAttribute('disabled');
+            }
+            if (window.innerWidth <= 768 && toggler.getAttribute('aria-expanded') === 'false') {
+                searchForm.setAttribute('style', 'display: none !important');
+            } else {
+                searchForm.setAttribute('style', 'display: flex !important');
+            }
+        }
     });
 </script>
 <!-- end navbar -->
