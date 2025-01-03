@@ -50,10 +50,8 @@ class MemberRegisterController extends Controller
             'email' => $requests->email,
             'password' => Hash::make($requests->password),
         ]);
-
-        $user->notify(new CustomVerifyEmailNotification(false)); 
+ 
         Auth::login($user);
-        Alert::success('Success', 'Berhasil Mengirimkan PIN Verifikasi');
         return redirect()->route('verification.notice');
     }
 }

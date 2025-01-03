@@ -15,6 +15,9 @@ class ResendEmailVerif extends Controller
 {
     public function index()
     {
+        $user = User::find(Auth::user()->id);
+        $user->notify(new CustomVerifyEmailNotification(false)); 
+        Alert::success('Success', 'PIN Verifikasi Telah Dikirim');
         return view('member.auth.verify-email');
     }
 
