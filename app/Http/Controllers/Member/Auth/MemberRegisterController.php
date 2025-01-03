@@ -10,18 +10,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use App\Notifications\CustomVerifyEmailNotification;
-
-// model yang di butuhkan
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
 
 
 class MemberRegisterController extends Controller
 {
-    // Sesi pertama: Form registrasi akun (hanya nama, email, dan password)
     public function index()
     {
-        return view('member.auth.register'); // Tampilan sesi pertama
+        return view('member.auth.register');
     }
 
     public function store(Request $requests)
@@ -54,8 +51,7 @@ class MemberRegisterController extends Controller
             'password' => Hash::make($requests->password),
         ]);
 
-        // Kirim notifikasi verifikasi email
-        $user->notify(new CustomVerifyEmailNotification(false)); // true for password verification
+        $user->notify(new CustomVerifyEmailNotification(false)); 
         Auth::login($user);
         Alert::success('Success', 'Berhasil Mengirimkan PIN Verifikasi');
         return redirect()->route('verification.notice');

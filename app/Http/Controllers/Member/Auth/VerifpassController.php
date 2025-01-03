@@ -13,18 +13,10 @@ use App\Notifications\CustomVerifyEmailNotification;
 
 class VerifpassController extends Controller
 {
-    // public function index()
-    // {
-    //     $user = User::find(Auth::user()->id);
-    //     $user->notify(new CustomVerifyEmailNotification(true)); // true for password verification
-    //     Alert::success('Success', 'Berhasil Mengirimkan PIN Verifikasi');
-    //     return redirect()->route('member.setting.verifikasi-password');
-    // }
-
     public function resend(Request $requests)
     {
         $user = User::find(Auth::user()->id);
-        $user->notify(new CustomVerifyEmailNotification(true)); // true for password verification
+        $user->notify(new CustomVerifyEmailNotification(true)); 
         RateLimiter::hit('verification-email:' . Auth::user()->id, 3600);
         Alert::success('Success', 'PIN Verifikasi Telah Dikirim');
         return redirect()->back();
@@ -38,7 +30,6 @@ class VerifpassController extends Controller
 
         $user = Auth::user();
 
-        // Check if PIN has expired
         if ($user->pin_expires_at < now()) {
             Alert::error('Error', 'PIN Verifikasi Telah Kadaluarsa');
             return back();
@@ -47,7 +38,7 @@ class VerifpassController extends Controller
         if ($user->verification_pin === $request->pin) {
             $user->email_verified_at = now();
             $user->verification_pin = null;
-            $user->pin_expires_at = null; // Clear expiration timestamp
+            $user->pin_expires_at = null; 
             $user->save();
 
             Alert::success('Berhasil!', 'Kata sandi Anda berhasil diperbarui.');

@@ -123,7 +123,6 @@ Route::middleware('maintenance.middleware')->group(function () {
         // logout
         Route::get('user/logout', [MemberLoginController::class, 'logout'])->name('member.logout');
 
-        Route::get('verif-pass', [VerifpassController::class, 'index'])->name('verification-pass');
         Route::post('/setting/verifikasi-password', [VerifpassController::class, 'resend'])->name('verification-repass');
         Route::put('/setting/verify-pin', [VerifpassController::class, 'verifyPin'])->name('verification.verify-pass');
 

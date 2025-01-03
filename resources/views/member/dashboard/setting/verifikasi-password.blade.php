@@ -178,7 +178,6 @@
             }, 1000);
         }
 
-        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             if (checkPinExpiration()) {
                 resetTimer();
@@ -187,7 +186,6 @@
             }
         });
 
-        // Rest of the event listeners remain the same
         setInterval(checkPinExpiration, 1000);
 
         function updateCompletePin() {
