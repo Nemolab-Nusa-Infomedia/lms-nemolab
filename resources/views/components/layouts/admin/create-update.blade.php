@@ -18,7 +18,7 @@
 
 <body>
     <!-- HALAMAN CONTENT -->
-    <div class="container d-flex justify-content-center" style="background: none !important;">
+    <div class="container-fluid d-flex justify-content-center" style="background: none !important;">
         @yield('content')
     </div>
 
@@ -27,7 +27,26 @@
 
     @stack('prepend-script')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function updateCardWidth() {
+                const cards = document.querySelectorAll('.card');
+                cards.forEach(card => {
+                    if (window.innerWidth <= 500) {
+                        card.style.setProperty('width', '90%', 'important');
+                    } else {
+                        card.style.setProperty('width', '75%', 'important');
+                    }
+                });
+            }
+
+            // Panggil saat halaman dimuat dan ketika ukuran jendela diubah
+            updateCardWidth();
+            window.addEventListener('resize', updateCardWidth);
+        });
+    </script>
     @stack('addon-script')
 </body>
 

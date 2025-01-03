@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class MentorMiddleware
 {
     /**
-     * Handle an incoming request.
-     *
+     * Membuat Pengecekan request sebelum diterima
+     * 
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Pengecekan apakah user sudah login dan jenis user adalah mentor(bukan superadmin dan bukan student)
         if (Auth::check() && Auth::user()->role != 'students') {
             return $next($request);
         }

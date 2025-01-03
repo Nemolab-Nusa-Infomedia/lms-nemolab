@@ -2,67 +2,56 @@
 
 namespace App\Http\Controllers\Member\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
-use RealRashid\SweetAlert\Facades\Alert;
-use Illuminate\Support\Facades\Auth;
-
 use App\Models\User;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
+use App\Notifications\CustomVerifyEmailNotification;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
+
 
 class MemberRegisterController extends Controller
 {
-    public function index() {
-        if (Auth::check()) {
-            return redirect()->route('home');
-        }
+    public function index()
+    {
         return view('member.auth.register');
     }
 
-    public function store(Request $requests) {
-          // Validasi input tanpa konfirmasi password
+    public function store(Request $requests)
+    {
         $requests->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email',
+            'name' => 'bail|required|string|max:255',
+            'email' => 'bail|required|email|unique:users,email',
             'password' => [
+                'bail',
                 'required',
                 'string',
                 'min:8',
                 'regex:/[a-z]/',
                 'regex:/[0-9]/',
+                'confirmed',
             ],
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg',
         ], [
-            'password.regex' => 'Password harus berisi kombinasi huruf dan angka',
+            'name.required' => 'Nama harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.unique' => 'Email sudah terdaftar',
+            'password.required' => 'Password harus diisi',
+            'password.regex' => 'Password harus berisi kombinasi huruf dan angka.',
+            'password.min' => 'Panjang password minimal 8 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
         ]);
 
-        $imagesGetNewName = 'default.png';
-        if($requests->hasFile('avatar')) {
-            $images = $requests->file('avatar');
-            $imagesGetNewName = Str::random(10).$images->getClientOriginalName();
-            $images->storeAs('public/images/avatars', $imagesGetNewName);
-        }
-
-        // Cek apakah email sudah ada
-        $cekEmail = User::where('email', $requests->email)->first();
-        if (!$cekEmail) {
-
-            $user = User::create([
-                'name' => $requests->name,
-                'username' => $requests->name,
-                'email' => $requests->email,
-                'password' => Hash::make($requests->password),
-                'avatar' => $imagesGetNewName,
-                'role' => 'students',
-            ]);
-
-            auth()->login($user);
-            Alert::success('Success', 'Register Berhasil');
-            return redirect()->route('home');
-        } else {
-            // Log::warning('Email sudah terdaftar: ' . $email);
-            return redirect()->back()->withErrors(['email' => 'Email sudah terdaftar, silahkan gunakan akun lain'])->withInput();
-        }
+        $user = User::create([
+            'name' => $requests->name,
+            'email' => $requests->email,
+            'password' => Hash::make($requests->password),
+        ]);
+ 
+        Auth::login($user);
+        return redirect()->route('verification.notice');
     }
 }

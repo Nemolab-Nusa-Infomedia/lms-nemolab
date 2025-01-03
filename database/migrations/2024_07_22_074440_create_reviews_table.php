@@ -14,17 +14,18 @@ return new class extends Migration
         Schema::create('tbl_reviews', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('course_id');
-
-            // foreign key
+            $table->unsignedBigInteger('course_id')->nullable();
+            $table->unsignedBigInteger('ebook_id')->nullable();
+            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('tbl_courses')->onDelete('cascade');
-
-            $table->integer('rating')->nullable(false);
-            $table->string('note')->nullable(true);
+            $table->foreign('ebook_id')->references('id')->on('tbl_ebooks')->onDelete('cascade');
+            
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
