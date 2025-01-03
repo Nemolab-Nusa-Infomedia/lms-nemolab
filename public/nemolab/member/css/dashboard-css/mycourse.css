@@ -63,7 +63,7 @@ p
 {
     border-radius: 14px;
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px 4px 6px rgba(0, 0, 0, 0.1), 1px 0 5px rgba(190, 190, 190, 0.189) inset, -1px 0 5px rgba(190, 190, 190, 0.189) inset;
-    aspect-ratio: 5 / 6;
+    aspect-ratio: 6 / 8;
     width: 100%;
     height: max-content;
     border-radius: 14px;
@@ -122,7 +122,7 @@ p
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
-    max-height: 1em;
+    /* max-height: 1em; */
     text-overflow: ellipsis;
     transition: max-height 0.3s ease, -webkit-line-clamp 0.3s ease;
 }
@@ -418,5 +418,9 @@ p
     {
         -webkit-line-clamp: unset;
         max-height: none;
+    }
+
+    #section-pilih-kelas{
+        margin-bottom: 7rem;
     }
 }

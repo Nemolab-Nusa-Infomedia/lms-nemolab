@@ -276,3 +276,9 @@ body
         color: var(--text-color);
     }
 }
+
+@media (max-width: 576px){
+    #section-pilih-kelas{
+        margin-bottom: 7rem;
+    }
+}

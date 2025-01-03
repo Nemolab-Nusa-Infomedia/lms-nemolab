@@ -60,7 +60,7 @@
     @include('components.includes.member.sidebar-dashboard-mobile')
 @endsection
 @push('addon-script')
-<script src="{{ asset('nemolab/member/js/scroll-dashboard.js') }}"></script>
+    <script src="{{ asset('nemolab/member/js/scroll-dashboard.js') }}"></script>
     <script>
         let loading = false;
         let lastBookId = null;
@@ -137,7 +137,7 @@
                         <div>
                             ${item.cover !=null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}" alt="..." style="height: 40px;width: 60px; border-radius: 5px;" class="d-block d-sm-none">` : `<img  src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" alt="..." style="height: 40px;width: 60px; border-radius: 5px;" class="d-block d-sm-none">` }
                         </div>
-                        <div class="title-card">
+                        <div class="title-card title-link">
                             <p>${item.category}</p>
                             <h5 class="fw-bold truncate-text" style="">${item.name}</h5>
                         </div>
@@ -146,9 +146,9 @@
                             class="btn-group-harga d-flex justify-content-between align-items-center gap-1 gap-md-0">
                             ${item.type == 'free' ? '' : 
                                 `<div class="harga d-block">
-                                    <p class="p-0 m-0 ">Status: <br class="d-none d-sm-block"><span
-                                            style="color: #666666">${item.status}</span></p>
-                                </div>`
+                                        <p class="p-0 m-0 ">Status: <br class="d-none d-sm-block"><span
+                                                style="color: #666666">${item.status}</span></p>
+                                    </div>`
                             }
                             <div class="harga d-block">
                                     <p class="p-0 m-0">Bergabung: <br class="d-none d-sm-block">
@@ -190,6 +190,39 @@
             observer.observe(sentinel);
         }
 
-        // loadMoreContent();
+
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                clearTimeout(timeout);
+                timeout = setTimeout(func, wait);
+            };
+        }
+
+        function SetLineClamp() {
+            console.log('SetLineClamp');
+            const el = document.querySelectorAll('.title-link')
+            const text = document.querySelectorAll('.truncate-text')
+            el.forEach(element => {
+                text.forEach(textElement => {
+                    textElement.style.webkitLineClamp = Math.floor((element.clientHeight - 32) / 21.6);
+                    textElement.style.maxHeight = 21.6 * Math.floor((element.clientHeight - 32) / 21.6) +
+                        'px';
+                });
+            })
+        }
+
+        window.addEventListener('resize', debounce(function() {
+            if (window.innerWidth > 576) {
+                SetLineClamp();
+            } else {
+                textElement.style.webkitLineClamp = 'none';
+                textElement.style.maxHeight = 'none';
+            }
+
+        }), 100);
+
+
+        loadMoreContent();
     </script>
 @endpush

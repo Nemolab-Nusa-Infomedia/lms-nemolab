@@ -227,6 +227,7 @@
                     lastCourseId = response.lastCourseId;
                     document.querySelector('#sentinel').style.display = hasMore ? 'block' : 'none';
                     loading = false;
+                    SetLineClamp();
                 })
                 .catch(error => {
                     console.error('Error:', error);
@@ -250,7 +251,7 @@
                            <p class="paket-item mt-2">${item.product_type === 'ebook' ? 'E-Book' : currentBundling ? 'Paket Combo' : 'Kursus'}</p>
                         </div>
                         <div class="title-card">
-                            <a href="${item.product_type === 'ebook' ? '{{ route('member.ebook.join', '') }}' : '{{ route('member.course.join', '') }}'}/${item.slug}">
+                            <a class="title-link" href="${item.product_type === 'ebook' ? '{{ route('member.ebook.join', '') }}' : '{{ route('member.course.join', '') }}'}/${item.slug}">
                                 <p>${item.category}</p>
                                 <h5 class="fw-bold truncate-text">${item.name}</h5>
                             </a>
@@ -300,6 +301,36 @@
                 loadMoreContent();
             });
         });
+
+        function debounce(func, wait) {
+            let timeout;
+            return function() {
+                clearTimeout(timeout);
+                timeout = setTimeout(func, wait);
+            };
+        }
+
+        function SetLineClamp() {
+            console.log('SetLineClamp');
+            const el = document.querySelectorAll('.title-link')
+            const text = document.querySelectorAll('.truncate-text')
+            el.forEach(element => {
+                text.forEach(textElement => {
+                    textElement.style.webkitLineClamp = Math.floor((element.clientHeight - 32) / 21.6);
+                    textElement.style.maxHeight = 21.6 * Math.floor((element.clientHeight - 32) / 21.6) +
+                        'px';
+                });
+            })
+        }
+
+        window.addEventListener('resize', debounce(function() {
+            if (window.innerWidth > 576) {
+                SetLineClamp();
+            } else {
+                textElement.style.webkitLineClamp = 'none';
+                textElement.style.maxHeight = 'none';
+            }
+        }), 100);
 
         loadMoreContent();
     </script>

@@ -50,19 +50,31 @@ a
 
 .card
 {
+  border: none;
   max-width: 100%;
   aspect-ratio: 5 / 7;
   min-height: 24rem;
   flex-shrink: 0;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.1), -4px 4px 6px rgba(0, 0, 0, 0.1), 1px 0 5px rgba(190, 190, 190, 0.189) inset, -1px 0 5px rgba(190, 190, 190, 0.189) inset;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover
 {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card>img
+{
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  object-fit: cover;
+  height: auto;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 5px 5px rgba(190, 190, 190, 0.189);
 }
 
 .card-body
@@ -126,7 +138,7 @@ a
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  max-height: 3em;
+  /* max-height: 3em; */
   text-overflow: ellipsis;
   transition: max-height 0.3s ease, -webkit-line-clamp 0.3s ease;
 }
@@ -428,7 +440,7 @@ a
 
   .card
   {
-    box-shadow: 0px 4px 4px 0px #0000001F inset;
+    box-shadow: 0px 4px 4px 0px #0000001F;
     padding: 1rem;
     flex-direction: row;
     width: 100%;
@@ -440,7 +452,7 @@ a
   .card:hover
   {
     aspect-ratio: 25 / 9;
-    box-shadow: 0px 4px 4px 0px #0000001F inset, 0 4px 4px #0000001F;
+    box-shadow: 0px 4px 4px 0px #0000001F, 0 4px 4px #0000001F;
     height: auto;
     width: 100%;
     min-height: auto;
@@ -501,6 +513,7 @@ a
     height: auto;
     width: 30%;
     position: absolute;
+    box-shadow: none;
   }
 
   .title-card
