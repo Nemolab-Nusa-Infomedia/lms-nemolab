@@ -16,8 +16,8 @@
                     <a href="{{ route('admin.course.create') }}" class="tambah-data"
                         >Tambahkan
                         Data</a>
-                    <table class=" table table-bordered table-striped shadow-none mb-0" id="tablesContent">
-                        <thead class="table-dark">
+                    <table class=" table table-striped shadow-none mb-0" id="tablesContent">
+                        <thead>
                             <tr>
                                 <th>Kategori</th>
                                 <th>Nama</th>
@@ -68,8 +68,7 @@
                                                 <td>-</td>
                                             @endif
                                         @endif
-                                        <td class="d-flex justify-content-around align-items-center"
-                                            style="border: none !important; ">
+                                        <td class="d-flex justify-content-around align-items-center">
                                             <a href="{{ route('admin.chapter', $course->slug) }}" class="btn btn-success">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">

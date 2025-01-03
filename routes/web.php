@@ -192,7 +192,7 @@ Route::middleware('maintenance.middleware')->group(function () {
         });
 
         // mentor course
-        Route::prefix('course')->middleware(['mentor', 'verified'])->group(function () {
+        Route::prefix('course')->middleware(['mentor'])->group(function () {
             Route::get('/', [AdminCourseController::class, 'index'])->name('admin.course');
 
             Route::get('/create', [AdminCourseController::class, 'create'])->name('admin.course.create');
@@ -218,7 +218,7 @@ Route::middleware('maintenance.middleware')->group(function () {
             Route::get('chapter/lesson/delete/', [AdminLessonController::class, 'delete'])->name('admin.lesson.delete');
         });
 
-        Route::prefix('ebooks')->middleware(['mentor', 'verified'])->group(function () {
+        Route::prefix('ebooks')->middleware(['mentor'])->group(function () {
             Route::get('/', [AdminEbookController::class, 'index'])->name('admin.ebook');
             Route::get('/create', [AdminEbookController::class, 'create'])->name('admin.ebook.create');
             Route::post('/store', [AdminEbookController::class, 'store'])->name('admin.ebook.create.store');
@@ -227,7 +227,7 @@ Route::middleware('maintenance.middleware')->group(function () {
             Route::get('/delete/', [AdminEbookController::class, 'delete'])->name('admin.ebook.delete');
         });
 
-        Route::prefix('paket-kelas')->middleware(['mentor', 'verified'])->group(function () {
+        Route::prefix('paket-kelas')->middleware(['mentor'])->group(function () {
             Route::get('/', [AdminCourseEbookController::class, 'index'])->name('admin.paket-kelas');
             Route::get('/create', [AdminCourseEbookController::class, 'create'])->name('admin.paket-kelas.create');
             Route::post('/store', [AdminCourseEbookController::class, 'store'])->name('admin.paket-kelas.create.store');
@@ -236,7 +236,7 @@ Route::middleware('maintenance.middleware')->group(function () {
             Route::get('/delete/', [AdminCourseEbookController::class, 'delete'])->name('admin.paket-kelas.delete');
         });
 
-        Route::prefix('tools')->middleware(['mentor', 'verified'])->group(function () {
+        Route::prefix('tools')->middleware(['mentor'])->group(function () {
             Route::get('/', [AdminToolsController::class, 'index'])->name('admin.tools');
             Route::get('/create', [AdminToolsController::class, 'create'])->name('admin.tools.create');
             Route::post('/create/store', [AdminToolsController::class, 'store'])->name('admin.tools.create.store');
@@ -245,7 +245,7 @@ Route::middleware('maintenance.middleware')->group(function () {
             Route::get('/delete/{id}', [AdminToolsController::class, 'delete'])->name('admin.tools.delete');
         });
 
-        Route::prefix('diskon-kelas')->middleware(['mentor', 'verified'])->group(function () {
+        Route::prefix('diskon-kelas')->middleware(['mentor'])->group(function () {
             Route::get('/', [AdminDiskonController::class, 'index'])->name('admin.diskon-kelas');
             Route::get('/create', [AdminDiskonController::class, 'create'])->name('admin.diskon-kelas.create');
             Route::post('/store', [AdminDiskonController::class, 'store'])->name('admin.diskon-kelas.create.store');

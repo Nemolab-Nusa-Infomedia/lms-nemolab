@@ -7,6 +7,7 @@
 {
     --dark-grey: #414142;
     --blue-link: #0774FA;
+    --blue-link-hover: #0A5BCC;
     --light-lavender: #F0EAFF;
     --color-pink: #FFF6F6;
 }
@@ -281,7 +282,7 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a
 {
     color: white;
-    background-color: var(--color-orange);
+    background-color: var(--blue-link);
     transition: all 0.3s ease;
     border: none;
     font-weight: 700;
@@ -292,13 +293,13 @@ header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a:hover
 {
-    background-color: var(--color-orange-hover);
+    background-color: var(--blue-link-hover);
 }
 
 header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a:active
 {
     color: white !important;
-    background-color: var(--color-orange-hover) !important;
+    background-color: var(--blue-link-hover) !important;
     transition: background-color 0s;
 }
 

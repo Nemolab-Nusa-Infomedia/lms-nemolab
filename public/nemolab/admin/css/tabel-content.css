@@ -52,6 +52,10 @@ a {
     vertical-align: middle;
 }
 
+.dt-column-title {
+    font-weight: 600 !important;
+}
+
 .edit-data {
     text-decoration: none;
     color: white;
@@ -111,6 +115,7 @@ table {
     width: auto;
     border-collapse: collapse;
     border-spacing: 0;
+    border: #B5B5B554 solid 1px !important;
 }
 
 /* Mengatur jarak pada tampilan DataTables */
@@ -130,10 +135,6 @@ table {
         float: none;
         width: 100%;
     }
-}
-
-.table-dark {
-    --bs-table-bg: #faa907 !important;
 }
 
 .page-link {
@@ -176,15 +177,14 @@ input:focus {
     margin-top: 30px;
 }
 
-table {
-    border: 2px solid #faa907 !important;
-    /* Border luar tabel */
-    border-collapse: collapse;
-    /* Agar border tampil rapi */
+.table-dark {
+    border: none !important;
+    --bs-table-bg: #fff !important;
 }
 
 th,
 td {
-    border: 1px solid #faa907 !important;
-    /* Border di dalam sel tabel */
+    color: #414142 !important;
+    border: none !important;
+    border-top: #B5B5B554 solid 1px !important;
 }
