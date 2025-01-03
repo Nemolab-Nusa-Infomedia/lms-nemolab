@@ -210,6 +210,15 @@ body
     color: #666;
 }
 
+@media (max-width: 992px)
+{
+
+    #section-pilih-kelas
+    {
+        margin-bottom: 7rem;
+    }
+}
+
 @media (max-width: 768px)
 {
     .filter-transaction .nav-tabs a
@@ -275,10 +284,5 @@ body
         background-color: var(--button-red);
         color: var(--text-color);
     }
-}
 
-@media (max-width: 576px){
-    #section-pilih-kelas{
-        margin-bottom: 7rem;
-    }
 }

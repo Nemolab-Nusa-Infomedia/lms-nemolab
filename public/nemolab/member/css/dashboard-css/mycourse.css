@@ -89,11 +89,13 @@ p
     box-shadow: 0 5px 5px rgba(190, 190, 190, 0.189);
 }
 
-.card .card-body{
+.card .card-body
+{
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
+
 .card .title-card
 {
     flex-grow: 1;
@@ -304,6 +306,11 @@ p
         color: #faa907 !important;
         font-weight: 600;
     }
+
+    #section-pilih-kelas
+    {
+        margin-bottom: 8rem;
+    }
 }
 
 /* Tablet and Smaller Screen Styles */
@@ -418,9 +425,5 @@ p
     {
         -webkit-line-clamp: unset;
         max-height: none;
-    }
-
-    #section-pilih-kelas{
-        margin-bottom: 7rem;
     }
 }
