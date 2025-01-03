@@ -17,9 +17,11 @@ class MemberTransactionController extends Controller
 {
     public function index(Request $request)
     {
-        $status = $request->input('status');
+        if($request->ajax()){
 
-        $transactions = Transaction::with([
+            $status = $request->input('status');
+            
+            $transactions = Transaction::with([
                 'course' => function ($query) {
                     $query->select('id', 'name', 'cover', 'price');
                 },
@@ -29,15 +31,18 @@ class MemberTransactionController extends Controller
                 'bundle.course' => function ($query) {
                     $query->select('id', 'name', 'cover', 'price');
                 }
-            ])
-            ->where('user_id', Auth::id())
-            ->when($status, function ($query, $status) {
-                return $query->where('status', $status);
-            })
-            ->orderBy('created_at', 'desc')
-            ->get();
+                ])
+                ->where('user_id', Auth::id())
+                ->when($status, function ($query, $status) {
+                    return $query->where('status', $status);
+                })
+                ->orderBy('created_at', 'desc')
+                ->get();
+            }
 
-        return view('member.dashboard.transaction.view', compact('transactions', 'status'));
+        return view('member.dashboard.transaction.view'
+        // , compact('transactions', 'status')
+        );
     }
 
     public function show(Request $requests, $transaction_code)
