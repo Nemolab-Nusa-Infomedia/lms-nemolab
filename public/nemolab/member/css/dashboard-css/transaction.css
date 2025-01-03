@@ -286,3 +286,11 @@ body
     }
 
 }
+
+@media (max-width: 576px)
+{
+    html
+    {
+        font-size: 62.5%;
+    }
+}

@@ -73,7 +73,7 @@ p
 
 .card:hover
 {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -316,10 +316,41 @@ p
 /* Tablet and Smaller Screen Styles */
 @media (max-width: 576px)
 {
+    html
+    {
+        font-size: 62.5%;
+    }
+
+    #section-pilih-kelas
+    {
+        margin-bottom: 10rem;
+    }
+
+    .courses-scroll
+    {
+        display: flex;
+        gap: 1rem;
+        flex-direction: column;
+    }
+
     .card
     {
         width: 100%;
         aspect-ratio: auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-radius: 4px;
+    }
+
+
+    .card>img
+    {
+        height: 50%;
+        width: 24%;
+        box-shadow: none;
+        margin-inline: 1rem;
+        border-radius: 5px;
     }
 
     .not-found img
@@ -327,22 +358,30 @@ p
         max-width: 100% !important;
     }
 
-    .tittle-card
+    .title-card
     {
         height: 36px;
+        flex-direction: row !important;
+        align-items: center;
+        gap: .5rem;
     }
 
-    .tittle-card p
+    .title-card p::after
     {
-        height: 30px;
-        font-size: 18px;
-        display: -webkit-box !important;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        white-space: normal;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 100%;
+        content: ":";
+        margin-left: .25rem;
+    }
+
+    .title-card p::after,
+    .title-card p
+    {
+        text-wrap-mode: nowrap;
+        font-size: 1.125rem;
+        font-weight: 800 !important;
+        color: var(--head-title);
+    }
+    .title-card h5{
+        margin: 0;
     }
 
     .profile-card img
@@ -386,7 +425,7 @@ p
     .card-body
     {
         display: flex;
-        gap: 10px;
+        gap: 0;
         padding: 0.6rem !important;
     }
 

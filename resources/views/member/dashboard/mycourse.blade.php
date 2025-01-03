@@ -122,6 +122,7 @@
                 lastCourseId = response.lastCourseId;
                 document.querySelector('#sentinel').style.display = hasMore ? 'block' : 'none';
                 loading = false;
+                SetLineClamp()
             }).catch(error => {
                 console.error('Error:', error);
                 loading = false;
@@ -132,29 +133,23 @@
 
             return `
                 <a href="{{ route('member.course.join', '') }}/${item.slug}" class="card">
-                    ${item.cover !=null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}"" class="card-img-top d-none d-sm-block" alt="...">` : `<img  src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-none d-sm-block" alt="...">` }
+                    ${item.cover !=null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}"" class="card-img-top d-block" alt="...">` : `<img  src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="...">` }
                     <div class="card-body">
-                        <div>
-                            ${item.cover !=null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}" alt="..." style="height: 40px;width: 60px; border-radius: 5px;" class="d-block d-sm-none">` : `<img  src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" alt="..." style="height: 40px;width: 60px; border-radius: 5px;" class="d-block d-sm-none">` }
-                        </div>
                         <div class="title-card title-link">
                             <p>${item.category}</p>
-                            <h5 class="fw-bold truncate-text" style="">${item.name}</h5>
+                            <h5 class="fw-bold truncate-text" style="max-height:none;">${item.name}</h5>
                         </div>
                         <p class="tipe" style="color: #666666">${item.product_type} ${item.type}</p>
                         <div
                             class="btn-group-harga d-flex justify-content-between align-items-center gap-1 gap-md-0">
                             ${item.type == 'free' ? '' : 
-                                `<div class="harga d-block">
-                                        <p class="p-0 m-0 ">Status: <br class="d-none d-sm-block"><span
-                                                style="color: #666666">${item.status}</span></p>
-                                    </div>`
+                                `<div class="harga d-block"><p class="p-0 m-0 d-flex d-md-block gap-2 ">Status: <br class="d-md-block"><span style="color: #666666">${item.status}</span></p></div>`
                             }
                             <div class="harga d-block">
-                                    <p class="p-0 m-0">Bergabung: <br class="d-none d-sm-block">
-                                        <span
-                                            style="color: #666666">${formatDate(item.mylist[0].created_at)}</span>
-                                    </p>
+                                <p class="p-0 m-0 d-flex d-md-block gap-2">Bergabung: <br class="d-md-block">
+                                    <span
+                                        style="color: #666666">${formatDate(item.mylist[0].created_at)}</span>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -205,21 +200,20 @@
             const text = document.querySelectorAll('.truncate-text')
             el.forEach(element => {
                 text.forEach(textElement => {
-                    textElement.style.webkitLineClamp = Math.floor((element.clientHeight - 32) / 21.6);
-                    textElement.style.maxHeight = 21.6 * Math.floor((element.clientHeight - 32) / 21.6) +
-                        'px';
-                });
+                    if (window.innerWidth > 576) {
+                        textElement.style.webkitLineClamp = Math.floor((element.clientHeight - 32) / 21.6);
+                        textElement.style.maxHeight =
+                            21.6 * Math.floor((element.clientHeight - 32) / 21.6) + 'px';
+                    } else {
+                        textElement.style.webkitLineClamp = '1';
+                        textElement.style.maxHeight = '16px';
+                    }
+                })
             })
         }
 
         window.addEventListener('resize', debounce(function() {
-            if (window.innerWidth > 576) {
-                SetLineClamp();
-            } else {
-                textElement.style.webkitLineClamp = 'none';
-                textElement.style.maxHeight = 'none';
-            }
-
+            SetLineClamp();
         }), 100);
 
 
