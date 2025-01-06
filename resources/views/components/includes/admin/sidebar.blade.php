@@ -14,12 +14,6 @@
                 alt="" width="20" />
             <p class="m-0">Data Mentor</p>
         </a>
-        <a href="{{ route('admin.superadmin') }}"
-            class="list-sidebar {{ request()->is('admin/data-users/superadmin') ? 'active' : '' }}">
-            <img src="{{ asset(request()->is('admin/data-users/superadmin') ? 'nemolab/admin/img/datamember-active.png' : 'nemolab/admin/img/datamember.png') }}"
-                alt="" width="20" />
-            <p class="m-0">Data Super Admin</p>
-        </a>
         <a href="{{ route('admin.pengajuan') }}"
             class="list-sidebar {{ request()->is('admin/kirim-pengajuan/users') ? 'active' : '' }}">
             <img src="{{ asset(request()->is('admin/kirim-pengajuan/users') ? 'nemolab/admin/img/datamember-active.png' : 'nemolab/admin/img/datamember.png') }}"
