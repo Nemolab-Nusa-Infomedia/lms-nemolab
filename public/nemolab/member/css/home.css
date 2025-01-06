@@ -567,7 +567,7 @@ main p
 #section-pilih-kelas
 {
     padding: 0 2.5rem;
-    height: 100svh;
+    height: max-content;
 }
 
 #section-pilih-kelas .scroll-course
