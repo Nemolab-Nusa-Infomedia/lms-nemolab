@@ -13,9 +13,11 @@
 
             <div class="col-12 col-lg-9 ps-xl-3 d-flex justify-content-center" style="height: 600px">
                 <div class="table-responsive shadow-lg rounded-3 p-3 w-100" style="background-color: #ffffff;">
+                    @if (Auth::user()->role == 'mentor')
                     <a href="{{ route('admin.ebook.create') }}" class="tambah-data"
                         >Tambahkan
                         Data</a>
+                    @endif
                     <table class=" table table-bordered table-striped shadow-none mb-0" id="tablesContent">
                         <thead class="table-dark">
                             <tr>
@@ -75,6 +77,7 @@
                                         @endif
                                         <td class="d-flex justify-content-around align-items-center"
                                             style="border: none !important; ">
+                                            @if (Auth::user()->role == 'mentor')
                                             <a class="btn btn-warning"
                                                 href="{{ route('admin.ebook.edit') }}?id={{ $ebook->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -88,6 +91,7 @@
                                                     </path>
                                                 </svg>
                                             </a>
+                                            @endif
                                             <a href="{{ route('admin.ebook.delete') }}?id={{ $ebook->id }}"
                                                 class="btn btn-danger ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
