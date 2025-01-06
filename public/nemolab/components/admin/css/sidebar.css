@@ -8,6 +8,7 @@
 }
 
 .tittle-list-sidebar {
+    font-size: 0.875rem;
     font-weight: bold;
 }
 
@@ -26,7 +27,7 @@
 }
 
 .list-sidebar p {
-    font-size: 1.25rem;
+    font-size: 0.75rem;
 }
 
 .active {
