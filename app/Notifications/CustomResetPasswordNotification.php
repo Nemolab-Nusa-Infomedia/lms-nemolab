@@ -6,8 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Str;
 
-class CustomResetPasswordNotification extends Notification
+class CustomResetPasswordNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -39,17 +40,16 @@ class CustomResetPasswordNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        // Membuat URL untuk reset password dengan token
         $url = url(route('password.reset', [
             'token' => $this->token,
             'email' => $notifiable->getEmailForPasswordReset(),
         ], false));
 
         return (new MailMessage)
-            ->subject('Reset Password') // Menentukan subject email
+            ->subject('Reset Password')
             ->view('vendor.notifications.password-reset', [
-                'url' => $url,           // Menyertakan URL reset password
-                'user' => $notifiable,   // Menyertakan data user untuk personalisasi
+                'url' => $url,
+                'user' => $notifiable,
             ]);
     }
 
@@ -61,7 +61,7 @@ class CustomResetPasswordNotification extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            // Anda bisa menambahkan data lain yang ingin disertakan dalam array (misalnya untuk notifikasi database)
+            'token' => $this->token
         ];
     }
 }
