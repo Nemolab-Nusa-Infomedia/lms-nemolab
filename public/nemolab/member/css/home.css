@@ -429,10 +429,10 @@ main p
 @media screen and (max-width: 576px)
 {
 
-    #section-hero-img .circle1
+    .circle1-sm
     {
         position: absolute;
-        transform: translate(94%, -132%);
+        transform: translate(101%, -113%);
         height: 70svw;
         width: 70svw;
         background-color: #ebe6fb;
@@ -441,10 +441,10 @@ main p
         z-index: -1;
     }
 
-    #section-hero-img .circle2
+    .circle2-sm
     {
         position: absolute;
-        transform: translate(104%, -153%);
+        transform: translate(110%, -124%);
         height: 65svw;
         width: 65svw;
         background: linear-gradient(to right, #FAA907, #ffe0a2);
@@ -458,9 +458,9 @@ main p
         position: absolute;
         bottom: 0;
         left: 0;
-        transform: translate(-30%, 50%);
-        height: 20svw;
-        width: 20svw;
+        transform: translate(-63%, 50%);
+        height: 35svw;
+        width: 35svw;
         background: linear-gradient(to bottom, #ff8e01, #ff8e01, #ffffff);
         border-radius: 50%;
         transition: transform 0.3s ease-in-out;

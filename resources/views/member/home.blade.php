@@ -10,10 +10,12 @@
     <!-- Section Hero -->
     <section class="section-hero-img d-flex align-items-center mb-5 position-relative" id="section-hero-img">
         <div>
-            <div class="circle1"></div>
+            <div class="circle1 d-none d-md-block"></div>
+            <div class="circle1-sm d-block d-md-none"></div>
         </div>
         <div>
-            <div class="circle2"></div>
+            <div class="circle2 d-none d-md-block"></div>
+            <div class="circle2-sm d-block d-md-none"></div>
         </div>
         <div class="row">
             <div class="col-md-6 row align-items-center" id="text-hero" style="z-index: 1">
