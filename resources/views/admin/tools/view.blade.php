@@ -31,7 +31,7 @@
                                     <td>{{ $item->name_tools }}</td>
                                     <td><a href="{{ $item->link }}" style="font-size: 12px;" class="btn btn-success">Kunjungi</a></td>
                                     <td>
-                                        <img src="{{ $item->logo_tools }}" alt="{{ $item->name_tools }}" width="35" height="35" class="rounded-2 object-fit-cover">
+                                        <img src="{{ $item->logo_tools }}" alt="{{ $item->name_tools }}" height="25" class="rounded-2 object-fit-cover">
                                     </td>
                                     <td class="d-flex justify-content-around align-items-center"
                                         style="border: none !important; ">
