@@ -15,7 +15,7 @@
                     <div class="filter-menu d-flex align-items-center gap-2">
                         <button class="filter-togle btn btn-warning d-flex justify-content-center align-items-center"
                             style="height: 35px; width: 35px;">
-                            <img src="{{ url('nemolab/components/member/img/filter.png') }}" alt=""
+                            <img src="{{ asset('nemolab/components/member/img/filter.png') }}" alt=""
                                 style="width: 20px; height: 20px;">
                         </button>
                         <form action="{{ route('member.course') }}" method="GET" class="d-flex flex-grow-1">
@@ -47,7 +47,7 @@
     </section>
 @endsection
 @push('addon-script')
-    <script src="{{ url('nemolab/member/js/scroll-dashboard.js') }}"></script>
+    <script src="{{ asset('nemolab/member/js/scroll-dashboard.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('.filter-togle').addEventListener('click', function() {
@@ -142,7 +142,7 @@
                     } else if (lastCourseId == null) {
                         // Menampilkan not found
                         container.insertAdjacentHTML('beforeend', `
-                            <img src="{{ url('nemolab/member/img/search-not-found.png') }}"
+                            <img src="{{ asset('nemolab/member/img/search-not-found.png') }}"
                                 class="logo-not-found" style="max-width: 50svh" alt="Not Found">
                             <p class="mt-3">Kelas Yang Kamu Cari Tidak Tersedia</p>
                         `);
@@ -175,7 +175,7 @@
 
             return `
                 <div class="card d-flex flex-column">
-                    ${item.cover != null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}" class="card-img-top d-block" alt="${item.name}">` : `<img src="{{ url('/') . url('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="${item.name}">`}
+                    ${item.cover != null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}" class="card-img-top d-block" alt="${item.name}">` : `<img src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="${item.name}">`}
                     <div class="card-body p-3">
                         <div class="paket d-flex">
                            <p class="paket-item mt-2">${item.product_type === 'ebook' ? 'E-Book' : currentBundling ? 'Paket Combo' : 'Kursus'}</p>

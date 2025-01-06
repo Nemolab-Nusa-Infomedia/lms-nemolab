@@ -17,7 +17,7 @@
                 @if ($ebooks->cover !=null)
                 <img src="{{ url('storage/images/covers/' . $ebooks->cover) }}" alt="" class="img-fluid" width="900" height="800" style="border-radius: 15px; object-fit: cover">
                 @else
-                <img src="{{ url('nemolab/member/img/NemolabBG.jpg') }}" alt="" class="img-fluid" width="900" height="800" style="border-radius: 15px; object-fit: cover">
+                <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" alt="" class="img-fluid" width="900" height="800" style="border-radius: 15px; object-fit: cover">
                 @endif
             </div>
             <div class="detail-courses mt-5">

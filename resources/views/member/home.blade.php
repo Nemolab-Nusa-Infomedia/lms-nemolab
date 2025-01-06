@@ -31,19 +31,19 @@
             <div class="col-md-6 d-none d-md-block align-items-center">
                 <div class="image-wrapper">
                     <div class="main-image">
-                        <img src="{{ url('nemolab/member/img/lp-hero-pisah-1.png') }}" alt="" data-aos="fade-up"
+                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-1.png') }}" alt="" data-aos="fade-up"
                             data-aos-delay="200">
                     </div>
                     <div class="image-overlay1">
-                        <img src="{{ url('nemolab/member/img/lp-hero-pisah-2.png') }}" alt="" data-aos-delay="400"
+                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-2.png') }}" alt="" data-aos-delay="400"
                             data-aos="fade-down">
                     </div>
                     <div class="dot">
-                        <img src="{{ url('nemolab/member/img/dot.png') }}" alt="" data-aos-delay="600"
+                        <img src="{{ asset('nemolab/member/img/dot.png') }}" alt="" data-aos-delay="600"
                             data-aos="fade-left">
                     </div>
                     <div class="image-overlay2">
-                        <img src="{{ url('nemolab/member/img/lp-hero-pisah-3.png') }}" alt="" data-aos-delay="600"
+                        <img src="{{ asset('nemolab/member/img/lp-hero-pisah-3.png') }}" alt="" data-aos-delay="600"
                             data-aos="fade-left">
                     </div>
                 </div>
@@ -51,7 +51,7 @@
         </div>
         <div class="circle3">
             <div>
-                <img class="dots" src="{{ url('nemolab/member/img/dot.png') }}" alt="">
+                <img class="dots" src="{{ asset('nemolab/member/img/dot.png') }}" alt="">
             </div>
         </div>
     </section>
@@ -111,7 +111,7 @@
                                                         alt="" />
                                                 @else
                                                     <img class="me-2"
-                                                        src="{{ url('nemolab/member/img/icon/Group 7.png') }}"
+                                                        src="{{ asset('nemolab/member/img/icon/Group 7.png') }}"
                                                         alt="" />
                                                 @endif
                                                 {{ $course->users->name }}
@@ -145,7 +145,7 @@
                 Lainnya</a>
         </div>
 
-        <img class="dots" src="{{ url('nemolab/member/img/dot.png') }}" alt="">
+        <img class="dots" src="{{ asset('nemolab/member/img/dot.png') }}" alt="">
     </section>
 
     <section class="section-tentang-nemolab" id="section-tentang-nemolab">
@@ -154,7 +154,7 @@
                 <div class="col-lg-6 justify-content-center d-none d-lg-flex" id="service" data-aos="fade-up"
                     data-aos-delay="100">
                     <div class="col-8 align-items-center justify-content-center d-flex">
-                        <img src="{{ url('nemolab/member/img/lp-hero-2.png') }}" class="img-fluid" alt="">
+                        <img src="{{ asset('nemolab/member/img/lp-hero-2.png') }}" class="img-fluid" alt="">
                     </div>
                     <div class="col-4 flex-column mt-4" id="menu-service">
                         <div class="ms-xl-5">
@@ -184,12 +184,12 @@
                         <h1 class="fw-bold">Mengapa Harus Belajar
                             <span>
                                 Keahlian
-                                <img src="{{ url('nemolab/img_component/5fca34d4581c9a99a016ddecf9ddf318.png') }}"
+                                <img src="{{ asset('nemolab/img_component/5fca34d4581c9a99a016ddecf9ddf318.png') }}"
                                     alt="">
                             </span> Di
                             <span>
                                 Nemolab?
-                                <img src="{{ url('nemolab/img_component/f69671db8d39c5bd931f5129eb023a5f.png') }}"
+                                <img src="{{ asset('nemolab/img_component/f69671db8d39c5bd931f5129eb023a5f.png') }}"
                                     alt="">
                             </span>
                         </h1>
@@ -209,7 +209,7 @@
                 </div>
             </div>
         </div>
-        <img class="dots" src="{{ url('nemolab/member/img/dot.png') }}" alt="">
+        <img class="dots" src="{{ asset('nemolab/member/img/dot.png') }}" alt="">
     </section>
 
 
@@ -313,9 +313,9 @@
         <p>Banyak brand dan perusahaan besar mendukung tujuan kami untuk menjadi yang terbaik dan terpercaya dalam
             pengembangan pribadi dan karier</p>
         <div class="support-brand">
-            <img src="{{ url('nemolab/img_component/Nemolab.png') }}" alt="" data-aos="fade-right" data-aos-delay="100">
-            <img src="{{ url('nemolab/img_component/Hugo_Studio.png') }}" alt="" data-aos="fade-right" data-aos-delay="300">
-            <img src="{{ url('nemolab/img_component/Vibrant_Ecosystem.png') }}" alt="" data-aos="fade-right" data-aos-delay="500">
+            <img src="{{ asset('nemolab/img_component/Nemolab.png') }}" alt="" data-aos="fade-right" data-aos-delay="100">
+            <img src="{{ asset('nemolab/img_component/Hugo_Studio.png') }}" alt="" data-aos="fade-right" data-aos-delay="300">
+            <img src="{{ asset('nemolab/img_component/Vibrant_Ecosystem.png') }}" alt="" data-aos="fade-right" data-aos-delay="500">
         </div>
     </section>
     <!-- end section 5 -->
@@ -331,7 +331,7 @@
                 </div>
             </div>
             <div class="col-md-6 d-none d-md-block">
-                <img src="{{ url('nemolab/member/img/lp-hero-4.png') }}" alt="">
+                <img src="{{ asset('nemolab/member/img/lp-hero-4.png') }}" alt="">
             </div>
         </div>
     </section>

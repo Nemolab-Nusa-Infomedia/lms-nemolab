@@ -19,7 +19,7 @@
                     @if ($ebooks->cover != null)
                         <img src="{{ url('storage/images/covers/' . $ebooks->cover) }}" alt="">
                     @else
-                        <img src="{{ url('nemolab/member/img/NemolabBG.jpg') }}" alt="">
+                        <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" alt="">
                     @endif
                 </div>
                 <div class="card mb-3 d-md-none">
