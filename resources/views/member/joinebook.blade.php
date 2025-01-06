@@ -17,9 +17,9 @@
             <div class="layout-kiri col-md-8">
                 <div class="card-preview mb-3">
                     @if ($ebooks->cover != null)
-                        <img src="{{ asset('storage/images/covers/' . $ebooks->cover) }}" alt="">
+                        <img src="{{ url('storage/images/covers/' . $ebooks->cover) }}" alt="">
                     @else
-                        <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" alt="">
+                        <img src="{{ url('nemolab/member/img/NemolabBG.jpg') }}" alt="">
                     @endif
                 </div>
                 <div class="card mb-3 d-md-none">

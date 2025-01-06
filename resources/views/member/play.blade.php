@@ -44,7 +44,7 @@
                                                     class="text-wrap flex-grow-1 play-video "
                                                     data-episode-id="{{ $lesson->id }}"
                                                     data-course-id="{{ $courses->id }}">{{ $lesson->name }}</a>
-                                                <img src="{{ asset('nemolab/member/img/iconamoon_check-bold.png') }}"
+                                                <img src="{{ url('nemolab/member/img/iconamoon_check-bold.png') }}"
                                                     alt=""
                                                     class="check-icon {{ in_array($lesson->id, $epComplete) ? '' : 'd-none' }}"
                                                     id="check-icon-{{ $lesson->id }}">
