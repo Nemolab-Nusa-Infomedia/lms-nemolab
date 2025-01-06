@@ -9,10 +9,10 @@
 @section('content')
     <!-- Section Hero -->
     <section class="section-hero-img d-flex align-items-center mb-5 position-relative" id="section-hero-img">
-        <div data-aos="fade-down-left">
+        <div>
             <div class="circle1"></div>
         </div>
-        <div data-aos="fade-down-left" data-aos-delay="50">
+        <div>
             <div class="circle2"></div>
         </div>
         <div class="row">
@@ -308,23 +308,23 @@
     <!-- end section 4 -->
 
     <!-- section 5 -->
-    <section id="section-support-by" data-aos="fade-up">
+    <section id="section-support-by" data-aos="fade-up" data-aos-offset="-200">
         <h1 class="fw-bold m-0">Support By</h1>
         <p>Banyak brand dan perusahaan besar mendukung tujuan kami untuk menjadi yang terbaik dan terpercaya dalam
             pengembangan pribadi dan karier</p>
         <div class="support-brand">
-            <img src="{{ asset('nemolab/img_component/Nemolab.png') }}" alt="" data-aos="fade-right" data-aos-delay="100">
-            <img src="{{ asset('nemolab/img_component/Hugo_Studio.png') }}" alt="" data-aos="fade-right" data-aos-delay="300">
-            <img src="{{ asset('nemolab/img_component/Vibrant_Ecosystem.png') }}" alt="" data-aos="fade-right" data-aos-delay="500">
+            <img src="{{ asset('nemolab/img_component/Nemolab.png') }}" alt="" data-aos="fade-right" data-aos-delay="100" data-aos-offset="-200">
+            <img src="{{ asset('nemolab/img_component/Hugo_Studio.png') }}" alt="" data-aos="fade-right" data-aos-delay="300" data-aos-offset="-200">
+            <img src="{{ asset('nemolab/img_component/Vibrant_Ecosystem.png') }}" alt="" data-aos="fade-right" data-aos-delay="500" data-aos-offset="-200">
         </div>
     </section>
     <!-- end section 5 -->
 
     <!-- section 6 -->
-    <section class="section-pusat-bantuan" id="section-pusat-bantuan" data-aos="fade-up">
+    <section class="section-pusat-bantuan" id="section-pusat-bantuan" data-aos="fade-up" data-aos-offset="-200">
         <div class="row align-items-center mt-0 mx-md-3">
             <div class="col-md-6">
-                <div class="text-center me-md-4 text-md-start" data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center me-md-4 text-md-start" data-aos="fade-up" data-aos-delay="100" data-aos-offset="-200">
                     <h1 class="fw-bold mb-3">Hubungi Kami Jika Anda Memiliki Kendala</h1>
                     <p class="me-md-5">Laporkan masalah anda ke kontak dibawah untuk informasi lebih lanjut lagi</p>
                     <a href="#" class="btn btn-warning px-4 py-2 mt-2">Hubungi CS</a>
