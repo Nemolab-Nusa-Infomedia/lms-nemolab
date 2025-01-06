@@ -15,16 +15,16 @@
             <h4 class="m-0 p-0 mt-5 mb-4 text-center">{{ $courses->name }}</h4>
             <div class="content-images d-flex justify-content-center">
                 @if ($courses->cover !=null)
-                <img src="{{ asset('storage/images/covers/' . $courses->cover) }}" alt="" class="img-fluid" width="900" height="800" style="border-radius: 15px;">
+                <img src="{{ url('storage/images/covers/' . $courses->cover) }}" alt="" class="img-fluid" width="900" height="800" style="border-radius: 15px;">
                 @else
-                <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" alt="" class="img-fluid" width="900" height="800" style="border-radius: 15px;">
+                <img src="{{ url('nemolab/member/img/NemolabBG.jpg') }}" alt="" class="img-fluid" width="900" height="800" style="border-radius: 15px;">
                 @endif
             </div>
             <div class="subcontent-images mt-5">
                 <div class="row">
                     <div class="col-12 col-sm-6 col-xl-4 mb-4">
                         <a href="{{ $courses->link_grub }}" class="shadow">
-                            <img src="{{ asset('nemolab/member/img/img-konsultasi.png') }}" alt="">
+                            <img src="{{ url('nemolab/member/img/img-konsultasi.png') }}" alt="">
                             <div class="group-title-subtitle ms-3">
                                 <p class="m-0 p-0">Gabung Grub Konsultasi</p>
                                 <p class="m-0 p-0">Konsultasi Dengan Mentor</p>
@@ -38,7 +38,7 @@
                                 @else
                                     <a href="{{ route('member.sertifikat', $courses->slug) }}" class="shadow">
                             @endif
-                            <img src="{{ asset('nemolab/member/img/img-achievement.png') }}" alt="">
+                            <img src="{{ url('nemolab/member/img/img-achievement.png') }}" alt="">
                             <div class="group-title-subtitle ms-3">
                                 <p class="m-0 p-0">Unduh Sertifikat</p>
                                 <p class="m-0 p-0">Unduh Sertifikat Anda</p>
@@ -49,7 +49,7 @@
                     @if ($courses->resources != 'null')
                         <div class="col-12 col-sm-6 col-xl-4 mb-4">
                             <a href="{{ $courses->resources }}" class="shadow">
-                                <img src="{{ asset('nemolab/member/img/img-asset.png') }}" alt="">
+                                <img src="{{ url('nemolab/member/img/img-asset.png') }}" alt="">
                                 <div class="group-title-subtitle ms-3">
                                     <p class="m-0 p-0">Asset Belajar</p>
                                     <p class="m-0 p-0">Unduh Asset disini</p>
@@ -124,7 +124,7 @@
                             @foreach ($coursetools->tools as $tool)
                                 <a href="{{ $tool->link }}"
                                     class="col-auto me-2 tools-group justify-content-center align-items-center flex-column text-center" style=" height: 100%;">
-                                    <img src="{{ asset('storage/images/logoTools/' . $tool->logo_tools) }}" alt=""
+                                    <img src="{{ url('storage/images/logoTools/' . $tool->logo_tools) }}" alt=""
                                         width="50px" height="50px">
                                     <p class="tool-name m-0 p-0 pt-1">{{ $tool->name_tools }}</p>
                                 </a>

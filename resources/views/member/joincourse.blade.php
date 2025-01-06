@@ -18,9 +18,9 @@
                 <div class="layout-kiri col-md-8">
                     <div class="card-preview mb-3">
                         @if ($courses->cover != null)
-                            <img src="{{ asset('storage/images/covers/' . $courses->cover) }}" alt="">
+                            <img src="{{ url('storage/images/covers/' . $courses->cover) }}" alt="">
                         @else
-                            <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" alt="">
+                            <img src="{{ url('nemolab/member/img/NemolabBG.jpg') }}" alt="">
                         @endif
                     </div>
                     <div class="card mb-3 d-md-none">
@@ -143,7 +143,7 @@
                             <h5>Bonus</h5>
                             <div class="d-flex">
                                 <a class="book-img" href="{{ route('member.ebook.join', $bundling->ebook->slug) }}">
-                                    <img src="{{ asset('storage/images/covers/' . $bundling->ebook->cover) }}" alt="" width="80" height="100" style="object-fit: cover; border-radius: 5px">
+                                    <img src="{{ url('storage/images/covers/' . $bundling->ebook->cover) }}" alt="" width="80" height="100" style="object-fit: cover; border-radius: 5px">
                                 </a>
                                 <table class="detail">
                                     <tr>
@@ -227,7 +227,7 @@
                             <div class="d-flex">
                                 @foreach ($coursetools->tools as $tool)
                                     <div class="card-tool px-2 pt-2 me-3 mb-3">
-                                        <img src="{{ asset('storage/images/logoTools/' . $tool->logo_tools) }}" alt=""
+                                        <img src="{{ url('storage/images/logoTools/' . $tool->logo_tools) }}" alt=""
                                             class="" width="50" height="50">
                                         <p>{{ $tool->name_tools }}</p>
                                     </div>
