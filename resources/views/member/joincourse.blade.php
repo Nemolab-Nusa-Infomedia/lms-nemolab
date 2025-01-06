@@ -227,8 +227,7 @@
                             <div class="d-flex">
                                 @foreach ($coursetools->tools as $tool)
                                     <div class="card-tool px-2 pt-2 me-3 mb-3">
-                                        <img src="{{ url('storage/images/logoTools/' . $tool->logo_tools) }}" alt=""
-                                            class="" width="50" height="50">
+                                    <img src="{{ $tool->logo_tools }}" alt="" width="50" height="50" class="rounded-2 object-fit-cover">
                                         <p>{{ $tool->name_tools }}</p>
                                     </div>
                                 @endforeach

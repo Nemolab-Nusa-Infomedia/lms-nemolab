@@ -31,8 +31,7 @@
                                     <td>{{ $item->name_tools }}</td>
                                     <td><a href="{{ $item->link }}">Kunjungi</a></td>
                                     <td>
-                                        <img src="{{ asset('storage/images/logoTools/' . $item->logo_tools) }}"
-                                            alt="" width="35" height="35" class="rounded-2 object-fit-cover">
+                                        <img src="{{ $item->logo_tools }}" alt="{{ $item->name_tools }}" width="50" height="50" class="rounded-2 object-fit-cover">
                                     </td>
                                     <td class="d-flex justify-content-around align-items-center"
                                         style="border: none !important; ">
