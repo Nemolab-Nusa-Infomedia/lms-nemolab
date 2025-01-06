@@ -47,7 +47,8 @@
                                                 </path>
                                             </svg>
                                         </a>
-                                        <a href="{{ route('admin.tools.delete', $item->id) }}" class="btn btn-danger ">
+                                        <a href="{{ route('admin.tools.delete', $item->id) }}" class="btn btn-danger" 
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus tools ini?')">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                                                 fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                                 <path

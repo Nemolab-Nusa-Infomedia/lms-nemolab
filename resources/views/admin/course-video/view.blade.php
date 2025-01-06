@@ -96,7 +96,7 @@
                                             </a>
                                             @endif
                                             <a href="{{ route('admin.course.delete') }}?id={{ $course->id }}"
-                                                class="btn btn-danger ">
+                                                class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus kelas video ini?')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
                                                     <path
