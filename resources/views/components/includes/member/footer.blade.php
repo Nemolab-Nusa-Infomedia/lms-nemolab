@@ -2,7 +2,7 @@
     <footer class="footer" id="footer">
         <div class="container-fluid p-0 m-0">
             <div class="content">
-                <div class="row ">
+                <div class="row mx-5">
                     <div class="col-12 mb-4 mt-md-0 col-md-4">
                         <div class="brand-nemolab-icon d-flex align-items-center">
                             <img src="{{ asset('nemolab/member/img/logo-nemolab.png') }}" alt="Logo" width="40" height="40"

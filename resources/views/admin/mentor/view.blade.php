@@ -21,7 +21,6 @@
                             <tr>
                                 <th>Nama</th>
                                 <th>Email</th>
-                                <th>Password</th>
                                 <th>Profession</th>
                                 <th>Aksi</th>
                             </tr>
@@ -31,10 +30,9 @@
                                 <tr>
                                     <td>{{ $mentor->name }}</td>
                                     <td>{{ $mentor->email }}</td>
-                                    <td>********</td>
                                     <td>{{ $mentor->profession }}</td>
                                     <td>
-                                        <div class="d-flex justify-content-around align-items-center">
+                                        <div class="d-flex justify-content-center gap-3">
                                             <a class="btn btn-warning"
                                             href="{{ route('admin.mentor.edit') }}?id={{ $mentor->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
