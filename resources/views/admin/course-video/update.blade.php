@@ -173,14 +173,10 @@
         </div>
     </div>
 
-@endsection
+    @endsection
 
 @push('addon-script')
     <script>
-        let toolsGrid;
-        let selectedToolsContainer;
-        let updateSelectedToolsInput;
-
         document.addEventListener('DOMContentLoaded', function() {
             const type = document.getElementById('type');
             const price = document.getElementById('price');
@@ -189,8 +185,66 @@
             const addToolsBtn = document.getElementById('add-tools-btn');
             toolsGrid = document.getElementById('tools-grid'); 
             const toolSearch = document.getElementById('tool-search');
-            const searchToolsBtn = document.getElementById('search-tools-btn');
             selectedToolsContainer = document.getElementById('selected-tools'); 
+            const imageUpload = document.getElementById('imageUpload');
+            const inputContainer = imageUpload.parentNode;
+            inputContainer.className = 'image-upload-container';
+
+            const leftSide = document.createElement('div');
+            leftSide.className = 'image-upload-left';
+            const rightSide = document.createElement('div');
+            rightSide.className = 'image-upload-right';
+
+            const existingElements = [...inputContainer.children];
+            existingElements.forEach(el => leftSide.appendChild(el));
+
+            const previewContainer = document.createElement('div');
+            previewContainer.className = 'image-preview-container';
+
+            rightSide.appendChild(previewContainer);
+
+            inputContainer.appendChild(leftSide);
+            inputContainer.appendChild(rightSide);
+
+            // Function to handle file preview
+            function handleFilePreview(file, imageUrl = null) {
+                previewContainer.innerHTML = '';
+                
+                const img = document.createElement('img');
+                if (imageUrl) {
+                    img.src = imageUrl;
+                } else if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        img.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Hapus';
+                removeButton.className = 'btn btn-danger btn-sm';
+                removeButton.onclick = function(e) {
+                    e.preventDefault();
+                    previewContainer.innerHTML = '';
+                    imageUpload.value = '';
+                };
+
+                previewContainer.appendChild(img);
+                previewContainer.appendChild(removeButton);
+            }
+
+            imageUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    if (!file.type.startsWith('image/')) {
+                        alert('Please upload an image file');
+                        e.target.value = '';
+                        return;
+                    }
+                    handleFilePreview(file);
+                }
+            });
 
             updateSelectedToolsInput = () => {
                 const selectedToolIds = Array.from(selectedToolsContainer.querySelectorAll('.selected-tool'))
@@ -320,6 +374,49 @@
             });
         });
     </script>
+
+@if($course->cover)
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageUpload = document.getElementById('imageUpload');
+            const previewContainer = document.querySelector('.image-preview-container');
+
+            // Fetch the existing image
+            fetch("{{ asset('storage/' . $course->cover) }}")
+                .then(response => response.blob())
+                .then(blob => {
+                    // Create a File object
+                    const fileName = "{{ basename($course->cover) }}".substring(10);
+                    const file = new File([blob], fileName, { type: blob.type });
+                    
+                    // Set the file input value
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    imageUpload.files = dataTransfer.files;
+                    
+                    // Create and display preview
+                    const img = document.createElement('img');
+                    img.src = "{{ url('storage/images/covers/' . $course->cover) }}";
+                    
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'Hapus';
+                    removeButton.className = 'btn btn-danger btn-sm';
+                    removeButton.onclick = function(e) {
+                        e.preventDefault();
+                        previewContainer.innerHTML = '';
+                        imageUpload.value = '';
+                    };
+
+                    previewContainer.innerHTML = '';
+                    previewContainer.appendChild(img);
+                    previewContainer.appendChild(removeButton);
+                })
+                .catch(error => {
+                    console.error('Error loading existing image:', error);
+                });
+        });
+    </script>
+@endif
 
 @if(isset($course->tools) && $course->tools->count() > 0)
     @foreach($course->tools as $tool)
