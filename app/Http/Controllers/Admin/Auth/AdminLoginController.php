@@ -51,13 +51,11 @@ class AdminLoginController extends Controller
 
                 // Periksa apakah pengguna adalah siswa
                 if ($user->role === 'students') {
-                    Alert::error('Error', 'Maaf Anda Tidak Memiliki Akses Untuk Halaman Ini!');
-                    return redirect()->route('home'); // Arahkan ke halaman utama jika siswa
+                    return redirect()->route('home')->with('alert', ['type' => 'error', 'message' => 'Maaf Anda Tidak Memiliki Akses Untuk Halaman Ini!']); // Arahkan ke halaman utama jika siswa
                 }
 
                 // Jika berhasil login dan bukan siswa, arahkan ke halaman admin
-                Alert::success('Success', 'Login successful.');
-                return redirect()->route('admin.course');
+                return redirect()->route('admin.course')->with('alert', ['type' => 'success', 'message' => 'Login Berhasil!']);
             } else {
                 // Jika password salah, kembalikan ke halaman login dengan pesan error
                 return redirect()
@@ -82,7 +80,6 @@ class AdminLoginController extends Controller
         $request->session()->regenerateToken(); // Regenerasi token sesi
 
         // Tampilkan pesan sukses dan arahkan ke halaman login
-        Alert::success('Success', 'Logout successful.');
-        return redirect()->route('admin.login');
+        return redirect()->route('admin.login')->with('alert', ['type' => 'success', 'message' => 'Logout Berhasil!']);
     }
 }
