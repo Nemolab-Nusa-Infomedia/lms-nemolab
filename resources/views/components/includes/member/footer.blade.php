@@ -68,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="copyright d-sm-flex justify-content-sm-center align-items-sm-center pt-sm-4 pb-sm-4">
+            <div class="copyright d-sm-flex justify-content-sm-center align-items-sm-center pb-sm-4">
                 <p class="m-0 p-0 text-white text-center">© 2024 All Rights Reserved. Design by <a href="https://vibrant.web.id/">Vibrant Ecosystem</a></p>
             </div>
         </div>

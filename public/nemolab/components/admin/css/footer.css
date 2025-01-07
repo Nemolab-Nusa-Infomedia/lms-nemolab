@@ -20,12 +20,12 @@
 }
 
 #footer .container-fluid .brand-nemolab-icon .title-navbar-brand p:first-child {
-    font-size: 20px;
+    font-size: 1rem;
     font-weight: 700 !important;
 }
 
 #footer .container-fluid .brand-nemolab-icon .title-navbar-brand p:last-child {
-    font-size: 14px;
+    font-size: 0.875rem;
 }
 
 
@@ -70,18 +70,18 @@
 
     #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:first-child,
     #footer .container-fluid .content .col-3 .title {
-        font-size: 20px !important;
+        font-size: 1rem !important;
     }
 
     #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:last-child,
     #footer .container-fluid .content .col-12 p,
     #footer .container-fluid .content .col-3 .content-kelas p {
-        font-size: 18px !important;
+        font-size: 0.875rem !important;
     }
 
 
     #footer .container-fluid .copyright p {
-        font-size: 18px !important;
+        font-size: 0.875rem !important;
     }
 }
 
@@ -106,17 +106,17 @@
 
     #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:first-child,
     #footer .container-fluid .content .col-3 .title {
-        font-size: 18px !important;
+        font-size: 0.875rem !important;
     }
 
     #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:last-child,
     #footer .container-fluid .content .col-12 p,
     #footer .container-fluid .content .col-3 .content-kelas p {
-        font-size: 16px !important;
+        font-size: 0.75rem !important;
     }
 
     #footer .container-fluid .copyright p {
-        font-size: 16px !important;
+        font-size: 0.75rem !important;
     }
 
 }

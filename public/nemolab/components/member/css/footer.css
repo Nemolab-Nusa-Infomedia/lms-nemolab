@@ -19,24 +19,29 @@
 }
 
 #footer .container-fluid .brand-nemolab-icon .title-navbar-brand p:first-child {
-    font-size: 20px;
+    font-size: 0.875rem;
     font-weight: 700 !important;
 }
 
 #footer .container-fluid .brand-nemolab-icon .title-navbar-brand p:last-child {
-    font-size: 14px;
+    font-size: 0.625rem;
 }
 
 
 #footer .container-fluid .content .col-12 p {
     font-weight: 400 !important;
+    font-size: 0.75rem;
 }
 
 #footer .container-fluid .content .col-3 div p,
 #footer .container-fluid .content .col-3 div a {
     font-weight: 400 !important;
+    font-size: 0.75rem;
 }
 
+#footer .container-fluid .content .col-3 h5 {
+    font-size: 1rem;
+}
 
 #footer .container-fluid .content {
     background-color: var(--charcoal-gray);
@@ -45,6 +50,7 @@
 
 #footer .container-fluid .copyright {
     background-color: var(--charcoal-gray);
+    font-size: 0.75rem;
 }
 
 /* Gaya umum untuk semua <a> agar sesuai dengan <p> */
@@ -84,18 +90,18 @@
 
     #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:first-child,
     #footer .container-fluid .content .col-3 .title {
-        font-size: 20px !important;
+        font-size: 0.875rem !important;
     }
 
     #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:last-child,
     #footer .container-fluid .content .col-12 p,
     #footer .container-fluid .content .col-3 .content-kelas p {
-        font-size: 18px !important;
+        font-size: 0.75rem !important;
     }
 
 
     #footer .container-fluid .copyright p {
-        font-size: 18px !important;
+        font-size: 0.75rem !important;
     }
 }
 
@@ -120,17 +126,17 @@
 
     #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:first-child,
     #footer .container-fluid .content .col-3 .title {
-        font-size: 18px !important;
+        font-size: 0.75rem !important;
     }
 
     #footer .container-fluid .content .col-12 .brand-nemolab-icon .title-navbar-brand p:last-child,
     #footer .container-fluid .content .col-12 p,
     #footer .container-fluid .content .col-3 .content-kelas p {
-        font-size: 16px !important;
+        font-size: 0.875rem !important;
     }
 
     #footer .container-fluid .copyright p {
-        font-size: 16px !important;
+        font-size: 0.875rem !important;
     }
 
 }
