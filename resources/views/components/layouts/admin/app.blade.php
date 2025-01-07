@@ -15,6 +15,41 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="icon" href="{{ asset('nemolab/member/img/nemolab.ico') }}" type="image/x-icon">
     @stack('addon-style')
+
+    {{-- alert style --}}
+    <style>
+        .swal2-toast-success {
+        background-color: #4caf50 !important; /* Hijau untuk success */
+        color: #fff !important; /* Warna teks */
+        }
+
+        .swal2-toast-error {
+            background-color: #f44336 !important; /* Merah untuk error */
+            color: #fff !important;
+        }
+
+        .swal2-toast-warning {
+            background-color: #ff9800 !important; /* Oranye untuk warning */
+            color: #fff !important;
+        }
+
+        .swal2-toast-info {
+            background-color: #2196f3 !important; /* Biru untuk info */
+            color: #fff !important;
+        }
+
+        .swal2-title {
+            font-size: 1rem; /* Ukuran teks */
+        }
+
+        .swal2-icon {
+            margin: 0 10px;
+        }
+
+        .swal2-timer-progress-bar {
+            background-color: rgba(255, 255, 255, 0.7); /* Warna progress bar */
+        }
+    </style>
 </head>
 
 <body>
@@ -39,6 +74,24 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+
+    <script>
+        @if(session('alert'))
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: "{{ session('alert.type') }}", // success, error, warning, info
+                title: "{{ session('alert.message') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                customClass: {
+                    popup: 'swal2-toast-{{ session('alert.type') }}'
+                }
+            });
+        @endif
+    </script>
+        
 
     <script>
         $(document).ready(function() {

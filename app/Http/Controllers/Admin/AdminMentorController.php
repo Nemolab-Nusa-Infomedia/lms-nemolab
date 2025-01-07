@@ -53,8 +53,7 @@ class AdminMentorController extends Controller
             'profession' => $request->profession,
         ]);
 
-        Alert::success('Success', 'Data Mentor Berhasil Dibuat');
-        return redirect()->route('admin.mentor');
+        return redirect()->route('admin.mentor')->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
     }
 
     public function edit(Request $requests)
@@ -85,8 +84,7 @@ class AdminMentorController extends Controller
             'password' => $request->filled('password') ? Hash::make($request->password) : $mentor->password,
         ]);
 
-        Alert::success('Success', 'Data Mentor Berhasil Diupdate');
-        return redirect()->route('admin.mentor');
+        return redirect()->route('admin.mentor')->with('alert', ['type' => 'info', 'message' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -106,7 +104,6 @@ class AdminMentorController extends Controller
 
         $mentor->delete();
 
-        Alert::success('Success', 'Data Mentor Berhasil Dihapus');
-        return redirect()->route('admin.mentor');
+        return redirect()->route('admin.mentor')->with('alert', ['type' => 'error', 'message' => 'Data Berhasil Dihapus!']);
     }
 }

@@ -46,8 +46,7 @@ class MemberLoginController extends Controller
             // Jika email ada, periksa password
             if (Auth::attempt($credentials)) {
                 $requests->session()->regenerate();
-                Alert::success('Success', 'Login Berhasil');
-                return redirect()->route('home');
+                return redirect()->route('home')->with('alert', ['type' => 'success', 'message' => 'Login Berhasil']);
             } else {
                 // Log::warning('Login gagal: Password salah untuk email: ' . $email);
                 return redirect()->back()->withErrors(['password' => 'Password salah.'])->withInput();
@@ -65,10 +64,9 @@ class MemberLoginController extends Controller
         // Log::info('Logout Berhasil ');
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        Alert::success('Success', 'Logout Berhasil');
         if ($role != 'students') {
-            return redirect()->route('admin.login');
+            return redirect()->route('admin.login')->with('alert', ['type' => 'success', 'message' => 'Logout Berhasil']);
         }
-        return redirect()->route('member.login');
+        return redirect()->route('member.login')->with('alert', ['type' => 'success', 'message' => 'Logout Berhasil']);
     }
 }

@@ -19,11 +19,11 @@
 }
 
 #logo-group .brand-nemolab-icon .title-navbar-brand p:first-child {
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 #logo-group .brand-nemolab-icon .title-navbar-brand p:last-child {
-    font-size: 14px;
+    font-size: 0.75rem;
 }
 
 #logo-group #navbarNavAltMarkup .navbar-nav:first-child .search-group {
@@ -110,7 +110,7 @@ header .container-fluid .sidebar-toggler {
 }
 
 #logo-group #navbarNavAltMarkup .navbar-nav:last-child .register-login a {
-    font-size: 18px;
+    font-size: 1rem;
     font-family: 'Nunito', sans-serif;
     width: max-content;
 }

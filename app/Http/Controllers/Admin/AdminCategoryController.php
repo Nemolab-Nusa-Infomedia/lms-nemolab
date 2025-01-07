@@ -40,10 +40,10 @@ class AdminCategoryController extends Controller
                 'name' => $request->name,
             ]);
             
-            Alert::success('Success', 'Category Berhasil Di Buat'); 
+            Alert::success('Success', 'Category Berhasil Di Buat')->toast()->position('top-end'); 
         } else {
             // Jika sudah ada, tampilkan pesan error
-            Alert::error('Error', 'Maaf Kategori Sudah Pernah Dibuat!');
+            Alert::error('Error', 'Maaf Kategori Sudah Pernah Dibuat!')->toast()->position('top-end');
             return redirect()->route('admin.category.create'); // Kembalikan ke halaman create
         }
         
@@ -72,7 +72,7 @@ class AdminCategoryController extends Controller
                 'name' => $request->name,
             ]);
     
-            Alert::success('Success', 'Category Berhasil Di Update'); 
+            Alert::success('Success', 'Category Berhasil Di Update')->toast()->position('top-end'); 
         } else {
             // Jika nama kategori berubah, periksa apakah nama baru sudah ada
             $check = Category::where('name', $request->name)->first();
@@ -82,10 +82,10 @@ class AdminCategoryController extends Controller
                     'name' => $request->name,
                 ]);
         
-                Alert::success('Success', 'Category Berhasil Di Update'); 
+                Alert::success('Success', 'Category Berhasil Di Update')->toast()->position('top-end'); 
             } else {
                 // Jika sudah ada, tampilkan pesan error
-                Alert::error('Error', 'Maaf Kategori Sudah Pernah Dibuat!');
+                Alert::error('Error', 'Maaf Kategori Sudah Pernah Dibuat!')->toast()->position('top-end');
                 return redirect()->route('admin.category.edit', $id); 
             }
         }
@@ -99,7 +99,7 @@ class AdminCategoryController extends Controller
         $category = Category::findOrFail($id); // Cari kategori berdasarkan ID. kegunaan findOrFail jika gagal akan menampilkan 404
         $category->delete(); // Hapus kategori
 
-        Alert::success('Success', 'Category Berhasil Di Hapus'); 
+        Alert::success('Success', 'Category Berhasil Di Hapus')->toast()->position('top-end'); 
         return redirect()->route('admin.category'); 
     }
 }

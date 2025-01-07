@@ -59,8 +59,7 @@ class MemberSettingController extends Controller
 
         $user->save();
 
-        Alert::success('Profile Berhasil Di Update');
-        return redirect()->route('member.setting');
+        return redirect()->route('member.setting')->with('alert', ['type' => 'success', 'message' => 'Profile Berhasil Di Update']);
     }
 
     public function updateEmail(Request $request)
@@ -76,8 +75,7 @@ class MemberSettingController extends Controller
         $user->email = $request->input('new_email');
         $user->save();
 
-        Alert::success('Email Berhasil Diupdate');
-        return redirect()->route('member.setting');
+        return redirect()->route('member.setting')->with('alert', ['type' => 'success', 'message' => 'Email Berhasil Diubah']);
     }
 
     public function updatePassword(Request $request)
@@ -116,8 +114,7 @@ class MemberSettingController extends Controller
     
         $user = User::find(Auth::user()->id);
         $user->notify(new CustomVerifyEmailNotification(true)); // true for password verification
-        Alert::success('Success', 'Berhasil Mengirimkan PIN Verifikasi');
-        return redirect()->route('member.setting.verifikasi-password');
+        return redirect()->route('member.setting.verifikasi-password')->with('alert', ['type' => 'success', 'message' => 'PIN Verifikasi Telah Dikirim']);
     }
     
 }

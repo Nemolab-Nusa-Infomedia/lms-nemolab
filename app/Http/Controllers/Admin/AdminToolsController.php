@@ -52,8 +52,7 @@ class AdminToolsController extends Controller
             'logo_tools' => $imagesGetNewName, // Simpan nama logo baru
             'link' => $request->link,
         ]);
-        Alert::success('Success', 'Tools Berhasil Di Buat');
-        return redirect()->route('admin.tools');
+        return redirect()->route('admin.tools')->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
     }
 
     // Menampilkan form untuk mengedit tool
@@ -101,8 +100,7 @@ class AdminToolsController extends Controller
             'logo_tools' => $tools->logo_tools, // Gunakan logo baru jika ada
             'link' => $request->link,
         ]);
-        Alert::success('Success', 'Tools Berhasil Di Update');
-        return redirect()->route('admin.tools');
+        return redirect()->route('admin.tools')->with('alert', ['type' => 'info', 'message' => 'Data Berhasil Diubah!']);
     }
 
     // Menghapus tool dari database
@@ -115,7 +113,6 @@ class AdminToolsController extends Controller
         
         // Hapus data tool dari database
         $tools->delete();
-        Alert::success('Success', 'Tools Berhasil Di Hapus');
-        return redirect()->route('admin.tools');
+        return redirect()->route('admin.tools')->with('alert', ['type' => 'error', 'message' => 'Data Berhasil Dihapus!']);
     }
 }

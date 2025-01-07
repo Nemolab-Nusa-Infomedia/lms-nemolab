@@ -105,8 +105,7 @@ class MemberPaymentController extends Controller
             $potonganHarga = $price - $diskon;
             // Validasi apakah potongan harga sesuai
             if ($potonganHarga < 0) {
-                Alert::error('error', 'Pembayaran Tidak Valid');
-                return redirect()->back()->withErrors(['price' => 'Harga Tidak Valid']);
+                return redirect()->back()->withErrors(['price' => 'Harga Tidak Valid'])->with('alert', ['type' => 'error', 'message' => 'Pembayaran Tidak Valid']);
             }
             // Update harga dengan harga setelah diskon
             $price = intval($potonganHarga);
@@ -195,13 +194,12 @@ class MemberPaymentController extends Controller
                     'total_harga' => intval($price),
                 ]);
 
-                Alert::success('success', 'Kelas Berhasil Dibeli');
                 if ($course) {
-                    return redirect()->route('member.course.join', $course->slug);
+                    return redirect()->route('member.course.join', $course->slug)->with('alert', ['type' => 'success', 'message' => 'Kelas Berhasil Dibeli']);
                 } elseif ($ebook) {
-                    return redirect()->route('member.ebook.join', $ebook->slug);
+                    return redirect()->route('member.ebook.join', $ebook->slug)->with('alert', ['type' => 'success', 'message' => 'Kelas Berhasil Dibeli']);
                 } elseif ($bundle) {
-                    return redirect()->route('member.course.join', $bundle->course->slug);
+                    return redirect()->route('member.course.join', $bundle->course->slug)->with('alert', ['type' => 'success', 'message' => 'Kelas Berhasil Dibeli']);
                 }
             } else {
                 // Lakukan pemrosesan Midtrans jika belum sukses
@@ -270,14 +268,12 @@ class MemberPaymentController extends Controller
                     'total_harga' => intval($price),
                 ]);
 
-
-                Alert::success('success', 'Kelas Berhasil Dibeli');
                 if ($course) {
-                    return redirect()->route('member.course.join', $course->slug);
+                    return redirect()->route('member.course.join', $course->slug)->with('alert', ['type' => 'success', 'message' => 'Kelas Berhasil Dibeli']);
                 } elseif ($ebook) {
-                    return redirect()->route('member.ebook.join', $ebook->slug);
+                    return redirect()->route('member.ebook.join', $ebook->slug)->with('alert', ['type' => 'success', 'message' => 'Kelas Berhasil Dibeli']);
                 } elseif ($bundle) {
-                    return redirect()->route('member.course.join', $bundle->course->slug);
+                    return redirect()->route('member.course.join', $bundle->course->slug)->with('alert', ['type' => 'success', 'message' => 'Kelas Berhasil Dibeli']);
                 }
             } else {
                 $url = env('MIDTRANS_PRODUCTION')

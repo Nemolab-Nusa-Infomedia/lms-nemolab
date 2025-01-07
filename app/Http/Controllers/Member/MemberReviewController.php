@@ -30,8 +30,7 @@ public function index($slug)
         return view('member.review', compact('course'));
         } else {
             // Jika belum membeli, tampilkan pesan error dan arahkan kembali ke halaman bergabung kursus
-            Alert::error('error', 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!');
-            return redirect()->route('member.course.join', $slug);
+            return redirect()->route('member.course.join', $slug)->with('alert', ['type' => 'error', 'message' => 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas ini!!!']);
         }
     }
 
@@ -56,9 +55,8 @@ public function index($slug)
 
         if ($checkReview) {
             // Jika sudah memberi review, tampilkan pesan error
-            Alert::error('error', 'Anda Sudah Melakukan Review.');
             return redirect()->route('member.course.detail', ['slug' => $course->slug])
-                ->with('error', 'Review gagal ditambahkan.');
+                ->with('alert', ['type' => 'error', 'message' => 'Review gagal ditambahkan.']);
         } else {
             // Jika belum memberi review, simpan review baru
             Review::create([
@@ -66,11 +64,8 @@ public function index($slug)
                 'course_id' => $validated['course_id'],
                 'note' => $validated['note'],
             ]);
-            // Tampilkan pesan sukses setelah review berhasil disimpan
-            Alert::success('success', 'Review berhasil ditambahkan.');
-
             // Redirect kembali ke halaman detail kursus
-            return redirect()->route('member.course.detail', ['slug' => $course->slug]);
+            return redirect()->route('member.course.detail', ['slug' => $course->slug])->with('alert', ['type' => 'success', 'message' => 'Review berhasil ditambahkan.']);
         }
     }
 
@@ -90,8 +85,7 @@ public function index($slug)
             return view('member.review-ebook', compact('ebook'));
         } else {
             // Jika belum membeli, tampilkan pesan error dan arahkan pengguna untuk membeli eBook terlebih dahulu
-            Alert::error('error', 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!');
-            return redirect()->route('member.ebook.join', $slug);
+            return redirect()->route('member.ebook.join', $slug)->with('alert', ['type' => 'error', 'message' => 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!']);
         }
     }
 
@@ -113,9 +107,8 @@ public function index($slug)
         $checkReview = Review::where('user_id', Auth::user()->id)->where('ebook_id', $ebook->id)->first();
         if ($checkReview) {
             // Jika sudah memberi review, tampilkan pesan error
-            Alert::error('error', 'Anda Sudah Melakukan Review');
             return redirect()->route('member.ebook.detail', ['slug' => $ebook->slug])
-                ->with('error', 'Review gagal ditambahkan.');
+            ->with('alert', ['type' => 'error', 'message' => 'Review gagal ditambahkan.']);
         } else {
             // Jika belum memberi review, simpan review baru
             Review::create([
@@ -123,11 +116,9 @@ public function index($slug)
                 'ebook_id' => $validated['ebook_id'],
                 'note' => $validated['note'],
             ]);
-            // Tampilkan pesan sukses setelah review berhasil disimpan
-            Alert::success('success', 'Komentar berhasil ditambahkan.');
             // Redirect kembali ke halaman detail eBook
             return redirect()->route('member.ebook.read', ['slug' => $ebook->slug])
-                ->with('success', 'Review berhasil ditambahkan.');
+                ->with('alert', ['type' => 'success', 'message' => 'Review berhasil ditambahkan.']);
         }
     }
 

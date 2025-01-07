@@ -31,8 +31,7 @@ class VerifpassController extends Controller
         $user = Auth::user();
 
         if ($user->pin_expires_at < now()) {
-            Alert::error('Error', 'PIN Verifikasi Telah Kadaluarsa');
-            return back();
+            return back()->with('alert', ['type' => 'error', 'message' => 'PIN Verifikasi Telah Kadaluarsa']);
         }
 
         if ($user->verification_pin === $request->pin) {
@@ -41,11 +40,9 @@ class VerifpassController extends Controller
             $user->pin_expires_at = null; 
             $user->save();
 
-            Alert::success('Berhasil!', 'Kata sandi Anda berhasil diperbarui.');
-            return redirect()->route('member.setting');
+            return redirect()->route('member.setting')->with('alert', ['type' => 'success', 'message' => 'Kata sandi Anda berhasil diperbarui.']);
         }
 
-        Alert::error('Error', 'PIN Verifikasi Tidak Valid');
-        return back();
+        return back()->with('alert', ['type' => 'error', 'message' => 'PIN Verifikasi Tidak Valid']);
     }
 }

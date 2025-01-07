@@ -66,7 +66,6 @@ class AdminSubmissionController extends Controller
         $submission->user->notify(new sendSubmissionMentorNotification($submission, $requests->link));
 
         // Tampilkan notifikasi sukses dan redirect ke halaman pengajuan
-        Alert::success('Success', 'Pengajuan Berhasil Di Kirim');
-        return redirect()->route('admin.pengajuan');
+        return redirect()->route('admin.pengajuan')->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
     }
 }

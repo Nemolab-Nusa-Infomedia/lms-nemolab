@@ -133,7 +133,6 @@ class MemberMyCourseController extends Controller
             ]);
         }
 
-        Alert::success('success', 'Pengajuan Berhasil Di Kirim, Mohon Tunggu Sampai Admin Konfirmasi');
-        return redirect()->route('member.dashboard');
+        return redirect()->route('member.dashboard')->with('alert', ['type' => 'success', 'message' => 'Pengajuan Berhasil Di Kirim']);
     }
 }

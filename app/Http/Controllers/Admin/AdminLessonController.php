@@ -59,8 +59,7 @@ class AdminLessonController extends Controller
         ]);
 
         // Menampilkan notifikasi sukses dan kembali ke halaman daftar lessons
-        Alert::success('Success', 'Lesson Berhasil Di Buat');
-        return redirect()->route('admin.lesson', ['slug_course' => $course->slug, $id_chapter]);
+        return redirect()->route('admin.lesson', ['slug_course' => $course->slug, $id_chapter])->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
     }
 
     /**
@@ -110,8 +109,7 @@ class AdminLessonController extends Controller
         }
 
         // Menampilkan notifikasi sukses dan kembali ke halaman daftar lessons
-        Alert::success('Success', 'Lesson Berhasil Di Update');
-        return redirect()->route('admin.lesson', [$course->slug, 'id_chapter' => $chapter->id]);
+        return redirect()->route('admin.lesson', [$course->slug, 'id_chapter' => $chapter->id])->with('alert', ['type' => 'info', 'message' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -137,8 +135,7 @@ class AdminLessonController extends Controller
         $lesson->delete();
 
         // Menampilkan notifikasi sukses dan kembali ke halaman daftar lessons
-        Alert::success('Success', 'Lesson Berhasil Di Hapus');
-        return redirect()->route('admin.lesson', ['slug_course' => $course->slug, 'id_chapter' => $chapter->id]);
+        return redirect()->route('admin.lesson', ['slug_course' => $course->slug, 'id_chapter' => $chapter->id])->with('alert', ['type' => 'error', 'message' => 'Data Berhasil Dihapus!']);
     }
 
 }

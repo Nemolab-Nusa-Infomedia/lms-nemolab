@@ -46,13 +46,12 @@ class AdminDiskonController extends Controller
             ]);
         } else {
             // Jika kode diskon sudah ada, tampilkan pesan error
-            Alert::error('Error', 'Maaf Diskon Sudah Pernah Buat!');
+            Alert::error('Error', 'Maaf Diskon Sudah Pernah Buat!')->toast()->position('top-end');
             return redirect()->back(); // Kembali ke halaman sebelumnya
         }
 
         // Tampilkan pesan sukses dan redirect ke daftar diskon
-        Alert::success('Success', 'Diskon Berhasil Di Buat');
-        return redirect()->route('admin.diskon-kelas');
+        return redirect()->route('admin.diskon-kelas')->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
     }
 
     // Menampilkan halaman edit diskon
@@ -87,8 +86,7 @@ class AdminDiskonController extends Controller
         ]);
 
         // Tampilkan pesan sukses dan redirect ke daftar diskon
-        Alert::success('Success', 'Diskon Berhasil Di Update');
-        return redirect()->route('admin.diskon-kelas');
+        return redirect()->route('admin.diskon-kelas')->with('alert', ['type' => 'info', 'message' => 'Data Berhasil Diubah!']);
     }
 
     // Menghapus data diskon dari database
@@ -104,8 +102,7 @@ class AdminDiskonController extends Controller
         $diskon->delete();
 
         // Tampilkan pesan sukses dan redirect ke daftar diskon
-        Alert::success('Success', 'Diskon Berhasil Di Delete');
-        return redirect()->route('admin.diskon-kelas');
+        return redirect()->route('admin.diskon-kelas')->with('alert', ['type' => 'error', 'message' => 'Data Berhasil Dihapus!']);
     }
 
 }

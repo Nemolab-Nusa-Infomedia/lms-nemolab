@@ -74,8 +74,7 @@ class AdminTransactionController extends Controller
         ]);
 
         // Tampilkan notifikasi sukses dan redirect ke daftar transaksi
-        Alert::success('Success', 'Transctions Berhasil Di Accept');
-        return redirect()->route('admin.transaction');
+        return redirect()->route('admin.transaction')->with('alert', ['type' => 'success', 'message' => 'Transaksi Berhasil Diterima!']);
     }
 
     // Membatalkan transaksi dan mengubah statusnya menjadi 'failed'
@@ -89,7 +88,6 @@ class AdminTransactionController extends Controller
         $transaction->save();
 
         // Tampilkan notifikasi sukses dan redirect ke daftar transaksi
-        Alert::success('Success', 'Transctions Berhasil Di Cancel');
-        return redirect()->route('admin.transaction');
+        return redirect()->route('admin.transaction')->with('alert', ['type' => 'error', 'message' => 'Transaksi Berhasil Dibatalkan!']);
     }
 }

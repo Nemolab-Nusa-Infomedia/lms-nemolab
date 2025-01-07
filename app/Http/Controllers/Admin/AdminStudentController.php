@@ -44,8 +44,7 @@ class AdminStudentController extends Controller
             'profession' => $request->profession,
         ]);
 
-        Alert::success('Success', 'Data Member Berhasil Dibuat');
-        return redirect()->route('admin.student');
+        return redirect()->route('admin.student')->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
     }
 
     public function edit(Request $requests)
@@ -73,8 +72,7 @@ class AdminStudentController extends Controller
             'password' => $request->filled('password') ? Hash::make($request->password) : $student->password,
         ]);
 
-        Alert::success('Success', 'Data Member Berhasil Diupdate');
-        return redirect()->route('admin.student');
+        return redirect()->route('admin.student')->with('alert', ['type' => 'info', 'message' => 'Data Berhasil Diubah!']);
     }
 
     public function delete(Request $requests)
@@ -95,8 +93,6 @@ class AdminStudentController extends Controller
         CompleteEpisodeCourse::where('user_id', $student->id)->delete();
         $student->delete();
 
-
-        Alert::success('Success', 'Data Member Berhasil Dihapus');
-        return redirect()->route('admin.student');
+        return redirect()->route('admin.student')->with('alert', ['type' => 'error', 'message' => 'Data Berhasil Dihapus!']);
     }
 }

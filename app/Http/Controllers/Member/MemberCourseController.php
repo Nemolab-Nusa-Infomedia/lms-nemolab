@@ -242,8 +242,7 @@ class MemberCourseController extends Controller
             return view('member.play', compact('play', 'chapters', 'slug', 'courses', 'checkReview', 'paketKelas', 'epComplete'));
         } else {
             // Jika tidak ada transaksi, tampilkan pesan error dan arahkan kembali ke halaman join
-            Alert::error('error', 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!');
-            return redirect()->route('member.course.join', $slug);
+            return redirect()->route('member.course.join', $slug)->with('alert', ['type' => 'error', 'message' => 'Maaf Tidak Bisa Akses, Karena Anda Belum Beli Kelas ini!!!']);
         }
     }
 
@@ -290,8 +289,7 @@ class MemberCourseController extends Controller
             return view('member.detail-course', compact('chapterInfo', 'bundling', 'chapters', 'slug', 'courses', 'user', 'checkReview', 'coursetools', 'reviews', 'checkSertifikat'));
         } else {
             // Jika tidak ada transaksi, tampilkan pesan error dan arahkan ke halaman bergabung dengan kursus
-            Alert::error('error', 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!');
-            return redirect()->route('member.course.join', $slug);
+            return redirect()->route('member.course.join', $slug)->with('alert', ['type' => 'error', 'message' => 'Maaf Tidak Bisa Akses, Karena Anda Belum Beli Kelas ini!!!']);
         }
     }
 

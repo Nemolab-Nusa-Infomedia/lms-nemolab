@@ -58,8 +58,7 @@ class AdminChapterController extends Controller
         ]);
 
         // Menampilkan notifikasi sukses dan kembali ke halaman daftar chapter
-        Alert::success('Success', 'Chapter Berhasil Di Buat');
-        return redirect()->route('admin.chapter', $slug_course);
+        return redirect()->route('admin.chapter', $slug_course)->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
     }
 
     /**
@@ -96,8 +95,8 @@ class AdminChapterController extends Controller
         ]);
 
         // Menampilkan notifikasi sukses dan kembali ke halaman daftar chapter
-        Alert::success('Success', 'Chapter Berhasil Di Edit');
-        return redirect()->route('admin.chapter', $slug_course);
+        Alert::success('Success', 'Chapter Berhasil Di Edit')->toast()->position('top-end');
+        return redirect()->route('admin.chapter', $slug_course)->with('alert', ['type' => 'info', 'message' => 'Data Berhasil Diubah']);
     }
 
     /**
@@ -125,8 +124,7 @@ class AdminChapterController extends Controller
 
         // Menghapus chapter
         $chapter->delete();
-        Alert::success('Success', 'Chapter Berhasil Di Hapus');
-        return redirect()->back();
+        return redirect()->back()->with('alert', ['type' => 'error', 'message' => 'Data Berhasil Dihapus']);
     }
 
 }

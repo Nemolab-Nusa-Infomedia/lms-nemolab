@@ -102,8 +102,8 @@ class AdminCourseEbookController extends Controller
             'mentor_id' => Auth::user()->id,
         ]);
 
-        Alert::success('Success', 'Paket Berhasil Dibuat');
-        return redirect()->route('admin.paket-kelas');
+
+        return redirect()->route('admin.paket-kelas')->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
     }
 
     /**
@@ -170,9 +170,7 @@ class AdminCourseEbookController extends Controller
             'price' => $harga,
         ]);
 
-
-        Alert::success('Success', 'Paket Berhasil Diperbarui');
-        return redirect()->route('admin.paket-kelas');
+        return redirect()->route('admin.paket-kelas')->with('alert', ['type' => 'info', 'message' => 'Data Berhasil Diperbarui!']);
     }
 
     /**
@@ -186,8 +184,7 @@ class AdminCourseEbookController extends Controller
         $paket = CourseEbook::where('id', $id)->first();
         $paket->delete();
 
-        Alert::success('Success', 'Paket Berhasil Dihapus');
-        return redirect()->route('admin.paket-kelas');
+        return redirect()->route('admin.paket-kelas')->with('alert', ['type' => 'error', 'message' => 'Data berhasil dihapus!']);
     }
 
 }

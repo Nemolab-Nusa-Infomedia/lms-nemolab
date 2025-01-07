@@ -38,7 +38,7 @@ class AdminSuperadminController extends Controller
             'role' => 'superadmin',
         ]);
     
-        Alert::success('Success', 'Data Superadmin Berhasil Dibuat');
+        Alert::success('Success', 'Data Superadmin Berhasil Dibuat')->toast()->position('top-end');
         return redirect()->route('admin.superadmin');
     }
     
@@ -64,7 +64,7 @@ class AdminSuperadminController extends Controller
             'password' => $request->filled('password') ? Hash::make($request->password) : $superadmin->password,
         ]);
 
-        Alert::success('Success', 'Data Superadmin Berhasil Diupdate');
+        Alert::success('Success', 'Data Superadmin Berhasil Diupdate')->toast()->position('top-end');
         return redirect()->route('admin.superadmin');
     }
 
@@ -82,7 +82,7 @@ class AdminSuperadminController extends Controller
     
         $superadmin->delete();
 
-        Alert::success('Success', 'Data Superadmin Berhasil Dihapus');
+        Alert::success('Success', 'Data Superadmin Berhasil Dihapus')->toast()->position('top-end');
         return redirect()->route('admin.superadmin');
     }
 }

@@ -122,9 +122,7 @@ class AdminCourseController extends Controller
         } else {
             return back()->withErrors(['tools' => 'Invalid tools data.']);
         }
-
-        Alert::success('Success', 'Course Berhasil Di Buat');
-        return redirect()->route('admin.course');
+        return redirect()->route('admin.course')->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
     }
 
     /**
@@ -212,8 +210,7 @@ class AdminCourseController extends Controller
             return back()->withErrors(['tools' => 'Invalid tools data.']);
         }
         
-        Alert::success('Success', 'Course Berhasil Di Update');
-        return redirect()->route('admin.course');
+        return redirect()->route('admin.course')->with('alert', ['type' => 'info', 'message' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -257,7 +254,6 @@ class AdminCourseController extends Controller
 
         Transaction::where('course_id', $id)->delete();
         $course->delete();
-        Alert::success('Success', 'Course Berhasil Di Delete');
-        return redirect()->route('admin.course');
+        return redirect()->route('admin.course')->with('alert', ['type' => 'error', 'message' => 'Data Berhasil Dihapus!']);
     }
 }

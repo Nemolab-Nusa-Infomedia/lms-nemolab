@@ -63,15 +63,13 @@ class MemberTransactionController extends Controller
         $details = detailTransactions::where('transaction_code', $transaction_code)->first();
         if ($transaction) {
             if (!$details) {
-                Alert::error('Error', 'Maaf terjadi kesalahan pada pembayaran');
-                return redirect()->route('member.transaction');
+                return redirect()->route('member.transaction')->with('alert', ['type' => 'error', 'message' => 'Maaf terjadi kesalahan pada pembayaran']);
             }
     
             if ($transaction->status == 'success' || $transaction->status == 'failed') {
                 return view('member.dashboard.transaction.show-payment', compact('details'));
             } else {
-                Alert::error('Error', 'Maaf Anda Tidak Bisa Akses Detail Transaction, Status Anda Masih Pending!!!');
-                return redirect()->route('member.transaction');
+                return redirect()->route('member.transaction')->with('alert', ['type' => 'error', 'message' => 'Maaf Anda Tidak Bisa Akses Detail Transaction, Status Anda Masih Pending!!!']);
             }
         }
         return view('error.page404');

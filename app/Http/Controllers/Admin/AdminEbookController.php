@@ -85,8 +85,7 @@ class AdminEbookController extends Controller
         Ebook::create($validatedData);
 
         // Tampilkan notifikasi sukses
-        Alert::success('Success', 'eBook Berhasil Dibuat');
-        return redirect()->route('admin.ebook');
+        return redirect()->route('admin.ebook')->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
     }
 
     /**
@@ -156,8 +155,7 @@ class AdminEbookController extends Controller
         $ebook->update($validatedData);
 
         // Tampilkan notifikasi sukses
-        Alert::success('Success', 'eBook Berhasil Diperbarui');
-        return redirect()->route('admin.ebook');
+        return redirect()->route('admin.ebook')->with('alert', ['type' => 'info', 'message' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -177,8 +175,7 @@ class AdminEbookController extends Controller
         Storage::delete('public/images/covers/' . $ebook->cover); // Hapus cover
 
         // Tampilkan notifikasi sukses
-        Alert::success('Success', 'eBook Berhasil Dihapus');
-        return redirect()->route('admin.ebook');
+        return redirect()->route('admin.ebook')->with('alert', ['type' => 'error', 'message' => 'Data Berhasil Dihapus!']);
     }
 
 }

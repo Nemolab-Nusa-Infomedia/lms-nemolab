@@ -17,8 +17,7 @@ class ResendEmailVerif extends Controller
     {
         $user = User::find(Auth::user()->id);
         $user->notify(new CustomVerifyEmailNotification(false)); 
-        Alert::success('Success', 'PIN Verifikasi Telah Dikirim');
-        return view('member.auth.verify-email');
+        return view('member.auth.verify-email')->with('alert', ['type' => 'success', 'message' => 'PIN Verifikasi Telah Dikirim']);
     }
 
     public function resend(Request $requests)
@@ -26,8 +25,7 @@ class ResendEmailVerif extends Controller
         $user = User::find(Auth::user()->id);
         $user->notify(new CustomVerifyEmailNotification(false)); 
         RateLimiter::hit('verification-email:' . Auth::user()->id, 3600);
-        Alert::success('Success', 'PIN Verifikasi Telah Dikirim');
-        return redirect()->back();
+        return redirect()->back()->with('alert', ['type' => 'success', 'message' => 'PIN Verifikasi Telah Dikirim']);
     }
 
     public function verifyPin(Request $request)
@@ -40,8 +38,7 @@ class ResendEmailVerif extends Controller
 
         // Check if PIN has expired
         if ($user->pin_expires_at < now()) {
-            Alert::error('Error', 'PIN Verifikasi Telah Kadaluarsa');
-            return back();
+            return back()->with('alert', ['type' => 'error', 'message' => 'PIN Verifikasi Telah Kadaluarsa']);
         }
 
         if ($user->verification_pin === $request->pin) {
@@ -50,15 +47,12 @@ class ResendEmailVerif extends Controller
             $user->pin_expires_at = null; 
             $user->save();
 
-            Alert::success('Success', 'Akun Anda Berhasil Terverifikasi');
-
             if ($user->role != 'students') {
-                return redirect()->route('admin.course');
+                return redirect()->route('admin.course')->with('alert', ['type' => 'success', 'message' => 'Akun Anda Berhasil Terverifikasi']);
             }
-            return redirect()->route('home');
+            return redirect()->route('home')->with('alert', ['type' => 'success', 'message' => 'Akun Anda Berhasil Terverifikasi']);
         }
 
-        Alert::error('Error', 'PIN Verifikasi Tidak Valid');
-        return back();
+        return back()->with('alert', ['type' => 'error', 'message' => 'PIN Verifikasi Tidak Valid']);
     }
 }

@@ -45,8 +45,7 @@ class forgotPassController extends Controller
         if ($status === Password::RESET_LINK_SENT) {
             RateLimiter::hit('reset-password:' . $requests->email, 3600);
             $statusSend = 'success';
-            Alert::success('Berhasil', 'Link Reset Password Berhasil Di Kirim Ke Email Anda.');
-            return view('member.auth.check-email');
+            return view('member.auth.check-email')->with('alert', ['type' => 'success', 'message' => 'Link Reset Password Berhasil Di Kirim Ke Email Anda.']);
         }
 
 
@@ -88,11 +87,9 @@ class forgotPassController extends Controller
         );
 
         if ($status === Password::PASSWORD_RESET) {
-            Alert::success('Berhasil', 'Password Berhasil Di Reset');
-            return redirect()->route('member.login');
+            return redirect()->route('member.login')->with('alert', ['type' => 'success', 'message' => 'Password Berhasil Di Reset']);
         }
 
-        Alert::error('Error', 'Maaf Terjadi Kesalahan Dalam Reset Password, SIlahkan Coba Lagi Dalam Beberapa Saat');
-        return back();
+        return back()->with('alert', ['type' => 'error', 'message' => 'Maaf Terjadi Kesalahan Dalam Reset Password, SIlahkan Coba Lagi Dalam Beberapa Saat']);
     }
 }

@@ -64,8 +64,7 @@ class MemberEbookController extends Controller
         // Memeriksa keberadaan file PDF
         if (!Storage::exists($filePath)) {
             // Jika file PDF tidak ditemukan, tampilkan pesan error
-            Alert::error('error', 'File eBook tidak ditemukan.');
-            return redirect()->route('member.ebook.join', $slug);
+            return redirect()->route('member.ebook.join', $slug)->with('alert', ['type' => 'error', 'message' => 'File eBook tidak ditemukan.']);
         }
         if ($checkTrx) {
             // Jika transaksi valid, tampilkan halaman baca eBook
@@ -73,8 +72,7 @@ class MemberEbookController extends Controller
             return view('member.ebook', compact('ebook', 'checkReview','fileUrl'));
         } else {
             // Jika tidak ada transaksi, tampilkan pesan error dan arahkan ke halaman index eBook
-            Alert::error('error', 'Maaf Akses Akses Ditolak, Karena Anda Belum Berlangganan');
-            return redirect()->route('member.ebook.join', $slug);
+            return redirect()->route('member.ebook.join', $slug)->with('alert', ['type' => 'error', 'message' => 'Akses ditolak.']);
         }
     }
     
@@ -100,8 +98,7 @@ class MemberEbookController extends Controller
             return view('member.detail-ebook', compact('ebooks', 'user', 'checkReview', 'reviews', 'checkTrx'));
         } else {
             // Jika tidak ada transaksi, tampilkan pesan error dan arahkan ke halaman join course
-            Alert::error('error', 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!');
-            return redirect()->route('member.ebook.join', $slug);
+            return redirect()->route('member.ebook.join', $slug)->with('alert', ['type' => 'error', 'message' => 'Maaf Akses Tidak Bisa, Karena Anda belum Beli Kelas!!!']);
         }
     }
     
