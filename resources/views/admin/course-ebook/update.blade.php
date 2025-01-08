@@ -309,19 +309,39 @@
         });
     </script>
     
-@if($ebooks->cover)
+    @if($ebooks->cover)
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const imageUpload = document.getElementById('imageUpload');
             const previewContainer = document.querySelector('.image-preview-container');
 
+            // Get original filename and extension
+            const originalFileName = "{{ basename($ebooks->cover) }}".substring(10);
+            const extension = originalFileName.split('.').pop().toLowerCase();
+            
             // Fetch the existing image
-            fetch("{{ asset('storage/' . $ebooks->cover) }}")
+            fetch("{{ url('storage/images/covers/' . $ebooks->cover) }}")
                 .then(response => response.blob())
                 .then(blob => {
-                    // Create a File object
-                    const fileName = "{{ basename($ebooks->cover) }}".substring(10);
-                    const file = new File([blob], fileName, { type: blob.type });
+                    // Create proper mime type based on extension
+                    let mimeType;
+                    switch(extension) {
+                        case 'jpg':
+                        case 'jpeg':
+                            mimeType = 'image/jpeg';
+                            break;
+                        case 'png':
+                            mimeType = 'image/png';
+                            break;
+                        case 'gif':
+                            mimeType = 'image/gif';
+                            break;
+                        default:
+                            mimeType = 'image/jpeg';
+                    }
+
+                    // Create a File object with proper mime type
+                    const file = new File([blob], originalFileName, { type: mimeType });
                     
                     // Set the file input value
                     const dataTransfer = new DataTransfer();
