@@ -15,6 +15,7 @@ body {
 main {
     background-color: #f8f9fa;
     min-height: 100svh;
+    padding: 60px 0;
 }
 
 .btn-primary {
@@ -33,10 +34,6 @@ main {
 
 .btn-secondary:hover {
     background-color: var(--c-darker) !important;    
-}
-
-main {
-    padding: 60px 0;
 }
 
 a {

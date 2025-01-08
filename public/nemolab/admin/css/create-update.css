@@ -8,11 +8,13 @@
 }
 
 body {
-    background: linear-gradient(to bottom right, #faa907, #ff7700);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: "Poppins", sans-serif !important;
+}
+
+main {
+    background-color: #f8f9fa;
+    min-height: 100svh;
+    padding: 60px 0;
 }
 
 .container {
@@ -29,9 +31,22 @@ body {
 }
 
 h2 {
-    background: linear-gradient(to right, #faa907, #ff7700);
+    font-weight: 700;
+    background-color: #FAA907;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+#formAction .row label {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #414142;
+    margin-bottom: 10px;
+}
+
+#formAction .row .col-md-6,
+#formAction .row .col-md-12 {
+    margin-bottom: 20px;
 }
 
 .tools-popup {
@@ -52,6 +67,25 @@ textarea {
     z-index: 1;
     color: rgb(0, 0, 0);
     box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cover-input {
+    position: relative;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+    padding: 13px 20px;
+    border-radius: 9px;
+    border: 1px dashed #9d9d9d;
+    background: transparent;
+    transition: 0.1s ease;
+    z-index: 1;
+    color: #BDBDBD;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+#cover-input p{
+    justify-content: center;
 }
 
 .labelline,
