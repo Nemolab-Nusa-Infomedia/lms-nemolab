@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 :root {
-    --c-dark: #383131;
+    --c-dark: #414142;
+    --c-darker: #282828;
     --c-brand: #faa907;
     --c-brand-dark: #a56e00;
     --font-base: "Poppins", sans-serif;
@@ -11,15 +12,28 @@ body {
     font-family: "Poppins", sans-serif !important;
 }
 
+main {
+    background-color: #f8f9fa;
+    min-height: 100svh;
+}
 
-/* .btn-primary {
-    background-color: var(--c-brand);
-    border: none;
+.btn-primary {
+    background-color: var(--c-brand) !important;
+    border: none !important;
 }
 
 .btn-primary:hover {
-    background-color: var(--c-brand-dark);
-} */
+    background-color: var(--c-brand-dark) !important;
+}
+
+.btn-secondary {
+    background-color: var(--c-dark) !important;
+    border: none !important;
+}
+
+.btn-secondary:hover {
+    background-color: var(--c-darker) !important;    
+}
 
 main {
     padding: 60px 0;
@@ -29,6 +43,28 @@ a {
     text-decoration: none;
 }
 
+/* Modal */
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--c-brand);
+}
+
+.modal-body {
+    margin: 0 15px;
+}
+
+.modal-body label  {
+    text-align: start !important;
+    justify-content: start !important;
+}
+
+option {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 /* TABLE DATA */
 .judul-table {
     color: var(--c-brand);
@@ -92,6 +128,8 @@ a {
     border-radius: 6px; 
     padding: 6px 10px;
     font-size: 0.75rem;
+    border: none;
+    outline: none;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.5);
 }
 

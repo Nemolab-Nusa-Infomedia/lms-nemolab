@@ -14,9 +14,92 @@
             <div class="col-12 col-lg-9 ps-xl-3 d-flex justify-content-center" style="height: 600px">
                 <div class="table-responsive shadow-lg rounded-3 p-3 w-100" style="background-color: #ffffff;">
                     @if (Auth::user()->role == 'mentor')
-                    <a href="{{ route('admin.paket-kelas.create') }}" class="tambah-data"
+                    {{-- <a href="{{ route('admin.paket-kelas.create') }}" class="tambah-data"
                         >Tambahkan
-                        Data</a>
+                        Data</a> --}}
+                    <button type="button" class="tambah-data" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Tambahkan Data
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="border-0 modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambahkan Data</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="formAction" action="{{ route('admin.paket-kelas.create.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="border-0 modal-body">
+                                <!-- Cari Kursus Video -->
+                                <div class="mb-3">
+                                    <label for="courseSelect" class="form-label">Cari Kursus Video</label>
+                                    <div>
+                                        @if (is_null($courses) || $courses->isEmpty())
+                                            <span class="text-danger">Maaf Belum Ada Kelas</span>
+                                        @else
+                                            <select id="courseSelect" name="name_course" class="form-select">
+                                                @foreach ($courses as $course)
+                                                    <option value="{{ $course->name }}" data-price="{{ $course->price }}">
+                                                        {{ Str::limit($course->name, 57) }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        @endif
+                                        @error('name_course')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            
+                                <!-- Cari Kursus Ebook -->
+                                <div class="mb-3">
+                                    <label for="ebookSelect" class="form-label">Cari Kursus Ebook</label>
+                                    <div>
+                                        @if (is_null($ebooks) || $ebooks->isEmpty())
+                                            <span class="text-danger">Maaf Belum Ada Ebook</span>
+                                        @else
+                                            <select id="ebookSelect" name="name_ebook" class="form-select">
+                                                @foreach ($ebooks as $ebook)
+                                                    <option value="{{ $ebook->name }}" data-price="{{ $ebook->price }}">
+                                                        {{ Str::limit($ebook->name, 57) }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        @endif
+                                        @error('name_ebook')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            
+                                <!-- Pilihan Type -->
+                                <div class="mb-3">
+                                    <label for="type" class="form-label">Pilih Tipe</label>
+                                    <select id="type" name="type" class="form-select">
+                                        <option value="free">Gratis</option>
+                                        <option value="premium">Premium</option>
+                                    </select>
+                                    @error('type')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            
+                                <!-- Harga -->
+                                <div class="mb-3 d-none">
+                                    <label for="totalPrice" class="form-label">Harga</label>
+                                    <input type="number" id="totalPrice" name="price" class="form-control" placeholder="" readonly />
+                                </div>
+                            </div>
+                            <div class="border-0 modal-footer gap-3">
+                            <button type="submit" class="btn btn-primary">Tambah</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
                     @endif
                     <table class=" table table-bordered table-striped shadow-none mb-0" id="tablesContent">
                         <thead class="table-dark">
@@ -116,4 +199,49 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+@endpush
+
+@push('addon-script')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const courseSelect = document.getElementById('courseSelect');
+        const ebookSelect = document.getElementById('ebookSelect');
+        const priceInput = document.getElementById('totalPrice');
+        const typeSelect = document.getElementById('type');
+
+        // Container harga untuk kontrol visibilitas
+        const priceContainer = priceInput.closest('.mb-3');
+
+        // Fungsi untuk memperbarui total harga
+        function updateTotalPrice() {
+            const coursePrice = parseInt(courseSelect.selectedOptions[0]?.getAttribute('data-price'), 10) || 0;
+            const ebookPrice = parseInt(ebookSelect.selectedOptions[0]?.getAttribute('data-price'), 10) || 0;
+
+            if (typeSelect.value === 'premium') {
+                // Tampilkan harga hanya jika tipe premium dipilih
+                priceContainer.classList.remove('d-none');
+
+                // Hitung total harga dengan diskon 20% (0.8)
+                let totalPrice = (coursePrice + ebookPrice) * 0.8;
+                totalPrice = Math.max(totalPrice, 0); // Pastikan tidak negatif
+
+                // Perbarui input harga
+                priceInput.value = Math.floor(totalPrice);
+            } else {
+                // Sembunyikan harga dan set ke 0 jika bukan premium
+                priceContainer.classList.add('d-none');
+                priceInput.value = 0;
+            }
+        }
+
+        // Event listener untuk memperbarui harga
+        courseSelect?.addEventListener('change', updateTotalPrice);
+        ebookSelect?.addEventListener('change', updateTotalPrice);
+        typeSelect?.addEventListener('change', updateTotalPrice);
+
+        // Jalankan fungsi untuk set default saat halaman dimuat
+        updateTotalPrice();
+    });
+</script>
+
 @endpush

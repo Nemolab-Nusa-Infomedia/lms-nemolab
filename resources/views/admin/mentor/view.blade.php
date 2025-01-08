@@ -13,9 +13,75 @@
 
             <div class="col-12 col-lg-9 ps-xl-3 d-flex justify-content-center" style="height: 600px">
                 <div class="table-responsive shadow-lg rounded-3 p-3 w-100" style="background-color: #ffffff;">
-                    <a href="{{ route('admin.mentor.create') }}" class="tambah-data"
+                    {{-- <a href="{{ route('admin.mentor.create') }}" class="tambah-data"
                         >Tambahkan
-                        Data</a>
+                        Data</a> --}}
+                        <button type="button" class="tambah-data" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Tambahkan Data
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="border-0 modal-header">
+                                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="{{ route('admin.mentor.store') }}" method="post" enctype="multipart/form-data">
+                                <div class="border-0 modal-body">
+                                  @csrf
+                                    <!-- Nama -->
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nama <span class="text-danger">*</span></label>
+                                        <input type="text" id="name" name="name" class="form-control" value="{{ old('name') }}" placeholder="Masukkan nama">
+                                        @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                
+                                    <!-- Email -->
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                        <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Masukkan email">
+                                        @error('email')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                    
+                                    <!-- Password -->
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                                        <input type="password" id="password" name="password" class="form-control" value="{{ old('password') }}" placeholder="Masukkan password">
+                                        @error('password')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <!-- Profession -->
+                                    <div class="mb-3">
+                                        <label for="profession" class="form-label">Profession <span class="text-danger">*</span></label>
+                                        <select id="profession" name="profession" class="form-select">
+                                            <option value="">Pilih profesi</option>
+                                            <option value="UI/UX Designer">UI/UX Designer</option>
+                                            <option value="Frontend Developer">Frontend Developer</option>
+                                            <option value="Backend Developer">Backend Developer</option>
+                                            <option value="Wordpress Developer">Wordpress Developer</option>
+                                            <option value="Graphics Designer">Graphics Designer</option>
+                                            <option value="Fullstack Developer">Fullstack Developer</option>
+                                        </select>
+                                        @error('profession')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="border-0 modal-footer">
+                                  <button type="submit" class="btn btn-primary">Tambah</button>
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                </div>
+                            </form>
+                              </div>
+                            </div>
+                          </div>
                     <table class=" table table-bordered table-striped shadow-none mb-0" id="tablesContent">
                         <thead class="table-dark">
                             <tr>

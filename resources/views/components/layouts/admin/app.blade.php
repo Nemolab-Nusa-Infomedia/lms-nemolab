@@ -62,7 +62,9 @@
     </main>
 
     <!-- FOOTER -->
-    @include('components.includes.member.footer')
+    <section>
+        @include('components.includes.member.footer')
+    </section>
 
     {{-- include sweetalert --}}
     @include('sweetalert::alert')
