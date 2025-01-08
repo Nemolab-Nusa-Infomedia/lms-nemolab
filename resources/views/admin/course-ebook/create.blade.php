@@ -129,10 +129,144 @@
 @endsection
 
 @push('addon-script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+    </script>
     <script>
         const type = document.getElementById('type');
         const price = document.getElementById('price');
         const level = document.getElementById('level');
+        const imageUpload = document.getElementById('imageUpload');
+        const inputContainer = imageUpload.parentNode;
+        inputContainer.className = 'image-upload-container';
+
+        const leftSide = document.createElement('div');
+        leftSide.className = 'image-upload-left';
+        const rightSide = document.createElement('div');
+        rightSide.className = 'image-upload-right';
+
+        const existingElements = [...inputContainer.children];
+        existingElements.forEach(el => leftSide.appendChild(el));
+
+        const previewContainer = document.createElement('div');
+        previewContainer.className = 'image-preview-container';
+        rightSide.appendChild(previewContainer);
+
+        inputContainer.appendChild(leftSide);
+        inputContainer.appendChild(rightSide);
+
+        imageUpload.addEventListener('change', function(e) {
+            previewContainer.innerHTML = '';
+            
+            const file = e.target.files[0];
+            if (file) {
+                if (!file.type.startsWith('image/')) {
+                    alert('Please upload an image file');
+                    e.target.value = '';
+                    return;
+                }
+
+                const reader = new FileReader();
+                const img = document.createElement('img');
+
+                reader.onload = function(e) {
+                    img.src = e.target.result;
+                }
+
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Hapus';
+                removeButton.className = 'btn btn-danger btn-sm';
+                removeButton.onclick = function(e) {
+                    e.preventDefault();
+                    previewContainer.innerHTML = '';
+                    imageUpload.value = '';
+                };
+
+                previewContainer.appendChild(img);
+                previewContainer.appendChild(removeButton);
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // PDF Preview Script
+        const pdfUpload = document.querySelector('input[name="file_ebook"]'); // Changed selector to match the input name
+        const pdfContainer = pdfUpload.parentNode;
+        pdfContainer.className = 'pdf-upload-container';
+
+        const pdfLeftSide = document.createElement('div');
+        pdfLeftSide.className = 'pdf-upload-left';
+        const pdfRightSide = document.createElement('div');
+        pdfRightSide.className = 'pdf-upload-right';
+
+        const pdfExistingElements = [...pdfContainer.children];
+        pdfExistingElements.forEach(el => pdfLeftSide.appendChild(el));
+
+        const pdfPreviewContainer = document.createElement('div');
+        pdfPreviewContainer.className = 'pdf-preview-container';
+        pdfRightSide.appendChild(pdfPreviewContainer);
+
+        pdfContainer.appendChild(pdfLeftSide);
+        pdfContainer.appendChild(pdfRightSide);
+
+        pdfUpload.addEventListener('change', async function(e) {
+            pdfPreviewContainer.innerHTML = '';
+            
+            const file = e.target.files[0];
+            if (file) {
+                if (file.type !== 'application/pdf') {
+                    alert('Please upload a PDF file');
+                    e.target.value = '';
+                    return;
+                }
+
+                const previewWrapper = document.createElement('div');
+                previewWrapper.className = 'pdf-preview-wrapper';
+
+                const canvas = document.createElement('canvas');
+                canvas.className = 'pdf-thumbnail';
+
+                try {
+                    const arrayBuffer = await file.arrayBuffer();
+                    const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
+                    const page = await pdf.getPage(1);
+                    const viewport = page.getViewport({ scale: 0.5 });
+                    
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+                    
+                    const context = canvas.getContext('2d');
+                    await page.render({
+                        canvasContext: context,
+                        viewport: viewport
+                    }).promise;
+
+                    const fileInfo = document.createElement('div');
+                    fileInfo.className = 'pdf-info';
+                    fileInfo.innerHTML = `
+                        <p class="pdf-name">${file.name}</p>
+                        <p class="pdf-size">${(file.size / (1024 * 1024)).toFixed(2)} MB</p>
+                    `;
+
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'Hapus';
+                    removeButton.className = 'btn btn-danger btn-sm';
+                    removeButton.onclick = function(e) {
+                        e.preventDefault();
+                        pdfPreviewContainer.innerHTML = '';
+                        pdfUpload.value = '';
+                    };
+
+                    previewWrapper.appendChild(canvas);
+                    previewWrapper.appendChild(fileInfo);
+                    pdfPreviewContainer.appendChild(previewWrapper);
+                    pdfPreviewContainer.appendChild(removeButton);
+                } catch (error) {
+                    console.error('Error loading PDF:', error);
+                    alert('Error loading PDF preview');
+                }
+            }
+        });
 
         type.addEventListener('change', (e) => {
             if (e.target.value == 'premium') {

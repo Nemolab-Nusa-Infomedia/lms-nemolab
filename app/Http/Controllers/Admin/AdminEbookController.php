@@ -67,13 +67,13 @@ class AdminEbookController extends Controller
 
         // Proses upload cover
         $cover = $request->cover;
-        $coverName = Str::random(10) . '.' . $cover->getClientOriginalExtension();
+        $coverName = Str::random(10) . $cover->getClientOriginalName();
         $cover->storeAs('public/images/covers', $coverName); // Simpan di direktori public/images/covers
         $validatedData['cover'] = $coverName;
 
         // Proses upload file eBook
         $ebookFile = $request->file_ebook;
-        $ebookFileName = Str::random(15) . '.' . $ebookFile->getClientOriginalExtension();
+        $ebookFileName = Str::random(15) . $ebookFile->getClientOriginalName();
         $ebookFile->storeAs('public/file_pdf', $ebookFileName); // Simpan di direktori public/file_pdf
         $validatedData['file_ebook'] = $ebookFileName;
 
@@ -129,7 +129,7 @@ class AdminEbookController extends Controller
         // Update cover jika ada file baru
         if ($request->hasFile('cover')) {
             $cover = $request->cover;
-            $coverName = Str::random(10) . '.' . $cover->getClientOriginalExtension();
+            $coverName = Str::random(10) . $cover->getClientOriginalName();
             $cover->storeAs('public/images/covers', $coverName);
 
             // Hapus cover lama
@@ -140,7 +140,7 @@ class AdminEbookController extends Controller
         // Update file eBook jika ada file baru
         if ($request->hasFile('file_ebook')) {
             $ebookFile = $request->file_ebook;
-            $ebookFileName = Str::random(15) . '.' . $ebookFile->getClientOriginalExtension();
+            $ebookFileName = Str::random(15) . $ebookFile->getClientOriginalName();
             $ebookFile->storeAs('public/file_pdf', $ebookFileName);
 
             // Hapus file eBook lama

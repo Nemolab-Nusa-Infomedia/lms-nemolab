@@ -209,6 +209,99 @@ textarea:not(:placeholder-shown)+.labelline-textarea {
     overflow: hidden;
 }
 
+/* Styling for the preview pdf */
+css
+
+Copy
+/* PDF Preview Styles */
+.pdf-upload-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.pdf-upload-left {
+    flex: 1;
+}
+
+.pdf-upload-right {
+    width: 200px;
+}
+
+.pdf-preview-container {
+    text-align: center;
+}
+
+.pdf-preview-wrapper {
+    margin-bottom: 8px;
+}
+
+.pdf-thumbnail {
+    width: 200px;
+    height: 282px; /* Aspect ratio for A4 paper */
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #faa907;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-info {
+    margin-top: 8px;
+    text-align: left;
+}
+
+.pdf-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pdf-size {
+    font-size: 12px;
+    color: #666;
+}
+
+.pdf-preview-container .btn-danger {
+    margin-top: 8px;
+    background-color: #dc3545;
+    border: none;
+    padding: 4px 12px;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.pdf-preview-container .btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* File input styling (already present but ensuring consistency) */
+input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 100%;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #faa907;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #ff7700;
+}
+
 /* Styling for the preview image */
 .image-preview img {
     max-width: 100%;
