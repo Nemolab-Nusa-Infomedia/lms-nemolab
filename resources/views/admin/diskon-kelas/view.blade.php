@@ -13,9 +13,50 @@
 
             <div class="col-12 col-lg-9 ps-xl-3 d-flex justify-content-center" style="height: 600px">
                 <div class="table-responsive shadow-lg rounded-3 p-3 w-100" style="background-color: #ffffff;">
-                    <a href="{{ route('admin.diskon-kelas.create') }}" class="tambah-data"
+                    {{-- <a href="{{ route('admin.diskon-kelas.create') }}" class="tambah-data"
                         >Tambahkan
-                        Data</a>
+                        Data</a> --}}
+                        <button type="button" class="tambah-data" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Tambahkan Data
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="border-0 modal-header">
+                                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="{{ route('admin.diskon-kelas.create.store') }}" method="post" enctype="multipart/form-data">
+                                <div class="border-0 modal-body">
+                                  @csrf
+                                    <!-- Kode Diskon -->
+                                    <div class="mb-3">
+                                        <label for="kode_diskon" class="form-label">Kode Diskon</label>
+                                        <input type="text" id="kode_diskon" name="kode_diskon" class="form-control" value="{{ old('kode_diskon') }}" placeholder="Masukkan kode diskon">
+                                        @error('kode_diskon')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                
+                                    <!-- Rate Diskon -->
+                                    <div class="mb-3">
+                                        <label for="rate_diskon" class="form-label">Rate Diskon</label>
+                                        <input type="number" id="rate_diskon" name="rate_diskon" class="form-control" value="{{ old('rate_diskon') }}" placeholder="Masukkan rate diskon">
+                                        @error('rate_diskon')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="border-0 modal-footer">
+                                  <button type="submit" class="btn btn-primary">Tambah</button>
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                </div>
+                            </form>
+                              </div>
+                            </div>
+                          </div>
                     <table class=" table table-bordered table-striped shadow-none mb-0" id="tablesContent">
                         <thead class="table-dark">
                             <tr>

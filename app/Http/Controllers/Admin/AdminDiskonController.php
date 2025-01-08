@@ -46,8 +46,7 @@ class AdminDiskonController extends Controller
             ]);
         } else {
             // Jika kode diskon sudah ada, tampilkan pesan error
-            Alert::error('Error', 'Maaf Diskon Sudah Pernah Buat!')->toast()->position('top-end');
-            return redirect()->back(); // Kembali ke halaman sebelumnya
+            return redirect()->back()->with('alert', ['type' => 'error', 'message' => 'Diskon Sudah Pernah dibuat']); // Kembali ke halaman sebelumnya
         }
 
         // Tampilkan pesan sukses dan redirect ke daftar diskon

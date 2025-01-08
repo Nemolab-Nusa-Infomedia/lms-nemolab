@@ -32,8 +32,20 @@ class AdminCourseEbookController extends Controller
             $users = User::where('id', $paketKelas->first()->course->mentor_id)->first();
         }
 
+        $user = Auth::user(); // Ambil data user yang sedang login
+
+        // Jika user adalah mentor, ambil hanya course dan ebook dimiliki mentor
+        $courses = Course::where('mentor_id', Auth::user()->id)
+            ->where('status', 'published')
+            ->whereDoesntHave('courseEbooks')
+            ->get();
+        $ebooks = Ebook::where('mentor_id', Auth::user()->id)
+            ->where('status', 'published')
+            ->whereDoesntHave('courseEbooks')
+            ->get();
+
         // Tampilkan view untuk daftar paket kelas dengan data yang dibutuhkan
-        return view('admin.paket-kelas.view', compact('paketKelas', 'users'));
+        return view('admin.paket-kelas.view', compact('paketKelas', 'users', 'courses', 'ebooks'));
     }
 
     /**

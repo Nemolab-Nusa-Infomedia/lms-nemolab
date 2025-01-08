@@ -13,9 +13,54 @@
 
             <div class="col-12 col-lg-9 ps-xl-3 d-flex justify-content-center" style="height: 600px">
                 <div class="table-responsive shadow-lg rounded-3 p-3 w-100" style="background-color: #ffffff;">
-                    <a href="{{ route('admin.tools.create') }}" class="tambah-data"
+                    {{-- <a href="{{ route('admin.tools.create') }}" class="tambah-data"
                         >Tambahkan
-                        Data</a>
+                        Data</a> --}}
+                        <button type="button" class="tambah-data" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            Tambahkan Data
+                        </button>
+
+                        <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="border-0 modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambahkan Data</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="formAction" action="{{ route('admin.tools.create.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="border-0 modal-body">
+                                <!-- Nama Tools -->
+                                <div class="mb-3">
+                                    <label for="name_tools" class="form-label">Nama Tools<span class="required-field"></span></label>
+                                    <input type="text" id="name_tools" name="name_tools" class="form-control" placeholder="Masukkan nama tools" />
+                                    <span class="text-danger">@error('name_tools') {{ $message }} @enderror</span>
+                                </div>
+                            
+                                <!-- Link -->
+                                <div class="mb-3">
+                                    <label for="link" class="form-label">Link<span class="required-field"></span></label>
+                                    <input type="text" id="link" name="link" class="form-control" placeholder="Masukkan link tools" />
+                                    <span class="text-danger">@error('link') {{ $message }} @enderror</span>
+                                </div>
+                            
+                                <!-- Gambar Alat -->
+                                <div class="mb-3">
+                                    <label for="logo_tools" class="form-label">Gambar Alat<span class="required-field"></span></label>
+                                    <input type="file" id="logo_tools" name="logo_tools" accept="image/*" class="form-control" />
+                                    <span class="text-danger">@error('logo_tools') {{ $message }} @enderror</span>
+                                </div>
+                            </div>
+                            <div class="border-0 modal-footer gap-3">
+                            <button type="submit" class="btn btn-primary">Tambah</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    </div>
+                    {{-- End Modal --}}
                     <table class=" table table-bordered table-striped shadow-none mb-0" id="tablesContent">
                         <thead class="table-dark">
                             <tr>
