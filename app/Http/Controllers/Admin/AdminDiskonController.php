@@ -15,9 +15,10 @@ class AdminDiskonController extends Controller
     {
         // Mendapatkan semua data dari tabel DiskonKelas
         $diskonKelas = DiskonKelas::all();
+        $diskon = new DiskonKelas(); // Tambahkan ini untuk form update
         
         // Mengirim data diskon ke tampilan 'admin.diskon-kelas.view'
-        return view('admin.diskon-kelas.view', compact('diskonKelas'));
+        return view('admin.diskon-kelas.view', compact('diskonKelas', 'diskon'));
     }
 
     // Menampilkan halaman form untuk membuat diskon baru
@@ -71,12 +72,21 @@ class AdminDiskonController extends Controller
     {
         // Validasi input
         $requests->validate([
-            'kode_diskon' => 'required', // Kode diskon wajib diisi
-            'rate_diskon' => 'required|numeric|min:0|max:100', // Rate diskon harus berupa angka 0-100
+            'kode_diskon' => 'required',
+            'rate_diskon' => 'required|numeric|min:0|max:100',
         ]);
 
         // Mendapatkan data diskon berdasarkan ID
-        $diskon = DiskonKelas::where('id', $id)->first();
+        $diskon = DiskonKelas::findOrFail($id); 
+        
+        // Mengecek apakah kode diskon sudah digunakan oleh record lain
+        $existingDiskon = DiskonKelas::where('kode_diskon', $requests->kode_diskon)
+            ->where('id', '!=', $id)
+            ->first();
+        
+        if ($existingDiskon) {
+            return redirect()->back()->with('alert', ['type' => 'error', 'message' => 'Kode diskon sudah digunakan']);
+        }
 
         // Mengupdate data diskon
         $diskon->update([

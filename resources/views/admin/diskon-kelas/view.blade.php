@@ -16,16 +16,16 @@
                     {{-- <a href="{{ route('admin.diskon-kelas.create') }}" class="tambah-data"
                         >Tambahkan
                         Data</a> --}}
-                        <button type="button" class="tambah-data" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        <button type="button" class="tambah-data" data-bs-toggle="modal" data-bs-target="#createModal">
                             Tambahkan Data
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal fade" id="createModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="border-0 modal-header">
-                                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data</h1>
+                                  <h1 class="modal-title fs-5" id="createModalLabel">Tambah Data</h1>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <form action="{{ route('admin.diskon-kelas.create.store') }}" method="post" enctype="multipart/form-data">
@@ -53,10 +53,11 @@
                                   <button type="submit" class="btn btn-primary">Tambah</button>
                                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                 </div>
-                            </form>
+                                </form>
                               </div>
                             </div>
-                          </div>
+                        </div>
+                        
                     <table class=" table table-bordered table-striped shadow-none mb-0" id="tablesContent">
                         <thead class="table-dark">
                             <tr>
@@ -72,19 +73,14 @@
                                     <td>{{ $kelas->rate_diskon }}%</td>
                                     <td>
                                         <div class="d-flex justify-content-center gap-3">
-                                            <a class="btn btn-warning"
-                                            href="{{ route('admin.diskon-kelas.edit') }}?id={{ $kelas->id }}">
+                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal{{ $kelas->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 viewBox="0 0 24 24"
                                                 style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;">
-                                                <path
-                                                    d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z">
-                                                </path>
-                                                <path
-                                                    d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z">
-                                                </path>
+                                                <path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path>
+                                                <path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path>
                                             </svg>
-                                        </a>
+                                        </button>
                                         <a href="{{ route('admin.diskon-kelas.delete') }}?id={{ $kelas->id }}"
                                             class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus diskon ini?')">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
@@ -96,6 +92,44 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <!-- Modal Update -->
+                                <div class="modal fade" id="updateModal{{ $kelas->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateModalLabel{{ $kelas->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="border-0 modal-header">
+                                                <h1 class="modal-title fs-5" id="updateModalLabel{{ $kelas->id }}">Edit Data</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="{{ route('admin.diskon-kelas.edit.update', $kelas->id) }}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('put')
+                                                <div class="border-0 modal-body">
+                                                    <!-- Kode Diskon -->
+                                                    <div class="mb-3">
+                                                        <label for="kode_diskon{{ $kelas->id }}" class="form-label">Kode Diskon</label>
+                                                        <input type="text" id="kode_diskon{{ $kelas->id }}" name="kode_diskon" class="form-control" value="{{ $kelas->kode_diskon }}" placeholder="Masukkan kode diskon">
+                                                        @error('kode_diskon')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                
+                                                    <!-- Rate Diskon -->
+                                                    <div class="mb-3">
+                                                        <label for="rate_diskon{{ $kelas->id }}" class="form-label">Rate Diskon</label>
+                                                        <input type="number" id="rate_diskon{{ $kelas->id }}" name="rate_diskon" class="form-control" value="{{ $kelas->rate_diskon }}" placeholder="Masukkan rate diskon">
+                                                        @error('rate_diskon')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="border-0 modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             @endforeach
                         </tbody>
                     </table>
