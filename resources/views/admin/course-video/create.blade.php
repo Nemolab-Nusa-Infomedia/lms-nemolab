@@ -51,7 +51,7 @@
                         <div class="col-md-12">
                             <div>
                                 <label for="description">Deskripsi<span class="required-field"></span></label>
-                                <textarea id="description" name="description" placeholder="Masukan deskripsi.." class="form-control">{{ old('description') }}</textarea>
+                                <textarea id="description" name="description" placeholder="Masukan deskripsi.." class="form-control" style="height: 110px">{{ old('description') }}</textarea>
                                 @error('description')
                                     <span style="color: red">{{ $message }}</span>
                                 @enderror
@@ -157,7 +157,7 @@
                                     </div>
                                 </div>
                                 @error('tools')
-                                    <p>{{ $message }}</p>
+                                    <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             @else
                                 <p>

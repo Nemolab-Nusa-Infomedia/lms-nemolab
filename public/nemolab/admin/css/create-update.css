@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+:root {
+    --c-dark: #414142;
+    --c-darker: #282828;
+    --c-brand: #faa907;
+    --c-brand-dark: #a56e00;
+    --font-base: "Poppins", sans-serif;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -67,6 +75,23 @@ textarea {
     z-index: 1;
     color: rgb(0, 0, 0);
     box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+select:focus {
+    border: var(--bs-border-width) solid var(--c-brand) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input:focus {
+    border: var(--bs-border-width) solid var(--c-brand) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+textarea:focus {
+    border: var(--bs-border-width) solid var(--c-brand) !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .cover-input {

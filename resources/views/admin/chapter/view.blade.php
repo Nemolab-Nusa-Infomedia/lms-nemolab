@@ -21,9 +21,39 @@
                                 <path fill-rule="evenodd"
                                     d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z" />
                             </svg></a>
-                        <a href="{{ route('admin.chapter.create', $slug_course) }}" class="btn"
+                        {{-- <a href="{{ route('admin.chapter.create', $slug_course) }}" class="btn"
                             style="background-color: #faa907; color: white; border-radius: 10px; padding: 6px 10px;">Tambahkan
-                            Data</a>
+                            Data</a> --}}
+                            <button type="button" class="tambah-data" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Tambahkan Data
+                            </button>
+                            <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="border-0 modal-header">
+                                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="{{ route('admin.chapter.create.store', $slug_course) }}" method="post">
+                                <div class="border-0 modal-body">
+                                  @csrf
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Bab<span class="required-field"></span></label>
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="Masukan Nama Bab" />
+                                        @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="border-0 modal-footer">
+                                  <button type="submit" class="btn btn-primary">Tambah</button>
+                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                </div>
+                            </form>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                     <table class=" table table-bordered table-striped shadow-none mb-0" id="tablesContent">
                         <thead class="table-dark">
