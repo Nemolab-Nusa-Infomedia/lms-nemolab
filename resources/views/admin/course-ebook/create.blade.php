@@ -14,7 +14,7 @@
         <div class="table-responsive shadow-lg rounded-3 p-5 w-100" style="background-color: #ffffff;">
             <div class="d-flex justify-content-between mb-3">
                 <h2 class="fw-bolder">Tambah eBook</h2>
-                <a class="btn btn-orange" href="{{ route('admin.course') }}"> Kembali </a>
+                <a class="btn btn-orange" href="{{ route('admin.ebook') }}"> Kembali </a>
         </div>
         <div>
             <form id="formAction" action="{{ route('admin.ebook.create.store') }}" method="post"
@@ -193,6 +193,8 @@
         const type = document.getElementById('type');
         const price = document.getElementById('price');
         const level = document.getElementById('level');
+        const uploadBtn = document.getElementById('upload-btn');
+        const uploadBtnImg = document.getElementById('upload-btn-img');
         const imageUpload = document.getElementById('imageUpload');
         const inputContainer = imageUpload.parentNode;
         inputContainer.className = 'image-upload-container';
@@ -334,5 +336,14 @@
                 price.querySelector('input[name="price"]').value = '0';
             }
         });
+    </script>
+
+    <script>
+    uploadBtn.addEventListener('click', function(e) {
+        // Always allow clicking the entire upload area to trigger file input
+        if (e.target === uploadBtn || e.target === uploadButton) {
+            imageUpload.click();
+        }
+    });
     </script>
 @endpush
