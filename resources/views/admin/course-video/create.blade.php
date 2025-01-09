@@ -33,7 +33,7 @@
                                     <option value="Fullstack Developer">Fullstack Developer</option>
                                 </select>
                                 @error('category')
-                                    <div>{{ $message }}</div>
+                                    <div style="color: red">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                 <label for="name">Judul<span class="required-field"></span></label>
                                 <input type="text" id="name" name="name" value="{{ old('name') }}" class="form-control" placeholder="Masukan judul" />
                                 @error('name')
-                                    <span>{{ $message }}</span>
+                                    <span style="color: red">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                 <label for="description">Deskripsi<span class="required-field"></span></label>
                                 <textarea id="description" name="description" placeholder="Masukan deskripsi.." class="form-control">{{ old('description') }}</textarea>
                                 @error('description')
-                                    <span>{{ $message }}</span>
+                                    <span style="color: red">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                                     <option value="published">Publik</option>
                                 </select>
                                 @error('status')
-                                    <span>{{ $message }}</span>
+                                    <span style="color: red">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                                     <option value="premium">Berbayar</option>
                                 </select>
                                 @error('type')
-                                    <span>{{ $message }}</span>
+                                    <span style="color: red">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                                 <label for="price">Harga</label>
                                 <input type="number" id="price" name="price" value="0" class="form-control" placeholder="Masukan harga" />
                                 @error('price')
-                                    <span>{{ $message }}</span>
+                                    <span style="color: red">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                             <label for="imageUpload">Cover Kelas<span class="required-field"></span></label>
                             <input type="file" id="imageUpload" name="cover" accept="image/*" class="form-control" />
                             @error('cover')
-                                <span>{{ $message }}</span>
+                                <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div> --}}
             
@@ -130,7 +130,7 @@
                             @if ($tools->isNotEmpty())
                                 <div>
                                     <label for="tools">Pilih Tools<span class="required-field"></span></label>
-                                    <button type="button" id="add-tools-btn" class="btn btn-link">Tambah Tools</button>
+                                    <button type="button" id="add-tools-btn" class="btn btn-primary" style="background: 0; border: 1px solid #BDBDBD; color: #414242">Tambah Tools</button>
                                 </div>
                                 <div id="selected-tools" class="col-12 d-flex align-items-center mb-3">
                                 </div>
@@ -175,7 +175,7 @@
                                 <label for="resources">Asset</label>
                                 <input type="text" id="resources" name="resources" value="{{ old('resources') }}" class="form-control" placeholder="Masukan link asset" />
                                 @error('resources')
-                                    <span>{{ $message }}</span>
+                                    <span style="color: red">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                                 <label for="link_grub">Link Grup Kursus<span class="required-field"></span></label>
                                 <input type="text" id="link_grub" name="link_grub" value="" class="form-control" placeholder="Masukan link grup kursus" />
                                 @error('link_grub')
-                                    <span>{{ $message }}</span>
+                                    <span style="color: red">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -200,7 +200,7 @@
                                     <option value="expert">Ahli</option>
                                 </select>
                                 @error('level')
-                                    <span>{{ $message }}</span>
+                                    <span style="color: red">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
