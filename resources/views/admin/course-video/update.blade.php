@@ -1,4 +1,4 @@
-@extends('components.layouts.admin.create-update')
+@extends('components.layouts.admin.app')
 
 @push('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/admin/css/create-update.css') }}">
@@ -7,21 +7,25 @@
 @section('title', 'Edit Kelas')
 
 @section('content')
-
-    <div class="card w-75 mt-5 mb-5" style="border: none !important;">
-        <div class="card-header d-flex justify-content-between bg-transparent pb-0" style="border: none !important;">
-            <h2 class="fw-semibold fs-4 mb-4" style="color: #faa907">Edit Data</h2>
-            <a href="{{ route('admin.course') }}" class="btn btn-orange"> Kembali </a>
-        </div>
-        <div class="card-body pt-2">
-            <form class="col-12" action="{{ route('admin.course.edit.update', $course->id) }}" method="post"
+<div class="container-fluid px-2 px-sm-5 mt-5">
+    <div class="row ">
+        @include('components.includes.admin.sidebar')
+        <div class="col-12 col-lg-9 ps-xl-3 d-flex flex-column justify-content-center">
+            <div class="table-responsive shadow-lg rounded-3 p-5 w-100" style="background-color: #ffffff;">
+            <div class="d-flex justify-content-between mb-3">
+                <h2 class="fw-semibold fs-4 mb-4" style="color: #faa907">Edit Data</h2>
+                <a href="{{ route('admin.course') }}" class="btn btn-orange"> Kembali </a>
+            </div>
+        <div>
+            <form id="formAction" action="{{ route('admin.course.edit.update', $course->id) }}" method="post"
                 enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 <div class="row">
-                    <div class="col-6">
-                        <div class="custom-entryarea">
-                            <select id="category" name="category">
+                    <div class="col-md-6">
+                        <div>
+                            <label for="category">Kategori<span class="required-field"></span></label>
+                            <select id="category" name="category" class="form-select">
                                 <option value="UI/UX Designer"  {{ "UI/UX Designer" == $course->category ? 'selected' : '' }}>UI/UX Designer</option>
                                 <option value="Frontend Developer" {{ "Frontend Developer" == $course->category ? 'selected' : '' }}>Frontend Developer</option>
                                 <option value="Backend Developer" {{ "Backend Developer" == $course->category ? 'selected' : '' }}>Backend Developer</option>
@@ -34,29 +38,30 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="entryarea">
-                            <input type="text" id="name" name="name" placeholder=""
+                    <div class="col-md-6">
+                        <div>
+                            <label for="name">Judul<span class="required-field"></span></label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder=""
                                 value="{{ $course->name }}" />
-                            <div class="labelline" for="name">Judul<span class="required-field"></span></div>
                             @error('name')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
-                    <div class="col-12">
-                        <div class="entryarea">
-                            <textarea id="description" name="description" placeholder="" style="height: 173px">{{ $course->description }}</textarea>
-                            <div class="labelline-textarea" for="desc">Deskripsi<span class="required-field"></span>
+                    <div class="col-md-12">
+                        <div>
+                            <label for="description">Deskripsi<span class="required-field"></span></label>
+                            <textarea id="description" name="description" placeholder="" class="form-control" style="height: 173px">{{ $course->description }}</textarea>
                             </div>
                             @error('description')
                                 <span style="color: red">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="custom-entryarea">
-                            <select id="category" name="status">
+                    <div class="col-md-6">
+                        <div>
+                            <label for="status">Status<span class="required-field"></span></label>
+                            <select id="status" name="status" class="form-select">
                                 <option value="draft" {{ $course->status == 'draft' ? 'selected' : '' }}>Draf</option>
                                 <option value="published" {{ $course->status == 'published' ? 'selected' : '' }}>Publik
                                 </option>
@@ -66,9 +71,10 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="custom-entryarea">
-                            <select id="type" name="type">
+                    <div class="col-md-6">
+                        <div>
+                            <label for="type">Tipe<span class="required-field"></span></label>
+                            <select id="type" name="type" class="form-select">
                                 <option value="free" {{ $course->type == 'free' ? 'selected' : '' }}>Gratis</option>
                                 <option value="premium" {{ $course->type == 'premium' ? 'selected' : '' }}>Berbayar
                                 </option>
@@ -79,7 +85,7 @@
                         </div>
                     </div>
                     <div class="col-6 mt-4 {{ $course->type == 'free' ? 'd-none' : 'd-block' }}" id="price">
-                        <div class="entryarea">
+                        <div>
                             <input type="number" id="name" name="price" placeholder=""
                                 value="{{ $course->price }}" />
                             <div class="labelline" for="link">Harga</span></div>
@@ -122,7 +128,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="col-6 mt-2">
-                        <div class="entryarea">
+                        <div>
                             <input type="text" id="name"
                                 value = "{{ $course->resources != 'null' ? $course->resources : '' }}" name="resources"
                                 placeholder="" />
@@ -136,7 +142,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="col-6 mt-2">
-                        <div class="entryarea">
+                        <div>
                             <input type="text" id="name" name="link_grub" value="{{ $course->link_grub }}"
                                 placeholder="" />
                             <div class="labelline" for="link">Link Grup Kursus<span class="required-field"></span>
@@ -150,7 +156,7 @@
                         <span class="text-danger">{{ $message }}</span>
                     @enderror
                     <div class="col-12">
-                        <div class="custom-entryarea">
+                        <div>
                             <select id="category" name="level">
                                 <option value="beginner" {{ $course->level == 'beginner' ? 'selected' : '' }}>Pemula
                                 </option>
@@ -172,6 +178,9 @@
             </form>
         </div>
     </div>
+</div>
+</div>
+</div>
 
     @endsection
 
