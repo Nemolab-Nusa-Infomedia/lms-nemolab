@@ -32,26 +32,24 @@ class AdminDiskonController extends Controller
     {
         // Validasi input
         $requests->validate([
-            'kode_diskon' => 'required', // Kode diskon wajib diisi
-            'rate_diskon' => 'required|numeric|min:0|max:100', // Rate diskon harus berupa angka 0-100
+            'kode_diskon' => 'required',
+            'rate_diskon' => 'required|numeric|min:0|max:100',
         ]);
-
+    
         // Mengecek apakah kode diskon sudah ada
         $diskon = DiskonKelas::where('kode_diskon', $requests->kode_diskon)->first();
-
+    
         if (!$diskon) {
-            // Jika kode diskon belum ada, buat data baru
             DiskonKelas::create([
                 'kode_diskon' => $requests->kode_diskon,
                 'rate_diskon' => $requests->rate_diskon
             ]);
+            return redirect()->route('admin.diskon-kelas')->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
         } else {
-            // Jika kode diskon sudah ada, tampilkan pesan error
-            return redirect()->back()->with('alert', ['type' => 'error', 'message' => 'Diskon Sudah Pernah dibuat']); // Kembali ke halaman sebelumnya
+            return redirect()->back()
+                ->withErrors(['kode_diskon' => 'Diskon Sudah Pernah dibuat'])
+                ->withInput();
         }
-
-        // Tampilkan pesan sukses dan redirect ke daftar diskon
-        return redirect()->route('admin.diskon-kelas')->with('alert', ['type' => 'success', 'message' => 'Data Berhasil Dibuat!']);
     }
 
     // Menampilkan halaman edit diskon
@@ -75,26 +73,24 @@ class AdminDiskonController extends Controller
             'kode_diskon' => 'required',
             'rate_diskon' => 'required|numeric|min:0|max:100',
         ]);
-
-        // Mendapatkan data diskon berdasarkan ID
-        $diskon = DiskonKelas::findOrFail($id); 
+    
+        $diskon = DiskonKelas::findOrFail($id);
         
-        // Mengecek apakah kode diskon sudah digunakan oleh record lain
         $existingDiskon = DiskonKelas::where('kode_diskon', $requests->kode_diskon)
             ->where('id', '!=', $id)
             ->first();
         
         if ($existingDiskon) {
-            return redirect()->back()->with('alert', ['type' => 'error', 'message' => 'Kode diskon sudah digunakan']);
+            return redirect()->back()
+                ->withErrors(['kode_diskon' => 'Kode diskon sudah digunakan'])
+                ->withInput();
         }
-
-        // Mengupdate data diskon
+    
         $diskon->update([
             'kode_diskon' => $requests->kode_diskon,
             'rate_diskon' => $requests->rate_diskon
         ]);
-
-        // Tampilkan pesan sukses dan redirect ke daftar diskon
+    
         return redirect()->route('admin.diskon-kelas')->with('alert', ['type' => 'info', 'message' => 'Data Berhasil Diubah!']);
     }
 

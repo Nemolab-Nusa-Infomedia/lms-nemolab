@@ -23,38 +23,38 @@
                         <!-- Modal -->
                         <div class="modal fade" id="createModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="border-0 modal-header">
-                                  <h1 class="modal-title fs-5" id="createModalLabel">Tambah Data</h1>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <form action="{{ route('admin.diskon-kelas.create.store') }}" method="post" enctype="multipart/form-data">
-                                <div class="border-0 modal-body">
-                                  @csrf
-                                    <!-- Kode Diskon -->
-                                    <div class="mb-3">
-                                        <label for="kode_diskon" class="form-label">Kode Diskon</label>
-                                        <input type="text" id="kode_diskon" name="kode_diskon" class="form-control" value="{{ old('kode_diskon') }}" placeholder="Masukkan kode diskon">
-                                        @error('kode_diskon')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                <div class="modal-content">
+                                    <div class="border-0 modal-header">
+                                        <h1 class="modal-title fs-5" id="createModalLabel">Tambah Data</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                
-                                    <!-- Rate Diskon -->
-                                    <div class="mb-3">
-                                        <label for="rate_diskon" class="form-label">Rate Diskon</label>
-                                        <input type="number" id="rate_diskon" name="rate_diskon" class="form-control" value="{{ old('rate_diskon') }}" placeholder="Masukkan rate diskon">
-                                        @error('rate_diskon')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                    <form action="{{ route('admin.diskon-kelas.create.store') }}" method="post" enctype="multipart/form-data">
+                                        <div class="border-0 modal-body">
+                                            @csrf
+                                            <!-- Kode Diskon -->
+                                            <div class="mb-3">
+                                                <label for="kode_diskon" class="form-label">Kode Diskon</label>
+                                                <input type="text" id="kode_diskon" name="kode_diskon" class="form-control" value="{{ old('kode_diskon') }}" placeholder="Masukkan kode diskon">
+                                                @if($errors->has('kode_diskon'))
+                                                    <span class="text-danger">{{ $errors->first('kode_diskon') }}</span>
+                                                @endif
+                                            </div>
+                                        
+                                            <!-- Rate Diskon -->
+                                            <div class="mb-3">
+                                                <label for="rate_diskon" class="form-label">Rate Diskon</label>
+                                                <input type="number" id="rate_diskon" name="rate_diskon" class="form-control" value="{{ old('rate_diskon') }}" placeholder="Masukkan rate diskon">
+                                                @if($errors->has('rate_diskon'))
+                                                    <span class="text-danger">{{ $errors->first('rate_diskon') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        <div class="border-0 modal-footer">
+                                            <button type="submit" class="btn btn-primary">Tambah</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="border-0 modal-footer">
-                                  <button type="submit" class="btn btn-primary">Tambah</button>
-                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                                </div>
-                                </form>
-                              </div>
                             </div>
                         </div>
                         
@@ -103,23 +103,30 @@
                                             <form action="{{ route('admin.diskon-kelas.edit.update', $kelas->id) }}" method="post" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('put')
+                                                <input type="hidden" name="id" value="{{ $kelas->id }}">
                                                 <div class="border-0 modal-body">
                                                     <!-- Kode Diskon -->
                                                     <div class="mb-3">
                                                         <label for="kode_diskon{{ $kelas->id }}" class="form-label">Kode Diskon</label>
-                                                        <input type="text" id="kode_diskon{{ $kelas->id }}" name="kode_diskon" class="form-control" value="{{ $kelas->kode_diskon }}" placeholder="Masukkan kode diskon">
-                                                        @error('kode_diskon')
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
+                                                        <input type="text" id="kode_diskon{{ $kelas->id }}" name="kode_diskon" 
+                                                            class="form-control" 
+                                                            value="{{ old('kode_diskon', $kelas->kode_diskon) }}" 
+                                                            placeholder="Masukkan kode diskon">
+                                                        @if($errors->has('kode_diskon') && old('id') == $kelas->id)
+                                                            <span class="text-danger">{{ $errors->first('kode_diskon') }}</span>
+                                                        @endif
                                                     </div>
                                                 
                                                     <!-- Rate Diskon -->
                                                     <div class="mb-3">
                                                         <label for="rate_diskon{{ $kelas->id }}" class="form-label">Rate Diskon</label>
-                                                        <input type="number" id="rate_diskon{{ $kelas->id }}" name="rate_diskon" class="form-control" value="{{ $kelas->rate_diskon }}" placeholder="Masukkan rate diskon">
-                                                        @error('rate_diskon')
-                                                            <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
+                                                        <input type="number" id="rate_diskon{{ $kelas->id }}" name="rate_diskon" 
+                                                            class="form-control" 
+                                                            value="{{ old('rate_diskon', $kelas->rate_diskon) }}" 
+                                                            placeholder="Masukkan rate diskon">
+                                                        @if($errors->has('rate_diskon') && old('id') == $kelas->id)
+                                                            <span class="text-danger">{{ $errors->first('rate_diskon') }}</span>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="border-0 modal-footer">
@@ -142,4 +149,24 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+    @if($errors->any())
+        @if(old('_method') == 'put')
+            <script>
+            // For update modal
+            document.addEventListener('DOMContentLoaded', function() {
+                var modalId = '#updateModal{{ old("id") }}';
+                var modal = new bootstrap.Modal(document.querySelector(modalId));
+                modal.show();
+            });
+            </script>
+        @else
+            <script>
+            // For create modal
+            document.addEventListener('DOMContentLoaded', function() {
+                var modal = new bootstrap.Modal(document.querySelector('#createModal'));
+                modal.show();
+            });
+            </script>
+        @endif
+    @endif
 @endpush
