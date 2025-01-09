@@ -98,8 +98,8 @@
 
                         <div class="col-md-12">
                             <label for="">Cover Kelas</label>
-                            <div class="cover-input">
-                                <input type="file" id="" name="cover" accept="image/*" class="form-control" hidden/>
+                            <div class="cover-input" id="upload-btn">
+                                <input type="file" id="imageUpload" name="cover" accept="image/*" class="form-control" hidden/>
                                 <svg width="150" height="150" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0 27.1279C0 23.4812 1.4311 19.9838 3.97847 17.4052C6.52583 14.8266 9.98081 13.3779 13.5833 13.3779H67.9167C69.7178 13.3783 71.445 14.1029 72.7184 15.3923L106.677 49.7673C107.95 51.0563 108.666 52.8047 108.667 54.6279V137.128C108.667 140.775 107.236 144.272 104.688 146.851C102.141 149.429 98.6858 150.878 95.0833 150.878H13.5833C9.98081 150.878 6.52583 149.429 3.97847 146.851C1.4311 144.272 0 140.775 0 137.128V27.1279ZM92.2716 54.6279L67.9167 29.9742V54.6279H92.2716ZM54.3333 27.1279H13.5833V137.128H95.0833V68.3779H61.125C59.3237 68.3779 57.5962 67.6536 56.3226 66.3643C55.0489 65.075 54.3333 63.3263 54.3333 61.5029V27.1279ZM27.1667 89.0029C27.1667 87.1796 27.8822 85.4309 29.1559 84.1416C30.4296 82.8523 32.1571 82.1279 33.9583 82.1279H74.7083C76.5096 82.1279 78.2371 82.8523 79.5108 84.1416C80.7844 85.4309 81.5 87.1796 81.5 89.0029C81.5 90.8263 80.7844 92.575 79.5108 93.8643C78.2371 95.1536 76.5096 95.8779 74.7083 95.8779H33.9583C32.1571 95.8779 30.4296 95.1536 29.1559 93.8643C27.8822 92.575 27.1667 90.8263 27.1667 89.0029ZM27.1667 116.503C27.1667 114.68 27.8822 112.931 29.1559 111.642C30.4296 110.352 32.1571 109.628 33.9583 109.628H74.7083C76.5096 109.628 78.2371 110.352 79.5108 111.642C80.7844 112.931 81.5 114.68 81.5 116.503C81.5 118.326 80.7844 120.075 79.5108 121.364C78.2371 122.654 76.5096 123.378 74.7083 123.378H33.9583C32.1571 123.378 30.4296 122.654 29.1559 121.364C27.8822 120.075 27.1667 118.326 27.1667 116.503Z" fill="black" fill-opacity="0.26"/>
                                     <path d="M104.507 149C101.535 149 98.7404 148.371 96.1222 147.112C93.5055 145.852 91.2289 144.141 89.2923 141.981C87.3557 139.821 85.8229 137.283 84.6937 134.365C83.5646 131.448 83 128.329 83 125.008C83 121.687 83.5646 118.567 84.6937 115.648C85.8213 112.727 87.351 110.186 89.2828 108.024C91.2146 105.862 93.4896 104.151 96.1078 102.891C98.7261 101.63 101.521 101 104.493 101C107.465 101 110.26 101.63 112.878 102.891C115.494 104.149 117.771 105.858 119.708 108.016C121.644 110.174 123.177 112.714 124.306 115.635C125.435 118.556 126 121.675 126 124.992C126 128.309 125.436 131.429 124.309 134.352C123.181 137.275 121.649 139.816 119.712 141.976C117.776 144.136 115.502 145.847 112.89 147.109C110.278 148.372 107.484 149.002 104.507 149Z" fill="#414142" fill-opacity="0.84"/>
@@ -112,19 +112,11 @@
                                     </clipPath>
                                     </defs>
                                     </svg>
-                                <p class="mb-0">Maximum file zize 10 mb</p>
-                                <p>Format file : PNG/ JPG/ PDF</p>
-                                <button type="button" class="btn btn-primary" id="upload-btn" style="background: 0; border: 1px solid #BDBDBD; color: #414242" >Unggah</button>                                    
+                                <p class="mb-0">Maximum file size 10 mb</p>
+                                <p>Format file : PNG/ JPG/ JPEG</p>
+                                <button type="button" class="btn btn-primary" id="" style="background: 0; border: 1px solid #BDBDBD; color: #414242" >Unggah</button>                                    
                             </div>
                         </div>
-            
-                        {{-- <div class="col-md-12">
-                            <label for="imageUpload">Cover Kelas<span class="required-field"></span></label>
-                            <input type="file" id="imageUpload" name="cover" accept="image/*" class="form-control" />
-                            @error('cover')
-                                <span style="color: red">{{ $message }}</span>
-                            @enderror
-                        </div> --}}
             
                         <div class="col-md-12">
                             @if ($tools->isNotEmpty())
@@ -230,29 +222,15 @@
         const toolSearch = document.getElementById('tool-search');
         const searchToolsBtn = document.getElementById('search-tools-btn');
         const selectedToolsContainer = document.getElementById('selected-tools');
+        const uploadBtn = document.getElementById('upload-btn');
         const imageUpload = document.getElementById('imageUpload');
-        const inputContainer = imageUpload.parentNode;
-        inputContainer.className = 'image-upload-container';
-
-        const leftSide = document.createElement('div');
-        leftSide.className = 'image-upload-left';
-        const rightSide = document.createElement('div');
-        rightSide.className = 'image-upload-right';
-
-        const existingElements = [...inputContainer.children];
-        existingElements.forEach(el => leftSide.appendChild(el));
-
-        const previewContainer = document.createElement('div');
-        previewContainer.className = 'image-preview-container';
-        rightSide.appendChild(previewContainer);
-
-        inputContainer.appendChild(leftSide);
-        inputContainer.appendChild(rightSide);
+        const svgElement = uploadBtn.querySelector('svg');
+        const uploadText = uploadBtn.querySelectorAll('p');
+        const uploadButton = uploadBtn.querySelector('button');
 
         imageUpload.addEventListener('change', function(e) {
-            previewContainer.innerHTML = '';
-            
             const file = e.target.files[0];
+            
             if (file) {
                 if (!file.type.startsWith('image/')) {
                     alert('Please upload an image file');
@@ -260,24 +238,47 @@
                     return;
                 }
 
-                const reader = new FileReader();
-                const img = document.createElement('img');
-
-                reader.onload = function(e) {
-                    img.src = e.target.result;
+                // Hide SVG
+                if (svgElement) svgElement.style.display = 'none';
+                
+                // Create/update preview image
+                let previewImg = uploadBtn.querySelector('.preview-image');
+                if (!previewImg) {
+                    previewImg = document.createElement('img');
+                    previewImg.className = 'preview-image';
+                    previewImg.style.maxWidth = '150px';
+                    previewImg.style.maxHeight = '150px';
+                    previewImg.style.objectFit = 'cover';
+                    previewImg.style.outline = '2px solid #faa907';
+                    previewImg.style.outlineOffset = '2px';
+                    uploadBtn.insertBefore(previewImg, uploadBtn.firstChild);
                 }
 
-                const removeButton = document.createElement('button');
-                removeButton.textContent = 'Hapus';
-                removeButton.className = 'btn btn-danger btn-sm';
-                removeButton.onclick = function(e) {
-                    e.preventDefault();
-                    previewContainer.innerHTML = '';
+                // Update file info text
+                const fileSize = (file.size / (1024 * 1024)).toFixed(2); // Convert to MB
+                const fileType = file.type.split('/')[1].toUpperCase();
+                uploadText[0].textContent = `${fileType}, ${fileSize} MB`;
+                uploadText[1].style.display = 'none';
+
+                // Change upload button to delete button
+                uploadButton.textContent = 'Hapus';
+                uploadButton.onclick = function(e) {
+                    e.stopPropagation(); // Prevent triggering file input
+                    // Reset everything
                     imageUpload.value = '';
+                    previewImg.remove();
+                    svgElement.style.display = '';
+                    uploadText[0].textContent = 'Maximum file size 10 mb';
+                    uploadText[1].style.display = '';
+                    uploadButton.textContent = 'Unggah';
+                    uploadButton.onclick = null;
                 };
 
-                previewContainer.appendChild(img);
-                previewContainer.appendChild(removeButton);
+                // Create preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                }
                 reader.readAsDataURL(file);
             }
         });
@@ -400,12 +401,11 @@
     </script>
 
     <script>
-        document.getElementById('upload-btn').addEventListener('click', function () {
-        // Cari elemen input file dan trigger kliknya
-        const fileInput = document.querySelector('.cover-input input[type="file"]');
-        if (fileInput) {
-            fileInput.click();
-        }
+        uploadBtn.addEventListener('click', function(e) {
+            // Always allow clicking the entire upload area to trigger file input
+            if (e.target === uploadBtn || e.target === uploadButton) {
+                imageUpload.click();
+            }
         });
     </script>
 @endpush
