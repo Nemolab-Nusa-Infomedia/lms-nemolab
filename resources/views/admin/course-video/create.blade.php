@@ -13,7 +13,7 @@
         <div class="col-12 col-lg-9 ps-xl-3 d-flex flex-column justify-content-center">
             <div class="table-responsive shadow-lg rounded-3 p-5 w-100" style="background-color: #ffffff;">
             <div class="d-flex justify-content-between mb-3">
-                <h2 class="fw-bolder">Tambah Data</h2>
+                <h2 class="fw-bolder">Tambah Course</h2>
                 <a class="btn btn-orange" href="{{ route('admin.course') }}"> Kembali </a>
             </div>
             <div>
@@ -97,7 +97,7 @@
                         </div>
 
                         <div class="col-md-12">
-                            <label for="">Cover Kelas</label>
+                            <label for="">Cover Kelas<span class="required-field"></span></label>
                             <div class="cover-input" id="upload-btn">
                                 <div id="upload-btn-img" class="upload-btn-img overflow-y-scroll rounded shadow mb-2" style="max-height: 300px">
                                 </div>
