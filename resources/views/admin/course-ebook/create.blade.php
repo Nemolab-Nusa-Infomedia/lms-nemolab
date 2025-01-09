@@ -15,7 +15,7 @@
             <div class="d-flex justify-content-between mb-3">
                 <h2 class="fw-bolder">Tambah eBook</h2>
                 <a class="btn btn-orange" href="{{ route('admin.ebook') }}"> Kembali </a>
-        </div>
+            </div>
         <div>
             <form id="formAction" action="{{ route('admin.ebook.create.store') }}" method="post"
                 enctype="multipart/form-data">
@@ -170,8 +170,7 @@
 
                     <div class="col-12">
                         <button type="submit"
-                            class="d-block w-100 text-center text-decoration-none py-2 rounded-3 text-white fw-semibold btn-kirim"
-                            style="background-color: #faa907">Kirim</button>
+                            class="btn btn-orange w-100 py-2">Kirim</button>
                     </div>
                 </div>
             </form>
@@ -180,7 +179,7 @@
     </div>
     </div>        
 </div>
-</div>
+
 
 @endsection
 
