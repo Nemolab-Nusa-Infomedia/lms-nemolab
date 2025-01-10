@@ -88,7 +88,7 @@
                         <div class="cover-input" id="upload-btn">
                             <div id="upload-btn-img" class="upload-btn-img overflow-y-scroll rounded shadow mb-2" style="max-height: 300px">
                             </div>
-                            <input type="file" id="" name="cover" accept="image/*" class="form-control" hidden/>
+                            <input type="file" id="pdfUpload" name="file_ebook" accept="application/pdf" class="form-control" hidden/>
                             <svg width="150" height="150" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 27.1279C0 23.4812 1.4311 19.9838 3.97847 17.4052C6.52583 14.8266 9.98081 13.3779 13.5833 13.3779H67.9167C69.7178 13.3783 71.445 14.1029 72.7184 15.3923L106.677 49.7673C107.95 51.0563 108.666 52.8047 108.667 54.6279V137.128C108.667 140.775 107.236 144.272 104.688 146.851C102.141 149.429 98.6858 150.878 95.0833 150.878H13.5833C9.98081 150.878 6.52583 149.429 3.97847 146.851C1.4311 144.272 0 140.775 0 137.128V27.1279ZM92.2716 54.6279L67.9167 29.9742V54.6279H92.2716ZM54.3333 27.1279H13.5833V137.128H95.0833V68.3779H61.125C59.3237 68.3779 57.5962 67.6536 56.3226 66.3643C55.0489 65.075 54.3333 63.3263 54.3333 61.5029V27.1279ZM27.1667 89.0029C27.1667 87.1796 27.8822 85.4309 29.1559 84.1416C30.4296 82.8523 32.1571 82.1279 33.9583 82.1279H74.7083C76.5096 82.1279 78.2371 82.8523 79.5108 84.1416C80.7844 85.4309 81.5 87.1796 81.5 89.0029C81.5 90.8263 80.7844 92.575 79.5108 93.8643C78.2371 95.1536 76.5096 95.8779 74.7083 95.8779H33.9583C32.1571 95.8779 30.4296 95.1536 29.1559 93.8643C27.8822 92.575 27.1667 90.8263 27.1667 89.0029ZM27.1667 116.503C27.1667 114.68 27.8822 112.931 29.1559 111.642C30.4296 110.352 32.1571 109.628 33.9583 109.628H74.7083C76.5096 109.628 78.2371 110.352 79.5108 111.642C80.7844 112.931 81.5 114.68 81.5 116.503C81.5 118.326 80.7844 120.075 79.5108 121.364C78.2371 122.654 76.5096 123.378 74.7083 123.378H33.9583C32.1571 123.378 30.4296 122.654 29.1559 121.364C27.8822 120.075 27.1667 118.326 27.1667 116.503Z" fill="black" fill-opacity="0.26"/>
                                 <path d="M104.507 149C101.535 149 98.7404 148.371 96.1222 147.112C93.5055 145.852 91.2289 144.141 89.2923 141.981C87.3557 139.821 85.8229 137.283 84.6937 134.365C83.5646 131.448 83 128.329 83 125.008C83 121.687 83.5646 118.567 84.6937 115.648C85.8213 112.727 87.351 110.186 89.2828 108.024C91.2146 105.862 93.4896 104.151 96.1078 102.891C98.7261 101.63 101.521 101 104.493 101C107.465 101 110.26 101.63 112.878 102.891C115.494 104.149 117.771 105.858 119.708 108.016C121.644 110.174 123.177 112.714 124.306 115.635C125.435 118.556 126 121.675 126 124.992C126 128.309 125.436 131.429 124.309 134.352C123.181 137.275 121.649 139.816 119.712 141.976C117.776 144.136 115.502 145.847 112.89 147.109C110.278 148.372 107.484 149.002 104.507 149Z" fill="#414142" fill-opacity="0.84"/>
@@ -112,7 +112,7 @@
                         <div class="cover-input" id="upload-btn">
                             <div id="upload-btn-img" class="upload-btn-img overflow-y-scroll rounded shadow mb-2" style="max-height: 300px">
                             </div>
-                            <input type="file" id="" name="cover" accept="image/*" class="form-control" hidden/>
+                            <input type="file" id="imageUpload" name="cover" accept="image/*" class="form-control" hidden/>
                             <svg width="150" height="150" viewBox="0 0 120 150" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 27.1279C0 23.4812 1.4311 19.9838 3.97847 17.4052C6.52583 14.8266 9.98081 13.3779 13.5833 13.3779H67.9167C69.7178 13.3783 71.445 14.1029 72.7184 15.3923L106.677 49.7673C107.95 51.0563 108.666 52.8047 108.667 54.6279V137.128C108.667 140.775 107.236 144.272 104.688 146.851C102.141 149.429 98.6858 150.878 95.0833 150.878H13.5833C9.98081 150.878 6.52583 149.429 3.97847 146.851C1.4311 144.272 0 140.775 0 137.128V27.1279ZM92.2716 54.6279L67.9167 29.9742V54.6279H92.2716ZM54.3333 27.1279H13.5833V137.128H95.0833V68.3779H61.125C59.3237 68.3779 57.5962 67.6536 56.3226 66.3643C55.0489 65.075 54.3333 63.3263 54.3333 61.5029V27.1279ZM27.1667 89.0029C27.1667 87.1796 27.8822 85.4309 29.1559 84.1416C30.4296 82.8523 32.1571 82.1279 33.9583 82.1279H74.7083C76.5096 82.1279 78.2371 82.8523 79.5108 84.1416C80.7844 85.4309 81.5 87.1796 81.5 89.0029C81.5 90.8263 80.7844 92.575 79.5108 93.8643C78.2371 95.1536 76.5096 95.8779 74.7083 95.8779H33.9583C32.1571 95.8779 30.4296 95.1536 29.1559 93.8643C27.8822 92.575 27.1667 90.8263 27.1667 89.0029ZM27.1667 116.503C27.1667 114.68 27.8822 112.931 29.1559 111.642C30.4296 110.352 32.1571 109.628 33.9583 109.628H74.7083C76.5096 109.628 78.2371 110.352 79.5108 111.642C80.7844 112.931 81.5 114.68 81.5 116.503C81.5 118.326 80.7844 120.075 79.5108 121.364C78.2371 122.654 76.5096 123.378 74.7083 123.378H33.9583C32.1571 123.378 30.4296 122.654 29.1559 121.364C27.8822 120.075 27.1667 118.326 27.1667 116.503Z" fill="black" fill-opacity="0.26"/>
                                 <path d="M104.507 149C101.535 149 98.7404 148.371 96.1222 147.112C93.5055 145.852 91.2289 144.141 89.2923 141.981C87.3557 139.821 85.8229 137.283 84.6937 134.365C83.5646 131.448 83 128.329 83 125.008C83 121.687 83.5646 118.567 84.6937 115.648C85.8213 112.727 87.351 110.186 89.2828 108.024C91.2146 105.862 93.4896 104.151 96.1078 102.891C98.7261 101.63 101.521 101 104.493 101C107.465 101 110.26 101.63 112.878 102.891C115.494 104.149 117.771 105.858 119.708 108.016C121.644 110.174 123.177 112.714 124.306 115.635C125.435 118.556 126 121.675 126 124.992C126 128.309 125.436 131.429 124.309 134.352C123.181 137.275 121.649 139.816 119.712 141.976C117.776 144.136 115.502 145.847 112.89 147.109C110.278 148.372 107.484 149.002 104.507 149Z" fill="#414142" fill-opacity="0.84"/>
@@ -203,85 +203,26 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const type = document.getElementById('type');
-            const price = document.getElementById('price');
-            const level = document.getElementById('level');
-            const imageUpload = document.getElementById('imageUpload');
-            const inputContainer = imageUpload.parentNode;
-            inputContainer.className = 'image-upload-container';
+            // Ambil elemen untuk file PDF
+            const pdfUploadBtn = document.querySelectorAll('.cover-input')[0];
+            const pdfUploadBtnImg = pdfUploadBtn.querySelector('.upload-btn-img');
+            const pdfFileInput = pdfUploadBtn.querySelector('input[type="file"]');
+            const pdfSvg = pdfUploadBtn.querySelector('svg');
+            const pdfTexts = pdfUploadBtn.querySelectorAll('p');
+            const pdfButton = pdfUploadBtn.querySelector('button');
 
-            const leftSide = document.createElement('div');
-            leftSide.className = 'image-upload-left';
-            const rightSide = document.createElement('div');
-            rightSide.className = 'image-upload-right';
+            // Ambil elemen untuk image cover
+            const imageUploadBtn = document.querySelectorAll('.cover-input')[1];
+            const imageUploadBtnImg = imageUploadBtn.querySelector('.upload-btn-img');
+            const imageFileInput = imageUploadBtn.querySelector('input[type="file"]');
+            const imageSvg = imageUploadBtn.querySelector('svg');
+            const imageTexts = imageUploadBtn.querySelectorAll('p');
+            const imageButton = imageUploadBtn.querySelector('button');
 
-            const existingElements = [...inputContainer.children];
-            existingElements.forEach(el => leftSide.appendChild(el));
-
-            const previewContainer = document.createElement('div');
-            previewContainer.className = 'image-preview-container';
-            rightSide.appendChild(previewContainer);
-
-            inputContainer.appendChild(leftSide);
-            inputContainer.appendChild(rightSide);
-
-            imageUpload.addEventListener('change', function(e) {
-                previewContainer.innerHTML = '';
-                
+            // Handler untuk PDF upload
+            pdfFileInput.addEventListener('change', async function(e) {
                 const file = e.target.files[0];
-                if (file) {
-                    if (!file.type.startsWith('image/')) {
-                        alert('Please upload an image file');
-                        e.target.value = '';
-                        return;
-                    }
-
-                    const reader = new FileReader();
-                    const img = document.createElement('img');
-
-                    reader.onload = function(e) {
-                        img.src = e.target.result;
-                    }
-
-                    const removeButton = document.createElement('button');
-                    removeButton.textContent = 'Hapus';
-                    removeButton.className = 'btn btn-danger btn-sm';
-                    removeButton.onclick = function(e) {
-                        e.preventDefault();
-                        previewContainer.innerHTML = '';
-                        imageUpload.value = '';
-                    };
-
-                    previewContainer.appendChild(img);
-                    previewContainer.appendChild(removeButton);
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            // PDF Preview Script
-            const pdfUpload = document.querySelector('input[name="file_ebook"]'); // Changed selector to match the input name
-            const pdfContainer = pdfUpload.parentNode;
-            pdfContainer.className = 'pdf-upload-container';
-
-            const pdfLeftSide = document.createElement('div');
-            pdfLeftSide.className = 'pdf-upload-left';
-            const pdfRightSide = document.createElement('div');
-            pdfRightSide.className = 'pdf-upload-right';
-
-            const pdfExistingElements = [...pdfContainer.children];
-            pdfExistingElements.forEach(el => pdfLeftSide.appendChild(el));
-
-            const pdfPreviewContainer = document.createElement('div');
-            pdfPreviewContainer.className = 'pdf-preview-container';
-            pdfRightSide.appendChild(pdfPreviewContainer);
-
-            pdfContainer.appendChild(pdfLeftSide);
-            pdfContainer.appendChild(pdfRightSide);
-
-            pdfUpload.addEventListener('change', async function(e) {
-                pdfPreviewContainer.innerHTML = '';
                 
-                const file = e.target.files[0];
                 if (file) {
                     if (file.type !== 'application/pdf') {
                         alert('Please upload a PDF file');
@@ -289,11 +230,14 @@
                         return;
                     }
 
-                    const previewWrapper = document.createElement('div');
-                    previewWrapper.className = 'pdf-preview-wrapper';
+                    if (file.size > 10 * 1024 * 1024) { // 10MB limit
+                        alert('File size exceeds 10MB limit');
+                        e.target.value = '';
+                        return;
+                    }
 
-                    const canvas = document.createElement('canvas');
-                    canvas.className = 'pdf-thumbnail';
+                    // Hide SVG
+                    if (pdfSvg) pdfSvg.style.display = 'none';
 
                     try {
                         const arrayBuffer = await file.arrayBuffer();
@@ -301,6 +245,8 @@
                         const page = await pdf.getPage(1);
                         const viewport = page.getViewport({ scale: 0.5 });
                         
+                        const canvas = document.createElement('canvas');
+                        canvas.className = 'preview-pdf';
                         canvas.height = viewport.height;
                         canvas.width = viewport.width;
                         
@@ -310,32 +256,112 @@
                             viewport: viewport
                         }).promise;
 
-                        const fileInfo = document.createElement('div');
-                        fileInfo.className = 'pdf-info';
-                        fileInfo.innerHTML = `
-                            <p class="pdf-name">${file.name}</p>
-                            <p class="pdf-size">${(file.size / (1024 * 1024)).toFixed(2)} MB</p>
-                        `;
+                        // Update preview container
+                        pdfUploadBtnImg.innerHTML = '';
+                        pdfUploadBtnImg.appendChild(canvas);
 
-                        const removeButton = document.createElement('button');
-                        removeButton.textContent = 'Hapus';
-                        removeButton.className = 'btn btn-danger btn-sm';
-                        removeButton.onclick = function(e) {
-                            e.preventDefault();
-                            pdfPreviewContainer.innerHTML = '';
-                            pdfUpload.value = '';
+                        // Update file info text
+                        const fileSize = (file.size / (1024 * 1024)).toFixed(2);
+                        pdfTexts[0].textContent = `PDF, ${fileSize} MB`;
+                        pdfTexts[1].style.display = 'none';
+
+                        // Change upload button to delete button
+                        pdfButton.textContent = 'Hapus';
+                        pdfButton.onclick = function(e) {
+                            e.stopPropagation();
+                            pdfFileInput.value = '';
+                            pdfUploadBtnImg.innerHTML = '';
+                            pdfSvg.style.display = '';
+                            pdfTexts[0].textContent = 'Maximum file size 10 mb';
+                            pdfTexts[1].style.display = '';
+                            pdfButton.textContent = 'Unggah';
+                            pdfButton.onclick = null;
                         };
 
-                        previewWrapper.appendChild(canvas);
-                        previewWrapper.appendChild(fileInfo);
-                        pdfPreviewContainer.appendChild(previewWrapper);
-                        pdfPreviewContainer.appendChild(removeButton);
                     } catch (error) {
                         console.error('Error loading PDF:', error);
                         alert('Error loading PDF preview');
                     }
                 }
             });
+
+            // Handler untuk Image upload
+            imageFileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                
+                if (file) {
+                    if (!file.type.startsWith('image/')) {
+                        alert('Please upload an image file');
+                        e.target.value = '';
+                        return;
+                    }
+
+                    if (file.size > 10 * 1024 * 1024) { // 10MB limit
+                        alert('File size exceeds 10MB limit');
+                        e.target.value = '';
+                        return;
+                    }
+
+                    // Hide SVG
+                    if (imageSvg) imageSvg.style.display = 'none';
+
+                    // Create/update preview image
+                    let previewImg = imageUploadBtnImg.querySelector('.preview-image');
+                    if (!previewImg) {
+                        previewImg = document.createElement('img');
+                        previewImg.className = 'preview-image';
+                        previewImg.style.maxWidth = '100%';
+                        previewImg.style.maxHeight = '100%';
+                        previewImg.style.objectFit = 'cover';
+                        previewImg.style.outline = '2px solid #faa907';
+                        previewImg.style.outlineOffset = '2px';
+                        imageUploadBtnImg.insertBefore(previewImg, imageUploadBtnImg.firstChild);
+                    }
+
+                    // Update file info text
+                    const fileSize = (file.size / (1024 * 1024)).toFixed(2);
+                    const fileType = file.type.split('/')[1].toUpperCase();
+                    imageTexts[0].textContent = `${fileType}, ${fileSize} MB`;
+                    imageTexts[1].style.display = 'none';
+
+                    // Change upload button to delete button
+                    imageButton.textContent = 'Hapus';
+                    imageButton.onclick = function(e) {
+                        e.stopPropagation();
+                        imageFileInput.value = '';
+                        previewImg.remove();
+                        imageSvg.style.display = '';
+                        imageTexts[0].textContent = 'Maximum file size 10 mb';
+                        imageTexts[1].style.display = '';
+                        imageButton.textContent = 'Unggah';
+                        imageButton.onclick = null;
+                    };
+
+                    // Create preview
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Click handlers untuk upload buttons
+            pdfUploadBtn.addEventListener('click', function(e) {
+                if (e.target === pdfUploadBtn || e.target === pdfButton) {
+                    pdfFileInput.click();
+                }
+            });
+
+            imageUploadBtn.addEventListener('click', function(e) {
+                if (e.target === imageUploadBtn || e.target === imageButton) {
+                    imageFileInput.click();
+                }
+            });
+
+            const type = document.getElementById('type');
+            const price = document.getElementById('price');
+            const level = document.getElementById('level');
 
             // Pastikan elemen "type" sudah ada sebelum melanjutkan
             if (type) {
@@ -363,65 +389,67 @@
         });
     </script>
     
-    @if($ebooks->cover)
+@if($ebooks->cover)
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const imageUpload = document.getElementById('imageUpload');
-            const previewContainer = document.querySelector('.image-preview-container');
+            const uploadBtnImg = imageUpload.closest('.cover-input').querySelector('#upload-btn-img');
+            const svg = imageUpload.closest('.cover-input').querySelector('svg');
+            const texts = imageUpload.closest('.cover-input').querySelectorAll('p');
+            const button = imageUpload.closest('.cover-input').querySelector('button');
 
-            // Get original filename and extension
-            const originalFileName = "{{ basename($ebooks->cover) }}".substring(10);
-            const extension = originalFileName.split('.').pop().toLowerCase();
-            
-            // Fetch the existing image
+            // Fetch existing image
             fetch("{{ url('storage/images/covers/' . $ebooks->cover) }}")
                 .then(response => response.blob())
                 .then(blob => {
-                    // Create proper mime type based on extension
-                    let mimeType;
-                    switch(extension) {
-                        case 'jpg':
-                        case 'jpeg':
-                            mimeType = 'image/jpeg';
-                            break;
-                        case 'png':
-                            mimeType = 'image/png';
-                            break;
-                        case 'gif':
-                            mimeType = 'image/gif';
-                            break;
-                        default:
-                            mimeType = 'image/jpeg';
-                    }
-
-                    // Create a File object with proper mime type
+                    // Get file info
+                    const originalFileName = "{{ basename($ebooks->cover) }}".substring(10);
+                    const extension = originalFileName.split('.').pop().toLowerCase();
+                    const mimeType = `image/${extension === 'jpg' ? 'jpeg' : extension}`;
+                    
+                    // Create File object
                     const file = new File([blob], originalFileName, { type: mimeType });
                     
-                    // Set the file input value
+                    // Set file input value
                     const dataTransfer = new DataTransfer();
                     dataTransfer.items.add(file);
                     imageUpload.files = dataTransfer.files;
                     
-                    // Create and display preview
+                    // Create preview
                     const img = document.createElement('img');
-                    img.src = "{{ url('storage/images/covers/' . $ebooks->cover) }}";
-                    
-                    const removeButton = document.createElement('button');
-                    removeButton.textContent = 'Hapus';
-                    removeButton.className = 'btn btn-danger btn-sm';
-                    removeButton.onclick = function(e) {
-                        e.preventDefault();
-                        previewContainer.innerHTML = '';
-                        imageUpload.value = '';
-                    };
+                    img.className = 'preview-image';
+                    img.src = URL.createObjectURL(blob);
+                    img.style.maxWidth = '100%';
+                    img.style.maxHeight = '100%';
+                    img.style.objectFit = 'cover';
+                    img.style.outline = '2px solid #faa907';
+                    img.style.outlineOffset = '2px';
 
-                    previewContainer.innerHTML = '';
-                    previewContainer.appendChild(img);
-                    previewContainer.appendChild(removeButton);
+                    // Update UI
+                    uploadBtnImg.innerHTML = '';
+                    uploadBtnImg.appendChild(img);
+                    svg.style.display = 'none';
+
+                    // Update file info text to match the new format
+                    const fileSize = (file.size / (1024 * 1024)).toFixed(2);
+                    const fileType = file.type.split('/')[1].toUpperCase();
+                    texts[0].textContent = `${fileType}, ${fileSize} MB`;
+                    texts[1].style.display = 'none';
+
+                    // Update button
+                    button.textContent = 'Hapus';
+                    button.onclick = function(e) {
+                        e.stopPropagation();
+                        imageUpload.value = '';
+                        uploadBtnImg.innerHTML = '';
+                        svg.style.display = '';
+                        texts[0].textContent = 'Maximum file size 10 mb';
+                        texts[1].style.display = '';
+                        button.textContent = 'Unggah';
+                        button.onclick = null;
+                    };
                 })
-                .catch(error => {
-                    console.error('Error loading existing image:', error);
-                });
+                .catch(error => console.error('Error loading image:', error));
         });
     </script>
 @endif
@@ -429,65 +457,31 @@
 @if($ebooks->file_ebook)
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const pdfUpload = document.querySelector('input[name="file_ebook"]');
-            const pdfPreviewContainer = document.querySelector('.pdf-preview-container');
+            const pdfUpload = document.getElementById('pdfUpload');
+            const uploadBtnImg = pdfUpload.closest('.cover-input').querySelector('#upload-btn-img');
+            const svg = pdfUpload.closest('.cover-input').querySelector('svg');
+            const texts = pdfUpload.closest('.cover-input').querySelectorAll('p');
+            const button = pdfUpload.closest('.cover-input').querySelector('button');
 
-            // Create preview elements
-            const previewWrapper = document.createElement('div');
-            previewWrapper.className = 'pdf-preview-wrapper';
-
-            const canvas = document.createElement('canvas');
-            canvas.className = 'pdf-thumbnail';
-
-            const fileInfo = document.createElement('div');
-            fileInfo.className = 'pdf-info';
-
-            const fileName = "{{ basename($ebooks->file_ebook) }}".substring(15);
-            
-            // Create a temporary URL for the PDF file
             const pdfUrl = "{{ url('storage/file_pdf/' . $ebooks->file_ebook) }}";
+            const fileName = "{{ basename($ebooks->file_ebook) }}".substring(15);
 
-            // Load and display the PDF preview
+            // Load and display PDF preview
             pdfjsLib.getDocument(pdfUrl).promise.then(async function(pdf) {
                 const page = await pdf.getPage(1);
                 const viewport = page.getViewport({ scale: 0.5 });
                 
+                const canvas = document.createElement('canvas');
+                canvas.className = 'preview-pdf';
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
                 
-                const context = canvas.getContext('2d');
-                
                 await page.render({
-                    canvasContext: context,
+                    canvasContext: canvas.getContext('2d'),
                     viewport: viewport
                 }).promise;
 
-                // Get file size using fetch
-                const response = await fetch(pdfUrl);
-                const blob = await response.blob();
-                const fileSize = (blob.size / (1024 * 1024)).toFixed(2);
-
-                fileInfo.innerHTML = `
-                    <p class="pdf-name">${fileName}</p>
-                    <p class="pdf-size">${fileSize} MB</p>
-                `;
-
-                const removeButton = document.createElement('button');
-                removeButton.textContent = 'Hapus';
-                removeButton.className = 'btn btn-danger btn-sm';
-                removeButton.onclick = function(e) {
-                    e.preventDefault();
-                    pdfPreviewContainer.innerHTML = '';
-                    pdfUpload.value = '';
-                };
-
-                previewWrapper.appendChild(canvas);
-                previewWrapper.appendChild(fileInfo);
-                pdfPreviewContainer.innerHTML = '';
-                pdfPreviewContainer.appendChild(previewWrapper);
-                pdfPreviewContainer.appendChild(removeButton);
-
-                // Set the file input value
+                // Get file size and set input value
                 fetch(pdfUrl)
                     .then(response => response.blob())
                     .then(blob => {
@@ -495,11 +489,31 @@
                         const dataTransfer = new DataTransfer();
                         dataTransfer.items.add(file);
                         pdfUpload.files = dataTransfer.files;
+
+                        // Update UI
+                        uploadBtnImg.innerHTML = '';
+                        uploadBtnImg.appendChild(canvas);
+                        svg.style.display = 'none';
+
+                        // Update file info text to match the new format
+                        const fileSize = (blob.size / (1024 * 1024)).toFixed(2);
+                        texts[0].textContent = `PDF, ${fileSize} MB`;
+                        texts[1].style.display = 'none';
+
+                        // Update button
+                        button.textContent = 'Hapus';
+                        button.onclick = function(e) {
+                            e.stopPropagation();
+                            pdfUpload.value = '';
+                            uploadBtnImg.innerHTML = '';
+                            svg.style.display = '';
+                            texts[0].textContent = 'Maximum file size 10 mb';
+                            texts[1].style.display = '';
+                            button.textContent = 'Unggah';
+                            button.onclick = null;
+                        };
                     });
-            }).catch(error => {
-                console.error('Error loading PDF:', error);
-                pdfPreviewContainer.innerHTML = '<p class="text-danger">Error loading PDF preview</p>';
-            });
+            }).catch(error => console.error('Error loading PDF:', error));
         });
     </script>
 @endif
