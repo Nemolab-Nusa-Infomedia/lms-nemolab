@@ -72,6 +72,61 @@
                         </thead>
                         <tbody>
                             @foreach ($tools as $item)
+                                <!-- Modal Update -->
+                                <div class="modal fade" id="updateModal{{ $item->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateModalLabel{{ $item->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="border-0 modal-header">
+                                                <h1 class="modal-title fs-5" id="updateModalLabel{{ $item->id }}">Edit Data</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="{{ route('admin.tools.edit.update', $item->id) }}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                @method('put')
+                                                <div class="border-0 modal-body">
+                                                    <!-- Nama Tools -->
+                                                    <div class="mb-3">
+                                                        <label for="name_tools{{ $item->id }}" class="form-label">Nama Alat<span class="required-field"></span></label>
+                                                        <input type="text" id="name_tools{{ $item->id }}" name="name_tools" 
+                                                            class="form-control" 
+                                                            value="{{ old('name_tools', $item->name_tools) }}" 
+                                                            placeholder="Masukkan nama tools">
+                                                        @if($errors->has('name_tools') && old('id') == $item->id)
+                                                            <span class="text-danger">{{ $errors->first('name_tools') }}</span>
+                                                        @endif
+                                                    </div>
+
+                                                    <!-- Link -->
+                                                    <div class="mb-3">
+                                                        <label for="link{{ $item->id }}" class="form-label">Link<span class="required-field"></span></label>
+                                                        <input type="text" id="link{{ $item->id }}" name="link" 
+                                                            class="form-control" 
+                                                            value="{{ old('link', $item->link) }}" 
+                                                            placeholder="Masukkan link tools">
+                                                        @if($errors->has('link') && old('id') == $item->id)
+                                                            <span class="text-danger">{{ $errors->first('link') }}</span>
+                                                        @endif
+                                                    </div>
+
+                                                    <!-- Gambar Alat -->
+                                                    <div class="mb-3">
+                                                        <label for="logo_tools{{ $item->id }}" class="form-label">Gambar Alat<span class="required-field"></span></label>
+                                                        <input type="file" id="logo_tools{{ $item->id }}" name="logo_tools" 
+                                                            accept="image/*" 
+                                                            class="form-control">
+                                                        @if($errors->has('logo_tools') && old('id') == $item->id)
+                                                            <span class="text-danger">{{ $errors->first('logo_tools') }}</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="border-0 modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                                 <tr>
                                     <td>{{ $item->name_tools }}</td>
                                     <td><a href="{{ $item->link }}" style="font-size: 12px;" class="btn btn-success">Kunjungi</a></td>
@@ -80,18 +135,14 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center gap-3">
-                                            <a class="btn btn-warning" href="{{ route('admin.tools.edit', $item->id) }}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    viewBox="0 0 24 24"
-                                                    style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;">
-                                                    <path
-                                                        d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z">
-                                                    </path>
-                                                    <path
-                                                        d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z">
-                                                    </path>
-                                                </svg>
-                                            </a>
+                                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal{{ $item->id }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24"
+                                                style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;">
+                                                <path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path>
+                                                <path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path>
+                                            </svg>
+                                        </button>
                                             <a href="{{ route('admin.tools.delete', $item->id) }}" class="btn btn-danger" 
                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus tools ini?')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
@@ -115,5 +166,25 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+    @if($errors->any())
+        @if(old('_method') == 'put')
+            <script>
+            // For update modal
+            document.addEventListener('DOMContentLoaded', function() {
+                var modalId = '#updateModal{{ old("id") }}';
+                var modal = new bootstrap.Modal(document.querySelector(modalId));
+                modal.show();
+            });
+            </script>
+        @else
+            <script>
+            // For create modal
+            document.addEventListener('DOMContentLoaded', function() {
+                var modal = new bootstrap.Modal(document.querySelector('#createModal'));
+                modal.show();
+            });
+            </script>
+        @endif
+    @endif
 @endpush
 

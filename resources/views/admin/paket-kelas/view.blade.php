@@ -17,16 +17,16 @@
                     {{-- <a href="{{ route('admin.paket-kelas.create') }}" class="tambah-data"
                         >Tambahkan
                         Data</a> --}}
-                    <button type="button" class="tambah-data" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <button type="button" class="tambah-data" data-bs-toggle="modal" data-bs-target="#createModal">
                         Tambahkan Data
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal fade" id="createModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="border-0 modal-header">
-                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambahkan Data</h1>
+                            <h1 class="modal-title fs-5" id="createModalLabel">Tambahkan Data</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form id="formAction" action="{{ route('admin.paket-kelas.create.store') }}" method="post" enctype="multipart/form-data">
