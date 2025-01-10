@@ -21,13 +21,17 @@ body {
 
 main {
     background-color: #f8f9fa;
-    min-height: 100svh;
+    height: 110svh;
     padding: 60px 0;
 }
 
 .container {
     background-color: #fff;
     border-radius: 10px;
+}
+
+.row .ps-xl-3 {
+    height: 85svh;
 }
 
 .tambah {
@@ -39,7 +43,7 @@ main {
 }
 
 h2 {
-    font-weight: 700;
+    font-size: 1.5rem !important;
     background-color: #FAA907;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -66,8 +70,10 @@ h2 {
 
 
 input,
-textarea {
+textarea,
+select {
     position: relative;
+    font-size: 0.75rem !important;
     width: 100%;
     padding: 13px 20px;
     border-radius: 9px;
@@ -450,6 +456,7 @@ input[type="file"]::-webkit-file-upload-button:hover {
 
 .btn-orange {
     background-color: #faa907 !important;
+    font-size: 0.75rem !important;
     color: white !important;
     height: max-content;
 }

@@ -11,7 +11,7 @@
         <div class="row ">
             @include('components.includes.admin.sidebar')
 
-            <div class="col-12 col-lg-9 ps-xl-3 d-flex justify-content-center" style="height: 600px">
+            <div class="col-12 col-lg-9 ps-xl-3 d-flex">
                 <div class="table-responsive shadow-lg rounded-3 p-3 w-100" style="background-color: #ffffff;">
                     {{-- <a href="{{ route('admin.mentor.create') }}" class="tambah-data"
                         >Tambahkan

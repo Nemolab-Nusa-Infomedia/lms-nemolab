@@ -10,7 +10,7 @@
 <div class="container-fluid px-2 px-sm-5 mt-5">
     <div class="row ">
         @include('components.includes.admin.sidebar')
-        <div class="col-12 col-lg-9 ps-xl-3 d-flex flex-column justify-content-center">
+        <div class="col-12 col-lg-9 ps-xl-3 d-flex flex-column">
             <div class="table-responsive shadow-lg rounded-3 p-5 w-100" style="background-color: #ffffff;">
             <div class="d-flex justify-content-between mb-3">
                 <h2 class="fw-bolder">Edit Data</h2>

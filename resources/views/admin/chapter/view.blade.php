@@ -12,7 +12,7 @@
         <div class="row ">
             @include('components.includes.admin.sidebar')
 
-            <div class="col-12 col-lg-9 ps-xl-3 " style="height: 600px">
+            <div class="col-12 col-lg-9 ps-xl-3">
                 <div class="table-responsive shadow-lg rounded-3 p-3 w-100" style="background-color: #ffffff;">
                     <div class="link-group d-flex justify-content-between align-items-center">
                         <a href="{{ route('admin.course') }}" style="color: #faa907;"><svg xmlns="http://www.w3.org/2000/svg"

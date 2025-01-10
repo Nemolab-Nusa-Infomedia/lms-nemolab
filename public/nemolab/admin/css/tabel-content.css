@@ -18,6 +18,10 @@ main {
     padding: 60px 0;
 }
 
+.row .ps-xl-3 {
+    height: 85svh;
+}
+
 .btn-primary {
     background-color: var(--c-brand) !important;
     border: none !important;

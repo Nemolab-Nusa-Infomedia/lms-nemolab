@@ -77,7 +77,7 @@
                         <img src="{{ asset('nemolab/member/img/logo-nemolab.png') }}" alt="Logo" width="40"
                             height="40" class="d-inline-block align-text-top">
                         <div class="title-navbar-brand ms-2 d-block">
-                            <p class="m-0 p-0 fw-bold" style="font-size: 20px;">Nemolab</p>
+                            <p class="m-0 p-0 fw-bold">Nemolab</p>
                             <p class="m-0 p-0 ">Kursus Online Terbaik</p>
                         </div>
                     </div>
@@ -86,16 +86,16 @@
 
             <div class="dropdown d-block">
                 <button class="btn d-flex align-items-center ms-2 border-0 " type="button" data-bs-toggle="dropdown">
-                    <p class="fw-semibold m-0">{{ Auth::user()->name }}</p>
+                    <p class="fw-semibold m-0" style="font-size: 14px">{{ Auth::user()->name }}</p>
                     @if (Auth::user()->avatar != null)
                         <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}"
                             class="rounded-5 ms-1" 
-                            style="width: 42px; height: 42px; object-fit: cover;" 
+                            style="width: 36px; height: 36px; object-fit: cover;" 
                             id="img-profile">
                     @else
                         <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}"
                             class="rounded-5 ms-1" 
-                            style="width: 42px; height: 42px; object-fit: cover;" 
+                            style="width: 36px; height: 36px; object-fit: cover;" 
                             id="img-profile">
                     @endif
                 </button>
