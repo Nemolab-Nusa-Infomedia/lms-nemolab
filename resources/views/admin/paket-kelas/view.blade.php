@@ -161,19 +161,14 @@
                                         <td>
                                             <div class="d-flex justify-content-center gap-3">
                                                 @if (Auth::user()->role == 'mentor')
-                                                <a class="btn btn-warning"
-                                                    href="{{ route('admin.paket-kelas.edit') }}?id={{ $kelas->id }}">
+                                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal{{ $kelas->id }}">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         viewBox="0 0 24 24"
                                                         style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;">
-                                                        <path
-                                                            d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z">
-                                                        </path>
-                                                        <path
-                                                            d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z">
-                                                        </path>
+                                                        <path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path>
+                                                        <path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path>
                                                     </svg>
-                                                </a>
+                                                </button>
                                                 @endif
                                                 <a href="{{ route('admin.paket-kelas.delete') }}?id={{ $kelas->id }}"
                                                     class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus paket ini?')">
@@ -185,6 +180,96 @@
                                                 </a>
                                             </div>
                                         </td>
+                                        <div class="modal fade" id="updateModal{{ $kelas->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" 
+                                            aria-labelledby="updateModalLabel{{ $kelas->id }}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="border-0 modal-header">
+                                                        <h1 class="modal-title fs-5" id="updateModalLabel{{ $kelas->id }}">Edit Data</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <form action="{{ route('admin.paket-kelas.edit.update', $kelas->id) }}" method="post" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('put')
+                                                        <input type="hidden" name="id" value="{{ $kelas->id }}">
+                                                        <div class="border-0 modal-body">
+                                                            <!-- Cari Kursus Video -->
+                                                            <div class="mb-3">
+                                                                <label for="courseSelect{{ $kelas->id }}" class="form-label">Cari Kursus Video</label>
+                                                                <select id="courseSelect{{ $kelas->id }}" name="name_course" class="form-select">
+                                                                    @if($kelas->course)
+                                                                        <option value="{{ $kelas->course->name }}" 
+                                                                            data-price="{{ $kelas->course->price }}">
+                                                                            {{ $kelas->course->name }}
+                                                                        </option>
+                                                                    @endif
+                                                                    @foreach ($courses as $course)
+                                                                        @if((!$course->paketKelas || $course->paketKelas->id == $kelas->id))
+                                                                            <option value="{{ $course->name }}" 
+                                                                                data-price="{{ $course->price }}"
+                                                                                {{ $kelas->course && $kelas->course->id == $course->id ? 'selected' : '' }}>
+                                                                                {{ $course->name }}
+                                                                            </option>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('name_course')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- Cari Kursus Ebook -->
+                                                            <div class="mb-3">
+                                                                <label for="ebookSelect{{ $kelas->id }}" class="form-label">Cari Kursus Ebook</label>
+                                                                <select id="ebookSelect{{ $kelas->id }}" name="name_ebook" class="form-select">
+                                                                    @if($kelas->ebook)
+                                                                        <option value="{{ $kelas->ebook->name }}" 
+                                                                            data-price="{{ $kelas->ebook->price }}">
+                                                                            {{ $kelas->ebook->name }}
+                                                                        </option>
+                                                                    @endif
+                                                                    @foreach ($ebooks as $ebook)
+                                                                        @if((!$ebook->paketKelas || $ebook->paketKelas->id == $kelas->id))
+                                                                            <option value="{{ $ebook->name }}" 
+                                                                                data-price="{{ $ebook->price }}"
+                                                                                {{ $kelas->ebook && $kelas->ebook->id == $ebook->id ? 'selected' : '' }}>
+                                                                                {{ $ebook->name }}
+                                                                            </option>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('name_ebook')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- Type -->
+                                                            <div class="mb-3">
+                                                                <label for="type{{ $kelas->id }}" class="form-label">Pilih Tipe</label>
+                                                                <select id="type{{ $kelas->id }}" name="type" class="form-select">
+                                                                    <option value="free" {{ $kelas->type == 'free' ? 'selected' : '' }}>Gratis</option>
+                                                                    <option value="premium" {{ $kelas->type == 'premium' ? 'selected' : '' }}>Premium</option>
+                                                                </select>
+                                                                @error('type')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+
+                                                            <!-- Price -->
+                                                            <div class="mb-3 {{ $kelas->type == 'free' ? 'd-none' : '' }}">
+                                                                <label for="totalPrice{{ $kelas->id }}" class="form-label">Harga</label>
+                                                                <input type="number" id="totalPrice{{ $kelas->id }}" name="price" 
+                                                                    class="form-control" value="{{ $kelas->price }}" readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="border-0 modal-footer">
+                                                            <button type="submit" class="btn btn-primary">Simpan</button>
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </tr>
                                 @endforeach
                             @endif
@@ -242,6 +327,59 @@
         // Jalankan fungsi untuk set default saat halaman dimuat
         updateTotalPrice();
     });
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to initialize price calculation for edit modal
+        function initializeEditModal(modalId) {
+            const modal = document.getElementById(`updateModal${modalId}`);
+            if (!modal) return;
+
+            const courseSelect = modal.querySelector(`#courseSelect${modalId}`);
+            const ebookSelect = modal.querySelector(`#ebookSelect${modalId}`);
+            const priceInput = modal.querySelector(`#totalPrice${modalId}`);
+            const typeSelect = modal.querySelector(`#type${modalId}`);
+            const priceContainer = priceInput.closest('.mb-3');
+
+            function updateTotalPrice() {
+                const coursePrice = parseInt(courseSelect.selectedOptions[0]?.getAttribute('data-price'), 10) || 0;
+                const ebookPrice = parseInt(ebookSelect.selectedOptions[0]?.getAttribute('data-price'), 10) || 0;
+
+                if (typeSelect.value === 'premium') {
+                    priceContainer.classList.remove('d-none');
+                    let totalPrice = (coursePrice + ebookPrice) * 0.8;
+                    totalPrice = Math.max(totalPrice, 0);
+                    priceInput.value = Math.floor(totalPrice);
+                } else {
+                    priceContainer.classList.add('d-none');
+                    priceInput.value = 0;
+                }
+            }
+
+            courseSelect?.addEventListener('change', updateTotalPrice);
+            ebookSelect?.addEventListener('change', updateTotalPrice);
+            typeSelect?.addEventListener('change', updateTotalPrice);
+
+            updateTotalPrice();
+        }
+
+        // Initialize all edit modals
+        document.querySelectorAll('[id^="updateModal"]').forEach(modal => {
+            const modalId = modal.id.replace('updateModal', '');
+            initializeEditModal(modalId);
+        });
+    });
+    </script>
+
+    @if($errors->any())
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalId = '{{ old("id") }}';
+            if (modalId) {
+                const modal = new bootstrap.Modal(document.querySelector(`#updateModal${modalId}`));
+                modal.show();
+            }
+        });
+        </script>
+    @endif
 </script>
 
 @endpush
