@@ -73,6 +73,47 @@
                         </thead>
                         <tbody>
                             @foreach ($lessons as $lesson)
+                                <!-- Modal Update -->
+                                <div class="modal fade" id="updateModal{{ $lesson->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="updateModalLabel{{ $lesson->id }}" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="border-0 modal-header">
+                                                <h1 class="modal-title fs-5" id="updateModalLabel{{ $lesson->id }}">Edit Data</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="{{ route('admin.lesson.edit.update', $lesson->id) }}" method="post">
+                                                @csrf
+                                                @method('put')
+                                                <div class="border-0 modal-body">
+                                                    <div class="mb-3">
+                                                        <label for="name{{ $lesson->id }}" class="form-label">Judul Video<span class="required-field"></span></label>
+                                                        <input type="text" id="name{{ $lesson->id }}" name="name" 
+                                                            class="form-control" 
+                                                            value="{{ old('name', $lesson->name) }}" 
+                                                            placeholder="Masukkan judul video">
+                                                        @if($errors->has('name') && old('id') == $lesson->id)
+                                                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="video{{ $lesson->id }}" class="form-label">Link Video<span class="required-field"></span></label>
+                                                        <input type="text" id="video{{ $lesson->id }}" name="video" 
+                                                            class="form-control" 
+                                                            value="{{ old('video', $lesson->video) }}" 
+                                                            placeholder="Masukkan link video(Embed)">
+                                                        @if($errors->has('video') && old('id') == $lesson->id)
+                                                            <span class="text-danger">{{ $errors->first('video') }}</span>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="border-0 modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                                 <tr>
                                     <td>{{ $lesson->name }}</td>
                                     <td>
@@ -81,19 +122,14 @@
                                     <td>
                                         <div class="d-flex justify-content-center gap-3">
                                         @if (Auth::user()->role == 'mentor')
-                                            <a class="btn btn-warning"
-                                            href="{{ route('admin.lesson.edit', [$slug_course, $id_chapter]) }}?id={{ $lesson->id }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                viewBox="0 0 24 24"
-                                                style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;">
-                                                <path
-                                                    d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z">
-                                                </path>
-                                                <path
-                                                    d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z">
-                                                </path>
-                                            </svg>
-                                        </a>
+                                            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal{{ $lesson->id }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    viewBox="0 0 24 24"
+                                                    style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;">
+                                                    <path d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z"></path>
+                                                    <path d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z"></path>
+                                                </svg>
+                                            </button>
                                         @endif
                                         <a href="{{ route('admin.lesson.delete') }}?id={{ $lesson->id }}"
                                             class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus lesson ini?')">
