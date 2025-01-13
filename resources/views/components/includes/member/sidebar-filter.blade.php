@@ -72,9 +72,8 @@
                                 All Level
                             </label>
                         </li>
-                    </ul>
-                </form>             
-            </div>
+                    </ul>             
+               </div>
 
             <div class="filter type">
                 <div class="filter-header text-start">
@@ -102,9 +101,8 @@
                                 All Type
                             </label>
                         </li>
-                    </ul>
-                </form>             
-            </div>
+                    </ul>            
+                </div>
 
             <div class="filter tahun">
                 <div class="filter-header text-start">

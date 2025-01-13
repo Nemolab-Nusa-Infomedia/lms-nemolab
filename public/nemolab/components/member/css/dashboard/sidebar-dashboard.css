@@ -24,58 +24,30 @@
 /* Sidebar styling */
 .sidebar
 {
-    background-color: var(--color-active);
-    padding: 20px;
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 20px 0 #00000040;
     height: 83vh;
     position: relative;
     transition: top 0.7s ease-in-out;
 }
 
-/* Sidebar profile section */
-.profile
-{
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.profile img
-{
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.profile h5
-{
-    color: white;
-    font-weight: 900;
-}
-
-.profile p:first-child
-{
-    font-size: 18px !important;
-    margin-bottom: 0 !important;
-}
-
-.profile p:last-child
-{
-    font-size: 15px !important;
-    color: #B5B5B5;
-}
-
-
-.name
-{
-    color: var(--blck-grey);
-}
-
-.posisi
-{
-    color: var(--dim-grey);
-}
-
 /* Sidebar menu */
+
+.sidebar-header{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
+}
+
+h5
+{
+    margin: 0 !important;
+    color: #414142C7;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
 .menu
 {
     padding-left: 0;
@@ -92,7 +64,6 @@
     padding: 8px;
     margin-bottom: 5px;
     cursor: pointer;
-    border-radius: 8px;
     transition: background-color 0.3s;
 }
 .menu li:last-child{
@@ -110,63 +81,28 @@
 .menu li a
 {
     display: flex;
+    padding-left: 20px;
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
     text-decoration: none;
-    color: white;
+    color: #414142C7;
     /* Warna font sebelum aktif */
     font-weight: 700 !important;
     width: 100%;
 }
 
-.menu li a .icon
-{
-    height: 25px;
-    width: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: solid 2px white;
-    border-radius: .5rem;
-    background: white;
-    outline: solid 1px white;
-
-    svg
-    {
-        fill: var(--color-active);
-    }
-}
-
-.menu li.active a .icon
-{
-    outline: transparent;
-    border-width: 2px;
-    border-color: var(--color-active);
-    background: transparent;
-}
-
-.menu li:hover
-{
-    background-color: var(--hover-bg);
-
-}
-
 /* Active tab styling */
 .menu li.active
 {
-    background-color: white;
+    border-left: 3px solid #FAA907;
+    background: linear-gradient(to right, #FAA9070E, #8F8F8F17, #8F8F8F17);
 }
 
 .menu li.active img
 {
     filter: brightness(0) invert(1);
     /* Change icon color to white */
-}
-
-.menu li.active a
-{
-    color: var(--color-active);
 }
 
 /* Sidebar Mobile Section */
