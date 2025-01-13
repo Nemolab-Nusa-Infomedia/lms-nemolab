@@ -23,9 +23,11 @@
                         {{-- <a href="{{ route('admin.lesson.create', [$slug_course, $id_chapter]) }}" class="tambah-data"
                             >Tambahkan
                             Data</a> --}}
+                            @if (Auth::user()->role == 'mentor')
                             <button type="button" class="tambah-data" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 Tambahkan Data
                             </button>
+                            @endif
                             <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -78,6 +80,7 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center gap-3">
+                                        @if (Auth::user()->role == 'mentor')
                                             <a class="btn btn-warning"
                                             href="{{ route('admin.lesson.edit', [$slug_course, $id_chapter]) }}?id={{ $lesson->id }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -91,6 +94,7 @@
                                                 </path>
                                             </svg>
                                         </a>
+                                        @endif
                                         <a href="{{ route('admin.lesson.delete') }}?id={{ $lesson->id }}"
                                             class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus lesson ini?')">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"

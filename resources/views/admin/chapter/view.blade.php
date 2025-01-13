@@ -24,9 +24,11 @@
                         {{-- <a href="{{ route('admin.chapter.create', $slug_course) }}" class="btn"
                             style="background-color: #faa907; color: white; border-radius: 10px; padding: 6px 10px;">Tambahkan
                             Data</a> --}}
+                            @if (Auth::user()->role == 'mentor')
                             <button type="button" class="tambah-data" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                 Tambahkan Data
                             </button>
+                            @endif
                             <!-- Modal -->
                         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -77,6 +79,7 @@
                                                         d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
                                                 </svg>
                                             </a>
+                                            @if (Auth::user()->role == 'mentor')
                                             <a class="btn btn-warning"
                                                 href="{{ route('admin.chapter.edit', ['slug_course' => $slug_course]) }}?id={{ $chapter->id }}">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -90,6 +93,7 @@
                                                     </path>
                                                 </svg>
                                             </a>
+                                            @endif
                                             <a href="{{ route('admin.chapter.delete')}}?id={{ $chapter->id }}" class="btn btn-danger" 
                                                 onclick="return confirm('Apakah Anda yakin ingin menghapus chapter ini?')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
