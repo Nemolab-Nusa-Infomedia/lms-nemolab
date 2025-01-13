@@ -84,18 +84,6 @@ a
   flex-grow: 1;
 }
 
-.card img
-{
-  border-top-left-radius: 14px;
-  border-top-right-radius: 14px;
-  object-fit: cover;
-  /* width: 100%;
-  height: 250px; */
-  height: auto;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-}
-
 /* Title Styles */
 .title-card
 {
@@ -424,7 +412,7 @@ a
 .courses-scroll
 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 1rem;
   width: 100%;
 }
