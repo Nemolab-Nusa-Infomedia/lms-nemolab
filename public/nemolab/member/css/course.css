@@ -433,7 +433,7 @@ a
     flex-direction: row;
     width: 100%;
     aspect-ratio: 25 / 9;
-    height: auto;
+    height: max-content;
     min-height: auto;
   }
 

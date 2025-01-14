@@ -120,15 +120,13 @@
                         <h5 class="m-0">Tools</h5>
                     </div>
                     <div class="card-body p-0 pt-3 ">
-                        <div class="row">
+                        <div class="d-flex overflow-x-scroll">
                             @foreach ($coursetools->tools as $tool)
-                                <a href="{{ $tool->link }}"
-                                    class="col-auto me-2 tools-group justify-content-center align-items-center flex-column text-center" style=" height: 100%;">
-                                    <img src="{{ url('storage/images/logoTools/' . $tool->logo_tools) }}" alt=""
-                                        width="50px" height="50px">
-                                    <p class="tool-name m-0 p-0 pt-1">{{ $tool->name_tools }}</p>
-                                </a>
-                            @endforeach
+                                    <div class="card-tool px-2 pt-2 me-3 mb-3">
+                                    <img src="{{ $tool->logo_tools }}" alt="" width="50" height="50" class="rounded-2 object-fit-cover">
+                                        <p class="text-center">{{ $tool->name_tools }}</p>
+                                    </div>
+                                @endforeach
                         </div>                        
                     </div>
                 </div>

@@ -224,10 +224,10 @@
                     <div class="card mb-3" data-aos="fade-up">
                         <div class=" card card-body card-tools">
                             <h5>Tools</h5>
-                            <div class="d-flex">
+                            <div class="d-flex overflow-x-scroll">
                                 @foreach ($coursetools->tools as $tool)
                                     <div class="card-tool px-2 pt-2 me-3 mb-3">
-                                    <img src="{{ $tool->logo_tools }}" alt="" width="50" height="50" class="rounded-2 object-fit-cover">
+                                    <img src="{{ $tool->logo_tools }}" alt="" height="50" class="rounded-2 object-fit-cover">
                                         <p>{{ $tool->name_tools }}</p>
                                     </div>
                                 @endforeach

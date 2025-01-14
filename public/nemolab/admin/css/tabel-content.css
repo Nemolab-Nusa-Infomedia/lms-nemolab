@@ -185,6 +185,18 @@ table {
     
 }
 
+.active .page-link {
+    border: none !important;
+    border-left: none !important;
+    margin: 0 4px !important;
+    transform: translateY(-2px);
+}
+
+.page-link:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
 label {
     display: flex !important;
     justify-content: center;

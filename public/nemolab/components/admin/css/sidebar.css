@@ -27,6 +27,11 @@
     gap: 10px;
     height: 40px;
     padding-left: 20px;
+    transition: all 1s;
+}
+
+.list-sidebar:hover {
+    background: linear-gradient(to right, #FAA90717, #8F8F8F17, #8F8F8F17);
 }
 
 .list-sidebar p {
@@ -34,9 +39,9 @@
     font-weight: 600;
 }
 
-.active {
+.active-sidebar {
     border-left: 3px solid #FAA907;
-    background-image: linear-gradient(to right, #FAA90717, #8F8F8F17, #8F8F8F17);
+    background: linear-gradient(to right, #FAA90717, #8F8F8F17, #8F8F8F17);
 }
 
 a {
