@@ -131,18 +131,18 @@ a
   transition: max-height 0.3s ease, -webkit-line-clamp 0.3s ease;
 }
 
-.card:hover .truncate-text
+/* .card:hover .truncate-text
 {
-  -webkit-line-clamp: unset;
-  max-height: none;
+  -webkit-line-clamp: unset !important;
+  max-height: none !important;
 }
 
 .truncate-text.expanded
 {
   white-space: normal;
-  -webkit-line-clamp: unset;
-  max-height: none;
-}
+  -webkit-line-clamp: unset !important;
+  max-height: none !important;
+} */
 
 /* Not Found Section */
 .not-found
@@ -458,6 +458,8 @@ a
 
   .card .card-body div:nth-child(1)
   {
+    top: 5px;
+    position: relative;
     grid-column: 4 / 8;
     grid-row: 4;
     margin-left: 1rem;

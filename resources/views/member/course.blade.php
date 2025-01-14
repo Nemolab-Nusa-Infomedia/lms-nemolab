@@ -192,14 +192,12 @@
                     } else if (lastCourseId == null) {
                         // Menampilkan not found
                         container.insertAdjacentHTML('beforeend', `
-                            <img src="{{ asset('nemolab/member/img/search-not-found.png') }}"
+                            <div class="d-flex flex-column justify-content-center align-items-center w-100">
+                                <img src="{{ asset('nemolab/member/img/search-not-found.png') }}"
                                 class="logo-not-found" style="max-width: 50svh" alt="Not Found">
-                            <p class="mt-3">Kelas Yang Kamu Cari Tidak Tersedia</p>
+                                <p class="mt-3">Kelas Yang Kamu Cari Tidak Tersedia</p>
+                            </div>
                         `);
-                        document.querySelector('.courses-scroll').style.display = "flex";
-                        document.querySelector('.courses-scroll').style.flexDirection = "column";
-                        document.querySelector('.courses-scroll').style.alignItems = "center";
-                        document.querySelector('.courses-scroll').style.justifyContent = "center";
                     }
 
                     // set data terakhir (checkpoint) untuk server
@@ -300,9 +298,6 @@
                         textElement.style.webkitLineClamp = Math.floor((element.clientHeight - 32) / 21.6);
                         textElement.style.maxHeight =
                             21.6 * Math.floor((element.clientHeight - 32) / 21.6) + 'px';
-                    } else {
-                        textElement.style.webkitLineClamp = 'none';
-                        textElement.style.maxHeight = 'none';
                     }
                 });
             })
