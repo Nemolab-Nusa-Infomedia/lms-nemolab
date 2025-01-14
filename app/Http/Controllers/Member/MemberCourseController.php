@@ -27,29 +27,70 @@ class MemberCourseController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            // Mengambil input dari request dan mengatur nilai default jika null
             $lastBookId = $request->input('lastBookId') == 'null' ? null : explode(',', $request->input('lastBookId'));
             $lastCourseId = $request->input('lastCourseId') == "null" ? null : $request->input('lastCourseId');
             $searchQuery = $request->input('search-input') == "null" ? null : $request->input('search-input');
             $categoryFilter = $request->input('filter-kelas') == "null" ? null : $request->input('filter-kelas');
             $paketFilter = $request->input('filter-paket') == "null" ? null : $request->input('filter-paket');
-            $itemsPerRow = $request->input('requestTotal') == "null" ? null : $request->input('requestTotal'); // Items per row pada grid
-            $rowsToLoad = 10; // Baris yang diload
-            $perLoad = $itemsPerRow * $rowsToLoad; // Total items per load
+            $itemsPerRow = $request->input('requestTotal') == "null" ? null : $request->input('requestTotal');
+            // New filter parameters
+            $sort = $request->input('sort', 'new');
+            $level = $request->input('level', 'all');
+            $type = $request->input('type', 'all');
+            $year = $request->input('year', date('Y'));
+            
+            $rowsToLoad = 10;
+            $perLoad = $itemsPerRow * $rowsToLoad;
 
-            // Query dasar untuk courses dan ebooks
-            $coursesQuery = Course::where('status', 'published')->orderByDesc('id');
-            $ebooksQuery = Ebook::where('status', 'published')->orderByDesc('id');
+            // Base queries
+            $coursesQuery = Course::where('status', 'published');
+            $ebooksQuery = Ebook::where('status', 'published');
 
-            // Menerapkan filter berdasarkan lastCreated
-            if ($lastCourseId != null) {
-                $coursesQuery->where('id', '<', $lastCourseId);
+            // Apply sort filter
+            switch($sort) {
+                case 'popular':
+                    $coursesQuery->withCount('transactions')
+                        ->orderByDesc('transactions_count')
+                        ->orderByDesc('id');
+                    $ebooksQuery->withCount('transactions')
+                        ->orderByDesc('transactions_count')
+                        ->orderByDesc('id');
+                    break;
+                case 'price_low':
+                    $coursesQuery->orderBy('price')
+                        ->orderByDesc('created_at');
+                    $ebooksQuery->orderBy('price')
+                        ->orderByDesc('created_at');
+                    break;
+                case 'price_high':
+                    $coursesQuery->orderByDesc('price')
+                        ->orderByDesc('created_at');
+                    $ebooksQuery->orderByDesc('price')
+                        ->orderByDesc('created_at');
+                    break;
+                default: // 'new'
+                    $coursesQuery->orderByDesc('created_at');
+                    $ebooksQuery->orderByDesc('created_at');
             }
 
-            // Menerapkan filter berdasarkan lastItem
-            if ($lastBookId != null) {
-                $ebooksQuery->where('id', '<', $lastBookId);
+            // Apply level filter
+            if ($level !== 'all') {
+                $coursesQuery->where('level', $level);
+                $ebooksQuery->where('level', $level);
             }
+
+            // Apply type filter
+            if ($type === 'starter') {
+                $coursesQuery->where('type', 'free');
+                $ebooksQuery->where('type', 'free');
+            } elseif ($type === 'premium') {
+                $coursesQuery->where('type', 'premium');
+                $ebooksQuery->where('type', 'premium');
+            }
+
+            // Apply year filter
+            $coursesQuery->whereYear('created_at', $year);
+            $ebooksQuery->whereYear('created_at', $year);
 
             // Menerapkan filter pencarian
             if ($searchQuery) {
@@ -95,15 +136,15 @@ class MemberCourseController extends Controller
             }
 
             // Mengambil data courses dan ebooks
-            $courses = $coursesQuery ? $coursesQuery->with('users', 'courseEbooks')
-                ->select('id', 'mentor_id', 'cover', 'name', 'category', 'slug', 'created_at', 'product_type', 'price')
-                ->limit($perLoad)
-                ->get() : collect();
+            $courses = $coursesQuery->with('users', 'courseEbooks')
+            ->select('id', 'mentor_id', 'cover', 'name', 'category', 'slug', 'created_at', 'product_type', 'price')
+            ->limit($perLoad)
+            ->get();
 
-            $ebooks = $ebooksQuery ? $ebooksQuery->with('users')
-                ->select('id', 'mentor_id', 'cover', 'name', 'category', 'slug', 'created_at', 'product_type', 'price')
-                ->limit($perLoad)
-                ->get() : collect();
+        $ebooks = $ebooksQuery->with('users')
+            ->select('id', 'mentor_id', 'cover', 'name', 'category', 'slug', 'created_at', 'product_type', 'price')
+            ->limit($perLoad)
+            ->get();
 
             // Menggabungkan dan mengurutkan data berdasarkan created_at
             $merged = $ebooks->concat($courses)->sortByDesc('created_at')->take($perLoad);
@@ -138,8 +179,11 @@ class MemberCourseController extends Controller
             ]);
         }
 
-        // Mengembalikan view jika bukan permintaan AJAX
-        return view('member.course');
+        // For initial page load, pass default values
+        $currentYear = date('Y');
+        $yearOptions = range($currentYear, $currentYear - 4);
+        
+        return view('member.course', compact('yearOptions', 'currentYear'));
     }
 
     public function join($slug)

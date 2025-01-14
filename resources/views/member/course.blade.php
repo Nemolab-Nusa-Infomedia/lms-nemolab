@@ -88,10 +88,57 @@
         });
     </script>
     <script>
+        // Add event listeners for the new filters
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sort filters
+            document.querySelectorAll('input[data-sort]').forEach(element => {
+                element.addEventListener('change', function() {
+                    currentSort = this.dataset.sort;
+                    resetAndReload();
+                });
+            });
+
+            // Level filters
+            document.querySelectorAll('input[data-level]').forEach(element => {
+                element.addEventListener('change', function() {
+                    currentLevel = this.dataset.level;
+                    resetAndReload();
+                });
+            });
+
+            // Type filters
+            document.querySelectorAll('input[data-type]').forEach(element => {
+                element.addEventListener('change', function() {
+                    currentType = this.dataset.type;
+                    resetAndReload();
+                });
+            });
+
+            // Year filters
+            document.querySelectorAll('input[data-year]').forEach(element => {
+                element.addEventListener('change', function() {
+                    currentYear = this.dataset.year;
+                    resetAndReload();
+                });
+            });
+        });
+        function resetAndReload() {
+            lastBookId = null;
+            lastCourseId = null;
+            hasMore = true;
+            document.querySelector('.courses-scroll').innerHTML = '';
+            loadMoreContent();
+        }
+    </script>
+    <script>
         let loading = false;
         let lastBookId = null;
         let lastCourseId = null;
         let hasMore = true;
+        let currentSort = 'new';
+        let currentLevel = 'all';
+        let currentType = 'all';
+        let currentYear = new Date().getFullYear();
 
         // Mendapatkan elemen grid container
         const gridContainer = document.querySelector('.courses-scroll');
@@ -110,7 +157,6 @@
             const categoryFilter = urlParams.get('filter-kelas');
             const paketFilter = urlParams.get('filter-paket');
 
-            // Melakukan permintaan menggunakan fetch
             fetch(`${window.location.pathname}?${new URLSearchParams({
                 'search-input': searchInput,
                 'filter-kelas': categoryFilter,
@@ -118,6 +164,10 @@
                 'lastBookId': lastBookId,
                 'lastCourseId': lastCourseId,
                 'requestTotal': totalColumns,
+                'sort': currentSort,
+                'level': currentLevel,
+                'type': currentType,
+                'year': currentYear
             })}`, {
                     headers: {
                         'X-Requested-With': 'XMLHttpRequest'
