@@ -183,6 +183,7 @@
                         response.data.forEach(item => {
                             const itemHtml = createItemHtml(item, response.bundling || {});
                             container.insertAdjacentHTML('beforeend', itemHtml);
+                            document.querySelector('.courses-scroll').style.display = "grid";
                         });
                         // Mengatur ulang nilai grid-template-columns jika data sedikit
                         if (!hasMore && lastCourseId == null && response.data.length < totalColumns) {
@@ -197,7 +198,8 @@
                                 class="logo-not-found" style="max-width: 50svh" alt="Not Found">
                                 <p class="mt-3">Kelas Yang Kamu Cari Tidak Tersedia</p>
                             </div>
-                        `);
+                            `);
+                            document.querySelector('.courses-scroll').style.display = "flex";
                     }
 
                     // set data terakhir (checkpoint) untuk server
