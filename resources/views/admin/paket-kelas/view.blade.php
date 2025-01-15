@@ -42,7 +42,7 @@
                                             <select id="courseSelect" name="name_course" class="form-select">
                                                 @foreach ($courses as $course)
                                                     <option value="{{ $course->name }}" data-price="{{ $course->price }}">
-                                                        {{ Str::limit($course->name, 57) }}
+                                                        {{ $course->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -63,7 +63,7 @@
                                             <select id="ebookSelect" name="name_ebook" class="form-select">
                                                 @foreach ($ebooks as $ebook)
                                                     <option value="{{ $ebook->name }}" data-price="{{ $ebook->price }}">
-                                                        {{ Str::limit($ebook->name, 57) }}
+                                                        {{ $ebook->name }}
                                                     </option>
                                                 @endforeach
                                             </select>
