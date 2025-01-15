@@ -50,24 +50,36 @@ class MemberCourseController extends Controller
             switch($sort) {
                 case 'popular':
                     $coursesQuery->withCount('transactions')
-                        ->orderByDesc('transactions_count')
-                        ->orderByDesc('id');
+                        ->orderByDesc('transactions_count');
                     $ebooksQuery->withCount('transactions')
-                        ->orderByDesc('transactions_count')
-                        ->orderByDesc('id');
+                        ->orderByDesc('transactions_count');
                     break;
                 case 'price_low':
-                    $coursesQuery->orderBy('price')
-                        ->orderByDesc('created_at');
-                    $ebooksQuery->orderBy('price')
-                        ->orderByDesc('created_at');
+                    $coursesQuery->where(function($query) {
+                        $query->whereDoesntHave('courseEbooks')
+                            ->orWhereHas('courseEbooks', function($q) {
+                                $q->orderBy('price');
+                            });
+                    })->orderBy('price');
+                    
+                    $ebooksQuery->where(function($query) {
+                        $query->whereDoesntHave('courseEbooks')
+                            ->orderBy('price');
+                    });
                     break;
                 case 'price_high':
-                    $coursesQuery->orderByDesc('price')
-                        ->orderByDesc('created_at');
-                    $ebooksQuery->orderByDesc('price')
-                        ->orderByDesc('created_at');
-                    break;
+                    $coursesQuery->where(function($query) {
+                        $query->whereDoesntHave('courseEbooks')
+                            ->orWhereHas('courseEbooks', function($q) {
+                                $q->orderByDesc('price');
+                            });
+                    })->orderByDesc('price');
+                    
+                    $ebooksQuery->where(function($query) {
+                        $query->whereDoesntHave('courseEbooks')
+                            ->orderByDesc('price');
+                    });
+                        break;
                 default: // 'new'
                     $coursesQuery->orderByDesc('created_at');
                     $ebooksQuery->orderByDesc('created_at');
@@ -146,14 +158,29 @@ class MemberCourseController extends Controller
             ->limit($perLoad)
             ->get() : collect();
 
-            // Menggabungkan dan mengurutkan data berdasarkan created_at
-            $merged = $ebooks->concat($courses)->sortByDesc('created_at')->take($perLoad);
             // Mengambil data bundling
             $bundling = CourseEbook::whereIn('course_id', $courses->pluck('id'))
                 ->get()
                 ->mapWithKeys(function ($item) {
                     return [$item->course_id => $item];
-                });
+                }); 
+
+            // Menggabungkan data
+            $merged = $ebooks->concat($courses);
+
+            // Urutkan berdasarkan harga jika diperlukan
+            if ($sort === 'price_low' || $sort === 'price_high') {
+                $merged = $merged->sortBy(function ($item) use ($bundling) {
+                    if ($item->product_type === 'video' && isset($bundling[$item->id])) {
+                        return $bundling[$item->id]->price;
+                    }
+                    return $item->price;
+                }, SORT_REGULAR, $sort === 'price_high');
+            } else {
+                $merged = $merged->sortByDesc('created_at');
+            }
+
+            $merged = $merged->take($perLoad);
 
             // Menentukan apakah masih ada data yang bisa di-load
             $hasMore = $merged->count() >= $perLoad;
