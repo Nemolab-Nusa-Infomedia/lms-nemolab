@@ -155,7 +155,7 @@ input[type="radio"]:checked + label span {
         position: fixed;
         top: 140px;
         left: 0;
-        transform: translateX(-100%);
+        display: none;
         height: 80vh;
         width: 100%;
         z-index: 10000;
@@ -163,7 +163,7 @@ input[type="radio"]:checked + label span {
     }
 
     .sidebar.show-sidebar {
-        transform: translateX(4%);
+        display: block;
         height: 80vh;
         width: 100%;
     }

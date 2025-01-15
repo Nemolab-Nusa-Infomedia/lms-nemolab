@@ -85,6 +85,17 @@
                 }
             });
 
+            // Menutup sidebar saat ukuran layar lebih dari 1000px
+            window.addEventListener('resize', function() {
+                const sidebar = document.querySelector('.sidebar');
+                const body = document.body;
+
+                if (window.innerWidth > 1000) {
+                    sidebar.classList.remove('show-sidebar');
+                    body.classList.remove('no-scroll');
+                }
+            })
+
         });
     </script>
     <script>
