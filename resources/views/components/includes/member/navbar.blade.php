@@ -107,7 +107,7 @@
                                         </div>
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">
                                             <a
-                                                href="{{ route('member.course', ['filter-kelas' => 'Grapics Designer']) }}">Grapics
+                                                href="{{ route('member.course', ['filter-kelas' => 'Graphics Designer']) }}">Grapics
                                                 Designer</a>
                                         </div>
                                         <div class="col-12 col-sm-6 ps-0 pl-1 mb-1">

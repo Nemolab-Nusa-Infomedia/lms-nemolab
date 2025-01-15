@@ -136,15 +136,15 @@ class MemberCourseController extends Controller
             }
 
             // Mengambil data courses dan ebooks
-            $courses = $coursesQuery->with('users', 'courseEbooks')
+            $courses = $coursesQuery ? $coursesQuery->with('users', 'courseEbooks')
             ->select('id', 'mentor_id', 'cover', 'name', 'category', 'slug', 'created_at', 'product_type', 'price')
             ->limit($perLoad)
-            ->get();
+            ->get() : collect();
 
-        $ebooks = $ebooksQuery->with('users')
+            $ebooks = $ebooksQuery ? $ebooksQuery->with('users')
             ->select('id', 'mentor_id', 'cover', 'name', 'category', 'slug', 'created_at', 'product_type', 'price')
             ->limit($perLoad)
-            ->get();
+            ->get() : collect();
 
             // Menggabungkan dan mengurutkan data berdasarkan created_at
             $merged = $ebooks->concat($courses)->sortByDesc('created_at')->take($perLoad);
