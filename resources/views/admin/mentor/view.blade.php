@@ -100,7 +100,7 @@
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="border-0 modal-header">
-                                    <h1 class="modal-title fs-5" id="updateModal{{ $mentor->id }}Label">Tambah Data</h1>
+                                    <h1 class="modal-title fs-5" id="updateModal{{ $mentor->id }}Label">Edit Data</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <form action="{{ route('admin.mentor.update', $mentor->id) }}" method="post" enctype="multipart/form-data">
@@ -166,7 +166,7 @@
                                         </div>
                                     </div>
                                     <div class="border-0 modal-footer">
-                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                     </div>
                                 </form>

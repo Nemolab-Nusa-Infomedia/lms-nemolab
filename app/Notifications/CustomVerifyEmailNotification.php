@@ -22,7 +22,7 @@ class CustomVerifyEmailNotification extends Notification
      */
     public function __construct($isPasswordVerification = false)
     {
-        $this->pin = Str::random(4);
+        $this->pin = rand(1000, 9999);
         $this->expires_at = now()->addMinutes(60);
         $this->isPasswordVerification = $isPasswordVerification;
     }

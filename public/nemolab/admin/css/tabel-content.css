@@ -60,11 +60,11 @@ a {
     justify-content: start !important;
 }
 
-option {
-    width: 200px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+select option {    
+    width: 200px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 /* TABLE DATA */
 .judul-table {

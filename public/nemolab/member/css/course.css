@@ -125,7 +125,7 @@ a
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2 !important;
   /* max-height: 3em; */
   text-overflow: ellipsis;
   transition: max-height 0.3s ease, -webkit-line-clamp 0.3s ease;
@@ -284,12 +284,28 @@ a
 {
   border: 1px solid var(--color-orange);
   padding: 1px 5px;
-  margin: 0 5px 5px 0;
   border-radius: 5px;
 }
 
 @media screen and (max-width: 1024px)
 {
+  .paket-item{
+    margin: 0 5px 3px 0;
+  }
+
+  .card:hover .truncate-text
+{
+  -webkit-line-clamp: 2 !important;
+  max-height: none !important;
+}
+
+.truncate-text.expanded
+{
+  white-space: normal;
+  -webkit-line-clamp: 2 !important;
+  max-height: none !important;
+}
+
   .card-container
   {
     width: 100%;
