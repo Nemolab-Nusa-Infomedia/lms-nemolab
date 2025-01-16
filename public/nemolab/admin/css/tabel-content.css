@@ -60,12 +60,24 @@ a {
     justify-content: start !important;
 }
 
-select option {    
-    width: 200px !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
+.div-select {
+    z-index: 1000;
 }
+
+select {
+    max-width: 100% !important; /* Ensure it doesn't exceed the container width */
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+  }
+  
+select option {
+    max-width: 300px !important; /* Adjust the width as needed */
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+  }
+
 /* TABLE DATA */
 .judul-table {
     color: var(--c-brand);

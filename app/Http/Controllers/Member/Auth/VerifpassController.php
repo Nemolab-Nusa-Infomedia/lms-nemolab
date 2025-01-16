@@ -18,8 +18,7 @@ class VerifpassController extends Controller
         $user = User::find(Auth::user()->id);
         $user->notify(new CustomVerifyEmailNotification(true)); 
         RateLimiter::hit('verification-email:' . Auth::user()->id, 3600);
-        Alert::success('Success', 'PIN Verifikasi Telah Dikirim');
-        return redirect()->back();
+        return redirect()->back()->with('alert', ['type' => 'success', 'message' => 'PIN Verifikasi Telah Dikirim']);
     }
 
     public function verifyPin(Request $request)

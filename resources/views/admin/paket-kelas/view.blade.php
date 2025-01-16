@@ -42,7 +42,7 @@
                                             <select id="courseSelect" name="name_course" class="form-select">
                                                 @foreach ($courses as $course)
                                                     <option value="{{ $course->name }}" data-price="{{ $course->price }}">
-                                                        {{ $course->name }}
+                                                        {{ Str::limit($course->name, 50) }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -63,7 +63,7 @@
                                             <select id="ebookSelect" name="name_ebook" class="form-select">
                                                 @foreach ($ebooks as $ebook)
                                                     <option value="{{ $ebook->name }}" data-price="{{ $ebook->price }}">
-                                                        {{ $ebook->name }}
+                                                        {{ Str::limit($ebook->name, 50) }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -200,7 +200,7 @@
                                                                     @if($kelas->course)
                                                                         <option value="{{ $kelas->course->name }}" 
                                                                             data-price="{{ $kelas->course->price }}">
-                                                                            {{ $kelas->course->name }}
+                                                                            {{ Str::limit($kelas->course->name, 50) }}
                                                                         </option>
                                                                     @endif
                                                                     @foreach ($courses as $course)
@@ -208,7 +208,7 @@
                                                                             <option value="{{ $course->name }}" 
                                                                                 data-price="{{ $course->price }}"
                                                                                 {{ $kelas->course && $kelas->course->id == $course->id ? 'selected' : '' }}>
-                                                                                {{ $course->name }}
+                                                                                {{ Str::limit($course->name, 50) }}
                                                                             </option>
                                                                         @endif
                                                                     @endforeach
@@ -225,7 +225,7 @@
                                                                     @if($kelas->ebook)
                                                                         <option value="{{ $kelas->ebook->name }}" 
                                                                             data-price="{{ $kelas->ebook->price }}">
-                                                                            {{ $kelas->ebook->name }}
+                                                                            {{ Str::limit($kelas->ebook->name, 50) }}
                                                                         </option>
                                                                     @endif
                                                                     @foreach ($ebooks as $ebook)
@@ -233,7 +233,7 @@
                                                                             <option value="{{ $ebook->name }}" 
                                                                                 data-price="{{ $ebook->price }}"
                                                                                 {{ $kelas->ebook && $kelas->ebook->id == $ebook->id ? 'selected' : '' }}>
-                                                                                {{ $ebook->name }}
+                                                                                {{ Str::limit($ebook->name, 50) }}
                                                                             </option>
                                                                         @endif
                                                                     @endforeach

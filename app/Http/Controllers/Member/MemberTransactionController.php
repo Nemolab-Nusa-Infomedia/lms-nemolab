@@ -84,8 +84,7 @@ class MemberTransactionController extends Controller
         $details = detailTransactions::where('transaction_code', $transaction->transaction_code);
         $transaction->delete();
         $details->delete();
-        Alert::success('Success', 'Transaction Berhasil Di Cancel');
-        return redirect()->route('member.transaction');
+        return redirect()->route('member.transaction')->with('alert', ['type' => 'error', 'message' => 'Transaction Berhasil Di Cancel']);
     }
 
 }
