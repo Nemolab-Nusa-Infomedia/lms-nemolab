@@ -158,8 +158,8 @@ class AdminCourseEbookController extends Controller
     {
         // Validasi input dari form
         $requests->validate([
-            'name_course' => 'required|max:60',
-            'name_ebook' => 'required|max:60',
+            'name_course' => 'required',
+            'name_ebook' => 'required',
             'price' => 'required|numeric|min:0',
             'type' => 'required|in:free,premium',
         ]);

@@ -123,9 +123,16 @@
                             resetTimer();
                             
                             Swal.fire({
-                                title: 'Error',
-                                text: 'PIN Verifikasi telah kadaluarsa. Silakan kirim ulang kode.',
-                                icon: 'error'
+                                toast: true,
+                                position: 'top-end',
+                                icon: "error", // success, error, warning, info
+                                title: "PIN Verifikasi telah kadaluarsa. Silakan kirim ulang kode.",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                customClass: {
+                                    popup: 'swal2-toast-error'
+                                }
                             });
                             
                             isExpired = true;
@@ -238,9 +245,16 @@
                 if (checkPinExpiration()) {
                     e.preventDefault();
                     Swal.fire({
-                        title: 'Error',
-                        text: 'PIN Verifikasi telah kadaluarsa. Silakan kirim ulang kode.',
-                        icon: 'error'
+                        toast: true,
+                        position: 'top-end',
+                        icon: "error", // success, error, warning, info
+                        title: "PIN Verifikasi telah kadaluarsa. Silakan kirim ulang kode.",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        customClass: {
+                            popup: 'swal2-toast-error'
+                        }
                     });
                     return false;
                 }
