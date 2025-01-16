@@ -17,6 +17,7 @@ use App\Models\MyListCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CompleteEpisodeCourse;
@@ -49,10 +50,19 @@ class MemberCourseController extends Controller
             // Apply sort filter
             switch($sort) {
                 case 'popular':
-                    $coursesQuery->withCount('transactions')
-                        ->orderByDesc('transactions_count');
-                    $ebooksQuery->withCount('transactions')
-                        ->orderByDesc('transactions_count');
+                    $coursesQuery->withCount(['transactions' => function($query) {
+                        $query->where('status', 'success');
+                    }])
+                    ->select('tbl_courses.*')
+                    ->orderByDesc('transactions_count')
+                    ->orderByDesc('id');
+                
+                    $ebooksQuery->withCount(['transactions' => function($query) {
+                        $query->where('status', 'success');
+                    }])
+                    ->select('tbl_ebooks.*')
+                    ->orderByDesc('transactions_count')
+                    ->orderByDesc('id');
                     break;
                 case 'price_low':
                     $coursesQuery->where(function($query) {
@@ -81,8 +91,8 @@ class MemberCourseController extends Controller
                     });
                         break;
                 default: // 'new'
-                    $coursesQuery->orderByDesc('created_at');
-                    $ebooksQuery->orderByDesc('created_at');
+                    $coursesQuery->orderByDesc('id');
+                    $ebooksQuery->orderByDesc('id');
             }
 
             // Apply level filter
@@ -149,13 +159,45 @@ class MemberCourseController extends Controller
 
             // Mengambil data courses dan ebooks
             $courses = $coursesQuery ? $coursesQuery->with('users', 'courseEbooks')
-            ->select('id', 'mentor_id', 'cover', 'name', 'category', 'slug', 'created_at', 'product_type', 'price')
+            ->select([
+                'tbl_courses.id',
+                'tbl_courses.mentor_id',
+                'tbl_courses.cover',
+                'tbl_courses.name',
+                'tbl_courses.category',
+                'tbl_courses.slug',
+                'tbl_courses.created_at',
+                'tbl_courses.product_type',
+                'tbl_courses.price'
+            ])
+            ->when($sort === 'popular', function($query) {
+                return $query->addSelect(DB::raw('(SELECT COUNT(*) FROM tbl_transactions WHERE tbl_transactions.course_id = tbl_courses.id AND status = "success") as transactions_count'));
+            })
             ->limit($perLoad)
+            ->when($sort === 'popular', function($query) {
+                return $query->orderByDesc('transactions_count');
+            })
             ->get() : collect();
 
-            $ebooks = $ebooksQuery ? $ebooksQuery->with('users')
-            ->select('id', 'mentor_id', 'cover', 'name', 'category', 'slug', 'created_at', 'product_type', 'price')
+        $ebooks = $ebooksQuery ? $ebooksQuery->with('users')
+            ->select([
+                'tbl_ebooks.id',
+                'tbl_ebooks.mentor_id',
+                'tbl_ebooks.cover',
+                'tbl_ebooks.name',
+                'tbl_ebooks.category',
+                'tbl_ebooks.slug',
+                'tbl_ebooks.created_at',
+                'tbl_ebooks.product_type',
+                'tbl_ebooks.price'
+            ])
+            ->when($sort === 'popular', function($query) {
+                return $query->addSelect(DB::raw('(SELECT COUNT(*) FROM tbl_transactions WHERE tbl_transactions.ebook_id = tbl_ebooks.id AND status = "success") as transactions_count'));
+            })
             ->limit($perLoad)
+            ->when($sort === 'popular', function($query) {
+                return $query->orderByDesc('transactions_count');
+            })
             ->get() : collect();
 
             // Mengambil data bundling
@@ -176,6 +218,28 @@ class MemberCourseController extends Controller
                     }
                     return $item->price;
                 }, SORT_REGULAR, $sort === 'price_high');
+            } elseif ($sort === 'popular') {
+                $merged = $merged->sortByDesc(function ($item) {
+                    return Transaction::where(function ($query) use ($item) {
+                        if ($item->product_type === 'video') {
+                            $query->where(function ($q) use ($item) {
+                                $q->where('course_id', $item->id)
+                                    ->orWhereHas('bundle', function($b) use ($item) {
+                                        $b->where('course_id', $item->id);
+                                    });
+                            });
+                        } else {
+                            $query->where(function ($q) use ($item) {
+                                $q->where('ebook_id', $item->id)
+                                    ->orWhereHas('bundle', function($b) use ($item) {
+                                        $b->where('ebook_id', $item->id);
+                                    });
+                            });
+                        }
+                    })
+                    ->where('status', 'success')
+                    ->count();
+                })->values();
             } else {
                 $merged = $merged->sortByDesc('created_at');
             }
