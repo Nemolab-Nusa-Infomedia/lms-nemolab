@@ -4,126 +4,61 @@
     <link rel="stylesheet" href="{{ asset('nemolab/admin/css/tabel-content.css') }}">
 @endpush
 
-@section('title', 'View Member-Data')
+@section('title', 'Lihat Data Member')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('nemolab/assets/css/components/sidebar.css') }}">
+    <div class="container-fluid px-2 px-sm-5 mt-5">
+        <div class="row ">
+            @include('components.includes.admin.sidebar')
 
-    <!-- Content -->
-    <main role="main" class="col-md-12 ml-sm-auto col-lg-9 ps-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-1">
-            <h1 class="judul-table">Data Anggota</h1>
-        </div>
-
-        <div class="table-responsive px-3 py-3">
-            <div class="btn-group mr-2 w-100 d-flex justify-content-between align-items-center mb-3">
-                <div class="d-flex align-items-center">
-                    <p class="mb-0 me-2 text-center">Menampilkan</p>
-                    <form method="GET" action="{{ route('admin.member') }}" id="entries-form">
-                        <select id="entries" name="entries" class="form-select form-select-sm"
-                            onchange="this.form.submit()">
-                            <option value="10" {{ request('entries') == 10 ? 'selected' : '' }}>10</option>
-                            <option value="25" {{ request('entries') == 25 ? 'selected' : '' }}>25</option>
-                            <option value="50" {{ request('entries') == 50 ? 'selected' : '' }}>50</option>
-                            <option value="100" {{ request('entries') == 100 ? 'selected' : '' }}>100</option>
-                        </select>
-                    </form>
-                    <p class="mb-0 me-2 text-center mx-2">entri</p>
-                </div>
-                <a href="{{ route('admin.member.create') }}" class="tambah-data pt-2 pb-2 px-4 fw-semibold"
-                    style="width: max=content; !important">Tambah</a>
-            </div>
-
-            <table class="table table-sm">
-                <thead>
-                    <tr>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($students as $student)
-                        <tr>
-                            <td>{{ $student->name }}</td>
-                            <td>{{ $student->email }}</td>
-                            <td>******</td>
-                            <td>
-                                <a href="{{ route('admin.member.edit', $student->id) }}" class="me-2">
-                                    <img src="{{ asset('nemolab/admin/img/edit.png') }}" alt="" width="35"
-                                        height="35">
-                                </a>
-                                <a href="{{ route('admin.member.destroy', $student->id) }}" id="btn-delete">
-                                    <img src="{{ asset('nemolab/admin/img/delete.png') }}" alt=""width="35"
-                                        height="35">
-                                </a>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4">Data Anggota belum ada</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-
-            <div class="d-flex justify-content-between px-1 py-1">
-                <p class="show">Menampilkan {{ $students->firstItem() }} hingga {{ $students->lastItem() }} dari
-                    {{ $students->total() }}</p>
-                <div class="d-flex">
-                    <!-- Custom Pagination -->
-                    <button class="pagination mx-1 {{ $students->onFirstPage() ? 'disabled' : '' }}" id="prev-button"
-                        {{ $students->onFirstPage() ? 'disabled' : '' }}
-                        data-url="{{ $students->previousPageUrl() }}">Previous</button>
-                    <button class="pagination mx-1 {{ $students->hasMorePages() ? '' : 'disabled' }}" id="next-button"
-                        {{ $students->hasMorePages() ? '' : 'disabled' }}
-                        data-url="{{ $students->nextPageUrl() }}">Next</button>
+            <div class="col-12 col-lg-9 ps-xl-3 d-flex">
+                <div class="table-responsive shadow-lg rounded-3 p-3 w-100" style="background-color: #ffffff;">
+                    <table class=" table table-bordered table-striped shadow-none mb-0" id="tablesContent">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Profession</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($students as $student)
+                                <tr>
+                                    <td>{{ $student->name }}</td>
+                                    <td>{{ $student->email }}</td>
+                                    <td>{{ $student->profession }}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-center gap-3">
+                                            <a class="btn btn-warning"
+                                            href="{{ route('admin.student.edit') }}?id={{ $student->id }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24"
+                                                style="fill: rgba(255, 255, 255, 1);transform: ;msFilter:;">
+                                                <path
+                                                    d="m7 17.013 4.413-.015 9.632-9.54c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.756-.756-2.075-.752-2.825-.003L7 12.583v4.43zM18.045 4.458l1.589 1.583-1.597 1.582-1.586-1.585 1.594-1.58zM9 13.417l6.03-5.973 1.586 1.586-6.029 5.971L9 15.006v-1.589z">
+                                                </path>
+                                                <path
+                                                    d="M5 21h14c1.103 0 2-.897 2-2v-8.668l-2 2V19H8.158c-.026 0-.053.01-.079.01-.033 0-.066-.009-.1-.01H5V5h6.847l2-2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                        <a href="{{ route('admin.student.delete') }}?id={{ $student->id }}"
+                                            class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus member ini?')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5" />
+                                            </svg>
+                                        </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </main>
-    <!-- Popup YouTube -->
-    {{-- <div id="youtube-popup" class="youtube-popup hidden">
-        <iframe id="youtube-iframe"src="" frameborder="0" allowfullscreen></iframe>
-        <img id="close-btn" class="close-btn" src="{{asset('nemolab/admin/img/close.png')}}" alt="">
-    </div> --}}
+    </div>
 @endsection
-
-@push('addon-script')
-    <script>
-        document.getElementById('prev-button').addEventListener('click', function() {
-            if (!this.classList.contains('disabled')) {
-                window.location.href = this.getAttribute('data-url');
-            }
-        });
-
-        document.getElementById('next-button').addEventListener('click', function() {
-            if (!this.classList.contains('disabled')) {
-                window.location.href = this.getAttribute('data-url');
-            }
-        });
-    </script>
-    <script>
-        document.getElementById('btn-delete').addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent the default anchor click behavior
-
-            const url = this.href; // Get the URL from the button's href attribute
-            Swal.fire({
-                title: 'Delete',
-                text: "Apakah Anda Yakin Delete Kategori?",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'No'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // If confirmed, redirect to the delete URL
-                    window.location.href = url;
-                }
-            });
-        });
-    </script>
-@endpush

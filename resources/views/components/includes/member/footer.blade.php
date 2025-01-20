@@ -1,24 +1,76 @@
-{{-- @push('prepend-style')
-    <link rel="stylesheet" href="{{ asset('nemolab/components/admin/footer.css') }} ">
-@endpush --}}
-
-<!-- FOOTER -->
-<footer class="footer position-relative bottom-0">
-    <div class="container">
-        <div class="row align-items-center text-center text-md-start gap-2 gap-md-0">
-            <div class="col-12 col-md-4 logo d-none d-md-block">
-                <img src="{{ asset('nemolab/admin/img/Logo Nemolab.png')}}" alt="Company Logo">
+    <!-- footer web -->
+    <footer class="footer" id="footer">
+        <div class="container-fluid p-0 m-0">
+            <div class="content">
+                <div class="row mx-5">
+                    <div class="col-12 mb-4 mt-md-0 col-md-4">
+                        <div class="brand-nemolab-icon d-flex align-items-center">
+                            <img src="{{ asset('nemolab/member/img/logo-nemolab.png') }}" alt="Logo" width="40" height="40"
+                                class="d-inline-block align-text-top">
+                            <div class="title-navbar-brand ms-2">
+                                <p class="m-0 p-0 fw-bold">Nemolab</p>
+                                <p class="m-0 p-0 ">Kursus Online Terbaik</p>
+                            </div>
+                        </div>
+                        <p class="p-0 m-0 w-100 w-sm-75 mt-3 text-white ">Belajar keahlian seputar teknologi kapanpun
+                            dan
+                            dimanapun</p>
+                    </div>
+                    <div class="col-3 mt-4 mt-md-0 col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Pilih Kelas</h5>
+                        <div class="content-kelas">
+                            <a href="{{ route('member.course', ['filter-kelas' => 'UI/UX Designer']) }}" class="m-0 p-0 text-white mb-2">
+                                UI/UX Designer
+                            </a>
+                            <a href="{{ route('member.course', ['filter-kelas' => 'Wordpress Developer']) }}" class="m-0 p-0 text-white mb-2">
+                                Wordpress Developer
+                            </a>
+                            <a href="{{ route('member.course', ['filter-kelas' => 'Fullstack Developer']) }}"  class="m-0 p-0 text-white">
+                                Fullstack Developer
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-3 col-md-2 mt-4 mt-md-0">
+                        <h5 class="title text-white fw-bold mb-3">Paket Kelas</h5>
+                        <div class="content-paket-kelas">
+                            <a href="{{ route('member.course', ['filter-paket' => 'paket-kursus']) }}" class="m-0 p-0 text-white mb-2">
+                                Kursus
+                            </a>
+                            <a href="{{ route('member.course', ['filter-paket' => 'paket-ebook']) }}" class="m-0 p-0 text-white mb-2">
+                                Ebook
+                            </a>
+                            <a href="{{ route('member.course', ['filter-paket' => 'paket-bundling']) }}" class="m-0 p-0 text-white">
+                                Paket Combo
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-3 col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Pusat Bantuan</h5>
+                        <div class="content-paket-kelas d-flex flex-column">
+                            <a href="http://wa.me//+62851-8303-8794" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Hubungi CS
+                            </a>
+                            <a href="#" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Kirim Email
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-3 col-md-2">
+                        <h5 class="title text-white fw-bold mb-3">Media Sosial</h5>
+                        <div class="content-paket-kelas d-flex flex-column">
+                            <a href="https://www.instagram.com/nemolabid/" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Instagram
+                            </a>
+                            <a href="https://www.youtube.com/@nemolabmedia3861" class="m-0 p-0 text-white mb-2" style="text-decoration: none;">
+                                Youtube
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 col-md-4 company-name text-md-center">
-                <p class="fw-semibold m-0">Hak cipta<br class="d-none d-md-block d-lg-none"> © 2024 Nemolab</p>
-            </div>
-            <div class="col-12 col-md-4 social-icons d-none d-md-flex justify-content-end align-items-center">
-                <a href="#"><img src="{{ asset('nemolab/admin/img/facebook.png')}}" alt=""></a>
-                <a href="#"><img src="{{ asset('nemolab/admin/img/twitter.png')}}" alt=""></a>
-                <a href="#"><img src="{{ asset('nemolab/admin/img/linkedin.png')}}" alt=""></a>
-                <a href="#"><img src="{{ asset('nemolab/admin/img/instagram.png')}}" alt=""></a>
-                <a href="#"><img src="{{ asset('nemolab/admin/img/youtube.png')}}" alt=""></a>
+            <div class="copyright d-sm-flex justify-content-sm-center align-items-sm-center pb-sm-4">
+                <p class="m-0 p-0 text-white text-center">© 2024 All Rights Reserved. Design by <a href="https://vibrant.web.id/">Vibrant Ecosystem</a></p>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
+    <!-- end footer -->

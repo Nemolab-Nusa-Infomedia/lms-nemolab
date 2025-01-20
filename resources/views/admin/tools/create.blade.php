@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('nemolab/admin/css/create-update.css') }}">
 @endpush
 
-@section('title', 'Create Tools')
+@section('title', 'Tambah Tools')
 
 @section('content')
 
@@ -20,7 +20,7 @@
                 <div class="col-12">
                     <div class="entryarea">
                         <input type="text" id="name" name="name_tools" placeholder="" />
-                        <div class="labelline" for="name">Nama Alat<span class="required-field"></span></div>
+                        <div class="labelline" for="name">Nama Tools<span class="required-field"></span></div>
                         @error('name_tools')
                             <span style="color: red">{{ $message }}</span>
                         @enderror
@@ -58,9 +58,3 @@
 
 @endsection
 
-{{-- @push('addon-script')
-    <script>
-        document.getElementById('sidebar-id').remove();
-        document.getElementById('navbar-id').remove();
-    </script>
-@endpush --}}

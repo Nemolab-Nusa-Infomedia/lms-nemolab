@@ -30,20 +30,18 @@ class AdminSuperadminController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
         ]);
-
+    
         User::create([
             'name' => $request->name,
-            'username' => $request->name, 
-            'avatar' => 'default.png',
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'superadmin',
         ]);
-
-        Alert::success('Success', 'Data Superadmin Berhasil Di Buat');
+    
+        Alert::success('Success', 'Data Superadmin Berhasil Dibuat')->toast()->position('top-end');
         return redirect()->route('admin.superadmin');
     }
-
+    
     public function edit($id)
     {
         $superadmin = User::findOrFail($id);
@@ -62,12 +60,11 @@ class AdminSuperadminController extends Controller
 
         $superadmin->update([
             'name' => $request->name,
-            'username' => $request->name,
             'email' => $request->email,
             'password' => $request->filled('password') ? Hash::make($request->password) : $superadmin->password,
         ]);
 
-        Alert::success('Success', 'Data Superadmin Berhasil Di Update');
+        Alert::success('Success', 'Data Superadmin Berhasil Diupdate')->toast()->position('top-end');
         return redirect()->route('admin.superadmin');
     }
 
@@ -75,7 +72,7 @@ class AdminSuperadminController extends Controller
     {
         $superadmin = User::findOrFail($id);
         
-        if ($superadmin->avatar) {
+        if ($superadmin->avatar && $superadmin->avatar !== 'null') {
             $avatarPath = 'public/images/avatars/' . $superadmin->avatar;
             
             if (Storage::exists($avatarPath)) {
@@ -85,7 +82,7 @@ class AdminSuperadminController extends Controller
     
         $superadmin->delete();
 
-        Alert::success('Success', 'Data Superadmin Berhasil Di Hapus');
+        Alert::success('Success', 'Data Superadmin Berhasil Dihapus')->toast()->position('top-end');
         return redirect()->route('admin.superadmin');
     }
 }
