@@ -175,7 +175,7 @@
                                         @endif
                                     </button>
 
-                                    <ul class="dropdown-menu w-100 mt-2 dropdown-logout">
+                                    <ul class="dropdown-menu mt-2 dropdown-logout">
                                         <div class="content-submenu">
                                         @if (!Request::routeIs('member.setting') && !Request::routeIs('member.setting.*'))
                                         <div class="col-sm-12 ps-0 pl-1 mb-1">
@@ -192,6 +192,15 @@
                                                 href="{{ route('member.setting') }}">Pengaturan</a>
                                         </div>
                                         @endif
+
+                                        @if (auth::user()->role == 'superadmin' || auth::user()->role == 'mentor')
+                                        <div class="col-sm-12 ps-0 pl-1 mb-1 pb-1 border-bottom">
+                                            <a
+                                                href="{{ route('admin.course') }}">Dashboard
+                                                Admin</a>
+                                        </div>
+                                        @endif
+
                                         <div class="col-sm-12 ps-0 pl-1">
                                             <a href="{{ route('member.logout') }}"
                                                 id="logout-btn">Logout</a>
