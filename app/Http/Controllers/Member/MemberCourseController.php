@@ -46,6 +46,14 @@ class MemberCourseController extends Controller
             // Base queries
             $coursesQuery = Course::where('status', 'published');
             $ebooksQuery = Ebook::where('status', 'published');
+                    
+            // Add ID conditions if lastIds are provided
+            if ($lastCourseId) {
+                $coursesQuery->where('id', '<', $lastCourseId);
+            }
+            if ($lastBookId) {
+                $ebooksQuery->where('id', '<', max($lastBookId));
+            }
 
             // Apply sort filter
             switch($sort) {

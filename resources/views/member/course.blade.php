@@ -195,6 +195,8 @@
                             const itemHtml = createItemHtml(item, response.bundling || {});
                             container.insertAdjacentHTML('beforeend', itemHtml);
                             document.querySelector('.courses-scroll').style.display = "grid";
+                            document.querySelector('.courses-scroll').style.gridTemplateColumns =
+                                'repeat(auto-fit, minmax(15rem, 1fr))';
                         });
                         // Mengatur ulang nilai grid-template-columns jika data sedikit
                         if (!hasMore && lastCourseId == null && response.data.length < totalColumns) {
