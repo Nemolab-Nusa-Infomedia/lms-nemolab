@@ -136,6 +136,8 @@
         function resetAndReload() {
             lastBookId = null;
             lastCourseId = null;
+            lastCoursePrice = null;
+            lastBookPrice = null;
             hasMore = true;
             document.querySelector('.courses-scroll').innerHTML = '';
             loadMoreContent();
@@ -145,6 +147,8 @@
         let loading = false;
         let lastBookId = null;
         let lastCourseId = null;
+        let lastCoursePrice = null;
+        let lastBookPrice = null;
         let hasMore = true;
         let currentSort = 'new';
         let currentLevel = 'all';
@@ -174,6 +178,8 @@
                 'filter-paket': paketFilter,
                 'lastBookId': lastBookId,
                 'lastCourseId': lastCourseId,
+                'lastCoursePrice': lastCoursePrice,
+                'lastBookPrice': lastBookPrice,
                 'requestTotal': totalColumns,
                 'sort': currentSort,
                 'level': currentLevel,
@@ -218,6 +224,8 @@
                     // set data terakhir (checkpoint) untuk server
                     lastBookId = response.lastBookId;
                     lastCourseId = response.lastCourseId;
+                    lastCoursePrice = response.lastCoursePrice;
+                    lastBookPrice = response.lastBookPrice;
                     document.querySelector('#sentinel').style.display = hasMore ? 'block' : 'none';
                     loading = false;
                     SetLineClamp();
@@ -289,6 +297,9 @@
         document.querySelectorAll('.filter-input').forEach(filter => {
             filter.addEventListener('change', () => {
                 lastBookId = null;
+                lastCourseId = null;
+                lastCoursePrice = null;
+                lastBookPrice = null;
                 hasMore = true;
                 document.querySelector('.courses-scroll').innerHTML = '';
                 loadMoreContent();
