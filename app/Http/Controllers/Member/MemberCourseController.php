@@ -58,12 +58,24 @@ class MemberCourseController extends Controller
             }
 
             if ($lastCoursePrice) {
-                $coursesQuery->where('price', '<', $lastCourseId);
+                $coursesQuery->where(function ($query) use ($lastCoursePrice, $lastCourseId) {
+                    $query->where('price', '<', $lastCoursePrice) // Ambil yang lebih murah
+                          ->orWhere(function ($q) use ($lastCoursePrice, $lastCourseId) {
+                              $q->where('price', $lastCoursePrice) // Jika harga sama, cek ID
+                                ->where('id', '<', $lastCourseId);
+                          });
+                });
             }
+            
             if ($lastBookPrice) {
-                $ebooksQuery->where('price', '<', max($lastBookId));
-            }           
-
+                $ebooksQuery->where(function ($query) use ($lastBookPrice, $lastBookId) {
+                    $query->where('price', '<', $lastBookPrice) // Ambil yang lebih murah
+                          ->orWhere(function ($q) use ($lastBookPrice, $lastBookId) {
+                              $q->where('price', $lastBookPrice) // Jika harga sama, cek ID
+                                ->where('id', '<', $lastBookId);
+                          });
+                });
+            }
             // Apply sort filter
             switch($sort) {
                 case 'popular':
@@ -275,11 +287,17 @@ class MemberCourseController extends Controller
             });
             }
 
-            if ($sort === 'price_low' || $sort === 'price_high') {
+            if ($sort === 'price_low') {
                 $merged = $merged->sortBy(function ($item) {
                     return [$item->price ?? PHP_INT_MAX, $item->id]; // Jika harga null, kasih nilai besar biar diurutkan terakhir
-                }, SORT_REGULAR, $sort === 'price_high');
+                })->values();
             }
+            
+            if ($sort === 'price_high') {
+                $merged = $merged->sortByDesc(function ($item) {
+                    return [$item->price ?? 0, $item->id]; // Jika harga null, kasih nilai kecil biar diurutkan terakhir
+                })->values();
+            }            
 
             // Jika ingin mengonversi hasilnya menjadi koleksi terurut
             $merged = $merged->values();
@@ -294,8 +312,8 @@ class MemberCourseController extends Controller
             // Ambil Id terakhir sebagai check point
             if(isset($lastCourse->id)) $lastCourseId = $lastCourse->id;
             if(isset( $lastEbook->id)) $lastBookId =  $lastEbook->id;
-            if(isset($lastCourse->price)) $lastCoursePrice = $lastCourse->id;
-            if(isset( $lastEbook->price)) $lastBookPrice =  $lastEbook->id;
+            if(isset($lastCourse->price)) $lastCoursePrice = $lastCourse->price;
+            if(isset( $lastEbook->price)) $lastBookPrice =  $lastEbook->price;
 
             // Mengembalikan respons JSON
             return response()->json([

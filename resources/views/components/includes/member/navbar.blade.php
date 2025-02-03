@@ -152,7 +152,7 @@
                             </ul>
                         </div>
 
-                        <a href="https://blog.nemolab.id/" class="text-decoration-none  pb-2 pb-md-0">Artikel</a>
+                        <a href="https://nemolab.id/blog" class="text-decoration-none  pb-2 pb-md-0">Artikel</a>
                         @auth
 
                             <div id="auth-section" class="profile-auth ms-md-5 mx-md-0">
