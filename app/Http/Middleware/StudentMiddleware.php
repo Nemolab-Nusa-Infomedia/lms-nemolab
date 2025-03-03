@@ -16,10 +16,10 @@ class StudentMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Pengecekan apakah user sudah login
         if (Auth::check()) {
             return $next($request);
         }
-
         return redirect()->route('member.login')->with('error', 'You do not have access.');
     }
 }

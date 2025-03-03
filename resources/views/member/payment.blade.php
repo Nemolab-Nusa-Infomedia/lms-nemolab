@@ -1,140 +1,275 @@
-@extends('components.layouts.member.navback')
+@extends('components.layouts.member.dashboard')
 
-@section('title', 'Payment')
+@section('title', 'Nemolab - Selesaikan Pemabayaran Anda')
+
+@push('prepend-style')
+    <link rel="stylesheet" href="{{ asset('nemolab/member/css/payment.css') }}">
+@endpush
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('nemolab/member/css/payment.css') }}">
-    <!-- Payment Section -->
-    <div class="mt-5">
-        <div class="text-center mb-4">
-            <h2 class="cek">Paket Checkout Plus</h2>
-            <p class="desk">Gabung Starter Plus dan bangun proyek nyata bersama ahli.</p>
-        </div>
-        <div class="payment-card mx-auto">
-            @if ($course->price == 0)
-                <div class="card-body d-flex flex-column">
-                    <div class="card-header bg-white">
-                        Opsi Pembayaran
-                    </div>
-                    <h6 class="card-title mt-5">Payment details</h6>
+    <section class="payment" style="margin-top: 5rem">
+        <div class="container">
+            <h2 class="text-center mb-3">Silahkan Selesaikan Pembelian Kelas</h2>
+            <p class="text-center description mb-4">Setelah pembelian kelas sukses, anda dapat mengakses kelas dan mendapatkan
+                benefit lainnya seperti grup diskusi dan sertifikat resmi dari kami</p>
 
-                    <p class="d-flex justify-content-between mt-3">
-                        <span>Harga kelas</span>
-                        <span>Rp {{ number_format($course->price, 0) }}</span>
-                    </p>
-                    {{-- <p class="d-flex justify-content-between mt-3">
-                        <span>Kode unik</span>
-                        <span class="price-update">- Rp 0</span>
-                    </p> --}}
-                    <p class="d-flex justify-content-between mt-3">
-                        <span>PPN 11%</span>
-                        <span class="price-update">+ Rp. 0</span>
-                    </p>
-                    <p class="d-flex justify-content-between mt-3">
-                        <span>Biaya layanan per siswa</span>
-                        <span class="price-update">+ Rp. 0</span>
-                    </p>
-                    <p class="d-flex justify-content-between total mt-3">
-                        <span>Total</span>
-                        <span class="total-price" id="total_price">Rp. 0</span>
-                        @php
-                            $totalPrice = $course->price;
-                        @endphp
-                    </p>
-                    <form id="paymentForm" action="{{ route('member.transaction.store') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="course_id" value="{{ $course->id }}">
-                        <input type="hidden" name="price" value="{{ $totalPrice }}">
+            @if (($course && $course->price == 0) || ($ebook && $ebook->price == 0) || ($bundle && $bundle->price == 0))
+                <div class="row justify-content-center">
+                    <div class="col-md-6 mt-1">
+                        <div class="card card-bayar p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <a href="{{ route('member.transaction') }}" class="custom-link d-flex align-items-center">
+                                    <i class="bi bi-arrow-left me-2"></i>
+                                </a>
+                            </div>
+                            <h2 class="text-rinci mb-4">Rincian Pembayaran</h2>
+                            <div class="nota">
+                                <div class="produk mb-3">
+                                    <p class="item mb-1 fw-bold">Produk yang Dibeli</p>
+                                    <p class="mb-1 fw-bolder">    
+                                        @if ($course)
+                                            {{ $course->name }} (Video)
+                                        @elseif ($ebook)
+                                            {{ $ebook->name }} (eBook)
+                                        @elseif ($bundle)
+                                            {{ $bundle->course->name }} (Paket Combo)
+                                        @endif
+                                    </p>
+                                </div>
 
-                        <div class="form-check mt-5 w-100 d-flex align-items-center">
-                            <input class="form-cek" type="checkbox" id="termsCheck" name="termsCheck">
-                            <label class="form-check-label ml-2" for="termsCheck">
-                                Saya menyetujui <a href="#" class="syarat">Syarat & Ketentuan</a>
-                                <p class="text-danger d-none" id="important" style="font-size: 12px;">Anda harus menyetujui
-                                    syarat dan ketentuan sebelum melanjutkan.</p>
-                            </label>
+                                <div class="harga mb-5">
+                                    <div class="d-flex justify-content-between">
+                                        @if ($course)
+                                            <p class="item mb-1 fw-bold">Harga Kelas</p>
+                                        @elseif ($ebook)
+                                            <p class="item mb-1 fw-bold">Harga E-Book</p>
+                                        @elseif ($bundle)
+                                            <p class="item mb-1 fw-bold">Harga Paket</p>
+                                        @endif
+                                        <p class="price mb-1 fw-bold">Rp. 0</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="item mb-1 fw-bold">PPN (11%)</p>
+                                        @if ($course)
+                                        <p class="tax mb-1 fw-bold">+ Rp. {{ number_format($course->price * 0.11, 0) }}</p>
+                                        @elseif ($ebook)
+                                        <p class="tax mb-1 fw-bold">+ Rp. {{ number_format($ebook->price * 0.11, 0) }}</p>
+                                        @elseif ($bundle)
+                                        <p class="tax mb-1 fw-bold">+ Rp. {{ number_format($bundle->price * 0.11, 0) }}</p>
+                                        @endif
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="item mb-1 fw-bold">Biaya Service Tambahan</p>
+                                        <p class="tax mb-1 fw-bold">+ Rp. 0</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="item mb-1 fw-bold">Potongan Kode Promo</p>
+                                        <p class="diskon-total mb-1 fw-bold">Tidak Ada</p>
+                                    </div>
+                                </div>
+
+                                <div class="total d-flex justify-content-between align-items-center">
+                                    <h6 class="fw-bold fs-4">Total Harga</h6>
+                                    <p class="price fw-bold fs-4">Rp. 0</p>
+                                </div>
+
+                                @php
+                                    if ($course) {
+                                        $totalPrice = $course->price * 1.11 + 5000;
+                                    } elseif ($ebook) {
+                                        $totalPrice = $ebook->price * 1.11 + 5000;
+                                    } elseif ($bundle) {
+                                        $totalPrice = $bundle->price * 1.11 + 5000;
+                                    }
+
+                                @endphp
+
+                                <div class="text-center mt-1">
+                                    <form id="paymentForm" action="{{ route('member.transaction.store') }}" method="POST">
+                                        @csrf
+                                        @if ($course)
+                                            <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                        @elseif ($ebook)
+                                            <input type="hidden" name="ebook_id" value="{{ $ebook->id }}">
+                                        @elseif ($bundle)
+                                            <input type="hidden" name="bundle_id" value="{{ $bundle->id }}">
+                                        @endif
+                                        <input type="hidden" name="price" value="{{ $totalPrice }}">
+                                        <div class="form-check mt-4">
+                                            <input class="form-cek" type="checkbox" id="termsCheck" name="termsCheck">
+                                            <label class="form-check-label" for="termsCheck">
+                                                Saya menyetujui <a href="#" class="syarat">Syarat & Ketentuan</a>
+                                                <p class="text-danger d-none" id="important" style="font-size: 12px;">
+                                                    Anda harus menyetujui syarat dan ketentuan sebelum melanjutkan.
+                                                </p>
+                                            </label>
+                                        </div>
+                                        <button class="btn btn-primary mt-4" type="submit">Beli Kelas</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <button class="btn btn-primary d-flex mx-auto mt-3 text-center d-block px-5 py-2" type="submit">
-                            Beli Course
-                        </button>
-                    </form>
+                    </div>
                 </div>
             @else
-                <div class="card-body d-flex flex-column">
-                    <div class="card-header bg-white">
-                        Opsi Pembayaran
-                    </div>
-                    <h6 class="card-title mt-5">Payment details</h6>
-
-                    <p class="d-flex justify-content-between mt-3">
-                        <span>Harga kelas</span>
-                        <span>Rp {{ number_format($course->price, 0) }}</span>
-                    </p>
-                    {{-- <p class="d-flex justify-content-between mt-3">
-                    <span>Kode unik</span>
-                    <span class="price-update">- Rp 0</span>
-                </p> --}}
-                    <p class="d-flex justify-content-between mt-3">
-                        <span>PPN 11%</span>
-                        <span class="price-update">+ Rp. 11%</span>
-                    </p>
-                    <p class="d-flex justify-content-between mt-3">
-                        <span>Service fee per student</span>
-                        <span class="price-update">+ Rp. 5000</span>
-                    </p>
-                    <p class="d-flex justify-content-between total mt-3">
-                        <span>Total</span>
-                        <span class="total-price" id="total_price">Rp.
-                            {{ number_format($course->price * 1.11 + 5000, 0) }}</span>
-                        @php
-                            $totalPrice = $course->price * 1.11 + 5000;
-                            // $totalPrice = 1;
-                        @endphp
-                    </p>
-                    <form id="paymentForm" action="{{ route('member.transaction.store') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="course_id" value="{{ $course->id }}">
-                        <input type="hidden" name="price" value="{{ $totalPrice }}">
-                        <div class="form-check mt-5 w-100 d-flex align-items-center">
-                            <input class="form-cek" type="checkbox" id="termsCheck" name="termsCheck">
-                            <label class="form-check-label ml-2" for="termsCheck">
-                                Saya menyetujui <a href="#" class="syarat">Syarat & Ketentuan</a>
-                                <p class="text-danger d-none" id="important" style="font-size: 12px;">Anda harus menyetujui
-                                    syarat dan ketentuan sebelum melanjutkan.</p>
-                            </label>
+                <!-- Modal Pop Up Redeem -->
+                <div class="modal fade" id="myModal" tabindex="-1">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content shadow">
+                            <!-- Header Modal -->
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="myModalLabel">Gunakan Kode Promo</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <!-- Body Modal -->
+                            <div class="modal-body">
+                                <div class="redeem-content">
+                                        @if (!is_null($kelasDiskon) && !$kelasDiskon->isEmpty())
+                                            <div>
+                                                <select class="form-select" id="promo">
+                                                    @foreach ($kelasDiskon as $diskon)
+                                                        <option value="{{ $diskon->rate_diskon }}">
+                                                            {{ $diskon->kode_diskon }} - {{ $diskon->rate_diskon }}%
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @else
+                                            <div class="h-100 d-flex flex-column align-content-center">
+                                                <p class="text-center my-auto text-body-secondary fw-bold">Promo Belum Tersedia
+                                                </p>
+                                            </div>
+                                        @endif
+                                </div>
+                            </div>
+                            <!-- Footer Modal -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="btnPromo"
+                                    data-bs-dismiss="modal">Gunakan</button>
+                            </div>
                         </div>
-                            <button class="btn btn-primary d-flex mx-auto mt-3 text-center d-block px-5 py-2"
-                                type="submit">
-                                Beli Course
-                            </button>
-                    </form>
+                    </div>
+                </div>
+
+
+                <div class="row justify-content-center">
+                    <div class="col-md-6 mt-1">
+                        <div class="card card-bayar shadow p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <a href="{{ route('member.transaction') }}" class="custom-link d-flex align-items-center">
+                                    <i class="bi bi-arrow-left me-2"></i>
+                                </a>
+                            </div>
+                            <h2 class="text-rinci mb-4">Rincian Pembayaran</h2>
+
+                            <div class="promo d-flex justify-content-between align-items-center mb-3">
+                                <p class="mb-0 fw-bold">Gunakan Kode Promo</p>
+                                <button type="button" class="btn btn-promo" data-bs-toggle="modal"
+                                    data-bs-target="#myModal">
+                                    Klaim Promo
+                                </button>
+                            </div>
+
+                            <div class="nota">
+                                <div class="produk mb-3">
+                                    <p class="item mb-1 fw-bold">Produk yang Dibeli</p>
+                                    <p class="mb-1 fw-bolder">    
+                                        @if ($course)
+                                            {{ $course->name }} (Video)
+                                        @elseif ($ebook)
+                                            {{ $ebook->name }} (eBook)
+                                        @elseif ($bundle)
+                                            {{ $bundle->course->name }} (Paket Combo)
+                                        @endif
+                                    </p>
+                                </div>
+
+                                <div class="harga mb-5">
+                                    <div class="d-flex justify-content-between">
+                                        @if ($course)
+                                            <p class="item mb-1 fw-bold">Harga Kelas</p>
+                                            <p class="price mb-1 fw-bold">+ Rp. {{ number_format($course->price) }}</p>
+                                        @elseif ($ebook)
+                                            <p class="item mb-1 fw-bold">Harga E-Book</p>
+                                            <p class="price mb-1 fw-bold">+ Rp. {{ number_format($ebook->price) }}</p>
+                                        @elseif ($bundle)
+                                            <p class="item mb-1 fw-bold">Harga Paket</p>
+                                            <p class="price mb-1 fw-bold">+ Rp. {{ number_format($bundle->price) }}</p>
+                                        @endif
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="item mb-1 fw-bold">PPN (11%)</p>
+                                        @if ($course)
+                                            <p class="tax mb-1 fw-bold">+ Rp.
+                                                {{ number_format($course->price * 0.11, 0) }}</p>
+                                        @elseif ($ebook)
+                                            <p class="tax mb-1 fw-bold">+ Rp. {{ number_format($ebook->price * 0.11, 0) }}
+                                            </p>
+                                        @elseif ($bundle)
+                                            <p class="tax mb-1 fw-bold">+ Rp.
+                                                {{ number_format($bundle->price * 0.11, 0) }}</p>
+                                        @endif
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="item mb-1 fw-bold">Biaya Service Tambahan</p>
+                                        <p class="tax mb-1 fw-bold">+ Rp. 5.000</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between">
+                                        <p class="item mb-1 fw-bold">Potongan Kode Promo</p>
+                                        <p class="diskon-total mb-1 fw-bold" id="text-potongan-harga">Tidak Ada</p>
+                                    </div>
+                                </div>
+
+                                @php
+                                    if ($course) {
+                                        $totalPrice = $course->price * 1.11 + 5000;
+                                    } elseif ($ebook) {
+                                        $totalPrice = $ebook->price * 1.11 + 5000;
+                                    } elseif ($bundle) {
+                                        $totalPrice = $bundle->price * 1.11 + 5000;
+                                    }
+                                @endphp
+
+                                <div class="total d-flex justify-content-between align-items-center">
+                                    <h6 class="fw-bold fs-4">Total Harga</h6>
+                                    <p class="fw-bold fs-4" id="totalHarga">Rp. {{ number_format($totalPrice, 0) }}</p>
+                                </div>
+
+                                <div class="text-center mt-1">
+                                    <form id="paymentForm" action="{{ route('member.transaction.store') }}"
+                                        method="POST">
+                                        @csrf
+                                        @if ($course)
+                                            <input type="hidden" name="course_id" value="{{ $course->id }}">
+                                        @elseif ($ebook)
+                                            <input type="hidden" name="ebook_id" value="{{ $ebook->id }}">
+                                        @elseif ($bundle)
+                                            <input type="hidden" name="bundle_id" value="{{ $bundle->id }}">
+                                        @endif
+                                        <input type="hidden" id="diskonInput" name="diskon">
+                                        <input type="hidden" name="price" value="{{ $totalPrice }}">
+                                        <div class="form-check mt-4 text-center">
+                                            <input class="form-cek" type="checkbox" id="termsCheck" name="termsCheck"
+                                                required>
+                                            <label class="form-check-label ms-2" for="termsCheck">
+                                                Saya menyetujui <a href="#" class="syarat">Syarat & Ketentuan</a>
+                                                <p class="text-danger d-none" id="important" style="font-size: 12px;">
+                                                    Anda harus menyetujui syarat dan ketentuan sebelum melanjutkan.
+                                                </p>
+                                            </label>
+                                        </div>
+                                        <button class="btn btn-primary mt-4" type="submit">Beli Kelas</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             @endif
         </div>
-    </div>
-
-    <script>
-        // document.getElementById('paymentForm').addEventListener('submit', function(event) {
-        //     var termsCheck = document.getElementById('termsCheck');
-        //     if (!termsCheck.checked) {
-        //         event.preventDefault();
-        //         alert('Anda harus menyetujui syarat dan ketentuan sebelum melanjutkan.');
-        //     }
-        // });
-
-        document.getElementById('paymentForm').addEventListener('submit', function(event) {
-            var termsCheck = document.getElementById('termsCheck');
-            var importantText = document.getElementById('important');
-
-            // Check if checkbox is not checked
-            if (!termsCheck.checked) {
-                event.preventDefault();
-                // Show the important text by removing the 'd-none' class
-                importantText.classList.remove('d-none');
-            } else {
-                // If checkbox is checked, hide the important text
-                importantText.classList.add('d-none');
-            }
-        });
-    </script>
+    </section>
 @endsection
+@push('addon-script')
+    <script src="{{ asset('nemolab/member/js/claim_diskon.js') }}"></script>
+@endpush

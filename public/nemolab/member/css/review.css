@@ -1,0 +1,77 @@
+body {
+    background-color: #FFF7F7;
+    font-family: 'Nunito', sans-serif;
+}
+main .container a {
+    font-size: 24px;
+    text-decoration: none;
+    font-weight: bold; 
+    color: #414142; 
+    display: inline-flex;
+    align-items: center; 
+}
+
+[class*=" bi-"]::before {
+    background-color: #0774FA;
+    border-radius: 50px;
+    color: white;
+    padding: 8px;
+    display: inline-block;
+}
+
+.custom-link i {
+    margin-right: 8px;
+}
+
+h1 {
+    font-weight: bold;
+}
+.form-label {
+    font-weight: bold;
+}
+#namaKelas {
+    font-weight: bold;
+    color: #333;
+    font-size: 30px
+}
+.form-control {
+    font-weight: bold;
+    color: #333;
+    background-color: #F1F1F1;
+    border: 1px solid #DADADA;
+}
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: none;
+}
+.form-control[readonly] {
+    background-color: #F1F1F1;
+}
+textarea.form-control {
+    background-color: #FFF7F7;
+    border: none;
+    font-weight: bold;
+    color: #333;
+}
+textarea.form-control:focus {
+    background-color: #FFF7F7;
+    border: none;
+    font-weight: bold;
+    color: #333;
+}
+.btn-primary {
+    font-weight: bold;
+    background-color: #007bff;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+.text-muted {
+    font-weight: bold;
+}
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

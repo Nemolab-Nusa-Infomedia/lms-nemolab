@@ -4,124 +4,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" href="{{ asset('nemolab/member/img/logo-nemolab.png') }}" type="image/x-icon" />
+    <title>Nemolab - @yield('title')</title>
+
+    <!-- boostrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    {{-- aos --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     @stack('prepend-style')
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/navbar.css') }} ">
     <link rel="stylesheet" href="{{ asset('nemolab/components/member/css/footer.css') }} ">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Quicksand:wght@300..700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="icon" href="{{ asset('nemolab/member/img/nemolab.ico') }}" type="image/x-icon">
-    @stack('addon-script')
+    @stack('addon-style')
+
+        {{-- alert style --}}
+        <style>
+            .swal2-toast-success {
+            background-color: #4caf50 !important; /* Hijau untuk success */
+            color: #fff !important; /* Warna teks */
+            }
+    
+            .swal2-toast-error {
+                background-color: #f44336 !important; /* Merah untuk error */
+                color: #fff !important;
+            }
+    
+            .swal2-toast-warning {
+                background-color: #ff9800 !important; /* Oranye untuk warning */
+                color: #fff !important;
+            }
+    
+            .swal2-toast-info {
+                background-color: #2196f3 !important; /* Biru untuk info */
+                color: #fff !important;
+            }
+    
+            .swal2-title {
+                font-size: 1rem; /* Ukuran teks */
+            }
+    
+            .swal2-icon {
+                margin: 0 10px;
+            }
+    
+            .swal2-timer-progress-bar {
+                background-color: rgba(255, 255, 255, 0.7); /* Warna progress bar */
+            }
+        </style>
 </head>
 
 <body>
-    <header>
-        @if (Auth::check())
-            @include('components.includes.member.navbar-auth')
-        @else
-            @include('components.includes.member.navbar')
-        @endif
-    </header>
 
-    <div id="content">
+    {{-- @if (Auth::check())
+        @include('components.includes.member.navbar-auth')
+    @else --}}
+        @include('components.includes.member.navbar')
+    {{-- @endif --}}
+
+
+    <main id="content">
         {{-- content --}}
         @yield('content')
-    </div>
+    </main>
+
     @include('components.includes.member.footer')
 
     {{-- include sweetalert --}}
     @include('sweetalert::alert')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        @if(session('alert'))
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: "{{ session('alert.type') }}", // success, error, warning, info
+                title: "{{ session('alert.message') }}",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                customClass: {
+                    popup: 'swal2-toast-{{ session('alert.type') }}'
+                }
+            });
+        @endif
+    </script>
 
     @stack('prepend-script')
-    <script src="{{ asset('nemolab/components/admin/js/profile-navbar.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <!-- boostrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- box icon -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+    <!-- Inisialisasi AOS -->
+    <script>
+        AOS.init({
+            once: true
+        });
     </script>
     <script>
-        document.getElementById('menuToggle').addEventListener('click', function() {
-            this.classList.toggle('on');
-            document.getElementById('navbarContent').classList.toggle('show');
-        });
-
-
-        const navLink = document.querySelectorAll('.nav-link');
-        var hash = window.location.hash.substr(1);
-
-        if (window.location.pathname == "/member/course") {
-            navLink[1].classList.add('active');
-            functionCheckActive();
-        } else {
-            if (hash != '') {
-                functionCheckActive();
-            } else {
-                navLink[0].classList.add('active');
-                functionCheckActive();
-            }
-        }
-
-        function functionCheckActive() {
-            if (hash == 'home') {
-                navLink[0].classList.add('active');
-            } else if (hash == 'course') {
-                navLink[1].classList.add('active')
-            } else if (hash == 'aboutus') {
-                navLink[2].classList.add('active')
-            } else if (hash == 'contactus') {
-                navLink[3].classList.add('active')
-            }
-
-            navLink.forEach(element => {
-                element.addEventListener('click', (e) => {
-                    navLink.forEach(nav => nav.classList.remove('active'));
-                    e.target.classList.add('active');
-                })
-            });
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
-            // Get all sections with an ID attribute
-            const sections = document.querySelectorAll('section[id]');
-            // Get all nav links
-            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const navbarToggler = document.querySelector('.dropdown-logout');
+            const registerBtn = document.getElementById('dropdownMenuButton1');
 
-            function activateNavLink() {
-                let currentSection = '';
+            function LinkLogoutFunc() {
+                if (window.innerWidth < 992) {
 
-                // Loop through each section to find which one is in the viewport
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    if (window.scrollY >= sectionTop - sectionHeight / 3) {
-                        currentSection = section.getAttribute('id');
-                    }
-                });
+                    navbarToggler.style.display = 'none';
 
-                // Remove active class from all nav links
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    // Add active class to the link corresponding to the current section
-                    if (link.getAttribute('href').includes(currentSection)) {
-                        link.classList.add('active');
-                    }
-                });
+                    registerBtn.setAttribute('data-bs-toggle', 'modal');
+                    registerBtn.setAttribute('data-bs-target', '#targetModalLogin');
+
+                } else {
+                    navbarToggler.style.display = 'block';
+
+                    registerBtn.setAttribute('data-bs-toggle', 'dropdown');
+                }
+
+
+                window.addEventListener('resize', LinkLogoutFunc())
             }
-
-            // Initial call to set the correct nav link on load
-            activateNavLink();
-            // Add scroll event listener
-            window.addEventListener('scroll', activateNavLink);
         });
     </script>
     @stack('addon-script')

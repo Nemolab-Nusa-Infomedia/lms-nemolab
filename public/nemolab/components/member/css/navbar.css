@@ -1,168 +1,422 @@
-:root {
-    --c-dark: #383131;
-    --c-brand: #faa907;
-    --c-brand-dark: #a56e00;
-    --c-brand-rgb: 0, 163, 255;
-    --font-base: "Poppins", sans-serif;
-    --transition: all 0.5s ease;
-    --box-shadow-card: 0px 0px 1px 0px black;
-    --box-shadow-card-hover: 0px 0px 3px 0px #faa907;
-    --transition-card: all 0.5s linear;
+/* font navbar */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url('../../../member/css/color.css');
+
+/* variabel color */
+:root
+{
+    --dark-grey: #414142;
+    --blue-link: #0774FA;
+    --blue-link-hover: #0A5BCC;
+    --light-lavender: #F0EAFF;
+    --color-pink: #FFF6F6;
 }
 
-body {
-    font-family: var(--font-base);
+.backdrop-header
+{
+    min-height: 100svh;
+    min-width: 100svw;
+    background: #00000063;
+    z-index: 10;
+    position: fixed;
+    top: 0;
 }
 
-body::-webkit-scrollbar {
+header
+{
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-bottom: solid 2px rgba(255, 255, 255, 0.2);
+}
+
+@media(max-width: 576px)
+{
+    header
+    {
+        backdrop-filter: blur(2px);
+    }
+}
+
+header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p
+{
+    font-family: 'Nunito', sans-serif;
+    line-height: 1.2;
+    background-color: transparent !important;
+}
+
+header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:first-child
+{
+    font-size: 1.25rem;
+    color: var(--text-color-main);
+    font-weight: 800;
+}
+
+header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:last-child
+{
+    font-size: .75rem;
+    margin-top: -.5rem;
+    color: var(--text-color-second);
+    font-weight: 700;
+}
+
+header .container-fluid .navbar .container-fluid .search-group
+{
+    width: max-content;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .container-fluid .navbar .container-fluid .search-group input,
+header .container-fluid .navbar .container-fluid .search-group input:focus
+{
+    outline: none;
+    background-color: var(--color-pink);
+    border-radius: 50px;
+    padding: 10px 40px 10px 20px;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    color: var(--dark-grey);
+    font-size: 16px;
+    width: 320px;
+}
+
+@media(max-width:768px)
+{
+    header .container-fluid .navbar .container-fluid .search-group
+    {
+        margin-right: 2rem;
+    }
+
+    header .container-fluid .navbar .container-fluid .search-group input[type='text'],
+    header .container-fluid .navbar .container-fluid .search-group input[type='text']:focus
+    {
+        transition: all 300ms;
+        border-radius: .5rem;
+        background: none;
+        flex-grow: 1;
+        border: solid 1px black;
+    }
+}
+
+@media(max-width:576px)
+{
+
+    header .container-fluid .navbar .container-fluid .brand-nemolab-icon .title-navbar-brand p:last-child
+    {
+        font-size: 1rem;
+        margin-top: -.5rem;
+        color: var(--text-color-second);
+        font-weight: 700;
+    }
+}
+
+header .container-fluid .navbar .container-fluid .search-group button,
+header .container-fluid .navbar .container-fluid .search-group button:active
+{
+    border: none;
+    outline: none;
+    right: 10px;
+}
+
+header .container-fluid .navbar .container-fluid .search-group label
+{
+    position: absolute;
+    display: none;
+    right: 10px;
+    z-index: 10;
+}
+
+@media (max-width:1200px) and (min-width: 768px)
+{
+    header .container-fluid .navbar .container-fluid .search-group label
+    {
+        display: initial;
+    }
+
+    header .container-fluid .navbar .container-fluid .search-group input[type='text']
+    {
+        flex-grow: 0;
+        width: 44px !important;
+        padding: 10px 0;
+    }
+
+    header .container-fluid .navbar .container-fluid .search-group input[type='text']::placeholder
+    {
+        content: '';
+        color: transparent;
+    }
+
+    header .container-fluid .navbar .container-fluid .search-group input[type='checkbox']~button
+    {
+        display: none;
+    }
+
+    header .container-fluid .navbar .container-fluid .search-group input[type='checkbox']~label svg:first-child
+    {
+        display: block;
+    }
+
+    header .container-fluid .navbar .container-fluid .search-group input[type='checkbox']~label svg:last-child
+    {
+        display: none;
+    }
+
+    header .container-fluid .navbar .container-fluid .search-group input[type='checkbox']:checked~label svg:first-child
+    {
+        display: none;
+    }
+
+    header .container-fluid .navbar .container-fluid .search-group input[type='checkbox']:checked~label svg:last-child
+    {
+        display: block;
+    }
+
+    header .container-fluid .navbar .container-fluid .search-group input[type='checkbox']:checked~input[type='text']
+    {
+        width: auto !important;
+        flex-grow: 1;
+        padding: 10px 40px 10px 20px;
+    }
+
+    header .container-fluid .navbar .container-fluid .search-group input[type='checkbox']:checked~input[type='text']::placeholder
+    {
+        color: initial;
+    }
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button,
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a
+{
+    color: black !important;
+    background: none;
+    outline: none;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px !important;
+    background-color: transparent !important;
+    font-weight: 600 !important;
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button.dropdown-toggle::after
+{
     display: none;
 }
 
-/* navbar */
-.navbar-brand img {
-    width: auto;
-    height: 40px;
-}
-.navbar-nav {
-    gap: 1.2rem;
-}
-.nav-link {
-    font-weight: normal;
-    color: var(--c-dark);
-}
-.btn-signup {
-    background-color: var(--c-brand);
-    font-weight: 600;
-    border-radius: 10px;
-    transition: 0.2s all;
-}
-.btn-signup:hover {
-    background-color: #a56e00;
-}
-.active {
-    color: var(--c-brand) !important;
-    font-weight: bold;
-}
-.btn-login {
-    font-weight: 600;
-    color: var(--c-dark);
-    width: 87px;
-    border-radius: 10px;
-}
-
-.btn-login:hover {
-    color: var(--c-brand);
-    transition: 0.2s all;
-    border: 1px solid var(--c-brand);
-}
-.r-nav {
+header .container-fluid .navbar-toggler
+{
     display: flex;
-}
-.btn-search {
-    background-color: var(--c-brand);
-    color: white;
-    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    width: 28px;
     border: none;
-}
-.btn-search:active {
-    background-color: var(--c-brand-dark);
-}
-.name {
-    width: 110px;
-    max-height: 53px;
-    display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.img-p {
-    margin-right: 5px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-}
-.img-s {
-    margin-right: 5px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid gray;
-}
-/* .profile-ikon img {
-    width: 25px;
-} */
-
-@media (min-width: 992px) {
-    .profile-user {
-        display: none;
-        position: absolute;
-        top: 85px;
-        right: 40px;
-    }
-    .profile-user a img {
-        width: 35px;
-        background-color: #e5e5e5;
-        border-radius: 50%;
-        padding: 6px;
-        margin-right: 10px;
-    }
-    .profile-user a:hover {
-        transition: 0.3s all;
-        background-color: rgb(179, 179, 179) !important;
-    }
-    .profile-user.menu {
-        display: block;
-    }
+    padding: 0px !important;
 }
 
-@media (max-width: 992px) {
-    .profile-user {
-        display: none;
-    }
-    .navtoggle {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease-in-out;
-    }
-
-    .navtoggle.show {
-        max-height: 1000px;
-    }
-}
-
-.menu-toggle {
+header .container-fluid .navbar-toggler img
+{
     width: 30px;
-    height: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
+    height: 30px;
 }
 
-.menu-toggle div {
-    height: 3px;
-    background-color: black;
-    transition: all 0.2s ease;
-}
-.menu-toggle .bar1 {
-    width: 50%;
-    margin-left: 50%;
-}
-.menu-toggle .bar3 {
-    width: 50%;
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu
+{
+    width: max-content;
+    padding: 10px;
 }
 
-/* Animasi untuk perubahan */
-.menu-toggle.on .bar1 {
-    transform: translateX(-100%);
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu
+{
+    width: 400px;
+    padding: 24px;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-logout
+{
+    max-width: max-content;
+    padding: 24px;
+    border: none;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.menu-toggle.on .bar3 {
-    transform: translateX(100%);
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu p,
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a
+{
+    font-size: 18px !important;
+    font-family: 'Nunito', sans-serif;
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu p
+{
+    color: var(--dark-grey);
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a
+{
+    color: var(--blue-link);
+    text-decoration: none;
+}
+
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a
+{
+    font-size: 16px !important;
+    font-family: 'Nunito', sans-serif !important;
+    color: var(--dark-grey);
+    text-decoration: none;
+    transition: all ease-in-out 0.5ms;
+    font-weight: 400 !important;
+}
+
+a.btn-warning
+{}
+
+a.btn-warning:hover
+{}
+
+a.btn-warning:active
+{}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a:hover
+{
+    color: var(--blue-link);
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a
+{
+    color: white;
+    background-color: #FF982A;
+    transition: all 0.3s ease;
+    border: none;
+    font-weight: 700;
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+    width: max-content;
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a:hover
+{
+    background-color: #ff8f18;
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a:active
+{
+    color: white !important;
+    background-color: #ff8f18!important;
+    transition: background-color 0s;
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a.btn-secondary
+{
+    background-color: white !important;
+    outline: solid 1px var(--light-border) !important;
+    color: black;
+    font-weight: 500;
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a.btn-secondary:hover
+{
+    background-color: rgb(238, 238, 238) !important;
+}
+
+header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a.btn-secondary:active
+{
+    color: black !important;
+}
+
+@media screen and (max-width: 992px)
+{
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu
+    {
+        position: absolute !important;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 576px)
+{
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button,
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a
+    {
+        font-size: 16px !important;
+    }
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a
+    {
+        font-size: 16px !important;
+    }
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu
+    {
+        width: 100%;
+    }
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu p,
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a
+    {
+        font-size: 18px !important;
+    }
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a
+    {
+        font-size: 16px !important;
+    }
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
+    {
+        padding-left: 0 !important;
+        margin-top: 4px;
+    }
+}
+
+@media screen and (max-width: 480px)
+{
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav
+    {
+        padding-left: 0 !important;
+        margin-top: 4px;
+    }
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown button,
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child>a
+    {
+        font-size: 16px !important;
+    }
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .register-login a
+    {
+        font-size: 16px !important;
+    }
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu
+    {
+        width: 100%;
+    }
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu p,
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a
+    {
+        font-size: 16px !important;
+    }
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .content-submenu a
+    {
+        font-size: 14px !important;
+    }
+
+    header .container-fluid .navbar .container-fluid #navbarNavAltMarkup .navbar-nav:last-child .dropdown .dropdown-menu .head-submenu a
+    {
+        display: none !important;
+    }
+
+    .navbar-toggler
+    {
+        border: none !important;
+        outline: none !important;
+        box-shadow: none !important;
+    }
 }

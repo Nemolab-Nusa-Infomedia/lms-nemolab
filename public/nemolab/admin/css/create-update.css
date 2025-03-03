@@ -1,21 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+:root {
+    --c-dark: #414142;
+    --c-darker: #282828;
+    --c-brand: #faa907;
+    --c-brand-dark: #a56e00;
+    --font-base: "Poppins", sans-serif;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+
 body {
-    background: linear-gradient(to bottom right, #faa907, #ff7700);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: "Poppins", sans-serif !important;
 }
+
+main {
+    background-color: #f8f9fa;
+    height: 110svh;
+    padding: 60px 0;
+}
+
 .container {
     background-color: #fff;
     border-radius: 10px;
+}
+
+.row .ps-xl-3 {
+    height: 85svh;
 }
 
 .tambah {
@@ -25,15 +41,39 @@ body {
 #preview {
     border-radius: 30px;
 }
+
 h2 {
-    background: linear-gradient(to right, #faa907, #ff7700);
+    font-size: 1.5rem !important;
+    background-color: #FAA907;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
+#formAction .row label {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #414142;
+    margin-bottom: 10px;
+}
+
+#formAction .row .col-md-6,
+#formAction .row .col-md-12 {
+    margin-bottom: 20px;
+}
+
+.tools-popup {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+
+
 input,
-textarea {
+textarea,
+select {
     position: relative;
+    font-size: 0.75rem !important;
     width: 100%;
     padding: 13px 20px;
     border-radius: 9px;
@@ -43,6 +83,42 @@ textarea {
     z-index: 1;
     color: rgb(0, 0, 0);
     box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+select:focus {
+    border: var(--bs-border-width) solid var(--c-brand) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input:focus {
+    border: var(--bs-border-width) solid var(--c-brand) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+textarea:focus {
+    border: var(--bs-border-width) solid var(--c-brand) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.cover-input {
+    position: relative;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
+    padding: 13px 20px;
+    border-radius: 9px;
+    border: 1px dashed #9d9d9d;
+    background: transparent;
+    transition: 0.1s ease;
+    z-index: 1;
+    color: #BDBDBD;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+#cover-input p{
+    justify-content: center;
 }
 
 .labelline,
@@ -71,17 +147,21 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 .btn-kirim {
     background-color: #faa907;
     border: none;
 }
+
 .btn-kirim:hover {
     background-color: #ff7700;
 }
+
 .btn-batal {
     background-color: gray;
     border: none;
 }
+
 .btn-batal:hover {
     background-color: rgb(60, 57, 57);
 }
@@ -100,10 +180,10 @@ input::-webkit-inner-spin-button {
     pointer-events: none;
 }
 
-input:focus + .labelline,
-input:not(:placeholder-shown) + .labelline,
-textarea:focus + .labelline-textarea,
-textarea:not(:placeholder-shown) + .labelline-textarea {
+input:focus+.labelline,
+input:not(:placeholder-shown)+.labelline,
+textarea:focus+.labelline-textarea,
+textarea:not(:placeholder-shown)+.labelline-textarea {
     color: rgb(0, 0, 0);
     height: 20px;
     line-height: 20px;
@@ -127,9 +207,7 @@ textarea:not(:placeholder-shown) + .labelline-textarea {
     border: 1px solid rgb(0, 0, 0);
     border-radius: 8px;
     appearance: none;
-    background: #fff
-        url('data:image/svg+xml;utf8,<svg fill="%23faa907" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>')
-        no-repeat right 0.75em center;
+    background: #fff url('data:image/svg+xml;utf8,<svg fill="%23faa907" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 0.75em center;
     background-size: 1em;
     transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
@@ -154,7 +232,8 @@ textarea:not(:placeholder-shown) + .labelline-textarea {
 
 /* Styling the file input */
 .custom-file-input {
-    display: none; /* Hide the default input */
+    display: none;
+    /* Hide the default input */
 }
 
 /* Styling the custom file label */
@@ -163,35 +242,201 @@ textarea:not(:placeholder-shown) + .labelline-textarea {
     padding: 0.5em 1em;
     font-size: 1em;
     color: #fff;
-    background-color: #000; /* Black background */
-    border: 1px solid #000; /* Black border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
+    background-color: #000;
+    /* Black background */
+    border: 1px solid #000;
+    /* Black border */
+    border-radius: 4px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Pointer cursor on hover */
     transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 /* Change background color on hover */
 .custom-file-label:hover {
-    background-color: #333; /* Darker background on hover */
+    background-color: #333;
+    /* Darker background on hover */
 }
 
 /* Styling the image preview */
 .image-preview {
     margin-top: 2em;
-    height: 307px; /* Set height for preview */
-    border: 1px solid #000; /* Black border */
-    border-radius: 4px; /* Rounded corners */
-    background-color: #f0f0f0; /* Light gray background */
+    height: 307px;
+    /* Set height for preview */
+    border: 1px solid #000;
+    /* Black border */
+    border-radius: 4px;
+    /* Rounded corners */
+    background-color: #f0f0f0;
+    /* Light gray background */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
 }
 
+/* Styling for the preview pdf */
+css
+
+Copy
+/* PDF Preview Styles */
+.pdf-upload-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.pdf-upload-left {
+    flex: 1;
+}
+
+.pdf-upload-right {
+    width: 200px;
+}
+
+.pdf-preview-container {
+    text-align: center;
+}
+
+.pdf-preview-wrapper {
+    margin-bottom: 8px;
+}
+
+.pdf-thumbnail {
+    width: 200px;
+    height: 282px; /* Aspect ratio for A4 paper */
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #faa907;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-info {
+    margin-top: 8px;
+    text-align: left;
+}
+
+.pdf-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pdf-size {
+    font-size: 12px;
+    color: #666;
+}
+
+.pdf-preview-container .btn-danger {
+    margin-top: 8px;
+    background-color: #dc3545;
+    border: none;
+    padding: 4px 12px;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.pdf-preview-container .btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* File input styling (already present but ensuring consistency) */
+input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 100%;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #faa907;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #ff7700;
+}
+
 /* Styling for the preview image */
 .image-preview img {
     max-width: 100%;
     max-height: 100%;
+}
+
+.image-upload-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.image-upload-left {
+    flex: 1;
+}
+
+.image-upload-right {
+    width: 200px;
+}
+
+.image-preview-container {
+    text-align: center;
+}
+
+.image-preview-container img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #faa907;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.image-preview-container .btn-danger {
+    margin-top: 8px;
+    background-color: #dc3545;
+    border: none;
+    padding: 4px 12px;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+}
+
+.image-preview-container .btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* File input styling */
+input[type="file"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 100%;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #faa907;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: #ff7700;
 }
 
 .card-custom-width {
@@ -201,7 +446,7 @@ textarea:not(:placeholder-shown) + .labelline-textarea {
 .required-field::before {
     content: "*";
     color: red;
-  }
+}
 
 @media (min-width: 576px) {
     .card-custom-width {
@@ -211,6 +456,7 @@ textarea:not(:placeholder-shown) + .labelline-textarea {
 
 .btn-orange {
     background-color: #faa907 !important;
+    font-size: 0.75rem !important;
     color: white !important;
     height: max-content;
 }

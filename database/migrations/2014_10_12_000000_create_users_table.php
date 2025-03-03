@@ -13,17 +13,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            
             $table->string('name', 255)->nullable(false);
-            $table->string('username', 255)->nullable(true);
-            // $table->string('re-password', 255)->nullable(false);
             $table->text('avatar')->nullable(true);
             $table->string('email', 255)->nullable(false);
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 255)->nullable(false);
-            // $table->enum('profession', ['mahasiswa', 'freelance'])->nullable(false);
-            // $table->string('phone', 255)->nullable(false);
-            // $table->string('city', 255)->nullable(false);
-            // $table->string('national', 255)->nullable(false);
+            $table->string('verification_pin', 4)->nullable();
+            $table->timestamp('pin_expires_at')->nullable();
+            $table->enum('profession', ['Pelajar Jangka Panjang', 'UI/UX Designer', 'Frontend Developer', 'Backend Developer', 'Wordpress Developer', 'Graphics Designer', 'Fullstack Developer'])->default('Pelajar Jangka Panjang');
             $table->enum('role', ['students', 'mentor', 'superadmin'])->default('students');
             $table->timestamps();
         });

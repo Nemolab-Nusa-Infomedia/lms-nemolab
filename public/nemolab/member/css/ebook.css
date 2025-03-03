@@ -1,125 +1,181 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+    --primary-color: #faa907;
+    --secondary-color: #333;
+    --text-color: #ffffff;
+    --hover-color: #ff9800;
+}
 
 @media print {
     html, body {
-       display: none;  /* hide whole page */
+        display: none; 
     }
 }
-
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Nunito", sans-serif !important;
     line-height: 1.7;
 }
 
 body::-webkit-scrollbar {
     display: none;
 }
-.search {
-    display: flex;
-    background-color: rgba(255, 255, 255, 0.3);
-    padding: 6px 0;
-    width: 140px;
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-}
-.search input {
-    border: none;
-    outline: none;
-    display: block;
-    padding-left: 10px;
-    width: 100%;
-    background-color: transparent;
-    color: white;
-}
-.zoom img{
+
+/* Hover efek untuk tombol zoom dan lainnya */
+.zoom img,
+#pdf-fullscreen,
+.page-info img {
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.page-info img{
-    cursor: pointer;
+
+.zoom img:hover,
+#pdf-fullscreen:hover,
+.page-info img:hover {
+    transform: scale(1.2);
 }
-.pdf-height{
-    height: 850px;
-    background-color: #333;
+.zoom img:active,
+#pdf-fullscreen:active,
+.page-info img:active {
+    transform: scale(1) !important;
+    transition: 0s;
+}
+
+.pdf-height {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    height: 760px;
+    background-color: var(--secondary-color);
     overflow-y: scroll;
 }
-.pdf-preview{
-    overflow-y: hidden;
+.pdf-render{
+    margin: 15px 0px;
+    margin-bottom: 100px;
 }
-.pdf-preview::-webkit-scrollbar{
+
+.pdf-height::-webkit-scrollbar {
     display: none;
 }
 
-#ebook{
-    width: 950px;
+.pdf-height {
+    scrollbar-width: none; 
 }
 
-#pdf-fullscreen{
-    cursor: pointer;
+
+
+
+.pdf-preview {
+    overflow-y: auto;
+    max-height: 100vh !important;
 }
 
-#zoom-in, #zoom-out{
-    cursor: pointer;
+
+.loading {
+    position: absolute;
+    z-index: 5;
+    max-width: 90px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
+.tools {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 10px 25px;
+    width: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type="number"]:focus {
-    outline: 2px solid #ffffff;
+    outline: 2px solid var(--text-color);
     border-radius: 3px;
-  }
-
-#ebook .col-12{
-    height: 900px !important;
 }
 
-@media only screen and (max-width: 576px) {
-    #ebook{
+#ebook .col-12 {
+    height: max-content !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--hover-color);
+}
+
+.btn-primary:active {
+    background-color: var(--hover-color) !important;
+    transform: scale(0.98);
+    transition: background-color 0s;
+}
+
+@media (max-width: 768px) {
+    #ebook {
         width: 100%;
     }
 
-    #ebook .col-12{
+    #ebook .col-12 {
         border-radius: 0px !important;
-        height: 850px !important;
+        height: max-content !important;
     }
 
-
-    .pdf-preview{
-        height: max-content;
-    }
-
-    .pdf-render{
-        margin-left: 0px !important;
-        width: 120%;
-    }
-
-
-    .tools{
+    .tools {
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
         padding: 10px 25px !important;
     }
 
-
-    .zoom{
-        flex-direction: column;
+    .page-info span,
+    .page-info img,
+    .page-info input {
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 12px !important;
     }
 
-    .zoom img{
+    .zoom {
+        border-radius: 50px;
+        align-items: center;
+        padding-bottom: 0.5rem !important;
+        gap: 0.5rem !important;
+        flex-direction: row;
+    }
+
+    .zoom img {
+        width: 25px;
+        height: 25px;
         margin-left: 0px !important;
         margin-top: 10px;
     }
 
-    canvas {
-        transform: scale(0.9); /* Scale down the canvas */
-        transform-origin: 0 0; /* Ensure scaling is from the top-left */
+    #pdf-fullscreen {
+        width: 25px;
     }
 
+    .pdf-height {
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+        background-color: var(--secondary-color);
+    }
 }

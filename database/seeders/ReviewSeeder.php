@@ -13,21 +13,29 @@ class ReviewSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create('id_ID'); 
+        $faker = Faker::create();
         $reviews = [];
-        $userIds = [1, 2, 3, 4];
-        $courseIds = [1, 2, 3]; 
 
-        foreach (range(1, 4) as $index) { 
+        for ($i = 0; $i < 10; $i++) {
             $reviews[] = [
-                'user_id' => $faker->randomElement($userIds),
-                'course_id' => $faker->randomElement($courseIds),
-                'rating' => $faker->numberBetween(1, 5),
-                'note' => $faker->paragraph, 
+                'user_id' => 1, 
+                // 'course_id' => 0,
+                'ebook_id' => 1, 
+                'note' => $faker->sentence(10), 
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
         }
+        // for ($i = 0; $i < 10; $i++) {
+        //     $reviews[] = [
+        //         'user_id' => 1, 
+        //         'course_id' => 1,
+        //         'ebook_id' => 0, 
+        //         'note' => $faker->sentence(10), 
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ];
+        // }
 
         DB::table('tbl_reviews')->insert($reviews);
     }

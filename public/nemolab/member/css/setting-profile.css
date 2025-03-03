@@ -1,70 +1,102 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+:root {
+    --orange: #FAA907;
+    --card-bg: #fff;
+    --light-grey:#8F8F8F;
+    --dark-grey:#414142;
+    --bg-color:#FFF6F6;
+    --blue-icon:#0774FA;
+    --btn-blue:#67ACFF;
+    --input-focus:#E8E8E8;
 }
 body {
-    font-family: "Poppins", sans-serif;
-    line-height: 1.7;
+    background-color: var(--bg-color);
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: bold;
+    color: #000;
 }
-
-*::-webkit-scrollbar {
-    display: none;
+h5{
+    margin-bottom: 0px !important;
 }
-
-form .input {
-    margin: 18px 0;
+p{
+    color: var(--light-grey);
 }
-form label {
-    margin-bottom: 8px;
-    font-size: 14px;
-}
-form input {
-    display: block;
-    width: 100%;
+.card{
+    border-radius: 20px;
     border: none;
-    font-weight: 500;
-    color: rgba(0, 0, 0, 0.546);
-    background-color: #f4f4f4;
-    border-radius: 18px;
-    padding: 6px 25px;
-    font-size: 15px;
-    outline: 1px solid #faa907;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
-form input[type="text"]:focus,
-form input[type="email"]:focus,
-form input[type="password"]:focus {
-    background-color: #f3f1f1;
-    outline: 2px solid #faa907;
+
+.form-control{
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 5px;
 }
-form input[type="password"] {
-    border-radius: 7px;
+
+.form-select{
+    background-color: var(--bg-color);
+    border: none;
+    border-radius: 5px;
 }
-form input[type="submit"] {
-    background-color: #faa907;
-    color: #fff;
-    border-radius: 7px;
+
+
+.btn-back {
+    background-color: var(--blue-icon);
+    border-radius: 50%;
+    padding: 0.25rem;
+    display: inline-flex; 
+    justify-content: center;
+    align-items: center; 
+    width: 40px; 
+    height: 40px; 
 }
-.edit-pass:hover,
-form input[type="submit"]:hover {
-    background-color: #a56e00;
-    outline: 1px solid #a56e00;
+.btn-back:hover{
+    background-color: rgb(61, 61, 233);
 }
-.edit-pass {
-    display: block;
-    width: 100%;
+.back-icon {
+    width: 20px;
+}
+/* OTP Input */
+
+.input-otp {
+    display: flex;
+    justify-content: space-between;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.otp-number-input {
+    width: 40px;
+    height: 50px;
+    border: none;
+    border-bottom: 3px solid var(--dark-grey);
     text-align: center;
-    background-color: #faa907;
-    color: #fff;
-    border-radius: 7px;
-    padding: 6px 25px;
-    font-weight: 500;
-    font-size: 15px;
-    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--blue);
+    background-color: transparent;
+    caret-color: transparent;
+    outline: none;
 }
-@media only screen and (max-width: 546px) {
-    .btn-password {
-        height: 5px;
+
+.otp-number-input::placeholder {
+    color: var(--light-grey);
+    font-size: 24px;
+    text-align: center;
+}
+
+.otp-number-input:focus {
+    border-color: var(--blue-icon);
+}
+
+@media screen and (min-width:480px) and (max-width: 576px) {
+    .profile-saya-section {
+        padding: 50px 0 !important;
+    }
+
+    .card {
+        width: 90%;
+        margin: 0 auto;
     }
 }

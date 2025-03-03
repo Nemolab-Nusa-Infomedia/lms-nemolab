@@ -78,7 +78,7 @@ return [
     | for particular modal just use the width() helper method.
     */
 
-    'width' => env('SWEET_ALERT_WIDTH', '32rem'),
+    'width' => env('SWEET_ALERT_WIDTH', '24rem'),
 
     /*
     |--------------------------------------------------------------------------
@@ -90,7 +90,7 @@ return [
     |
     */
 
-    'height_auto' => env('SWEET_ALERT_HEIGHT_AUTO', true),
+    'height_auto' => env('SWEET_ALERT_HEIGHT_AUTO', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -198,7 +198,7 @@ return [
     |
     */
 
-    'timer_progress_bar' => env('SWEET_ALERT_TIMER_PROGRESS_BAR', false),
+    'timer_progress_bar' => env('SWEET_ALERT_TIMER_PROGRESS_BAR', true),
 
     /*
     |--------------------------------------------------------------------------

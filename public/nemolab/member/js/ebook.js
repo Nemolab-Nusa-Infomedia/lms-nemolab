@@ -1,195 +1,177 @@
-const url = 'https://www.aeee.in/wp-content/uploads/2020/08/Sample-pdf.pdf';
+// 1. Pengaturan global dan elemen utama
+pdfjsLib.GlobalWorkerOptions.workerSrc = '/nemolab/member/js/pdf.worker.min.js';
+const ebookElement = document.getElementById('ebook');
+const url = ebookElement.getAttribute('data-pdf');
+const canvas = document.getElementById('pdf-render');
+const ctx = canvas.getContext('2d');
 
-let pdfDoc = null,
-    pageNum = 1,
-    pageIsRendering = false,
-    pageNumIsPending = null;
+let pdfDoc = null;
+let pageNum = 1;
+let scale = window.innerWidth < 768 ? 0.7 : 1.8;
+const minScale = window.innerWidth < 768 ? 0.7 : 0.9;
+const maxScale = 2.5;
+let totalPages = 0;
+let isRendering = false;
 
-let scale = 1.0, // Default zoom scale
-    canvas = document.querySelector('#pdf-render'),
-    ctx = canvas.getContext('2d');
+// 2. Pengambilan dokumen PDF// 2. Pengambilan dokumen PDF
+pdfjsLib.getDocument(url).promise.then(pdf => {
+    console.log('PDF berhasil dimuat');
+    pdfDoc = pdf;
+    totalPages = pdf.numPages;
+    console.log(`Menampilkan ${totalPages} halaman`);
+    renderPage(pageNum);
+}).catch(error => {
+    console.error('Error loading PDF:', error);
+    // alert('Gagal memuat eBook. Periksa koneksi atau matikan ekstensi browser anda.');
+    console.log(`Total halaman PDF: ${totalPages}`);
+});
 
-// Render the page
-const renderPage = num => {
-    pageIsRendering = true;
+// 3. Fungsi untuk rendering halaman
+const renderPage = (num) => {
+    if (isRendering) return;
+    isRendering = true;
 
-    pdfDoc.getPage(num).then(page => {
+    const pdfHeightElement = document.querySelector('.pdf-height');
+    if (window.innerWidth < 768) { 
+        pdfHeightElement.style.height = '760px';
+    } else {
+        pdfHeightElement.style.height = '100vh';
+    }
+    document.getElementById('pdf-loading').style.display = 'block';
+    canvas.style.display = 'none';
+
+    pdfDoc.getPage(num).then((page) => {
         const viewport = page.getViewport({ scale });
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+        const outputScale = window.devicePixelRatio || 1;
 
-        const renderCtx = {
-            canvasContext: ctx,
-            viewport
-        };
+        canvas.width = Math.floor(viewport.width * outputScale);
+        canvas.height = Math.floor(viewport.height * outputScale);
+        canvas.style.width = `${viewport.width}px`;
+        canvas.style.height = `${viewport.height}px`;
 
-        page.render(renderCtx).promise.then(() => {
-            pageIsRendering = false;
+        const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
+        const renderContext = { canvasContext: ctx, viewport: viewport, transform: transform };
 
-            if (pageNumIsPending !== null) {
-                renderPage(pageNumIsPending);
-                pageNumIsPending = null;
-            }
-        });
-
-        // Output current page
-        document.querySelector('#page-num').textContent = num;
-        document.querySelector('#page-input').value = num; // Update input field
+        return page.render(renderContext).promise;
+    }).then(() => {
+        document.getElementById('page-input').value = num;
+        document.getElementById('page-count').textContent = totalPages;
+    }).catch(error => {
+        alert('Failed to load the page.');
+    }).finally(() => {
+        isRendering = false;
+        document.getElementById('pdf-loading').style.display = 'none';
+        canvas.style.display = 'block';
+        pdfHeightElement.style.height = 'auto';
     });
 };
 
-// Check for pages rendering
-const queueRenderPage = num => {
-    if (pageIsRendering) {
-        pageNumIsPending = num;
+
+
+// 4. Zoom dan scale
+const updateZoom = (factor) => {
+    if (factor === 0) {
+        scale = window.innerWidth < 768 ? 0.7 : 1.8;
     } else {
-        renderPage(num);
+        scale = Math.max(minScale, Math.min(maxScale, scale + factor));
     }
+    console.log('Current scale:', scale);
+    
+    renderPage(pageNum);
 };
 
-// Show Prev Page
-const showPrevPage = () => {
-    if (pageNum <= 1) {
-        return;
+
+// 5. Event listeners untuk navigasi, zoom, dan input
+document.getElementById('prev-page').addEventListener('click', () => {
+    if (pageNum > 1) {
+        pageNum--;
+        renderPage(pageNum);
     }
-    pageNum--;
-    queueRenderPage(pageNum);
-    document.querySelector('#page-input').value = pageNum; // Update input field
-};
+});
 
-// Show Next Page
-const showNextPage = () => {
-    if (pageNum >= pdfDoc.numPages) {
-        return;
+document.getElementById('next-page').addEventListener('click', () => {
+    if (pageNum < totalPages) {
+        pageNum++;
+        renderPage(pageNum);
     }
-    pageNum++;
-    queueRenderPage(pageNum);
-    document.querySelector('#page-input').value = pageNum; // Update input field
-};
+});
 
-// Show Page by Input
-const showPageByInput = () => {
-    const inputPageNum = document.querySelector('#page-input').value;
-    const pageNumber = parseInt(inputPageNum, 10);
+document.getElementById('zoom-in').addEventListener('click', () => updateZoom(0.1));
+document.getElementById('zoom-out').addEventListener('click', () => updateZoom(-0.1));
+document.getElementById('reset-zoom').addEventListener('click', () => updateZoom(0));
 
-    if (pageNumber >= 1 && pageNumber <= pdfDoc.numPages) {
+document.getElementById('page-input').addEventListener('change', (e) => {
+    const pageNumber = parseInt(e.target.value);
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
         pageNum = pageNumber;
-        queueRenderPage(pageNum);
-    } else {
-        document.querySelector('#page-input').value = pageNum; // Reset input if invalid
+        renderPage(pageNum);
     }
-};
+});
 
-// Zoom In
-const zoomIn = () => {
-    scale += 0.1; // Increase zoom level
-    queueRenderPage(pageNum); // Re-render the current page
-};
-
-// Zoom Out
-const zoomOut = () => {
-    if (scale > 0.5) { // Prevent zooming out too much
-        scale -= 0.1; // Decrease zoom level
-        queueRenderPage(pageNum); // Re-render the current page
-    }
-};
-
-// Fullscreen Functionality for the entire content container
-const toggleFullscreen = () => {
-    const contentContainer = document.querySelector('#ebook'); // Updated ID
+// Fungsi untuk fullscreen mode
+document.getElementById('pdf-fullscreen').addEventListener('click', () => {
+    const elem = document.getElementById('ebook');
     if (!document.fullscreenElement) {
-        // Request fullscreen on the content container
-        contentContainer.requestFullscreen().catch(err => {
-            console.error(`Error attempting to enable full-screen mode: ${err.message}`);
-        });
+        elem.requestFullscreen().catch(err => console.error(`Fullscreen mode error: ${err.message}`));
     } else {
-        // Exit fullscreen
-        if (document.exitFullscreen) {
+        document.exitFullscreen();
+    }
+});
+
+// Event listeners untuk tombol panah dan fullscreen dengan keyboard
+document.addEventListener('keydown', (e) => {
+    // Left arrow for previous page
+    if (e.key === 'ArrowLeft') {
+        if (pageNum > 1) {
+            pageNum--;
+            renderPage(pageNum);
+        }
+    }
+    // Right arrow for next page
+    else if (e.key === 'ArrowRight') {
+        if (pageNum < totalPages) {
+            pageNum++;
+            renderPage(pageNum);
+        }
+    }
+    // 'F' for fullscreen toggle
+    else if (e.key.toLowerCase() === 'f') {
+        const elem = document.getElementById('ebook');
+        if (!document.fullscreenElement) {
+            elem.requestFullscreen().catch(err => console.error(`Fullscreen mode error: ${err.message}`));
+        } else {
             document.exitFullscreen();
         }
     }
+});
+// 6. Pinch-to-zoom untuk perangkat mobile
+let initialDistance = null;
+
+const handleTouchStart = (e) => {
+    if (e.touches.length === 2) {
+        initialDistance = Math.hypot(
+            e.touches[0].pageX - e.touches[1].pageX,
+            e.touches[0].pageY - e.touches[1].pageY
+        );
+    }
 };
 
-// Handle Keyboard Events for Navigation
-document.addEventListener('keydown', (event) => {
-    switch (event.key) {
-        case 'ArrowLeft':
-            showPrevPage();
-            break;
-        case 'ArrowRight':
-            showNextPage();
-            break;
+const handleTouchMove = (e) => {
+    if (e.touches.length === 2 && initialDistance) {
+        const newDistance = Math.hypot(
+            e.touches[0].pageX - e.touches[1].pageX,
+            e.touches[0].pageY - e.touches[1].pageY
+        );
+        const zoomFactor = newDistance > initialDistance ? 0.05 : -0.05;
+        updateZoom(zoomFactor);
+        initialDistance = newDistance;
     }
-});
+};
 
-// Get Document
-pdfjsLib
-    .getDocument(url)
-    .promise.then(pdfDoc_ => {
-        pdfDoc = pdfDoc_;
-        document.querySelector('#page-count').textContent = pdfDoc.numPages;
-        renderPage(pageNum);
-        document.querySelector('#page-input').value = pageNum; // Initialize input field to the current page
-    })
-    .catch(err => {
-        const div = document.createElement('div');
-        div.className = 'error';
-        div.appendChild(document.createTextNode(err.message));
-        document.querySelector('body').insertBefore(div, canvas);
-        document.querySelector('.top-bar').style.display = 'none';
-    });
+const handleTouchEnd = () => {
+    initialDistance = null;
+};
 
-// Button Events
-document.querySelector('#prev-page').addEventListener('click', showPrevPage);
-document.querySelector('#next-page').addEventListener('click', showNextPage);
-document.querySelector('#zoom-in').addEventListener('click', zoomIn);
-document.querySelector('#zoom-out').addEventListener('click', zoomOut);
-document.querySelector('#pdf-fullscreen').addEventListener('click', toggleFullscreen);
-document.querySelector('#page-input').addEventListener('change', showPageByInput); // Add event listener for input change
-
-// Initial Setup for Page Input
-document.querySelector('#page-input').value = pageNum;
-
-// Zoom element reference
-const zoomElement = document.querySelector("#pdf-render"); // Updated selector to match the canvas
-let zoom = 1;
-const ZOOM_SPEED = 0.1;
-const MIN_ZOOM = 0.5; // Minimum zoom level
-const MAX_ZOOM = 3;   // Maximum zoom level
-const DEFAULT_ZOOM = 1; // Default zoom level
-
-// Event listener for wheel zoom
-document.addEventListener("wheel", function (e) {
-    e.preventDefault(); // Prevent the default scroll behavior
-
-    if (!zoomElement.contains(e.target)) return;
-
-    const rect = zoomElement.getBoundingClientRect();
-    const offsetX = (e.clientX - rect.left) / rect.width;
-    const offsetY = (e.clientY - rect.top) / rect.height;
-
-    zoomElement.style.transformOrigin = `${offsetX * 100}% ${offsetY * 100}%`;
-
-    if (e.deltaY > 0) {
-        if (zoom > MIN_ZOOM) {
-            zoom -= ZOOM_SPEED;
-        }
-    } else {
-        if (zoom < MAX_ZOOM) {
-            zoom += ZOOM_SPEED;
-        }
-    }
-
-    zoom = Math.max(MIN_ZOOM, zoom);
-    zoomElement.style.transform = `scale(${zoom})`;
-});
-
-// Reset zoom button functionality
-document.querySelector("#reset-zoom").addEventListener("click", function () {   
-    scale = DEFAULT_ZOOM; // Reset the scale variable to the default zoom level
-    zoom = DEFAULT_ZOOM;  // Reset the zoom variable to the default zoom level
-    zoomElement.style.transform = `scale(${zoom})`;
-
-    // Re-render the current page to apply the reset scale
-    queueRenderPage(pageNum);
-});
+canvas.addEventListener('touchstart', handleTouchStart);
+canvas.addEventListener('touchmove', handleTouchMove);
+canvas.addEventListener('touchend', handleTouchEnd);
