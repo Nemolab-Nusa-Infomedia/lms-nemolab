@@ -63,7 +63,7 @@
     {{-- @endif --}}
 
 
-    <main id="content" class="flex-grow-1" style="min-height: 100vh">
+    <main id="content">
         {{-- content --}}
         @yield('content')
     </main>
