@@ -17,7 +17,7 @@
             <div class="layout-kiri col-md-8">
                 <div class="card-preview mb-3">
                     @if ($ebooks->cover != null)
-                        <img src="{{ url('storage/images/covers/' . $ebooks->cover) }}" alt="">
+                        <img src="{{ url('storage/public/images/covers/' . $ebooks->cover) }}" alt="">
                     @else
                         <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" alt="">
                     @endif
@@ -125,7 +125,7 @@
                                             <div class="card-body" style="150px">
                                                 <div class="card-head d-flex align-items-center">
                                                 @if ($review->user->avatar !=null)
-                                                    <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
+                                                    <img src="{{ asset('storage/public/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
                                                     @else
                                                     <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
                                                 @endif
@@ -149,7 +149,7 @@
                                                 <div class="card-body" style="150px">
                                                     <div class="card-head d-flex align-items-center">
                                                     @if ($review->user->avatar !=null)
-                                                        <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
+                                                        <img src="{{ asset('storage/public/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
                                                         @else
                                                         <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
                                                     @endif

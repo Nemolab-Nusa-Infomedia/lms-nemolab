@@ -133,7 +133,7 @@
 
             return `
                 <a href="{{ route('member.course.join', '') }}/${item.slug}" class="card">
-                    ${item.cover !=null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}"" class="card-img-top d-block" alt="...">` : `<img  src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="...">` }
+                    ${item.cover !=null ? `<img src="{{ url('/') }}/storage/public/images/covers/${item.cover}"" class="card-img-top d-block" alt="...">` : `<img  src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="...">` }
                     <div class="card-body">
                         <div class="title-card title-link">
                             <p>${item.category}</p>

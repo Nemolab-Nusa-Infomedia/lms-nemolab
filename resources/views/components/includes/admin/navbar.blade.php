@@ -82,7 +82,7 @@
                 <button class="btn d-flex align-items-center ms-2 border-0 " type="button" data-bs-toggle="dropdown">
                     <p class="fw-semibold m-0" style="font-size: 14px">{{ Auth::user()->name }}</p>
                     @if (Auth::user()->avatar != null)
-                        <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}"
+                        <img src="{{ asset('storage/public/images/avatars/' . Auth::user()->avatar) }}"
                             class="rounded-5 ms-1" 
                             style="width: 36px; height: 36px; object-fit: cover;" 
                             id="img-profile">

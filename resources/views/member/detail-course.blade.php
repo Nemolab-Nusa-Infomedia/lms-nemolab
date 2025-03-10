@@ -15,7 +15,7 @@
             <h4 class="m-0 p-0 mt-5 mb-4 text-center">{{ $courses->name }}</h4>
             <div class="content-images d-flex justify-content-center">
                 @if ($courses->cover !=null)
-                <img src="{{ url('storage/images/covers/' . $courses->cover) }}" alt="" class="img-fluid" width="900" height="800" style="border-radius: 15px;">
+                <img src="{{ url('storage/public/images/covers/' . $courses->cover) }}" alt="" class="img-fluid" width="900" height="800" style="border-radius: 15px;">
                 @else
                 <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" alt="" class="img-fluid" width="900" height="800" style="border-radius: 15px;">
                 @endif
@@ -143,7 +143,7 @@
                                         <div class="card-body">
                                             <div class="card-head d-flex align-items-center">
                                             @if ($review->user->avatar !=null)
-                                                <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
+                                                <img src="{{ asset('storage/public/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
                                                 @else
                                                 <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
                                             @endif
@@ -167,7 +167,7 @@
                                             <div class="card-body">
                                                 <div class="card-head d-flex align-items-center">
                                                 @if ($review->user->avatar !=null)
-                                                    <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
+                                                    <img src="{{ asset('storage/public/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
                                                     @else
                                                     <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" width="50" height="50" class="avatar-img" style="border-radius: 50%">
                                                 @endif

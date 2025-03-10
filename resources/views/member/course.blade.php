@@ -239,7 +239,7 @@
 
             return `
                 <div class="card d-flex flex-column">
-                    ${item.cover != null ? `<img src="{{ url('/') }}/storage/images/covers/${item.cover}" class="card-img-top d-block" alt="${item.name}">` : `<img src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="${item.name}">`}
+                    ${item.cover != null ? `<img src="{{ url('/') }}/storage/public/images/covers/${item.cover}" class="card-img-top d-block" alt="${item.name}">` : `<img src="{{ url('/') . asset('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top d-block" alt="${item.name}">`}
                     <div class="card-body p-3">
                         <div class="paket d-flex">
                            <p class="paket-item mt-2">${item.product_type === 'ebook' ? 'E-Book' : currentBundling ? 'Paket Combo' : 'Kursus'}</p>
@@ -251,7 +251,7 @@
                             </a>
                             <p class="avatar m-0 fw-bold me-1">
                                 ${item.users.avatar != null
-                                    ? `<img src="{{ url('/') }}/storage/images/avatars/${item.users.avatar}" alt="${item.users.name}" style="width: 24px; height: 24px; border-radius: 50%;">`
+                                    ? `<img src="{{ url('/') }}/storage/public/images/avatars/${item.users.avatar}" alt="${item.users.name}" style="width: 24px; height: 24px; border-radius: 50%;">`
                                     : `<img src="/nemolab/member/img/icon/Group 7.png" alt="${item.users.name}" style="width: 24px; height: 24px; border-radius: 50%;">`
                                 }
                                 ${item.users.name}

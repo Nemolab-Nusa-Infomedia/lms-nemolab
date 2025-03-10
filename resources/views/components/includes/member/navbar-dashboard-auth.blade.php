@@ -102,7 +102,7 @@
                                         {{ Auth::user()->name }}
                                     </span>
                                     @if (Auth::user()->avatar != null)
-                                        <img src="{{ asset('storage/images/avatars/' . Auth::user()->avatar) }}"
+                                        <img src="{{ asset('storage/public/images/avatars/' . Auth::user()->avatar) }}"
                                             class="rounded-5 ms-1" style="width: 42px; height: 42px;"
                                             id="img-profile">
                                     @else

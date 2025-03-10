@@ -18,7 +18,7 @@
                 <div class="layout-kiri col-md-8">
                     <div class="card-preview mb-3">
                         @if ($courses->cover != null)
-                            <img src="{{ url('storage/images/covers/' . $courses->cover) }}" alt="">
+                            <img src="{{ url('storage/public/images/covers/' . $courses->cover) }}" alt="">
                         @else
                             <img src="{{ asset('nemolab/member/img/NemolabBG.jpg') }}" alt="">
                         @endif
@@ -143,7 +143,7 @@
                             <h5>Bonus</h5>
                             <div class="d-flex">
                                 <a class="book-img" href="{{ route('member.ebook.join', $bundling->ebook->slug) }}">
-                                    <img src="{{ url('storage/images/covers/' . $bundling->ebook->cover) }}" alt="" width="80" height="100" style="object-fit: cover; border-radius: 5px">
+                                    <img src="{{ url('storage/public/images/covers/' . $bundling->ebook->cover) }}" alt="" width="80" height="100" style="object-fit: cover; border-radius: 5px">
                                 </a>
                                 <table class="detail">
                                     <tr>
@@ -246,7 +246,7 @@
                                                 <div class="card-body">
                                                     <div class="card-head d-flex align-items-center">
                                                         @if ($review->user->avatar !=null)
-                                                            <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" width="50" class="avatar-img" style="border-radius: 50%">
+                                                            <img src="{{ asset('storage/public/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" width="50" width="50" class="avatar-img" style="border-radius: 50%">
                                                             @else
                                                             <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" width="50" width="50" class="avatar-img" style="border-radius: 50%">
                                                         @endif
@@ -270,7 +270,7 @@
                                                     <div class="card-body">
                                                         <div class="card-head d-flex align-items-center">
                                                         @if ($review->user->avatar !=null)
-                                                            <img src="{{ asset('storage/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" class="avatar-img" width="50" height="50" style="border-radius: 50%">
+                                                            <img src="{{ asset('storage/public/images/avatars/' . $review->user->avatar) }}" alt="User Avatar" class="avatar-img" width="50" height="50" style="border-radius: 50%">
                                                             @else
                                                             <img src="{{ asset('nemolab/member/img/icon/Group 7.png') }}" alt="User Avatar" class="avatar-img" width="50" height="50" style="border-radius: 50%">
                                                         @endif

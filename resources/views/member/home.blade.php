@@ -82,7 +82,7 @@
                         @if ($course)
                                 <div class="card">
                                     @if ($course->cover != null)
-                                        <img src="{{ url('storage/images/covers/' . $course->cover) }}"
+                                        <img src="{{ url('storage/public/images/covers/' . $course->cover) }}"
                                             class="card-img-top" alt="{{ $course->name }}" />
                                     @else
                                         <img src="{{ url('nemolab/member/img/NemolabBG.jpg') }}" class="card-img-top"
@@ -109,7 +109,7 @@
                                             <p class="avatar m-0 fw-bold me-1">
                                                 @if ($course->users->avatar != null)
                                                     <img class="me-2"
-                                                        src="{{ url('storage/images/avatars/' . $course->users->avatar) }}"
+                                                        src="{{ url('storage/public/images/avatars/' . $course->users->avatar) }}"
                                                         alt="" />
                                                 @else
                                                     <img class="me-2"
