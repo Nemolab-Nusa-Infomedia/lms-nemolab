@@ -235,6 +235,21 @@ class ToolsSeeder extends Seeder
                 'link' => 'https://redis.io/',
                 'logo_tools' => 'https://upload.wikimedia.org/wikipedia/en/6/6b/Redis_Logo.svg'
             ],
+            [
+                'name_tools' => 'Microsoft Word',
+                'link' => 'https://www.microsoft.com/en-us/microsoft-365/word',
+                'logo_tools' => 'https://upload.wikimedia.org/wikipedia/commons/f/fd/Microsoft_Office_Word_%282019%E2%80%93present%29.svg'
+            ],
+            [
+                'name_tools' => 'Microsoft Excel',
+                'link' => 'https://www.microsoft.com/en-us/microsoft-365/excel',
+                'logo_tools' => 'https://upload.wikimedia.org/wikipedia/commons/3/34/Microsoft_Office_Excel_%282019%E2%80%93present%29.svg'
+            ],
+            [
+                'name_tools' => 'Microsoft PowerPoint',
+                'link' => 'https://www.microsoft.com/en-us/microsoft-365/powerpoint',
+                'logo_tools' => 'https://upload.wikimedia.org/wikipedia/commons/0/0d/Microsoft_Office_PowerPoint_%282019%E2%80%93present%29.svg'
+            ],
         ];
 
         for ($i = 0; $i < count($Tools); $i++) {

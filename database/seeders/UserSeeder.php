@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             // 'avatar' => 'default.png',
             'email' => 'superadmin@nemolab.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('password123'),
+            'password' => Hash::make('Merdeka1945#'),
             'role' => 'superadmin',
             'created_at' => now(),
             'updated_at' => now(),

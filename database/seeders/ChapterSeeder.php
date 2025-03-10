@@ -13,11 +13,11 @@ class ChapterSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
-        Chapter::create([
-            'name' => 'Perkenalan Kelas',
-            'course_id' => 1,
-        ]);
-    }
+    // public function run(): void
+    // {
+    //     Chapter::create([
+    //         'name' => 'Perkenalan Kelas',
+    //         'course_id' => 1,
+    //     ]);
+    // }
 }

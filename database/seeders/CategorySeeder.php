@@ -20,6 +20,9 @@ class CategorySeeder extends Seeder
             ['name' => 'FullStack Developer'],
             ['name' => 'UI UX Designer'],
             ['name' => 'Mobile Developer'],
+            ['name' => 'Wordpress Developer'],
+            ['name' => 'Graphics Designer'],
+            ['name' => 'Others']
         ];
 
         for ($i = 0; $i < count($Category); $i++) {

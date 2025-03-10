@@ -12,13 +12,13 @@ class LessonSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
-    {
-        Lesson::create([
-            'name' => 'tools yang akan di gunakan',
-            'episode' => 'eps-1',
-            'video' => 'https:://gedangsuket.id/video',
-            'chapter_id' => 1,
-        ]);
-    }
+    // public function run(): void
+    // {
+    //     Lesson::create([
+    //         'name' => 'tools yang akan di gunakan',
+    //         'episode' => 'eps-1',
+    //         'video' => 'https:://gedangsuket.id/video',
+    //         'chapter_id' => 1,
+    //     ]);
+    // }
 }

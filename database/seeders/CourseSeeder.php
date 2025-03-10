@@ -8,39 +8,39 @@ use Carbon\Carbon;
 
 class CourseSeeder extends Seeder
 {
-    public function run()
-    {
-        // List of categories
-        $categories = [
-            'Frontend Developer', 
-            'Backend Developer', 
-            'Wordpress Developer',
-            'Graphics Designer',
-            'Fullstack Developer',
-            'UI/UX Designer'
-        ];
+    // public function run()
+    // {
+    //     // List of categories
+    //     $categories = [
+    //         'Frontend Developer', 
+    //         'Backend Developer', 
+    //         'Wordpress Developer',
+    //         'Graphics Designer',
+    //         'Fullstack Developer',
+    //         'UI/UX Designer'
+    //     ];
 
         
-        $faker = Faker::create();
-        $timestamp = Carbon::now();
+    //     $faker = Faker::create();
+    //     $timestamp = Carbon::now();
 
-        $numCourses = 100; 
-        for ($i = 0; $i < $numCourses; $i++) {
-            DB::table('tbl_courses')->insert([
-                'category' => $categories[array_rand($categories)],
-                'name' => $faker->sentence(7), 
-                'slug' => $faker->slug(), 
-                'type' => 'free', 
-                'status' => $faker->randomElement(['published']),
-                'price' => 0,
-                'level' => $faker->randomElement(['beginner', 'intermediate', 'expert']), 
-                'description' => $faker->paragraph(), 
-                'resources' => $faker->url(),
-                'link_grub' => $faker->url(),
-                'mentor_id' => 1,
-                'created_at' => $timestamp,
-                'updated_at' => $timestamp
-            ]);
-        }
-    }
+    //     $numCourses = 100; 
+    //     for ($i = 0; $i < $numCourses; $i++) {
+    //         DB::table('tbl_courses')->insert([
+    //             'category' => $categories[array_rand($categories)],
+    //             'name' => $faker->sentence(7), 
+    //             'slug' => $faker->slug(), 
+    //             'type' => 'free', 
+    //             'status' => $faker->randomElement(['published']),
+    //             'price' => 0,
+    //             'level' => $faker->randomElement(['beginner', 'intermediate', 'expert']), 
+    //             'description' => $faker->paragraph(), 
+    //             'resources' => $faker->url(),
+    //             'link_grub' => $faker->url(),
+    //             'mentor_id' => 1,
+    //             'created_at' => $timestamp,
+    //             'updated_at' => $timestamp
+    //         ]);
+    //     }
+    // }
 }
